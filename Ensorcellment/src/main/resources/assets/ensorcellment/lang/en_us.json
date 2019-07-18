@@ -1,0 +1,55 @@
+{
+  "enchantment.ensorcellment.air_worker": "Air Affinity",
+  "enchantment.ensorcellment.air_worker.desc": "Removes the mining speed penalty when not on the ground.",
+
+  "enchantment.ensorcellment.angler": "Angler's Bounty",
+  "enchantment.ensorcellment.angler.desc": "Provides a chance of catching extra items when fishing.",
+
+  "enchantment.ensorcellment.bulwark": "Bulwark",
+  "enchantment.ensorcellment.bulwark.desc": "Prevents the wielder from being knocked back.",
+
+  "enchantment.ensorcellment.displacement": "Displacement",
+  "enchantment.ensorcellment.displacement.desc": "Randomly teleports attackers away.",
+
+  "enchantment.ensorcellment.gourmand": "Gourmand",
+  "enchantment.ensorcellment.gourmand.desc": "Food is more nourishing and satisfying when consumed.",
+
+  "enchantment.ensorcellment.holding": "Holding",
+  "enchantment.ensorcellment.holding.desc": "Increases the storage capacity of certain items.",
+
+  "enchantment.ensorcellment.hunter": "Hunter's Bounty",
+  "enchantment.ensorcellment.hunter.desc": "Provides a chance of additional drops from slain animals.",
+
+  "enchantment.ensorcellment.insight": "Insight",
+  "enchantment.ensorcellment.insight.desc": "Increases experience gain when using the item.",
+
+  "enchantment.ensorcellment.leech": "Leech",
+  "enchantment.ensorcellment.leech.desc": "Restores health when a mob is killed.",
+
+  "enchantment.ensorcellment.phalanx": "Phalanx",
+  "enchantment.ensorcellment.phalanx.desc": "Allows the wielder to move faster while using a shield.",
+
+  "enchantment.ensorcellment.preservation": "Preservation",
+  "enchantment.ensorcellment.preservation.desc": "Removes the increasing XP cost for repairing an item.",
+
+  "enchantment.ensorcellment.quickdraw": "Quickdraw",
+  "enchantment.ensorcellment.quickdraw.desc": "Decreases the amount of time needed to fully draw a bow.",
+
+  "enchantment.ensorcellment.smashing": "Smashing",
+  "enchantment.ensorcellment.smashing.desc": "Harvested ores will be smashed to pieces, improving yield.",
+
+  "enchantment.ensorcellment.smelting": "Smelting",
+  "enchantment.ensorcellment.smelting.desc": "Harvested blocks will automatically be smelted, as if by a Furnace.",
+
+  "enchantment.ensorcellment.soulbound": "Soulbound",
+  "enchantment.ensorcellment.soulbound.desc": "The item will remain with the owner after an untimely demise.",
+
+  "enchantment.ensorcellment.trueshot": "Trueshot",
+  "enchantment.ensorcellment.trueshot.desc": "Increases the accuracy and speed of arrows.",
+
+  "enchantment.ensorcellment.volley": "Volley",
+  "enchantment.ensorcellment.volley.desc": "Additional arrows are fired with each shot. Only one arrow is consumed.",
+
+  "enchantment.ensorcellment.vorpal": "Vorpal",
+  "enchantment.ensorcellment.vorpal.desc": "Randomly performs powerful attacks and decapitations."
+}

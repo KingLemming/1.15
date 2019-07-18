@@ -1,0 +1,7 @@
+rootProject.name = '1.14'
+include 'CoFHCore'
+include 'CoFHWorld'
+include 'Ensorcellment'
+include 'Quartermastery'
+
+include 'Workspace'
