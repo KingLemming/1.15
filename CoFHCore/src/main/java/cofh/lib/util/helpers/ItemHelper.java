@@ -1,6 +1,7 @@
 package cofh.lib.util.helpers;
 
 import cofh.lib.item.IMultiModeItem;
+import com.google.common.base.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -92,21 +93,20 @@ public class ItemHelper {
         return container;
     }
 
-    // TODO: Fix
-    //    public static CompoundNBT setItemStackTagName(CompoundNBT tag, String name) {
-    //
-    //        if (Strings.isNullOrEmpty(name)) {
-    //            return null;
-    //        }
-    //        if (tag == null) {
-    //            tag = new CompoundNBT();
-    //        }
-    //        if (!tag.hasKey("display")) {
-    //            tag.setTag("display", new CompoundNBT());
-    //        }
-    //        tag.getCompoundTag("display").setString("Name", name);
-    //        return tag;
-    //    }
+    public static CompoundNBT setItemStackTagName(CompoundNBT tag, String name) {
+
+        if (Strings.isNullOrEmpty(name)) {
+            return null;
+        }
+        if (tag == null) {
+            tag = new CompoundNBT();
+        }
+        if (!tag.contains("display")) {
+            tag.put("display", new CompoundNBT());
+        }
+        tag.getCompound("display").putString("Name", name);
+        return tag;
+    }
     // endregion
 
     // region COMPARISON
@@ -130,65 +130,61 @@ public class ItemHelper {
         return nbtA == null && nbtB == null || nbtA != null && nbtB != null && nbtA.equals(nbtB);
     }
 
-    // TODO: Fix
-    //    /**
-    //     * Compares item, meta, size and nbt of two stacks while ignoring nbt tag keys provided.
-    //     * This is useful in shouldCauseReequipAnimation overrides.
-    //     *
-    //     * @param stackA          first stack to compare
-    //     * @param stackB          second stack to compare
-    //     * @param nbtTagsToIgnore tag keys to ignore when comparing the stacks
-    //     */
-    //    public static boolean areItemStacksEqualIgnoreTags(ItemStack stackA, ItemStack stackB, String... nbtTagsToIgnore) {
-    //
-    //        if (stackA.isEmpty() && stackB.isEmpty()) {
-    //            return true;
-    //        }
-    //        if (stackA.isEmpty() && !stackB.isEmpty()) {
-    //            return false;
-    //        }
-    //        if (!stackA.isEmpty() && stackB.isEmpty()) {
-    //            return false;
-    //        }
-    //        if (stackA.getItem() != stackB.getItem()) {
-    //            return false;
-    //        }
-    //        if (stackA.getDamage() != stackB.getDamage()) {
-    //            return false;
-    //        }
-    //        if (stackA.getCount() != stackB.getCount()) {
-    //            return false;
-    //        }
-    //        if (stackA.getTag() == null && stackB.getTag() == null) {
-    //            return true;
-    //        }
-    //        if (stackA.getTag() == null || stackB.getTag() == null) {
-    //            return false;
-    //        }
-    //        int numberOfKeys = stackA.getTag().getKeySet().size();
-    //        if (numberOfKeys != stackB.getTag().getKeySet().size()) {
-    //            return false;
-    //        }
-    //
-    //        CompoundNBT tagA = stackA.getTag();
-    //        CompoundNBT tagB = stackB.getTag();
-    //
-    //        String[] keys = new String[numberOfKeys];
-    //        keys = tagA.getKeySet().toArray(keys);
-    //
-    //        a:
-    //        for (int i = 0; i < numberOfKeys; i++) {
-    //            for (int j = 0; j < nbtTagsToIgnore.length; j++) {
-    //                if (nbtTagsToIgnore[j].equals(keys[i])) {
-    //                    continue a;
-    //                }
-    //            }
-    //            if (!tagA.getTag(keys[i]).equals(tagB.getTag(keys[i]))) {
-    //                return false;
-    //            }
-    //        }
-    //        return true;
-    //    }
+    /**
+     * Compares item, meta, size and nbt of two stacks while ignoring nbt tag keys provided.
+     * This is useful in shouldCauseReequipAnimation overrides.
+     *
+     * @param stackA          first stack to compare
+     * @param stackB          second stack to compare
+     * @param nbtTagsToIgnore tag keys to ignore when comparing the stacks
+     */
+    public static boolean areItemStacksEqualIgnoreTags(ItemStack stackA, ItemStack stackB, String... nbtTagsToIgnore) {
+
+        if (stackA.isEmpty() && stackB.isEmpty()) {
+            return true;
+        }
+        if (stackA.isEmpty() || stackB.isEmpty()) {
+            return false;
+        }
+        if (stackA.getItem() != stackB.getItem()) {
+            return false;
+        }
+        if (stackA.getDamage() != stackB.getDamage()) {
+            return false;
+        }
+        if (stackA.getCount() != stackB.getCount()) {
+            return false;
+        }
+        if (stackA.getTag() == null && stackB.getTag() == null) {
+            return true;
+        }
+        if (stackA.getTag() == null || stackB.getTag() == null) {
+            return false;
+        }
+        int numberOfKeys = stackA.getTag().keySet().size();
+        if (numberOfKeys != stackB.getTag().keySet().size()) {
+            return false;
+        }
+
+        CompoundNBT tagA = stackA.getTag();
+        CompoundNBT tagB = stackB.getTag();
+
+        String[] keys = new String[numberOfKeys];
+        keys = tagA.keySet().toArray(keys);
+
+        a:
+        for (int i = 0; i < numberOfKeys; i++) {
+            for (int j = 0; j < nbtTagsToIgnore.length; j++) {
+                if (nbtTagsToIgnore[j].equals(keys[i])) {
+                    continue a;
+                }
+            }
+            if (!tagA.getCompound(keys[i]).equals(tagB.getCompound(keys[i]))) {
+                return false;
+            }
+        }
+        return true;
+    }
     // endregion
 
     // TODO: Fix
