@@ -3,5 +3,6 @@ include 'CoFHCore'
 include 'CoFHWorld'
 include 'Ensorcellment'
 include 'Quartermastery'
+include 'ThermalSeries'
 
 include 'Workspace'

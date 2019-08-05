@@ -61,6 +61,9 @@ minecraft {
                 Quartermastery {
                     source project(':Quartermastery').sourceSets.main
                 }
+                ThermalSeries {
+                    source project(':ThermalSeries').sourceSets.main
+                }
             }
         }
 
@@ -87,6 +90,9 @@ minecraft {
                 Quartermastery {
                     source project(':Quartermastery').sourceSets.main
                 }
+                ThermalSeries {
+                    source project(':ThermalSeries').sourceSets.main
+                }
             }
         }
     }
@@ -102,6 +108,7 @@ dependencies {
     compile project(':CoFHWorld')
     compile project(':Ensorcellment')
     compile project(':Quartermastery')
+    compile project(':ThermalSeries')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

@@ -24,8 +24,6 @@ public class EnchantmentsEnsorc {
 
     public static void createEnchantments() {
 
-        System.out.println("CREATION");
-
         EquipmentSlotType[] armorSlots = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
 
         createOverride(new ProtectionEnchantmentImp(ID_PROTECTION, Enchantment.Rarity.COMMON, ProtectionEnchantment.Type.ALL, armorSlots, "Protection"));

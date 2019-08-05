@@ -1,16 +1,17 @@
 modLoader="javafml"
 loaderVersion="[26,)"
 issueTrackerURL="http://my.issue.tracker/"
+
 [[mods]]
-modId="quartermastery"
-version="${file.jarVersion}"
-displayName="Quartermastery"
-#updateJSONURL="http://myurl.me/"
-displayURL="http://example.com/"
-logoFile="logo.png"
-credits="Team CoFH"
-authors="King Lemming"
-description='''
+    modId="quartermastery"
+    version="${file.jarVersion}"
+    displayName="Quartermastery"
+    #updateJSONURL="http://myurl.me/"
+    #displayURL="http://example.com/"
+    logoFile="logo.png"
+    credits="Team CoFH"
+    authors="King Lemming"
+    description='''
 
 Tools and Armor!
 
@@ -18,14 +19,14 @@ Tools and Armor!
 [[dependencies.quartermastery]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.3]"
+    versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.quartermastery]]
     modId="forge"
     mandatory=true
-    versionRange="[27,)"
+    versionRange="[28,)"
     ordering="NONE"
     side="BOTH"
 

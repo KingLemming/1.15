@@ -51,6 +51,7 @@ public class Constants {
     public static final int AOE_BREAK_FACTOR = 8;
     public static final int BOTTLE_VOLUME = 250;
     public static final int ENTITY_TRACKING_DISTANCE = 64;
+    public static final int ITEM_ACTIVE_DURATION = 40;
     public static final int MAGMATIC_TEMPERATURE = 1000;
     public static final int MAX_ENCHANT_LEVEL = 10;
     public static final int MB_PER_XP = 20;
@@ -182,17 +183,6 @@ public class Constants {
     public static final String GROUP_UTILS = "utils";
 
     public static final String KEY_MULTIMODE = "cofh.multimode";
-
-    public static final String TOOL_AXE = "axe";
-    public static final String TOOL_DRILL = "drill";
-    public static final String TOOL_EXCAVATOR = "excavator";
-    public static final String TOOL_HAMMER = "hammer";
-    public static final String TOOL_PICKAXE = "pickaxe";
-    public static final String TOOL_SAW = "saw";
-    public static final String TOOL_SHOVEL = "shovel";
-    public static final String TOOL_SICKLE = "sickle";
-    public static final String TOOL_SWORD = "sword";
-    public static final String TOOL_WRENCH = "wrench";
 
     public static final UUID UUID_KNOCKBACK_RESISTANCE = UUID.fromString("DA9976EC-C764-4450-B5AA-1B11B10143E2");
     public static final UUID UUID_MOVEMENT_SPEED = UUID.fromString("DBFFDB74-4607-4C2E-9573-A14D6A73397A");

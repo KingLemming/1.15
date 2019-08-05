@@ -1,11 +1,9 @@
-package cofh.ensorcellment;
+package cofh.thermal.core;
 
-import cofh.ensorcellment.event.ClientEventsEnsorc;
-import cofh.ensorcellment.event.CommonEventsEnsorc;
-import cofh.ensorcellment.init.ConfigEnsorc;
-import cofh.ensorcellment.init.EnchantmentsEnsorc;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.potion.Potion;
+import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,38 +16,31 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(Ensorcellment.MOD_ID)
-public class Ensorcellment {
+@Mod("thermal_series")
+public class ThermalSeries {
 
-    public static final String MOD_ID = "ensorcellment";
-    public static final String MOD_NAME = "Ensorcellment";
+    public static final String MOD_ID = "thermal_series";
+    public static final String MOD_NAME = "Thermal Series";
     public static final String VERSION = "1.0";
     public static final Logger LOG = LogManager.getLogger(MOD_ID);
 
-    public Ensorcellment() {
+    public ThermalSeries() {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        //        modEventBus.addListener(this::enqueueIMC);
-        //        modEventBus.addListener(this::processIMC);
-
-        EnchantmentsEnsorc.createEnchantments();
-
-        ConfigEnsorc.register();
-        ConfigEnsorc.genConfigs();
+        modEventBus.addListener(this::enqueueIMC);
+        modEventBus.addListener(this::processIMC);
     }
 
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        CommonEventsEnsorc.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        ClientEventsEnsorc.register();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -66,13 +57,22 @@ public class Ensorcellment {
     public static class RegistryEvents {
 
         @SubscribeEvent
-        public void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
+        public void registerBlocks(final RegistryEvent.Register<Block> event) {
 
-            EnchantmentsEnsorc.registerEnchantments(event);
         }
 
         @SubscribeEvent
-        public void registerPotions(final RegistryEvent.Register<Potion> event) {
+        public void registerItems(final RegistryEvent.Register<Item> event) {
+
+        }
+
+        @SubscribeEvent
+        public void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
+
+        }
+
+        @SubscribeEvent
+        public void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
 
         }
 
