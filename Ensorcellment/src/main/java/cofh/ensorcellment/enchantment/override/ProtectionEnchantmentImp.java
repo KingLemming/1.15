@@ -12,7 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.Constants.MAX_ENCHANT_LEVEL;
+import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 
 public class ProtectionEnchantmentImp extends EnchantmentCoFH {
 

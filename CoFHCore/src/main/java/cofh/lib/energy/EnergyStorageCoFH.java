@@ -8,7 +8,7 @@ import cofh.lib.util.IResourceStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.energy.IEnergyStorage;
 
-import static cofh.lib.util.Constants.TAG_ENERGY;
+import static cofh.lib.util.constants.Tags.TAG_ENERGY;
 
 /**
  * Implementation of an Energy Storage object. See {@link IEnergyStorage}.

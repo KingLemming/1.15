@@ -14,8 +14,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static cofh.lib.util.Constants.ITEM_ACTIVE_DURATION;
-import static cofh.lib.util.Constants.TAG_ACTIVE;
+import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
+import static cofh.lib.util.constants.Tags.TAG_ACTIVE;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
 

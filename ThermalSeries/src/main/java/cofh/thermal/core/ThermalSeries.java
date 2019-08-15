@@ -1,5 +1,6 @@
 package cofh.thermal.core;
 
+import cofh.thermal.core.init.BlocksTSeries;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -16,13 +17,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod("thermal_series")
+import static cofh.lib.util.constants.Constants.ID_THERMAL_SERIES;
+
+@Mod(ID_THERMAL_SERIES)
 public class ThermalSeries {
 
-    public static final String MOD_ID = "thermal_series";
     public static final String MOD_NAME = "Thermal Series";
     public static final String VERSION = "1.0";
-    public static final Logger LOG = LogManager.getLogger(MOD_ID);
+    public static final Logger LOG = LogManager.getLogger(ID_THERMAL_SERIES);
 
     public ThermalSeries() {
 
@@ -57,22 +59,24 @@ public class ThermalSeries {
     public static class RegistryEvents {
 
         @SubscribeEvent
-        public void registerBlocks(final RegistryEvent.Register<Block> event) {
+        public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+
+            BlocksTSeries.registerBlocks(event);
+        }
+
+        @SubscribeEvent
+        public static void registerItems(final RegistryEvent.Register<Item> event) {
+
+            BlocksTSeries.registerItemBlocks(event);
+        }
+
+        @SubscribeEvent
+        public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
 
         }
 
         @SubscribeEvent
-        public void registerItems(final RegistryEvent.Register<Item> event) {
-
-        }
-
-        @SubscribeEvent
-        public void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
-
-        }
-
-        @SubscribeEvent
-        public void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
+        public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
 
         }
 

@@ -20,7 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityArchery.DEFAULT_BOW_CAPABILITY;
 import static cofh.lib.capability.CapabilityMelee.SHIELD_ITEM_CAPABILITY;
-import static cofh.lib.util.Constants.DAMAGE_ARROW;
+import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;

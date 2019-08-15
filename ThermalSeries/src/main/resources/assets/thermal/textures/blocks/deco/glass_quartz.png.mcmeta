@@ -1,0 +1,13 @@
+{
+	"ctm": {
+		"ctm_version": 1,
+		"type": "ctm",
+		"layer": "CUTOUT",
+		"textures": [ "thermal:blocks/deco/glass_hard_ctm" ],
+		"extra": {
+			"connect_to": [
+				{ "block": "thermal:glass_hard" },
+			]
+		}
+	}
+}

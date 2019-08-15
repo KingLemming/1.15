@@ -28,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Path;
 
-import static cofh.lib.util.Constants.TAG_ENCHANTMENTS;
+import static cofh.lib.util.constants.Tags.TAG_ENCHANTMENTS;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
 public class Utils {

@@ -47,6 +47,29 @@ public final class StringHelper {
         return new StringTextComponent(getInfoText(key));
     }
 
+    public static String[] decompose(String resourceLoc, char delimiter) {
+
+        String[] decomposed = new String[]{"minecraft", resourceLoc};
+        int delIndex = resourceLoc.indexOf(delimiter);
+        if (delIndex >= 0) {
+            decomposed[1] = resourceLoc.substring(delIndex + 1, resourceLoc.length());
+            if (delIndex >= 1) {
+                decomposed[0] = resourceLoc.substring(0, delIndex);
+            }
+        }
+        return decomposed;
+    }
+
+    public static String namespace(String resourceLoc) {
+
+        return decompose(resourceLoc, ':')[0];
+    }
+
+    public static String path(String resourceLoc) {
+
+        return decompose(resourceLoc, ':')[1];
+    }
+
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
     public static final String GREEN = (char) 167 + "2";

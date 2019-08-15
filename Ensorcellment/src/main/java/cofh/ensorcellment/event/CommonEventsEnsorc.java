@@ -7,6 +7,7 @@ import cofh.ensorcellment.enchantment.override.ThornsEnchantmentImp;
 import cofh.ensorcellment.init.ConfigEnsorc;
 import cofh.ensorcellment.init.EnchantmentsEnsorc;
 import cofh.lib.util.Utils;
+import cofh.lib.util.constants.Tags;
 import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -59,7 +60,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.Iterator;
 import java.util.List;
 
-import static cofh.lib.util.Constants.*;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.Utils.*;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
@@ -203,7 +204,7 @@ public class CommonEventsEnsorc {
                     PlayerEntity target = (ServerPlayerEntity) event.getEntity();
                     itemSkull = new ItemStack(PLAYER_HEAD);
                     CompoundNBT tag = new CompoundNBT();
-                    tag.putString(TAG_SKULL_OWNER, target.getName().getString());
+                    tag.putString(Tags.TAG_SKULL_OWNER, target.getName().getString());
                     itemSkull.setTag(tag);
                 } else if (entity instanceof SkeletonEntity) {
                     itemSkull = new ItemStack(SKELETON_SKULL);
@@ -437,6 +438,7 @@ public class CommonEventsEnsorc {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
+    // TODO: This is non-functional.
     public void handleHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
 
         PlayerEntity player = event.getHarvester();

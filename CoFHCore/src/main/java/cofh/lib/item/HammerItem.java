@@ -1,16 +1,15 @@
 package cofh.lib.item;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.ToolItem;
+import net.minecraft.item.PickaxeItem;
 
-import java.util.Set;
+import static cofh.lib.util.constants.ToolTypes.HAMMER;
 
-public class HammerItem extends ToolItem {
+public class HammerItem extends PickaxeItem {
 
-    protected HammerItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builder) {
+    public HammerItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
 
-        super(attackDamageIn, attackSpeedIn, tier, effectiveBlocksIn, builder);
+        super(tier, (int) attackDamageIn, attackSpeedIn, builder.addToolType(HAMMER, tier.getHarvestLevel()));
     }
 
 }

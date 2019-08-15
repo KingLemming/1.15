@@ -18,13 +18,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(Ensorcellment.MOD_ID)
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
+
+@Mod(ID_ENSORCELLMENT)
 public class Ensorcellment {
 
-    public static final String MOD_ID = "ensorcellment";
     public static final String MOD_NAME = "Ensorcellment";
     public static final String VERSION = "1.0";
-    public static final Logger LOG = LogManager.getLogger(MOD_ID);
+    public static final Logger LOG = LogManager.getLogger(ID_ENSORCELLMENT);
 
     public Ensorcellment() {
 
@@ -66,13 +67,13 @@ public class Ensorcellment {
     public static class RegistryEvents {
 
         @SubscribeEvent
-        public void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
+        public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
 
             EnchantmentsEnsorc.registerEnchantments(event);
         }
 
         @SubscribeEvent
-        public void registerPotions(final RegistryEvent.Register<Potion> event) {
+        public static void registerPotions(final RegistryEvent.Register<Potion> event) {
 
         }
 

@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class SickleItem extends ToolItem {
 
-    protected SickleItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builder) {
+    public SickleItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builder) {
 
         super(attackDamageIn, attackSpeedIn, tier, effectiveBlocksIn, builder);
     }

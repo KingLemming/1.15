@@ -18,7 +18,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static cofh.lib.util.Constants.TAG_STORED_ENCHANTMENTS;
+import static cofh.lib.util.constants.Tags.TAG_STORED_ENCHANTMENTS;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.PHALANX;
 
 public class ClientEventsEnsorc {

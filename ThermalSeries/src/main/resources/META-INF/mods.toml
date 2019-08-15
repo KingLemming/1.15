@@ -3,7 +3,7 @@ loaderVersion="[26,)"
 issueTrackerURL="http://my.issue.tracker/"
 
 [[mods]]
-    modId="thermal_series"
+    modId="thermal"
     version="${file.jarVersion}"
     displayName="Thermal Series"
     #updateJSONURL="http://myurl.me/"
@@ -16,42 +16,14 @@ issueTrackerURL="http://my.issue.tracker/"
 Thermal Series!
 
 '''
-[[dependencies.thermal_series]]
+[[dependencies.thermal]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.thermal_series]]
-    modId="forge"
-    mandatory=true
-    versionRange="[28,)"
-    ordering="NONE"
-    side="BOTH"
-
-[[mods]]
-    modId="thermal_expansion"
-    version="${file.jarVersion}"
-    displayName="Thermal Expansion"
-    #updateJSONURL="http://myurl.me/"
-    #displayURL="http://example.com/"
-    logoFile="logo.png"
-    credits="Team CoFH"
-    authors="King Lemming"
-    description='''
-
-Thermal Expansion!
-
-'''
-[[dependencies.thermal_expansion]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.14.4]"
-    ordering="NONE"
-    side="BOTH"
-
-[[dependencies.thermal_expansion]]
+[[dependencies.thermal]]
     modId="forge"
     mandatory=true
     versionRange="[28,)"

@@ -1,16 +1,15 @@
 package cofh.lib.item;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.ToolItem;
+import net.minecraft.item.ShovelItem;
 
-import java.util.Set;
+import static cofh.lib.util.constants.ToolTypes.EXCAVATOR;
 
-public class ExcavatorItem extends ToolItem {
+public class ExcavatorItem extends ShovelItem {
 
-    protected ExcavatorItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Set<Block> effectiveBlocksIn, Properties builder) {
+    public ExcavatorItem(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
 
-        super(attackDamageIn, attackSpeedIn, tier, effectiveBlocksIn, builder);
+        super(tier, (int) attackDamageIn, attackSpeedIn, builder.addToolType(EXCAVATOR, tier.getHarvestLevel()));
     }
 
 }

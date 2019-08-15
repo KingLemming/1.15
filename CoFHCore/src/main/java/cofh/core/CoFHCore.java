@@ -15,13 +15,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(CoFHCore.MOD_ID)
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+
+@Mod(ID_COFH_CORE)
 public class CoFHCore {
 
-    public static final String MOD_ID = "cofh_core";
     public static final String MOD_NAME = "CoFH Core";
     public static final String VERSION = "1.0";
-    public static final Logger LOG = LogManager.getLogger(MOD_ID);
+    public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
 
     public CoFHCore() {
 

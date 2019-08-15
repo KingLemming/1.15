@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import java.util.Random;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.Constants.MAX_ENCHANT_LEVEL;
+import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 
 public class DisplacementEnchantment extends EnchantmentCoFH {
 

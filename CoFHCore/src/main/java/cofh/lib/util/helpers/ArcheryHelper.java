@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 
 import static cofh.lib.capability.CapabilityArchery.*;
-import static cofh.lib.util.Constants.MAX_ENCHANT_LEVEL;
+import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.TRUESHOT;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.VOLLEY;
 import static net.minecraft.enchantment.Enchantments.*;

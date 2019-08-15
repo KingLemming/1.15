@@ -7,7 +7,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.Constants.ID_ENSORCELLMENT;
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
 
 public class MendingEnchantmentAlt extends EnchantmentCoFH {
 

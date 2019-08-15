@@ -4,7 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
-import static cofh.lib.util.Constants.TAG_MODE;
+import static cofh.lib.util.constants.Tags.TAG_MODE;
 
 /**
  * Implement this interface on Item classes which have multiple modes - what that means is completely up to you.

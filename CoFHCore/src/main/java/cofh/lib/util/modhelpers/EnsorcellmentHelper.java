@@ -3,7 +3,7 @@ package cofh.lib.util.modhelpers;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.registries.ObjectHolder;
 
-import static cofh.lib.util.Constants.ID_ENSORCELLMENT;
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
 
 public class EnsorcellmentHelper {
 
