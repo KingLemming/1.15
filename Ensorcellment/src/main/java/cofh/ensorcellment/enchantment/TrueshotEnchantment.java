@@ -4,7 +4,6 @@ import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
@@ -33,9 +32,7 @@ public class TrueshotEnchantment extends EnchantmentCoFH {
         return enable && (validBow(stack) || supportsEnchantment(stack));
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

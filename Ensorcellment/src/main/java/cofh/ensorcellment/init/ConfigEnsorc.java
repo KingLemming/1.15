@@ -1,6 +1,6 @@
 package cofh.ensorcellment.init;
 
-import cofh.lib.util.IConfigSupport;
+import cofh.lib.util.IDynamicConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,7 +29,7 @@ public class ConfigEnsorc {
 
     }
 
-    static List<IConfigSupport> configurables = new ArrayList<>();
+    static List<IDynamicConfig> configurables = new ArrayList<>();
 
     public static final Builder COMMON_CONFIG = new Builder();
     public static ForgeConfigSpec commonSpec;
@@ -39,7 +39,7 @@ public class ConfigEnsorc {
 
     public static void genConfigs() {
 
-        for (IConfigSupport configurable : configurables) {
+        for (IDynamicConfig configurable : configurables) {
             configurable.genConfig();
         }
         genCommonConfig();
@@ -95,7 +95,7 @@ public class ConfigEnsorc {
             refreshClientConfig();
             return;
         }
-        for (IConfigSupport configurable : configurables) {
+        for (IDynamicConfig configurable : configurables) {
             configurable.refreshConfig();
         }
         refreshCommonConfig();
@@ -108,7 +108,7 @@ public class ConfigEnsorc {
             refreshClientConfig();
             return;
         }
-        for (IConfigSupport configurable : configurables) {
+        for (IDynamicConfig configurable : configurables) {
             configurable.refreshConfig();
         }
         refreshCommonConfig();

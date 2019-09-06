@@ -9,7 +9,6 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
@@ -46,10 +45,7 @@ public class LootingEnchantmentImp extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

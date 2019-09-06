@@ -1,5 +1,6 @@
 package cofh.lib.item;
 
+import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -64,9 +65,7 @@ public class ItemCoFH extends Item {
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
 
-        // TODO: Fix
-        return false;
-        // return SecurityHelper.hasSecurity(stack);
+        return SecurityHelper.hasSecurity(stack);
     }
 
     @Override
@@ -107,6 +106,7 @@ public class ItemCoFH extends Item {
     }
     // endregion
 
+    // TODO: Revamp?
     //    // region IModelRegister
     //    @SideOnly (Side.CLIENT)
     //    public void registerModel() {

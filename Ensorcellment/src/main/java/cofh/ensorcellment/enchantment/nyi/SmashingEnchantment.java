@@ -1,4 +1,4 @@
-package cofh.ensorcellment.enchantment;
+package cofh.ensorcellment.enchantment.nyi;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.Enchantment;
@@ -8,7 +8,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ToolType;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
@@ -48,9 +47,7 @@ public class SmashingEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

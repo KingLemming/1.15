@@ -1,6 +1,7 @@
 package cofh.thermal.core;
 
 import cofh.thermal.core.init.BlocksTSeries;
+import cofh.thermal.core.init.ItemsTSeries;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -68,6 +69,7 @@ public class ThermalSeries {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
 
             BlocksTSeries.registerItemBlocks(event);
+            ItemsTSeries.registerItems(event);
         }
 
         @SubscribeEvent

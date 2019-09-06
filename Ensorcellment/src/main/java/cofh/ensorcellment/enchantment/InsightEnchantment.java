@@ -45,9 +45,7 @@ public class InsightEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
+    // region IDynamicConfig
     private ForgeConfigSpec.IntValue cfgExperience;
 
     @Override

@@ -44,9 +44,7 @@ public class VorpalEnchantment extends EnchantmentCoFH {
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
+    // region IDynamicConfig
     private ForgeConfigSpec.IntValue cfgCritBase;
     private ForgeConfigSpec.IntValue cfgCritLevel;
     private ForgeConfigSpec.IntValue cfgCritDamage;

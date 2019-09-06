@@ -1,6 +1,8 @@
 package cofh.ensorcellment.event;
 
 import cofh.ensorcellment.enchantment.*;
+import cofh.ensorcellment.enchantment.nyi.SmashingEnchantment;
+import cofh.ensorcellment.enchantment.nyi.SmeltingEnchantment;
 import cofh.ensorcellment.enchantment.override.MendingEnchantmentAlt;
 import cofh.ensorcellment.enchantment.override.ProtectionEnchantmentImp;
 import cofh.ensorcellment.enchantment.override.ThornsEnchantmentImp;
@@ -34,6 +36,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.DamageSource;
@@ -60,8 +63,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.Iterator;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.Utils.*;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
@@ -90,21 +93,6 @@ public class CommonEventsEnsorc {
     }
 
     // region LIVING EVENTS
-    @SubscribeEvent
-    public void handleFarmlandTrampleEvent(FarmlandTrampleEvent event) {
-
-        if (!ConfigEnsorc.preventFarmlandTrampling) {
-            return;
-        }
-        Entity entity = event.getEntity();
-        if (entity instanceof LivingEntity) {
-            int encFeatherFalling = getMaxEnchantmentLevel(FEATHER_FALLING, (LivingEntity) entity);
-            if (encFeatherFalling > 0) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
     @SubscribeEvent
     public void handleLivingAttackEvent(LivingAttackEvent event) {
 
@@ -293,11 +281,10 @@ public class CommonEventsEnsorc {
             if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
                 event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
                 attacker.world.playSound(null, attacker.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                // TODO: Fix
-                //                for (int i = 0; i < encVorpal * 2; i++) {
-                //                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0.0, 0);
-                //                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0.0, 0);
-                //                }
+                for (int i = 0; i < encVorpal * 2; i++) {
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                }
             }
         }
         // endregion
@@ -341,6 +328,30 @@ public class CommonEventsEnsorc {
         }
     }
 
+    /* GOURMAND */
+    @SubscribeEvent
+    public void handleItemUseFinish(LivingEntityUseItemEvent.Finish event) {
+
+        LivingEntity entity = event.getEntityLiving();
+        if (!(entity instanceof PlayerEntity) || entity instanceof FakePlayer) {
+            return;
+        }
+        Food food = event.getItem().getItem().getFood();
+        if (food != null) {
+            int encGourmand = getMaxEnchantmentLevel(GOURMAND, entity);
+            if (encGourmand > 0) {
+                int foodLevel = food.getHealing();
+                float foodSaturation = food.getSaturation();
+
+                FoodStats playerStats = ((PlayerEntity) entity).getFoodStats();
+                int playerFood = playerStats.getFoodLevel();
+
+                playerStats.addStats(foodLevel + encGourmand, foodSaturation + encGourmand * 0.1F);
+                playerStats.setFoodLevel(Math.min(playerFood + encGourmand, 20));
+            }
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void handleItemFishedEvent(ItemFishedEvent event) {
 
@@ -355,7 +366,7 @@ public class CommonEventsEnsorc {
 
         int encAngler = getHeldEnchantmentLevel(player, ANGLER);
         if (encAngler > 0) {
-            ItemStack fishingRod = event.getEntityPlayer().getHeldItemMainhand();
+            ItemStack fishingRod = event.getPlayer().getHeldItemMainhand();
 
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) hook.world)).withParameter(LootParameters.POSITION, new BlockPos(hook)).withParameter(LootParameters.TOOL, fishingRod).withRandom(hook.world.rand).withLuck((float) hook.luck + hook.angler.getLuck());
             lootcontext$builder.withParameter(LootParameters.KILLER_ENTITY, hook.angler).withParameter(LootParameters.THIS_ENTITY, hook);
@@ -383,32 +394,26 @@ public class CommonEventsEnsorc {
     }
     // endregion
 
-    // region ITEM USE
+    // region MISC EVENTS
     @SubscribeEvent
-    public void handleItemUseFinish(LivingEntityUseItemEvent.Finish event) {
+    public void handleFarmlandTrampleEvent(FarmlandTrampleEvent event) {
 
-        LivingEntity entity = event.getEntityLiving();
-        if (!(entity instanceof PlayerEntity) || entity instanceof FakePlayer) {
+        if (!ConfigEnsorc.preventFarmlandTrampling) {
             return;
         }
-        Food food = event.getItem().getItem().getFood();
-        if (food != null) {
-            int encGourmand = getMaxEnchantmentLevel(GOURMAND, entity);
-            if (encGourmand > 0) {
-                int foodLevel = food.getHealing();
-                float foodSaturation = food.getSaturation();
-
-                FoodStats playerStats = ((PlayerEntity) entity).getFoodStats();
-                int playerFood = playerStats.getFoodLevel();
-
-                playerStats.addStats(foodLevel + encGourmand, foodSaturation + encGourmand * 0.1F);
-                playerStats.setFoodLevel(Math.min(playerFood + encGourmand, 20));
+        Entity entity = event.getEntity();
+        if (entity instanceof LivingEntity) {
+            int encFeatherFalling = getMaxEnchantmentLevel(FEATHER_FALLING, (LivingEntity) entity);
+            if (encFeatherFalling > 0) {
+                event.setCanceled(true);
             }
         }
     }
     // endregion
 
     // region BLOCK BREAKING
+
+    /* INSIGHT */
     @SubscribeEvent
     public void handleBlockBreakEvent(BlockEvent.BreakEvent event) {
 
@@ -424,10 +429,11 @@ public class CommonEventsEnsorc {
         }
     }
 
+    /* AIR WORKER */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void handleBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
 
-        PlayerEntity player = event.getEntityPlayer();
+        PlayerEntity player = event.getPlayer();
         if (!player.onGround && getMaxEnchantmentLevel(AIR_WORKER, player) > 0) {
             float oldSpeed = event.getOriginalSpeed();
             float newSpeed = event.getNewSpeed();
@@ -438,9 +444,10 @@ public class CommonEventsEnsorc {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    // TODO: This is non-functional.
+    // TODO: Event does not fire yet.
     public void handleHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
 
+        /* SMASHING / SMELTING / PROSPECTING */
         PlayerEntity player = event.getHarvester();
         if (player == null || event.isSilkTouching()) {
             return;
@@ -451,7 +458,6 @@ public class CommonEventsEnsorc {
 
         List<ItemStack> drops = event.getDrops();
 
-        // SMASHING / SMELTING
         drops.replaceAll(stack -> {
             if (stack.isEmpty()) {
                 return stack; // Nope, processing on this sometimes results in...results.
@@ -483,7 +489,7 @@ public class CommonEventsEnsorc {
         ItemStack left = event.getItemInput();
         ItemStack output = event.getItemResult();
 
-        // PRESERVATION
+        /* PRESERVATION */
         if (!EnchantmentsEnsorc.overrideMending.enabled() || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
@@ -499,7 +505,7 @@ public class CommonEventsEnsorc {
         ItemStack right = event.getRight();
         ItemStack output = left.copy();
 
-        // PRESERVATION
+        /* PRESERVATION */
         if (!EnchantmentsEnsorc.overrideMending.enabled() || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
@@ -515,7 +521,7 @@ public class CommonEventsEnsorc {
                 damageLeft = Math.min(output.getDamage(), output.getMaxDamage() / 4);
             }
             event.setMaterialCost(matCost);
-            //event.setCost(0);
+            // event.setCost(0);
             event.setOutput(output);
         } else if (output.isDamageable()) {
             int damageLeft = left.getMaxDamage() - left.getDamage();
@@ -537,11 +543,11 @@ public class CommonEventsEnsorc {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
-        // PRESERVATION
+        /* PRESERVATION */
         if (!EnchantmentsEnsorc.overrideMending.enabled()) {
             return;
         }
-        PlayerEntity player = event.getEntityPlayer();
+        PlayerEntity player = event.getPlayer();
         ExperienceOrbEntity orb = event.getOrb();
 
         player.xpCooldown = 2;
@@ -585,7 +591,7 @@ public class CommonEventsEnsorc {
         if (!event.isWasDeath()) {
             return;
         }
-        PlayerEntity player = event.getEntityPlayer();
+        PlayerEntity player = event.getPlayer();
         PlayerEntity oldPlayer = event.getOriginal();
         if (Utils.isFakePlayer(player)) {
             return;

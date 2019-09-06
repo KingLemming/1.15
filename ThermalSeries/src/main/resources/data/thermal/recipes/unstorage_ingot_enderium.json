@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "thermal:block_charcoal"
+      "item": "thermal:ingot_enderium"
     }
   ],
   "result": {
-    "item": "minecraft:charcoal",
+    "item": "thermal:nugget_enderium",
     "count": 9
-}
+  }
 }

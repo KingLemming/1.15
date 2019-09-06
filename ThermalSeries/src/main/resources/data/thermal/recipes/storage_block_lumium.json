@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:charcoal"
+      "item": "thermal:ingot_lumium"
     }
   },
   "result": {
-    "item": "thermal:block_charcoal"
+    "item": "thermal:block_lumium"
   }
 }

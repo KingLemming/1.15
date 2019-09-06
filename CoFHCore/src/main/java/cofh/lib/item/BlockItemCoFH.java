@@ -1,5 +1,6 @@
 package cofh.lib.item;
 
+import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItem;
@@ -62,9 +63,7 @@ public class BlockItemCoFH extends BlockItem {
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
 
-        // TODO: Fix
-        return false;
-        // return SecurityHelper.hasSecurity(stack);
+        return SecurityHelper.hasSecurity(stack);
     }
 
 }

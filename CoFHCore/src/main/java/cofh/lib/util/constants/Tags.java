@@ -18,6 +18,8 @@ public class Tags {
     public static final String TAG_CREATIVE = "Creative";
     public static final String TAG_ENCHANTMENTS = "Enchantments";
     public static final String TAG_STORED_ENCHANTMENTS = "StoredEnchantments";
+    public static final String TAG_ENABLE_IN = "EnableIn";
+    public static final String TAG_ENABLE_OUT = "EnableOut";
     public static final String TAG_ENERGY = "Energy";
     public static final String TAG_EXP = "Experience";
     public static final String TAG_FUEL = "Fuel";

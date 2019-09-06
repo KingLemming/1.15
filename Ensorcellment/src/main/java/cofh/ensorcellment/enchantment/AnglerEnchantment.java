@@ -6,7 +6,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
@@ -45,11 +44,7 @@ public class AnglerEnchantment extends EnchantmentCoFH {
         return true;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
-    private ForgeConfigSpec.IntValue cfgChance;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

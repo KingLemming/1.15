@@ -43,9 +43,7 @@ public class SoulboundEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.VANISHING_CURSE;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
+    // region IDynamicConfig
     private ForgeConfigSpec.BooleanValue cfgPermanent;
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "thermal:items/ingots/ingot_lumium"
+  }
+}

@@ -1,6 +1,6 @@
 package cofh.lib.util;
 
-public interface IConfigSupport {
+public interface IDynamicConfig {
 
     void genConfig();
 

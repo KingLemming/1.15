@@ -6,7 +6,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
@@ -36,9 +35,7 @@ public class QuickdrawEnchantment extends EnchantmentCoFH {
         return enable && (item instanceof BowItem || validBow(stack) || supportsEnchantment(stack));
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

@@ -1,14 +1,15 @@
 package cofh.lib.enchantment;
 
-import cofh.lib.util.IConfigSupport;
+import cofh.lib.util.IDynamicConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.lib.capability.CapabilityEnchantable.ENCHANTABLE_ITEM_CAPABILITY;
 
-public abstract class EnchantmentCoFH extends Enchantment implements IConfigSupport {
+public abstract class EnchantmentCoFH extends Enchantment implements IDynamicConfig {
 
     protected boolean enable = true;
     protected boolean allowOnBooks = true;
@@ -72,7 +73,11 @@ public abstract class EnchantmentCoFH extends Enchantment implements IConfigSupp
         return enable && allowOnBooks;
     }
 
-    // region IConfigSupport
+    // region IDynamicConfig
+    protected ForgeConfigSpec.BooleanValue cfgEnable;
+    protected ForgeConfigSpec.IntValue cfgLevel;
+    protected ForgeConfigSpec.IntValue cfgChance;
+
     public void genConfig() {
 
     }

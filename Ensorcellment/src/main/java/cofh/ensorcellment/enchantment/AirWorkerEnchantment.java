@@ -4,7 +4,6 @@ import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 
@@ -32,9 +31,7 @@ public class AirWorkerEnchantment extends EnchantmentCoFH {
         return enable && type != null && type.canEnchantItem(stack.getItem());
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

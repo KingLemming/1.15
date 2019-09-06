@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:block_lumium"
+    }
+  ],
+  "result": {
+    "item": "thermal:ingot_lumium",
+    "count": 9
+  }
+}

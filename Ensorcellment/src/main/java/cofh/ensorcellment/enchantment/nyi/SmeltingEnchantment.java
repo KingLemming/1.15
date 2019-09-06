@@ -1,4 +1,4 @@
-package cofh.ensorcellment.enchantment;
+package cofh.ensorcellment.enchantment.nyi;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import cofh.lib.util.helpers.ItemHelper;
@@ -14,7 +14,6 @@ import net.minecraft.item.ToolItem;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 
@@ -49,9 +48,7 @@ public class SmeltingEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

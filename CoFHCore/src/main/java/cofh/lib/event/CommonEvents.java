@@ -20,8 +20,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityArchery.DEFAULT_BOW_CAPABILITY;
 import static cofh.lib.capability.CapabilityMelee.SHIELD_ITEM_CAPABILITY;
-import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
+import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.QUICKDRAW;
@@ -54,7 +54,7 @@ public class CommonEvents {
         if (!validBow(bow)) {
             return;
         }
-        PlayerEntity shooter = event.getEntityPlayer();
+        PlayerEntity shooter = event.getPlayer();
         event.setCanceled(bow.getCapability(BOW_ITEM_CAPABILITY).orElse(DEFAULT_BOW_CAPABILITY).fireArrow(bow, findAmmo(shooter), shooter, event.getCharge(), event.getWorld()));
     }
 
@@ -64,7 +64,7 @@ public class CommonEvents {
         if (!event.getBow().getCapability(BOW_ITEM_CAPABILITY).isPresent()) {
             return;
         }
-        PlayerEntity shooter = event.getEntityPlayer();
+        PlayerEntity shooter = event.getPlayer();
         ItemStack bow = event.getBow();
         ItemStack ammo = findAmmo(shooter);
 

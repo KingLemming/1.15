@@ -36,8 +36,7 @@ public class MendingEnchantmentAlt extends EnchantmentCoFH {
         return true;
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
+    // region IDynamicConfig
     private ForgeConfigSpec.IntValue cfgDamage;
 
     @Override

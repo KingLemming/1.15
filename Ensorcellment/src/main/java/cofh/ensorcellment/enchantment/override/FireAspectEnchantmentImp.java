@@ -8,7 +8,6 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
@@ -39,10 +38,7 @@ public class FireAspectEnchantmentImp extends EnchantmentCoFH {
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

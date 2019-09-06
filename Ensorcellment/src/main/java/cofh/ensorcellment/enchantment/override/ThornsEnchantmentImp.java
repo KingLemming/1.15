@@ -10,7 +10,6 @@ import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.Map;
 import java.util.Random;
@@ -71,11 +70,7 @@ public class ThornsEnchantmentImp extends EnchantmentCoFH {
     }
     // endregion
 
-    // region IConfigSupport
-    private ForgeConfigSpec.BooleanValue cfgEnable;
-    private ForgeConfigSpec.IntValue cfgLevel;
-    private ForgeConfigSpec.IntValue cfgChance;
-
+    // region IDynamicConfig
     @Override
     public void genConfig() {
 

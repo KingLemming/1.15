@@ -187,42 +187,6 @@ public class ItemHelper {
     }
     // endregion
 
-    // TODO: Fix
-    // region INVENTORY
-    //    public static void readInventoryFromNBT(CompoundNBT nbt, ItemStack[] inventory) {
-    //
-    //        NBTTagList list = nbt.getTagList("Inventory", 10);
-    //        inventory = new ItemStack[inventory.length];
-    //        Arrays.fill(inventory, ItemStack.EMPTY);
-    //        for (int i = 0; i < list.tagCount(); i++) {
-    //            CompoundNBT tag = list.getCompoundTagAt(i);
-    //            int slot = tag.getInt("Slot");
-    //            if (slot >= 0 && slot < inventory.length) {
-    //                inventory[slot] = new ItemStack(tag);
-    //            }
-    //        }
-    //    }
-    //
-    //    public static void writeInventoryToNBT(CompoundNBT nbt, ItemStack[] inventory) {
-    //
-    //        if (inventory.length <= 0) {
-    //            return;
-    //        }
-    //        NBTTagList list = new NBTTagList();
-    //        for (int i = 0; i < inventory.length; i++) {
-    //            if (!inventory[i].isEmpty()) {
-    //                CompoundNBT tag = new CompoundNBT();
-    //                tag.setInteger("Slot", i);
-    //                inventory[i].writeToNBT(tag);
-    //                list.appendTag(tag);
-    //            }
-    //        }
-    //        if (list.tagCount() > 0) {
-    //            nbt.setTag("Inventory", list);
-    //        }
-    //    }
-    // endregion
-
     // region HELD ITEMS
     public static boolean isPlayerHoldingSomething(PlayerEntity player) {
 
