@@ -12,11 +12,16 @@ public interface ITileCallback {
 
     Block block();
 
+    BlockState state();
+
     BlockPos pos();
 
     World world();
 
-    int invSize();
+    default int invSize() {
+
+        return 0;
+    }
 
     default void callBlockUpdate() {
 
