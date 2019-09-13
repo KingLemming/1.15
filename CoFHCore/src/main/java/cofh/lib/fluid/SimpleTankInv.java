@@ -1,0 +1,118 @@
+package cofh.lib.fluid;
+
+import cofh.lib.block.ITileCallback;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+import static cofh.lib.util.constants.Tags.TAG_TANK;
+import static cofh.lib.util.constants.Tags.TAG_TANK_INV;
+
+/**
+ * Fluid "inventory" abstraction using CoFH Fluid Storage objects.
+ */
+public class SimpleTankInv extends SimpleFluidHandler {
+
+    protected String tag;
+
+    public SimpleTankInv(@Nullable ITileCallback tile) {
+
+        this(tile, 0, TAG_TANK_INV);
+    }
+
+    public SimpleTankInv(@Nullable ITileCallback tile, int size) {
+
+        this(tile, size, TAG_TANK_INV);
+    }
+
+    public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull List<FluidStorageCoFH> tanks) {
+
+        this(tile, tanks, TAG_TANK_INV);
+    }
+
+    public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull String tag) {
+
+        this(tile, 0, tag);
+    }
+
+    public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull List<FluidStorageCoFH> tanks, @Nonnull String tag) {
+
+        super(tile, tanks);
+        this.tag = tag;
+    }
+
+    public SimpleTankInv(@Nullable ITileCallback tile, int size, @Nonnull String tag) {
+
+        super(tile, new ArrayList<>(size));
+        this.tile = tile;
+        this.tag = tag;
+        for (int i = 0; i < size; i++) {
+            tanks.add(new FluidStorageCoFH());
+        }
+    }
+
+    public void clear() {
+
+        for (FluidStorageCoFH tank : tanks) {
+            tank.setFluidStack(FluidStack.EMPTY);
+        }
+    }
+
+    public void set(int tank, FluidStack stack) {
+
+        tanks.get(tank).setFluidStack(stack);
+    }
+
+    public FluidStack get(int tank) {
+
+        return tanks.get(tank).getFluidStack();
+    }
+
+    public FluidStorageCoFH getTank(int tank) {
+
+        return tanks.get(tank);
+    }
+
+    // region NBT
+    public SimpleTankInv readFromNBT(CompoundNBT nbt) {
+
+        for (FluidStorageCoFH tank : tanks) {
+            tank.setFluidStack(FluidStack.EMPTY);
+        }
+        ListNBT list = nbt.getList(tag, 10);
+        for (int i = 0; i < list.size(); ++i) {
+            CompoundNBT tag = list.getCompound(i);
+            int tank = tag.getByte(TAG_TANK);
+            if (tank >= 0 && tank < tanks.size()) {
+                tanks.get(tank).readFromNBT(tag);
+            }
+        }
+        return this;
+    }
+
+    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+
+        if (tanks.size() <= 0) {
+            return nbt;
+        }
+        ListNBT list = new ListNBT();
+        for (int i = 0; i < tanks.size(); ++i) {
+            if (!tanks.get(i).isEmpty()) {
+                CompoundNBT tag = new CompoundNBT();
+                tag.putByte(TAG_TANK, (byte) i);
+                tanks.get(i).writeToNBT(tag);
+                list.add(tag);
+            }
+        }
+        if (!list.isEmpty()) {
+            nbt.put(tag, list);
+        }
+        return nbt;
+    }
+    // endregion
+}

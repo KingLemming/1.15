@@ -54,26 +54,7 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
         return this;
     }
 
-    public EnergyStorageCoFH setMaxTransfer(int maxTransfer) {
-
-        setMaxReceive(maxTransfer);
-        setMaxExtract(maxTransfer);
-        return this;
-    }
-
-    public EnergyStorageCoFH setMaxReceive(int maxReceive) {
-
-        this.maxReceive = maxReceive;
-        return this;
-    }
-
-    public EnergyStorageCoFH setMaxExtract(int maxExtract) {
-
-        this.maxExtract = maxExtract;
-        return this;
-    }
-
-    public EnergyStorageCoFH setEnergyStored(int amount) {
+    public void setEnergyStored(int amount) {
 
         energy = amount;
         if (energy > capacity) {
@@ -81,7 +62,6 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
         } else if (energy < 0) {
             energy = 0;
         }
-        return this;
     }
 
     public int getMaxReceive() {
@@ -180,7 +160,7 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
 
     // region IResourceStorage
     @Override
-    public void modifyAmount(int amount) {
+    public void modify(int amount) {
 
         energy += amount;
         if (energy > capacity) {
@@ -191,37 +171,21 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
     }
 
     @Override
-    public boolean clear() {
-
-        if (isEmpty()) {
-            return false;
-        }
-        energy = 0;
-        return true;
-    }
-
-    @Override
     public boolean isEmpty() {
 
         return energy <= 0 && capacity > 0;
     }
 
     @Override
-    public int getSpace() {
+    public int getCapacity() {
 
-        return energy >= capacity ? 0 : capacity - energy;
+        return getMaxEnergyStored();
     }
 
     @Override
     public int getStored() {
 
         return getEnergyStored();
-    }
-
-    @Override
-    public int getMaxStored() {
-
-        return getMaxEnergyStored();
     }
 
     @Override

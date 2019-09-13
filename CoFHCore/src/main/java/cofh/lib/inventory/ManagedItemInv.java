@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class InventoryManaged extends InventoryCoFH {
+public class ManagedItemInv extends SimpleItemInv {
 
     protected List<ItemStorageCoFH> inputSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> catalystSlots = new ArrayList<>();
@@ -19,12 +19,12 @@ public class InventoryManaged extends InventoryCoFH {
     protected List<ItemStorageCoFH> accessibleSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> internalSlots = new ArrayList<>();
 
-    public InventoryManaged(ITileCallback tile) {
+    public ManagedItemInv(ITileCallback tile) {
 
         super(tile);
     }
 
-    public InventoryManaged(ITileCallback tile, String tag) {
+    public ManagedItemInv(ITileCallback tile, String tag) {
 
         super(tile, tag);
     }
@@ -34,7 +34,7 @@ public class InventoryManaged extends InventoryCoFH {
         addSlot(new ItemStorageCoFH(), group);
     }
 
-    public void addSlot(StorageGroup group, int amount) {
+    public void addSlots(StorageGroup group, int amount) {
 
         for (int i = 0; i < amount; i++) {
             addSlot(new ItemStorageCoFH(), group);

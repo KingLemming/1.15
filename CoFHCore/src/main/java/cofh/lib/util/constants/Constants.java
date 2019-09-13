@@ -1,7 +1,7 @@
 package cofh.lib.util.constants;
 
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.UUID;
 
@@ -61,9 +61,9 @@ public class Constants {
     public static final float BASE_CHANCE = 1.0F;
     public static final float BASE_CHANCE_LOCKED = -1.0F;
 
-    public static final int TANK_SMALL = Fluid.BUCKET_VOLUME * 4;
-    public static final int TANK_MEDIUM = Fluid.BUCKET_VOLUME * 8;
-    public static final int TANK_LARGE = Fluid.BUCKET_VOLUME * 10;
+    public static final int TANK_SMALL = FluidAttributes.BUCKET_VOLUME * 4;
+    public static final int TANK_MEDIUM = FluidAttributes.BUCKET_VOLUME * 8;
+    public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 10;
     // endregion
 
     // region GUI

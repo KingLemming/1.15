@@ -26,7 +26,7 @@ public class Tags {
     public static final String TAG_FILTER = "Filter";
     public static final String TAG_FLUID = "Fluid";
     public static final String TAG_INDEX = "Index";
-    public static final String TAG_INVENTORY = "Inventory";
+    public static final String TAG_ITEM_INV = "ItemInv";
     public static final String TAG_MODE = "Mode";
     public static final String TAG_OWNER_NAME = "OwnerName";
     public static final String TAG_OWNER_UUID = "OwnerUUID";
@@ -45,7 +45,7 @@ public class Tags {
     public static final String TAG_SIDES = "Sides";
     public static final String TAG_SLOT = "Slot";
     public static final String TAG_TANK = "Tank";
-    public static final String TAG_TANK_ARRAY = "TankArray";
+    public static final String TAG_TANK_INV = "TankInv";
     public static final String TAG_TRACK_IN = "TrackIn";
     public static final String TAG_TRACK_OUT = "TrackOut";
     public static final String TAG_TRANSFER = "Transfer";

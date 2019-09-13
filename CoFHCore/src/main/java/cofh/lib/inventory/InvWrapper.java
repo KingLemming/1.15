@@ -5,17 +5,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class InventoryCoFHWrapper implements IInventory {
+public class InvWrapper implements IInventory {
 
-    protected InventoryCoFH inventory;
+    protected SimpleItemInv inventory;
     protected int stackLimit;
 
-    public InventoryCoFHWrapper(InventoryCoFH inventory) {
+    public InvWrapper(SimpleItemInv inventory) {
 
         this(inventory, 64);
     }
 
-    public InventoryCoFHWrapper(InventoryCoFH inventory, int stackLimit) {
+    public InvWrapper(SimpleItemInv inventory, int stackLimit) {
 
         this.inventory = inventory;
         this.stackLimit = MathHelper.clamp(stackLimit, 1, Integer.MAX_VALUE);

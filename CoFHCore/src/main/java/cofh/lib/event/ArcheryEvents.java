@@ -28,9 +28,9 @@ import static cofh.lib.util.modhelpers.EnsorcellmentHelper.QUICKDRAW;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.VOLLEY;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
 
-public class CommonEvents {
+public class ArcheryEvents {
 
-    private static final CommonEvents INSTANCE = new CommonEvents();
+    private static final ArcheryEvents INSTANCE = new ArcheryEvents();
     private static boolean registered = false;
 
     public static void register() {
@@ -42,7 +42,7 @@ public class CommonEvents {
         registered = true;
     }
 
-    private CommonEvents() {
+    private ArcheryEvents() {
 
     }
 

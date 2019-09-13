@@ -10,43 +10,43 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Tags.TAG_INVENTORY;
+import static cofh.lib.util.constants.Tags.TAG_ITEM_INV;
 import static cofh.lib.util.constants.Tags.TAG_SLOT;
 
 /**
  * Inventory abstraction using CoFH Item Storage objects.
  */
-public class InventoryCoFH extends SimpleItemHandler {
+public class SimpleItemInv extends SimpleItemHandler {
 
     protected String tag;
 
-    public InventoryCoFH(@Nullable ITileCallback tile) {
+    public SimpleItemInv(@Nullable ITileCallback tile) {
 
-        this(tile, 0, TAG_INVENTORY);
+        this(tile, 0, TAG_ITEM_INV);
     }
 
-    public InventoryCoFH(@Nullable ITileCallback tile, int size) {
+    public SimpleItemInv(@Nullable ITileCallback tile, int size) {
 
-        this(tile, size, TAG_INVENTORY);
+        this(tile, size, TAG_ITEM_INV);
     }
 
-    public InventoryCoFH(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
+    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
 
-        this(tile, slots, TAG_INVENTORY);
+        this(tile, slots, TAG_ITEM_INV);
     }
 
-    public InventoryCoFH(@Nullable ITileCallback tile, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull String tag) {
 
         this(tile, 0, tag);
     }
 
-    public InventoryCoFH(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots, @Nonnull String tag) {
 
         super(tile, slots);
         this.tag = tag;
     }
 
-    public InventoryCoFH(@Nullable ITileCallback tile, int size, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable ITileCallback tile, int size, @Nonnull String tag) {
 
         super(tile, new ArrayList<>(size));
         this.tile = tile;
@@ -79,7 +79,7 @@ public class InventoryCoFH extends SimpleItemHandler {
     }
 
     // region NBT
-    public InventoryCoFH readFromNBT(CompoundNBT nbt) {
+    public SimpleItemInv readFromNBT(CompoundNBT nbt) {
 
         for (ItemStorageCoFH slot : slots) {
             slot.setItemStack(ItemStack.EMPTY);

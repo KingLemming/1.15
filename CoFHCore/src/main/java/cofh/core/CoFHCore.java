@@ -3,9 +3,9 @@ package cofh.core;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityMelee;
-import cofh.lib.event.CommonEvents;
+import cofh.lib.event.ArcheryEvents;
+import cofh.lib.event.MeleeEvents;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,8 +32,6 @@ public class CoFHCore {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::enqueueIMC);
         modEventBus.addListener(this::processIMC);
-
-        FluidRegistry.enableUniversalBucket();
     }
 
     // region INITIALIZATION
@@ -43,7 +41,8 @@ public class CoFHCore {
         CapabilityEnchantable.register();
         CapabilityMelee.register();
 
-        CommonEvents.register();
+        ArcheryEvents.register();
+        MeleeEvents.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

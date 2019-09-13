@@ -1,5 +1,6 @@
 package cofh.lib.inventory;
 
+import cofh.lib.util.IResourceStorage;
 import cofh.lib.util.helpers.ItemHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,15 +17,22 @@ import static cofh.lib.util.helpers.ItemHelper.itemsIdentical;
  *
  * @author King Lemming
  */
-public class ItemStorageCoFH implements IItemHandler, IItemStackAccess {
+public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourceStorage {
 
     protected Predicate<ItemStack> validator;
+
+    @Nonnull
     protected ItemStack item = ItemStack.EMPTY;
     protected int capacity = -1;
 
     public ItemStorageCoFH() {
 
         this(e -> true);
+    }
+
+    public ItemStorageCoFH(int capacity) {
+
+        this(capacity, e -> true);
     }
 
     public ItemStorageCoFH(Predicate<ItemStack> validator) {
@@ -62,27 +70,9 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess {
         this.item = ItemHelper.consumeItem(item);
     }
 
-    public void modify(int quantity) {
-
-        this.item.grow(quantity);
-        if (this.item.isEmpty()) {
-            this.item = ItemStack.EMPTY;
-        }
-    }
-
     public void setItemStack(ItemStack item) {
 
         this.item = item;
-    }
-
-    public int getSpace() {
-
-        return getSlotLimit(0) - item.getCount();
-    }
-
-    public boolean isFull() {
-
-        return item.getCount() >= getSlotLimit(0);
     }
 
     // region NBT
@@ -193,6 +183,35 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess {
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 
         return isItemValid(stack);
+    }
+    // endregion
+
+    // region IResourceStorage
+    @Override
+    public void modify(int quantity) {
+
+        this.item.grow(quantity);
+        if (this.item.isEmpty()) {
+            this.item = ItemStack.EMPTY;
+        }
+    }
+
+    @Override
+    public int getCapacity() {
+
+        return getSlotLimit(0);
+    }
+
+    @Override
+    public int getStored() {
+
+        return item.getCount();
+    }
+
+    @Override
+    public String getUnit() {
+
+        return "";
     }
     // endregion
 }

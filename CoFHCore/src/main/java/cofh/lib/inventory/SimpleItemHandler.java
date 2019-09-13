@@ -6,6 +6,7 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +14,20 @@ import java.util.List;
  */
 public class SimpleItemHandler implements IItemHandler {
 
+    @Nullable
     protected ITileCallback tile;
     protected List<ItemStorageCoFH> slots;
+
+    public SimpleItemHandler() {
+
+        this(null);
+    }
+
+    public SimpleItemHandler(@Nullable ITileCallback tile) {
+
+        this.tile = tile;
+        this.slots = new ArrayList<>();
+    }
 
     public SimpleItemHandler(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
 
@@ -87,13 +100,19 @@ public class SimpleItemHandler implements IItemHandler {
     @Override
     public int getSlotLimit(int slot) {
 
+        if (slot < 0 || slot > getSlots()) {
+            return 0;
+        }
         return slots.get(slot).getSlotLimit(slot);
     }
 
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
 
-        return slots.get(slot).isItemValid(slot, stack);
+        if (slot < 0 || slot > getSlots()) {
+            return false;
+        }
+        return slots.get(slot).isItemValid(stack);
     }
     // endregion
 }

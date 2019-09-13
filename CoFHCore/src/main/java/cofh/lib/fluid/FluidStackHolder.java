@@ -23,20 +23,13 @@ public class FluidStackHolder implements IFluidStackAccess {
     @Override
     public int getAmount() {
 
-        // TODO: Fix
-        // return stack.getAmount();
-        if (isEmpty()) {
-            return 0;
-        }
-        return stack.amount;
+        return stack.getAmount();
     }
 
     @Override
     public boolean isEmpty() {
 
-        // TODO: Fix
-        // return stack.isEmpty();
-        return stack == null || stack.amount <= 0;
+        return stack.isEmpty();
     }
 
 }
