@@ -1,5 +1,9 @@
 package cofh.lib.util.constants;
 
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.util.Direction.Plane;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fluids.FluidAttributes;
 
@@ -45,6 +49,17 @@ public class Constants {
     public static final String ID_ORBULATION = "orbulation";
     public static final String ID_QUARTERMASTERY = "quartermastery";
     public static final String ID_REDSTONE_ARSENAL = "redstonearsenal";
+    // endregion
+
+    // region BLOCK PROPERTIES
+    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
+    public static final IntegerProperty AGE_PERENNIAL = IntegerProperty.create("age", 0, 10);
+    public static final IntegerProperty AGE_TALL = IntegerProperty.create("age", 0, 11);
+    public static final IntegerProperty AGE_TALL_PERENNIAL = IntegerProperty.create("age", 0, 15);
+    public static final DirectionProperty FACING_ALL = DirectionProperty.create("facing");
+    public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Plane.HORIZONTAL);
     // endregion
 
     // region GLOBALS

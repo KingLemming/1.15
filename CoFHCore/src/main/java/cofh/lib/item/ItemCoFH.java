@@ -105,31 +105,4 @@ public class ItemCoFH extends Item {
         return false;
     }
     // endregion
-
-    // TODO: Revamp?
-    //    // region IModelRegister
-    //    @SideOnly (Side.CLIENT)
-    //    public void registerModel() {
-    //
-    //        if (group.isEmpty()) {
-    //            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    //        } else {
-    //            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName().getResourceDomain() + ":" + group + "/" + getRegistryName().getResourcePath(), "inventory"));
-    //        }
-    //    }
-    //
-    //    @Override
-    //    public void generateModelFiles() {
-    //
-    //        String group = getGroup().isEmpty() ? "" : getGroup() + "/";
-    //        String model = "{\"parent\":\"item/generated\",\"textures\":{\"layer0\":\"" + getRegistryName().getResourceDomain() + ":items/" + group + getRegistryName().getResourcePath() + "\"}}";
-    //
-    //        try {
-    //            File itemModel = new File(configDir, "/dev/" + getRegistryName().getResourceDomain() + "/models/item/" + group + getRegistryName().getResourcePath() + ".json");
-    //            FileUtils.writeStringToFile(itemModel, Utils.createPrettyJSON(model), Charset.forName("UTF-8"));
-    //        } catch (Throwable t) {
-    //            // pokemon!
-    //        }
-    //    }
-    //    // endregion
 }

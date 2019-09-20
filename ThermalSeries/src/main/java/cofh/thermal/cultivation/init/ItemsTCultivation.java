@@ -1,0 +1,67 @@
+package cofh.thermal.cultivation.init;
+
+import cofh.lib.item.ItemCoFH;
+import cofh.thermal.core.init.ItemGroupsTSeries;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+
+import static cofh.thermal.core.ThermalSeries.ITEMS;
+import static cofh.thermal.cultivation.init.FoodsTCultivation.TEMP;
+
+public class ItemsTCultivation {
+
+    private ItemsTCultivation() {
+
+    }
+
+    public static void register() {
+
+        registerCrops();
+        registerSeeds();
+    }
+
+    private static void registerCrops() {
+
+        ItemGroup group = ItemGroupsTSeries.THERMAL_ITEMS;
+
+        ITEMS.register("crop_barley", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_onion", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_rice", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_sadiroot", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_spinach", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+
+        ITEMS.register("crop_corn", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+
+        // TODO: BlockItems (Plantable Crops)
+        ITEMS.register("crop_bell_pepper", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_green_bean", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_peanut", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_strawberry", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_tomato", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+
+        ITEMS.register("crop_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_tea", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("crop_hops", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+    }
+
+    private static void registerSeeds() {
+
+        ItemGroup group = ItemGroupsTSeries.THERMAL_ITEMS;
+
+        // TODO: Seeds
+    }
+
+    private static void registerFoods() {
+
+        ItemGroup group = ItemGroupsTSeries.THERMAL_ITEMS;
+
+        ITEMS.register("food_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("food_dough", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        ITEMS.register("food_flour", () -> new ItemCoFH(new Item.Properties().group(group)));
+    }
+
+    private static void registerTools() {
+
+    }
+
+}

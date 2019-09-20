@@ -14,10 +14,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.fml.RegistryObject;
 
-import static cofh.lib.util.modhelpers.ThermalHelper.*;
+import static cofh.thermal.core.ThermalSeries.BLOCKS;
+import static cofh.thermal.core.ThermalSeries.ITEMS;
 import static net.minecraft.block.Block.Properties.create;
 
 public class BlocksTSeries {
@@ -26,40 +26,9 @@ public class BlocksTSeries {
 
     }
 
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    public static void register() {
 
-        IForgeRegistry<Block> registry = event.getRegistry();
-
-        //        registry.register(new ResourceStorageBlock(from(Blocks.COAL_BLOCK)) {
-        //
-        //            @Override
-        //            public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        //
-        //                return 5;
-        //            }
-        //
-        //            @Override
-        //            public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        //
-        //                return 5;
-        //            }
-        //        }.setRegistryName(ID_CHARCOAL_BLOCK));
-        //        registry.register(new ResourceStorageBlock(from(Blocks.COAL_BLOCK)) {
-        //
-        //            @Override
-        //            public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        //
-        //                return 5;
-        //            }
-        //
-        //            @Override
-        //            public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        //
-        //                return 5;
-        //            }
-        //        }.setRegistryName(ID_COAL_COKE_BLOCK));
-
-        registry.register(new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(7)) {
+        blockSignalum = BLOCKS.register(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
             @Override
             public boolean canProvidePower(BlockState state) {
@@ -72,23 +41,23 @@ public class BlocksTSeries {
 
                 return 15;
             }
-        }.setRegistryName(ID_SIGNALUM_BLOCK));
-        registry.register(new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(15)).setRegistryName(ID_LUMIUM_BLOCK));
-        registry.register(new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).lightValue(3)).setRegistryName(ID_ENDERIUM_BLOCK));
-    }
-
-    public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
-
-        IForgeRegistry<Item> registry = event.getRegistry();
+        });
+        blockLumium = BLOCKS.register(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(15)));
+        blockEnderium = BLOCKS.register(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).lightValue(3)));
 
         ItemGroup group = ItemGroupsTSeries.THERMAL_BLOCKS;
 
-        //        registry.register(new BlockItemCoFH(CHARCOAL_BLOCK, new Item.Properties().group(group)).setRegistryName(ID_CHARCOAL_BLOCK));
-        //        registry.register(new BlockItemCoFH(COAL_COKE_BLOCK, new Item.Properties().group(group)).setRegistryName(ID_COAL_COKE_BLOCK));
-
-        registry.register(new BlockItemCoFH(SIGNALUM_BLOCK, new Item.Properties().group(group).rarity(Rarity.UNCOMMON)).setRegistryName(ID_SIGNALUM_BLOCK));
-        registry.register(new BlockItemCoFH(LUMIUM_BLOCK, new Item.Properties().group(group).rarity(Rarity.UNCOMMON)).setRegistryName(ID_LUMIUM_BLOCK));
-        registry.register(new BlockItemCoFH(ENDERIUM_BLOCK, new Item.Properties().group(group).rarity(Rarity.RARE)).setRegistryName(ID_ENDERIUM_BLOCK));
+        ITEMS.register(ID_SIGNALUM_BLOCK, () -> new BlockItemCoFH(blockSignalum.get(), new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
+        ITEMS.register(ID_LUMIUM_BLOCK, () -> new BlockItemCoFH(blockLumium.get(), new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
+        ITEMS.register(ID_ENDERIUM_BLOCK, () -> new BlockItemCoFH(blockEnderium.get(), new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
     }
+
+    private static RegistryObject<Block> blockSignalum;
+    private static RegistryObject<Block> blockLumium;
+    private static RegistryObject<Block> blockEnderium;
+
+    private static final String ID_SIGNALUM_BLOCK = "block_signalum";
+    private static final String ID_LUMIUM_BLOCK = "block_lumium";
+    private static final String ID_ENDERIUM_BLOCK = "block_enderium";
 
 }
