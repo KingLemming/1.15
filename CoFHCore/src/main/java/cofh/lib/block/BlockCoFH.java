@@ -5,9 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class BlockCoFH extends Block {
 
@@ -29,11 +26,10 @@ public class BlockCoFH extends Block {
     @Override
     public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
 
-        if (maxXP <= 0) {
+        if (maxXP <= 0 || silktouch > 0) {
             return 0;
         }
-        Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-        return MathHelper.nextInt(rand, minXP, maxXP);
+        return MathHelper.nextInt(RANDOM, minXP, maxXP);
     }
 
 }

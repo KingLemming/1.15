@@ -52,9 +52,9 @@ public class BlocksTSeries {
         ITEMS.register(ID_ENDERIUM_BLOCK, () -> new BlockItemCoFH(blockEnderium.get(), new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
     }
 
-    private static RegistryObject<Block> blockSignalum;
-    private static RegistryObject<Block> blockLumium;
-    private static RegistryObject<Block> blockEnderium;
+    public static RegistryObject<Block> blockSignalum;
+    public static RegistryObject<Block> blockLumium;
+    public static RegistryObject<Block> blockEnderium;
 
     private static final String ID_SIGNALUM_BLOCK = "block_signalum";
     private static final String ID_LUMIUM_BLOCK = "block_lumium";
