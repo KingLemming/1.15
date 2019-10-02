@@ -66,6 +66,10 @@ public class EnchantmentsEnsorc {
         createEnchantment(new PhalanxEnchantment(ID_PHALANX));
     }
 
+    public static void registerEnchantments() {
+
+    }
+
     public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
 
         IForgeRegistry<Enchantment> registry = event.getRegistry();

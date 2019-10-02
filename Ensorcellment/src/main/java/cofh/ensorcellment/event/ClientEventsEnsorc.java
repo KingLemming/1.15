@@ -12,6 +12,7 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -80,7 +81,7 @@ public class ClientEventsEnsorc {
                 if (ench != null && ench.getRegistryName() != null) {
                     String enchKey = "enchantment." + ench.getRegistryName().getNamespace() + "." + ench.getRegistryName().getPath() + ".desc";
                     if (StringHelper.canLocalize(enchKey)) {
-                        event.getToolTip().add(new StringTextComponent(StringHelper.localize(enchKey)).applyTextStyle(TextFormatting.GREEN));
+                        event.getToolTip().add(new TranslationTextComponent(enchKey).applyTextStyle(TextFormatting.GREEN));
                     }
                 }
             }

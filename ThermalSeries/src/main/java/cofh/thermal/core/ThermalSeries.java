@@ -55,12 +55,6 @@ public class ThermalSeries {
         BlocksTSeries.register();
         FluidsTSeries.register();
         ItemsTSeries.register();
-
-        BlocksTFoundation.register();
-        ItemsTFoundation.register();
-
-        BlocksTCultivation.register();
-        ItemsTCultivation.register();
     }
 
     // region INITIALIZATION
