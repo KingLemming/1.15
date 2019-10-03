@@ -4,6 +4,7 @@ import cofh.ensorcellment.event.ClientEventsEnsorc;
 import cofh.ensorcellment.event.CommonEventsEnsorc;
 import cofh.ensorcellment.init.ConfigEnsorc;
 import cofh.ensorcellment.init.EnchantmentsEnsorc;
+import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,7 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class Ensorcellment {
     public static final String VERSION = "1.0";
     public static final Logger LOG = LogManager.getLogger(ID_ENSORCELLMENT);
 
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = new DeferredRegister<>(ForgeRegistries.ENCHANTMENTS, ID_ENSORCELLMENT);
+    public static final DeferredRegisterCoFH<Enchantment> ENCHANTMENTS = new DeferredRegisterCoFH<>(ForgeRegistries.ENCHANTMENTS, ID_ENSORCELLMENT);
 
     public Ensorcellment() {
 

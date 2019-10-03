@@ -77,6 +77,7 @@ public class EnchantmentsEnsorc {
         for (EnchantmentCoFH ench : enchantments) {
             registry.register(ench);
         }
+        enchantments.clear();
     }
 
     private static EnchantmentCoFH createEnchantment(EnchantmentCoFH ench) {

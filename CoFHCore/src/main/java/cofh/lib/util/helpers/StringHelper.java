@@ -104,7 +104,12 @@ public final class StringHelper {
 
     public static String[] decompose(String resourceLoc, char delimiter) {
 
-        String[] decomposed = new String[]{"minecraft", resourceLoc};
+        return decompose("minecraft", resourceLoc, delimiter);
+    }
+
+    public static String[] decompose(String modid, String resourceLoc, char delimiter) {
+
+        String[] decomposed = new String[]{modid, resourceLoc};
         int delIndex = resourceLoc.indexOf(delimiter);
         if (delIndex >= 0) {
             decomposed[1] = resourceLoc.substring(delIndex + 1, resourceLoc.length());
