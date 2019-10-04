@@ -7,7 +7,6 @@ import cofh.ensorcellment.enchantment.override.MendingEnchantmentAlt;
 import cofh.ensorcellment.enchantment.override.ProtectionEnchantmentImp;
 import cofh.ensorcellment.enchantment.override.ThornsEnchantmentImp;
 import cofh.ensorcellment.init.ConfigEnsorc;
-import cofh.ensorcellment.init.EnchantmentsEnsorc;
 import cofh.lib.util.Utils;
 import cofh.lib.util.constants.Tags;
 import cofh.lib.util.helpers.MathHelper;
@@ -56,7 +55,6 @@ import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.BlockEvent.FarmlandTrampleEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -64,7 +62,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import static cofh.lib.util.Utils.*;
-import static cofh.lib.util.constants.Constants.*;
+import static cofh.lib.util.constants.Constants.UUID_KNOCKBACK_RESISTANCE;
+import static cofh.lib.util.constants.Constants.UUID_MOVEMENT_SPEED;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
@@ -98,6 +97,7 @@ public class CommonEventsEnsorc {
 
         Entity entity = event.getEntity();
         Entity attacker = event.getSource().getTrueSource();
+
         if (entity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
             ItemStack stack = player.getActiveItemStack();
@@ -128,7 +128,8 @@ public class CommonEventsEnsorc {
             ItemStack armor = ((HorseEntity) entity).horseChest.getStackInSlot(1);
             if (!armor.isEmpty()) {
                 int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
-                if (event.getSource().equals(DamageSource.HOT_FLOOR) && encFrostWalker > 0) {
+                int encMagmaWalker = getEnchantmentLevel(MAGMA_WALKER, armor);
+                if (event.getSource().equals(DamageSource.HOT_FLOOR) && (encFrostWalker > 0 || encMagmaWalker > 0)) {
                     event.setCanceled(true);
                 }
             }
@@ -143,12 +144,12 @@ public class CommonEventsEnsorc {
 
         if (attacker instanceof PlayerEntity) {
             int encLeech = getHeldEnchantmentLevel((PlayerEntity) attacker, LEECH);
-            int encInsight = getHeldEnchantmentLevel((PlayerEntity) attacker, INSIGHT);
+            int encInsight = getHeldEnchantmentLevel((PlayerEntity) attacker, EXP_BOOST);
             if (encLeech > 0) {
                 ((PlayerEntity) attacker).heal(encLeech);
             }
             if (encInsight > 0) {
-                entity.world.addEntity(new ExperienceOrbEntity(entity.world, entity.posX, entity.posY + 0.5D, entity.posZ, encInsight + entity.world.rand.nextInt(1 + encInsight * InsightEnchantment.experience)));
+                entity.world.addEntity(new ExperienceOrbEntity(entity.world, entity.posX, entity.posY + 0.5D, entity.posZ, encInsight + entity.world.rand.nextInt(1 + encInsight * ExpBoostEnchantment.experience)));
             }
         }
     }
@@ -276,15 +277,19 @@ public class CommonEventsEnsorc {
         if (!(attacker instanceof LivingEntity)) {
             return;
         }
-        if (source.damageType.equals(DAMAGE_PLAYER)) {
-            int encVorpal = getHeldEnchantmentLevel((LivingEntity) attacker, VORPAL);
-            if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
-                event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
-                attacker.world.playSound(null, attacker.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                for (int i = 0; i < encVorpal * 2; i++) {
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                }
+        LivingEntity living = (LivingEntity) attacker;
+
+        int encDamageEnder = getHeldEnchantmentLevel(living, DAMAGE_ENDER);
+        if (encDamageEnder > 0 && DamageEnderEnchantment.validTarget(entity)) {
+            event.setAmount(event.getAmount() + DamageEnderEnchantment.getExtraDamage(encDamageEnder));
+        }
+        int encVorpal = getHeldEnchantmentLevel(living, VORPAL);
+        if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
+            event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
+            attacker.world.playSound(null, attacker.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            for (int i = 0; i < encVorpal * 2; i++) {
+                ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
         // endregion
@@ -294,10 +299,41 @@ public class CommonEventsEnsorc {
     public void handleLivingUpdateEvent(LivingUpdateEvent event) {
 
         Entity entity = event.getEntity();
-        if (entity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) entity;
-            ItemStack stack = player.getActiveItemStack();
-            if (stack.getItem().isShield(stack, player)) {
+
+        // region HORSE ARMOR
+        if (entity instanceof HorseEntity) {
+            ItemStack armor = ((HorseEntity) entity).horseChest.getStackInSlot(1);
+            if (!armor.isEmpty()) {
+                int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
+                if (encFrostWalker > 0) {
+                    FrostWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
+                }
+                int encMagmaWalker = getEnchantmentLevel(MAGMA_WALKER, armor);
+                if (encMagmaWalker > 0) {
+                    MagmaWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encMagmaWalker);
+                }
+            }
+            return;
+        }
+        // endregion
+
+        if (entity instanceof LivingEntity) {
+            // MAGMA WALKER
+            LivingEntity living = (LivingEntity) entity;
+
+            // TODO: Revisit
+//            int encFrostWalker = getMaxEnchantmentLevel(FROST_WALKER, living);
+//            if (encFrostWalker > 0) {
+//                FrostWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
+//            }
+            int encMagmaWalker = getMaxEnchantmentLevel(MAGMA_WALKER, living);
+            if (encMagmaWalker > 0) {
+                MagmaWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encMagmaWalker);
+            }
+
+            // ACTIVE SHIELD
+            ItemStack stack = living.getActiveItemStack();
+            if (stack.getItem().isShield(stack, living)) {
                 int encBulwark = getEnchantmentLevel(BULWARK, stack);
                 int encPhalanx = getEnchantmentLevel(PHALANX, stack);
 
@@ -309,21 +345,13 @@ public class CommonEventsEnsorc {
                     attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Enchant", PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
                 }
                 if (!attributes.isEmpty()) {
-                    player.getAttributes().applyAttributeModifiers(attributes);
+                    living.getAttributes().applyAttributeModifiers(attributes);
                 }
             } else {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Enchant", 1.0D, ADDITION).setSaved(false));
                 attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Enchant", PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
-                player.getAttributes().removeAttributeModifiers(attributes);
-            }
-        } else if (entity instanceof HorseEntity) {
-            ItemStack armor = ((HorseEntity) entity).horseChest.getStackInSlot(1);
-            if (!armor.isEmpty()) {
-                int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
-                if (encFrostWalker > 0) {
-                    FrostWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
-                }
+                living.getAttributes().removeAttributeModifiers(attributes);
             }
         }
     }
@@ -352,7 +380,7 @@ public class CommonEventsEnsorc {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public void handleItemFishedEvent(ItemFishedEvent event) {
 
         if (event.isCanceled()) {
@@ -363,7 +391,6 @@ public class CommonEventsEnsorc {
         if (player == null) {
             return;
         }
-
         int encAngler = getHeldEnchantmentLevel(player, ANGLER);
         if (encAngler > 0) {
             ItemStack fishingRod = event.getPlayer().getHeldItemMainhand();
@@ -394,23 +421,6 @@ public class CommonEventsEnsorc {
     }
     // endregion
 
-    // region MISC EVENTS
-    @SubscribeEvent
-    public void handleFarmlandTrampleEvent(FarmlandTrampleEvent event) {
-
-        if (!ConfigEnsorc.preventFarmlandTrampling) {
-            return;
-        }
-        Entity entity = event.getEntity();
-        if (entity instanceof LivingEntity) {
-            int encFeatherFalling = getMaxEnchantmentLevel(FEATHER_FALLING, (LivingEntity) entity);
-            if (encFeatherFalling > 0) {
-                event.setCanceled(true);
-            }
-        }
-    }
-    // endregion
-
     // region BLOCK BREAKING
 
     /* INSIGHT */
@@ -422,9 +432,9 @@ public class CommonEventsEnsorc {
             return;
         }
         if (event.getExpToDrop() > 0) {
-            int encInsight = getEnchantmentLevel(INSIGHT, player.getHeldItemMainhand());
+            int encInsight = getEnchantmentLevel(EXP_BOOST, player.getHeldItemMainhand());
             if (encInsight > 0) {
-                event.setExpToDrop(event.getExpToDrop() + encInsight + player.world.rand.nextInt(1 + encInsight * InsightEnchantment.experience));
+                event.setExpToDrop(event.getExpToDrop() + encInsight + player.world.rand.nextInt(1 + encInsight * ExpBoostEnchantment.experience));
             }
         }
     }
@@ -490,7 +500,7 @@ public class CommonEventsEnsorc {
         ItemStack output = event.getItemResult();
 
         /* PRESERVATION */
-        if (!EnchantmentsEnsorc.overrideMending.enabled() || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
+        if (!ConfigEnsorc.enableMendingOverride || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
         if (output.getDamage() < left.getDamage()) {
@@ -506,7 +516,7 @@ public class CommonEventsEnsorc {
         ItemStack output = left.copy();
 
         /* PRESERVATION */
-        if (!EnchantmentsEnsorc.overrideMending.enabled() || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
+        if (!ConfigEnsorc.enableMendingOverride || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
         if (output.isDamageable() && output.getItem().getIsRepairable(left, right)) {
@@ -544,7 +554,7 @@ public class CommonEventsEnsorc {
     public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
         /* PRESERVATION */
-        if (!EnchantmentsEnsorc.overrideMending.enabled()) {
+        if (!ConfigEnsorc.enableMendingOverride) {
             return;
         }
         PlayerEntity player = event.getPlayer();

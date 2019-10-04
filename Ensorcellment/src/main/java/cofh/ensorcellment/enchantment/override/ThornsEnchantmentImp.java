@@ -1,7 +1,10 @@
 package cofh.ensorcellment.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
-import net.minecraft.enchantment.*;
+import cofh.lib.enchantment.EnchantmentOverride;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -14,16 +17,13 @@ import net.minecraft.util.DamageSource;
 import java.util.Map;
 import java.util.Random;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
+public class ThornsEnchantmentImp extends EnchantmentOverride {
 
-public class ThornsEnchantmentImp extends EnchantmentCoFH {
+    public static int chance = 15;
 
-    private static int chance = 15;
+    public ThornsEnchantmentImp() {
 
-    public ThornsEnchantmentImp(String id) {
-
-        super(id, Enchantment.Rarity.VERY_RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
+        super(Rarity.VERY_RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
         maxLevel = 3;
     }
 
@@ -33,6 +33,7 @@ public class ThornsEnchantmentImp extends EnchantmentCoFH {
         return 10 + 20 * (enchantmentLevel - 1);
     }
 
+    @Override
     public int getMaxEnchantability(int enchantmentLevel) {
 
         return super.getMinEnchantability(enchantmentLevel) + 50;
@@ -41,6 +42,9 @@ public class ThornsEnchantmentImp extends EnchantmentCoFH {
     @Override
     public boolean canApply(ItemStack stack) {
 
+        if (!enable) {
+            return stack.canApplyAtEnchantingTable(this);
+        }
         Item item = stack.getItem();
         return enable && (item instanceof ArmorItem || item instanceof HorseArmorItem || item.isShield(stack, null) || supportsEnchantment(stack));
     }
@@ -67,34 +71,6 @@ public class ThornsEnchantmentImp extends EnchantmentCoFH {
     public static boolean shouldHit(int level, Random rand) {
 
         return rand.nextInt(100) < chance * level;
-    }
-    // endregion
-
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Override");
-        COMMON_CONFIG.push("Thorns");
-
-        String comment = "If TRUE, the Thorns Enchantment is replaced with a more configurable version which works on more items, such as Shields and Horse Armor.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        cfgLevel = COMMON_CONFIG.comment(comment).defineInRange("Max Level", maxLevel, 1, MAX_ENCHANT_LEVEL);
-
-        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
-        cfgChance = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", chance, 1, 100);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-        maxLevel = cfgLevel.get();
-        chance = cfgChance.get();
     }
     // endregion
 }

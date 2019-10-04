@@ -15,16 +15,13 @@ import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.Random;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
-
 public class DisplacementEnchantment extends EnchantmentCoFH {
 
-    protected static int chance = 20;
+    public static int chance = 20;
 
-    public DisplacementEnchantment(String id) {
+    public DisplacementEnchantment() {
 
-        super(id, Rarity.RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
+        super(Rarity.RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
         maxLevel = 3;
     }
 
@@ -34,6 +31,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
         return 5 + 10 * (enchantmentLevel - 1);
     }
 
+    @Override
     public int getMaxEnchantability(int enchantmentLevel) {
 
         return super.getMinEnchantability(enchantmentLevel) + 50;
@@ -75,34 +73,6 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
     public static boolean shouldHit(int level, Random rand) {
 
         return rand.nextInt(100) < chance * level;
-    }
-    // endregion
-
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Displacement");
-
-        String comment = "If TRUE, the Displacement Enchantment is available for Armor, Shields, and Horse Armor.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        cfgLevel = COMMON_CONFIG.comment(comment).defineInRange("Max Level", maxLevel, 1, MAX_ENCHANT_LEVEL);
-
-        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
-        cfgChance = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", chance, 1, 100);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-        maxLevel = cfgLevel.get();
-        chance = cfgChance.get();
     }
     // endregion
 }

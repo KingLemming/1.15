@@ -1,25 +1,14 @@
 package cofh.ensorcellment.event;
 
 import cofh.ensorcellment.enchantment.PhalanxEnchantment;
-import cofh.ensorcellment.init.ConfigEnsorc;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.lib.util.helpers.StringHelper;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import static cofh.lib.util.constants.Tags.TAG_STORED_ENCHANTMENTS;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.PHALANX;
 
 public class ClientEventsEnsorc {
@@ -64,27 +53,6 @@ public class ClientEventsEnsorc {
                 modPhalanx = 0;
             }
             event.setNewfov((float) MathHelper.clamp(event.getFov() - modPhalanx, 1.0D, 2.5D));
-        }
-    }
-
-    @SubscribeEvent
-    public void handleItemTooltipEvent(ItemTooltipEvent event) {
-
-        if (!ConfigEnsorc.showEnchDescriptions) {
-            return;
-        }
-        ItemStack stack = event.getItemStack();
-        if (stack.getTag() != null) {
-            ListNBT list = stack.getTag().getList(TAG_STORED_ENCHANTMENTS, 10);
-            if (list.size() == 1) {
-                Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryCreate(list.getCompound(0).getString("id")));
-                if (ench != null && ench.getRegistryName() != null) {
-                    String enchKey = "enchantment." + ench.getRegistryName().getNamespace() + "." + ench.getRegistryName().getPath() + ".desc";
-                    if (StringHelper.canLocalize(enchKey)) {
-                        event.getToolTip().add(new TranslationTextComponent(enchKey).applyTextStyle(TextFormatting.GREEN));
-                    }
-                }
-            }
         }
     }
 

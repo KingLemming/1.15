@@ -9,13 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ToolType;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-
 public class ProspectingEnchantment extends EnchantmentCoFH {
 
-    public ProspectingEnchantment(String id) {
+    public ProspectingEnchantment() {
 
-        super(id, Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
 
     @Override
@@ -42,23 +40,4 @@ public class ProspectingEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Prospecting");
-
-        String comment = "If TRUE, the Prospecting Enchantment is available for various Tools.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-    }
-    // endregion
 }

@@ -50,7 +50,6 @@ public class ArcheryEvents {
     public void handleArrowLooseEvent(ArrowLooseEvent event) {
 
         ItemStack bow = event.getBow();
-
         if (!validBow(bow)) {
             return;
         }

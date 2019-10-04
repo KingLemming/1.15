@@ -5,13 +5,11 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-
 public class BulwarkEnchantment extends EnchantmentCoFH {
 
-    public BulwarkEnchantment(String id) {
+    public BulwarkEnchantment() {
 
-        super(id, Rarity.COMMON, EnchantmentType.BREAKABLE, new EquipmentSlotType[]{EquipmentSlotType.OFFHAND});
+        super(Rarity.COMMON, EnchantmentType.BREAKABLE, new EquipmentSlotType[]{EquipmentSlotType.OFFHAND});
     }
 
     @Override
@@ -20,6 +18,7 @@ public class BulwarkEnchantment extends EnchantmentCoFH {
         return 1 + (level - 1) * 5;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 50;
@@ -31,23 +30,4 @@ public class BulwarkEnchantment extends EnchantmentCoFH {
         return enable && (stack.getItem().isShield(stack, null) || supportsEnchantment(stack));
     }
 
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Bulwark");
-
-        String comment = "If TRUE, the Bulwark Enchantment is available for Shields.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-    }
-    // endregion
 }

@@ -1,0 +1,56 @@
+package cofh.core.event;
+
+import cofh.core.init.ConfigCore;
+import cofh.lib.util.helpers.StringHelper;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import static cofh.lib.util.constants.Tags.TAG_STORED_ENCHANTMENTS;
+import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
+
+public class ClientEventsCore {
+
+    private static final ClientEventsCore INSTANCE = new ClientEventsCore();
+    private static boolean registered = false;
+
+    public static void register() {
+
+        if (registered) {
+            return;
+        }
+        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        registered = true;
+    }
+
+    private ClientEventsCore() {
+
+    }
+
+    @SubscribeEvent
+    public void handleItemTooltipEvent(ItemTooltipEvent event) {
+
+        if (!ConfigCore.enableEnchantmentDescriptions) {
+            return;
+        }
+        ItemStack stack = event.getItemStack();
+        if (stack.getTag() != null) {
+            ListNBT list = stack.getTag().getList(TAG_STORED_ENCHANTMENTS, 10);
+            if (list.size() == 1) {
+                Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryCreate(list.getCompound(0).getString("id")));
+                if (ench != null && ench.getRegistryName() != null) {
+                    String enchKey = ench.getName() + ".desc";
+                    if (StringHelper.canLocalize(enchKey)) {
+                        event.getToolTip().add(getInfoTextComponent(enchKey));
+                    }
+                }
+            }
+        }
+    }
+
+}

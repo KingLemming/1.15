@@ -5,15 +5,13 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
 
 public class VolleyEnchantment extends EnchantmentCoFH {
 
-    public VolleyEnchantment(String id) {
+    public VolleyEnchantment() {
 
-        super(id, Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 4;
     }
 
@@ -23,6 +21,7 @@ public class VolleyEnchantment extends EnchantmentCoFH {
         return 1 + (level - 1) * 10;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 50;
@@ -34,27 +33,4 @@ public class VolleyEnchantment extends EnchantmentCoFH {
         return enable && (validBow(stack) || supportsEnchantment(stack));
     }
 
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Volley");
-
-        String comment = "If TRUE, the Volley Enchantment is available for various Bows.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        cfgLevel = COMMON_CONFIG.comment(comment).defineInRange("Max Level", maxLevel, 1, MAX_ENCHANT_LEVEL);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-        maxLevel = cfgLevel.get();
-    }
-    // endregion
 }

@@ -2,18 +2,13 @@ package cofh.ensorcellment.init;
 
 import cofh.ensorcellment.enchantment.*;
 import cofh.ensorcellment.enchantment.override.*;
-import cofh.lib.enchantment.EnchantmentCoFH;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static cofh.ensorcellment.init.ConfigEnsorc.configurables;
+import static cofh.ensorcellment.Ensorcellment.ENCHANTMENTS;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
+import static net.minecraft.enchantment.Enchantment.Rarity.*;
+import static net.minecraft.enchantment.ProtectionEnchantment.Type.*;
+import static net.minecraft.inventory.EquipmentSlotType.*;
 
 public class EnchantmentsEnsorc {
 
@@ -21,74 +16,46 @@ public class EnchantmentsEnsorc {
 
     }
 
-    public static void createEnchantments() {
+    public static void register() {
 
-        EquipmentSlotType[] armorSlots = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
+        EquipmentSlotType[] armorSlots = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
 
-        createEnchantment(new ProtectionEnchantmentImp(ID_PROTECTION, Enchantment.Rarity.COMMON, ProtectionEnchantment.Type.ALL, armorSlots, "Protection"));
-        createEnchantment(new ProtectionEnchantmentImp(ID_PROTECTION_BLAST, Enchantment.Rarity.RARE, ProtectionEnchantment.Type.EXPLOSION, armorSlots, "Blast Protection"));
-        createEnchantment(new ProtectionEnchantmentImp(ID_PROTECTION_FALL, Enchantment.Rarity.UNCOMMON, ProtectionEnchantment.Type.FALL, armorSlots, "Feather Falling"));
-        createEnchantment(new ProtectionEnchantmentImp(ID_PROTECTION_FIRE, Enchantment.Rarity.UNCOMMON, ProtectionEnchantment.Type.FIRE, armorSlots, "Fire Protection"));
-        createEnchantment(new ProtectionEnchantmentImp(ID_PROTECTION_PROJECTILE, Enchantment.Rarity.UNCOMMON, ProtectionEnchantment.Type.PROJECTILE, armorSlots, "Projectile Protection"));
+        ENCHANTMENTS.registerSpec(ID_PROTECTION, () -> new ProtectionEnchantmentImp(COMMON, ALL, armorSlots));
+        ENCHANTMENTS.registerSpec(ID_PROTECTION_BLAST, () -> new ProtectionEnchantmentImp(RARE, EXPLOSION, armorSlots));
+        ENCHANTMENTS.registerSpec(ID_PROTECTION_FALL, () -> new ProtectionEnchantmentImp(UNCOMMON, FALL, armorSlots));
+        ENCHANTMENTS.registerSpec(ID_PROTECTION_FIRE, () -> new ProtectionEnchantmentImp(UNCOMMON, FIRE, armorSlots));
+        ENCHANTMENTS.registerSpec(ID_PROTECTION_PROJECTILE, () -> new ProtectionEnchantmentImp(UNCOMMON, PROJECTILE, armorSlots));
 
-        createEnchantment(new FireAspectEnchantmentImp(ID_FIRE_ASPECT));
-        createEnchantment(new FrostWalkerEnchantmentImp(ID_FROST_WALKER));
-        createEnchantment(new KnockbackEnchantmentImp(ID_KNOCKBACK));
-        createEnchantment(new LootingEnchantmentImp(ID_LOOTING));
-        createEnchantment(new ThornsEnchantmentImp(ID_THORNS));
+        ENCHANTMENTS.registerSpec(ID_FIRE_ASPECT, FireAspectEnchantmentImp::new);
+        ENCHANTMENTS.registerSpec(ID_FROST_WALKER, FrostWalkerEnchantmentImp::new);
+        ENCHANTMENTS.registerSpec(ID_KNOCKBACK, KnockbackEnchantmentImp::new);
+        ENCHANTMENTS.registerSpec(ID_LOOTING, LootingEnchantmentImp::new);
+        ENCHANTMENTS.registerSpec(ID_THORNS, ThornsEnchantmentImp::new);
 
-        overrideMending = createEnchantment(new MendingEnchantmentAlt(ID_MENDING));
+        ENCHANTMENTS.registerSpec(ID_MENDING, MendingEnchantmentAlt::new);
 
-        createEnchantment(new HoldingEnchantment(ID_HOLDING));
-        createEnchantment(new SoulboundEnchantment(ID_SOULBOUND));
+        ENCHANTMENTS.registerSpec(ID_AIR_WORKER, AirWorkerEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_ANGLER, AnglerEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_BULWARK, BulwarkEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_DAMAGE_ENDER, DamageEnderEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_DAMAGE_ILLAGER, DamageIllagerEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_DISPLACEMENT, DisplacementEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_GOURMAND, GourmandEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_HOLDING, HoldingEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_HUNTER, HunterEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_EXP_BOOST, ExpBoostEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_LEECH, LeechEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_MAGMA_WALKER, MagmaWalkerEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_PHALANX, PhalanxEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_QUICKDRAW, QuickdrawEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_SOULBOUND, SoulboundEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_TRUESHOT, TrueshotEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_VOLLEY, VolleyEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_VORPAL, VorpalEnchantment::new);
 
-        createEnchantment(new AirWorkerEnchantment(ID_AIR_WORKER));
-        createEnchantment(new GourmandEnchantment(ID_GOURMAND));
-
-        createEnchantment(new DisplacementEnchantment(ID_DISPLACEMENT));
-
-        // createEnchantment(new SmashingEnchantment(ID_SMASHING));
-        // createEnchantment(new SmeltingEnchantment(ID_SMELTING));
-
-        createEnchantment(new VorpalEnchantment(ID_VORPAL));
-
-        createEnchantment(new InsightEnchantment(ID_INSIGHT));
-        createEnchantment(new LeechEnchantment(ID_LEECH));
-
-        createEnchantment(new HunterEnchantment(ID_HUNTER));
-        createEnchantment(new QuickdrawEnchantment(ID_QUICKDRAW));
-        createEnchantment(new TrueshotEnchantment(ID_TRUESHOT));
-        createEnchantment(new VolleyEnchantment(ID_VOLLEY));
-
-        createEnchantment(new AnglerEnchantment(ID_ANGLER));
-
-        createEnchantment(new BulwarkEnchantment(ID_BULWARK));
-        createEnchantment(new PhalanxEnchantment(ID_PHALANX));
+        // ENCHANTMENTS.registerSpec(ID_PROSPECTOR, ProspectorEnchantment::new);
+        // ENCHANTMENTS.registerSpec(ID_SMASHING, SmashingEnchantment::new);
+        // ENCHANTMENTS.registerSpec(ID_SMELTING, SmeltingEnchantment::new);
     }
-
-    public static void registerEnchantments() {
-
-    }
-
-    public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-
-        IForgeRegistry<Enchantment> registry = event.getRegistry();
-
-        for (EnchantmentCoFH ench : enchantments) {
-            registry.register(ench);
-        }
-        enchantments.clear();
-    }
-
-    private static EnchantmentCoFH createEnchantment(EnchantmentCoFH ench) {
-
-        enchantments.add(ench);
-        configurables.add(ench);
-        return ench;
-    }
-
-    private static List<EnchantmentCoFH> enchantments = new ArrayList<>();
-
-    public static EnchantmentCoFH overrideMending;
 
 }

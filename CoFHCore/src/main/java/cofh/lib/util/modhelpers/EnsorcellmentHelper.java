@@ -11,7 +11,7 @@ public class EnsorcellmentHelper {
 
     }
 
-    // region ENCHANTMENT IDS
+    // region IDS
     public static final String ID_PROTECTION = "minecraft:protection";
     public static final String ID_PROTECTION_BLAST = "minecraft:blast_protection";
     public static final String ID_PROTECTION_FALL = "minecraft:feather_falling";
@@ -28,12 +28,15 @@ public class EnsorcellmentHelper {
     public static final String ID_AIR_WORKER = ID_ENSORCELLMENT + ":air_worker";
     public static final String ID_ANGLER = ID_ENSORCELLMENT + ":angler";
     public static final String ID_BULWARK = ID_ENSORCELLMENT + ":bulwark";
+    public static final String ID_DAMAGE_ENDER = ID_ENSORCELLMENT + ":ender_damage";
+    public static final String ID_DAMAGE_ILLAGER = ID_ENSORCELLMENT + ":illager_damage";
     public static final String ID_DISPLACEMENT = ID_ENSORCELLMENT + ":displacement";
+    public static final String ID_EXP_BOOST = ID_ENSORCELLMENT + ":exp_boost";
     public static final String ID_GOURMAND = ID_ENSORCELLMENT + ":gourmand";
     public static final String ID_HOLDING = ID_ENSORCELLMENT + ":holding";
     public static final String ID_HUNTER = ID_ENSORCELLMENT + ":hunter";
-    public static final String ID_INSIGHT = ID_ENSORCELLMENT + ":insight";
     public static final String ID_LEECH = ID_ENSORCELLMENT + ":leech";
+    public static final String ID_MAGMA_WALKER = ID_ENSORCELLMENT + ":magma_walker";
     public static final String ID_PHALANX = ID_ENSORCELLMENT + ":phalanx";
     public static final String ID_QUICKDRAW = ID_ENSORCELLMENT + ":quickdraw";
     public static final String ID_SMASHING = ID_ENSORCELLMENT + ":smashing";
@@ -54,8 +57,17 @@ public class EnsorcellmentHelper {
     @ObjectHolder(ID_BULWARK)
     public static final Enchantment BULWARK = null;
 
+    @ObjectHolder(ID_DAMAGE_ENDER)
+    public static final Enchantment DAMAGE_ENDER = null;
+
+    @ObjectHolder(ID_DAMAGE_ILLAGER)
+    public static final Enchantment DAMAGE_ILLAGER = null;
+
     @ObjectHolder(ID_DISPLACEMENT)
     public static final Enchantment DISPLACEMENT = null;
+
+    @ObjectHolder(ID_EXP_BOOST)
+    public static final Enchantment EXP_BOOST = null;
 
     @ObjectHolder(ID_GOURMAND)
     public static final Enchantment GOURMAND = null;
@@ -66,11 +78,11 @@ public class EnsorcellmentHelper {
     @ObjectHolder(ID_HUNTER)
     public static final Enchantment HUNTER = null;
 
-    @ObjectHolder(ID_INSIGHT)
-    public static final Enchantment INSIGHT = null;
-
     @ObjectHolder(ID_LEECH)
     public static final Enchantment LEECH = null;
+
+    @ObjectHolder(ID_MAGMA_WALKER)
+    public static final Enchantment MAGMA_WALKER = null;
 
     @ObjectHolder(ID_PHALANX)
     public static final Enchantment PHALANX = null;

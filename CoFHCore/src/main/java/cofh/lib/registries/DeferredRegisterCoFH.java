@@ -35,6 +35,11 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
         return register(modid, name, sup);
     }
 
+    public <I extends T> RegistryObject<I> registerSpec(final String key, final Supplier<I> sup) {
+
+        return register(new ResourceLocation(key), sup);
+    }
+
     public <I extends T> RegistryObject<I> register(final String modid, final String name, final Supplier<I> sup) {
 
         return register(new ResourceLocation(modid, name), sup);

@@ -10,13 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-
 public class SmashingEnchantment extends EnchantmentCoFH {
 
-    public SmashingEnchantment(String id) {
+    public SmashingEnchantment() {
 
-        super(id, Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
 
     @Override
@@ -46,26 +44,6 @@ public class SmashingEnchantment extends EnchantmentCoFH {
 
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
-
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Smashing");
-
-        String comment = "If TRUE, the Smashing Enchantment is available for various Tools.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-    }
-    // endregion
 
     // TODO: Fix
     public static ItemStack getItemStack(World world, ItemStack stack) {

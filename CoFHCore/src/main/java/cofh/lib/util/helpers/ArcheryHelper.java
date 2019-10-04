@@ -75,6 +75,9 @@ public final class ArcheryHelper {
                         if (arrowVelocity >= 1.0F) {
                             arrow.setIsCritical(true);
                         }
+                        if (encTrueshot > 0) {
+                            arrow.setPierceLevel((byte) 1);
+                        }
                         if (encPower > 0) {
                             arrow.setDamage(arrow.getDamage() + (double) encPower * 0.5D + 0.5D);
                         }

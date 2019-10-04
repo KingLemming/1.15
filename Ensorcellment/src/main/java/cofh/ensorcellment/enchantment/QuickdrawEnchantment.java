@@ -7,14 +7,13 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
 
 public class QuickdrawEnchantment extends EnchantmentCoFH {
 
-    public QuickdrawEnchantment(String id) {
+    public QuickdrawEnchantment() {
 
-        super(id, Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
 
     @Override
@@ -23,6 +22,7 @@ public class QuickdrawEnchantment extends EnchantmentCoFH {
         return 1 + (level - 1) * 10;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 50;
@@ -35,23 +35,4 @@ public class QuickdrawEnchantment extends EnchantmentCoFH {
         return enable && (item instanceof BowItem || validBow(stack) || supportsEnchantment(stack));
     }
 
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Quickdraw");
-
-        String comment = "If TRUE, the Quickdraw Enchantment is available for various Bows.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-    }
-    // endregion
 }

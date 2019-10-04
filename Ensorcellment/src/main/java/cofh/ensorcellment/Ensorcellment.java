@@ -6,15 +6,10 @@ import cofh.ensorcellment.init.ConfigEnsorc;
 import cofh.ensorcellment.init.EnchantmentsEnsorc;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.potion.Potion;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -37,13 +32,12 @@ public class Ensorcellment {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        //        modEventBus.addListener(this::enqueueIMC);
-        //        modEventBus.addListener(this::processIMC);
 
-        EnchantmentsEnsorc.createEnchantments();
+        ENCHANTMENTS.register(modEventBus);
 
         ConfigEnsorc.register();
-        ConfigEnsorc.genConfigs();
+
+        EnchantmentsEnsorc.register();
     }
 
     // region INITIALIZATION
@@ -55,32 +49,6 @@ public class Ensorcellment {
     private void clientSetup(final FMLClientSetupEvent event) {
 
         ClientEventsEnsorc.register();
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-
-    }
-    // endregion
-
-    // region REGISTRATION
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-
-        @SubscribeEvent
-        public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
-
-            EnchantmentsEnsorc.registerEnchantments(event);
-        }
-
-        @SubscribeEvent
-        public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-
-        }
-
     }
     // endregion
 }

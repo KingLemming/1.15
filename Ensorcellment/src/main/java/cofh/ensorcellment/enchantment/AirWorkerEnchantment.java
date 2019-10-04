@@ -5,13 +5,11 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import static cofh.ensorcellment.init.ConfigEnsorc.COMMON_CONFIG;
-
 public class AirWorkerEnchantment extends EnchantmentCoFH {
 
-    public AirWorkerEnchantment(String id) {
+    public AirWorkerEnchantment() {
 
-        super(id, Rarity.RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[]{EquipmentSlotType.HEAD});
+        super(Rarity.RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[]{EquipmentSlotType.HEAD});
     }
 
     @Override
@@ -20,6 +18,7 @@ public class AirWorkerEnchantment extends EnchantmentCoFH {
         return 1;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 40;
@@ -31,23 +30,4 @@ public class AirWorkerEnchantment extends EnchantmentCoFH {
         return enable && type != null && type.canEnchantItem(stack.getItem());
     }
 
-    // region IDynamicConfig
-    @Override
-    public void genConfig() {
-
-        COMMON_CONFIG.push("Enchantment");
-        COMMON_CONFIG.push("Air Affinity");
-
-        String comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
-        cfgEnable = COMMON_CONFIG.comment(comment).define("Enable", true);
-
-        COMMON_CONFIG.pop(2);
-    }
-
-    @Override
-    public void refreshConfig() {
-
-        enable = cfgEnable.get();
-    }
-    // endregion
 }
