@@ -18,15 +18,15 @@ public class AnglerEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinEnchantability(int level) {
 
-        return 10 + (enchantmentLevel - 1) * 9;
+        return 10 + (level - 1) * 9;
     }
 
     @Override
-    public int getMaxEnchantability(int enchantmentLevel) {
+    protected int maxDelegate(int level) {
 
-        return this.getMinEnchantability(enchantmentLevel) + 15;
+        return this.getMinEnchantability(level) + 15;
     }
 
     @Override

@@ -64,19 +64,19 @@ public final class ArcheryHelper {
                     int encFlame = EnchantmentHelper.getEnchantmentLevel(FLAME, bow);
 
                     if (encTrueshot > 0) {
-                        accuracyMod *= 0.25F;
-                        arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.25F, 1.5F);
+                        accuracyMod *= (1.5F / (1 + encTrueshot));
+                        arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.15F * encTrueshot, 1.75F);
                     }
                     for (int shot = 0; shot <= encVolley; shot++) {
                         AbstractArrowEntity arrow = createArrow(world, ammo, bow, shooter);
-                        arrow.shoot(shooter, shooter.rotationPitch, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod * (1.5F - arrowVelocity) * (shot * 2));
+                        arrow.shoot(shooter, shooter.rotationPitch, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod * (1 + shot * 2));
                         arrow.setDamage(arrow.getDamage() * damageMod);
 
                         if (arrowVelocity >= 1.0F) {
                             arrow.setIsCritical(true);
                         }
                         if (encTrueshot > 0) {
-                            arrow.setPierceLevel((byte) 1);
+                            arrow.setPierceLevel((byte) encTrueshot);
                         }
                         if (encPower > 0) {
                             arrow.setDamage(arrow.getDamage() + (double) encPower * 0.5D + 0.5D);

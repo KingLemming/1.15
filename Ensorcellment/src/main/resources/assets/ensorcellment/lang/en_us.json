@@ -32,9 +32,6 @@
   "enchantment.ensorcellment.leech": "Leech",
   "enchantment.ensorcellment.leech.desc": "Restores health when a mob is killed.",
 
-  "enchantment.ensorcellment.magma_walker": "Magma Walker",
-  "enchantment.ensorcellment.magma_walker.desc": "Cools lava in a radius, allowing it to be traversed.",
-
   "enchantment.ensorcellment.phalanx": "Phalanx",
   "enchantment.ensorcellment.phalanx.desc": "Allows the wielder to move faster while using a shield.",
 

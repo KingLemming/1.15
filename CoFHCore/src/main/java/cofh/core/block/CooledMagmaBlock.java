@@ -4,20 +4,22 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MagmaBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.DamageSource;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CooledMagmaBlock extends MagmaBlock {
@@ -37,6 +39,18 @@ public class CooledMagmaBlock extends MagmaBlock {
     }
 
     @Override
+    public void harvestBlock(World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
+
+        super.harvestBlock(worldIn, player, pos, state, te, stack);
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+            Material material = worldIn.getBlockState(pos.down()).getMaterial();
+            if (material.blocksMovement() || material.isLiquid()) {
+                worldIn.setBlockState(pos, Blocks.LAVA.getDefaultState());
+            }
+        }
+    }
+
+    @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
 
         if (blockIn == this && this.shouldMelt(worldIn, pos, 2)) {
@@ -46,18 +60,9 @@ public class CooledMagmaBlock extends MagmaBlock {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-
-        if (!entityIn.isImmuneToFire() && entityIn instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
-            entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
-        }
-        super.onEntityWalk(worldIn, pos, entityIn);
-    }
-
-    @Override
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 
-        if ((random.nextInt(3) == 0 || this.shouldMelt(worldIn, pos, 4)) && worldIn.getLight(pos) > 11 - state.get(AGE) - state.getOpacity(worldIn, pos) && this.slightlyMelt(state, worldIn, pos)) {
+        if ((random.nextInt(9) == 0 || this.shouldMelt(worldIn, pos, 4)) && this.slightlyMelt(state, worldIn, pos)) {
             try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain()) {
                 for (Direction direction : Direction.values()) {
                     blockpos$pooledmutableblockpos.setPos(pos).move(direction);
@@ -67,7 +72,6 @@ public class CooledMagmaBlock extends MagmaBlock {
                     }
                 }
             }
-
         } else {
             worldIn.getPendingBlockTicks().scheduleTick(pos, this, MathHelper.nextInt(random, 20, 40));
         }

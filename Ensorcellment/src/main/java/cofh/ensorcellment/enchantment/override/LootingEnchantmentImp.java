@@ -19,15 +19,15 @@ public class LootingEnchantmentImp extends EnchantmentOverride {
     }
 
     @Override
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinEnchantability(int level) {
 
-        return 15 + (enchantmentLevel - 1) * 9;
+        return 15 + (level - 1) * 9;
     }
 
     @Override
-    public int getMaxEnchantability(int enchantmentLevel) {
+    public int getMaxEnchantability(int level) {
 
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return super.getMinEnchantability(level) + 50;
     }
 
     @Override

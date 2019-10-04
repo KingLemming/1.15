@@ -28,15 +28,15 @@ public class ThornsEnchantmentImp extends EnchantmentOverride {
     }
 
     @Override
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinEnchantability(int level) {
 
-        return 10 + 20 * (enchantmentLevel - 1);
+        return 10 + 20 * (level - 1);
     }
 
     @Override
-    public int getMaxEnchantability(int enchantmentLevel) {
+    public int getMaxEnchantability(int level) {
 
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return super.getMinEnchantability(level) + 50;
     }
 
     @Override

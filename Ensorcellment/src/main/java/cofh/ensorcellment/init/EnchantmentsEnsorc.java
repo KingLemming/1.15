@@ -45,7 +45,6 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_HUNTER, HunterEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_EXP_BOOST, ExpBoostEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_LEECH, LeechEnchantment::new);
-        ENCHANTMENTS.registerSpec(ID_MAGMA_WALKER, MagmaWalkerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_PHALANX, PhalanxEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_QUICKDRAW, QuickdrawEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_SOULBOUND, SoulboundEnchantment::new);

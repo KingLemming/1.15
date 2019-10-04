@@ -22,7 +22,8 @@ public class ProspectingEnchantment extends EnchantmentCoFH {
         return 15;
     }
 
-    public int getMaxEnchantability(int level) {
+    @Override
+    protected int maxDelegate(int level) {
 
         return getMinEnchantability(level) + 50;
     }

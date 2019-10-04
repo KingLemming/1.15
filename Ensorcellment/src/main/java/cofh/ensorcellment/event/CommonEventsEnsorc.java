@@ -3,6 +3,7 @@ package cofh.ensorcellment.event;
 import cofh.ensorcellment.enchantment.*;
 import cofh.ensorcellment.enchantment.nyi.SmashingEnchantment;
 import cofh.ensorcellment.enchantment.nyi.SmeltingEnchantment;
+import cofh.ensorcellment.enchantment.override.FrostWalkerEnchantmentImp;
 import cofh.ensorcellment.enchantment.override.MendingEnchantmentAlt;
 import cofh.ensorcellment.enchantment.override.ProtectionEnchantmentImp;
 import cofh.ensorcellment.enchantment.override.ThornsEnchantmentImp;
@@ -128,8 +129,7 @@ public class CommonEventsEnsorc {
             ItemStack armor = ((HorseEntity) entity).horseChest.getStackInSlot(1);
             if (!armor.isEmpty()) {
                 int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
-                int encMagmaWalker = getEnchantmentLevel(MAGMA_WALKER, armor);
-                if (event.getSource().equals(DamageSource.HOT_FLOOR) && (encFrostWalker > 0 || encMagmaWalker > 0)) {
+                if (event.getSource().equals(DamageSource.HOT_FLOOR) && encFrostWalker > 0) {
                     event.setCanceled(true);
                 }
             }
@@ -144,12 +144,12 @@ public class CommonEventsEnsorc {
 
         if (attacker instanceof PlayerEntity) {
             int encLeech = getHeldEnchantmentLevel((PlayerEntity) attacker, LEECH);
-            int encInsight = getHeldEnchantmentLevel((PlayerEntity) attacker, EXP_BOOST);
+            int encExpBoost = getHeldEnchantmentLevel((PlayerEntity) attacker, EXP_BOOST);
             if (encLeech > 0) {
                 ((PlayerEntity) attacker).heal(encLeech);
             }
-            if (encInsight > 0) {
-                entity.world.addEntity(new ExperienceOrbEntity(entity.world, entity.posX, entity.posY + 0.5D, entity.posZ, encInsight + entity.world.rand.nextInt(1 + encInsight * ExpBoostEnchantment.experience)));
+            if (encExpBoost > 0) {
+                entity.world.addEntity(new ExperienceOrbEntity(entity.world, entity.posX, entity.posY + 0.5D, entity.posZ, encExpBoost + entity.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience)));
             }
         }
     }
@@ -307,10 +307,7 @@ public class CommonEventsEnsorc {
                 int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
                 if (encFrostWalker > 0) {
                     FrostWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
-                }
-                int encMagmaWalker = getEnchantmentLevel(MAGMA_WALKER, armor);
-                if (encMagmaWalker > 0) {
-                    MagmaWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encMagmaWalker);
+                    FrostWalkerEnchantmentImp.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
                 }
             }
             return;
@@ -318,17 +315,12 @@ public class CommonEventsEnsorc {
         // endregion
 
         if (entity instanceof LivingEntity) {
-            // MAGMA WALKER
             LivingEntity living = (LivingEntity) entity;
-
-            // TODO: Revisit
-//            int encFrostWalker = getMaxEnchantmentLevel(FROST_WALKER, living);
-//            if (encFrostWalker > 0) {
-//                FrostWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
-//            }
-            int encMagmaWalker = getMaxEnchantmentLevel(MAGMA_WALKER, living);
-            if (encMagmaWalker > 0) {
-                MagmaWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encMagmaWalker);
+            // FROST WALKER
+            int encFrostWalker = getMaxEnchantmentLevel(FROST_WALKER, living);
+            if (encFrostWalker > 0) {
+                FrostWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
+                FrostWalkerEnchantmentImp.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
             }
 
             // ACTIVE SHIELD
@@ -432,9 +424,9 @@ public class CommonEventsEnsorc {
             return;
         }
         if (event.getExpToDrop() > 0) {
-            int encInsight = getEnchantmentLevel(EXP_BOOST, player.getHeldItemMainhand());
-            if (encInsight > 0) {
-                event.setExpToDrop(event.getExpToDrop() + encInsight + player.world.rand.nextInt(1 + encInsight * ExpBoostEnchantment.experience));
+            int encExpBoost = getEnchantmentLevel(EXP_BOOST, player.getHeldItemMainhand());
+            if (encExpBoost > 0) {
+                event.setExpToDrop(event.getExpToDrop() + encExpBoost + player.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience));
             }
         }
     }
@@ -445,11 +437,7 @@ public class CommonEventsEnsorc {
 
         PlayerEntity player = event.getPlayer();
         if (!player.onGround && getMaxEnchantmentLevel(AIR_WORKER, player) > 0) {
-            float oldSpeed = event.getOriginalSpeed();
-            float newSpeed = event.getNewSpeed();
-            if (oldSpeed < newSpeed * 5.0F) {
-                event.setNewSpeed(newSpeed * 5.0F);
-            }
+            event.setNewSpeed(Math.max(event.getOriginalSpeed(), event.getNewSpeed() * 5.0F));
         }
     }
 

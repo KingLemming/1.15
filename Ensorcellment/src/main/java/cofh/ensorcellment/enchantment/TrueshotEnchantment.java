@@ -12,16 +12,17 @@ public class TrueshotEnchantment extends EnchantmentCoFH {
     public TrueshotEnchantment() {
 
         super(Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        maxLevel = 2;
     }
 
     @Override
     public int getMinEnchantability(int level) {
 
-        return 1 + (level - 1) * 10;
+        return 15 + (level - 1) * 10;
     }
 
     @Override
-    public int getMaxEnchantability(int level) {
+    protected int maxDelegate(int level) {
 
         return getMinEnchantability(level) + 50;
     }

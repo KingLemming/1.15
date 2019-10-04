@@ -26,15 +26,15 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinEnchantability(int level) {
 
-        return 5 + 10 * (enchantmentLevel - 1);
+        return 5 + 10 * (level - 1);
     }
 
     @Override
-    public int getMaxEnchantability(int enchantmentLevel) {
+    protected int maxDelegate(int level) {
 
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return super.getMinEnchantability(level) + 50;
     }
 
     @Override

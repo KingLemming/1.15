@@ -1,6 +1,7 @@
 package cofh.ensorcellment.init;
 
 import cofh.ensorcellment.enchantment.*;
+import cofh.ensorcellment.enchantment.override.FrostWalkerEnchantmentImp;
 import cofh.ensorcellment.enchantment.override.MendingEnchantmentAlt;
 import cofh.ensorcellment.enchantment.override.ThornsEnchantmentImp;
 import cofh.lib.enchantment.EnchantmentCoFH;
@@ -94,6 +95,20 @@ public class ConfigEnsorc {
         chanceDisplacement = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
         COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Disruption");
+        comment = "If TRUE, the Disruption Enchantment is available for various Weapons.";
+        enableDamageEnder = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelDamageEnder = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Vigilante");
+        comment = "If TRUE, the Vigilante Enchantment is available for various Weapons.";
+        enableDamageIllager = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelDamageIllager = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
         COMMON_CONFIG.push("Insight");
         comment = "If TRUE, the Insight Enchantment is available for various Tools and Weapons.";
         enableExpBoost = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -126,25 +141,11 @@ public class ConfigEnsorc {
         chanceHunter = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 50, 1, 100);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.push("Vigilante");
-        comment = "If TRUE, the Vigilante Enchantment is available for various Weapons.";
-        enableDamageIllager = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelDamageIllager = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
-        COMMON_CONFIG.pop();
-
         COMMON_CONFIG.push("Leech");
         comment = "If TRUE, the Leech Enchantment is available for various Weapons.";
         enableLeech = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelLeech = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
-        COMMON_CONFIG.pop();
-
-        COMMON_CONFIG.push("Magma Walker");
-        comment = "If TRUE, the Magma Walker Enchantment is available for Boots and Horse Armor.";
-        enableMagmaWalker = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelMagmaWalker = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Phalanx");
@@ -158,6 +159,8 @@ public class ConfigEnsorc {
         COMMON_CONFIG.push("Quickdraw");
         comment = "If TRUE, the Quickdraw Enchantment is available for various Bows.";
         enableQuickdraw = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelQuickdraw = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Soulbound");
@@ -172,6 +175,8 @@ public class ConfigEnsorc {
         COMMON_CONFIG.push("Trueshot");
         comment = "If TRUE, the Trueshot Enchantment is available for various Bows.";
         enableTrueshot = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelTrueshot = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Volley");
@@ -188,10 +193,10 @@ public class ConfigEnsorc {
         levelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the base critical hit chance of the Enchantment (in percentage).";
         critBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Critical Chance", 5, 1, 100);
-        comment = "Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).";
+        comment = "Adjust this value to set the additional critical hit chance per level of the Enchantment (in percentage).";
         critLevelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Critical Chance / Level", 5, 1, 100);
         comment = "Adjust this value to set the critical hit damage multiplier.";
-        critDamageVorpal = COMMON_CONFIG.comment(comment).defineInRange("Critical Damage Multiplier", 10, 2, 1000);
+        critDamageVorpal = COMMON_CONFIG.comment(comment).defineInRange("Critical Damage Multiplier", 5, 2, 1000);
         comment = "Adjust this value to set the base critical hit chance for the Enchantment (in percentage).";
         headBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Head Drop Chance", 5, 1, 100);
         comment = "Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).";
@@ -214,10 +219,12 @@ public class ConfigEnsorc {
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Frost Walker");
-        comment = "If TRUE, the Frost Walker Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
+        comment = "If TRUE, the Frost Walker Enchantment is replaced with an improved and more configurable version which works on more items, such as Horse Armor.";
         enableFrostWalker = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostWalker = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        comment = "If TRUE, the Frost Walker Enchantment will also chill Lava into Cooled Magma.";
+        enableFreezeLava = COMMON_CONFIG.comment(comment).define("Freeze Lava", true);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Knockback");
@@ -314,6 +321,10 @@ public class ConfigEnsorc {
         if (BULWARK instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) BULWARK).setEnable(enableBulwark.get());
         }
+        if (DAMAGE_ENDER instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) DAMAGE_ENDER).setEnable(enableDamageEnder.get());
+            ((EnchantmentCoFH) DAMAGE_ENDER).setMaxLevel(levelDamageEnder.get());
+        }
         if (DAMAGE_ILLAGER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setEnable(enableDamageIllager.get());
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setMaxLevel(levelDamageIllager.get());
@@ -345,16 +356,13 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) LEECH).setEnable(enableLeech.get());
             ((EnchantmentCoFH) LEECH).setMaxLevel(levelLeech.get());
         }
-        if (MAGMA_WALKER instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) MAGMA_WALKER).setEnable(enableMagmaWalker.get());
-            ((EnchantmentCoFH) MAGMA_WALKER).setMaxLevel(levelMagmaWalker.get());
-        }
         if (PHALANX instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) PHALANX).setEnable(enablePhalanx.get());
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
         }
         if (QUICKDRAW instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) QUICKDRAW).setEnable(enableQuickdraw.get());
+            ((EnchantmentCoFH) QUICKDRAW).setMaxLevel(levelQuickdraw.get());
         }
         if (SOULBOUND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) SOULBOUND).setEnable(enableSoulbound.get());
@@ -363,6 +371,7 @@ public class ConfigEnsorc {
         }
         if (TRUESHOT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) TRUESHOT).setEnable(enableTrueshot.get());
+            ((EnchantmentCoFH) TRUESHOT).setMaxLevel(levelTrueshot.get());
         }
         if (VOLLEY instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) VOLLEY).setEnable(enableVolley.get());
@@ -389,6 +398,7 @@ public class ConfigEnsorc {
         if (FROST_WALKER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FROST_WALKER).setEnable(enableFrostWalker.get());
             ((EnchantmentCoFH) FROST_WALKER).setMaxLevel(levelFrostWalker.get());
+            FrostWalkerEnchantmentImp.freezeLava = enableFreezeLava.get();
         }
         if (KNOCKBACK instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) KNOCKBACK).setEnable(enableKnockback.get());
@@ -441,9 +451,19 @@ public class ConfigEnsorc {
 
     private static BooleanValue enableBulwark;
 
+    private static BooleanValue enableDamageEnder;
+    private static IntValue levelDamageEnder;
+
+    private static BooleanValue enableDamageIllager;
+    private static IntValue levelDamageIllager;
+
     private static BooleanValue enableDisplacement;
     private static IntValue levelDisplacement;
     private static IntValue chanceDisplacement;
+
+    private static BooleanValue enableExpBoost;
+    private static IntValue levelExpBoost;
+    private static IntValue amountExpBoost;
 
     private static BooleanValue enableGourmand;
     private static IntValue levelGourmand;
@@ -455,29 +475,21 @@ public class ConfigEnsorc {
     private static IntValue levelHunter;
     private static IntValue chanceHunter;
 
-    private static BooleanValue enableDamageIllager;
-    private static IntValue levelDamageIllager;
-
-    private static BooleanValue enableExpBoost;
-    private static IntValue levelExpBoost;
-    private static IntValue amountExpBoost;
-
     private static BooleanValue enableLeech;
     private static IntValue levelLeech;
-
-    private static BooleanValue enableMagmaWalker;
-    private static IntValue levelMagmaWalker;
 
     private static BooleanValue enablePhalanx;
     private static IntValue levelPhalanx;
 
     private static BooleanValue enableQuickdraw;
+    private static IntValue levelQuickdraw;
 
     private static BooleanValue enableSoulbound;
     private static IntValue levelSoulbound;
     private static BooleanValue permanentSoulbound;
 
     private static BooleanValue enableTrueshot;
+    private static IntValue levelTrueshot;
 
     private static BooleanValue enableVolley;
     private static IntValue levelVolley;
@@ -495,6 +507,7 @@ public class ConfigEnsorc {
 
     private static BooleanValue enableFrostWalker;
     private static IntValue levelFrostWalker;
+    private static BooleanValue enableFreezeLava;
 
     private static BooleanValue enableKnockback;
     private static IntValue levelKnockback;

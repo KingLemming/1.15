@@ -30,7 +30,7 @@ public class DamageIllagerEnchantment extends DamageEnchantmentCoFH {
     }
 
     @Override
-    public int getMaxEnchantability(int level) {
+    protected int maxDelegate(int level) {
 
         return getMinEnchantability(level) + 20;
     }

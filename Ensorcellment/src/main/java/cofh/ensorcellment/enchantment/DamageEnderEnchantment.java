@@ -14,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 
 import static cofh.lib.util.modhelpers.CoreHelper.ANCHORING;
 
@@ -53,7 +52,7 @@ public class DamageEnderEnchantment extends DamageEnchantmentCoFH {
             return;
         }
         if (target instanceof LivingEntity) {
-            LivingEntity living = (LivingEntity)target;
+            LivingEntity living = (LivingEntity) target;
             int i = 10000 + user.getRNG().nextInt(10 * level);
             living.addPotionEffect(new EffectInstance(ANCHORING, i));
         }

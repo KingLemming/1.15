@@ -104,7 +104,7 @@ public class ArcheryEvents {
 
         int encQuickDraw = EnchantmentHelper.getEnchantmentLevel(QUICKDRAW, event.getItem());
         if (encQuickDraw > 0 && event.getDuration() > event.getItem().getUseDuration() - 20) {
-            event.setDuration(event.getDuration() - 1);
+            event.setDuration(event.getDuration() - encQuickDraw);
         }
     }
 

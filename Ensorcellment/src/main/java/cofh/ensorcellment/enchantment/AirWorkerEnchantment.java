@@ -19,7 +19,7 @@ public class AirWorkerEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int getMaxEnchantability(int level) {
+    protected int maxDelegate(int level) {
 
         return getMinEnchantability(level) + 40;
     }

@@ -12,7 +12,7 @@ public class VorpalEnchantment extends EnchantmentCoFH {
 
     public static int critBase = 5;
     public static int critLevel = 5;
-    public static int critDamage = 10;
+    public static int critDamage = 5;
     public static int headBase = 5;
     public static int headLevel = 10;
 
@@ -29,7 +29,7 @@ public class VorpalEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int getMaxEnchantability(int level) {
+    protected int maxDelegate(int level) {
 
         return getMinEnchantability(level) + 50;
     }

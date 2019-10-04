@@ -42,6 +42,17 @@ public abstract class EnchantmentCoFH extends Enchantment {
     }
 
     @Override
+    public int getMaxEnchantability(int level) {
+
+        return enable ? maxDelegate(level) : -1;
+    }
+
+    protected int maxDelegate(int level) {
+
+        return getMinEnchantability(level) + 5;
+    }
+
+    @Override
     public int getMaxLevel() {
 
         return maxLevel;
