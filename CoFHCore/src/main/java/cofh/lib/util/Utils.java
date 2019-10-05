@@ -182,9 +182,9 @@ public class Utils {
     // endregion
 
     // ENCHANT UTILS
-    public static int getHeldEnchantmentLevel(LivingEntity player, Enchantment ench) {
+    public static int getHeldEnchantmentLevel(LivingEntity living, Enchantment ench) {
 
-        return Math.max(getEnchantmentLevel(ench, player.getHeldItemMainhand()), getEnchantmentLevel(ench, player.getHeldItemOffhand()));
+        return Math.max(getEnchantmentLevel(ench, living.getHeldItemMainhand()), getEnchantmentLevel(ench, living.getHeldItemOffhand()));
     }
 
     public static void addEnchantment(ItemStack stack, Enchantment enc, int level) {

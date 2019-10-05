@@ -1,9 +1,9 @@
 package cofh.lib.block;
 
+import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 
 public class BlockCoFH extends Block {

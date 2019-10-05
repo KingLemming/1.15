@@ -39,6 +39,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_BULWARK, BulwarkEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_ENDER, DamageEnderEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_ILLAGER, DamageIllagerEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_DAMAGE_VILLAGER, DamageVillagerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DISPLACEMENT, DisplacementEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_GOURMAND, GourmandEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_HOLDING, HoldingEnchantment::new);
@@ -51,6 +52,8 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_TRUESHOT, TrueshotEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VOLLEY, VolleyEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VORPAL, VorpalEnchantment::new);
+
+        ENCHANTMENTS.registerSpec(ID_CURSE_MERCY, CurseMercyEnchantment::new);
 
         // ENCHANTMENTS.registerSpec(ID_PROSPECTOR, ProspectorEnchantment::new);
         // ENCHANTMENTS.registerSpec(ID_SMASHING, SmashingEnchantment::new);

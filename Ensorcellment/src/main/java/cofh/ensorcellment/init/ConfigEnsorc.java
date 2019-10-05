@@ -86,17 +86,8 @@ public class ConfigEnsorc {
         enableBulwark = COMMON_CONFIG.comment(comment).define("Enable", true);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.push("Displacement");
-        comment = "If TRUE, the Displacement Enchantment is available for Armor, Shields, and Horse Armor.";
-        enableDisplacement = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelDisplacement = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
-        chanceDisplacement = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
-        COMMON_CONFIG.pop();
-
-        COMMON_CONFIG.push("Disruption");
-        comment = "If TRUE, the Disruption Enchantment is available for various Weapons.";
+        COMMON_CONFIG.push("Ender Disruption");
+        comment = "If TRUE, the Ender Disruption Enchantment is available for various Weapons.";
         enableDamageEnder = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDamageEnder = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
@@ -107,6 +98,24 @@ public class ConfigEnsorc {
         enableDamageIllager = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDamageIllager = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Outlaw");
+        comment = "If TRUE, the Outlaw Enchantment is available for various Weapons.";
+        enableDamageVillager = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelDamageVillager = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        comment = "If TRUE, the Outlaw Enchantment causes Villagers (and Iron Golems) to drop Emeralds when killed.";
+        dropsDamageVillager = COMMON_CONFIG.comment(comment).define("Emerald Drops", true);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Displacement");
+        comment = "If TRUE, the Displacement Enchantment is available for Armor, Shields, and Horse Armor.";
+        enableDisplacement = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelDisplacement = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
+        chanceDisplacement = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Insight");
@@ -201,6 +210,11 @@ public class ConfigEnsorc {
         headBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Head Drop Chance", 5, 1, 100);
         comment = "Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).";
         headLevelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Head Drop Chance / Level", 10, 1, 100);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Curse of Mercy");
+        comment = "If TRUE, the Curse of Mercy Enchantment is available various Weapons.";
+        enableCurseMercy = COMMON_CONFIG.comment(comment).define("Enable", true);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.pop();
@@ -329,6 +343,11 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setEnable(enableDamageIllager.get());
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setMaxLevel(levelDamageIllager.get());
         }
+        if (DAMAGE_VILLAGER instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) DAMAGE_VILLAGER).setEnable(enableDamageVillager.get());
+            ((EnchantmentCoFH) DAMAGE_VILLAGER).setMaxLevel(levelDamageVillager.get());
+            DamageVillagerEnchantment.enableEmeraldDrops = dropsDamageVillager.get();
+        }
         if (DISPLACEMENT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DISPLACEMENT).setEnable(enableDisplacement.get());
             ((EnchantmentCoFH) DISPLACEMENT).setMaxLevel(levelDisplacement.get());
@@ -385,6 +404,9 @@ public class ConfigEnsorc {
             VorpalEnchantment.critDamage = critDamageVorpal.get();
             VorpalEnchantment.headBase = headBaseVorpal.get();
             VorpalEnchantment.headLevel = headLevelVorpal.get();
+        }
+        if (CURSE_MERCY instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) CURSE_MERCY).setEnable(enableCurseMercy.get());
         }
     }
 
@@ -457,6 +479,10 @@ public class ConfigEnsorc {
     private static BooleanValue enableDamageIllager;
     private static IntValue levelDamageIllager;
 
+    private static BooleanValue enableDamageVillager;
+    private static IntValue levelDamageVillager;
+    private static BooleanValue dropsDamageVillager;
+
     private static BooleanValue enableDisplacement;
     private static IntValue levelDisplacement;
     private static IntValue chanceDisplacement;
@@ -501,6 +527,8 @@ public class ConfigEnsorc {
     private static IntValue critDamageVorpal;
     private static IntValue headBaseVorpal;
     private static IntValue headLevelVorpal;
+
+    private static BooleanValue enableCurseMercy;
 
     private static BooleanValue enableFireAspect;
     private static IntValue levelFireAspect;

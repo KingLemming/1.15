@@ -20,9 +20,9 @@ public class CoreHelper {
     // endregion
 
     // region EFFECTS
-    public static final String ID_ANCHORING = ID_COFH_CORE + ":anchoring";
+    public static final String ID_ENDERFERENCE = ID_COFH_CORE + ":enderference";
 
-    @ObjectHolder(ID_ANCHORING)
-    public static final Effect ANCHORING = null;
+    @ObjectHolder(ID_ENDERFERENCE)
+    public static final Effect ENDERFERENCE = null;
     // endregion
 }

@@ -42,4 +42,10 @@ public class DamageIllagerEnchantment extends DamageEnchantmentCoFH {
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
 
+    // TODO: Revisit
+//    public static boolean validTarget(Entity entity) {
+//
+//        return entity instanceof AbstractRaiderEntity;
+//    }
+
 }

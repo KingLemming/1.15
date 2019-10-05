@@ -28,8 +28,9 @@ public class EnsorcellmentHelper {
     public static final String ID_AIR_WORKER = ID_ENSORCELLMENT + ":air_worker";
     public static final String ID_ANGLER = ID_ENSORCELLMENT + ":angler";
     public static final String ID_BULWARK = ID_ENSORCELLMENT + ":bulwark";
-    public static final String ID_DAMAGE_ENDER = ID_ENSORCELLMENT + ":ender_damage";
-    public static final String ID_DAMAGE_ILLAGER = ID_ENSORCELLMENT + ":illager_damage";
+    public static final String ID_DAMAGE_ENDER = ID_ENSORCELLMENT + ":damage_ender";
+    public static final String ID_DAMAGE_ILLAGER = ID_ENSORCELLMENT + ":damage_illager";
+    public static final String ID_DAMAGE_VILLAGER = ID_ENSORCELLMENT + ":damage_villager";
     public static final String ID_DISPLACEMENT = ID_ENSORCELLMENT + ":displacement";
     public static final String ID_EXP_BOOST = ID_ENSORCELLMENT + ":exp_boost";
     public static final String ID_GOURMAND = ID_ENSORCELLMENT + ":gourmand";
@@ -44,6 +45,8 @@ public class EnsorcellmentHelper {
     public static final String ID_TRUESHOT = ID_ENSORCELLMENT + ":trueshot";
     public static final String ID_VOLLEY = ID_ENSORCELLMENT + ":volley";
     public static final String ID_VORPAL = ID_ENSORCELLMENT + ":vorpal";
+
+    public static final String ID_CURSE_MERCY = ID_ENSORCELLMENT + ":curse_mercy";
     // endregion
 
     // region ENCHANTMENTS
@@ -61,6 +64,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_DAMAGE_ILLAGER)
     public static final Enchantment DAMAGE_ILLAGER = null;
+
+    @ObjectHolder(ID_DAMAGE_VILLAGER)
+    public static final Enchantment DAMAGE_VILLAGER = null;
 
     @ObjectHolder(ID_DISPLACEMENT)
     public static final Enchantment DISPLACEMENT = null;
@@ -103,5 +109,10 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_VORPAL)
     public static final Enchantment VORPAL = null;
+    // endregion
+
+    // region CURSES
+    @ObjectHolder(ID_CURSE_MERCY)
+    public static final Enchantment CURSE_MERCY = null;
     // endregion
 }

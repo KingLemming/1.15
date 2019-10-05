@@ -12,7 +12,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static cofh.lib.util.modhelpers.CoreHelper.ANCHORING;
+import static cofh.lib.util.modhelpers.CoreHelper.ENDERFERENCE;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.FEATHER_FALLING;
 
@@ -57,7 +57,7 @@ public class CommonEventsCore {
         }
         LivingEntity entity = event.getEntityLiving();
         entity.getActivePotionEffects();
-        if (entity.getActivePotionMap().containsKey(ANCHORING)) {
+        if (entity.isPotionActive(ENDERFERENCE)) {
             event.setCanceled(true);
         }
     }

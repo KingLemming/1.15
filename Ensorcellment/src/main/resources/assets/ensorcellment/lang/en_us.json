@@ -8,11 +8,20 @@
   "enchantment.ensorcellment.bulwark": "Bulwark",
   "enchantment.ensorcellment.bulwark.desc": "Prevents the wielder from being knocked back.",
 
+  "enchantment.ensorcellment.curse_mercy": "Curse of Mercy",
+  "enchantment.ensorcellment.curse_mercy.desc": "Prevents a weapon from dealing a lethal blow.",
+
+  "enchantment.ensorcellment.damage_ender": "Ender Disruption",
+  "enchantment.ensorcellment.damage_ender.desc": "Increases damage dealt to Ender mobs and inhibits teleportation.",
+
+  "enchantment.ensorcellment.damage_illager": "Vigilante",
+  "enchantment.ensorcellment.damage_illager.desc": "Increases damage dealt to Illager mobs.",
+
+  "enchantment.ensorcellment.damage_villager": "Outlaw",
+  "enchantment.ensorcellment.damage_villager.desc": "Increases damage dealt to Villager mobs.",
+
   "enchantment.ensorcellment.displacement": "Displacement",
   "enchantment.ensorcellment.displacement.desc": "Randomly teleports attackers away.",
-
-  "enchantment.ensorcellment.ender_damage": "Disruption",
-  "enchantment.ensorcellment.ender_damage.desc": "Increases damage dealt to Ender mobs and inhibits teleportation.",
 
   "enchantment.ensorcellment.exp_boost": "Insight",
   "enchantment.ensorcellment.exp_boost.desc": "Increases experience gain when using the item.",
@@ -25,9 +34,6 @@
 
   "enchantment.ensorcellment.hunter": "Hunter's Bounty",
   "enchantment.ensorcellment.hunter.desc": "Provides a chance of additional drops from slain animals.",
-
-  "enchantment.ensorcellment.illager_damage": "Vigilante",
-  "enchantment.ensorcellment.illager_damage.desc": "Increases damage dealt to Illager mobs.",
 
   "enchantment.ensorcellment.leech": "Leech",
   "enchantment.ensorcellment.leech.desc": "Restores health when a mob is killed.",

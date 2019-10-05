@@ -32,6 +32,38 @@ public final class MathHelper {
         SIN_TABLE[49152] = -1;
     }
 
+    // region RANDOMS
+    public static int nextInt(Random random, int min, int max) {
+
+        return min >= max ? min : random.nextInt(max - min + 1) + min;
+    }
+
+    public static int nextInt(int min, int max) {
+
+        return nextInt(RANDOM, min, max);
+    }
+
+    public static float nextFloat(Random random, float min, float max) {
+
+        return min >= max ? min : random.nextFloat() * (max - min) + min;
+    }
+
+    public static float nextFloat(float min, float max) {
+
+        return nextFloat(RANDOM, min, max);
+    }
+
+    public static double nextDouble(Random random, double min, double max) {
+
+        return min >= max ? min : random.nextDouble() * (max - min) + min;
+    }
+
+    public static double nextDouble(double min, double max) {
+
+        return nextDouble(RANDOM, min, max);
+    }
+    // endregion
+
     public static double sin(double d) {
 
         return SIN_TABLE[(int) ((float) d * 10430.378F) & 65535];
