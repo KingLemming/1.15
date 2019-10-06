@@ -38,6 +38,9 @@
   "enchantment.ensorcellment.leech": "Leech",
   "enchantment.ensorcellment.leech.desc": "Restores health when a mob is killed.",
 
+  "enchantment.ensorcellment.magic_edge": "Magic Edge",
+  "enchantment.ensorcellment.magic_edge.desc": "Increases damage slightly. Converts damage dealt to magic.",
+
   "enchantment.ensorcellment.phalanx": "Phalanx",
   "enchantment.ensorcellment.phalanx.desc": "Allows the wielder to move faster while using a shield.",
 

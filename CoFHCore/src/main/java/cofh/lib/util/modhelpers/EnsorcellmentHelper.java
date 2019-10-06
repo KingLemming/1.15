@@ -37,6 +37,7 @@ public class EnsorcellmentHelper {
     public static final String ID_HOLDING = ID_ENSORCELLMENT + ":holding";
     public static final String ID_HUNTER = ID_ENSORCELLMENT + ":hunter";
     public static final String ID_LEECH = ID_ENSORCELLMENT + ":leech";
+    public static final String ID_MAGIC_EDGE = ID_ENSORCELLMENT + ":magic_edge";
     public static final String ID_PHALANX = ID_ENSORCELLMENT + ":phalanx";
     public static final String ID_QUICKDRAW = ID_ENSORCELLMENT + ":quickdraw";
     public static final String ID_SMASHING = ID_ENSORCELLMENT + ":smashing";
@@ -85,6 +86,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_LEECH)
     public static final Enchantment LEECH = null;
+
+    @ObjectHolder(ID_MAGIC_EDGE)
+    public static final Enchantment MAGIC_EDGE = null;
 
     @ObjectHolder(ID_PHALANX)
     public static final Enchantment PHALANX = null;

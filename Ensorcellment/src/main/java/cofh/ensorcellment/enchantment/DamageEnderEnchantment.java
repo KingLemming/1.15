@@ -53,7 +53,7 @@ public class DamageEnderEnchantment extends DamageEnchantmentCoFH {
         }
         if (target instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) target;
-            int i = 10000 + user.getRNG().nextInt(10 * level);
+            int i = 60 + user.getRNG().nextInt(20 * level);
             living.addPotionEffect(new EffectInstance(ENDERFERENCE, i));
         }
     }

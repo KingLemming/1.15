@@ -157,8 +157,14 @@ public class ConfigEnsorc {
         levelLeech = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.push("Phalanx");
+        COMMON_CONFIG.push("Magic Edge");
+        comment = "If TRUE, the Magic Edge Enchantment is available for various Weapons.";
+        enableMagicEdge = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelMagicEdge = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Phalanx");
         comment = "If TRUE, the Phalanx Enchantment is available for Shields.";
         enablePhalanx = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
@@ -199,7 +205,7 @@ public class ConfigEnsorc {
         comment = "If TRUE, the Vorpal Enchantment is available for various Weapons.";
         enableVorpal = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        levelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the base critical hit chance of the Enchantment (in percentage).";
         critBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Critical Chance", 5, 1, 100);
         comment = "Adjust this value to set the additional critical hit chance per level of the Enchantment (in percentage).";
@@ -207,13 +213,13 @@ public class ConfigEnsorc {
         comment = "Adjust this value to set the critical hit damage multiplier.";
         critDamageVorpal = COMMON_CONFIG.comment(comment).defineInRange("Critical Damage Multiplier", 5, 2, 1000);
         comment = "Adjust this value to set the base critical hit chance for the Enchantment (in percentage).";
-        headBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Head Drop Chance", 5, 1, 100);
+        headBaseVorpal = COMMON_CONFIG.comment(comment).defineInRange("Base Head Drop Chance", 10, 1, 100);
         comment = "Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).";
         headLevelVorpal = COMMON_CONFIG.comment(comment).defineInRange("Head Drop Chance / Level", 10, 1, 100);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Curse of Mercy");
-        comment = "If TRUE, the Curse of Mercy Enchantment is available various Weapons.";
+        comment = "If TRUE, the Curse of Mercy Enchantment is available for various Weapons.";
         enableCurseMercy = COMMON_CONFIG.comment(comment).define("Enable", true);
         COMMON_CONFIG.pop();
 
@@ -375,6 +381,10 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) LEECH).setEnable(enableLeech.get());
             ((EnchantmentCoFH) LEECH).setMaxLevel(levelLeech.get());
         }
+        if (MAGIC_EDGE instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) MAGIC_EDGE).setEnable(enableMagicEdge.get());
+            ((EnchantmentCoFH) MAGIC_EDGE).setMaxLevel(levelMagicEdge.get());
+        }
         if (PHALANX instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) PHALANX).setEnable(enablePhalanx.get());
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
@@ -503,6 +513,9 @@ public class ConfigEnsorc {
 
     private static BooleanValue enableLeech;
     private static IntValue levelLeech;
+
+    private static BooleanValue enableMagicEdge;
+    private static IntValue levelMagicEdge;
 
     private static BooleanValue enablePhalanx;
     private static IntValue levelPhalanx;

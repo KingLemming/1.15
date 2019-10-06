@@ -62,8 +62,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static cofh.lib.util.Utils.*;
-import static cofh.lib.util.constants.Constants.UUID_KNOCKBACK_RESISTANCE;
-import static cofh.lib.util.constants.Constants.UUID_MOVEMENT_SPEED;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
@@ -92,12 +91,26 @@ public class CommonEventsEnsorc {
     }
 
     // region LIVING EVENTS
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleLivingAttackEvent(LivingAttackEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
         LivingEntity entity = event.getEntityLiving();
-        Entity attacker = event.getSource().getTrueSource();
+        DamageSource source = event.getSource();
+        Entity attacker = source.getTrueSource();
 
+        // MAGIC EDGE
+        if (attacker instanceof LivingEntity) {
+            int encMagicEdge = getHeldEnchantmentLevel((LivingEntity) attacker, MAGIC_EDGE);
+            if (encMagicEdge > 0 && !source.isMagicDamage() && source.damageType.equals(DAMAGE_PLAYER)) {
+                event.setCanceled(true);
+                entity.attackEntityFrom(event.getSource().setDamageBypassesArmor().setMagicDamage(), event.getAmount() + MagicEdgeEnchantment.getExtraDamage(encMagicEdge));
+                return;
+            }
+        }
+        // SHIELD
         if (entity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
             ItemStack stack = player.getActiveItemStack();
@@ -310,15 +323,22 @@ public class CommonEventsEnsorc {
             }
             int encDamageVillager = getHeldEnchantmentLevel(living, DAMAGE_VILLAGER);
             if (encDamageVillager > 0 && DamageVillagerEnchantment.validTarget(entity)) {
-                event.setAmount(event.getAmount() + DamageEnderEnchantment.getExtraDamage(encDamageVillager));
+                event.setAmount(event.getAmount() + DamageVillagerEnchantment.getExtraDamage(encDamageVillager));
+            }
+            int encMagicEdge = getHeldEnchantmentLevel(living, MAGIC_EDGE);
+            if (encMagicEdge > 0 && source.isMagicDamage()) {
+                for (int i = 0; i < encMagicEdge * 2; ++i) {
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                }
             }
             int encVorpal = getHeldEnchantmentLevel(living, VORPAL);
             if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
                 event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
                 attacker.world.playSound(null, attacker.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 for (int i = 0; i < encVorpal * 2; ++i) {
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.5D, entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
                 }
             }
         }
@@ -350,27 +370,29 @@ public class CommonEventsEnsorc {
             FrostWalkerEnchantmentImp.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
         }
 
-        // ACTIVE SHIELD
-        ItemStack stack = entity.getActiveItemStack();
-        if (stack.getItem().isShield(stack, entity)) {
-            int encBulwark = getEnchantmentLevel(BULWARK, stack);
-            int encPhalanx = getEnchantmentLevel(PHALANX, stack);
+        // SHIELD
+        if (entity instanceof PlayerEntity) {
+            ItemStack stack = entity.getActiveItemStack();
+            if (stack.getItem().isShield(stack, entity)) {
+                int encBulwark = getEnchantmentLevel(BULWARK, stack);
+                int encPhalanx = getEnchantmentLevel(PHALANX, stack);
 
-            Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-            if (encBulwark > 0) {
+                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+                if (encBulwark > 0) {
+                    attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Knockback", 1.0D, ADDITION).setSaved(false));
+                }
+                if (encPhalanx > 0) {
+                    attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
+                }
+                if (!attributes.isEmpty()) {
+                    entity.getAttributes().applyAttributeModifiers(attributes);
+                }
+            } else {
+                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Knockback", 1.0D, ADDITION).setSaved(false));
+                attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
+                entity.getAttributes().removeAttributeModifiers(attributes);
             }
-            if (encPhalanx > 0) {
-                attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
-            }
-            if (!attributes.isEmpty()) {
-                entity.getAttributes().applyAttributeModifiers(attributes);
-            }
-        } else {
-            Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-            attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Knockback", 1.0D, ADDITION).setSaved(false));
-            attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
-            entity.getAttributes().removeAttributeModifiers(attributes);
         }
     }
 

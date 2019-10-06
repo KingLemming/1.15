@@ -60,11 +60,11 @@ public class ArcheryEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void handleArrowNockEvent(ArrowNockEvent event) {
 
-        if (!event.getBow().getCapability(BOW_ITEM_CAPABILITY).isPresent()) {
+        ItemStack bow = event.getBow();
+        if (!validBow(bow)) {
             return;
         }
         PlayerEntity shooter = event.getPlayer();
-        ItemStack bow = event.getBow();
         ItemStack ammo = findAmmo(shooter);
 
         if (ammo.isEmpty() && EnchantmentHelper.getEnchantmentLevel(INFINITY, bow) > 0) {

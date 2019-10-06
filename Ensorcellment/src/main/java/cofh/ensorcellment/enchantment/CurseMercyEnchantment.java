@@ -26,7 +26,7 @@ public class CurseMercyEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int maxDelegate(int level) {
+    protected int maxDelegate(int level) {
 
         return 50;
     }

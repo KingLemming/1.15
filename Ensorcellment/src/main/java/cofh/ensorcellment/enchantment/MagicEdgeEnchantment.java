@@ -1,6 +1,6 @@
 package cofh.ensorcellment.enchantment;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
+import cofh.lib.enchantment.DamageEnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
@@ -8,15 +8,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 
-public class VorpalEnchantment extends EnchantmentCoFH {
+public class MagicEdgeEnchantment extends DamageEnchantmentCoFH {
 
-    public static int critBase = 5;
-    public static int critLevel = 5;
-    public static int critDamage = 5;
-    public static int headBase = 10;
-    public static int headLevel = 10;
-
-    public VorpalEnchantment() {
+    public MagicEdgeEnchantment() {
 
         super(Rarity.RARE, EnchantmentType.WEAPON, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 3;
@@ -39,6 +33,17 @@ public class VorpalEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
+    }
+
+    @Override
+    public boolean isTreasureEnchantment() {
+
+        return true;
+    }
+
+    public static float getExtraDamage(int level) {
+
+        return level * 0.5F;
     }
 
 }

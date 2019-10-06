@@ -33,7 +33,7 @@ public class ExpBoostEnchantment extends EnchantmentCoFH {
     public boolean canApply(ItemStack stack) {
 
         Item item = stack.getItem();
-        return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || supportsEnchantment(stack));
+        return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));
     }
 
     @Override
