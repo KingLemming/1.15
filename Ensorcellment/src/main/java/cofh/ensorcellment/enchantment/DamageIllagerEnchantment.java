@@ -43,9 +43,9 @@ public class DamageIllagerEnchantment extends DamageEnchantmentCoFH {
     }
 
     // TODO: Revisit
-//    public static boolean validTarget(Entity entity) {
-//
-//        return entity instanceof AbstractRaiderEntity;
-//    }
+    //    public static boolean validTarget(Entity entity) {
+    //
+    //        return entity instanceof AbstractRaiderEntity;
+    //    }
 
 }

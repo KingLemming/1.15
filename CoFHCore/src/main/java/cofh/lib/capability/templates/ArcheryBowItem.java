@@ -62,9 +62,9 @@ public class ArcheryBowItem implements IArcheryBowItem, ICapabilityProvider {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
+    public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap, final @Nullable Direction side) {
 
-        return BOW_ITEM_CAPABILITY.orEmpty(capability, this.holder);
+        return BOW_ITEM_CAPABILITY.orEmpty(cap, this.holder);
     }
 
 }

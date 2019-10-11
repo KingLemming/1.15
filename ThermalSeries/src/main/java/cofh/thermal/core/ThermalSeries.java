@@ -1,12 +1,9 @@
 package cofh.thermal.core;
 
+import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.init.BlocksTSeries;
 import cofh.thermal.core.init.FluidsTSeries;
 import cofh.thermal.core.init.ItemsTSeries;
-import cofh.thermal.cultivation.init.BlocksTCultivation;
-import cofh.thermal.cultivation.init.ItemsTCultivation;
-import cofh.thermal.foundation.init.BlocksTFoundation;
-import cofh.thermal.foundation.init.ItemsTFoundation;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
@@ -19,7 +16,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,11 +29,11 @@ public class ThermalSeries {
     public static final String VERSION = "1.0";
     public static final Logger LOG = LogManager.getLogger(ID_THERMAL_SERIES);
 
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, ID_THERMAL_SERIES);
-    public static final DeferredRegister<Fluid> FLUIDS = new DeferredRegister<>(ForgeRegistries.FLUIDS, ID_THERMAL_SERIES);
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, ID_THERMAL_SERIES);
-    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL_SERIES);
-    public static final DeferredRegister<ContainerType<?>> CONTAINERS = new DeferredRegister<>(ForgeRegistries.CONTAINERS, ID_THERMAL_SERIES);
+    public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_THERMAL_SERIES);
+    public static final DeferredRegisterCoFH<Fluid> FLUIDS = new DeferredRegisterCoFH<>(ForgeRegistries.FLUIDS, ID_THERMAL_SERIES);
+    public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_THERMAL_SERIES);
+    public static final DeferredRegisterCoFH<TileEntityType<?>> TILE_ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL_SERIES);
+    public static final DeferredRegisterCoFH<ContainerType<?>> CONTAINERS = new DeferredRegisterCoFH<>(ForgeRegistries.CONTAINERS, ID_THERMAL_SERIES);
 
     public ThermalSeries() {
 
@@ -49,8 +45,8 @@ public class ThermalSeries {
         modEventBus.addListener(this::processIMC);
 
         BLOCKS.register(modEventBus);
-        ITEMS.register(modEventBus);
         FLUIDS.register(modEventBus);
+        ITEMS.register(modEventBus);
 
         BlocksTSeries.register();
         FluidsTSeries.register();

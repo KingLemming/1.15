@@ -25,9 +25,12 @@ public class EnsorcellmentHelper {
     public static final String ID_MENDING = "minecraft:mending";
     public static final String ID_THORNS = "minecraft:thorns";
 
+    public static final String ID_PROTECTION_MAGIC = ID_ENSORCELLMENT + ":magic_protection";
+
     public static final String ID_AIR_WORKER = ID_ENSORCELLMENT + ":air_worker";
     public static final String ID_ANGLER = ID_ENSORCELLMENT + ":angler";
     public static final String ID_BULWARK = ID_ENSORCELLMENT + ":bulwark";
+    public static final String ID_CAVALIER = ID_ENSORCELLMENT + ":cavalier";
     public static final String ID_DAMAGE_ENDER = ID_ENSORCELLMENT + ":damage_ender";
     public static final String ID_DAMAGE_ILLAGER = ID_ENSORCELLMENT + ":damage_illager";
     public static final String ID_DAMAGE_VILLAGER = ID_ENSORCELLMENT + ":damage_villager";
@@ -59,6 +62,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_BULWARK)
     public static final Enchantment BULWARK = null;
+
+    @ObjectHolder(ID_CAVALIER)
+    public static final Enchantment CAVALIER = null;
 
     @ObjectHolder(ID_DAMAGE_ENDER)
     public static final Enchantment DAMAGE_ENDER = null;
@@ -92,6 +98,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_PHALANX)
     public static final Enchantment PHALANX = null;
+
+    @ObjectHolder(ID_PROTECTION_MAGIC)
+    public static final Enchantment PROTECTION_MAGIC = null;
 
     @ObjectHolder(ID_QUICKDRAW)
     public static final Enchantment QUICKDRAW = null;

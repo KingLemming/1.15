@@ -13,7 +13,6 @@ import net.minecraft.item.SwordItem;
 
 public class CurseMercyEnchantment extends EnchantmentCoFH {
 
-
     public CurseMercyEnchantment() {
 
         super(Rarity.VERY_RARE, EnchantmentType.WEAPON, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});

@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.lib.item.CoinItem;
 import cofh.lib.item.ItemCoFH;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -84,6 +85,8 @@ public class ItemsTSeries {
         register("dust_enderium", group, rarity);
         register("gear_enderium", group, rarity);
         register("plate_enderium", group, rarity);
+
+        ITEMS.register("coin_enderium", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
     }
 
     private static RegistryObject<Item> register(String name, ItemGroup group) {

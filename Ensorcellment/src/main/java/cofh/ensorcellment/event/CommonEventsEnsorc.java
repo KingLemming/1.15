@@ -30,6 +30,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Food;
@@ -43,6 +44,7 @@ import net.minecraft.util.FoodStats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -115,7 +117,7 @@ public class CommonEventsEnsorc {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
             ItemStack stack = player.getActiveItemStack();
 
-            if (stack.getItem().isShield(stack, player)) {
+            if (canBlockDamageSource(player, source)) {
                 int encBulwark = getEnchantmentLevel(BULWARK, stack);
                 // THORNS
                 int encThorns = getEnchantmentLevel(THORNS, stack);
@@ -136,15 +138,34 @@ public class CommonEventsEnsorc {
                         player.resetActiveHand();
                         player.world.setEntityState(player, (byte) 30);
                     }
+                    event.setCanceled(true);
                 }
+                return;
             }
-        } else if (entity instanceof HorseEntity) {
+        }
+        if (entity instanceof HorseEntity) {
             ItemStack armor = ((HorseEntity) entity).horseChest.getStackInSlot(1);
             if (!armor.isEmpty()) {
+                // FROST WALKER
                 int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
                 if (event.getSource().equals(DamageSource.HOT_FLOOR) && encFrostWalker > 0) {
                     event.setCanceled(true);
                 }
+                // DISPLACEMENT
+                int encDisplacement = getEnchantmentLevel(DISPLACEMENT, armor);
+                if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
+                    DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
+                    event.setCanceled(true);
+                }
+            }
+        }
+        // If not a horse...
+        else {
+            // DISPLACEMENT
+            int encDisplacement = getMaxEnchantmentLevel(DISPLACEMENT, entity);
+            if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
+                DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
+                event.setCanceled(true);
             }
         }
     }
@@ -304,11 +325,6 @@ public class CommonEventsEnsorc {
                 if (ThornsEnchantment.shouldHit(encThorns, MathHelper.RANDOM) && attacker != null) {
                     attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
                 }
-                // DISPLACEMENT
-                int encDisplacement = getEnchantmentLevel(DISPLACEMENT, armor);
-                if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
-                    DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
-                }
             }
         }
         // endregion
@@ -324,6 +340,10 @@ public class CommonEventsEnsorc {
             int encDamageVillager = getHeldEnchantmentLevel(living, DAMAGE_VILLAGER);
             if (encDamageVillager > 0 && DamageVillagerEnchantment.validTarget(entity)) {
                 event.setAmount(event.getAmount() + DamageVillagerEnchantment.getExtraDamage(encDamageVillager));
+            }
+            int encCavalier = getHeldEnchantmentLevel(living, CAVALIER);
+            if (encCavalier > 0 && living.getRidingEntity() != null) {
+                event.setAmount(event.getAmount() * (1 + CavalierEnchantment.damageMult * MathHelper.nextInt(1, encCavalier)));
             }
             int encMagicEdge = getHeldEnchantmentLevel(living, MAGIC_EDGE);
             if (encMagicEdge > 0 && source.isMagicDamage()) {
@@ -673,6 +693,29 @@ public class CommonEventsEnsorc {
                 }
             }
         }
+    }
+    // endregion
+
+    // region HELPERS
+    private static boolean canBlockDamageSource(LivingEntity living, DamageSource source) {
+
+        Entity entity = source.getImmediateSource();
+        if (entity instanceof AbstractArrowEntity) {
+            AbstractArrowEntity arrow = (AbstractArrowEntity) entity;
+            if (arrow.getPierceLevel() > 0) {
+                return false;
+            }
+        }
+        if (!source.isUnblockable() && living.isActiveItemStackBlocking()) {
+            Vec3d vec3d2 = source.getDamageLocation();
+            if (vec3d2 != null) {
+                Vec3d vec3d = living.getLook(1.0F);
+                Vec3d vec3d1 = vec3d2.subtractReverse(new Vec3d(living.posX, living.posY, living.posZ)).normalize();
+                vec3d1 = new Vec3d(vec3d1.x, 0.0D, vec3d1.z);
+                return vec3d1.dotProduct(vec3d) < 0.0D;
+            }
+        }
+        return false;
     }
     // endregion
 }

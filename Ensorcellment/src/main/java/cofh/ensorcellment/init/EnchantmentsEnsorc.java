@@ -5,9 +5,9 @@ import cofh.ensorcellment.enchantment.override.*;
 import net.minecraft.inventory.EquipmentSlotType;
 
 import static cofh.ensorcellment.Ensorcellment.ENCHANTMENTS;
+import static cofh.ensorcellment.enchantment.override.ProtectionEnchantmentImp.Type.*;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
 import static net.minecraft.enchantment.Enchantment.Rarity.*;
-import static net.minecraft.enchantment.ProtectionEnchantment.Type.*;
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
 public class EnchantmentsEnsorc {
@@ -26,6 +26,8 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_PROTECTION_FIRE, () -> new ProtectionEnchantmentImp(UNCOMMON, FIRE, armorSlots));
         ENCHANTMENTS.registerSpec(ID_PROTECTION_PROJECTILE, () -> new ProtectionEnchantmentImp(UNCOMMON, PROJECTILE, armorSlots));
 
+        ENCHANTMENTS.registerSpec(ID_PROTECTION_MAGIC, () -> new ProtectionEnchantmentImp(UNCOMMON, MAGIC, armorSlots));
+
         ENCHANTMENTS.registerSpec(ID_FIRE_ASPECT, FireAspectEnchantmentImp::new);
         ENCHANTMENTS.registerSpec(ID_FROST_WALKER, FrostWalkerEnchantmentImp::new);
         ENCHANTMENTS.registerSpec(ID_KNOCKBACK, KnockbackEnchantmentImp::new);
@@ -37,6 +39,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_AIR_WORKER, AirWorkerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_ANGLER, AnglerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_BULWARK, BulwarkEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_CAVALIER, CavalierEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_ENDER, DamageEnderEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_ILLAGER, DamageIllagerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_VILLAGER, DamageVillagerEnchantment::new);

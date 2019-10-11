@@ -3,7 +3,6 @@ package cofh.ensorcellment.enchantment.override;
 import cofh.lib.enchantment.EnchantmentOverride;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;
@@ -14,14 +13,14 @@ public class ProtectionEnchantmentImp extends EnchantmentOverride {
 
     public static final int HORSE_MODIFIER = 3;
 
-    private ProtectionEnchantment.Type protectionType;
+    private Type protectionType;
 
-    public ProtectionEnchantmentImp(Rarity rarityIn, ProtectionEnchantment.Type protectionTypeIn, EquipmentSlotType[] slots) {
+    public ProtectionEnchantmentImp(Rarity rarityIn, Type protectionTypeIn, EquipmentSlotType[] slots) {
 
         super(rarityIn, EnchantmentType.ARMOR, slots);
         this.protectionType = protectionTypeIn;
 
-        if (protectionTypeIn == ProtectionEnchantment.Type.FALL) {
+        if (protectionTypeIn == Type.FALL) {
             this.type = EnchantmentType.ARMOR_FEET;
         }
         maxLevel = 4;
@@ -32,16 +31,18 @@ public class ProtectionEnchantmentImp extends EnchantmentOverride {
 
         if (level <= 0 || source.canHarmInCreative()) {
             return 0;
-        } else if (this.protectionType == ProtectionEnchantment.Type.ALL) {
+        } else if (this.protectionType == Type.ALL) {
             return level;
-        } else if (this.protectionType == ProtectionEnchantment.Type.FIRE && source.isFireDamage()) {
-            return level * 2;
-        } else if (this.protectionType == ProtectionEnchantment.Type.FALL && source == DamageSource.FALL) {
+        } else if (this.protectionType == Type.FALL && source == DamageSource.FALL) {
             return level * 3;
-        } else if (this.protectionType == ProtectionEnchantment.Type.EXPLOSION && source.isExplosion()) {
+        } else if (this.protectionType == Type.FIRE && source.isFireDamage()) {
+            return level * 2;
+        } else if (this.protectionType == Type.EXPLOSION && source.isExplosion()) {
+            return level * 2;
+        } else if (this.protectionType == Type.MAGIC && source.isMagicDamage()) {
             return level * 2;
         } else {
-            return this.protectionType == ProtectionEnchantment.Type.PROJECTILE && source.isProjectile() ? level * 2 : 0;
+            return this.protectionType == Type.PROJECTILE && source.isProjectile() ? level * 2 : 0;
         }
     }
 
@@ -75,11 +76,50 @@ public class ProtectionEnchantmentImp extends EnchantmentOverride {
             if (this.protectionType == enchProtection.protectionType) {
                 return false;
             } else {
-                return this.protectionType == ProtectionEnchantment.Type.FALL || enchProtection.protectionType == ProtectionEnchantment.Type.FALL;
+                return this.protectionType == Type.FALL || enchProtection.protectionType == Type.FALL;
             }
         } else {
             return super.canApplyTogether(ench);
         }
     }
 
+    @Override
+    public boolean isAllowedOnBooks() {
+
+        return this.protectionType == Type.MAGIC ? enable && allowOnBooks : allowOnBooks;
+    }
+
+    // region TYPE
+    public enum Type {
+        // @formatter:off
+        ALL("all", 1, 11),
+        FALL("fall", 5, 6),
+        FIRE("fire", 10, 8),
+        EXPLOSION("explosion", 5, 8),
+        MAGIC("magic", 10, 8),
+        PROJECTILE("projectile", 3, 6);
+        // @formatter:on
+
+        private final String typeName;
+        private final int minEnchantability;
+        private final int levelCost;
+
+        Type(String typeName, int minEnchantability, int levelCost) {
+
+            this.typeName = typeName;
+            this.minEnchantability = minEnchantability;
+            this.levelCost = levelCost;
+        }
+
+        public int getMinimalEnchantability() {
+
+            return this.minEnchantability;
+        }
+
+        public int getEnchantIncreasePerLevel() {
+
+            return this.levelCost;
+        }
+    }
+    // endregion
 }

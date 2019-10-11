@@ -65,7 +65,7 @@ public class ConfigEnsorc {
     private static void genEnchantmentConfig() {
 
         String comment;
-        COMMON_CONFIG.push("Enchantment");
+        // COMMON_CONFIG.push("Enchantment");
 
         COMMON_CONFIG.push("Air Affinity");
         comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
@@ -84,6 +84,13 @@ public class ConfigEnsorc {
         COMMON_CONFIG.push("Bulwark");
         comment = "If TRUE, the Bulwark Enchantment is available for Shields.";
         enableBulwark = COMMON_CONFIG.comment(comment).define("Enable", true);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Cavalier");
+        comment = "If TRUE, the Cavalier Enchantment is available for various Weapons.";
+        enableCavalier = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelCavalier = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Ender Disruption");
@@ -171,6 +178,13 @@ public class ConfigEnsorc {
         levelPhalanx = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Magic Protection");
+        comment = "If TRUE, the Magic Protection Enchantment is available for Armor and Horse Armor.";
+        enableProtectionMagic = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelProtectionMagic = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
         COMMON_CONFIG.push("Quickdraw");
         comment = "If TRUE, the Quickdraw Enchantment is available for various Bows.";
         enableQuickdraw = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -223,13 +237,13 @@ public class ConfigEnsorc {
         enableCurseMercy = COMMON_CONFIG.comment(comment).define("Enable", true);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.pop();
+        // COMMON_CONFIG.pop();
     }
 
     private static void genOverrideConfig() {
 
         String comment;
-        COMMON_CONFIG.push("Override");
+        // COMMON_CONFIG.push("Override");
 
         COMMON_CONFIG.push("Fire Aspect");
         comment = "If TRUE, the Fire Aspect Enchantment is replaced with a more configurable version which works on more items, such as Axes.";
@@ -312,7 +326,7 @@ public class ConfigEnsorc {
         damageMending = COMMON_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.pop();
+        // COMMON_CONFIG.pop();
     }
 
     private void refreshCommonConfig() {
@@ -340,6 +354,10 @@ public class ConfigEnsorc {
         }
         if (BULWARK instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) BULWARK).setEnable(enableBulwark.get());
+        }
+        if (CAVALIER instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) CAVALIER).setEnable(enableCavalier.get());
+            ((EnchantmentCoFH) CAVALIER).setMaxLevel(levelCavalier.get());
         }
         if (DAMAGE_ENDER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DAMAGE_ENDER).setEnable(enableDamageEnder.get());
@@ -388,6 +406,10 @@ public class ConfigEnsorc {
         if (PHALANX instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) PHALANX).setEnable(enablePhalanx.get());
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
+        }
+        if (PROTECTION_MAGIC instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) MAGIC_EDGE).setEnable(enableProtectionMagic.get());
+            ((EnchantmentCoFH) MAGIC_EDGE).setMaxLevel(levelProtectionMagic.get());
         }
         if (QUICKDRAW instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) QUICKDRAW).setEnable(enableQuickdraw.get());
@@ -483,6 +505,9 @@ public class ConfigEnsorc {
 
     private static BooleanValue enableBulwark;
 
+    private static BooleanValue enableCavalier;
+    private static IntValue levelCavalier;
+
     private static BooleanValue enableDamageEnder;
     private static IntValue levelDamageEnder;
 
@@ -516,6 +541,9 @@ public class ConfigEnsorc {
 
     private static BooleanValue enableMagicEdge;
     private static IntValue levelMagicEdge;
+
+    private static BooleanValue enableProtectionMagic;
+    private static IntValue levelProtectionMagic;
 
     private static BooleanValue enablePhalanx;
     private static IntValue levelPhalanx;

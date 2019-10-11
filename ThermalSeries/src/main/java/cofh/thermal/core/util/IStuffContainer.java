@@ -10,4 +10,5 @@ public interface IStuffContainer {
     List<? extends IItemStackAccess> getInputSlots();
 
     List<? extends IFluidStackAccess> inputTanks();
+
 }

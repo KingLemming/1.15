@@ -8,6 +8,9 @@
   "enchantment.ensorcellment.bulwark": "Bulwark",
   "enchantment.ensorcellment.bulwark.desc": "Prevents the wielder from being knocked back.",
 
+  "enchantment.ensorcellment.cavalier": "Cavalier",
+  "enchantment.ensorcellment.cavalier.desc": "Increases damage when riding something.",
+
   "enchantment.ensorcellment.curse_mercy": "Curse of Mercy",
   "enchantment.ensorcellment.curse_mercy.desc": "Prevents a weapon from dealing a lethal blow.",
 
@@ -41,6 +44,9 @@
   "enchantment.ensorcellment.magic_edge": "Magic Edge",
   "enchantment.ensorcellment.magic_edge.desc": "Increases damage slightly. Converts damage dealt to magic.",
 
+  "enchantment.ensorcellment.magic_protection": "Magic Protection",
+  "enchantment.ensorcellment.magic_protection.desc": "Reduces damage taken from magical sources.",
+
   "enchantment.ensorcellment.phalanx": "Phalanx",
   "enchantment.ensorcellment.phalanx.desc": "Allows the wielder to move faster while using a shield.",
 
@@ -66,5 +72,11 @@
   "enchantment.ensorcellment.volley.desc": "Additional arrows are fired with each shot. Only one arrow is consumed.",
 
   "enchantment.ensorcellment.vorpal": "Vorpal",
-  "enchantment.ensorcellment.vorpal.desc": "Randomly performs powerful attacks and decapitations."
+  "enchantment.ensorcellment.vorpal.desc": "Randomly performs powerful attacks and decapitations.",
+
+  "enchantment.minecraft.protection.desc": "Reduces damage taken from all sources.",
+  "enchantment.minecraft.blast_protection.desc": "Reduces damage taken from explosions.",
+  "enchantment.minecraft.fall_protection.desc": "Reduces damage taken from falling.",
+  "enchantment.minecraft.fire_protection.desc": "Reduces damage taken from fire.",
+  "enchantment.minecraft.projectile_protection.desc": "Reduces damage taken from projectiles."
 }

@@ -59,8 +59,7 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
     private void addEntries(RegistryEvent.Register<?> event) {
 
         if (event.getGenericType() == this.type.getRegistrySuperType()) {
-            @SuppressWarnings("unchecked")
-            IForgeRegistry<T> reg = (IForgeRegistry<T>) event.getRegistry();
+            @SuppressWarnings("unchecked") IForgeRegistry<T> reg = (IForgeRegistry<T>) event.getRegistry();
             entries.stream().map(Supplier::get).forEach(reg::register);
         }
     }

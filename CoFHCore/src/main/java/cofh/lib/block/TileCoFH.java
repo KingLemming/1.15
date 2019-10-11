@@ -24,11 +24,11 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     // region HELPERS
     protected void updateLighting() {
 
-//        int light = world.getLightFor(EnumSkyBlock.BLOCK, pos);
-//        if (getLightValue() != light && world.checkLightFor(EnumSkyBlock.BLOCK, pos)) {
-//            IBlockState state = world.getBlockState(pos);
-//            world.notifyBlockUpdate(pos, state, state, 3);
-//        }
+        //        int light = world.getLightFor(EnumSkyBlock.BLOCK, pos);
+        //        if (getLightValue() != light && world.checkLightFor(EnumSkyBlock.BLOCK, pos)) {
+        //            IBlockState state = world.getBlockState(pos);
+        //            world.notifyBlockUpdate(pos, state, state, 3);
+        //        }
     }
 
     protected boolean hasClientUpdate() {
