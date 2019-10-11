@@ -36,13 +36,10 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.server.ServerWorld;
@@ -50,6 +47,7 @@ import net.minecraft.world.storage.loot.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
@@ -118,12 +116,31 @@ public class CommonEventsEnsorc {
             ItemStack stack = player.getActiveItemStack();
 
             if (canBlockDamageSource(player, source)) {
-                int encBulwark = getEnchantmentLevel(BULWARK, stack);
                 // THORNS
                 int encThorns = getEnchantmentLevel(THORNS, stack);
                 if (ThornsEnchantmentImp.shouldHit(encThorns, MathHelper.RANDOM) && attacker != null) {
                     attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
-                    if (encBulwark <= 0 && MathHelper.RANDOM.nextInt(1 + encThorns) == 0) {
+                    if (MathHelper.RANDOM.nextInt(1 + encThorns) == 0) {
+                        player.getCooldownTracker().setCooldown(stack.getItem(), 40);
+                        player.resetActiveHand();
+                        player.world.setEntityState(player, (byte) 30);
+                    }
+                }
+                // FIRE REBUKE
+                int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, stack);
+                if (encFireRebuke > 0) {
+                    FireRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
+                    if (MathHelper.RANDOM.nextInt(1 + encFireRebuke) == 0) {
+                        player.getCooldownTracker().setCooldown(stack.getItem(), 40);
+                        player.resetActiveHand();
+                        player.world.setEntityState(player, (byte) 30);
+                    }
+                }
+                // FROST REBUKE
+                int encFrostRebuke = getEnchantmentLevel(FROST_REBUKE, stack);
+                if (encFrostRebuke > 0) {
+                    FrostRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
+                    if (MathHelper.RANDOM.nextInt(1 + encFrostRebuke) == 0) {
                         player.getCooldownTracker().setCooldown(stack.getItem(), 40);
                         player.resetActiveHand();
                         player.world.setEntityState(player, (byte) 30);
@@ -133,7 +150,7 @@ public class CommonEventsEnsorc {
                 int encDisplacement = getEnchantmentLevel(DISPLACEMENT, stack);
                 if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
                     DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
-                    if (encBulwark <= 0 && MathHelper.RANDOM.nextInt(1 + encDisplacement) == 0) {
+                    if (MathHelper.RANDOM.nextInt(1 + encDisplacement) == 0) {
                         player.getCooldownTracker().setCooldown(stack.getItem(), 40);
                         player.resetActiveHand();
                         player.world.setEntityState(player, (byte) 30);
@@ -320,10 +337,22 @@ public class CommonEventsEnsorc {
                 float damageReduction = Math.min(totalProtection * ProtectionEnchantmentImp.HORSE_MODIFIER, 20.0F);
                 event.setAmount(event.getAmount() * (1.0F - damageReduction / 25.0F));
 
-                // THORNS
-                int encThorns = getEnchantmentLevel(THORNS, armor);
-                if (ThornsEnchantment.shouldHit(encThorns, MathHelper.RANDOM) && attacker != null) {
-                    attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
+                if (attacker != null) {
+                    // THORNS
+                    int encThorns = getEnchantmentLevel(THORNS, armor);
+                    if (ThornsEnchantment.shouldHit(encThorns, MathHelper.RANDOM)) {
+                        attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
+                    }
+                    // FIRE REBUKE
+                    int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, armor);
+                    if (encFireRebuke > 0) {
+                        FireRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
+                    }
+                    // FROST REBUKE
+                    int encFrostRebuke = getEnchantmentLevel(FROST_REBUKE, armor);
+                    if (encFrostRebuke > 0) {
+                        FrostRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
+                    }
                 }
             }
         }
@@ -337,6 +366,11 @@ public class CommonEventsEnsorc {
             if (encDamageEnder > 0 && DamageEnderEnchantment.validTarget(entity)) {
                 event.setAmount(event.getAmount() + DamageEnderEnchantment.getExtraDamage(encDamageEnder));
             }
+            // Illager Damage handled by vanilla logic for now.
+            //            int encDamageIllager = getHeldEnchantmentLevel(living, DAMAGE_ILLAGER);
+            //            if (encDamageIllager > 0 && DamageIllagerEnchantment.validTarget(entity)) {
+            //                event.setAmount(event.getAmount() + DamageIllagerEnchantment.getExtraDamage(encDamageIllager));
+            //            }
             int encDamageVillager = getHeldEnchantmentLevel(living, DAMAGE_VILLAGER);
             if (encDamageVillager > 0 && DamageVillagerEnchantment.validTarget(entity)) {
                 event.setAmount(event.getAmount() + DamageVillagerEnchantment.getExtraDamage(encDamageVillager));
@@ -345,21 +379,18 @@ public class CommonEventsEnsorc {
             if (encCavalier > 0 && living.getRidingEntity() != null) {
                 event.setAmount(event.getAmount() * (1 + CavalierEnchantment.damageMult * MathHelper.nextInt(1, encCavalier)));
             }
+            int encFrostAspect = getHeldEnchantmentLevel(living, FROST_ASPECT);
+            if (encFrostAspect > 0) {
+                FrostAspectEnchantment.onHit(entity, encFrostAspect);
+            }
             int encMagicEdge = getHeldEnchantmentLevel(living, MAGIC_EDGE);
             if (encMagicEdge > 0 && source.isMagicDamage()) {
-                for (int i = 0; i < encMagicEdge * 2; ++i) {
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                }
+                MagicEdgeEnchantment.onHit(entity, encMagicEdge);
             }
             int encVorpal = getHeldEnchantmentLevel(living, VORPAL);
             if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
                 event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
-                attacker.world.playSound(null, attacker.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                for (int i = 0; i < encVorpal * 2; ++i) {
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                    ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                }
+                VorpalEnchantment.onHit(entity, encVorpal);
             }
         }
     }
@@ -500,7 +531,7 @@ public class CommonEventsEnsorc {
     public void handleBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
 
         PlayerEntity player = event.getPlayer();
-        if (!player.onGround && getMaxEnchantmentLevel(AIR_WORKER, player) > 0) {
+        if (!player.onGround && getMaxEnchantmentLevel(AIR_AFFINITY, player) > 0) {
             event.setNewSpeed(Math.max(event.getOriginalSpeed(), event.getNewSpeed() * 5.0F));
         }
     }
@@ -576,8 +607,8 @@ public class CommonEventsEnsorc {
             }
             int matCost;
             for (matCost = 0; damageLeft > 0 && matCost < right.getCount(); ++matCost) {
-                int j3 = output.getDamage() - damageLeft;
-                output.setDamage(j3);
+                int durability = output.getDamage() - damageLeft;
+                output.setDamage(durability);
                 damageLeft = Math.min(output.getDamage(), output.getMaxDamage() / 4);
             }
             event.setMaterialCost(matCost);
@@ -692,6 +723,16 @@ public class CommonEventsEnsorc {
                     oldPlayer.inventory.mainInventory.set(i, ItemStack.EMPTY);
                 }
             }
+        }
+    }
+    // endregion
+
+    // region TICK HANDLING
+    @SubscribeEvent
+    public void handleTickEndEvent(TickEvent.ServerTickEvent event) {
+
+        if (event.phase == TickEvent.Phase.END) {
+            FireRebukeEnchantment.setFireToMobs();
         }
     }
     // endregion

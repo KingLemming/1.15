@@ -5,15 +5,18 @@ import cofh.lib.util.Utils;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.Random;
+
+import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
 
 public class DisplacementEnchantment extends EnchantmentCoFH {
 
@@ -21,7 +24,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
 
     public DisplacementEnchantment() {
 
-        super(Rarity.RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
+        super(Rarity.RARE, EnchantmentType.ARMOR_CHEST, ARMOR_SLOTS);
         maxLevel = 3;
     }
 
@@ -67,6 +70,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
         BlockPos pos = new BlockPos(attacker.posX, attacker.posY, attacker.posZ);
         BlockPos randPos = pos.add(-radius + rand.nextInt(bound), rand.nextInt(8), -radius + rand.nextInt(bound));
         Utils.teleportEntityTo(attacker, randPos);
+        ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.PORTAL, attacker.posX + attacker.world.rand.nextDouble(), attacker.posY + 1.0D + attacker.world.rand.nextDouble(), attacker.posZ + attacker.world.rand.nextDouble(), 4 * level, 0, 0, 0, 0);
         return true;
     }
 

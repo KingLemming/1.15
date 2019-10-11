@@ -17,13 +17,15 @@ import net.minecraft.util.DamageSource;
 import java.util.Map;
 import java.util.Random;
 
+import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
+
 public class ThornsEnchantmentImp extends EnchantmentOverride {
 
     public static int chance = 15;
 
     public ThornsEnchantmentImp() {
 
-        super(Rarity.VERY_RARE, EnchantmentType.ARMOR, EquipmentSlotType.values());
+        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_CHEST, ARMOR_SLOTS);
         maxLevel = 3;
     }
 

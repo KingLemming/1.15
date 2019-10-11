@@ -134,6 +134,20 @@ public class ConfigEnsorc {
         amountExpBoost = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 4, 1, 1000);
         COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Flaming Rebuke");
+        comment = "If TRUE, the Flaming Rebuke Enchantment is available for Armor, Shields, and Horse Armor.";
+        enableFireRebuke = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelFireRebuke = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Chilling Rebuke");
+        comment = "If TRUE, the Chilling Rebuke Enchantment is available for Armor, Shields, and Horse Armor.";
+        enableFrostRebuke = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelFrostRebuke = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
         COMMON_CONFIG.push("Gourmand");
         comment = "If TRUE, the Gourmand Enchantment is available for Helmets.";
         enableGourmand = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -195,7 +209,7 @@ public class ConfigEnsorc {
         COMMON_CONFIG.push("Soulbound");
         comment = "If TRUE, the Soulbound Enchantment is available.";
         enableSoulbound = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        comment = "This option adjusts the maximum allowable level for the Enchantment. If permanent, this setting is ignored.";
         levelSoulbound = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "If TRUE, the Soulbound Enchantment is permanent (and will remove excess levels when triggered).";
         permanentSoulbound = COMMON_CONFIG.comment(comment).define("Permanent", true);
@@ -344,8 +358,8 @@ public class ConfigEnsorc {
     private void refreshEnchantmentConfig() {
 
         // These should NEVER actually be null, but who knows in a multi-mod setup. ¯\_(ツ)_/¯
-        if (AIR_WORKER instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) AIR_WORKER).setEnable(enableAirWorker.get());
+        if (AIR_AFFINITY instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirWorker.get());
         }
         if (ANGLER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) ANGLER).setEnable(enableAngler.get());
@@ -382,6 +396,14 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) EXP_BOOST).setMaxLevel(levelExpBoost.get());
             ExpBoostEnchantment.experience = amountExpBoost.get();
         }
+        if (FIRE_REBUKE instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) FIRE_REBUKE).setEnable(enableFireRebuke.get());
+            ((EnchantmentCoFH) FIRE_REBUKE).setMaxLevel(levelFireRebuke.get());
+        }
+        if (FROST_REBUKE instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) FROST_REBUKE).setEnable(enableFrostRebuke.get());
+            ((EnchantmentCoFH) FROST_REBUKE).setMaxLevel(levelFrostRebuke.get());
+        }
         if (GOURMAND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) GOURMAND).setEnable(enableGourmand.get());
             ((EnchantmentCoFH) GOURMAND).setMaxLevel(levelGourmand.get());
@@ -408,8 +430,8 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
         }
         if (PROTECTION_MAGIC instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) MAGIC_EDGE).setEnable(enableProtectionMagic.get());
-            ((EnchantmentCoFH) MAGIC_EDGE).setMaxLevel(levelProtectionMagic.get());
+            ((EnchantmentCoFH) PROTECTION_MAGIC).setEnable(enableProtectionMagic.get());
+            ((EnchantmentCoFH) PROTECTION_MAGIC).setMaxLevel(levelProtectionMagic.get());
         }
         if (QUICKDRAW instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) QUICKDRAW).setEnable(enableQuickdraw.get());
@@ -449,10 +471,10 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) FIRE_ASPECT).setEnable(enableFireAspect.get());
             ((EnchantmentCoFH) FIRE_ASPECT).setMaxLevel(levelFireAspect.get());
         }
-        if (FROST_WALKER instanceof EnchantmentCoFH) {
+        if (FROST_WALKER instanceof FrostWalkerEnchantmentImp) {
             ((EnchantmentCoFH) FROST_WALKER).setEnable(enableFrostWalker.get());
             ((EnchantmentCoFH) FROST_WALKER).setMaxLevel(levelFrostWalker.get());
-            FrostWalkerEnchantmentImp.freezeLava = enableFreezeLava.get();
+            ((FrostWalkerEnchantmentImp) FROST_WALKER).setFreezeLava(enableFreezeLava.get());
         }
         if (KNOCKBACK instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) KNOCKBACK).setEnable(enableKnockback.get());
@@ -525,6 +547,12 @@ public class ConfigEnsorc {
     private static BooleanValue enableExpBoost;
     private static IntValue levelExpBoost;
     private static IntValue amountExpBoost;
+
+    private static BooleanValue enableFireRebuke;
+    private static IntValue levelFireRebuke;
+
+    private static BooleanValue enableFrostRebuke;
+    private static IntValue levelFrostRebuke;
 
     private static BooleanValue enableGourmand;
     private static IntValue levelGourmand;

@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class SoulboundEnchantment extends EnchantmentCoFH {
 
-    public static boolean permanent = false;
+    public static boolean permanent = true;
 
     public SoulboundEnchantment() {
 

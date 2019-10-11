@@ -27,7 +27,7 @@ public class EnsorcellmentHelper {
 
     public static final String ID_PROTECTION_MAGIC = ID_ENSORCELLMENT + ":magic_protection";
 
-    public static final String ID_AIR_WORKER = ID_ENSORCELLMENT + ":air_worker";
+    public static final String ID_AIR_AFFINITY = ID_ENSORCELLMENT + ":air_affinity";
     public static final String ID_ANGLER = ID_ENSORCELLMENT + ":angler";
     public static final String ID_BULWARK = ID_ENSORCELLMENT + ":bulwark";
     public static final String ID_CAVALIER = ID_ENSORCELLMENT + ":cavalier";
@@ -36,6 +36,9 @@ public class EnsorcellmentHelper {
     public static final String ID_DAMAGE_VILLAGER = ID_ENSORCELLMENT + ":damage_villager";
     public static final String ID_DISPLACEMENT = ID_ENSORCELLMENT + ":displacement";
     public static final String ID_EXP_BOOST = ID_ENSORCELLMENT + ":exp_boost";
+    public static final String ID_FIRE_REBUKE = ID_ENSORCELLMENT + ":fire_rebuke";
+    public static final String ID_FROST_ASPECT = ID_ENSORCELLMENT + ":frost_aspect";
+    public static final String ID_FROST_REBUKE = ID_ENSORCELLMENT + ":frost_rebuke";
     public static final String ID_GOURMAND = ID_ENSORCELLMENT + ":gourmand";
     public static final String ID_HOLDING = ID_ENSORCELLMENT + ":holding";
     public static final String ID_HUNTER = ID_ENSORCELLMENT + ":hunter";
@@ -54,8 +57,8 @@ public class EnsorcellmentHelper {
     // endregion
 
     // region ENCHANTMENTS
-    @ObjectHolder(ID_AIR_WORKER)
-    public static final Enchantment AIR_WORKER = null;
+    @ObjectHolder(ID_AIR_AFFINITY)
+    public static final Enchantment AIR_AFFINITY = null;
 
     @ObjectHolder(ID_ANGLER)
     public static final Enchantment ANGLER = null;
@@ -80,6 +83,15 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_EXP_BOOST)
     public static final Enchantment EXP_BOOST = null;
+
+    @ObjectHolder(ID_FIRE_REBUKE)
+    public static final Enchantment FIRE_REBUKE = null;
+
+    @ObjectHolder(ID_FROST_ASPECT)
+    public static final Enchantment FROST_ASPECT = null;
+
+    @ObjectHolder(ID_FROST_REBUKE)
+    public static final Enchantment FROST_REBUKE = null;
 
     @ObjectHolder(ID_GOURMAND)
     public static final Enchantment GOURMAND = null;

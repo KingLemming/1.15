@@ -2,11 +2,16 @@ package cofh.ensorcellment.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.server.ServerWorld;
 
 public class VorpalEnchantment extends EnchantmentCoFH {
 
@@ -40,5 +45,16 @@ public class VorpalEnchantment extends EnchantmentCoFH {
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
+
+    // region HELPERS
+    public static void onHit(LivingEntity entity, int level) {
+
+        entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        for (int i = 0; i < 2 * level; ++i) {
+            ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+            ((ServerWorld) entity.world).spawnParticle(ParticleTypes.SWEEP_ATTACK, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+        }
+    }
+    // endregion
 
 }

@@ -21,11 +21,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
 import static cofh.lib.util.modhelpers.CoreHelper.COOLED_MAGMA;
 
 public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
 
-    public static boolean freezeLava = true;
+    private static boolean freezeLava = true;
 
     public FrostWalkerEnchantmentImp() {
 
@@ -67,6 +68,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
         return true;
     }
 
+    // region HELPERS
     public static void freezeNearby(LivingEntity living, World worldIn, BlockPos pos, int level) {
 
         if (!freezeLava) {
@@ -94,4 +96,10 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
         }
     }
 
+    public void setFreezeLava(boolean freezeLava) {
+
+        FrostWalkerEnchantmentImp.freezeLava = freezeLava;
+        name = "enchantment." + (freezeLava ? ID_ENSORCELLMENT + ".frost_walker" : "minecraft.frost_walker");
+    }
+    // endregion
 }

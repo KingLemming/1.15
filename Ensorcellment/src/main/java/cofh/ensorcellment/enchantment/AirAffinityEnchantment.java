@@ -5,9 +5,9 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-public class AirWorkerEnchantment extends EnchantmentCoFH {
+public class AirAffinityEnchantment extends EnchantmentCoFH {
 
-    public AirWorkerEnchantment() {
+    public AirAffinityEnchantment() {
 
         super(Rarity.RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[]{EquipmentSlotType.HEAD});
     }

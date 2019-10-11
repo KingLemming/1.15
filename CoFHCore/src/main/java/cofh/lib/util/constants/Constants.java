@@ -1,6 +1,7 @@
 package cofh.lib.util.constants;
 
 import net.minecraft.block.Block;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
@@ -9,6 +10,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.UUID;
+
+import static net.minecraft.inventory.EquipmentSlotType.*;
 
 public class Constants {
 
@@ -80,6 +83,8 @@ public class Constants {
     public static final int TANK_SMALL = FluidAttributes.BUCKET_VOLUME * 4;
     public static final int TANK_MEDIUM = FluidAttributes.BUCKET_VOLUME * 8;
     public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 10;
+
+    public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     // endregion
 
     // region GUI
