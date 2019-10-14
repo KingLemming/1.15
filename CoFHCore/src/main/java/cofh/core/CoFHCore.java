@@ -9,6 +9,7 @@ import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityMelee;
 import cofh.lib.event.ArcheryEvents;
+import cofh.lib.event.AreaEffectEvents;
 import cofh.lib.event.MeleeEvents;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
@@ -58,6 +59,7 @@ public class CoFHCore {
         CapabilityMelee.register();
 
         ArcheryEvents.register();
+        AreaEffectEvents.register();
         MeleeEvents.register();
 
         CommonEventsCore.register();

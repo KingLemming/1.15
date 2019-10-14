@@ -2,7 +2,8 @@ package cofh.ensorcellment.enchantment;
 
 import cofh.lib.enchantment.DamageEnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
@@ -17,11 +18,12 @@ public class DamageIllagerEnchantment extends DamageEnchantmentCoFH {
         maxLevel = 5;
     }
 
-    @Override
-    public float calcDamageByCreature(int level, CreatureAttribute creatureType) {
-
-        return creatureType == CreatureAttribute.ILLAGER ? getExtraDamage(level) : 0.0F;
-    }
+    // TODO: Revisit if Ravagers and Witches are reclassified in future.
+    //    @Override
+    //    public float calcDamageByCreature(int level, CreatureAttribute creatureType) {
+    //
+    //        return creatureType == CreatureAttribute.ILLAGER ? getExtraDamage(level) : 0.0F;
+    //    }
 
     @Override
     public int getMinEnchantability(int level) {
@@ -42,10 +44,9 @@ public class DamageIllagerEnchantment extends DamageEnchantmentCoFH {
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
 
-    // TODO: Revisit
-    //    public static boolean validTarget(Entity entity) {
-    //
-    //        return entity instanceof AbstractRaiderEntity;
-    //    }
+    public static boolean validTarget(Entity entity) {
+
+        return entity instanceof AbstractRaiderEntity;
+    }
 
 }

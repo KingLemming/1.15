@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "block/frosted_ice_3"
+    "all": "cofh_core:block/glossed_magma_3"
   }
 }

@@ -3,16 +3,19 @@ package cofh.core.event;
 import cofh.core.init.ConfigCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static cofh.lib.util.modhelpers.CoreHelper.ENDERFERENCE;
+import static cofh.lib.util.modhelpers.CoreHelper.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.FEATHER_FALLING;
 
@@ -56,7 +59,6 @@ public class CommonEventsCore {
             return;
         }
         LivingEntity entity = event.getEntityLiving();
-        entity.getActivePotionEffects();
         if (entity.isPotionActive(ENDERFERENCE)) {
             event.setCanceled(true);
         }
@@ -77,5 +79,19 @@ public class CommonEventsCore {
         }
         player.addExhaustion(ConfigCore.amountFishingExhaustion);
     }
-    // endregion
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+
+        PlayerEntity player = event.getPlayer();
+        ExperienceOrbEntity orb = event.getOrb();
+
+        EffectInstance eurekaEffect = player.getActivePotionEffect(EUREKA);
+        if (eurekaEffect == null || orb.getPersistentData().contains(ID_EUREKA)) {
+            return;
+        }
+        orb.xpValue = orb.xpValue * (120 + 20 * eurekaEffect.getAmplifier()) / 100;
+        orb.getPersistentData().putBoolean(ID_EUREKA, true);
+    }
+
 }

@@ -160,6 +160,7 @@ public class Constants {
     public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D95FB972-0426-4BB7-8A01-7416EA211884");
     public static final UUID UUID_KNOCKBACK_RESISTANCE = UUID.fromString("DA9976EC-C764-4450-B5AA-1B11B10143E2");
     public static final UUID UUID_MOVEMENT_SPEED = UUID.fromString("DBFFDB74-4607-4C2E-9573-A14D6A73397A");
+    public static final UUID UUID_REACH_DISTANCE = UUID.fromString("D7476206-4A89-4522-9D1D-9BB34076FFDA");
 
     public static final int RGB_DURABILITY_FLUX = 0xD01010;
     public static final int RGB_DURABILITY_WATER = 0x4060FF;

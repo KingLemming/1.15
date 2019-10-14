@@ -10,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 
+import static cofh.lib.util.modhelpers.EnsorcellmentHelper.EXCAVATING;
+
 public class LootingEnchantmentImp extends EnchantmentOverride {
 
     public LootingEnchantmentImp() {
@@ -43,7 +45,7 @@ public class LootingEnchantmentImp extends EnchantmentOverride {
     @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
+        return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH && ench != EXCAVATING;
     }
 
 }

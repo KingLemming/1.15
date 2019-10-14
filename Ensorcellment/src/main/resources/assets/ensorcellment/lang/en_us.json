@@ -26,6 +26,9 @@
   "enchantment.ensorcellment.displacement": "Displacement",
   "enchantment.ensorcellment.displacement.desc": "Randomly teleports attackers away.",
 
+  "enchantment.ensorcellment.excavating": "Excavating",
+  "enchantment.ensorcellment.excavating.desc": "Increases the number of blocks harvested.",
+
   "enchantment.ensorcellment.exp_boost": "Insight",
   "enchantment.ensorcellment.exp_boost.desc": "Increases experience gain when using the item.",
 
@@ -67,6 +70,9 @@
 
   "enchantment.ensorcellment.quickdraw": "Quickdraw",
   "enchantment.ensorcellment.quickdraw.desc": "Decreases the amount of time needed to fully draw a bow.",
+
+  "enchantment.ensorcellment.reach": "Reach",
+  "enchantment.ensorcellment.reach.desc": "Increases the distance that the wielder can interact with blocks.",
 
   "enchantment.ensorcellment.smashing": "Smashing",
   "enchantment.ensorcellment.smashing.desc": "Harvested ores will be smashed to pieces, improving yield.",

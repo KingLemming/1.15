@@ -60,6 +60,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import static cofh.lib.util.Utils.*;
 import static cofh.lib.util.constants.Constants.*;
@@ -366,11 +367,11 @@ public class CommonEventsEnsorc {
             if (encDamageEnder > 0 && DamageEnderEnchantment.validTarget(entity)) {
                 event.setAmount(event.getAmount() + DamageEnderEnchantment.getExtraDamage(encDamageEnder));
             }
-            // Illager Damage handled by vanilla logic for now.
-            //            int encDamageIllager = getHeldEnchantmentLevel(living, DAMAGE_ILLAGER);
-            //            if (encDamageIllager > 0 && DamageIllagerEnchantment.validTarget(entity)) {
-            //                event.setAmount(event.getAmount() + DamageIllagerEnchantment.getExtraDamage(encDamageIllager));
-            //            }
+            // TODO: Revisit if Ravagers and Witches are reclassified in future.
+            int encDamageIllager = getHeldEnchantmentLevel(living, DAMAGE_ILLAGER);
+            if (encDamageIllager > 0 && DamageIllagerEnchantment.validTarget(entity)) {
+                event.setAmount(event.getAmount() + DamageIllagerEnchantment.getExtraDamage(encDamageIllager));
+            }
             int encDamageVillager = getHeldEnchantmentLevel(living, DAMAGE_VILLAGER);
             if (encDamageVillager > 0 && DamageVillagerEnchantment.validTarget(entity)) {
                 event.setAmount(event.getAmount() + DamageVillagerEnchantment.getExtraDamage(encDamageVillager));
@@ -406,8 +407,8 @@ public class CommonEventsEnsorc {
             if (!armor.isEmpty()) {
                 int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
                 if (encFrostWalker > 0) {
-                    FrostWalkerEnchantment.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
-                    FrostWalkerEnchantmentImp.freezeNearby((HorseEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
+                    FrostWalkerEnchantment.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
+                    FrostWalkerEnchantmentImp.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
                 }
             }
             return;
@@ -417,31 +418,41 @@ public class CommonEventsEnsorc {
         // FROST WALKER
         int encFrostWalker = getMaxEnchantmentLevel(FROST_WALKER, entity);
         if (encFrostWalker > 0) {
-            FrostWalkerEnchantment.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
-            FrostWalkerEnchantmentImp.freezeNearby((LivingEntity) entity, entity.world, new BlockPos(entity), encFrostWalker);
+            FrostWalkerEnchantment.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
+            FrostWalkerEnchantmentImp.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
         }
-
-        // SHIELD
         if (entity instanceof PlayerEntity) {
-            ItemStack stack = entity.getActiveItemStack();
-            if (stack.getItem().isShield(stack, entity)) {
-                int encBulwark = getEnchantmentLevel(BULWARK, stack);
-                int encPhalanx = getEnchantmentLevel(PHALANX, stack);
+            // REACH
+            int encReach = getEnchantmentLevel(REACH, entity.getHeldItemMainhand());
+            if (encReach > 0) {
+                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_REACH_DISTANCE, "ensorcellment.reach", encReach, ADDITION).setSaved(false));
+                entity.getAttributes().applyAttributeModifiers(attributes);
+            } else {
+                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_REACH_DISTANCE, "ensorcellment.reach", encReach, ADDITION).setSaved(false));
+                entity.getAttributes().removeAttributeModifiers(attributes);
+            }
+            ItemStack activeStack = entity.getActiveItemStack();
+            // SHIELD
+            if (activeStack.getItem().isShield(activeStack, entity)) {
+                int encBulwark = getEnchantmentLevel(BULWARK, activeStack);
+                int encPhalanx = getEnchantmentLevel(PHALANX, activeStack);
 
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 if (encBulwark > 0) {
-                    attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Knockback", 1.0D, ADDITION).setSaved(false));
+                    attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "ensorcellment.bulwark", 1.0D, ADDITION).setSaved(false));
                 }
                 if (encPhalanx > 0) {
-                    attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
+                    attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "ensorcellment.phalanx", PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
                 }
                 if (!attributes.isEmpty()) {
                     entity.getAttributes().applyAttributeModifiers(attributes);
                 }
             } else {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "Bulwark Knockback", 1.0D, ADDITION).setSaved(false));
-                attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "Phalanx Speed", PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
+                attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, "ensorcellment.bulwark", 1.0D, ADDITION).setSaved(false));
+                attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_MOVEMENT_SPEED, "ensorcellment.phalanx", PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
                 entity.getAttributes().removeAttributeModifiers(attributes);
             }
         }
@@ -631,10 +642,13 @@ public class CommonEventsEnsorc {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
-        if (!ConfigEnsorc.enableMendingOverride) {
+        if (event.isCanceled()) {
+            return;
+        }
+        if (!ConfigEnsorc.enableMendingImprovement && !ConfigEnsorc.enableMendingOverride) {
             return;
         }
         PlayerEntity player = event.getPlayer();
@@ -642,6 +656,17 @@ public class CommonEventsEnsorc {
 
         player.xpCooldown = 2;
         player.onItemPickup(orb, 1);
+        if (!ConfigEnsorc.enableMendingOverride) {
+            Map.Entry<EquipmentSlotType, ItemStack> entry = getMostDamagedItem(player);
+            if (entry != null) {
+                ItemStack itemstack = entry.getValue();
+                if (!itemstack.isEmpty() && itemstack.isDamaged()) {
+                    int i = Math.min((int) (orb.xpValue * itemstack.getXpRepairRatio()), itemstack.getDamage());
+                    orb.xpValue -= durabilityToXp(i);
+                    itemstack.setDamage(itemstack.getDamage() - i);
+                }
+            }
+        }
         if (orb.xpValue > 0) {
             player.giveExperiencePoints(orb.xpValue);
         }
@@ -757,6 +782,40 @@ public class CommonEventsEnsorc {
             }
         }
         return false;
+    }
+
+    private static Map.Entry<EquipmentSlotType, ItemStack> getMostDamagedItem(PlayerEntity player) {
+
+        Map<EquipmentSlotType, ItemStack> map = Enchantments.MENDING.getEntityEquipment(player);
+        Map.Entry<EquipmentSlotType, ItemStack> mostDamaged = null;
+        if (map.isEmpty()) {
+            return null;
+        }
+        double durability = 0.0D;
+
+        for (Map.Entry<EquipmentSlotType, ItemStack> entry : map.entrySet()) {
+            ItemStack stack = entry.getValue();
+            if (calcDurabilityRatio(stack) > durability) {
+                mostDamaged = entry;
+                durability = calcDurabilityRatio(stack);
+            }
+        }
+        return mostDamaged;
+    }
+
+    private static int durabilityToXp(int durability) {
+
+        return durability / 2;
+    }
+
+    private static int xpToDurability(int xp) {
+
+        return xp * 2;
+    }
+
+    private static double calcDurabilityRatio(ItemStack stack) {
+
+        return (double) stack.getDamage() / stack.getMaxDamage();
     }
     // endregion
 }

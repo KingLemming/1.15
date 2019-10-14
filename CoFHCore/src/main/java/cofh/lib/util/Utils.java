@@ -30,6 +30,8 @@ import java.nio.file.Path;
 
 import static cofh.lib.util.constants.Tags.TAG_ENCHANTMENTS;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_LIST;
 
 public class Utils {
 
@@ -194,10 +196,10 @@ public class Utils {
 
     public static void removeEnchantment(ItemStack stack, Enchantment ench) {
 
-        if (stack.getTag() == null || !stack.getTag().contains(TAG_ENCHANTMENTS, 9)) {
+        if (stack.getTag() == null || !stack.getTag().contains(TAG_ENCHANTMENTS, TAG_LIST)) {
             return;
         }
-        ListNBT list = stack.getTag().getList(TAG_ENCHANTMENTS, 10);
+        ListNBT list = stack.getTag().getList(TAG_ENCHANTMENTS, TAG_COMPOUND);
         String encId = String.valueOf(ForgeRegistries.ENCHANTMENTS.getKey(ench));
 
         for (int i = 0; i < list.size(); i++) {

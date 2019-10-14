@@ -3,19 +3,22 @@ package cofh.ensorcellment.enchantment;
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
 
-public class BulwarkEnchantment extends EnchantmentCoFH {
+public class ReachEnchantment extends EnchantmentCoFH {
 
-    public BulwarkEnchantment() {
+    public ReachEnchantment() {
 
-        super(Rarity.UNCOMMON, EnchantmentType.BREAKABLE, new EquipmentSlotType[]{EquipmentSlotType.OFFHAND});
+        super(Rarity.UNCOMMON, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        maxLevel = 3;
     }
 
     @Override
     public int getMinEnchantability(int level) {
 
-        return 1 + (level - 1) * 5;
+        return 10 + (level - 1) * 9;
     }
 
     @Override
@@ -27,7 +30,8 @@ public class BulwarkEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApply(ItemStack stack) {
 
-        return enable && (stack.getItem().isShield(stack, null) || supportsEnchantment(stack));
+        Item item = stack.getItem();
+        return enable && (item instanceof ToolItem || supportsEnchantment(stack));
     }
 
 }

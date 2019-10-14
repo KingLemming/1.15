@@ -1,7 +1,8 @@
 {
-  "block.cofh_core.cooled_magma": "Cooled Magma",
+  "block.cofh_core.glossed_magma": "Glossed Magma",
 
   "effect.cofh_core.enderference": "Enderference",
+  "effect.cofh_core.eureka": "Eureka",
 
   "enchantment.minecraft.protection.desc": "Reduces damage taken from most sources.",
   "enchantment.minecraft.fire_protection.desc": "Reduces damage taken from fire.",
@@ -33,7 +34,7 @@
   "enchantment.minecraft.lure.desc": "Reduces amount of time to catch something.",
   "enchantment.minecraft.loyalty.desc": "Trident returns after being thrown.",
   "enchantment.minecraft.impaling.desc": "Increases damage dealt to Water-based mobs.",
-  "enchantment.minecraft.riptide.desc": "Thrown tridents bring player along under certain conditions.",
+  "enchantment.minecraft.riptide.desc": "Thrown tridents carry the wielder under certain conditions.",
   "enchantment.minecraft.channeling.desc": "Thrown tridents can cause lightning strikes under certain conditions.",
   "enchantment.minecraft.multishot.desc": "Three arrows are fired with each shot. Only one arrow is consumed.",
   "enchantment.minecraft.quick_charge.desc": "Decreases crossbow reloading time.",

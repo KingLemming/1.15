@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 /**
  * Implement this interface as a capability for a Bow Item which should be compatible with CoFH's improved archery handling.
- * You can get really clever and add your own custom bow behavior by overriding the "fireArrow" method. By default, this method is a passthrough for CoFH's default handling.
+ * You can get really clever and add your own custom bow behavior by overriding the "fireArrow" method. By default, this method is a passthrough for CoFH's vanilla handling.
  *
  * @author King Lemming
  */

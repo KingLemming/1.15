@@ -12,6 +12,7 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Tags.TAG_TANK;
 import static cofh.lib.util.constants.Tags.TAG_TANK_INV;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 /**
  * Fluid "inventory" abstraction using CoFH Fluid Storage objects.
@@ -84,7 +85,7 @@ public class SimpleTankInv extends SimpleFluidHandler {
         for (FluidStorageCoFH tank : tanks) {
             tank.setFluidStack(FluidStack.EMPTY);
         }
-        ListNBT list = nbt.getList(tag, 10);
+        ListNBT list = nbt.getList(tag, TAG_COMPOUND);
         for (int i = 0; i < list.size(); ++i) {
             CompoundNBT tag = list.getCompound(i);
             int tank = tag.getByte(TAG_TANK);

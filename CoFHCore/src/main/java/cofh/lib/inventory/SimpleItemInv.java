@@ -12,6 +12,7 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Tags.TAG_ITEM_INV;
 import static cofh.lib.util.constants.Tags.TAG_SLOT;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 /**
  * Inventory abstraction using CoFH Item Storage objects.
@@ -84,7 +85,7 @@ public class SimpleItemInv extends SimpleItemHandler {
         for (ItemStorageCoFH slot : slots) {
             slot.setItemStack(ItemStack.EMPTY);
         }
-        ListNBT list = nbt.getList(tag, 10);
+        ListNBT list = nbt.getList(tag, TAG_COMPOUND);
         for (int i = 0; i < list.size(); ++i) {
             CompoundNBT tag = list.getCompound(i);
             int slot = tag.getByte(TAG_SLOT);

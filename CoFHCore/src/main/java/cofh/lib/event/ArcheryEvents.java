@@ -1,6 +1,5 @@
 package cofh.lib.event;
 
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
@@ -26,6 +25,7 @@ import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.QUICKDRAW;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.VOLLEY;
+import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
 
 public class ArcheryEvents {
@@ -67,7 +67,7 @@ public class ArcheryEvents {
         PlayerEntity shooter = event.getPlayer();
         ItemStack ammo = findAmmo(shooter);
 
-        if (ammo.isEmpty() && EnchantmentHelper.getEnchantmentLevel(INFINITY, bow) > 0) {
+        if (ammo.isEmpty() && getEnchantmentLevel(INFINITY, bow) > 0) {
             ammo = new ItemStack(Items.ARROW);
         }
         if (!ammo.isEmpty()) {
@@ -102,7 +102,7 @@ public class ArcheryEvents {
     @SubscribeEvent
     public void handleItemUseTickEvent(LivingEntityUseItemEvent.Tick event) {
 
-        int encQuickDraw = EnchantmentHelper.getEnchantmentLevel(QUICKDRAW, event.getItem());
+        int encQuickDraw = getEnchantmentLevel(QUICKDRAW, event.getItem());
         if (encQuickDraw > 0 && event.getDuration() > event.getItem().getUseDuration() - 20) {
             event.setDuration(event.getDuration() - encQuickDraw);
         }

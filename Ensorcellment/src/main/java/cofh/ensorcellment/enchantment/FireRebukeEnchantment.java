@@ -20,6 +20,7 @@ import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FIRE_REBUKE;
+import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FROST_REBUKE;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
@@ -53,7 +54,7 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && !(ench instanceof FrostRebukeEnchantment);
+        return super.canApplyTogether(ench) && ench != FROST_REBUKE;
     }
 
     // region HELPERS

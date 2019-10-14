@@ -1,7 +1,9 @@
 package cofh.ensorcellment.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
@@ -40,6 +42,12 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
     }
 
+    @Override
+    public boolean canApplyTogether(Enchantment ench) {
+
+        return super.canApplyTogether(ench) && ench != Enchantments.FIRE_ASPECT;
+    }
+
     // region HELPERS
     public static void onHit(LivingEntity entity, int level) {
 
@@ -47,8 +55,8 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
         if (entity.isBurning()) {
             entity.extinguish();
         }
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level));
-        entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level));
+        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
+        entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
         for (int j = 0; j < 4 * level; ++j) {
             ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
         }

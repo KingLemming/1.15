@@ -3,7 +3,6 @@ package cofh.lib.util.helpers;
 import cofh.lib.capability.IArcheryAmmoItem;
 import cofh.lib.capability.IArcheryBowItem;
 import cofh.lib.util.Utils;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ArrowItem;
@@ -20,6 +19,7 @@ import static cofh.lib.capability.CapabilityArchery.*;
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.TRUESHOT;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.VOLLEY;
+import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.*;
 
 public final class ArcheryHelper {
@@ -43,7 +43,7 @@ public final class ArcheryHelper {
         IArcheryBowItem bowObj = bow.getCapability(BOW_ITEM_CAPABILITY).orElse(DEFAULT_BOW_CAPABILITY);
         IArcheryAmmoItem ammoObj = ammo.getCapability(AMMO_ITEM_CAPABILITY).orElse(DEFAULT_AMMO_CAPABILITY);
 
-        boolean infinite = shooter.abilities.isCreativeMode || (isArrow(ammo) && ((ArrowItem) ammo.getItem()).isInfinite(ammo, bow, shooter)) || ammo.isEmpty() && EnchantmentHelper.getEnchantmentLevel(INFINITY, bow) > 0;
+        boolean infinite = shooter.abilities.isCreativeMode || (isArrow(ammo) && ((ArrowItem) ammo.getItem()).isInfinite(ammo, bow, shooter)) || ammo.isEmpty() && getEnchantmentLevel(INFINITY, bow) > 0;
 
         if (!ammo.isEmpty() || infinite) {
             if (ammo.isEmpty()) {
@@ -57,11 +57,11 @@ public final class ArcheryHelper {
 
             if (arrowVelocity >= 0.1F) {
                 if (Utils.isServerWorld(world)) {
-                    int encVolley = MathHelper.clamp(EnchantmentHelper.getEnchantmentLevel(VOLLEY, bow), 0, MAX_ENCHANT_LEVEL);
-                    int encTrueshot = EnchantmentHelper.getEnchantmentLevel(TRUESHOT, bow);
-                    int encPunch = EnchantmentHelper.getEnchantmentLevel(PUNCH, bow);
-                    int encPower = EnchantmentHelper.getEnchantmentLevel(POWER, bow);
-                    int encFlame = EnchantmentHelper.getEnchantmentLevel(FLAME, bow);
+                    int encVolley = MathHelper.clamp(getEnchantmentLevel(VOLLEY, bow), 0, MAX_ENCHANT_LEVEL);
+                    int encTrueshot = getEnchantmentLevel(TRUESHOT, bow);
+                    int encPunch = getEnchantmentLevel(PUNCH, bow);
+                    int encPower = getEnchantmentLevel(POWER, bow);
+                    int encFlame = getEnchantmentLevel(FLAME, bow);
 
                     if (encTrueshot > 0) {
                         accuracyMod *= (1.5F / (1 + encTrueshot));

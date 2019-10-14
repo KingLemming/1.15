@@ -19,6 +19,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
+import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FIRE_REBUKE;
 import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FROST_REBUKE;
 
 public class FrostRebukeEnchantment extends EnchantmentCoFH {
@@ -51,7 +52,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && !(ench instanceof FireRebukeEnchantment);
+        return super.canApplyTogether(ench) && ench != FIRE_REBUKE;
     }
 
     // region HELPERS
@@ -73,8 +74,8 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
             if (attacker.isBurning()) {
                 attacker.extinguish();
             }
-            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level));
-            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level));
+            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
+            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
             for (int j = 0; j < 3 * level; ++j) {
                 ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, attacker.posX + attacker.world.rand.nextDouble(), attacker.posY + 1.0D + attacker.world.rand.nextDouble(), attacker.posZ + attacker.world.rand.nextDouble(), 3 * level, 0, 0, 0, 0);
             }

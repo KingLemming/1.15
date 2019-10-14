@@ -22,11 +22,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CooledMagmaBlock extends MagmaBlock {
+public class GlossedMagmaBlock extends MagmaBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
-    public CooledMagmaBlock(Properties properties) {
+    public GlossedMagmaBlock(Properties properties) {
 
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));

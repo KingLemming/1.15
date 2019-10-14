@@ -206,6 +206,13 @@ public class ConfigEnsorc {
         levelQuickdraw = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Reach");
+        comment = "If TRUE, the Reach Enchantment is available for various Tools.";
+        enableReach = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelReach = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        COMMON_CONFIG.pop();
+
         COMMON_CONFIG.push("Soulbound");
         comment = "If TRUE, the Soulbound Enchantment is available.";
         enableSoulbound = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -335,8 +342,10 @@ public class ConfigEnsorc {
 
         COMMON_CONFIG.push("Mending");
         comment = "If TRUE, the Mending Enchantment is replaced with a new Enchantment - Preservation. This enchantment allows you to repair items at an Anvil without paying an increasing XP cost for every time you repair it. Additionally, these repairs have a much lower chance of damaging the anvil.";
-        enableMending = COMMON_CONFIG.comment(comment).define("Enable", false);
-        comment = "Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage).";
+        alternateMending = COMMON_CONFIG.comment(comment).define("Alternate Mending", false);
+        comment = "If TRUE, the Mending Enchantment is improved so that XP orbs always repair items if possible, and the most damaged item is prioritized. If Alternate Mending (Preservation) is enabled, this does nothing.";
+        improvedMending = COMMON_CONFIG.comment(comment).define("Improved Mending", true);
+        comment = "Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage). Only used if Alternate Mending (Preservation) is enabled.";
         damageMending = COMMON_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
         COMMON_CONFIG.pop();
 
@@ -345,7 +354,8 @@ public class ConfigEnsorc {
 
     private void refreshCommonConfig() {
 
-        enableMendingOverride = enableMending.get();
+        enableMendingImprovement = improvedMending.get();
+        enableMendingOverride = alternateMending.get();
 
         refreshEnchantmentConfig();
         refreshOverrideConfig();
@@ -437,6 +447,10 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) QUICKDRAW).setEnable(enableQuickdraw.get());
             ((EnchantmentCoFH) QUICKDRAW).setMaxLevel(levelQuickdraw.get());
         }
+        if (REACH instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) REACH).setEnable(enableReach.get());
+            ((EnchantmentCoFH) REACH).setMaxLevel(levelReach.get());
+        }
         if (SOULBOUND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) SOULBOUND).setEnable(enableSoulbound.get());
             ((EnchantmentCoFH) SOULBOUND).setMaxLevel(levelSoulbound.get());
@@ -490,7 +504,7 @@ public class ConfigEnsorc {
             ThornsEnchantmentImp.chance = chanceThorns.get();
         }
         if (MENDING instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) MENDING).setEnable(enableMending.get());
+            ((EnchantmentCoFH) MENDING).setEnable(alternateMending.get());
             MendingEnchantmentAlt.anvilDamage = damageMending.get() / 100F;
         }
         if (PROTECTION instanceof EnchantmentCoFH) {
@@ -517,6 +531,7 @@ public class ConfigEnsorc {
     // endregion
 
     // region VARIABLES
+    public static boolean enableMendingImprovement = true;
     public static boolean enableMendingOverride = false;
 
     private static BooleanValue enableAirWorker;
@@ -579,6 +594,9 @@ public class ConfigEnsorc {
     private static BooleanValue enableQuickdraw;
     private static IntValue levelQuickdraw;
 
+    private static BooleanValue enableReach;
+    private static IntValue levelReach;
+
     private static BooleanValue enableSoulbound;
     private static IntValue levelSoulbound;
     private static BooleanValue permanentSoulbound;
@@ -631,7 +649,8 @@ public class ConfigEnsorc {
     private static BooleanValue enableProtectionProjectile;
     private static IntValue levelProtectionProjectile;
 
-    private static BooleanValue enableMending;
+    private static BooleanValue alternateMending;
+    private static BooleanValue improvedMending;
     private static IntValue damageMending;
     // endregion
 

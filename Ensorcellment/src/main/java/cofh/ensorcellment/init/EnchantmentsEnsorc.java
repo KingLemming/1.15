@@ -41,6 +41,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_DAMAGE_ILLAGER, DamageIllagerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DAMAGE_VILLAGER, DamageVillagerEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_DISPLACEMENT, DisplacementEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_EXCAVATING, ExcavatingEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_EXP_BOOST, ExpBoostEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_FIRE_REBUKE, FireRebukeEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_FROST_ASPECT, FrostAspectEnchantment::new);
@@ -52,6 +53,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_MAGIC_EDGE, MagicEdgeEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_PHALANX, PhalanxEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_QUICKDRAW, QuickdrawEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_REACH, ReachEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_SOULBOUND, SoulboundEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_TRUESHOT, TrueshotEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VOLLEY, VolleyEnchantment::new);

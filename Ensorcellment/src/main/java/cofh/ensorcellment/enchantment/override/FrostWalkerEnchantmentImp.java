@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
-import static cofh.lib.util.modhelpers.CoreHelper.COOLED_MAGMA;
+import static cofh.lib.util.modhelpers.CoreHelper.GLOSSED_MAGMA;
 
 public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
 
@@ -75,7 +75,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
             return;
         }
         if (living.onGround) {
-            BlockState blockstate = COOLED_MAGMA.getDefaultState();
+            BlockState blockstate = GLOSSED_MAGMA.getDefaultState();
             float f = (float) Math.min(16, 2 + level);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -88,7 +88,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
                         boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
                         if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(blockstate, blockpos, ISelectionContext.dummy()) && !ForgeEventFactory.onBlockPlace(living, new BlockSnapshot(worldIn, blockpos, blockstate2), Direction.UP)) {
                             worldIn.setBlockState(blockpos, blockstate);
-                            worldIn.getPendingBlockTicks().scheduleTick(blockpos, COOLED_MAGMA, MathHelper.nextInt(living.getRNG(), 60, 120));
+                            worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(living.getRNG(), 60, 120));
                         }
                     }
                 }

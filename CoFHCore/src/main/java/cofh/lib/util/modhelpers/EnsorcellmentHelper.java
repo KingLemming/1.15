@@ -35,6 +35,7 @@ public class EnsorcellmentHelper {
     public static final String ID_DAMAGE_ILLAGER = ID_ENSORCELLMENT + ":damage_illager";
     public static final String ID_DAMAGE_VILLAGER = ID_ENSORCELLMENT + ":damage_villager";
     public static final String ID_DISPLACEMENT = ID_ENSORCELLMENT + ":displacement";
+    public static final String ID_EXCAVATING = ID_ENSORCELLMENT + ":excavating";
     public static final String ID_EXP_BOOST = ID_ENSORCELLMENT + ":exp_boost";
     public static final String ID_FIRE_REBUKE = ID_ENSORCELLMENT + ":fire_rebuke";
     public static final String ID_FROST_ASPECT = ID_ENSORCELLMENT + ":frost_aspect";
@@ -46,6 +47,7 @@ public class EnsorcellmentHelper {
     public static final String ID_MAGIC_EDGE = ID_ENSORCELLMENT + ":magic_edge";
     public static final String ID_PHALANX = ID_ENSORCELLMENT + ":phalanx";
     public static final String ID_QUICKDRAW = ID_ENSORCELLMENT + ":quickdraw";
+    public static final String ID_REACH = ID_ENSORCELLMENT + ":reach";
     public static final String ID_SMASHING = ID_ENSORCELLMENT + ":smashing";
     public static final String ID_SMELTING = ID_ENSORCELLMENT + ":smelting";
     public static final String ID_SOULBOUND = ID_ENSORCELLMENT + ":soulbound";
@@ -80,6 +82,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_DISPLACEMENT)
     public static final Enchantment DISPLACEMENT = null;
+
+    @ObjectHolder(ID_EXCAVATING)
+    public static final Enchantment EXCAVATING = null;
 
     @ObjectHolder(ID_EXP_BOOST)
     public static final Enchantment EXP_BOOST = null;
@@ -116,6 +121,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_QUICKDRAW)
     public static final Enchantment QUICKDRAW = null;
+
+    @ObjectHolder(ID_REACH)
+    public static final Enchantment REACH = null;
 
     @ObjectHolder(ID_SMASHING)
     public static final Enchantment SMASHING = null;
