@@ -6,9 +6,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -18,7 +19,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityArchery.DEFAULT_BOW_CAPABILITY;
-import static cofh.lib.capability.CapabilityMelee.SHIELD_ITEM_CAPABILITY;
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
@@ -78,27 +78,6 @@ public class ArcheryEvents {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void handleLivingAttackEvent(LivingAttackEvent event) {
-
-        Entity entity = event.getEntity();
-
-        if (!(entity instanceof PlayerEntity)) {
-            return;
-        }
-        DamageSource source = event.getSource();
-
-        if (source instanceof IndirectEntityDamageSource || source.isUnblockable() || source.isProjectile()) {
-            return;
-        }
-        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getIsThornsDamage()) {
-            return;
-        }
-        PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-        ItemStack shield = player.getActiveItemStack();
-        shield.getCapability(SHIELD_ITEM_CAPABILITY).ifPresent(cap -> cap.onBlock(shield, player, source.getTrueSource()));
-    }
-
     @SubscribeEvent
     public void handleItemUseTickEvent(LivingEntityUseItemEvent.Tick event) {
 
@@ -111,6 +90,9 @@ public class ArcheryEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void handleLivingHurtEvent(LivingHurtEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
         Entity entity = event.getEntity();
         DamageSource source = event.getSource();
         Entity attacker = event.getSource().getTrueSource();

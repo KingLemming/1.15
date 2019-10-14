@@ -60,7 +60,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import static cofh.lib.util.Utils.*;
 import static cofh.lib.util.constants.Constants.*;
@@ -587,13 +586,19 @@ public class CommonEventsEnsorc {
     // endregion
 
     // region PRESERVATION
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public void handleAnvilRepairEvent(AnvilRepairEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
+        if (!ConfigEnsorc.enableMendingOverride) {
+            return;
+        }
         ItemStack left = event.getItemInput();
         ItemStack output = event.getItemResult();
 
-        if (!ConfigEnsorc.enableMendingOverride || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
+        if (getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
         if (output.getDamage() < left.getDamage()) {
@@ -601,14 +606,20 @@ public class CommonEventsEnsorc {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent
     public void handleAnvilUpdateEvent(AnvilUpdateEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
+        if (!ConfigEnsorc.enableMendingOverride) {
+            return;
+        }
         ItemStack left = event.getLeft();
         ItemStack right = event.getRight();
         ItemStack output = left.copy();
 
-        if (!ConfigEnsorc.enableMendingOverride || getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
+        if (getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
         if (output.isDamageable() && output.getItem().getIsRepairable(left, right)) {
@@ -648,7 +659,7 @@ public class CommonEventsEnsorc {
         if (event.isCanceled()) {
             return;
         }
-        if (!ConfigEnsorc.enableMendingImprovement && !ConfigEnsorc.enableMendingOverride) {
+        if (!ConfigEnsorc.enableMendingOverride) {
             return;
         }
         PlayerEntity player = event.getPlayer();
@@ -656,17 +667,7 @@ public class CommonEventsEnsorc {
 
         player.xpCooldown = 2;
         player.onItemPickup(orb, 1);
-        if (!ConfigEnsorc.enableMendingOverride) {
-            Map.Entry<EquipmentSlotType, ItemStack> entry = getMostDamagedItem(player);
-            if (entry != null) {
-                ItemStack itemstack = entry.getValue();
-                if (!itemstack.isEmpty() && itemstack.isDamaged()) {
-                    int i = Math.min((int) (orb.xpValue * itemstack.getXpRepairRatio()), itemstack.getDamage());
-                    orb.xpValue -= durabilityToXp(i);
-                    itemstack.setDamage(itemstack.getDamage() - i);
-                }
-            }
-        }
+
         if (orb.xpValue > 0) {
             player.giveExperiencePoints(orb.xpValue);
         }
@@ -782,40 +783,6 @@ public class CommonEventsEnsorc {
             }
         }
         return false;
-    }
-
-    private static Map.Entry<EquipmentSlotType, ItemStack> getMostDamagedItem(PlayerEntity player) {
-
-        Map<EquipmentSlotType, ItemStack> map = Enchantments.MENDING.getEntityEquipment(player);
-        Map.Entry<EquipmentSlotType, ItemStack> mostDamaged = null;
-        if (map.isEmpty()) {
-            return null;
-        }
-        double durability = 0.0D;
-
-        for (Map.Entry<EquipmentSlotType, ItemStack> entry : map.entrySet()) {
-            ItemStack stack = entry.getValue();
-            if (calcDurabilityRatio(stack) > durability) {
-                mostDamaged = entry;
-                durability = calcDurabilityRatio(stack);
-            }
-        }
-        return mostDamaged;
-    }
-
-    private static int durabilityToXp(int durability) {
-
-        return durability / 2;
-    }
-
-    private static int xpToDurability(int xp) {
-
-        return xp * 2;
-    }
-
-    private static double calcDurabilityRatio(ItemStack stack) {
-
-        return (double) stack.getDamage() / stack.getMaxDamage();
     }
     // endregion
 }

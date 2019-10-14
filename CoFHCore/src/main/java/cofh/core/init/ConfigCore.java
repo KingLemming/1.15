@@ -42,26 +42,29 @@ public class ConfigCore {
     private static void genCommonConfig() {
 
         String comment;
-        COMMON_CONFIG.push("Options");
 
         COMMON_CONFIG.push("Fishing");
         comment = "If TRUE, Fishing will cause exhaustion.";
         commonEnableFishingExhaustion = COMMON_CONFIG.comment(comment).define("Fishing Exhaustion", enableFishingExhaustion);
-        comment = "This option sets the amount of exhaustion caused by fishing.";
+        comment = "This option sets the amount of exhaustion caused by fishing, if enabled.";
         commonAmountFishingExhaustion = COMMON_CONFIG.comment(comment).defineInRange("Fishing Exhaustion Amount", amountFishingExhaustion, 0.0D, 10.0D);
         COMMON_CONFIG.pop();
 
+        COMMON_CONFIG.push("Enchantments");
         comment = "If TRUE, Feather Falling will prevent Farmland from being trampled. This option will work with alternative versions (overrides) of Feather Falling.";
-        commonPreventFarmlandTrampling = COMMON_CONFIG.comment(comment).define("Prevent Farmland Trampling with Feather Falling", preventFarmlandTrampling);
+        commonImprovedFeatherFalling = COMMON_CONFIG.comment(comment).define("Improved Feather Falling", improvedFeatherFalling);
 
+        comment = "If TRUE, Mending behavior is altered so that XP orbs always repair items if possible, and the most damaged item is prioritized. This option may not work with alternative versions (overrides) of Mending.";
+        commonImprovedMending = COMMON_CONFIG.comment(comment).define("Improved Mending", improvedMending);
         COMMON_CONFIG.pop();
+
         commonSpec = COMMON_CONFIG.build();
     }
 
     private static void genClientConfig() {
 
         String comment;
-        CLIENT_CONFIG.push("Options");
+        CLIENT_CONFIG.push("Tooltips");
 
         comment = "If TRUE, Enchantment descriptions will be added to the tooltip for Enchanted Books containing only a single enchantment.";
         clientEnableEnchantmentDescriptions = CLIENT_CONFIG.comment(comment).define("Show Enchantment Descriptions", enableEnchantmentDescriptions);
@@ -75,7 +78,8 @@ public class ConfigCore {
         enableFishingExhaustion = commonEnableFishingExhaustion.get();
         amountFishingExhaustion = commonAmountFishingExhaustion.get().floatValue();
 
-        preventFarmlandTrampling = commonPreventFarmlandTrampling.get();
+        improvedFeatherFalling = commonImprovedFeatherFalling.get();
+        improvedMending = commonImprovedMending.get();
     }
 
     private void refreshClientConfig() {
@@ -86,13 +90,19 @@ public class ConfigCore {
 
     // region VARIABLES
     public static boolean enableFishingExhaustion = false;
-    public static float amountFishingExhaustion = 0.01F;
-    public static boolean preventFarmlandTrampling = true;
+    public static float amountFishingExhaustion = 0.125F;
+
+    public static boolean improvedFeatherFalling = true;
+    public static boolean improvedMending = true;
+
     public static boolean enableEnchantmentDescriptions = true;
 
     private static BooleanValue commonEnableFishingExhaustion;
     private static DoubleValue commonAmountFishingExhaustion;
-    private static BooleanValue commonPreventFarmlandTrampling;
+
+    private static BooleanValue commonImprovedFeatherFalling;
+    private static BooleanValue commonImprovedMending;
+
     private static BooleanValue clientEnableEnchantmentDescriptions;
     // endregion
 

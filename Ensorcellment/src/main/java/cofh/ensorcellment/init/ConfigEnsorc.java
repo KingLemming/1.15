@@ -65,7 +65,7 @@ public class ConfigEnsorc {
     private static void genEnchantmentConfig() {
 
         String comment;
-        // COMMON_CONFIG.push("Enchantment");
+        // COMMON_CONFIG.push("Enchantments");
 
         COMMON_CONFIG.push("Air Affinity");
         comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
@@ -264,7 +264,7 @@ public class ConfigEnsorc {
     private static void genOverrideConfig() {
 
         String comment;
-        // COMMON_CONFIG.push("Override");
+        // COMMON_CONFIG.push("Overrides");
 
         COMMON_CONFIG.push("Fire Aspect");
         comment = "If TRUE, the Fire Aspect Enchantment is replaced with a more configurable version which works on more items, such as Axes.";
@@ -343,8 +343,6 @@ public class ConfigEnsorc {
         COMMON_CONFIG.push("Mending");
         comment = "If TRUE, the Mending Enchantment is replaced with a new Enchantment - Preservation. This enchantment allows you to repair items at an Anvil without paying an increasing XP cost for every time you repair it. Additionally, these repairs have a much lower chance of damaging the anvil.";
         alternateMending = COMMON_CONFIG.comment(comment).define("Alternate Mending", false);
-        comment = "If TRUE, the Mending Enchantment is improved so that XP orbs always repair items if possible, and the most damaged item is prioritized. If Alternate Mending (Preservation) is enabled, this does nothing.";
-        improvedMending = COMMON_CONFIG.comment(comment).define("Improved Mending", true);
         comment = "Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage). Only used if Alternate Mending (Preservation) is enabled.";
         damageMending = COMMON_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
         COMMON_CONFIG.pop();
@@ -354,7 +352,6 @@ public class ConfigEnsorc {
 
     private void refreshCommonConfig() {
 
-        enableMendingImprovement = improvedMending.get();
         enableMendingOverride = alternateMending.get();
 
         refreshEnchantmentConfig();
@@ -531,7 +528,6 @@ public class ConfigEnsorc {
     // endregion
 
     // region VARIABLES
-    public static boolean enableMendingImprovement = true;
     public static boolean enableMendingOverride = false;
 
     private static BooleanValue enableAirWorker;
@@ -650,7 +646,6 @@ public class ConfigEnsorc {
     private static IntValue levelProtectionProjectile;
 
     private static BooleanValue alternateMending;
-    private static BooleanValue improvedMending;
     private static IntValue damageMending;
     // endregion
 

@@ -8,9 +8,7 @@ import cofh.core.init.PotionsCore;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityMelee;
-import cofh.lib.event.ArcheryEvents;
-import cofh.lib.event.AreaEffectEvents;
-import cofh.lib.event.MeleeEvents;
+import cofh.lib.event.*;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.potion.Effect;
@@ -61,11 +59,14 @@ public class CoFHCore {
         ArcheryEvents.register();
         AreaEffectEvents.register();
         MeleeEvents.register();
+        PotionEvents.register();
 
         CommonEventsCore.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+
+        AreaEffectClientEvents.register();
 
         ClientEventsCore.register();
     }

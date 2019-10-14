@@ -42,7 +42,7 @@ public class AreaEffectEvents {
     public void handleBlockBreakEvent(BlockEvent.BreakEvent event) {
 
         PlayerEntity player = event.getPlayer();
-        if (!(player instanceof ServerPlayerEntity)) {
+        if (!(player instanceof ServerPlayerEntity) || Utils.isClientWorld(player.world)) {
             return;
         }
         if (HARVESTING_PLAYERS.contains(player)) {
@@ -50,7 +50,7 @@ public class AreaEffectEvents {
         }
         HARVESTING_PLAYERS.add(player);
         ItemStack stack = player.getHeldItemMainhand();
-        if (!validAreaEffectItem(stack) || Utils.isClientWorld(player.world)) {
+        if (!validAreaEffectItem(stack)) {
             return;
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAreaEffectBlocks(stack, event.getPos(), player);

@@ -34,13 +34,14 @@ public class MeleeEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void handleLivingAttackEvent(LivingAttackEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
         Entity entity = event.getEntity();
-
         if (!(entity instanceof PlayerEntity)) {
             return;
         }
         DamageSource source = event.getSource();
-
         if (source instanceof IndirectEntityDamageSource || source.isUnblockable() || source.isProjectile()) {
             return;
         }
