@@ -9,11 +9,10 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.PHALANX;
+import static cofh.lib.util.references.EnsorcellmentReferences.PHALANX;
 
-public class ClientEventsEnsorc {
+public class ShieldEnchClientEvents {
 
-    private static final ClientEventsEnsorc INSTANCE = new ClientEventsEnsorc();
     private static boolean registered = false;
 
     public static void register() {
@@ -21,20 +20,20 @@ public class ClientEventsEnsorc {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(ShieldEnchClientEvents.class);
         registered = true;
     }
 
-    private ClientEventsEnsorc() {
+    private ShieldEnchClientEvents() {
 
     }
 
-    private boolean hadPhalanx;
-    private double modPhalanx;
-    private long timePhalanx;
+    private static boolean hadPhalanx;
+    private static double modPhalanx;
+    private static long timePhalanx;
 
     @SubscribeEvent
-    public void handleFOVUpdateEvent(FOVUpdateEvent event) {
+    public static void handleFOVUpdateEvent(FOVUpdateEvent event) {
 
         PlayerEntity entity = event.getEntity();
         ItemStack stack = event.getEntity().getActiveItemStack();

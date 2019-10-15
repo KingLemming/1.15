@@ -1,6 +1,6 @@
 package cofh.lib.capability;
 
-import cofh.lib.capability.templates.AreaEffectItem;
+import cofh.lib.capability.templates.AOEItem;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -8,14 +8,14 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
-public class CapabilityAreaEffect {
+public class CapabilityAOE {
 
     private static boolean registered = false;
 
-    @CapabilityInject(IAreaEffectItem.class)
-    public static Capability<IAreaEffectItem> AOE_ITEM_CAPABILITY = null;
+    @CapabilityInject(IAOEItem.class)
+    public static Capability<IAOEItem> AOE_ITEM_CAPABILITY = null;
 
-    public static AreaEffectItem DEFAULT_AOE_CAPABILITY = new AreaEffectItem();
+    public static AOEItem DEFAULT_AOE_CAPABILITY = new AOEItem();
 
     public static void register() {
 
@@ -24,16 +24,16 @@ public class CapabilityAreaEffect {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IAreaEffectItem.class, new IStorage<IAreaEffectItem>() {
+        CapabilityManager.INSTANCE.register(IAOEItem.class, new IStorage<IAOEItem>() {
 
             @Override
-            public INBT writeNBT(Capability<IAreaEffectItem> capability, IAreaEffectItem instance, Direction side) {
+            public INBT writeNBT(Capability<IAOEItem> capability, IAOEItem instance, Direction side) {
 
                 return null;
             }
 
             @Override
-            public void readNBT(Capability<IAreaEffectItem> capability, IAreaEffectItem instance, Direction side, INBT nbt) {
+            public void readNBT(Capability<IAOEItem> capability, IAOEItem instance, Direction side, INBT nbt) {
 
             }
 

@@ -11,8 +11,6 @@ import net.minecraft.util.DamageSource;
 
 public class ProtectionEnchantmentImp extends EnchantmentOverride {
 
-    public static final int HORSE_MODIFIER = 3;
-
     private Type protectionType;
 
     public ProtectionEnchantmentImp(Rarity rarityIn, Type protectionTypeIn, EquipmentSlotType[] slots) {

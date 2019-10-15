@@ -27,7 +27,7 @@
   "enchantment.ensorcellment.displacement.desc": "Randomly teleports attackers away.",
 
   "enchantment.ensorcellment.excavating": "Excavating",
-  "enchantment.ensorcellment.excavating.desc": "Increases the number of blocks harvested.",
+  "enchantment.ensorcellment.excavating.desc": "Harvests additional blocks in a radius.",
 
   "enchantment.ensorcellment.exp_boost": "Insight",
   "enchantment.ensorcellment.exp_boost.desc": "Increases experience gain when using the item.",
@@ -82,6 +82,9 @@
 
   "enchantment.ensorcellment.soulbound": "Soulbound",
   "enchantment.ensorcellment.soulbound.desc": "The item will remain with the owner after an untimely demise.",
+
+  "enchantment.ensorcellment.tilling": "Tilling",
+  "enchantment.ensorcellment.tilling.desc": "Harvests additional ground blocks in a line.",
 
   "enchantment.ensorcellment.trueshot": "Trueshot",
   "enchantment.ensorcellment.trueshot.desc": "Increases the accuracy and speed of arrows, and allows them to pierce.",

@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
-import static cofh.lib.util.modhelpers.CoreHelper.GLOSSED_MAGMA;
+import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
 
 public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
 

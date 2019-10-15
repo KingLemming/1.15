@@ -29,13 +29,13 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-import static cofh.lib.capability.CapabilityAreaEffect.AOE_ITEM_CAPABILITY;
-import static cofh.lib.capability.CapabilityAreaEffect.DEFAULT_AOE_CAPABILITY;
-import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectItem;
+import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
+import static cofh.lib.util.helpers.AOEHelper.validAOEBreakItem;
+import static cofh.lib.util.helpers.AOEHelper.validAOEItem;
 
-public class AreaEffectClientEvents {
+public class AOEClientEvents {
 
-    private static final AreaEffectClientEvents INSTANCE = new AreaEffectClientEvents();
     private static boolean registered = false;
 
     public static void register() {
@@ -43,16 +43,16 @@ public class AreaEffectClientEvents {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(AOEClientEvents.class);
         registered = true;
     }
 
-    private AreaEffectClientEvents() {
+    private AOEClientEvents() {
 
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void renderExtraBlockBreak(RenderWorldLastEvent event) {
+    public static void renderExtraBlockBreak(RenderWorldLastEvent event) {
 
         PlayerController controller = Minecraft.getInstance().playerController;
 
@@ -62,7 +62,7 @@ public class AreaEffectClientEvents {
         PlayerEntity player = Minecraft.getInstance().player;
         ItemStack stack = player.getHeldItemMainhand();
 
-        if (!validAreaEffectItem(stack)) {
+        if (!validAOEItem(stack)) {
             return;
         }
         Entity renderEntity = Minecraft.getInstance().getRenderViewEntity();
@@ -74,9 +74,12 @@ public class AreaEffectClientEvents {
             return;
         }
         BlockRayTraceResult blockResult = (BlockRayTraceResult) traceResult;
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAreaEffectBlocks(stack, blockResult.getPos(), player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, blockResult.getPos(), player);
         for (BlockPos pos : areaBlocks) {
             event.getContext().drawSelectionBox(Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), new BlockRayTraceResult(DUMMY_VEC, blockResult.getFace(), pos, false), 0);
+        }
+        if (!validAOEBreakItem(stack)) {
+            return;
         }
         if (controller.isHittingBlock) {
             drawBlockDamageTexture(Tessellator.getInstance(), Tessellator.getInstance().getBuffer(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), player.getEntityWorld(), areaBlocks);
@@ -84,7 +87,7 @@ public class AreaEffectClientEvents {
     }
 
     // region HELPERS
-    private void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder bufferIn, ActiveRenderInfo renderInfo, World world, List<BlockPos> blocks) {
+    private static void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder bufferIn, ActiveRenderInfo renderInfo, World world, List<BlockPos> blocks) {
 
         double d0 = renderInfo.getProjectedView().x;
         double d1 = renderInfo.getProjectedView().y;
@@ -117,7 +120,7 @@ public class AreaEffectClientEvents {
         postRenderDamagedBlocks();
     }
 
-    private void preRenderDamagedBlocks() {
+    private static void preRenderDamagedBlocks() {
 
         GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.DST_COLOR, GlStateManager.DestFactor.SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.enableBlend();
@@ -129,7 +132,7 @@ public class AreaEffectClientEvents {
         GlStateManager.pushMatrix();
     }
 
-    private void postRenderDamagedBlocks() {
+    private static void postRenderDamagedBlocks() {
 
         GlStateManager.disableAlphaTest();
         GlStateManager.polygonOffset(0.0F, 0.0F);

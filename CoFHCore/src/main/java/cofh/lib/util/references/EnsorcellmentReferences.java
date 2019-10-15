@@ -1,13 +1,13 @@
-package cofh.lib.util.modhelpers;
+package cofh.lib.util.references;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_ENSORCELLMENT;
 
-public class EnsorcellmentHelper {
+public class EnsorcellmentReferences {
 
-    private EnsorcellmentHelper() {
+    private EnsorcellmentReferences() {
 
     }
 
@@ -51,6 +51,7 @@ public class EnsorcellmentHelper {
     public static final String ID_SMASHING = ID_ENSORCELLMENT + ":smashing";
     public static final String ID_SMELTING = ID_ENSORCELLMENT + ":smelting";
     public static final String ID_SOULBOUND = ID_ENSORCELLMENT + ":soulbound";
+    public static final String ID_TILLING = ID_ENSORCELLMENT + ":tilling";
     public static final String ID_TRUESHOT = ID_ENSORCELLMENT + ":trueshot";
     public static final String ID_VOLLEY = ID_ENSORCELLMENT + ":volley";
     public static final String ID_VORPAL = ID_ENSORCELLMENT + ":vorpal";
@@ -133,6 +134,9 @@ public class EnsorcellmentHelper {
 
     @ObjectHolder(ID_SOULBOUND)
     public static final Enchantment SOULBOUND = null;
+
+    @ObjectHolder(ID_TILLING)
+    public static final Enchantment TILLING = null;
 
     @ObjectHolder(ID_TRUESHOT)
     public static final Enchantment TRUESHOT = null;

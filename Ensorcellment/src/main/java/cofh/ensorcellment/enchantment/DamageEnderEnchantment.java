@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 
-import static cofh.lib.util.modhelpers.CoreHelper.ENDERFERENCE;
+import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
 
 public class DamageEnderEnchantment extends DamageEnchantmentCoFH {
 
@@ -53,7 +53,7 @@ public class DamageEnderEnchantment extends DamageEnchantmentCoFH {
         }
         if (target instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) target;
-            int i = 60 + user.getRNG().nextInt(20 * level);
+            int i = 100 + user.getRNG().nextInt(40 * level);
             living.addPotionEffect(new EffectInstance(ENDERFERENCE, i));
         }
     }

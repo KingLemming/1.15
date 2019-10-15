@@ -23,14 +23,13 @@ import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.QUICKDRAW;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.VOLLEY;
+import static cofh.lib.util.references.EnsorcellmentReferences.QUICKDRAW;
+import static cofh.lib.util.references.EnsorcellmentReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
 
 public class ArcheryEvents {
 
-    private static final ArcheryEvents INSTANCE = new ArcheryEvents();
     private static boolean registered = false;
 
     public static void register() {
@@ -38,7 +37,7 @@ public class ArcheryEvents {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(ArcheryEvents.class);
         registered = true;
     }
 
@@ -47,7 +46,7 @@ public class ArcheryEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void handleArrowLooseEvent(ArrowLooseEvent event) {
+    public static void handleArrowLooseEvent(ArrowLooseEvent event) {
 
         ItemStack bow = event.getBow();
         if (!validBow(bow)) {
@@ -58,7 +57,7 @@ public class ArcheryEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void handleArrowNockEvent(ArrowNockEvent event) {
+    public static void handleArrowNockEvent(ArrowNockEvent event) {
 
         ItemStack bow = event.getBow();
         if (!validBow(bow)) {
@@ -79,7 +78,7 @@ public class ArcheryEvents {
     }
 
     @SubscribeEvent
-    public void handleItemUseTickEvent(LivingEntityUseItemEvent.Tick event) {
+    public static void handleItemUseTickEvent(LivingEntityUseItemEvent.Tick event) {
 
         int encQuickDraw = getEnchantmentLevel(QUICKDRAW, event.getItem());
         if (encQuickDraw > 0 && event.getDuration() > event.getItem().getUseDuration() - 20) {
@@ -88,7 +87,7 @@ public class ArcheryEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void handleLivingHurtEvent(LivingHurtEvent event) {
+    public static void handleLivingHurtEvent(LivingHurtEvent event) {
 
         if (event.isCanceled()) {
             return;

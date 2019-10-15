@@ -19,8 +19,8 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FIRE_REBUKE;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FROST_REBUKE;
+import static cofh.lib.util.references.EnsorcellmentReferences.FIRE_REBUKE;
+import static cofh.lib.util.references.EnsorcellmentReferences.FROST_REBUKE;
 
 public class FrostRebukeEnchantment extends EnchantmentCoFH {
 

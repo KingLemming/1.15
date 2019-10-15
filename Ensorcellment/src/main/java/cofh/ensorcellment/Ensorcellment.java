@@ -1,7 +1,6 @@
 package cofh.ensorcellment;
 
-import cofh.ensorcellment.event.ClientEventsEnsorc;
-import cofh.ensorcellment.event.CommonEventsEnsorc;
+import cofh.ensorcellment.event.*;
 import cofh.ensorcellment.init.ConfigEnsorc;
 import cofh.ensorcellment.init.EnchantmentsEnsorc;
 import cofh.lib.registries.DeferredRegisterCoFH;
@@ -44,11 +43,16 @@ public class Ensorcellment {
     private void commonSetup(final FMLCommonSetupEvent event) {
 
         CommonEventsEnsorc.register();
+
+        HorseEnchEvents.register();
+        ShieldEnchEvents.register();
+        PreservationEvents.register();
+        SoulboundEvents.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        ClientEventsEnsorc.register();
+        ShieldEnchClientEvents.register();
     }
     // endregion
 }

@@ -19,8 +19,8 @@ import java.util.HashSet;
 import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FIRE_REBUKE;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.FROST_REBUKE;
+import static cofh.lib.util.references.EnsorcellmentReferences.FIRE_REBUKE;
+import static cofh.lib.util.references.EnsorcellmentReferences.FROST_REBUKE;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
@@ -81,6 +81,9 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
 
     public static void setFireToMobs() {
 
+        if (AFFLICTED_MOBS.isEmpty()) {
+            return;
+        }
         for (Tuple<Entity, Integer> entry : AFFLICTED_MOBS) {
             entry.getA().setFire(entry.getB());
         }

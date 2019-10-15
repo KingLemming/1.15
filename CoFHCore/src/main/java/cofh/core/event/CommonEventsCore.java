@@ -23,7 +23,6 @@ import static net.minecraft.enchantment.Enchantments.FEATHER_FALLING;
 
 public class CommonEventsCore {
 
-    private static final CommonEventsCore INSTANCE = new CommonEventsCore();
     private static boolean registered = false;
 
     public static void register() {
@@ -31,7 +30,7 @@ public class CommonEventsCore {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(CommonEventsCore.class);
         registered = true;
     }
 
@@ -40,8 +39,11 @@ public class CommonEventsCore {
     }
 
     @SubscribeEvent
-    public void handleFarmlandTrampleEvent(BlockEvent.FarmlandTrampleEvent event) {
+    public static void handleFarmlandTrampleEvent(BlockEvent.FarmlandTrampleEvent event) {
 
+        if (event.isCanceled()) {
+            return;
+        }
         if (!ConfigCore.improvedFeatherFalling) {
             return;
         }
@@ -55,12 +57,12 @@ public class CommonEventsCore {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void handleItemFishedEvent(ItemFishedEvent event) {
+    public static void handleItemFishedEvent(ItemFishedEvent event) {
 
-        if (!ConfigCore.enableFishingExhaustion) {
+        if (event.isCanceled()) {
             return;
         }
-        if (event.isCanceled()) {
+        if (!ConfigCore.enableFishingExhaustion) {
             return;
         }
         PlayerEntity player = event.getHookEntity().angler;
@@ -71,7 +73,7 @@ public class CommonEventsCore {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
         if (event.isCanceled()) {
             return;

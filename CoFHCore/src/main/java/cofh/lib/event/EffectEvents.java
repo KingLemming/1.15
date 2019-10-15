@@ -10,11 +10,10 @@ import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import static cofh.lib.util.modhelpers.CoreHelper.*;
+import static cofh.lib.util.references.CoreReferences.*;
 
-public class PotionEvents {
+public class EffectEvents {
 
-    private static final PotionEvents INSTANCE = new PotionEvents();
     private static boolean registered = false;
 
     public static void register() {
@@ -22,16 +21,16 @@ public class PotionEvents {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(EffectEvents.class);
         registered = true;
     }
 
-    private PotionEvents() {
+    private EffectEvents() {
 
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void handleEnderTeleportEvent(EnderTeleportEvent event) {
+    public static void handleEnderTeleportEvent(EnderTeleportEvent event) {
 
         if (event.isCanceled()) {
             return;
@@ -43,17 +42,17 @@ public class PotionEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
         PlayerEntity player = event.getPlayer();
         ExperienceOrbEntity orb = event.getOrb();
 
-        EffectInstance eurekaEffect = player.getActivePotionEffect(EUREKA);
-        if (eurekaEffect == null || orb.getPersistentData().contains(ID_EUREKA)) {
+        EffectInstance eurekaEffect = player.getActivePotionEffect(EPIPHANY);
+        if (eurekaEffect == null || orb.getPersistentData().contains(ID_EPIPHANY)) {
             return;
         }
         orb.xpValue = orb.xpValue * (120 + 20 * eurekaEffect.getAmplifier()) / 100;
-        orb.getPersistentData().putBoolean(ID_EUREKA, true);
+        orb.getPersistentData().putBoolean(ID_EPIPHANY, true);
     }
 
 }

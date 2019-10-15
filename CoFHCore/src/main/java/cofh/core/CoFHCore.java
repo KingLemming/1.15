@@ -4,10 +4,10 @@ import cofh.core.event.ClientEventsCore;
 import cofh.core.event.CommonEventsCore;
 import cofh.core.init.BlocksCore;
 import cofh.core.init.ConfigCore;
-import cofh.core.init.PotionsCore;
+import cofh.core.init.EffectsCore;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
-import cofh.lib.capability.CapabilityMelee;
+import cofh.lib.capability.CapabilityShield;
 import cofh.lib.event.*;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
@@ -46,7 +46,7 @@ public class CoFHCore {
         ConfigCore.register();
 
         BlocksCore.register();
-        PotionsCore.register();
+        EffectsCore.register();
     }
 
     // region INITIALIZATION
@@ -54,21 +54,21 @@ public class CoFHCore {
 
         CapabilityArchery.register();
         CapabilityEnchantable.register();
-        CapabilityMelee.register();
-
-        ArcheryEvents.register();
-        AreaEffectEvents.register();
-        MeleeEvents.register();
-        PotionEvents.register();
+        CapabilityShield.register();
 
         CommonEventsCore.register();
+
+        ArcheryEvents.register();
+        AOEEvents.register();
+        ShieldEvents.register();
+        EffectEvents.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        AreaEffectClientEvents.register();
-
         ClientEventsCore.register();
+
+        AOEClientEvents.register();
     }
     // endregion
 

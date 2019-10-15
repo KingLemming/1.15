@@ -17,7 +17,6 @@ import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public class ClientEventsCore {
 
-    private static final ClientEventsCore INSTANCE = new ClientEventsCore();
     private static boolean registered = false;
 
     public static void register() {
@@ -25,7 +24,7 @@ public class ClientEventsCore {
         if (registered) {
             return;
         }
-        MinecraftForge.EVENT_BUS.register(INSTANCE);
+        MinecraftForge.EVENT_BUS.register(ClientEventsCore.class);
         registered = true;
     }
 
@@ -34,7 +33,7 @@ public class ClientEventsCore {
     }
 
     @SubscribeEvent
-    public void handleItemTooltipEvent(ItemTooltipEvent event) {
+    public static void handleItemTooltipEvent(ItemTooltipEvent event) {
 
         if (!ConfigCore.enableEnchantmentDescriptions) {
             return;

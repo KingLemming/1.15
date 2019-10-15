@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.EXCAVATING;
+import static cofh.lib.util.references.EnsorcellmentReferences.EXCAVATING;
 
 public class LootingEnchantmentImp extends EnchantmentOverride {
 

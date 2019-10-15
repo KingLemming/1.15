@@ -6,7 +6,7 @@ import cofh.ensorcellment.enchantment.override.*;
 import static cofh.ensorcellment.Ensorcellment.ENCHANTMENTS;
 import static cofh.ensorcellment.enchantment.override.ProtectionEnchantmentImp.Type.*;
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.modhelpers.EnsorcellmentHelper.*;
+import static cofh.lib.util.references.EnsorcellmentReferences.*;
 import static net.minecraft.enchantment.Enchantment.Rarity.*;
 
 public class EnchantmentsEnsorc {
@@ -55,6 +55,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_QUICKDRAW, QuickdrawEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_REACH, ReachEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_SOULBOUND, SoulboundEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_TILLING, TillingEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_TRUESHOT, TrueshotEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VOLLEY, VolleyEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VORPAL, VorpalEnchantment::new);
