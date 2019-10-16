@@ -61,7 +61,7 @@ public class EnsorcellationReferences {
 
     // BOWS
     public static final String ID_HUNTER = ID_ENSORCELLATION + ":hunter";
-    public static final String ID_QUICKDRAW = ID_ENSORCELLATION + ":quickdraw";
+    public static final String ID_QUICK_DRAW = ID_ENSORCELLATION + ":quick_draw";
     public static final String ID_TRUESHOT = ID_ENSORCELLATION + ":trueshot";
     public static final String ID_VOLLEY = ID_ENSORCELLATION + ":volley";
 
@@ -154,8 +154,8 @@ public class EnsorcellationReferences {
     @ObjectHolder(ID_HUNTER)
     public static final Enchantment HUNTER = null;
 
-    @ObjectHolder(ID_QUICKDRAW)
-    public static final Enchantment QUICKDRAW = null;
+    @ObjectHolder(ID_QUICK_DRAW)
+    public static final Enchantment QUICK_DRAW = null;
 
     @ObjectHolder(ID_TRUESHOT)
     public static final Enchantment TRUESHOT = null;

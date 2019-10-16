@@ -1,4 +1,4 @@
-package cofh.ensorcellation.enchantment;
+package cofh.ensorcellation.enchantment.nyi;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
@@ -7,26 +7,25 @@ import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class AnglerEnchantment extends EnchantmentCoFH {
+public class PilferingEnchantment extends EnchantmentCoFH {
 
     public static int chance = 50;
 
-    public AnglerEnchantment() {
+    public PilferingEnchantment() {
 
-        super(Rarity.VERY_RARE, EnchantmentType.FISHING_ROD, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
-        maxLevel = 2;
+        super(Rarity.RARE, EnchantmentType.FISHING_ROD, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
 
     @Override
     public int getMinEnchantability(int level) {
 
-        return 10 + (level - 1) * 9;
+        return 15;
     }
 
     @Override
     protected int maxDelegate(int level) {
 
-        return getMinEnchantability(level) + 15;
+        return this.getMinEnchantability(level) + 50;
     }
 
     @Override
@@ -34,12 +33,6 @@ public class AnglerEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof FishingRodItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
 }

@@ -215,11 +215,11 @@ public class ConfigEnsorc {
         chanceHunter = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 50, 1, 100);
         COMMON_CONFIG.pop();
 
-        COMMON_CONFIG.push("Quickdraw");
-        comment = "If TRUE, the Quickdraw Enchantment is available for various Bows.";
-        enableQuickdraw = COMMON_CONFIG.comment(comment).define("Enable", true);
+        COMMON_CONFIG.push("Quick Draw");
+        comment = "If TRUE, the Quick Draw Enchantment is available for various Bows.";
+        enableQuickDraw = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelQuickdraw = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        levelQuickDraw = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Trueshot");
@@ -501,9 +501,9 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) HUNTER).setMaxLevel(levelHunter.get());
             HunterEnchantment.chance = chanceHunter.get();
         }
-        if (QUICKDRAW instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) QUICKDRAW).setEnable(enableQuickdraw.get());
-            ((EnchantmentCoFH) QUICKDRAW).setMaxLevel(levelQuickdraw.get());
+        if (QUICK_DRAW instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) QUICK_DRAW).setEnable(enableQuickDraw.get());
+            ((EnchantmentCoFH) QUICK_DRAW).setMaxLevel(levelQuickDraw.get());
         }
         if (TRUESHOT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) TRUESHOT).setEnable(enableTrueshot.get());
@@ -681,8 +681,8 @@ public class ConfigEnsorc {
     private static IntValue levelHunter;
     private static IntValue chanceHunter;
 
-    private static BooleanValue enableQuickdraw;
-    private static IntValue levelQuickdraw;
+    private static BooleanValue enableQuickDraw;
+    private static IntValue levelQuickDraw;
 
     private static BooleanValue enableTrueshot;
     private static IntValue levelTrueshot;

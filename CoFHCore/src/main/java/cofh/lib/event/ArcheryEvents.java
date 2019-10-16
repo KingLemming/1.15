@@ -23,7 +23,7 @@ import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
-import static cofh.lib.util.references.EnsorcellationReferences.QUICKDRAW;
+import static cofh.lib.util.references.EnsorcellationReferences.QUICK_DRAW;
 import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
@@ -80,7 +80,7 @@ public class ArcheryEvents {
     @SubscribeEvent
     public static void handleItemUseTickEvent(LivingEntityUseItemEvent.Tick event) {
 
-        int encQuickDraw = getEnchantmentLevel(QUICKDRAW, event.getItem());
+        int encQuickDraw = getEnchantmentLevel(QUICK_DRAW, event.getItem());
         if (encQuickDraw > 0 && event.getDuration() > event.getItem().getUseDuration() - 20) {
             event.setDuration(event.getDuration() - encQuickDraw);
         }

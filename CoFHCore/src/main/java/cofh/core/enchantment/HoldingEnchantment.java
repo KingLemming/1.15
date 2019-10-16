@@ -1,4 +1,4 @@
-package cofh.ensorcellation.enchantment;
+package cofh.core.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;

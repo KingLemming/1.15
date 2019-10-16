@@ -28,7 +28,7 @@ public class HunterEnchantment extends EnchantmentCoFH {
     @Override
     protected int maxDelegate(int level) {
 
-        return this.getMinEnchantability(level) + 15;
+        return getMinEnchantability(level) + 50;
     }
 
     @Override

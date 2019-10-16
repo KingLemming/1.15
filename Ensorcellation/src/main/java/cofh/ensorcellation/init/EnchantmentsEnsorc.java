@@ -1,5 +1,6 @@
 package cofh.ensorcellation.init;
 
+import cofh.core.enchantment.HoldingEnchantment;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.override.*;
 
@@ -52,7 +53,7 @@ public class EnchantmentsEnsorc {
 
         // BOWS
         ENCHANTMENTS.registerSpec(ID_HUNTER, HunterEnchantment::new);
-        ENCHANTMENTS.registerSpec(ID_QUICKDRAW, QuickdrawEnchantment::new);
+        ENCHANTMENTS.registerSpec(ID_QUICK_DRAW, QuickdrawEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_TRUESHOT, TrueshotEnchantment::new);
         ENCHANTMENTS.registerSpec(ID_VOLLEY, VolleyEnchantment::new);
 

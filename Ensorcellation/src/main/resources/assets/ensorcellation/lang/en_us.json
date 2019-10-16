@@ -74,8 +74,8 @@
   "enchantment.ensorcellation.preservation": "Preservation",
   "enchantment.ensorcellation.preservation.desc": "Removes the increasing XP cost for repairing an item.",
 
-  "enchantment.ensorcellation.quickdraw": "Quickdraw",
-  "enchantment.ensorcellation.quickdraw.desc": "Decreases the amount of time needed to fully draw a bow.",
+  "enchantment.ensorcellation.quick_draw": "Quick Draw",
+  "enchantment.ensorcellation.quick_draw.desc": "Decreases the amount of time needed to fully draw a bow.",
 
   "enchantment.ensorcellation.reach": "Reach",
   "enchantment.ensorcellation.reach.desc": "Increases the distance that the wielder can interact with blocks.",
