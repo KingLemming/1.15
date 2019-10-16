@@ -13,7 +13,10 @@ issueTrackerURL="http://my.issue.tracker/"
     authors="King Lemming"
     description='''
 Adds a multitude of highly configurable Enchantments!
-Also improves functionality and flexibility of some vanilla Enchantments.
+
+Also improves functionality and flexibility of some vanilla Minecraft Enchantments.
+
+Suitable for both lightly and heavily modded worlds.
 '''
 [[dependencies.ensorcellation]]
     modId="minecraft"

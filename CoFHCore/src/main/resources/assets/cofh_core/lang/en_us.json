@@ -39,6 +39,6 @@
   "enchantment.minecraft.multishot.desc": "Three arrows are fired with each shot. Only one arrow is consumed.",
   "enchantment.minecraft.quick_charge.desc": "Decreases crossbow reloading time.",
   "enchantment.minecraft.piercing.desc": "Arrows pass through multiple entities.",
-  "enchantment.minecraft.mending.desc": "XP Orbs are consumed to repair the item.",
+  "enchantment.minecraft.mending.desc": "Experience Orbs are consumed to repair the item.",
   "enchantment.minecraft.vanishing_curse.desc": "The item will disappear forever when the owner dies."
 }

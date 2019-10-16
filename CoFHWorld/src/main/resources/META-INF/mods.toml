@@ -10,11 +10,9 @@ issueTrackerURL="http://my.issue.tracker/"
     #displayURL="http://example.com/"
     logoFile="logo.png"
     credits="Team CoFH"
-    authors="King Lemming"
+    authors="King Lemming, skyboy"
     description='''
-
-CoFH World!
-
+A highly configurable world generation platform.
 '''
 [[dependencies.cofh_world]]
     modId="minecraft"

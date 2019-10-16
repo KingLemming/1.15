@@ -11,6 +11,9 @@
   "enchantment.ensorcellation.cavalier": "Cavalier",
   "enchantment.ensorcellation.cavalier.desc": "Increases damage when riding something.",
 
+  "enchantment.ensorcellation.curse_fool": "Curse of Foolishness",
+  "enchantment.ensorcellation.curse_fool.desc": "Prevents experience gain when using the item.",
+
   "enchantment.ensorcellation.curse_mercy": "Curse of Mercy",
   "enchantment.ensorcellation.curse_mercy.desc": "Prevents a weapon from dealing a lethal blow.",
 

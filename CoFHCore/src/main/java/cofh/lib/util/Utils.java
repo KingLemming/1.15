@@ -189,9 +189,9 @@ public class Utils {
         return Math.max(getEnchantmentLevel(ench, living.getHeldItemMainhand()), getEnchantmentLevel(ench, living.getHeldItemOffhand()));
     }
 
-    public static void addEnchantment(ItemStack stack, Enchantment enc, int level) {
+    public static void addEnchantment(ItemStack stack, Enchantment ench, int level) {
 
-        stack.addEnchantment(enc, level);
+        stack.addEnchantment(ench, level);
     }
 
     public static void removeEnchantment(ItemStack stack, Enchantment ench) {

@@ -40,6 +40,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,7 +51,6 @@ import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_PLAYER;
 import static cofh.lib.util.constants.Constants.UUID_REACH_DISTANCE;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
-import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.FROST_WALKER;
 import static net.minecraft.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
@@ -112,7 +112,7 @@ public class CommonEventsEnsorc {
 
         if (attacker instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) attacker;
-            // MERCY
+            // CURSE OF MERCY
             int encMercy = getHeldEnchantmentLevel(living, CURSE_MERCY);
             if (encMercy > 0 && event.getAmount() > entity.getHealth()) {
                 event.setAmount(Math.max(0.0F, entity.getHealth() - 1.0F));
@@ -126,7 +126,6 @@ public class CommonEventsEnsorc {
         if (event.isCanceled()) {
             return;
         }
-        LivingEntity entity = event.getEntityLiving();
         DamageSource source = event.getSource();
         Entity attacker = source.getTrueSource();
 
@@ -136,11 +135,6 @@ public class CommonEventsEnsorc {
             int encLeech = getHeldEnchantmentLevel(living, LEECH);
             if (encLeech > 0) {
                 (living).heal(encLeech);
-            }
-            // EXP BOOST
-            int encExpBoost = getHeldEnchantmentLevel(living, EXP_BOOST);
-            if (encExpBoost > 0 && living instanceof PlayerEntity) {
-                entity.world.addEntity(new ExperienceOrbEntity(entity.world, entity.posX, entity.posY + 0.5D, entity.posZ, encExpBoost + entity.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience)));
             }
         }
     }
@@ -186,10 +180,9 @@ public class CommonEventsEnsorc {
             }
         }
         // VORPAL
-        int encVorpal = getEnchantmentLevel(VORPAL, player.getHeldItemMainhand());
+        int encVorpal = getHeldEnchantmentLevel(player, VORPAL);
         if (encVorpal > 0) {
             ItemStack itemSkull = ItemStack.EMPTY;
-
             if (entity.world.rand.nextInt(100) < VorpalEnchantment.headBase + VorpalEnchantment.headLevel * encVorpal) {
                 if (entity instanceof ServerPlayerEntity) {
                     PlayerEntity target = (ServerPlayerEntity) event.getEntity();
@@ -213,6 +206,31 @@ public class CommonEventsEnsorc {
             ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, itemSkull);
             drop.setPickupDelay(10);
             event.getDrops().add(drop);
+        }
+    }
+
+    @SubscribeEvent
+    public static void handleLivingExperienceDropEvent(LivingExperienceDropEvent event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        LivingEntity entity = event.getEntityLiving();
+        PlayerEntity player = event.getAttackingPlayer();
+
+        if (player != null) {
+            // CURSE OF FOOLISHNESS
+            int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+            if (encFool > 0) {
+                event.setDroppedExperience(0);
+                event.setCanceled(true);
+                return;
+            }
+            // EXP BOOST
+            int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
+            if (encExpBoost > 0) {
+                event.setDroppedExperience(event.getDroppedExperience() + encExpBoost + entity.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience));
+            }
         }
     }
 
@@ -278,7 +296,7 @@ public class CommonEventsEnsorc {
         }
         if (entity instanceof PlayerEntity) {
             // REACH
-            int encReach = getEnchantmentLevel(REACH, entity.getHeldItemMainhand());
+            int encReach = getHeldEnchantmentLevel(entity, REACH);
             if (encReach > 0) {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
@@ -329,7 +347,7 @@ public class CommonEventsEnsorc {
         // ANGLER
         int encAngler = getHeldEnchantmentLevel(player, ANGLER);
         if (encAngler > 0) {
-            ItemStack fishingRod = event.getPlayer().getHeldItemMainhand();
+            ItemStack fishingRod = player.getHeldItemMainhand();
 
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) hook.world)).withParameter(LootParameters.POSITION, new BlockPos(hook)).withParameter(LootParameters.TOOL, fishingRod).withRandom(hook.world.rand).withLuck((float) hook.luck + hook.angler.getLuck());
             lootcontext$builder.withParameter(LootParameters.KILLER_ENTITY, hook.angler).withParameter(LootParameters.THIS_ENTITY, hook);
@@ -355,6 +373,21 @@ public class CommonEventsEnsorc {
             }
         }
     }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+
+        PlayerEntity player = event.getPlayer();
+        ExperienceOrbEntity orb = event.getOrb();
+
+        // CURSE OF FOOLISHNESS
+        int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+        if (encFool > 0) {
+            orb.xpValue = 0;
+            orb.remove();
+            event.setCanceled(true);
+        }
+    }
     // endregion
 
     // region BLOCK BREAKING
@@ -369,8 +402,14 @@ public class CommonEventsEnsorc {
             return;
         }
         if (event.getExpToDrop() > 0) {
+            // CURSE OF FOOLISHNESS
+            int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+            if (encFool > 0) {
+                event.setExpToDrop(0);
+                return;
+            }
             // EXP BOOST
-            int encExpBoost = getEnchantmentLevel(EXP_BOOST, player.getHeldItemMainhand());
+            int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
             if (encExpBoost > 0) {
                 event.setExpToDrop(event.getExpToDrop() + encExpBoost + player.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience));
             }
@@ -390,7 +429,7 @@ public class CommonEventsEnsorc {
             event.setNewSpeed(Math.max(event.getOriginalSpeed(), event.getNewSpeed() * 5.0F));
         }
         // EXCAVATING
-        int encExcavating = getEnchantmentLevel(EXCAVATING, player.getHeldItemMainhand());
+        int encExcavating = getHeldEnchantmentLevel(player, EXCAVATING);
         if (encExcavating > 0 && !player.isSneaking()) {
             event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
         }
@@ -407,8 +446,8 @@ public class CommonEventsEnsorc {
             return;
         }
         ItemStack tool = player.getHeldItemMainhand();
-        int encSmashing = getEnchantmentLevel(SMASHING, tool);
-        int encSmelting = getEnchantmentLevel(SMELTING, tool);
+        int encSmashing = getHeldEnchantmentLevel(player, SMASHING);
+        int encSmelting = getHeldEnchantmentLevel(player, SMELTING);
 
         List<ItemStack> drops = event.getDrops();
 

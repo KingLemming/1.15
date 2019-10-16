@@ -1,7 +1,6 @@
 package cofh.core.event;
 
 import cofh.core.init.ConfigCore;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -18,8 +17,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Map;
 
+import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.FEATHER_FALLING;
+import static net.minecraft.enchantment.Enchantments.MENDING;
 
 public class CommonEventsCore {
 
@@ -105,7 +106,7 @@ public class CommonEventsCore {
     // region HELPERS
     private static Map.Entry<EquipmentSlotType, ItemStack> getMostDamagedItem(PlayerEntity player) {
 
-        Map<EquipmentSlotType, ItemStack> map = Enchantments.MENDING.getEntityEquipment(player);
+        Map<EquipmentSlotType, ItemStack> map = MENDING.getEntityEquipment(player);
         Map.Entry<EquipmentSlotType, ItemStack> mostDamaged = null;
         if (map.isEmpty()) {
             return null;
@@ -114,9 +115,11 @@ public class CommonEventsCore {
 
         for (Map.Entry<EquipmentSlotType, ItemStack> entry : map.entrySet()) {
             ItemStack stack = entry.getValue();
-            if (calcDurabilityRatio(stack) > durability) {
-                mostDamaged = entry;
-                durability = calcDurabilityRatio(stack);
+            if (!stack.isEmpty() && getEnchantmentLevel(MENDING, stack) > 0) {
+                if (calcDurabilityRatio(stack) > durability) {
+                    mostDamaged = entry;
+                    durability = calcDurabilityRatio(stack);
+                }
             }
         }
         return mostDamaged;

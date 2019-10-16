@@ -10,11 +10,11 @@ issueTrackerURL="http://my.issue.tracker/"
     #displayURL="http://example.com/"
     logoFile="logo.png"
     credits="Team CoFH"
-    authors="King Lemming"
+    authors="King Lemming, covers1624, skyboy"
     description='''
+Core Library required for the functionality of all CoFH mods.
 
-CoFH Core!
-
+Also contains a number of optional gameplay tweaks for convenience.
 '''
 [[dependencies.cofh_core]]
     modId="minecraft"

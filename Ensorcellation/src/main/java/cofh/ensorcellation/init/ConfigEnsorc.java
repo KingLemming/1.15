@@ -297,6 +297,11 @@ public class ConfigEnsorc {
         COMMON_CONFIG.pop();
 
         // CURSES
+        COMMON_CONFIG.push("Curse of Foolishness");
+        comment = "If TRUE, the Curse of Foolishness Enchantment is available for various Tools and Weapons.";
+        enableCurseFool = COMMON_CONFIG.comment(comment).define("Enable", true);
+        COMMON_CONFIG.pop();
+
         COMMON_CONFIG.push("Curse of Mercy");
         comment = "If TRUE, the Curse of Mercy Enchantment is available for various Weapons.";
         enableCurseMercy = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -545,6 +550,9 @@ public class ConfigEnsorc {
             SoulboundEnchantment.permanent = permanentSoulbound.get();
         }
         // CURSES
+        if (CURSE_FOOL instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) CURSE_FOOL).setEnable(enableCurseFool.get());
+        }
         if (CURSE_MERCY instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) CURSE_MERCY).setEnable(enableCurseMercy.get());
         }
@@ -711,6 +719,8 @@ public class ConfigEnsorc {
     private static BooleanValue permanentSoulbound;
 
     // CURSES
+    private static BooleanValue enableCurseFool;
+
     private static BooleanValue enableCurseMercy;
 
     // OVERRIDES

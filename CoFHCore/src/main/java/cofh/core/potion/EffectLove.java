@@ -5,8 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -38,14 +40,6 @@ public class EffectLove extends EffectCoFH {
                 setLoveFlag(null, (AnimalEntity) entityLivingBaseIn);
             }
         }
-        // TODO: Finish/Fix
-        //        else {
-        //            Random rand = world.rand;
-        //            double d0 = rand.nextGaussian() * 0.02D;
-        //            double d1 = rand.nextGaussian() * 0.02D;
-        //            double d2 = rand.nextGaussian() * 0.02D;
-        //            world.addParticle(ParticleTypes.HEART, entityLivingBaseIn.posX + rand.nextFloat() * entityLivingBaseIn.width * 2.0F - entityLivingBaseIn.width, entityLivingBaseIn.posY + 0.5D + rand.nextFloat() * entityLivingBaseIn.height, entityLivingBaseIn.posZ + rand.nextFloat() * entityLivingBaseIn.width * 2.0F - entityLivingBaseIn.width, d0, d1, d2);
-        //        }
     }
 
     @Override
@@ -60,9 +54,11 @@ public class EffectLove extends EffectCoFH {
     private void setLoveFlag(Entity indirectSource, AnimalEntity animal) {
 
         PlayerEntity player = indirectSource instanceof PlayerEntity ? (PlayerEntity) indirectSource : null;
-
         if (animal.getGrowingAge() == 0 && !animal.isInLove()) {
             animal.setInLove(player);
+            for (int i = 0; i < 4; ++i) {
+                ((ServerWorld) animal.world).spawnParticle(ParticleTypes.HEART, animal.posX + animal.world.rand.nextDouble(), animal.posY + 1.0D + animal.world.rand.nextDouble(), animal.posZ + animal.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+            }
         }
     }
     // endregion

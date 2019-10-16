@@ -82,6 +82,7 @@ public class EnsorcellationReferences {
     public static final String ID_SOULBOUND = ID_ENSORCELLATION + ":soulbound";
 
     // CURSES
+    public static final String ID_CURSE_FOOL = ID_ENSORCELLATION + ":curse_fool";
     public static final String ID_CURSE_MERCY = ID_ENSORCELLATION + ":curse_mercy";
     // endregion
 
@@ -190,6 +191,9 @@ public class EnsorcellationReferences {
     public static final Enchantment SOULBOUND = null;
 
     // CURSES
+    @ObjectHolder(ID_CURSE_FOOL)
+    public static final Enchantment CURSE_FOOL = null;
+
     @ObjectHolder(ID_CURSE_MERCY)
     public static final Enchantment CURSE_MERCY = null;
     // endregion

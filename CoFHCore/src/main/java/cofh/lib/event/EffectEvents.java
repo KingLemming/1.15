@@ -41,7 +41,7 @@ public class EffectEvents {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
 
         PlayerEntity player = event.getPlayer();

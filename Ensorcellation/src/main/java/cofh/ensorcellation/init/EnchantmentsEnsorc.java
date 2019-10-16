@@ -73,6 +73,7 @@ public class EnchantmentsEnsorc {
         ENCHANTMENTS.registerSpec(ID_SOULBOUND, SoulboundEnchantment::new);
 
         // CURSES
+        ENCHANTMENTS.registerSpec(ID_CURSE_FOOL, CurseFoolEnchant::new);
         ENCHANTMENTS.registerSpec(ID_CURSE_MERCY, CurseMercyEnchantment::new);
     }
 
