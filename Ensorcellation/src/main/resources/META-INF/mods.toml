@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[26,)"
+issueTrackerURL="http://my.issue.tracker/"
+
+[[mods]]
+    modId="ensorcellation"
+    version="${file.jarVersion}"
+    displayName="Ensorcellation"
+    #updateJSONURL="http://myurl.me/"
+    #displayURL="http://example.com/"
+    logoFile="logo.png"
+    credits="Team CoFH"
+    authors="King Lemming"
+    description='''
+Adds a multitude of highly configurable Enchantments!
+Also improves functionality and flexibility of some vanilla Enchantments.
+'''
+[[dependencies.ensorcellation]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ensorcellation]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+
+#[[dependencies.ensorcellation]]
+#    modId="cofh_core"
+#    mandatory=true
+#    versionRange="[1.0,)"
+#    ordering="NONE"
+#    side="BOTH"

@@ -10,7 +10,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class ConfigCore {
 
-    private static final ConfigCore INSTANCE = new ConfigCore();
     private static boolean registered = false;
 
     public static void register() {
@@ -18,7 +17,7 @@ public class ConfigCore {
         if (registered) {
             return;
         }
-        FMLJavaModLoadingContext.get().getModEventBus().register(INSTANCE);
+        FMLJavaModLoadingContext.get().getModEventBus().register(ConfigCore.class);
         registered = true;
 
         genCommonConfig();
@@ -43,19 +42,19 @@ public class ConfigCore {
 
         String comment;
 
-        COMMON_CONFIG.push("Fishing");
-        comment = "If TRUE, Fishing will cause exhaustion.";
-        commonEnableFishingExhaustion = COMMON_CONFIG.comment(comment).define("Fishing Exhaustion", enableFishingExhaustion);
-        comment = "This option sets the amount of exhaustion caused by fishing, if enabled.";
-        commonAmountFishingExhaustion = COMMON_CONFIG.comment(comment).defineInRange("Fishing Exhaustion Amount", amountFishingExhaustion, 0.0D, 10.0D);
-        COMMON_CONFIG.pop();
-
         COMMON_CONFIG.push("Enchantments");
         comment = "If TRUE, Feather Falling will prevent Farmland from being trampled. This option will work with alternative versions (overrides) of Feather Falling.";
         commonImprovedFeatherFalling = COMMON_CONFIG.comment(comment).define("Improved Feather Falling", improvedFeatherFalling);
 
         comment = "If TRUE, Mending behavior is altered so that XP orbs always repair items if possible, and the most damaged item is prioritized. This option may not work with alternative versions (overrides) of Mending.";
         commonImprovedMending = COMMON_CONFIG.comment(comment).define("Improved Mending", improvedMending);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Fishing");
+        comment = "If TRUE, Fishing will cause exhaustion.";
+        commonEnableFishingExhaustion = COMMON_CONFIG.comment(comment).define("Fishing Exhaustion", enableFishingExhaustion);
+        comment = "This option sets the amount of exhaustion caused by fishing, if enabled.";
+        commonAmountFishingExhaustion = COMMON_CONFIG.comment(comment).defineInRange("Fishing Exhaustion Amount", amountFishingExhaustion, 0.0D, 10.0D);
         COMMON_CONFIG.pop();
 
         commonSpec = COMMON_CONFIG.build();
@@ -73,7 +72,7 @@ public class ConfigCore {
         clientSpec = CLIENT_CONFIG.build();
     }
 
-    private void refreshCommonConfig() {
+    private static void refreshCommonConfig() {
 
         enableFishingExhaustion = commonEnableFishingExhaustion.get();
         amountFishingExhaustion = commonAmountFishingExhaustion.get().floatValue();
@@ -82,7 +81,7 @@ public class ConfigCore {
         improvedMending = commonImprovedMending.get();
     }
 
-    private void refreshClientConfig() {
+    private static void refreshClientConfig() {
 
         enableEnchantmentDescriptions = clientEnableEnchantmentDescriptions.get();
     }
@@ -108,7 +107,7 @@ public class ConfigCore {
 
     // region CONFIGURATION
     @SubscribeEvent
-    public void configLoading(final ModConfig.Loading event) {
+    public static void configLoading(final ModConfig.Loading event) {
 
         if (event.getConfig().getType() == ModConfig.Type.CLIENT) {
             refreshClientConfig();
@@ -118,7 +117,7 @@ public class ConfigCore {
     }
 
     @SubscribeEvent
-    public void configReloading(final ModConfig.ConfigReloading event) {
+    public static void configReloading(final ModConfig.ConfigReloading event) {
 
         if (event.getConfig().getType() == ModConfig.Type.CLIENT) {
             refreshClientConfig();

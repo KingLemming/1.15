@@ -17,8 +17,8 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import static cofh.lib.capability.CapabilityArchery.*;
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
-import static cofh.lib.util.references.EnsorcellmentReferences.TRUESHOT;
-import static cofh.lib.util.references.EnsorcellmentReferences.VOLLEY;
+import static cofh.lib.util.references.EnsorcellationReferences.TRUESHOT;
+import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.*;
 

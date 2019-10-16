@@ -48,7 +48,6 @@ public class FishingRodItemCoFH extends FishingRodItem {
                     consumer.sendBreakAnimation(handIn);
                 });
             }
-
             playerIn.swingArm(handIn);
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         } else {

@@ -48,7 +48,7 @@ public class Constants {
     public static final String ID_THERMAL_INNOVATION = "thermal_innovation";
     public static final String ID_THERMAL_LOCOMOTION = "thermal_locomotion";
 
-    public static final String ID_ENSORCELLMENT = "ensorcellment";
+    public static final String ID_ENSORCELLATION = "ensorcellation";
     public static final String ID_ENSTORAGEMENT = "enstoragement";
     public static final String ID_ORBULATION = "orbulation";
     public static final String ID_QUARTERMASTERY = "quartermastery";

@@ -3,6 +3,7 @@ package cofh.lib.util.helpers;
 import cofh.lib.util.RayTracer;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
@@ -17,9 +18,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
-import static cofh.lib.util.references.EnsorcellmentReferences.EXCAVATING;
-import static cofh.lib.util.references.EnsorcellmentReferences.TILLING;
+import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
+import static net.minecraft.util.Direction.DOWN;
 
 public class AOEHelper {
 
@@ -45,7 +46,11 @@ public class AOEHelper {
         }
         int encTilling = getEnchantmentLevel(TILLING, stack);
         if (encTilling > 0) {
-            return getAOEBlocksLine(stack, pos, player, 1 + encTilling * 2);
+            return getAOEBlocksRadiusHoe(stack, pos, player, encTilling);
+        }
+        int encFurrowing = getEnchantmentLevel(FURROWING, stack);
+        if (encFurrowing > 0) {
+            return getAOEBlocksLineHoe(stack, pos, player, encFurrowing * 2);
         }
         return ImmutableList.of();
     }
@@ -131,7 +136,7 @@ public class AOEHelper {
         }
         switch (player.getHorizontalFacing()) {
             case SOUTH:
-                for (int k = z; k < z + length; ++k) {
+                for (int k = z + 1; k < z + length + 1; ++k) {
                     query = new BlockPos(x, y, k);
                     if (!canToolAffect(tool, stack, world, query)) {
                         break;
@@ -140,7 +145,7 @@ public class AOEHelper {
                 }
                 break;
             case WEST:
-                for (int i = x; i > x - length; i--) {
+                for (int i = x - 1; i > x - length - 1; --i) {
                     query = new BlockPos(i, y, z);
                     if (!canToolAffect(tool, stack, world, query)) {
                         break;
@@ -149,7 +154,7 @@ public class AOEHelper {
                 }
                 break;
             case NORTH:
-                for (int k = z; k > z - length; k--) {
+                for (int k = z - 1; k > z - length - 1; --k) {
                     query = new BlockPos(x, y, k);
                     if (!canToolAffect(tool, stack, world, query)) {
                         break;
@@ -158,7 +163,7 @@ public class AOEHelper {
                 }
                 break;
             case EAST:
-                for (int i = x; i < x + length; ++i) {
+                for (int i = x + 1; i < x + length + 1; ++i) {
                     query = new BlockPos(i, y, z);
                     if (!canToolAffect(tool, stack, world, query)) {
                         break;
@@ -170,14 +175,102 @@ public class AOEHelper {
         return ImmutableList.copyOf(area);
     }
 
+    public static ImmutableList<BlockPos> getAOEBlocksRadiusHoe(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+
+        ArrayList<BlockPos> area = new ArrayList<>();
+        World world = player.getEntityWorld();
+        boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
+
+        BlockPos query;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
+        if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isSneaking() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
+            return ImmutableList.of();
+        }
+        for (int i = x - radius; i <= x + radius; ++i) {
+            for (int k = z - radius; k <= z + radius; ++k) {
+                if (i == x && k == z) {
+                    continue;
+                }
+                query = new BlockPos(i, y, k);
+                if (canHoeAffect(world, query, weeding)) {
+                    area.add(query);
+                }
+            }
+        }
+        return ImmutableList.copyOf(area);
+    }
+
+    public static ImmutableList<BlockPos> getAOEBlocksLineHoe(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
+
+        ArrayList<BlockPos> area = new ArrayList<>();
+        World world = player.getEntityWorld();
+        boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
+
+        BlockPos query;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        if (player.isSneaking() || !canHoeAffect(world, pos, weeding) || length <= 0) {
+            return ImmutableList.of();
+        }
+        switch (player.getHorizontalFacing()) {
+            case SOUTH:
+                for (int k = z + 1; k < z + length + 1; ++k) {
+                    query = new BlockPos(x, y, k);
+                    if (canHoeAffect(world, query, weeding)) {
+                        area.add(query);
+                    }
+                }
+                break;
+            case WEST:
+                for (int i = x - 1; i > x - length - 1; --i) {
+                    query = new BlockPos(i, y, z);
+                    if (canHoeAffect(world, query, weeding)) {
+                        area.add(query);
+                    }
+                }
+                break;
+            case NORTH:
+                for (int k = z - 1; k > z - length - 1; --k) {
+                    query = new BlockPos(x, y, k);
+                    if (canHoeAffect(world, query, weeding)) {
+                        area.add(query);
+                    }
+                }
+                break;
+            case EAST:
+                for (int i = x + 1; i < x + length + 1; ++i) {
+                    query = new BlockPos(i, y, z);
+                    if (canHoeAffect(world, query, weeding)) {
+                        area.add(query);
+                    }
+                }
+                break;
+        }
+        return ImmutableList.copyOf(area);
+    }
+
     // region HELPERS
     private static boolean canToolAffect(Item toolItem, ItemStack toolStack, World world, BlockPos pos) {
 
         BlockState state = world.getBlockState(pos);
-        if (toolItem instanceof HoeItem) {
-            return HoeItem.HOE_LOOKUP.containsKey(state.getBlock()) && world.isAirBlock(pos.up());
-        }
         return toolItem.canHarvestBlock(toolStack, state) || toolItem.getDestroySpeed(toolStack, state) > 1.0F;
+    }
+
+    private static boolean canHoeAffect(World world, BlockPos pos, boolean weeding) {
+
+        BlockState state = world.getBlockState(pos);
+        if (HoeItem.HOE_LOOKUP.containsKey(state.getBlock())) {
+            BlockPos up = pos.up();
+            BlockState stateUp = world.getBlockState(up);
+            return world.isAirBlock(up) || (weeding && (stateUp.getMaterial() == Material.PLANTS || stateUp.getMaterial() == Material.TALL_PLANTS) && stateUp.getBlockHardness(world, up) <= 0.0F);
+        }
+        return false;
     }
     // endregion
 }

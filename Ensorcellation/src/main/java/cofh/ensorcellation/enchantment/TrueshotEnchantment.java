@@ -1,0 +1,36 @@
+package cofh.ensorcellation.enchantment;
+
+import cofh.lib.enchantment.EnchantmentCoFH;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+
+import static cofh.lib.util.helpers.ArcheryHelper.validBow;
+
+public class TrueshotEnchantment extends EnchantmentCoFH {
+
+    public TrueshotEnchantment() {
+
+        super(Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        maxLevel = 2;
+    }
+
+    @Override
+    public int getMinEnchantability(int level) {
+
+        return 15 + (level - 1) * 10;
+    }
+
+    @Override
+    protected int maxDelegate(int level) {
+
+        return getMinEnchantability(level) + 50;
+    }
+
+    @Override
+    public boolean canApply(ItemStack stack) {
+
+        return enable && (validBow(stack) || supportsEnchantment(stack));
+    }
+
+}

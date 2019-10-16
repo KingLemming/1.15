@@ -2,13 +2,19 @@ package cofh.lib.event;
 
 import cofh.lib.util.Utils;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -17,6 +23,9 @@ import java.util.HashSet;
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
 import static cofh.lib.util.helpers.AOEHelper.validAOEBreakItem;
+import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;
+import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
+import static net.minecraft.item.HoeItem.HOE_LOOKUP;
 
 public class AOEEvents {
 
@@ -32,6 +41,7 @@ public class AOEEvents {
     }
 
     private static final HashSet<PlayerEntity> HARVESTING_PLAYERS = new HashSet<>();
+    private static final HashSet<PlayerEntity> TILLING_PLAYERS = new HashSet<>();
 
     private AOEEvents() {
 
@@ -56,17 +66,78 @@ public class AOEEvents {
         ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
         // TODO: Revisit if performance issues show. This is the most *proper* way to handle this, but is not particularly friendly.
         for (BlockPos pos : areaBlocks) {
+            if (stack.isEmpty()) {
+                break;
+            }
             playerMP.interactionManager.tryHarvestBlock(pos);
         }
     }
 
-    // TODO: Handle Right Clicks
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void handleUseHoeEvent(UseHoeEvent event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        PlayerEntity player = event.getPlayer();
+        ItemStack stack = event.getContext().getItem();
+        BlockPos target = event.getContext().getPos();
+        World world = player.world;
+        BlockState targetTilled = HOE_LOOKUP.get(world.getBlockState(target).getBlock());
+
+        if (targetTilled == null) {
+            return;
+        }
+        boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
+        if (Utils.isClientWorld(world)) {
+            if (weeding) {
+                BlockPos up = target.up();
+                if (!world.isAirBlock(up)) {
+                    player.swingArm(event.getContext().getHand());
+                }
+            }
+            return;
+        }
+        if (TILLING_PLAYERS.contains(player)) {
+            return;
+        }
+        TILLING_PLAYERS.add(player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, target, player);
+        for (BlockPos pos : areaBlocks) {
+            if (stack.isEmpty()) {
+                break;
+            }
+            BlockState tilled = HOE_LOOKUP.get(world.getBlockState(pos).getBlock());
+            if (tilled != null) {
+                world.setBlockState(pos, tilled);
+                if (weeding) {
+                    BlockPos up = pos.up();
+                    if (!world.isAirBlock(up)) {
+                        world.destroyBlock(up, !player.abilities.isCreativeMode);
+                    }
+                }
+                stack.damageItem(1, player, (consumer) -> {
+                    consumer.sendBreakAnimation(event.getContext().getHand());
+                });
+            }
+        }
+        world.setBlockState(target, targetTilled);
+        if (weeding) {
+            BlockPos up = target.up();
+            if (!world.isAirBlock(up)) {
+                world.destroyBlock(up, !player.abilities.isCreativeMode);
+            }
+        }
+        world.playSound(player, target, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        event.setResult(Event.Result.ALLOW);
+    }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void handleTickEndEvent(TickEvent.ServerTickEvent event) {
 
         if (event.phase == TickEvent.Phase.END) {
             HARVESTING_PLAYERS.clear();
+            TILLING_PLAYERS.clear();
         }
     }
 
