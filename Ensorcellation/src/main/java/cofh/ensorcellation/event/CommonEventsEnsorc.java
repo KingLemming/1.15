@@ -94,8 +94,8 @@ public class CommonEventsEnsorc {
         }
         // DISPLACEMENT
         int encDisplacement = getMaxEnchantmentLevel(DISPLACEMENT, entity);
-        if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
-            DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
+        if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG()) && attacker != null) {
+            DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
             event.setCanceled(true);
         }
     }

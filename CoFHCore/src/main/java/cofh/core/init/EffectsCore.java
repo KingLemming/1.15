@@ -15,8 +15,8 @@ public class EffectsCore {
 
     public static void register() {
 
-        POTIONS.registerSpec(ID_ENDERFERENCE, () -> new EffectCoFH(EffectType.NEUTRAL, 0x1B574D));
-        POTIONS.registerSpec(ID_EPIPHANY, () -> new EffectCoFH(EffectType.BENEFICIAL, 0x80BF00));
+        POTIONS.register(ID_ENDERFERENCE, () -> new EffectCoFH(EffectType.NEUTRAL, 0x1B574D));
+        POTIONS.register(ID_EPIPHANY, () -> new EffectCoFH(EffectType.BENEFICIAL, 0x80BF00));
     }
 
 }

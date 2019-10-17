@@ -1,6 +1,7 @@
 package cofh.lib.util.references;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -17,6 +18,8 @@ public class CoreReferences {
 
     public static final String ID_ENDERFERENCE = ID_COFH_CORE + ":enderference";
     public static final String ID_EPIPHANY = ID_COFH_CORE + ":epiphany";
+
+    public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
     // endregion
 
     // region BLOCKS
@@ -30,5 +33,10 @@ public class CoreReferences {
 
     @ObjectHolder(ID_EPIPHANY)
     public static final Effect EPIPHANY = null;
+    // endregion
+
+    // region ENCHANTMENTS
+    @ObjectHolder(ID_HOLDING)
+    public static final Enchantment HOLDING = null;
     // endregion
 }

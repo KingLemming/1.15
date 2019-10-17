@@ -1,13 +1,13 @@
 modLoader="javafml"
-loaderVersion="[26,)"
-issueTrackerURL="http://my.issue.tracker/"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="cofh_core"
-    version="${file.jarVersion}"
+    version="0.0.1-a"
     displayName="CoFH Core"
-    #updateJSONURL="http://myurl.me/"
-    #displayURL="http://example.com/"
+    updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core_update.json"
+    displayURL="https://teamcofh.com/"
     logoFile="logo.png"
     credits="Team CoFH"
     authors="King Lemming, covers1624, skyboy"
@@ -26,6 +26,6 @@ Also contains a number of optional gameplay tweaks for convenience.
 [[dependencies.cofh_core]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[28.1,)"
     ordering="NONE"
     side="BOTH"

@@ -17,12 +17,15 @@ import net.minecraft.potion.Effects;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Map;
+import java.util.Random;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.references.EnsorcellationReferences.FIRE_REBUKE;
-import static cofh.lib.util.references.EnsorcellationReferences.FROST_REBUKE;
+import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class FrostRebukeEnchantment extends EnchantmentCoFH {
+
+    public static int chance = 20;
 
     public FrostRebukeEnchantment() {
 
@@ -52,34 +55,46 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && ench != FIRE_REBUKE;
+        return super.canApplyTogether(ench) && ench != THORNS && ench != DISPLACEMENT && ench != FIRE_REBUKE;
     }
 
     // region HELPERS
     @Override
     public void onUserHurt(LivingEntity user, Entity attacker, int level) {
 
+        if (!(attacker instanceof LivingEntity)) {
+            return;
+        }
         Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.func_222189_b(FROST_REBUKE, user);
-        onHit(user, attacker, level);
-        if (stack != null) {
-            (stack.getValue()).damageItem(2, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+        if (shouldHit(level, user.getRNG())) {
+            onHit(user, attacker, level);
+            if (stack != null) {
+                (stack.getValue()).damageItem(2, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+            }
         }
     }
 
     public static void onHit(LivingEntity user, Entity attacker, int level) {
 
-        if (attacker instanceof LivingEntity) {
-            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
-            int i = 60 * level;
-            if (attacker.isBurning()) {
-                attacker.extinguish();
-            }
-            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
-            ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
-            for (int j = 0; j < 3 * level; ++j) {
-                ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, attacker.posX + attacker.world.rand.nextDouble(), attacker.posY + 1.0D + attacker.world.rand.nextDouble(), attacker.posZ + attacker.world.rand.nextDouble(), 3 * level, 0, 0, 0, 0);
-            }
+        if (!(attacker instanceof LivingEntity)) {
+            return;
         }
+        Random rand = user.getRNG();
+        ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+        int i = 20 + 20 * rand.nextInt(3 * level);
+        if (attacker.isBurning()) {
+            attacker.extinguish();
+        }
+        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
+        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
+        for (int j = 0; j < 3 * level; ++j) {
+            ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+        }
+    }
+
+    public static boolean shouldHit(int level, Random rand) {
+
+        return rand.nextInt(100) < chance * level;
     }
     // endregion
 }

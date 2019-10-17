@@ -1,13 +1,13 @@
 modLoader="javafml"
-loaderVersion="[26,)"
-issueTrackerURL="http://my.issue.tracker/"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="ensorcellation"
-    version="${file.jarVersion}"
+    version="0.0.1-a"
     displayName="Ensorcellation"
-    #updateJSONURL="http://myurl.me/"
-    #displayURL="http://example.com/"
+    updateJSONURL="https://raw.github.com/cofh/version/master/ensorcellation_update.json"
+    displayURL="https://teamcofh.com/"
     logoFile="logo.png"
     credits="Team CoFH"
     authors="King Lemming"
@@ -28,13 +28,13 @@ Suitable for both lightly and heavily modded worlds.
 [[dependencies.ensorcellation]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[28.1,)"
     ordering="NONE"
     side="BOTH"
 
-#[[dependencies.ensorcellation]]
-#    modId="cofh_core"
-#    mandatory=true
-#    versionRange="[1.0,)"
-#    ordering="NONE"
-#    side="BOTH"
+[[dependencies.ensorcellation]]
+    modId="cofh_core"
+    mandatory=true
+    versionRange="[0.0,)"
+    ordering="NONE"
+    side="BOTH"

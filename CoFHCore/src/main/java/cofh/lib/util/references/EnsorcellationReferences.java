@@ -31,14 +31,13 @@ public class EnsorcellationReferences {
     // ARMOR
     public static final String ID_PROTECTION_MAGIC = ID_ENSORCELLATION + ":magic_protection";
 
-    // HEAD ARMOR
-    public static final String ID_AIR_AFFINITY = ID_ENSORCELLATION + ":air_affinity";
-    public static final String ID_GOURMAND = ID_ENSORCELLATION + ":gourmand";
-
-    // CHEST ARMOR
     public static final String ID_DISPLACEMENT = ID_ENSORCELLATION + ":displacement";
     public static final String ID_FIRE_REBUKE = ID_ENSORCELLATION + ":fire_rebuke";
     public static final String ID_FROST_REBUKE = ID_ENSORCELLATION + ":frost_rebuke";
+
+    // HELMET
+    public static final String ID_AIR_AFFINITY = ID_ENSORCELLATION + ":air_affinity";
+    public static final String ID_GOURMAND = ID_ENSORCELLATION + ":gourmand";
 
     // WEAPONS
     public static final String ID_DAMAGE_ENDER = ID_ENSORCELLATION + ":damage_ender";
@@ -78,7 +77,6 @@ public class EnsorcellationReferences {
     public static final String ID_PHALANX = ID_ENSORCELLATION + ":phalanx";
 
     // MISC
-    public static final String ID_HOLDING = ID_ENSORCELLATION + ":holding";
     public static final String ID_SOULBOUND = ID_ENSORCELLATION + ":soulbound";
 
     // CURSES
@@ -92,14 +90,6 @@ public class EnsorcellationReferences {
     @ObjectHolder(ID_PROTECTION_MAGIC)
     public static final Enchantment PROTECTION_MAGIC = null;
 
-    // HEAD ARMOR
-    @ObjectHolder(ID_AIR_AFFINITY)
-    public static final Enchantment AIR_AFFINITY = null;
-
-    @ObjectHolder(ID_GOURMAND)
-    public static final Enchantment GOURMAND = null;
-
-    // CHEST ARMOR
     @ObjectHolder(ID_DISPLACEMENT)
     public static final Enchantment DISPLACEMENT = null;
 
@@ -108,6 +98,13 @@ public class EnsorcellationReferences {
 
     @ObjectHolder(ID_FROST_REBUKE)
     public static final Enchantment FROST_REBUKE = null;
+
+    // HELMET
+    @ObjectHolder(ID_AIR_AFFINITY)
+    public static final Enchantment AIR_AFFINITY = null;
+
+    @ObjectHolder(ID_GOURMAND)
+    public static final Enchantment GOURMAND = null;
 
     // WEAPONS
     @ObjectHolder(ID_DAMAGE_ENDER)
@@ -184,9 +181,6 @@ public class EnsorcellationReferences {
     public static final Enchantment PHALANX = null;
 
     // MISC
-    @ObjectHolder(ID_HOLDING)
-    public static final Enchantment HOLDING = null;
-
     @ObjectHolder(ID_SOULBOUND)
     public static final Enchantment SOULBOUND = null;
 

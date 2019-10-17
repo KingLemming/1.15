@@ -5,7 +5,6 @@ import cofh.ensorcellation.enchantment.FireRebukeEnchantment;
 import cofh.ensorcellation.enchantment.FrostRebukeEnchantment;
 import cofh.ensorcellation.enchantment.PhalanxEnchantment;
 import cofh.ensorcellation.enchantment.override.ThornsEnchantmentImp;
-import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.enchantment.ThornsEnchantment;
@@ -61,27 +60,27 @@ public class ShieldEnchEvents {
 
         ItemStack stack = entity.getActiveItemStack();
 
-        if (canBlockDamageSource(entity, source)) {
+        if (canBlockDamageSource(entity, source) && attacker != null) {
             // DISPLACEMENT
             int encDisplacement = getEnchantmentLevel(DISPLACEMENT, stack);
-            if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
-                DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
+            if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG())) {
+                DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
                 event.setCanceled(true);
                 return;
             }
             // THORNS
             int encThorns = getEnchantmentLevel(THORNS, stack);
-            if (ThornsEnchantmentImp.shouldHit(encThorns, MathHelper.RANDOM) && attacker != null) {
-                attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
+            if (ThornsEnchantmentImp.shouldHit(encThorns, entity.getRNG())) {
+                attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, entity.getRNG()));
             }
             // FIRE REBUKE
             int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, stack);
-            if (encFireRebuke > 0) {
+            if (FireRebukeEnchantment.shouldHit(encFireRebuke, entity.getRNG())) {
                 FireRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
             }
             // FROST REBUKE
             int encFrostRebuke = getEnchantmentLevel(FROST_REBUKE, stack);
-            if (encFrostRebuke > 0) {
+            if (FrostRebukeEnchantment.shouldHit(encFrostRebuke, entity.getRNG())) {
                 FrostRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
             }
         }

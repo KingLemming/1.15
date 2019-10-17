@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static cofh.lib.util.helpers.StringHelper.decompose;
+
 /**
  * Basically a copy of Forge's Deferred Register system, with a little more cowbell. See {@link DeferredRegister}
  *
@@ -30,14 +32,14 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
         this.modid = modid;
     }
 
-    public <I extends T> RegistryObject<I> register(final String name, final Supplier<I> sup) {
+    public <I extends T> RegistryObject<I> register(final String resourceLoc, final Supplier<I> sup) {
 
-        return register(modid, name, sup);
+        return register(decompose(modid, resourceLoc, ':'), sup);
     }
 
-    public <I extends T> RegistryObject<I> registerSpec(final String key, final Supplier<I> sup) {
+    public <I extends T> RegistryObject<I> register(final String[] resourceLoc, final Supplier<I> sup) {
 
-        return register(new ResourceLocation(key), sup);
+        return register(resourceLoc[0], resourceLoc[1], sup);
     }
 
     public <I extends T> RegistryObject<I> register(final String modid, final String name, final Supplier<I> sup) {
@@ -45,10 +47,10 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
         return register(new ResourceLocation(modid, name), sup);
     }
 
-    public <I extends T> RegistryObject<I> register(final ResourceLocation key, final Supplier<I> sup) {
+    public <I extends T> RegistryObject<I> register(final ResourceLocation resourceLoc, final Supplier<I> sup) {
 
-        entries.add(() -> sup.get().setRegistryName(key));
-        return RegistryObject.of(key.toString(), this.type);
+        entries.add(() -> sup.get().setRegistryName(resourceLoc));
+        return RegistryObject.of(resourceLoc.toString(), this.type);
     }
 
     public void register(IEventBus bus) {

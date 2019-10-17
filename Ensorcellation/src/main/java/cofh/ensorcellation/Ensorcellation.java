@@ -19,8 +19,6 @@ import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
 @Mod(ID_ENSORCELLATION)
 public class Ensorcellation {
 
-    public static final String MOD_NAME = "Ensorcellation";
-    public static final String VERSION = "1.0";
     public static final Logger LOG = LogManager.getLogger(ID_ENSORCELLATION);
 
     public static final DeferredRegisterCoFH<Enchantment> ENCHANTMENTS = new DeferredRegisterCoFH<>(ForgeRegistries.ENCHANTMENTS, ID_ENSORCELLATION);

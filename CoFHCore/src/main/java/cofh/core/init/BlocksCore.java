@@ -15,7 +15,7 @@ public class BlocksCore {
 
     public static void register() {
 
-        BLOCKS.registerSpec(ID_GLOSSED_MAGMA, () -> new GlossedMagmaBlock(from(Blocks.MAGMA_BLOCK).lightValue(6)));
+        BLOCKS.register(ID_GLOSSED_MAGMA, () -> new GlossedMagmaBlock(from(Blocks.MAGMA_BLOCK).lightValue(6)));
     }
 
 }

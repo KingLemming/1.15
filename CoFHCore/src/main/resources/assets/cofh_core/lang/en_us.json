@@ -36,7 +36,7 @@
   "enchantment.minecraft.impaling.desc": "Increases damage dealt to Water-based mobs.",
   "enchantment.minecraft.riptide.desc": "Thrown tridents carry the wielder under certain conditions.",
   "enchantment.minecraft.channeling.desc": "Thrown tridents can cause lightning strikes under certain conditions.",
-  "enchantment.minecraft.multishot.desc": "Three arrows are fired with each shot. Only one arrow is consumed.",
+  "enchantment.minecraft.multishot.desc": "Three arrows are fired in a spread pattern. Only one arrow is consumed.",
   "enchantment.minecraft.quick_charge.desc": "Decreases crossbow reloading time.",
   "enchantment.minecraft.piercing.desc": "Arrows pass through multiple entities.",
   "enchantment.minecraft.mending.desc": "Experience Orbs are consumed to repair the item.",

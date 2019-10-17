@@ -178,7 +178,6 @@ public class Utils {
         }
         entity.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
         entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
-
         return true;
     }
     // endregion

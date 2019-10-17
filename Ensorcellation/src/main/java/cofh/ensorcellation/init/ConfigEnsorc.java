@@ -65,7 +65,7 @@ public class ConfigEnsorc {
     private static void genEnchantmentConfig() {
 
         String comment;
-        // COMMON_CONFIG.push("Enchantments");
+        COMMON_CONFIG.push("Enchantments");
 
         // ARMOR
         COMMON_CONFIG.push("Magic Protection");
@@ -75,20 +75,6 @@ public class ConfigEnsorc {
         levelProtectionMagic = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
-        // HEAD ARMOR
-        COMMON_CONFIG.push("Air Affinity");
-        comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
-        enableAirWorker = COMMON_CONFIG.comment(comment).define("Enable", true);
-        COMMON_CONFIG.pop();
-
-        COMMON_CONFIG.push("Gourmand");
-        comment = "If TRUE, the Gourmand Enchantment is available for Helmets.";
-        enableGourmand = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelGourmand = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        COMMON_CONFIG.pop();
-
-        // CHEST ARMOR
         COMMON_CONFIG.push("Displacement");
         comment = "If TRUE, the Displacement Enchantment is available for Armor, Shields, and Horse Armor.";
         enableDisplacement = COMMON_CONFIG.comment(comment).define("Enable", true);
@@ -103,6 +89,8 @@ public class ConfigEnsorc {
         enableFireRebuke = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFireRebuke = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
+        chanceFireRebuke = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
         COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Chilling Rebuke");
@@ -110,6 +98,21 @@ public class ConfigEnsorc {
         enableFrostRebuke = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostRebuke = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
+        chanceFrostRebuke = COMMON_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
+        COMMON_CONFIG.pop();
+
+        // HELMET
+        COMMON_CONFIG.push("Air Affinity");
+        comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
+        enableAirWorker = COMMON_CONFIG.comment(comment).define("Enable", true);
+        COMMON_CONFIG.pop();
+
+        COMMON_CONFIG.push("Gourmand");
+        comment = "If TRUE, the Gourmand Enchantment is available for Helmets.";
+        enableGourmand = COMMON_CONFIG.comment(comment).define("Enable", true);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelGourmand = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         COMMON_CONFIG.pop();
 
         // WEAPONS
@@ -280,12 +283,13 @@ public class ConfigEnsorc {
         COMMON_CONFIG.pop();
 
         // MISC
-        COMMON_CONFIG.push("Holding");
-        comment = "If TRUE, the Holding Enchantment is available for various Storage Items.";
-        enableHolding = COMMON_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelHolding = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
-        COMMON_CONFIG.pop();
+        // TODO: Revisit
+        //        COMMON_CONFIG.push("Holding");
+        //        comment = "If TRUE, the Holding Enchantment is available for various Storage Items.";
+        //        enableHolding = COMMON_CONFIG.comment(comment).define("Enable", true);
+        //        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        //        levelHolding = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        //        COMMON_CONFIG.pop();
 
         COMMON_CONFIG.push("Soulbound");
         comment = "If TRUE, the Soulbound Enchantment is available.";
@@ -307,13 +311,13 @@ public class ConfigEnsorc {
         enableCurseMercy = COMMON_CONFIG.comment(comment).define("Enable", true);
         COMMON_CONFIG.pop();
 
-        // COMMON_CONFIG.pop();
+        COMMON_CONFIG.pop();
     }
 
     private static void genOverrideConfig() {
 
         String comment;
-        // COMMON_CONFIG.push("Overrides");
+        COMMON_CONFIG.push("Overrides");
 
         COMMON_CONFIG.push("Protection");
         comment = "If TRUE, the Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
@@ -362,7 +366,7 @@ public class ConfigEnsorc {
         enableFrostWalker = COMMON_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostWalker = COMMON_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        comment = "If TRUE, the Frost Walker Enchantment will also chill Lava into Cooled Magma.";
+        comment = "If TRUE, the Frost Walker Enchantment will also chill Lava into Glossed Magma.";
         enableFreezeLava = COMMON_CONFIG.comment(comment).define("Freeze Lava", true);
         COMMON_CONFIG.pop();
 
@@ -396,7 +400,7 @@ public class ConfigEnsorc {
         damageMending = COMMON_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
         COMMON_CONFIG.pop();
 
-        // COMMON_CONFIG.pop();
+        COMMON_CONFIG.pop();
     }
 
     private void refreshCommonConfig() {
@@ -420,15 +424,6 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) PROTECTION_MAGIC).setEnable(enableProtectionMagic.get());
             ((EnchantmentCoFH) PROTECTION_MAGIC).setMaxLevel(levelProtectionMagic.get());
         }
-        // HEAD ARMOR
-        if (AIR_AFFINITY instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirWorker.get());
-        }
-        if (GOURMAND instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) GOURMAND).setEnable(enableGourmand.get());
-            ((EnchantmentCoFH) GOURMAND).setMaxLevel(levelGourmand.get());
-        }
-        // CHEST ARMOR
         if (DISPLACEMENT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DISPLACEMENT).setEnable(enableDisplacement.get());
             ((EnchantmentCoFH) DISPLACEMENT).setMaxLevel(levelDisplacement.get());
@@ -437,10 +432,20 @@ public class ConfigEnsorc {
         if (FIRE_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FIRE_REBUKE).setEnable(enableFireRebuke.get());
             ((EnchantmentCoFH) FIRE_REBUKE).setMaxLevel(levelFireRebuke.get());
+            FireRebukeEnchantment.chance = chanceFireRebuke.get();
         }
         if (FROST_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FROST_REBUKE).setEnable(enableFrostRebuke.get());
             ((EnchantmentCoFH) FROST_REBUKE).setMaxLevel(levelFrostRebuke.get());
+            FrostRebukeEnchantment.chance = chanceFrostRebuke.get();
+        }
+        // HELMET
+        if (AIR_AFFINITY instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirWorker.get());
+        }
+        if (GOURMAND instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) GOURMAND).setEnable(enableGourmand.get());
+            ((EnchantmentCoFH) GOURMAND).setMaxLevel(levelGourmand.get());
         }
         // WEAPONS
         if (DAMAGE_ENDER instanceof EnchantmentCoFH) {
@@ -540,10 +545,11 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
         }
         // MISC
-        if (HOLDING instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) HOLDING).setEnable(enableHolding.get());
-            ((EnchantmentCoFH) HOLDING).setMaxLevel(levelHolding.get());
-        }
+        // TODO: Revisit
+        //        if (HOLDING instanceof EnchantmentCoFH) {
+        //            ((EnchantmentCoFH) HOLDING).setEnable(enableHolding.get());
+        //            ((EnchantmentCoFH) HOLDING).setMaxLevel(levelHolding.get());
+        //        }
         if (SOULBOUND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) SOULBOUND).setEnable(enableSoulbound.get());
             ((EnchantmentCoFH) SOULBOUND).setMaxLevel(levelSoulbound.get());
@@ -617,22 +623,23 @@ public class ConfigEnsorc {
     private static BooleanValue enableProtectionMagic;
     private static IntValue levelProtectionMagic;
 
-    // HEAD ARMOR
-    private static BooleanValue enableAirWorker;
-
-    private static BooleanValue enableGourmand;
-    private static IntValue levelGourmand;
-
-    // CHEST ARMOR
     private static BooleanValue enableDisplacement;
     private static IntValue levelDisplacement;
     private static IntValue chanceDisplacement;
 
     private static BooleanValue enableFireRebuke;
     private static IntValue levelFireRebuke;
+    private static IntValue chanceFireRebuke;
 
     private static BooleanValue enableFrostRebuke;
     private static IntValue levelFrostRebuke;
+    private static IntValue chanceFrostRebuke;
+
+    // HELMET
+    private static BooleanValue enableAirWorker;
+
+    private static BooleanValue enableGourmand;
+    private static IntValue levelGourmand;
 
     // WEAPONS
     private static BooleanValue enableDamageEnder;
@@ -711,8 +718,9 @@ public class ConfigEnsorc {
     private static IntValue levelPhalanx;
 
     // MISC
-    private static BooleanValue enableHolding;
-    private static IntValue levelHolding;
+    // TODO: Revisit
+    //    private static BooleanValue enableHolding;
+    //    private static IntValue levelHolding;
 
     private static BooleanValue enableSoulbound;
     private static IntValue levelSoulbound;

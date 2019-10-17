@@ -17,14 +17,17 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.references.EnsorcellationReferences.FIRE_REBUKE;
-import static cofh.lib.util.references.EnsorcellationReferences.FROST_REBUKE;
+import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
     private static HashSet<Tuple<Entity, Integer>> AFFLICTED_MOBS = new HashSet<>();
+
+    public static int chance = 20;
 
     public FireRebukeEnchantment() {
 
@@ -54,29 +57,41 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && ench != FROST_REBUKE;
+        return super.canApplyTogether(ench) && ench != THORNS && ench != DISPLACEMENT && ench != FROST_REBUKE;
     }
 
     // region HELPERS
     @Override
     public void onUserHurt(LivingEntity user, Entity attacker, int level) {
 
+        if (!(attacker instanceof LivingEntity)) {
+            return;
+        }
         Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.func_222189_b(FIRE_REBUKE, user);
-        onHit(user, attacker, level);
-        if (stack != null) {
-            (stack.getValue()).damageItem(2, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+        if (shouldHit(level, user.getRNG())) {
+            onHit(user, attacker, level);
+            if (stack != null) {
+                (stack.getValue()).damageItem(2, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+            }
         }
     }
 
     public static void onHit(LivingEntity user, Entity attacker, int level) {
 
-        if (attacker instanceof LivingEntity) {
-            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
-            AFFLICTED_MOBS.add(new Tuple<>(attacker, 3 * level));
-            for (int j = 0; j < 3 * level; ++j) {
-                ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.FLAME, attacker.posX + attacker.world.rand.nextDouble(), attacker.posY + 1.0D + attacker.world.rand.nextDouble(), attacker.posZ + attacker.world.rand.nextDouble(), 3 * level, 0, 0, 0, 0);
-            }
+        if (!(attacker instanceof LivingEntity)) {
+            return;
         }
+        Random rand = user.getRNG();
+        ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+        AFFLICTED_MOBS.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
+        for (int j = 0; j < 3 * level; ++j) {
+            ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+        }
+    }
+
+    public static boolean shouldHit(int level, Random rand) {
+
+        return rand.nextInt(100) < chance * level;
     }
 
     public static void setFireToMobs() {

@@ -111,7 +111,7 @@ public final class StringHelper {
         String[] decomposed = new String[]{modid, resourceLoc};
         int delIndex = resourceLoc.indexOf(delimiter);
         if (delIndex >= 0) {
-            decomposed[1] = resourceLoc.substring(delIndex + 1, resourceLoc.length());
+            decomposed[1] = resourceLoc.substring(delIndex + 1);
             if (delIndex >= 1) {
                 decomposed[0] = resourceLoc.substring(0, delIndex);
             }

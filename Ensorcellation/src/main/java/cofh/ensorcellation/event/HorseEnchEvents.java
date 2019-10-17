@@ -59,8 +59,8 @@ public class HorseEnchEvents {
         if (!armor.isEmpty()) {
             // DISPLACEMENT
             int encDisplacement = getEnchantmentLevel(DISPLACEMENT, armor);
-            if (DisplacementEnchantment.shouldHit(encDisplacement, MathHelper.RANDOM) && attacker != null) {
-                DisplacementEnchantment.teleportEntity(encDisplacement, MathHelper.RANDOM, attacker);
+            if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG()) && attacker != null) {
+                DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
                 event.setCanceled(true);
                 return;
             }
@@ -119,17 +119,17 @@ public class HorseEnchEvents {
             if (attacker != null) {
                 // THORNS
                 int encThorns = getEnchantmentLevel(THORNS, armor);
-                if (ThornsEnchantment.shouldHit(encThorns, MathHelper.RANDOM)) {
+                if (ThornsEnchantment.shouldHit(encThorns, entity.getRNG())) {
                     attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
                 }
                 // FIRE REBUKE
                 int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, armor);
-                if (encFireRebuke > 0) {
+                if (FireRebukeEnchantment.shouldHit(encFireRebuke, entity.getRNG())) {
                     FireRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
                 }
                 // FROST REBUKE
                 int encFrostRebuke = getEnchantmentLevel(FROST_REBUKE, armor);
-                if (encFrostRebuke > 0) {
+                if (FrostRebukeEnchantment.shouldHit(encFrostRebuke, entity.getRNG())) {
                     FrostRebukeEnchantment.onHit(entity, attacker, encFrostRebuke);
                 }
             }
