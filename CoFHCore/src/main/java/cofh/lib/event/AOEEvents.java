@@ -22,7 +22,7 @@ import java.util.HashSet;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
-import static cofh.lib.util.helpers.AOEHelper.validAOEBreakItem;
+import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
 import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.item.HoeItem.HOE_LOOKUP;
@@ -59,7 +59,7 @@ public class AOEEvents {
         }
         HARVESTING_PLAYERS.add(player);
         ItemStack stack = player.getHeldItemMainhand();
-        if (!validAOEBreakItem(stack)) {
+        if (!validAOEMiningItem(stack)) {
             return;
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getPos(), player);

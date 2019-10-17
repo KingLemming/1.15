@@ -33,29 +33,33 @@ public class AOEHelper {
         return stack.getCapability(AOE_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem || stack.getItem() instanceof HoeItem;
     }
 
-    public static boolean validAOEBreakItem(ItemStack stack) {
+    public static boolean validAOEMiningItem(ItemStack stack) {
 
         return stack.getCapability(AOE_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem;
     }
 
+    /**
+     * Basically the "default" AOE behavior.
+     */
     public static ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
 
         int encExcavating = getEnchantmentLevel(EXCAVATING, stack);
         if (encExcavating > 0) {
-            return getAOEBlocksRadius(stack, pos, player, encExcavating);
+            return getAOEBlocksMiningRadius(stack, pos, player, encExcavating);
         }
         int encTilling = getEnchantmentLevel(TILLING, stack);
         if (encTilling > 0) {
-            return getAOEBlocksRadiusHoe(stack, pos, player, encTilling);
+            return getAOEBlocksHoeRadius(stack, pos, player, encTilling);
         }
         int encFurrowing = getEnchantmentLevel(FURROWING, stack);
         if (encFurrowing > 0) {
-            return getAOEBlocksLineHoe(stack, pos, player, encFurrowing * 2);
+            return getAOEBlocksHoeLine(stack, pos, player, encFurrowing * 2);
         }
         return ImmutableList.of();
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+    // region MINING
+    public static ImmutableList<BlockPos> getAOEBlocksMiningRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
         ArrayList<BlockPos> area = new ArrayList<>();
         World world = player.getEntityWorld();
@@ -120,7 +124,88 @@ public class AOEHelper {
         return ImmutableList.copyOf(area);
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
+    public static ImmutableList<BlockPos> getAOEBlocksMiningArea(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int depth) {
+
+        ArrayList<BlockPos> area = new ArrayList<>();
+        World world = player.getEntityWorld();
+        Item tool = stack.getItem();
+
+        BlockPos query;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        int depth_min = depth;
+        int depth_max = 0;
+
+        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && depth <= 0)) {
+            return ImmutableList.of();
+        }
+        switch (traceResult.getFace()) {
+            case DOWN:
+                depth_min = 0;
+                depth_max = depth;
+            case UP:
+                for (int i = x - radius; i <= x + radius; i++) {
+                    for (int j = y - depth_min; j <= y + depth_max; j++) {
+                        for (int k = z - radius; k <= z + radius; k++) {
+                            if (i == x && j == y && k == z) {
+                                continue;
+                            }
+                            query = new BlockPos(i, y, k);
+                            if (canToolAffect(tool, stack, world, query)) {
+                                area.add(query);
+                            }
+                        }
+                    }
+                }
+                break;
+            case NORTH:
+                depth_min = 0;
+                depth_max = depth;
+            case SOUTH:
+                int posY = y;
+                y += (radius - 1);     // Offset for > 3x3
+                for (int i = x - radius; i <= x + radius; i++) {
+                    for (int j = y - radius; j <= y + radius; j++) {
+                        for (int k = z - depth_min; k <= z + depth_max; k++) {
+                            if (i == x && j == posY && k == z) {
+                                continue;
+                            }
+                            query = new BlockPos(i, j, z);
+                            if (canToolAffect(tool, stack, world, query)) {
+                                area.add(query);
+                            }
+                        }
+                    }
+                }
+                break;
+            case WEST:
+                depth_min = 0;
+                depth_max = depth;
+            case EAST:
+                posY = y;
+                y += (radius - 1);     // Offset for > 3x3
+                for (int i = x - depth_min; i <= x + depth_max; i++) {
+                    for (int j = y - radius; j <= y + radius; j++) {
+                        for (int k = z - radius; k <= z + radius; k++) {
+                            if (i == x && j == posY && k == z) {
+                                continue;
+                            }
+                            query = new BlockPos(x, j, k);
+                            if (canToolAffect(tool, stack, world, query)) {
+                                area.add(query);
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+        return ImmutableList.copyOf(area);
+    }
+
+    public static ImmutableList<BlockPos> getAOEBlocksMiningLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
 
         ArrayList<BlockPos> area = new ArrayList<>();
         World world = player.getEntityWorld();
@@ -174,8 +259,10 @@ public class AOEHelper {
         }
         return ImmutableList.copyOf(area);
     }
+    // endregion
 
-    public static ImmutableList<BlockPos> getAOEBlocksRadiusHoe(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+    // region HOE
+    public static ImmutableList<BlockPos> getAOEBlocksHoeRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
         ArrayList<BlockPos> area = new ArrayList<>();
         World world = player.getEntityWorld();
@@ -204,7 +291,7 @@ public class AOEHelper {
         return ImmutableList.copyOf(area);
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksLineHoe(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
+    public static ImmutableList<BlockPos> getAOEBlocksHoeLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
 
         ArrayList<BlockPos> area = new ArrayList<>();
         World world = player.getEntityWorld();
@@ -254,6 +341,11 @@ public class AOEHelper {
         }
         return ImmutableList.copyOf(area);
     }
+    // endregion
+
+    // region SICKLE
+
+    // endregion
 
     // region HELPERS
     private static boolean canToolAffect(Item toolItem, ItemStack toolStack, World world, BlockPos pos) {

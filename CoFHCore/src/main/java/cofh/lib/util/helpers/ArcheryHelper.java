@@ -38,6 +38,9 @@ public final class ArcheryHelper {
         return stack.getItem() instanceof ArrowItem;
     }
 
+    /**
+     * Basically the "default" Archery behavior.
+     */
     public static boolean fireArrow(ItemStack bow, ItemStack ammo, PlayerEntity shooter, int charge, World world) {
 
         IArcheryBowItem bowObj = bow.getCapability(BOW_ITEM_CAPABILITY).orElse(DEFAULT_BOW_CAPABILITY);

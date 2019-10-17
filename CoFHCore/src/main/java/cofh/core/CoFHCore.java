@@ -5,12 +5,15 @@ import cofh.core.event.CommonEventsCore;
 import cofh.core.init.BlocksCore;
 import cofh.core.init.ConfigCore;
 import cofh.core.init.EffectsCore;
+import cofh.core.init.ItemsCoreTest;
+import cofh.lib.capability.CapabilityAOE;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityShield;
 import cofh.lib.event.*;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +32,7 @@ public class CoFHCore {
     public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
+    public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Effect> POTIONS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
 
     public CoFHCore() {
@@ -41,15 +45,20 @@ public class CoFHCore {
         BLOCKS.register(modEventBus);
         POTIONS.register(modEventBus);
 
+        ITEMS.register(modEventBus);
+
         ConfigCore.register();
 
         BlocksCore.register();
         EffectsCore.register();
+
+        ItemsCoreTest.register();
     }
 
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
+        CapabilityAOE.register();
         CapabilityArchery.register();
         CapabilityEnchantable.register();
         CapabilityShield.register();

@@ -15,19 +15,40 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
+import static cofh.lib.util.references.EnsorcellationReferences.EXCAVATING;
+import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
-public class AOEItem implements IAOEItem, ICapabilityProvider {
+public class AOEMiningItem implements IAOEItem, ICapabilityProvider {
 
     private final LazyOptional<IAOEItem> holder = LazyOptional.of(() -> this);
 
-    public AOEItem() {
+    private final int radius;
+    private final int depth;
+    private final Type type;
 
+    public enum Type {
+        EXCAVATOR, HAMMER, SICKLE
+    }
+
+    public AOEMiningItem(int radius, int depth, Type type) {
+
+        this.radius = radius;
+        this.depth = depth;
+        this.type = type;
+    }
+
+    public AOEMiningItem(int radius, Type type) {
+
+        this(radius, 1, type);
     }
 
     @Override
     public ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
 
-        return AOEHelper.getAOEBlocks(stack, pos, player);
+        if (type == Type.SICKLE) {
+            return AOEHelper.getAOEBlocksMiningArea(stack, pos, player, radius, depth);
+        }
+        return AOEHelper.getAOEBlocksMiningRadius(stack, pos, player, radius + getEnchantmentLevel(EXCAVATING, stack));
     }
 
     @Nonnull

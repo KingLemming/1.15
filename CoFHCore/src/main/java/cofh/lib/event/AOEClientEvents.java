@@ -31,7 +31,7 @@ import java.util.List;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
-import static cofh.lib.util.helpers.AOEHelper.validAOEBreakItem;
+import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
 import static cofh.lib.util.helpers.AOEHelper.validAOEItem;
 
 public class AOEClientEvents {
@@ -78,7 +78,7 @@ public class AOEClientEvents {
         for (BlockPos pos : areaBlocks) {
             event.getContext().drawSelectionBox(Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), new BlockRayTraceResult(DUMMY_VEC, blockResult.getFace(), pos, false), 0);
         }
-        if (!validAOEBreakItem(stack)) {
+        if (!validAOEMiningItem(stack)) {
             return;
         }
         if (controller.isHittingBlock) {
