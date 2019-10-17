@@ -4,9 +4,9 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="cofh_core"
-    version="0.0.1-a"
+    version="0.0.1a"
     displayName="CoFH Core"
-    updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core_update.json"
+    updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core/update.json"
     displayURL="https://teamcofh.com/"
     logoFile="logo.png"
     credits="Team CoFH"
