@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cofh_test:block/crops/plant_peanut_4"
+  }
+}

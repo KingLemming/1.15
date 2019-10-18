@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cofh_test:items/crops/crop_hops"
+  }
+}

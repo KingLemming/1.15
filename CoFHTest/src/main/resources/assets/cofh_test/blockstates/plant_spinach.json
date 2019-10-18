@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cofh_test:block/plant_spinach_0"
+    },
+    "age=1": {
+      "model": "cofh_test:block/plant_spinach_1"
+    },
+    "age=2": {
+      "model": "cofh_test:block/plant_spinach_2"
+    },
+    "age=3": {
+      "model": "cofh_test:block/plant_spinach_3"
+    },
+    "age=4": {
+      "model": "cofh_test:block/plant_spinach_4"
+    },
+    "age=5": {
+      "model": "cofh_test:block/plant_spinach_5"
+    },
+    "age=6": {
+      "model": "cofh_test:block/plant_spinach_6"
+    },
+    "age=7": {
+      "model": "cofh_test:block/plant_spinach_7"
+    }
+  }
+}

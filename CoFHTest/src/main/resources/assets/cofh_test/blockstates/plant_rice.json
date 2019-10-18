@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cofh_test:block/plant_rice_0"
+    },
+    "age=1": {
+      "model": "cofh_test:block/plant_rice_1"
+    },
+    "age=2": {
+      "model": "cofh_test:block/plant_rice_2"
+    },
+    "age=3": {
+      "model": "cofh_test:block/plant_rice_3"
+    },
+    "age=4": {
+      "model": "cofh_test:block/plant_rice_4"
+    },
+    "age=5": {
+      "model": "cofh_test:block/plant_rice_5"
+    },
+    "age=6": {
+      "model": "cofh_test:block/plant_rice_6"
+    },
+    "age=7": {
+      "model": "cofh_test:block/plant_rice_7"
+    }
+  }
+}

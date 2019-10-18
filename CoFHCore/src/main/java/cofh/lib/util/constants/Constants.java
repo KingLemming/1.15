@@ -37,6 +37,7 @@ public class Constants {
     public static final String ID_COFH = "cofh";
     public static final String ID_COFH_CORE = "cofh_core";
     public static final String ID_COFH_LIB = "cofh_lib";
+    public static final String ID_COFH_TEST = "cofh_test";
 
     public static final String ID_THERMAL_SERIES = "thermal";
 

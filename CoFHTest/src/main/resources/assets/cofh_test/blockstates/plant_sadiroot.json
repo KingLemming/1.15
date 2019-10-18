@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cofh_test:block/plant_sadiroot_0"
+    },
+    "age=1": {
+      "model": "cofh_test:block/plant_sadiroot_1"
+    },
+    "age=2": {
+      "model": "cofh_test:block/plant_sadiroot_2"
+    },
+    "age=3": {
+      "model": "cofh_test:block/plant_sadiroot_3"
+    },
+    "age=4": {
+      "model": "cofh_test:block/plant_sadiroot_4"
+    },
+    "age=5": {
+      "model": "cofh_test:block/plant_sadiroot_5"
+    },
+    "age=6": {
+      "model": "cofh_test:block/plant_sadiroot_6"
+    },
+    "age=7": {
+      "model": "cofh_test:block/plant_sadiroot_7"
+    }
+  }
+}

@@ -31,8 +31,8 @@ import java.util.List;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
-import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
 import static cofh.lib.util.helpers.AOEHelper.validAOEItem;
+import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
 
 public class AOEClientEvents {
 

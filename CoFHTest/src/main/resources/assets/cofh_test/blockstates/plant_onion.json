@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cofh_test:block/plant_onion_0"
+    },
+    "age=1": {
+      "model": "cofh_test:block/plant_onion_1"
+    },
+    "age=2": {
+      "model": "cofh_test:block/plant_onion_2"
+    },
+    "age=3": {
+      "model": "cofh_test:block/plant_onion_3"
+    },
+    "age=4": {
+      "model": "cofh_test:block/plant_onion_4"
+    },
+    "age=5": {
+      "model": "cofh_test:block/plant_onion_5"
+    },
+    "age=6": {
+      "model": "cofh_test:block/plant_onion_6"
+    },
+    "age=7": {
+      "model": "cofh_test:block/plant_onion_7"
+    }
+  }
+}

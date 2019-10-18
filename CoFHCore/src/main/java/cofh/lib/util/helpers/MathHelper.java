@@ -38,6 +38,17 @@ public final class MathHelper {
         return min >= max ? min : random.nextInt(max - min + 1) + min;
     }
 
+    public static int binomialDist(int trials, double success) {
+
+        int ret = 0;
+        for (int i = 0; i < trials; ++i) {
+            if (RANDOM.nextDouble() < success) {
+                ++ret;
+            }
+        }
+        return ret;
+    }
+
     public static int nextInt(int min, int max) {
 
         return nextInt(RANDOM, min, max);

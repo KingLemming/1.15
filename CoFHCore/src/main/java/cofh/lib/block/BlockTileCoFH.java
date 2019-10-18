@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockReader;
 
 import java.util.ArrayList;
 
-public abstract class BlockTileCoFH extends BlockCoFH implements IDismantleable {
+public abstract class BlockTileCoFH extends Block implements IDismantleable {
 
     public BlockTileCoFH(Properties properties) {
 

@@ -1,8 +1,9 @@
 rootProject.name = '1.14'
 include 'CoFHCore'
-include 'CoFHWorld'
+//include 'CoFHWorld'
 include 'Ensorcellation'
-include 'Quartermastery'
-include 'ThermalSeries'
+//include 'Quartermastery'
+//include 'ThermalSeries'
 
+include 'CoFHTest'
 include 'Workspace'
