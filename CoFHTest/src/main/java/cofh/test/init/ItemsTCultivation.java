@@ -33,17 +33,20 @@ public class ItemsTCultivation {
         cropSadiroot = ITEMS.register("crop_sadiroot", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         cropSpinach = ITEMS.register("crop_spinach", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         //
-        //        ITEMS.register("crop_corn", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        //        cropCorn = ITEMS.register("crop_corn", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         //
+
+        // PERENNIALS
         cropBellPepper = ITEMS.register("crop_bell_pepper", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         cropGreenBean = ITEMS.register("crop_green_bean", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         cropPeanut = ITEMS.register("crop_peanut", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         cropStrawberry = ITEMS.register("crop_strawberry", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         cropTomato = ITEMS.register("crop_tomato", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
-        //
-        //        ITEMS.register("crop_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
-        //        ITEMS.register("crop_tea", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
-        //        ITEMS.register("crop_hops", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+
+        // BREWING
+        cropCoffee = ITEMS.register("crop_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        cropTea = ITEMS.register("crop_tea", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
+        cropHops = ITEMS.register("crop_hops", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
     }
 
     private static void registerSeeds() {
@@ -56,11 +59,17 @@ public class ItemsTCultivation {
         seedSadiroot = ITEMS.register("seed_sadiroot", () -> new BlockNamedItemCoFH(plantSadiroot.get(), new Item.Properties().group(group)));
         seedSpinach = ITEMS.register("seed_spinach", () -> new BlockNamedItemCoFH(plantSpinach.get(), new Item.Properties().group(group)));
 
+        // PERENNIALS
         seedBellPepper = ITEMS.register("seed_bell_pepper", () -> new BlockNamedItemCoFH(plantBellPepper.get(), new Item.Properties().group(group)));
         seedGreenBean = ITEMS.register("seed_green_bean", () -> new BlockNamedItemCoFH(plantGreenBean.get(), new Item.Properties().group(group)));
         seedPeanut = ITEMS.register("seed_peanut", () -> new BlockNamedItemCoFH(plantPeanut.get(), new Item.Properties().group(group)));
         seedStrawberry = ITEMS.register("seed_strawberry", () -> new BlockNamedItemCoFH(plantStrawberry.get(), new Item.Properties().group(group)));
         seedTomato = ITEMS.register("seed_tomato", () -> new BlockNamedItemCoFH(plantTomato.get(), new Item.Properties().group(group)));
+
+        // BREWING
+        seedCoffee = ITEMS.register("seed_coffee", () -> new BlockNamedItemCoFH(plantCoffee.get(), new Item.Properties().group(group)));
+        seedTea = ITEMS.register("seed_tea", () -> new BlockNamedItemCoFH(plantTea.get(), new Item.Properties().group(group)));
+        // seedHops = ITEMS.register("seed_hops", () -> new BlockNamedItemCoFH(plantHops.get(), new Item.Properties().group(group)));
     }
 
     private static void registerFoods() {
@@ -88,6 +97,10 @@ public class ItemsTCultivation {
     public static RegistryObject<Item> cropStrawberry;
     public static RegistryObject<Item> cropTomato;
 
+    public static RegistryObject<Item> cropCoffee;
+    public static RegistryObject<Item> cropTea;
+    public static RegistryObject<Item> cropHops;
+
     public static RegistryObject<Item> seedBarley;
     public static RegistryObject<Item> seedOnion;
     public static RegistryObject<Item> seedRice;
@@ -99,5 +112,8 @@ public class ItemsTCultivation {
     public static RegistryObject<Item> seedPeanut;
     public static RegistryObject<Item> seedStrawberry;
     public static RegistryObject<Item> seedTomato;
+
+    public static RegistryObject<Item> seedCoffee;
+    public static RegistryObject<Item> seedTea;
 
 }

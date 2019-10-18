@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
@@ -36,20 +37,27 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
 
     protected final PlantType type;
     protected int growLight;
+    protected float growMod;
 
     protected Supplier<Item> crop = AIR_SUPPLY;
     protected Supplier<Item> seed = AIR_SUPPLY;
 
-    public CropsBlockCoFH(Properties properties, PlantType type, int growLight) {
+    public CropsBlockCoFH(Properties properties, PlantType type, int growLight, float growMod) {
 
         super(properties);
         this.type = type;
         this.growLight = growLight;
+        this.growMod = growMod;
+    }
+
+    public CropsBlockCoFH(Properties properties, int growLight, float growMod) {
+
+        this(properties, PlantType.Crop, growLight, growMod);
     }
 
     public CropsBlockCoFH(Properties properties) {
 
-        this(properties, PlantType.Crop, 9);
+        this(properties, PlantType.Crop, 9, 1.0F);
     }
 
     public CropsBlockCoFH setCrop(Supplier<Item> crop) {
@@ -89,7 +97,7 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
         if (worldIn.getLightSubtracted(pos, 0) >= growLight) {
             if (!canHarvest(state)) {
                 int age = getAge(state);
-                float growthChance = getGrowthChance(this, worldIn, pos);
+                float growthChance = getGrowthChance(this, worldIn, pos) * growMod;
                 if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / growthChance) + 1) == 0)) {
                     int newAge = age + 1 > getMaximumAge() ? getHarvestAge() : age + 1;
                     worldIn.setBlockState(pos, withAge(newAge), 2);
@@ -103,6 +111,12 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         return harvest(worldIn, pos, state, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, player.getHeldItem(handIn)));
+    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+
+        return (worldIn.getLightSubtracted(pos, 0) >= growLight - 1 || worldIn.isSkyLightMax(pos)) && super.isValidPosition(state, worldIn, pos);
     }
 
     @Override
@@ -160,7 +174,7 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
             return true;
         }
         if (getPostHarvestAge() >= 0) {
-            Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 1 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
+            Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
             world.setBlockState(pos, withAge(getPostHarvestAge()), 2);
         } else {
             world.destroyBlock(pos, true);

@@ -9,7 +9,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
     credits="Team CoFH"
     authors="King Lemming"
     description='''
-Testing ground for CoFH features. AKA Lemming's playground of coding horrors.
+Testing ground for CoFH features. Or, King Lemming's Playground of Coding Horrors.
 '''
 [[dependencies.cofh_test]]
     modId="minecraft"
