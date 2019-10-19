@@ -57,13 +57,6 @@ public class HorseEnchEvents {
         }
         ItemStack armor = ((AbstractHorseEntity) entity).horseChest.getStackInSlot(1);
         if (!armor.isEmpty()) {
-            // DISPLACEMENT
-            int encDisplacement = getEnchantmentLevel(DISPLACEMENT, armor);
-            if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG()) && attacker != null) {
-                DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
-                event.setCanceled(true);
-                return;
-            }
             // FROST WALKER
             int encFrostWalker = getEnchantmentLevel(FROST_WALKER, armor);
             if (event.getSource().equals(DamageSource.HOT_FLOOR) && encFrostWalker > 0) {
@@ -121,6 +114,11 @@ public class HorseEnchEvents {
                 int encThorns = getEnchantmentLevel(THORNS, armor);
                 if (ThornsEnchantment.shouldHit(encThorns, entity.getRNG())) {
                     attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, MathHelper.RANDOM));
+                }
+                // DISPLACEMENT
+                int encDisplacement = getEnchantmentLevel(DISPLACEMENT, armor);
+                if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG())) {
+                    DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
                 }
                 // FIRE REBUKE
                 int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, armor);

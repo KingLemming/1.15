@@ -4,7 +4,13 @@ import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.BlazeEntity;
+import net.minecraft.entity.monster.MagmaCubeEntity;
+import net.minecraft.entity.monster.WitherSkeletonEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
@@ -49,6 +55,16 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
     }
 
     // region HELPERS
+    public static boolean validTarget(Entity entity) {
+
+        return entity instanceof BlazeEntity || entity instanceof MagmaCubeEntity;
+    }
+
+    public static float getExtraDamage(int level) {
+
+        return level * 2.5F;
+    }
+
     public static void onHit(LivingEntity entity, int level) {
 
         int i = 80 * level;
@@ -57,8 +73,10 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
         }
         entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
         entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
-        for (int j = 0; j < 4 * level; ++j) {
-            ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+        if (entity.world instanceof ServerWorld) {
+            for (int j = 0; j < 4 * level; ++j) {
+                ((ServerWorld) entity.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+            }
         }
     }
     // endregion

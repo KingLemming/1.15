@@ -14,7 +14,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +23,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import static cofh.lib.util.constants.Constants.UUID_KNOCKBACK_RESISTANCE;
 import static cofh.lib.util.constants.Constants.UUID_MOVEMENT_SPEED;
-import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.THORNS;
@@ -61,17 +59,15 @@ public class ShieldEnchEvents {
         ItemStack stack = entity.getActiveItemStack();
 
         if (canBlockDamageSource(entity, source) && attacker != null) {
-            // DISPLACEMENT
-            int encDisplacement = getEnchantmentLevel(DISPLACEMENT, stack);
-            if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG())) {
-                DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
-                event.setCanceled(true);
-                return;
-            }
             // THORNS
             int encThorns = getEnchantmentLevel(THORNS, stack);
             if (ThornsEnchantmentImp.shouldHit(encThorns, entity.getRNG())) {
                 attacker.attackEntityFrom(DamageSource.causeThornsDamage(entity), ThornsEnchantment.getDamage(encThorns, entity.getRNG()));
+            }
+            // DISPLACEMENT
+            int encDisplacement = getEnchantmentLevel(DISPLACEMENT, stack);
+            if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG())) {
+                DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
             }
             // FIRE REBUKE
             int encFireRebuke = getEnchantmentLevel(FIRE_REBUKE, stack);
@@ -96,11 +92,8 @@ public class ShieldEnchEvents {
 
         ItemStack shield = entity.getActiveItemStack();
         if (shield.getItem().isShield(shield, entity)) {
-            entity.addPotionEffect(new EffectInstance(ENDERFERENCE, 6000));
-
             int encBulwark = getEnchantmentLevel(BULWARK, shield);
             int encPhalanx = getEnchantmentLevel(PHALANX, shield);
-
             Multimap<String, AttributeModifier> attributes = HashMultimap.create();
             if (encBulwark > 0) {
                 attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_KNOCKBACK_RESISTANCE, ID_BULWARK, 1.0D, ADDITION).setSaved(false));

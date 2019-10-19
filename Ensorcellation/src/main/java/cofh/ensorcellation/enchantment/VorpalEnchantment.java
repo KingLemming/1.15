@@ -50,10 +50,12 @@ public class VorpalEnchantment extends EnchantmentCoFH {
     public static void onHit(LivingEntity entity, int level) {
 
         entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-        for (int i = 0; i < 2 * level; ++i) {
-            ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+        if (entity.world instanceof ServerWorld) {
+            for (int i = 0; i < 2 * level; ++i) {
+                ((ServerWorld) entity.world).spawnParticle(ParticleTypes.CRIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+            }
+            ((ServerWorld) entity.world).spawnParticle(ParticleTypes.SWEEP_ATTACK, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
         }
-        ((ServerWorld) entity.world).spawnParticle(ParticleTypes.SWEEP_ATTACK, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
     }
     // endregion
 

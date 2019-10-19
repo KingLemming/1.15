@@ -25,13 +25,13 @@ public class BlocksTCultivation {
         plantSadiroot = BLOCKS.register("plant_sadiroot", () -> new CropsBlockCoFH(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropSadiroot).setSeed(seedSadiroot));
         plantSpinach = BLOCKS.register("plant_spinach", () -> new CropsBlockCoFH(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropSpinach).setSeed(seedSpinach));
 
-        plantBellPepper = BLOCKS.register("plant_bell_pepper", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropBellPepper));//.setSeed(seedBellPepper));
-        plantGreenBean = BLOCKS.register("plant_green_bean", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropGreenBean));//.setSeed(seedGreenBean));
-        plantPeanut = BLOCKS.register("plant_peanut", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropPeanut));//.setSeed(seedPeanut));
-        plantStrawberry = BLOCKS.register("plant_strawberry", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropStrawberry));//.setSeed(seedStrawberry));
-        plantTomato = BLOCKS.register("plant_tomato", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropTomato));//.setSeed(seedTomato));
+        plantBellPepper = BLOCKS.register("plant_bell_pepper", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropBellPepper).setSeed(seedBellPepper));
+        plantGreenBean = BLOCKS.register("plant_green_bean", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropGreenBean).setSeed(seedGreenBean));
+        plantPeanut = BLOCKS.register("plant_peanut", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropPeanut).setSeed(seedPeanut));
+        plantStrawberry = BLOCKS.register("plant_strawberry", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropStrawberry).setSeed(seedStrawberry));
+        plantTomato = BLOCKS.register("plant_tomato", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropTomato).setSeed(seedTomato));
 
-        plantCoffee = BLOCKS.register("plant_coffee", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropCoffee));//.setSeed(seedCoffee));
+        plantCoffee = BLOCKS.register("plant_coffee", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropCoffee).setSeed(seedCoffee));
         plantTea = BLOCKS.register("plant_tea", () -> new CropsBlockPerennial(create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F, 0.0F).sound(SoundType.CROP)).setCrop(cropTea).setSeed(seedTea));
     }
 

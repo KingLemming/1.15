@@ -84,7 +84,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
         int bound = radius * 2 + 1;
         BlockPos pos = new BlockPos(attacker.posX, attacker.posY, attacker.posZ);
         BlockPos randPos = pos.add(-radius + rand.nextInt(bound), rand.nextInt(8), -radius + rand.nextInt(bound));
-        if (Utils.teleportEntityTo(attacker, randPos)) {
+        if (Utils.teleportEntityTo(attacker, randPos) && attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
                 ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.PORTAL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
                 ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.PORTAL, randPos.getX() + rand.nextDouble(), randPos.getY() + 1.0D + rand.nextDouble(), randPos.getZ() + rand.nextDouble(), 1, 0, 0, 0, 0);

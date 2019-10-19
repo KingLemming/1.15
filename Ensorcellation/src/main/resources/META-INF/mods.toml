@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="ensorcellation"
-    version="0.0.2a"
+    version="0.0.3a"
     displayName="Ensorcellation"
     updateJSONURL="https://raw.github.com/cofh/version/master/ensorcellation/update.json"
     displayURL="https://teamcofh.com/"

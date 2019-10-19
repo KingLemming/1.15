@@ -21,7 +21,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
@@ -97,7 +96,7 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
         if (worldIn.getLightSubtracted(pos, 0) >= growLight) {
             if (!canHarvest(state)) {
                 int age = getAge(state);
-                float growthChance = getGrowthChance(this, worldIn, pos) * growMod;
+                float growthChance = MathHelper.maxF(getGrowthChance(this, worldIn, pos) * growMod, 0.1F);
                 if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / growthChance) + 1) == 0)) {
                     int newAge = age + 1 > getMaximumAge() ? getHarvestAge() : age + 1;
                     worldIn.setBlockState(pos, withAge(newAge), 2);
@@ -113,11 +112,12 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
         return harvest(worldIn, pos, state, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, player.getHeldItem(handIn)));
     }
 
-    @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-
-        return (worldIn.getLightSubtracted(pos, 0) >= growLight - 1 || worldIn.isSkyLightMax(pos)) && super.isValidPosition(state, worldIn, pos);
-    }
+    // TODO: Revisit; vanilla crop logic effectively overrides
+    //    @Override
+    //    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+    //
+    //        return (worldIn.getLightSubtracted(pos, 0) >= growLight - 1 || worldIn.isSkyLightMax(pos)) && super.isValidPosition(state, worldIn, pos);
+    //    }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

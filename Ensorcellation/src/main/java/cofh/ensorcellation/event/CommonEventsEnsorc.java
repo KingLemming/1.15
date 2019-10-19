@@ -89,14 +89,7 @@ public class CommonEventsEnsorc {
             if (encMagicEdge > 0 && !source.isMagicDamage() && source.damageType.equals(DAMAGE_PLAYER)) {
                 event.setCanceled(true);
                 entity.attackEntityFrom(event.getSource().setDamageBypassesArmor().setMagicDamage(), event.getAmount() + MagicEdgeEnchantment.getExtraDamage(encMagicEdge));
-                return;
             }
-        }
-        // DISPLACEMENT
-        int encDisplacement = getMaxEnchantmentLevel(DISPLACEMENT, entity);
-        if (DisplacementEnchantment.shouldHit(encDisplacement, entity.getRNG()) && attacker != null) {
-            DisplacementEnchantment.onHit(entity, attacker, encDisplacement);
-            event.setCanceled(true);
         }
     }
 
@@ -269,6 +262,10 @@ public class CommonEventsEnsorc {
         int encFrostAspect = getHeldEnchantmentLevel(living, FROST_ASPECT);
         if (encFrostAspect > 0) {
             FrostAspectEnchantment.onHit(entity, encFrostAspect);
+            // Target check is for additional damage, not effect in general.
+            if (FrostAspectEnchantment.validTarget(entity)) {
+                event.setAmount(event.getAmount() + FrostAspectEnchantment.getExtraDamage(encFrostAspect));
+            }
         }
         int encMagicEdge = getHeldEnchantmentLevel(living, MAGIC_EDGE);
         if (encMagicEdge > 0 && source.isMagicDamage()) {

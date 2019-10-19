@@ -84,18 +84,14 @@ public class AOEEvents {
         BlockPos target = event.getContext().getPos();
         World world = player.world;
         BlockState targetTilled = HOE_LOOKUP.get(world.getBlockState(target).getBlock());
+        BlockPos up = target.up();
+        boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
 
-        if (targetTilled == null) {
+        if (targetTilled == null || !world.isAirBlock(up) && !weeding) {
             return;
         }
-        boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
         if (Utils.isClientWorld(world)) {
-            if (weeding) {
-                BlockPos up = target.up();
-                if (!world.isAirBlock(up)) {
-                    player.swingArm(event.getContext().getHand());
-                }
-            }
+            player.swingArm(event.getContext().getHand());
             return;
         }
         if (TILLING_PLAYERS.contains(player)) {
@@ -111,7 +107,7 @@ public class AOEEvents {
             if (tilled != null) {
                 world.setBlockState(pos, tilled);
                 if (weeding) {
-                    BlockPos up = pos.up();
+                    up = pos.up();
                     if (!world.isAirBlock(up)) {
                         world.destroyBlock(up, !player.abilities.isCreativeMode);
                     }
@@ -123,7 +119,7 @@ public class AOEEvents {
         }
         world.setBlockState(target, targetTilled);
         if (weeding) {
-            BlockPos up = target.up();
+            up = target.up();
             if (!world.isAirBlock(up)) {
                 world.destroyBlock(up, !player.abilities.isCreativeMode);
             }

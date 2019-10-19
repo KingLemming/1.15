@@ -87,8 +87,10 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         }
         ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
         ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
-        for (int j = 0; j < 3 * level; ++j) {
-            ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+        if (attacker.world instanceof ServerWorld) {
+            for (int j = 0; j < 3 * level; ++j) {
+                ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+            }
         }
     }
 

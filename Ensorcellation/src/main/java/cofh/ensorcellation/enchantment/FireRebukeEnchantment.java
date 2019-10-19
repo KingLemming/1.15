@@ -84,8 +84,10 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
         Random rand = user.getRNG();
         ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
         AFFLICTED_MOBS.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
-        for (int j = 0; j < 3 * level; ++j) {
-            ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+        if (attacker.world instanceof ServerWorld) {
+            for (int j = 0; j < 3 * level; ++j) {
+                ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+            }
         }
     }
 
