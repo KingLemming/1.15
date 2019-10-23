@@ -4,9 +4,9 @@ import net.minecraft.block.Block;
 
 public class BlockNamedItemCoFH extends BlockItemCoFH {
 
-    public BlockNamedItemCoFH(Block blockIn, Properties builder) {
+    public BlockNamedItemCoFH(Block blockIn, Properties properties) {
 
-        super(blockIn, builder);
+        super(blockIn, properties);
     }
 
     public String getTranslationKey() {

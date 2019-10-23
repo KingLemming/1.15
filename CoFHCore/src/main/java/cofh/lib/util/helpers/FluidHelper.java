@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -19,10 +20,14 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import static cofh.lib.util.constants.Tags.TAG_POTION;
 
 public class FluidHelper {
+
+    public static final Predicate<FluidStack> IS_WATER = e -> e.getFluid().equals(Fluids.WATER);
+    public static final Predicate<FluidStack> IS_LAVA = e -> e.getFluid().equals(Fluids.LAVA);
 
     public static HashMap<Fluid, Integer> colorCache = new HashMap<>();
 
@@ -49,7 +54,7 @@ public class FluidHelper {
     // region POTION HELPERS
     public static boolean hasPotionTag(FluidStack stack) {
 
-        return stack != null && stack.getTag() != null && stack.getTag().contains(TAG_POTION);
+        return !stack.isEmpty() && stack.getTag() != null && stack.getTag().contains(TAG_POTION);
     }
 
     public static void addPotionTooltip(FluidStack stack, List<ITextComponent> list) {
@@ -119,7 +124,7 @@ public class FluidHelper {
 
     public static int luminosity(FluidStack stack) {
 
-        return stack == null ? 0 : luminosity(stack.getFluid());
+        return stack.isEmpty() ? 0 : luminosity(stack.getFluid());
     }
 
     public static int density(Fluid fluid) {
@@ -129,7 +134,7 @@ public class FluidHelper {
 
     public static int density(FluidStack stack) {
 
-        return stack == null ? 0 : density(stack.getFluid());
+        return stack.isEmpty() ? 0 : density(stack.getFluid());
     }
 
     public static int temperature(Fluid fluid) {
@@ -139,7 +144,7 @@ public class FluidHelper {
 
     public static int temperature(FluidStack stack) {
 
-        return stack == null ? 0 : temperature(stack.getFluid());
+        return stack.isEmpty() ? 0 : temperature(stack.getFluid());
     }
 
     public static int viscosity(Fluid fluid) {
@@ -149,7 +154,7 @@ public class FluidHelper {
 
     public static int viscosity(FluidStack stack) {
 
-        return stack == null ? 0 : viscosity(stack.getFluid());
+        return stack.isEmpty() ? 0 : viscosity(stack.getFluid());
     }
     // endregion
 

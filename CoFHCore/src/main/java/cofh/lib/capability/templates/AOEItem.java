@@ -20,8 +20,17 @@ public class AOEItem implements IAOEItem, ICapabilityProvider {
 
     private final LazyOptional<IAOEItem> holder = LazyOptional.of(() -> this);
 
-    public AOEItem() {
+    private final boolean canMineBlocks;
 
+    public AOEItem(boolean canMineBlocks) {
+
+        this.canMineBlocks = canMineBlocks;
+    }
+
+    @Override
+    public boolean canMineBlocks() {
+
+        return canMineBlocks;
     }
 
     @Override

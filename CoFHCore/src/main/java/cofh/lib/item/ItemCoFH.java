@@ -23,8 +23,10 @@ import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
 public class ItemCoFH extends Item {
 
     protected String info;
+    protected boolean showEnchantEffect = true;
     protected boolean showInItemGroup = true;
     protected boolean creative;
+    protected int enchantability;
 
     public ItemCoFH(Properties properties) {
 
@@ -34,6 +36,12 @@ public class ItemCoFH extends Item {
     public ItemCoFH setCreative(boolean creative) {
 
         this.creative = creative;
+        return this;
+    }
+
+    public ItemCoFH setEnchantability(int enchantability) {
+
+        this.enchantability = enchantability;
         return this;
     }
 
@@ -63,9 +71,22 @@ public class ItemCoFH extends Item {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean hasEffect(ItemStack stack) {
+
+        return showEnchantEffect && stack.isEnchanted();
+    }
+
+    @Override
     public boolean hasCustomEntity(ItemStack stack) {
 
         return SecurityHelper.hasSecurity(stack);
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+
+        return enchantability > 0;
     }
 
     @Override

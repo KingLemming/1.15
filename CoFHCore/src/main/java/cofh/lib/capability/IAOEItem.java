@@ -14,6 +14,11 @@ import net.minecraft.util.math.BlockPos;
  */
 public interface IAOEItem {
 
+    default boolean canMineBlocks() {
+
+        return false;
+    }
+
     default ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
 
         return AOEHelper.getAOEBlocks(stack, pos, player);

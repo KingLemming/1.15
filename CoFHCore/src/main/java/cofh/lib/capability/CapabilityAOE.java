@@ -15,7 +15,7 @@ public class CapabilityAOE {
     @CapabilityInject(IAOEItem.class)
     public static Capability<IAOEItem> AOE_ITEM_CAPABILITY = null;
 
-    public static AOEItem DEFAULT_AOE_CAPABILITY = new AOEItem();
+    public static AOEItem DEFAULT_AOE_CAPABILITY = new AOEItem(false);
 
     public static void register() {
 

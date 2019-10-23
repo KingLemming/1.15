@@ -28,25 +28,25 @@ public class SickleItem extends ToolItem {
 
     private int radius;
 
-    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, Properties builder) {
+    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, Properties properties) {
 
-        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_BLOCKS, builder.addToolType(SICKLE, tier.getHarvestLevel()));
+        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_BLOCKS, properties.addToolType(SICKLE, tier.getHarvestLevel()));
         this.radius = radius;
     }
 
-    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
+    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties properties) {
 
-        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_AREA, builder.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
-    public SickleItem(IItemTier tier, float attackDamageIn, Properties builder) {
+    public SickleItem(IItemTier tier, float attackDamageIn, Properties properties) {
 
-        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, builder.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
-    public SickleItem(IItemTier tier, Properties builder) {
+    public SickleItem(IItemTier tier, Properties properties) {
 
-        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, builder.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
     @Override

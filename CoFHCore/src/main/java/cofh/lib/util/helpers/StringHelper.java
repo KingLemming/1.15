@@ -5,6 +5,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fluids.FluidStack;
@@ -96,11 +97,24 @@ public final class StringHelper {
         }
     }
 
-    public static ITextComponent getInfoTextComponent(String key) {
+    // region TEXT COMPONENTS
+    public static ITextComponent getEmptyLine() {
 
-        return new TranslationTextComponent(key).applyTextStyle(TextFormatting.GREEN);
+        return new StringTextComponent("");
     }
 
+    public static ITextComponent getTextComponent(String key) {
+
+        return canLocalize(key) ? new TranslationTextComponent(key) : new StringTextComponent(key);
+    }
+
+    public static ITextComponent getInfoTextComponent(String key) {
+
+        return getTextComponent(key).applyTextStyle(TextFormatting.GREEN);
+    }
+    // endregion
+
+    // region RESOURCE LOCATION
     public static String[] decompose(String resourceLoc, char delimiter) {
 
         return decompose("minecraft", resourceLoc, delimiter);
@@ -128,6 +142,7 @@ public final class StringHelper {
 
         return decompose(resourceLoc, ':')[1];
     }
+    // endregion
 
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";

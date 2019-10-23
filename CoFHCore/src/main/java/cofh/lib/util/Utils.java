@@ -183,6 +183,11 @@ public class Utils {
     // endregion
 
     // ENCHANT UTILS
+    public static int getEnchantedCapacity(int amount, int holding) {
+
+        return amount + amount * holding / 2;
+    }
+
     public static int getHeldEnchantmentLevel(LivingEntity living, Enchantment ench) {
 
         return Math.max(getEnchantmentLevel(ench, living.getHeldItemMainhand()), getEnchantmentLevel(ench, living.getHeldItemOffhand()));

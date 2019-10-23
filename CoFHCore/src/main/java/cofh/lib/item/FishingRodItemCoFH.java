@@ -16,9 +16,9 @@ public class FishingRodItemCoFH extends FishingRodItem {
     protected int luckModifier;
     protected int speedModifier;
 
-    public FishingRodItemCoFH(Properties builder) {
+    public FishingRodItemCoFH(Properties properties) {
 
-        super(builder);
+        super(properties);
     }
 
     public FishingRodItemCoFH setParams(IItemTier tier) {

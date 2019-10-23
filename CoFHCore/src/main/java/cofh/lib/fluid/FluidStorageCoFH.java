@@ -1,7 +1,3 @@
-/*
- * (C) 2014-2018 Team CoFH / CoFH / Cult of the Full Hub
- * http://www.teamcofh.com
- */
 package cofh.lib.fluid;
 
 import cofh.lib.util.IResourceStorage;

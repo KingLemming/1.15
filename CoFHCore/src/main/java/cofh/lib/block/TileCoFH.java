@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 public class TileCoFH extends TileEntity implements ITileCallback {
@@ -18,19 +19,18 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     }
 
     // region PASSTHROUGHS
+    protected int getComparatorInputOverride() {
 
+        return 0;
+    }
+
+    protected int getLightValue() {
+
+        return 0;
+    }
     // endregion
 
     // region HELPERS
-    protected void updateLighting() {
-
-        //        int light = world.getLightFor(EnumSkyBlock.BLOCK, pos);
-        //        if (getLightValue() != light && world.checkLightFor(EnumSkyBlock.BLOCK, pos)) {
-        //            IBlockState state = world.getBlockState(pos);
-        //            world.notifyBlockUpdate(pos, state, state, 3);
-        //        }
-    }
-
     protected boolean hasClientUpdate() {
 
         return false;
@@ -55,6 +55,10 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
         return false;
     }
+    // endregion
+
+    // region NETWORK
+
     // endregion
 
     // region ITileCallback
