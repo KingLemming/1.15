@@ -1,6 +1,6 @@
 package cofh.core.item;
 
-import cofh.lib.fluid.FluidContainerItemWrapper;
+import cofh.lib.fluid.FluidEnchantableItemWrapper;
 import cofh.lib.fluid.IFluidContainerItem;
 import cofh.lib.item.IColorableItem;
 import cofh.lib.item.ItemCoFH;
@@ -8,6 +8,7 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,6 +22,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -99,7 +101,11 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new FluidContainerItemWrapper(stack, this);
+        ArrayList<Enchantment> enchants = new ArrayList<>();
+        if (HOLDING != null) {
+            enchants.add(HOLDING);
+        }
+        return new FluidEnchantableItemWrapper(stack, this, enchants);
     }
 
     // region IFluidContainerItem

@@ -1,12 +1,13 @@
 package cofh.core.item;
 
-import cofh.lib.energy.EnergyContainerItemWrapper;
+import cofh.lib.energy.EnergyEnchantableItemWrapper;
 import cofh.lib.energy.IEnergyContainerItem;
 import cofh.lib.item.IColorableItem;
 import cofh.lib.item.ItemCoFH;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -17,6 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_FLUX;
@@ -103,7 +105,11 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new EnergyContainerItemWrapper(stack, this, maxExtract > 0, maxReceive > 0);
+        ArrayList<Enchantment> enchants = new ArrayList<>();
+        if (HOLDING != null) {
+            enchants.add(HOLDING);
+        }
+        return new EnergyEnchantableItemWrapper(stack, this, maxExtract > 0, maxReceive > 0, enchants);
     }
 
     // region IEnergyContainerItem

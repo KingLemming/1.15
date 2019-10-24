@@ -18,7 +18,8 @@ import java.util.Set;
 public class EnchantableItem implements IEnchantableItem, ICapabilityProvider {
 
     private final LazyOptional<IEnchantableItem> holder = LazyOptional.of(() -> this);
-    private Set<Enchantment> validEnchantments = new HashSet<>();
+
+    final Set<Enchantment> validEnchantments = new HashSet<>();
 
     public EnchantableItem(List<Enchantment> enchantments) {
 
