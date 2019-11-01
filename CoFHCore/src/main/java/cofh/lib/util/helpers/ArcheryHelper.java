@@ -68,6 +68,7 @@ public final class ArcheryHelper {
 
                     if (encTrueshot > 0) {
                         accuracyMod *= (1.5F / (1 + encTrueshot));
+                        damageMod *= (1.0F + 0.25F * encTrueshot);
                         arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.15F * encTrueshot, 1.75F);
                     }
                     for (int shot = 0; shot <= encVolley; shot++) {

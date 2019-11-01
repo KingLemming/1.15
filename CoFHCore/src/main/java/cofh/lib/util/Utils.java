@@ -16,10 +16,12 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
@@ -69,6 +71,17 @@ public class Utils {
         configData.load();
         spec.setConfig(configData);
     }
+
+    // region PARTICLE UTILS
+    public static void spawnParticles(World world, IParticleData particle, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed) {
+
+        if (isServerWorld(world)) {
+            ((ServerWorld) world).spawnParticle(particle, posX, posY + 1.0D, posZ, particleCount, xOffset, yOffset, zOffset, speed);
+        } else {
+            world.addParticle(particle, posX + xOffset, posY + yOffset, posZ + zOffset, 0.0D, 0.0D, 0.0D);
+        }
+    }
+    // endregion
 
     // region CHAT UTILS
 
@@ -182,7 +195,7 @@ public class Utils {
     }
     // endregion
 
-    // ENCHANT UTILS
+    // region ENCHANT UTILS
     public static int getEnchantedCapacity(int amount, int holding) {
 
         return amount + amount * holding / 2;

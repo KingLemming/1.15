@@ -1,6 +1,7 @@
 package cofh.ensorcellation.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
+import cofh.lib.util.Utils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
@@ -86,7 +87,7 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
         AFFLICTED_MOBS.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
-                ((ServerWorld) attacker.world).spawnParticle(ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(attacker.world, ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }

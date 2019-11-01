@@ -32,7 +32,6 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
     protected int maxExtract;
     protected int maxReceive;
 
-
     public EnergyContainerItem(Properties properties, int maxEnergy, int maxExtract, int maxReceive) {
 
         super(properties);

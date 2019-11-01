@@ -59,8 +59,8 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         if (fluid.isEmpty()) {
             tooltip.add(getTextComponent(localize("info.cofh.fluid") + ": " + localize("info.cofh.empty")));
         } else {
-//            String color = fluid.getFluid().getAttributes().getRarity(fluid).;
-//            tooltip.add(localize("info.cofh.fluid") + ": " + color + fluid.getFluid().getLocalizedName(fluid) + LIGHT_GRAY);
+            //            String color = fluid.getFluid().getAttributes().getRarity(fluid).;
+            //            tooltip.add(localize("info.cofh.fluid") + ": " + color + fluid.getFluid().getLocalizedName(fluid) + LIGHT_GRAY);
         }
         if (isCreative()) {
             tooltip.add(getTextComponent("info.cofh.infinite_source"));
@@ -127,7 +127,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         if (container.getTag() == null) {
             container.setTag(new CompoundNBT());
         }
-        if (resource.isEmpty()) {
+        if (resource.isEmpty() || !isFluidValid(container, resource)) {
             return 0;
         }
         int capacity = getCapacity(container);

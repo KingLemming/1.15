@@ -12,6 +12,8 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.SaplingGrowTreeEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -101,6 +103,20 @@ public class CommonEventsCore {
         }
         orb.remove();
         event.setCanceled(true);
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void handleSaplingGrowTreeEvent(SaplingGrowTreeEvent event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        if (!ConfigCore.enableSaplingGrowthMod) {
+            return;
+        }
+        if (event.getRand().nextInt(ConfigCore.amountSaplingGrowthMod) != 0) {
+            event.setResult(Event.Result.DENY);
+        }
     }
 
     // region HELPERS

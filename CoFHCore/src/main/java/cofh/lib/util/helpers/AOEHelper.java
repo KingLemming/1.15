@@ -351,7 +351,7 @@ public class AOEHelper {
     private static boolean canToolAffect(Item toolItem, ItemStack toolStack, World world, BlockPos pos) {
 
         BlockState state = world.getBlockState(pos);
-        return toolItem.canHarvestBlock(toolStack, state) || toolItem.getDestroySpeed(toolStack, state) > 1.0F;
+        return state.getBlockHardness(world, pos) != -1 && toolItem.canHarvestBlock(toolStack, state) || toolItem.getDestroySpeed(toolStack, state) > 1.0F;
     }
 
     private static boolean canHoeAffect(World world, BlockPos pos, boolean weeding) {

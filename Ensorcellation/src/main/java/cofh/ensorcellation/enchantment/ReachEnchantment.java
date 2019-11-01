@@ -1,7 +1,9 @@
 package cofh.ensorcellation.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
@@ -33,6 +35,12 @@ public class ReachEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof ToolItem || item instanceof HoeItem || supportsEnchantment(stack));
+    }
+
+    @Override
+    public boolean canApplyTogether(Enchantment ench) {
+
+        return super.canApplyTogether(ench) && ench != Enchantments.KNOCKBACK;
     }
 
 }

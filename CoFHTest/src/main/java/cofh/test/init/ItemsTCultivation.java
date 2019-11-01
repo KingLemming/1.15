@@ -2,6 +2,7 @@ package cofh.test.init;
 
 import cofh.lib.item.BlockNamedItemCoFH;
 import cofh.lib.item.ItemCoFH;
+import cofh.test.item.WateringCanItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
@@ -21,6 +22,8 @@ public class ItemsTCultivation {
 
         registerCrops();
         registerSeeds();
+
+        registerTools();
     }
 
     private static void registerCrops() {
@@ -83,6 +86,9 @@ public class ItemsTCultivation {
 
     private static void registerTools() {
 
+        ItemGroup group = COFH_TEST_GROUP;
+
+        ITEMS.register("watering_can_test", () -> new WateringCanItem(new Item.Properties().group(group), 10000, 2, 60));
     }
 
     public static RegistryObject<Item> cropBarley;

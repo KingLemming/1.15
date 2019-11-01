@@ -62,12 +62,13 @@ public class PreservationEvents {
             return;
         }
         ItemStack left = event.getLeft();
-        ItemStack right = event.getRight();
-        ItemStack output = left.copy();
 
         if (getEnchantmentLevel(Enchantments.MENDING, left) <= 0) {
             return;
         }
+        ItemStack right = event.getRight();
+        ItemStack output = left.copy();
+
         if (output.isDamageable() && output.getItem().getIsRepairable(left, right)) {
             int damageLeft = Math.min(output.getDamage(), output.getMaxDamage() / 4);
             if (damageLeft <= 0) {

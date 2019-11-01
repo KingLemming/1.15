@@ -1,11 +1,13 @@
 package cofh.ensorcellation.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
+import static cofh.lib.util.references.EnsorcellationReferences.TRUESHOT;
 
 public class VolleyEnchantment extends EnchantmentCoFH {
 
@@ -31,6 +33,12 @@ public class VolleyEnchantment extends EnchantmentCoFH {
     public boolean canApply(ItemStack stack) {
 
         return enable && (validBow(stack) || supportsEnchantment(stack));
+    }
+
+    @Override
+    public boolean canApplyTogether(Enchantment ench) {
+
+        return super.canApplyTogether(ench) && ench != TRUESHOT;
     }
 
 }

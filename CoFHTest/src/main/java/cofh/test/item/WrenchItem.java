@@ -35,8 +35,8 @@ public class WrenchItem extends ItemCoFH {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-//        tooltip.add(getInfoText("info.thermal.wrench.0"));
-//        tooltip.add(getFlavorText("info.thermal.wrench.1"));
+        //        tooltip.add(getInfoText("info.thermal.wrench.0"));
+        //        tooltip.add(getFlavorText("info.thermal.wrench.1"));
     }
 
     @Override

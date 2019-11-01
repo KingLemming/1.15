@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -57,7 +56,7 @@ public class EffectLove extends EffectCoFH {
         if (animal.getGrowingAge() == 0 && !animal.isInLove()) {
             animal.setInLove(player);
             for (int i = 0; i < 4; ++i) {
-                ((ServerWorld) animal.world).spawnParticle(ParticleTypes.HEART, animal.posX + animal.world.rand.nextDouble(), animal.posY + 1.0D + animal.world.rand.nextDouble(), animal.posZ + animal.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(animal.world, ParticleTypes.HEART, animal.posX + animal.world.rand.nextDouble(), animal.posY + 1.0D + animal.world.rand.nextDouble(), animal.posZ + animal.world.rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }
