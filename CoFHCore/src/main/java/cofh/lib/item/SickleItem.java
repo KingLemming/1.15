@@ -24,29 +24,32 @@ public class SickleItem extends ToolItem {
 
     private static float DEFAULT_ATTACK_DAMAGE = 2.5F;
     private static float DEFAULT_ATTACK_SPEED = -2.6F;
-    private static int DEFAULT_BASE_AREA = 2;
+    private static int DEFAULT_BASE_RADIUS = 2;
+    private static int DEFAULT_BASE_HEIGHT = 0;
 
     private int radius;
+    private int height;
 
-    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, Properties properties) {
+    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, int height, Properties properties) {
 
         super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_BLOCKS, properties.addToolType(SICKLE, tier.getHarvestLevel()));
         this.radius = radius;
+        this.height = height;
     }
 
     public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties properties) {
 
-        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
     public SickleItem(IItemTier tier, float attackDamageIn, Properties properties) {
 
-        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
     public SickleItem(IItemTier tier, Properties properties) {
 
-        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_AREA, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
     @Override
@@ -72,7 +75,7 @@ public class SickleItem extends ToolItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new AOEMiningItem(radius, AOEMiningItem.Type.SICKLE);
+        return new AOEMiningItem(radius, height, AOEMiningItem.Type.SICKLE);
     }
 
 }

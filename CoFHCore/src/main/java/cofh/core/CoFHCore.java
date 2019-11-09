@@ -30,7 +30,7 @@ public class CoFHCore {
     public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
-    public static final DeferredRegisterCoFH<Effect> POTIONS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
+    public static final DeferredRegisterCoFH<Effect> EFFECTS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
 
     public CoFHCore() {
 
@@ -40,7 +40,7 @@ public class CoFHCore {
         modEventBus.addListener(this::clientSetup);
 
         BLOCKS.register(modEventBus);
-        POTIONS.register(modEventBus);
+        EFFECTS.register(modEventBus);
 
         ConfigCore.register();
 

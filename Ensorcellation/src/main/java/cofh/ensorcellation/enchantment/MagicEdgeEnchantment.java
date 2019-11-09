@@ -18,6 +18,7 @@ public class MagicEdgeEnchantment extends DamageEnchantmentCoFH {
 
         super(Rarity.RARE, EnchantmentType.WEAPON, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 3;
+        treasure = true;
     }
 
     @Override
@@ -37,12 +38,6 @@ public class MagicEdgeEnchantment extends DamageEnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
     // region HELPERS

@@ -10,9 +10,9 @@ import net.minecraft.potion.EffectType;
 
 import javax.annotation.Nullable;
 
-public class EffectLove extends EffectCoFH {
+public class EffectAmplification extends EffectCoFH {
 
-    public EffectLove(EffectType typeIn, int liquidColorIn) {
+    public EffectAmplification(EffectType typeIn, int liquidColorIn) {
 
         super(typeIn, liquidColorIn);
     }
@@ -33,12 +33,6 @@ public class EffectLove extends EffectCoFH {
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
 
         // TODO: Revisit if potion logic ever changes. Instant potions don't need this.
-        //        World world = entityLivingBaseIn.world;
-        //        if (Utils.isServerWorld(world)) {
-        //            if (entityLivingBaseIn instanceof AnimalEntity) {
-        //                setLoveFlag(null, (AnimalEntity) entityLivingBaseIn);
-        //            }
-        //        }
     }
 
     @Override

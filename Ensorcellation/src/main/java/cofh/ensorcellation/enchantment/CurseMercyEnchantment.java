@@ -13,6 +13,7 @@ public class CurseMercyEnchantment extends EnchantmentCoFH {
     public CurseMercyEnchantment() {
 
         super(Rarity.VERY_RARE, EnchantmentType.WEAPON, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        treasure = true;
     }
 
     @Override
@@ -32,12 +33,6 @@ public class CurseMercyEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
     @Override

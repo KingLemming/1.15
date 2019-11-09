@@ -46,7 +46,7 @@ public class AOEMiningItem implements IAOEItem, ICapabilityProvider {
     public ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
 
         if (type == Type.SICKLE) {
-            return AOEHelper.getAOEBlocksMiningArea(stack, pos, player, radius, depth);
+            return AOEHelper.getAOEBlocksSickle(stack, pos, player, radius, depth);
         }
         return AOEHelper.getAOEBlocksMiningRadius(stack, pos, player, radius + getEnchantmentLevel(EXCAVATING, stack));
     }

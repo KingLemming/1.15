@@ -17,6 +17,7 @@ public class MobCaptureEnchantment extends EnchantmentCoFH {
 
         super(Enchantment.Rarity.VERY_RARE, EnchantmentType.FISHING_ROD, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 2;
+        treasure = true;
     }
 
     @Override
@@ -36,12 +37,6 @@ public class MobCaptureEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof FishingRodItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
 }

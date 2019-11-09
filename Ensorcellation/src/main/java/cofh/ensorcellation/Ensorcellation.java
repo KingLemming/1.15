@@ -3,8 +3,10 @@ package cofh.ensorcellation;
 import cofh.ensorcellation.event.*;
 import cofh.ensorcellation.init.ConfigEnsorc;
 import cofh.ensorcellation.init.EnchantmentsEnsorc;
+import cofh.ensorcellation.init.PotionsEnsorc;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -22,6 +24,7 @@ public class Ensorcellation {
     public static final Logger LOG = LogManager.getLogger(ID_ENSORCELLATION);
 
     public static final DeferredRegisterCoFH<Enchantment> ENCHANTMENTS = new DeferredRegisterCoFH<>(ForgeRegistries.ENCHANTMENTS, ID_ENSORCELLATION);
+    public static final DeferredRegisterCoFH<Potion> POTIONS = new DeferredRegisterCoFH<>(ForgeRegistries.POTION_TYPES, ID_ENSORCELLATION);
 
     public Ensorcellation() {
 
@@ -31,10 +34,12 @@ public class Ensorcellation {
         modEventBus.addListener(this::clientSetup);
 
         ENCHANTMENTS.register(modEventBus);
+        POTIONS.register(modEventBus);
 
         ConfigEnsorc.register();
 
         EnchantmentsEnsorc.register();
+        PotionsEnsorc.register();
     }
 
     // region INITIALIZATION

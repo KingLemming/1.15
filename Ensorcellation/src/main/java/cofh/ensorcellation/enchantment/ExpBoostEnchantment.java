@@ -7,6 +7,8 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 
+import java.util.Random;
+
 public class ExpBoostEnchantment extends EnchantmentCoFH {
 
     public static int experience = 4;
@@ -33,7 +35,7 @@ public class ExpBoostEnchantment extends EnchantmentCoFH {
     public boolean canApply(ItemStack stack) {
 
         Item item = stack.getItem();
-        return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));
+        return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof FishingRodItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));
     }
 
     @Override
@@ -42,4 +44,10 @@ public class ExpBoostEnchantment extends EnchantmentCoFH {
         return super.canApplyTogether(ench) && ench != Enchantments.SILK_TOUCH;
     }
 
+    // region HELPERS
+    public static int getExp(int baseExp, int level, Random rand) {
+
+        return baseExp + level + rand.nextInt(1 + level * experience);
+    }
+    // endregion
 }

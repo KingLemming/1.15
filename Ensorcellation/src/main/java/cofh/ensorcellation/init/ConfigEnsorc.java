@@ -196,8 +196,8 @@ public class ConfigEnsorc {
         enableExpBoost = SERVER_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this to change the base experience awarded per level of the Enchantment.";
-        amountExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 4, 1, 1000);
+        comment = "Adjust this to change the max experience awarded per level of the Enchantment.";
+        amountExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Experience Amount", 4, 1, 1000);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Reach");
@@ -408,6 +408,7 @@ public class ConfigEnsorc {
 
         refreshEnchantmentConfig();
         refreshOverrideConfig();
+        refreshPotionConfig();
     }
 
     private static void refreshClientConfig() {
@@ -612,6 +613,10 @@ public class ConfigEnsorc {
             ((EnchantmentCoFH) MENDING).setEnable(alternateMending.get());
             MendingEnchantmentAlt.anvilDamage = damageMending.get() / 100F;
         }
+    }
+
+    private static void refreshPotionConfig() {
+
     }
     // endregion
 

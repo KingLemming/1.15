@@ -11,7 +11,7 @@ public class EnsorcellationReferences {
 
     }
 
-    // region IDS
+    // region ENCHANTMENT IDS
 
     // VANILLA
     public static final String ID_PROTECTION = "minecraft:protection";

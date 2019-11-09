@@ -147,9 +147,9 @@ public class AOEHelper {
                 depth_min = 0;
                 depth_max = depth;
             case UP:
-                for (int i = x - radius; i <= x + radius; i++) {
-                    for (int j = y - depth_min; j <= y + depth_max; j++) {
-                        for (int k = z - radius; k <= z + radius; k++) {
+                for (int i = x - radius; i <= x + radius; ++i) {
+                    for (int j = y - depth_min; j <= y + depth_max; ++j) {
+                        for (int k = z - radius; k <= z + radius; ++k) {
                             if (i == x && j == y && k == z) {
                                 continue;
                             }
@@ -167,9 +167,9 @@ public class AOEHelper {
             case SOUTH:
                 int posY = y;
                 y += (radius - 1);     // Offset for > 3x3
-                for (int i = x - radius; i <= x + radius; i++) {
-                    for (int j = y - radius; j <= y + radius; j++) {
-                        for (int k = z - depth_min; k <= z + depth_max; k++) {
+                for (int i = x - radius; i <= x + radius; ++i) {
+                    for (int j = y - radius; j <= y + radius; ++j) {
+                        for (int k = z - depth_min; k <= z + depth_max; ++k) {
                             if (i == x && j == posY && k == z) {
                                 continue;
                             }
@@ -187,9 +187,9 @@ public class AOEHelper {
             case EAST:
                 posY = y;
                 y += (radius - 1);     // Offset for > 3x3
-                for (int i = x - depth_min; i <= x + depth_max; i++) {
-                    for (int j = y - radius; j <= y + radius; j++) {
-                        for (int k = z - radius; k <= z + radius; k++) {
+                for (int i = x - depth_min; i <= x + depth_max; ++i) {
+                    for (int j = y - radius; j <= y + radius; ++j) {
+                        for (int k = z - radius; k <= z + radius; ++k) {
                             if (i == x && j == posY && k == z) {
                                 continue;
                             }
@@ -344,7 +344,36 @@ public class AOEHelper {
     // endregion
 
     // region SICKLE
+    public static ImmutableList<BlockPos> getAOEBlocksSickle(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int height) {
 
+        ArrayList<BlockPos> area = new ArrayList<>();
+        World world = player.getEntityWorld();
+        Item tool = stack.getItem();
+
+        BlockPos query;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
+            return ImmutableList.of();
+        }
+        for (int i = x - radius; i <= x + radius; ++i) {
+            for (int j = y - height; j <= y + height; ++j) {
+                for (int k = z - radius; k <= z + radius; ++k) {
+                    if (i == x && j == y && k == z) {
+                        continue;
+                    }
+                    query = new BlockPos(i, y, k);
+                    if (canToolAffect(tool, stack, world, query)) {
+                        area.add(query);
+                    }
+                }
+            }
+        }
+        return ImmutableList.copyOf(area);
+    }
     // endregion
 
     // region HELPERS

@@ -16,6 +16,7 @@ public class TillingEnchantment extends EnchantmentCoFH {
 
         super(Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 4;
+        treasure = true;
     }
 
     @Override
@@ -35,12 +36,6 @@ public class TillingEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof HoeItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
     @Override

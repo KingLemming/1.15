@@ -11,6 +11,7 @@ public abstract class EnchantmentCoFH extends Enchantment {
 
     protected boolean enable = true;
     protected boolean allowOnBooks = true;
+    protected boolean treasure = false;
     protected int maxLevel = 1;
 
     protected EnchantmentCoFH(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
@@ -68,6 +69,12 @@ public abstract class EnchantmentCoFH extends Enchantment {
     public boolean isAllowedOnBooks() {
 
         return enable && allowOnBooks;
+    }
+
+    @Override
+    public boolean isTreasureEnchantment() {
+
+        return treasure;
     }
 
 }

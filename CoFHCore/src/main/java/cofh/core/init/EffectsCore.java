@@ -1,11 +1,12 @@
 package cofh.core.init;
 
 import cofh.core.potion.EffectCoFH;
+import cofh.core.potion.EffectLove;
+import cofh.core.potion.EffectPanacea;
 import net.minecraft.potion.EffectType;
 
-import static cofh.core.CoFHCore.POTIONS;
-import static cofh.lib.util.references.CoreReferences.ID_ENDERFERENCE;
-import static cofh.lib.util.references.CoreReferences.ID_EPIPHANY;
+import static cofh.core.CoFHCore.EFFECTS;
+import static cofh.lib.util.references.CoreReferences.*;
 
 public class EffectsCore {
 
@@ -15,8 +16,13 @@ public class EffectsCore {
 
     public static void register() {
 
-        POTIONS.register(ID_ENDERFERENCE, () -> new EffectCoFH(EffectType.NEUTRAL, 0x1B574D));
-        POTIONS.register(ID_EPIPHANY, () -> new EffectCoFH(EffectType.BENEFICIAL, 0x80BF00));
+        EFFECTS.register(ID_EFFECT_LIGHTNING_RESISTANCE, () -> new EffectCoFH(EffectType.BENEFICIAL, 0xA0A0A0));
+        EFFECTS.register(ID_EFFECT_MAGIC_RESISTANCE, () -> new EffectCoFH(EffectType.BENEFICIAL, 0x580058));
+
+        EFFECTS.register(ID_EFFECT_ENDERFERENCE, () -> new EffectCoFH(EffectType.NEUTRAL, 0x1B574D));
+        EFFECTS.register(ID_EFFECT_CLARITY, () -> new EffectCoFH(EffectType.BENEFICIAL, 0x70FF00));
+        EFFECTS.register(ID_EFFECT_LOVE, () -> new EffectLove(EffectType.BENEFICIAL, 0xFF7099));
+        EFFECTS.register(ID_EFFECT_PANACEA, () -> new EffectPanacea(EffectType.BENEFICIAL, 0x30B1FF));
     }
 
 }

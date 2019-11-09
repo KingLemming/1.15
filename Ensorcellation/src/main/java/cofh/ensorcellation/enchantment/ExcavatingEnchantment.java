@@ -18,6 +18,7 @@ public class ExcavatingEnchantment extends EnchantmentCoFH {
 
         super(Rarity.RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 2;
+        treasure = true;
     }
 
     @Override
@@ -40,15 +41,9 @@ public class ExcavatingEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
-    }
-
-    @Override
     public boolean canApplyTogether(Enchantment ench) {
 
-        return super.canApplyTogether(ench) && ench != Enchantments.LOOTING && ench != Enchantments.EFFICIENCY && ench != TILLING;
+        return super.canApplyTogether(ench) && ench != Enchantments.LOOTING && ench != TILLING;
     }
 
 }

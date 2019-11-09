@@ -52,6 +52,7 @@ import static cofh.lib.util.constants.Constants.DAMAGE_PLAYER;
 import static cofh.lib.util.constants.Constants.UUID_REACH_DISTANCE;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
+import static net.minecraft.enchantment.Enchantments.EFFICIENCY;
 import static net.minecraft.enchantment.Enchantments.FROST_WALKER;
 import static net.minecraft.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
 import static net.minecraft.item.Items.*;
@@ -148,7 +149,7 @@ public class CommonEventsEnsorc {
         // HUNTER
         int encHunter = getHeldEnchantmentLevel(player, HUNTER);
         if (encHunter > 0 && entity instanceof AnimalEntity) {
-            LootTable loottable = entity.world.getServer().getLootTableManager().getLootTableFromLocation((entity).func_213346_cF());
+            LootTable loottable = entity.world.getServer().getLootTableManager().getLootTableFromLocation(entity.getLootTableResourceLocation());
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) entity.world)).withRandom(entity.world.rand).withParameter(LootParameters.THIS_ENTITY, entity).withParameter(LootParameters.POSITION, new BlockPos(entity)).withParameter(LootParameters.DAMAGE_SOURCE, source).withNullableParameter(LootParameters.KILLER_ENTITY, source.getTrueSource()).withNullableParameter(LootParameters.DIRECT_KILLER_ENTITY, source.getImmediateSource());
             lootcontext$builder = lootcontext$builder.withParameter(LootParameters.LAST_DAMAGE_PLAYER, player).withLuck(player.getLuck());
             loottable.generate(lootcontext$builder.build(LootParameterSets.ENTITY));
@@ -208,7 +209,6 @@ public class CommonEventsEnsorc {
         if (event.isCanceled()) {
             return;
         }
-        LivingEntity entity = event.getEntityLiving();
         PlayerEntity player = event.getAttackingPlayer();
 
         if (player != null) {
@@ -222,7 +222,7 @@ public class CommonEventsEnsorc {
             // EXP BOOST
             int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
             if (encExpBoost > 0) {
-                event.setDroppedExperience(event.getDroppedExperience() + encExpBoost + entity.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience));
+                event.setDroppedExperience(ExpBoostEnchantment.getExp(event.getDroppedExperience(), encExpBoost, player.world.rand));
             }
         }
     }
@@ -349,14 +349,14 @@ public class CommonEventsEnsorc {
             LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld) hook.world)).withParameter(LootParameters.POSITION, new BlockPos(hook)).withParameter(LootParameters.TOOL, fishingRod).withRandom(hook.world.rand).withLuck((float) hook.luck + hook.angler.getLuck());
             lootcontext$builder.withParameter(LootParameters.KILLER_ENTITY, hook.angler).withParameter(LootParameters.THIS_ENTITY, hook);
             LootTable loottable = hook.world.getServer().getLootTableManager().getLootTableFromLocation(LootTables.GAMEPLAY_FISHING);
-            List<ItemStack> result = loottable.generate(lootcontext$builder.build(LootParameterSets.FISHING));
+            List<ItemStack> list = loottable.generate(lootcontext$builder.build(LootParameterSets.FISHING));
 
             for (int i = 0; i < encAngler; ++i) {
                 if (player.getRNG().nextInt(100) < AnglerEnchantment.chance) {
-                    result.addAll(loottable.generate(lootcontext$builder.build(LootParameterSets.FISHING)));
+                    list.addAll(loottable.generate(lootcontext$builder.build(LootParameterSets.FISHING)));
                 }
             }
-            for (ItemStack stack : result) {
+            for (ItemStack stack : list) {
                 ItemEntity drop = new ItemEntity(hook.world, hook.posX, hook.posY, hook.posZ, stack);
                 double d0 = player.posX - hook.posX;
                 double d1 = player.posY - hook.posY;
@@ -368,6 +368,11 @@ public class CommonEventsEnsorc {
                     player.addStat(Stats.FISH_CAUGHT, 1);
                 }
             }
+        }
+        // EXP BOOST
+        int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
+        if (encExpBoost > 0) {
+            hook.world.addEntity(new ExperienceOrbEntity(player.world, player.posX, player.posY + 0.5D, player.posZ + 0.5D, ExpBoostEnchantment.getExp(0, encExpBoost, player.world.rand)));
         }
     }
 
@@ -408,7 +413,7 @@ public class CommonEventsEnsorc {
             // EXP BOOST
             int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
             if (encExpBoost > 0) {
-                event.setExpToDrop(event.getExpToDrop() + encExpBoost + player.world.rand.nextInt(1 + encExpBoost * ExpBoostEnchantment.experience));
+                event.setExpToDrop(ExpBoostEnchantment.getExp(event.getExpToDrop(), encExpBoost, player.world.rand));
             }
         }
     }
@@ -427,8 +432,14 @@ public class CommonEventsEnsorc {
         }
         // EXCAVATING
         int encExcavating = getHeldEnchantmentLevel(player, EXCAVATING);
-        if (encExcavating > 0 && !player.isSneaking()) {
-            event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
+        if (encExcavating > 0) {
+            if (!player.isSneaking()) {
+                event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
+            }
+            int encEfficiency = getHeldEnchantmentLevel(player, EFFICIENCY);
+            if (encEfficiency > 1) {
+                event.setNewSpeed(event.getNewSpeed() / encEfficiency);
+            }
         }
     }
     // endregion

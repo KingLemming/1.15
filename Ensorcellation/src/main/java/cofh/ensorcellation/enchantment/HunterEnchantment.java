@@ -17,6 +17,7 @@ public class HunterEnchantment extends EnchantmentCoFH {
 
         super(Rarity.VERY_RARE, EnchantmentType.FISHING_ROD, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
         maxLevel = 2;
+        treasure = true;
     }
 
     @Override
@@ -36,12 +37,6 @@ public class HunterEnchantment extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof BowItem || validBow(stack) || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
 }

@@ -16,8 +16,14 @@ public class CoreReferences {
     // region IDS
     public static final String ID_GLOSSED_MAGMA = ID_COFH_CORE + ":glossed_magma";
 
-    public static final String ID_ENDERFERENCE = ID_COFH_CORE + ":enderference";
-    public static final String ID_EPIPHANY = ID_COFH_CORE + ":epiphany";
+    public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
+    public static final String ID_EFFECT_MAGIC_RESISTANCE = ID_COFH_CORE + ":magic_resistance";
+
+    public static final String ID_EFFECT_AMPLIFICATION = ID_COFH_CORE + ":amplification";
+    public static final String ID_EFFECT_CLARITY = ID_COFH_CORE + ":clarity";
+    public static final String ID_EFFECT_ENDERFERENCE = ID_COFH_CORE + ":enderference";
+    public static final String ID_EFFECT_LOVE = ID_COFH_CORE + ":love";
+    public static final String ID_EFFECT_PANACEA = ID_COFH_CORE + ":panacea";
 
     public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
     // endregion
@@ -28,11 +34,26 @@ public class CoreReferences {
     // endregion
 
     // region EFFECTS
-    @ObjectHolder(ID_ENDERFERENCE)
+    @ObjectHolder(ID_EFFECT_LIGHTNING_RESISTANCE)
+    public static final Effect LIGHTNING_RESISTANCE = null;
+
+    @ObjectHolder(ID_EFFECT_MAGIC_RESISTANCE)
+    public static final Effect MAGIC_RESISTANCE = null;
+
+    @ObjectHolder(ID_EFFECT_AMPLIFICATION)
+    public static final Effect AMPLIFICATION = null;
+
+    @ObjectHolder(ID_EFFECT_CLARITY)
+    public static final Effect CLARITY = null;
+
+    @ObjectHolder(ID_EFFECT_ENDERFERENCE)
     public static final Effect ENDERFERENCE = null;
 
-    @ObjectHolder(ID_EPIPHANY)
-    public static final Effect EPIPHANY = null;
+    @ObjectHolder(ID_EFFECT_LOVE)
+    public static final Effect LOVE = null;
+
+    @ObjectHolder(ID_EFFECT_PANACEA)
+    public static final Effect PANACEA = null;
     // endregion
 
     // region ENCHANTMENTS

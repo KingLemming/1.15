@@ -10,6 +10,7 @@ public class CurseFoolEnchant extends EnchantmentCoFH {
     public CurseFoolEnchant() {
 
         super(Rarity.VERY_RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        treasure = true;
     }
 
     @Override
@@ -29,12 +30,6 @@ public class CurseFoolEnchant extends EnchantmentCoFH {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
     @Override

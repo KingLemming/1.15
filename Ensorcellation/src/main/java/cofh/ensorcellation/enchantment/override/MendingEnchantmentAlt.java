@@ -15,6 +15,7 @@ public class MendingEnchantmentAlt extends EnchantmentOverride {
 
         super(Rarity.RARE, EnchantmentType.BREAKABLE, EquipmentSlotType.values());
         name = "enchantment." + ID_ENSORCELLATION + ".preservation";
+        treasure = true;
     }
 
     public EnchantmentCoFH setEnable(boolean enable) {
@@ -33,12 +34,6 @@ public class MendingEnchantmentAlt extends EnchantmentOverride {
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 50;
-    }
-
-    @Override
-    public boolean isTreasureEnchantment() {
-
-        return true;
     }
 
 }
