@@ -1,5 +1,6 @@
 package cofh.ensorcellation;
 
+import cofh.core.init.ItemsCore;
 import cofh.ensorcellation.event.*;
 import cofh.ensorcellation.init.ConfigEnsorc;
 import cofh.ensorcellation.init.EnchantmentsEnsorc;
@@ -40,6 +41,8 @@ public class Ensorcellation {
 
         EnchantmentsEnsorc.register();
         PotionsEnsorc.register();
+
+        ItemsCore.registerHorseArmorOverrides();
     }
 
     // region INITIALIZATION

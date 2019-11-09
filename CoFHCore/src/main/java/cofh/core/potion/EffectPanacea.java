@@ -46,7 +46,7 @@ public class EffectPanacea extends EffectCoFH {
 
         while (iterator.hasNext()) {
             EffectInstance effect = iterator.next();
-            if (effect.getPotion().getEffectType() == EffectType.HARMFUL && !MinecraftForge.EVENT_BUS.post(new PotionEvent.PotionRemoveEvent(entity, effect))) {
+            if (!effect.isAmbient() && effect.getPotion().getEffectType() == EffectType.HARMFUL && !MinecraftForge.EVENT_BUS.post(new PotionEvent.PotionRemoveEvent(entity, effect))) {
                 entity.onFinishedPotionEffect(effect);
                 iterator.remove();
             }

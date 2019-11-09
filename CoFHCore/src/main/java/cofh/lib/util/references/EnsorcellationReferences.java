@@ -4,6 +4,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.lib.util.constants.Constants.ID_MINECRAFT;
 
 public class EnsorcellationReferences {
 
@@ -14,19 +15,19 @@ public class EnsorcellationReferences {
     // region ENCHANTMENT IDS
 
     // VANILLA
-    public static final String ID_PROTECTION = "minecraft:protection";
-    public static final String ID_PROTECTION_BLAST = "minecraft:blast_protection";
-    public static final String ID_PROTECTION_FALL = "minecraft:feather_falling";
-    public static final String ID_PROTECTION_FIRE = "minecraft:fire_protection";
-    public static final String ID_PROTECTION_PROJECTILE = "minecraft:projectile_protection";
+    public static final String ID_PROTECTION = ID_MINECRAFT + ":protection";
+    public static final String ID_PROTECTION_BLAST = ID_MINECRAFT + ":blast_protection";
+    public static final String ID_PROTECTION_FALL = ID_MINECRAFT + ":feather_falling";
+    public static final String ID_PROTECTION_FIRE = ID_MINECRAFT + ":fire_protection";
+    public static final String ID_PROTECTION_PROJECTILE = ID_MINECRAFT + ":projectile_protection";
 
-    public static final String ID_FIRE_ASPECT = "minecraft:fire_aspect";
-    public static final String ID_FROST_WALKER = "minecraft:frost_walker";
-    public static final String ID_KNOCKBACK = "minecraft:knockback";
-    public static final String ID_LOOTING = "minecraft:looting";
-    public static final String ID_THORNS = "minecraft:thorns";
+    public static final String ID_FIRE_ASPECT = ID_MINECRAFT + ":fire_aspect";
+    public static final String ID_FROST_WALKER = ID_MINECRAFT + ":frost_walker";
+    public static final String ID_KNOCKBACK = ID_MINECRAFT + ":knockback";
+    public static final String ID_LOOTING = ID_MINECRAFT + ":looting";
+    public static final String ID_THORNS = ID_MINECRAFT + ":thorns";
 
-    public static final String ID_MENDING = "minecraft:mending";
+    public static final String ID_MENDING = ID_MINECRAFT + ":mending";
 
     // ARMOR
     public static final String ID_PROTECTION_MAGIC = ID_ENSORCELLATION + ":magic_protection";
