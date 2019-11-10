@@ -30,7 +30,7 @@ public class SmashingEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         // TODO: Fix
         //        if (smashList.isEmpty()) {

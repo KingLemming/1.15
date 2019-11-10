@@ -26,7 +26,7 @@ public class CurseFoolEnchant extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));

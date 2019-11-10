@@ -31,6 +31,7 @@ public class MendingEnchantmentAlt extends EnchantmentOverride {
         return level * 25;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
 
         return getMinEnchantability(level) + 50;

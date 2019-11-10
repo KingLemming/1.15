@@ -48,10 +48,10 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         if (!enable) {
-            return stack.canApplyAtEnchantingTable(this);
+            return super.canApplyAtEnchantingTable(stack);
         }
         Item item = stack.getItem();
         return enable && (type != null && type.canEnchantItem(item) || item instanceof HorseArmorItem || supportsEnchantment(stack));

@@ -35,7 +35,7 @@ public class SmeltingEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         Item item = stack.getItem();
         return enable && (item instanceof ToolItem || supportsEnchantment(stack));

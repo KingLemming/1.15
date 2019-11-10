@@ -14,6 +14,9 @@ public class PotionsEnsorc {
 
     public static void register() {
 
+        POTIONS.register("explosion_resistance", () -> new Potion(new EffectInstance(EXPLOSION_RESISTANCE, 3600)));
+        POTIONS.register("explosion_resistance_long", () -> new Potion("explosion_resistance", new EffectInstance(EXPLOSION_RESISTANCE, 9600)));
+
         POTIONS.register("lightning_resistance", () -> new Potion(new EffectInstance(LIGHTNING_RESISTANCE, 3600)));
         POTIONS.register("lightning_resistance_long", () -> new Potion("lightning_resistance", new EffectInstance(LIGHTNING_RESISTANCE, 9600)));
 

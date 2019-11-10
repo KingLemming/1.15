@@ -28,7 +28,7 @@ public class PhalanxEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         return enable && (stack.getItem().isShield(stack, null) || supportsEnchantment(stack));
     }

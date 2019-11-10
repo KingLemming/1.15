@@ -29,10 +29,10 @@ public class FireAspectEnchantmentImp extends EnchantmentOverride {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         if (!enable) {
-            return stack.canApplyAtEnchantingTable(this);
+            return super.canApplyAtEnchantingTable(stack);
         }
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));

@@ -1,5 +1,6 @@
-package cofh.lib.item;
+package cofh.lib.item.override;
 
+import cofh.lib.item.ItemCoFH;
 import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -93,6 +94,12 @@ public class HorseArmorItemCoFH extends HorseArmorItem {
     public boolean isEnchantable(ItemStack stack) {
 
         return enchantability > 0;
+    }
+
+    @Override
+    public int getItemEnchantability() {
+
+        return enchantability;
     }
 
     @Override

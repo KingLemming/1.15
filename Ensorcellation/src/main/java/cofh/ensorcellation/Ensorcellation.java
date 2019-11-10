@@ -43,6 +43,7 @@ public class Ensorcellation {
         PotionsEnsorc.register();
 
         ItemsCore.registerHorseArmorOverrides();
+        ItemsCore.registerShieldOverride();
     }
 
     // region INITIALIZATION

@@ -1,11 +1,12 @@
-package cofh.lib.item;
+package cofh.lib.item.override;
 
+import cofh.lib.item.ItemCoFH;
 import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -20,7 +21,7 @@ import static cofh.lib.util.constants.Tags.TAG_ACTIVE;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
 
-public class ItemCoFH extends Item {
+public class ShieldItemCoFH extends ShieldItem {
 
     protected String info;
     protected boolean showEnchantEffect = true;
@@ -28,18 +29,18 @@ public class ItemCoFH extends Item {
     protected boolean creative;
     protected int enchantability;
 
-    public ItemCoFH(Properties properties) {
+    public ShieldItemCoFH(Properties properties) {
 
         super(properties);
     }
 
-    public ItemCoFH setCreative(boolean creative) {
+    public ShieldItemCoFH setCreative(boolean creative) {
 
         this.creative = creative;
         return this;
     }
 
-    public ItemCoFH setEnchantability(int enchantability) {
+    public ShieldItemCoFH setEnchantability(int enchantability) {
 
         this.enchantability = enchantability;
         return this;

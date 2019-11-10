@@ -31,7 +31,7 @@ public class DamageVillagerEnchantment extends DamageEnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || item instanceof CrossbowItem || supportsEnchantment(stack));

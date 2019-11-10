@@ -25,7 +25,7 @@ public class AirAffinityEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         return enable && type != null && type.canEnchantItem(stack.getItem());
     }

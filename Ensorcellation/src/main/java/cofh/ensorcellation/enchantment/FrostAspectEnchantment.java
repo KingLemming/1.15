@@ -40,7 +40,7 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         Item item = stack.getItem();
         return enable && (item instanceof SwordItem || item instanceof AxeItem || supportsEnchantment(stack));

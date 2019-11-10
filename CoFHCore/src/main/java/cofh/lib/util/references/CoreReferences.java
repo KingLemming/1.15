@@ -16,6 +16,7 @@ public class CoreReferences {
     // region IDS
     public static final String ID_GLOSSED_MAGMA = ID_COFH_CORE + ":glossed_magma";
 
+    public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
     public static final String ID_EFFECT_MAGIC_RESISTANCE = ID_COFH_CORE + ":magic_resistance";
 
@@ -34,6 +35,9 @@ public class CoreReferences {
     // endregion
 
     // region EFFECTS
+    @ObjectHolder(ID_EFFECT_EXPLOSION_RESISTANCE)
+    public static final Effect EXPLOSION_RESISTANCE = null;
+
     @ObjectHolder(ID_EFFECT_LIGHTNING_RESISTANCE)
     public static final Effect LIGHTNING_RESISTANCE = null;
 

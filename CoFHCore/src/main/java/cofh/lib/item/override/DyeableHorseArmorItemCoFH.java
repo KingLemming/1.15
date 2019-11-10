@@ -1,4 +1,4 @@
-package cofh.lib.item;
+package cofh.lib.item.override;
 
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.util.ResourceLocation;
