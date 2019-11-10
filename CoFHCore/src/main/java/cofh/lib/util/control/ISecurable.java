@@ -54,10 +54,10 @@ public interface ISecurable {
                 case PUBLIC:
                     return true;
                 case PRIVATE:
-                    return ownerID.equals(otherID);
+                    // return ownerID.equals(otherID);
                 case FRIENDS:
                     // TODO: Fix
-                    //return ownerID.equals(otherID) || FriendRegistry.playerHasAccess(owner, player);
+                    // return ownerID.equals(otherID) || FriendRegistry.playerHasAccess(owner, player);
                 case TEAM:
                     return ownerID.equals(otherID);
                 default:

@@ -2,6 +2,7 @@ package cofh.lib.util.control;
 
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 
 import static cofh.lib.util.constants.Tags.TAG_SIDES;
@@ -36,22 +37,21 @@ public class ReconfigControlModule implements IReconfigurable {
         this.sides = sides;
     }
 
-    // TODO: Fix
-    //	// region NETWORK
-    //	public void readFromBuffer(PacketBufferCoFH buffer) {
-    //
-    //		for (int i = 0; i < 6; i++) {
-    //			sides[i] = SideConfig.VALUES[buffer.readByte()];
-    //		}
-    //	}
-    //
-    //	public void writeToBuffer(PacketBufferCoFH buffer) {
-    //
-    //		for (int i = 0; i < 6; i++) {
-    //			buffer.writeByte(sides[i].ordinal());
-    //		}
-    //	}
-    //	// endregion
+    // region NETWORK
+    public void readFromBuffer(PacketBuffer buffer) {
+
+        for (int i = 0; i < 6; i++) {
+            sides[i] = SideConfig.VALUES[buffer.readByte()];
+        }
+    }
+
+    public void writeToBuffer(PacketBuffer buffer) {
+
+        for (int i = 0; i < 6; i++) {
+            buffer.writeByte(sides[i].ordinal());
+        }
+    }
+    // endregion
 
     // region NBT
     public ReconfigControlModule read(CompoundNBT nbt) {

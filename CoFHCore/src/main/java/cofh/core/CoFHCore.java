@@ -5,16 +5,21 @@ import cofh.core.event.CommonEventsCore;
 import cofh.core.init.BlocksCore;
 import cofh.core.init.ConfigCore;
 import cofh.core.init.EffectsCore;
+import cofh.core.util.Proxy;
+import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityAOE;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityShield;
 import cofh.lib.event.*;
+import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,6 +34,8 @@ import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 public class CoFHCore {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
+    public static PacketHandler packetHandler;
+    public static Proxy proxy = DistExecutor.runForDist(() -> ProxyClient::new, () -> Proxy::new);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Effect> EFFECTS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
@@ -65,6 +72,8 @@ public class CoFHCore {
         AOEEvents.register();
         ShieldEvents.register();
         EffectEvents.register();
+
+        packetHandler = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "network"));
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

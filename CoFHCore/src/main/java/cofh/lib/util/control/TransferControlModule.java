@@ -2,6 +2,7 @@ package cofh.lib.util.control;
 
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 
 import static cofh.lib.util.constants.Tags.TAG_ENABLE_IN;
 import static cofh.lib.util.constants.Tags.TAG_ENABLE_OUT;
@@ -28,26 +29,25 @@ public class TransferControlModule implements ITransferControllable {
         this.hasAutoOutput = hasAutoOutput;
     }
 
-    // TODO: Fix
-    //	// region NETWORK
-    //	public void readFromBuffer(PacketBufferCoFH buffer) {
-    //
-    //		hasAutoInput = buffer.readBoolean();
-    //		hasAutoOutput = buffer.readBoolean();
-    //
-    //		enableAutoInput = buffer.readBoolean();
-    //		enableAutoOutput = buffer.readBoolean();
-    //	}
-    //
-    //	public void writeToBuffer(PacketBufferCoFH buffer) {
-    //
-    //		buffer.writeBoolean(hasAutoInput);
-    //		buffer.writeBoolean(hasAutoOutput);
-    //
-    //		buffer.writeBoolean(enableAutoInput);
-    //		buffer.writeBoolean(enableAutoOutput);
-    //	}
-    //	// endregion
+    // region NETWORK
+    public void readFromBuffer(PacketBuffer buffer) {
+
+        hasAutoInput = buffer.readBoolean();
+        hasAutoOutput = buffer.readBoolean();
+
+        enableAutoInput = buffer.readBoolean();
+        enableAutoOutput = buffer.readBoolean();
+    }
+
+    public void writeToBuffer(PacketBuffer buffer) {
+
+        buffer.writeBoolean(hasAutoInput);
+        buffer.writeBoolean(hasAutoOutput);
+
+        buffer.writeBoolean(enableAutoInput);
+        buffer.writeBoolean(enableAutoOutput);
+    }
+    // endregion
 
     // region NBT
     public TransferControlModule readFromNBT(CompoundNBT nbt) {

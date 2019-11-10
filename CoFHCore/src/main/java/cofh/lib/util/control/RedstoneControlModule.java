@@ -1,7 +1,9 @@
 package cofh.lib.util.control;
 
+import cofh.core.network.packet.server.PacketRedstoneControl;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 
 import static cofh.lib.util.constants.Tags.*;
 
@@ -25,22 +27,21 @@ public class RedstoneControlModule implements IRedstoneControllable {
         this.enabled = enabled;
     }
 
-    // TODO: Fix
-    //	// region NETWORK
-    //	public void readFromBuffer(PacketBufferCoFH buffer) {
-    //
-    //		power = buffer.readByte();
-    //		threshold = buffer.readByte();
-    //		mode = ControlMode.VALUES[buffer.readByte()];
-    //	}
-    //
-    //	public void writeToBuffer(PacketBufferCoFH buffer) {
-    //
-    //		buffer.writeByte(power);
-    //		buffer.writeByte(threshold);
-    //		buffer.writeByte(mode.ordinal());
-    //	}
-    //	// endregion
+    // region NETWORK
+    public void readFromBuffer(PacketBuffer buffer) {
+
+        power = buffer.readByte();
+        threshold = buffer.readByte();
+        mode = ControlMode.VALUES[buffer.readByte()];
+    }
+
+    public void writeToBuffer(PacketBuffer buffer) {
+
+        buffer.writeByte(power);
+        buffer.writeByte(threshold);
+        buffer.writeByte(mode.ordinal());
+    }
+    // endregion
 
     // region NBT
     public RedstoneControlModule read(CompoundNBT nbt) {
@@ -103,8 +104,7 @@ public class RedstoneControlModule implements IRedstoneControllable {
         this.threshold = threshold;
         this.mode = mode;
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            // PacketRedstoneControl.sendToServer(this.tile);
+            PacketRedstoneControl.sendToServer(this.tile);
         } else {
             tile.onControlUpdate();
         }

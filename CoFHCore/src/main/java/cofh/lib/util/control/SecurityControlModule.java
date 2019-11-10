@@ -4,6 +4,7 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 
 import java.util.UUID;
 
@@ -28,22 +29,21 @@ public class SecurityControlModule implements ISecurable {
         this.enabled = enabled;
     }
 
-    // TODO: Fix
-    //	// region NETWORK
-    //	public void readFromBuffer(PacketBufferCoFH buffer) {
-    //
-    //		access = AccessMode.VALUES[buffer.readByte()];
-    //		owner = SecurityHelper.DEFAULT_GAME_PROFILE;
-    //		setOwner(new GameProfile(buffer.readUniqueId(), buffer.readString(1024)));
-    //	}
-    //
-    //	public void writeToBuffer(PacketBufferCoFH buffer) {
-    //
-    //		buffer.writeByte(access.ordinal());
-    //		buffer.writeUniqueId(owner.getId());
-    //		buffer.writeString(owner.getName());
-    //	}
-    //	// endregion
+    // region NETWORK
+    public void readFromBuffer(PacketBuffer buffer) {
+
+        access = AccessMode.VALUES[buffer.readByte()];
+        owner = SecurityHelper.DEFAULT_GAME_PROFILE;
+        setOwner(new GameProfile(buffer.readUniqueId(), buffer.readString(1024)));
+    }
+
+    public void writeToBuffer(PacketBuffer buffer) {
+
+        buffer.writeByte(access.ordinal());
+        buffer.writeUniqueId(owner.getId());
+        buffer.writeString(owner.getName());
+    }
+    // endregion
 
     // region NBT
     public SecurityControlModule read(CompoundNBT nbt) {
