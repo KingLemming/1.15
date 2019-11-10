@@ -173,8 +173,8 @@ public class ItemHelper {
         keys = tagA.keySet().toArray(keys);
 
         a:
-        for (int i = 0; i < numberOfKeys; i++) {
-            for (int j = 0; j < nbtTagsToIgnore.length; j++) {
+        for (int i = 0; i < numberOfKeys; ++i) {
+            for (int j = 0; j < nbtTagsToIgnore.length; ++j) {
                 if (nbtTagsToIgnore[j].equals(keys[i])) {
                     continue a;
                 }

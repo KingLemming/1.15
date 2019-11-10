@@ -125,7 +125,7 @@
 //			if (this.rand.nextInt(SOUND_AMBIENT_FREQUENCY) == 0 && !this.isSilent()) {
 //				this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, ambientSound, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
 //			}
-//			for (int i = 0; i < 2; i++) {
+//			for (int i = 0; i < 2; ++i) {
 //				this.world.spawnParticle(ambientParticle, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D);
 //			}
 //		}

@@ -56,7 +56,7 @@ public abstract class AbstractRecipe implements IMachineRecipe {
     public List<Float> getOutputItemChances(List<? extends IItemStackAccess> inputSlots, List<? extends IFluidStackAccess> inputTanks) {
 
         ArrayList<Float> modifiedChances = new ArrayList<>(outputItemChances);
-        for (int i = 0; i < modifiedChances.size(); i++) {
+        for (int i = 0; i < modifiedChances.size(); ++i) {
             if (modifiedChances.get(i) < 0.0F) {
                 modifiedChances.set(i, Math.abs(modifiedChances.get(i)));
             }

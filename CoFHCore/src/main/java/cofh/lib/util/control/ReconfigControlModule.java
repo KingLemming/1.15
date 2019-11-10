@@ -40,14 +40,14 @@ public class ReconfigControlModule implements IReconfigurable {
     // region NETWORK
     public void readFromBuffer(PacketBuffer buffer) {
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; ++i) {
             sides[i] = SideConfig.VALUES[buffer.readByte()];
         }
     }
 
     public void writeToBuffer(PacketBuffer buffer) {
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; ++i) {
             buffer.writeByte(sides[i].ordinal());
         }
     }
@@ -58,7 +58,7 @@ public class ReconfigControlModule implements IReconfigurable {
 
         byte[] bSides = nbt.getByteArray(TAG_SIDES);
         if (bSides.length == 6) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; ++i) {
                 if (bSides[i] > SideConfig.VALUES.length) {
                     bSides[i] = 0;
                 }
@@ -71,7 +71,7 @@ public class ReconfigControlModule implements IReconfigurable {
     public CompoundNBT write(CompoundNBT nbt) {
 
         byte[] bSides = new byte[6];
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; ++i) {
             bSides[i] = (byte) sides[i].ordinal();
         }
         nbt.putByteArray(TAG_SIDES, bSides);

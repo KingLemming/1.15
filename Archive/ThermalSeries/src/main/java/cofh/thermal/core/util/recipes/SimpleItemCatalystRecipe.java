@@ -38,7 +38,7 @@ public abstract class SimpleItemCatalystRecipe extends AbstractRecipe {
             this.outputItemChances.addAll(chance);
         }
         if (this.outputItemChances.size() < this.outputItems.size()) {
-            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); i++) {
+            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
                 this.outputItemChances.add(BASE_CHANCE);
             }
         }
@@ -61,12 +61,12 @@ public abstract class SimpleItemCatalystRecipe extends AbstractRecipe {
             IRecipeCatalyst catalyst = getCatalyst(catalystStack);
             if (catalyst != null) {
                 modifiedChances.set(0, Math.max(modifiedChances.get(0) * catalyst.getPrimaryMod(), catalyst.getMinChance()));
-                for (int i = 1; i < modifiedChances.size(); i++) {
+                for (int i = 1; i < modifiedChances.size(); ++i) {
                     modifiedChances.set(i, Math.max(modifiedChances.get(1) * catalyst.getSecondaryMod(), catalyst.getMinChance()));
                 }
             }
         }
-        for (int i = 0; i < modifiedChances.size(); i++) {
+        for (int i = 0; i < modifiedChances.size(); ++i) {
             if (modifiedChances.get(i) < 0.0F) {
                 modifiedChances.set(i, Math.abs(modifiedChances.get(i)));
             }

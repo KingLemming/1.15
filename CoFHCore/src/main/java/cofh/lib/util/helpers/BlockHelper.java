@@ -97,7 +97,7 @@ public class BlockHelper {
     private static EnumMap<Direction, Direction> computeMap(byte[] arr) {
 
         EnumMap<Direction, Direction> map = new EnumMap<>(Direction.class);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; ++i) {
             map.put(DIR_VALUES[i], DIR_VALUES[arr[i]]);
         }
         return map;

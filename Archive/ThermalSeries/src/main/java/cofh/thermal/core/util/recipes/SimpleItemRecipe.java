@@ -37,7 +37,7 @@ public class SimpleItemRecipe extends AbstractRecipe {
             this.outputItemChances.addAll(chance);
         }
         if (this.outputItemChances.size() < this.outputItems.size()) {
-            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); i++) {
+            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
                 this.outputItemChances.add(BASE_CHANCE_LOCKED);
             }
         }
@@ -64,7 +64,7 @@ public class SimpleItemRecipe extends AbstractRecipe {
             this.outputItemChances.addAll(chance);
         }
         if (this.outputItemChances.size() < this.outputItems.size()) {
-            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); i++) {
+            for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
                 this.outputItemChances.add(BASE_CHANCE_LOCKED);
             }
         }

@@ -1,9 +1,9 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
-import cofh.core.util.ChatHelper;
 import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
+import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.ITextComponent;
@@ -23,7 +23,7 @@ public class PacketIndexedChat extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        CoFHCore.proxy.addIndexedChatMessage(ChatHelper.fromJSON(message), index);
+        CoFHCore.proxy.addIndexedChatMessage(StringHelper.fromJSON(message), index);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PacketIndexedChat extends PacketBase implements IPacketClient {
 
         PacketIndexedChat packet = new PacketIndexedChat();
         packet.index = index;
-        packet.message = ChatHelper.toJSON(chat);
+        packet.message = StringHelper.toJSON(chat);
         packet.sendToPlayer(player);
     }
 

@@ -60,6 +60,7 @@ public class ShieldItemCoFH extends ShieldItem {
         super.fillItemGroup(group, items);
     }
 
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 

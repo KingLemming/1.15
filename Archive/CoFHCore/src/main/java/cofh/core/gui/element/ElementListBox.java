@@ -74,7 +74,7 @@ public class ElementListBox extends ElementBase {
     public int getInternalWidth() {
 
         int width = 0;
-        for (int i = 0; i < _elements.size(); i++) {
+        for (int i = 0; i < _elements.size(); ++i) {
             width = Math.max(_elements.get(i).getWidth(), width);
         }
         return width;
@@ -83,7 +83,7 @@ public class ElementListBox extends ElementBase {
     public int getInternalHeight() {
 
         int height = 0;
-        for (int i = 0; i < _elements.size(); i++) {
+        for (int i = 0; i < _elements.size(); ++i) {
             height += _elements.get(i).getHeight();
         }
         return height;
@@ -197,7 +197,7 @@ public class ElementListBox extends ElementBase {
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
         int heightChecked = 0;
-        for (int i = _firstIndexDisplayed; i < _elements.size(); i++) {
+        for (int i = _firstIndexDisplayed; i < _elements.size(); ++i) {
             if (heightChecked > getContentHeight()) {
                 break;
             }
@@ -235,7 +235,7 @@ public class ElementListBox extends ElementBase {
 
         int heightDisplayed = 0;
         int elementsDisplayed = 0;
-        for (int i = _firstIndexDisplayed; i < _elements.size(); i++) {
+        for (int i = _firstIndexDisplayed; i < _elements.size(); ++i) {
             if (heightDisplayed + _elements.get(i).getHeight() > height) {
                 break;
             }
@@ -297,7 +297,7 @@ public class ElementListBox extends ElementBase {
 
     public int getIndexOf(Object value) {
 
-        for (int i = 0; i < _elements.size(); i++) {
+        for (int i = 0; i < _elements.size(); ++i) {
             if (_elements.get(i).getValue().equals(value)) {
                 return i;
             }

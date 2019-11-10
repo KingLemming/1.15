@@ -52,7 +52,7 @@ public class SimpleTankInv extends SimpleFluidHandler {
         super(tile, new ArrayList<>(size));
         this.tile = tile;
         this.tag = tag;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; ++i) {
             tanks.add(new FluidStorageCoFH());
         }
     }

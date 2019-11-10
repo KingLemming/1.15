@@ -49,6 +49,7 @@ public class BlockItemCoFH extends BlockItem {
         super.fillItemGroup(group, items);
     }
 
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 

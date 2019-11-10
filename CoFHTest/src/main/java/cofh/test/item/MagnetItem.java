@@ -1,6 +1,7 @@
 package cofh.test.item;
 
 import cofh.core.item.EnergyContainerItem;
+import cofh.core.util.ChatHelper;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -70,7 +72,7 @@ public class MagnetItem extends EnergyContainerItem implements IMultiModeItem {
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
         player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 0.4F, 0.8F + 0.4F * getMode(stack));
-        // ChatHelper.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.thermal.rf_magnet.b." + getMode(stack)));
+        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.thermal.rf_magnet.b." + getMode(stack)));
     }
     // endregion
 }

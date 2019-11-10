@@ -31,12 +31,12 @@ public abstract class ContainerCoFH extends Container {
         int xOffset = getPlayerInventoryHorizontalOffset();
         int yOffset = getPlayerInventoryVerticalOffset();
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j) {
                 addSlot(new Slot(inventory, j + i * 9 + 9, xOffset + j * 18, yOffset + i * 18));
             }
         }
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; ++i) {
             addSlot(new Slot(inventory, i, xOffset + i * 18, yOffset + 58));
         }
     }

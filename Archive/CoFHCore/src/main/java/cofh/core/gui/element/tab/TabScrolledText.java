@@ -53,7 +53,7 @@ public abstract class TabScrolledText extends TabBase {
             }
         }
         getFontRenderer().drawStringWithShadow(getTitle(), sideOffset() + 18, 6, headerColor);
-        for (int i = firstLine; i < firstLine + numLines; i++) {
+        for (int i = firstLine; i < firstLine + numLines; ++i) {
             getFontRenderer().drawString(myText.get(i), sideOffset() + 2, 20 + (i - firstLine) * getFontRenderer().FONT_HEIGHT, textColor);
         }
         RenderHelper.resetColor();

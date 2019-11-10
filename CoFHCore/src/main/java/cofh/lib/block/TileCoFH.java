@@ -4,12 +4,17 @@ import cofh.lib.util.control.ISecurable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class TileCoFH extends TileEntity implements ITileCallback {
 
@@ -58,25 +63,24 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     // endregion
 
     // region NETWORK
-    // TODO: Fix
-    //    @Nullable
-    //    @Override
-    //    public SPacketUpdateTileEntity getUpdatePacket() {
-    //
-    //        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
-    //    }
-    //
-    //    @Override
-    //    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-    //
-    //        readFromNBT(pkt.getNbtCompound());
-    //    }
-    //
-    //    @Override
-    //    public CompoundNBT getUpdateTag() {
-    //
-    //        return this.writeToNBT(new NBTTagCompound());
-    //    }
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+
+        return new SUpdateTileEntityPacket(pos, 0, getUpdateTag());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+
+        read(pkt.getNbtCompound());
+    }
+
+    @Override
+    public CompoundNBT getUpdateTag() {
+
+        return this.write(new CompoundNBT());
+    }
 
     public PacketBuffer getControlPacket(PacketBuffer buffer) {
 

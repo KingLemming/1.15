@@ -36,7 +36,7 @@ public class ManagedItemInv extends SimpleItemInv {
 
     public void addSlots(StorageGroup group, int amount) {
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < amount; ++i) {
             addSlot(new ItemStorageCoFH(), group);
         }
     }

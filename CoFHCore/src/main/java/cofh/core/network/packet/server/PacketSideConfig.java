@@ -40,7 +40,7 @@ public class PacketSideConfig extends PacketBase implements IPacketServer {
         buf.writeBlockPos(pos);
 
         byte[] bSides = new byte[6];
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; ++i) {
             bSides[i] = (byte) sides[i].ordinal();
         }
         buf.writeByteArray(bSides);
@@ -53,7 +53,7 @@ public class PacketSideConfig extends PacketBase implements IPacketServer {
 
         byte[] bSides = buf.readByteArray(6);
         if (bSides.length == 6) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; ++i) {
                 if (bSides[i] > SideConfig.VALUES.length) {
                     bSides[i] = 0;
                 }

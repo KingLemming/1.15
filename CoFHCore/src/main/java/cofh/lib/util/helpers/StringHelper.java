@@ -1,6 +1,7 @@
 package cofh.lib.util.helpers;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
@@ -98,6 +99,40 @@ public final class StringHelper {
     }
 
     // region TEXT COMPONENTS
+    public static ITextComponent getChatComponent(Object object) {
+
+        if (object instanceof ITextComponent) {
+            return (ITextComponent) object;
+        } else if (object instanceof String) {
+            return new StringTextComponent((String) object);
+        } else if (object instanceof ItemStack) {
+            return ((ItemStack) object).getTextComponent();
+        } else if (object instanceof Entity) {
+            return ((Entity) object).getDisplayName();
+        } else {
+            return new StringTextComponent(String.valueOf(object));
+        }
+    }
+
+    public static ITextComponent formChatComponent(Object... chats) {
+
+        ITextComponent chat = getChatComponent(chats[0]);
+        for (int i = 1, chatsLength = chats.length; i < chatsLength; ++i) {
+            chat.appendSibling(getChatComponent(chats[i]));
+        }
+        return chat;
+    }
+
+    public static String toJSON(ITextComponent chatComponent) {
+
+        return ITextComponent.Serializer.toJson(chatComponent);
+    }
+
+    public static ITextComponent fromJSON(String string) {
+
+        return ITextComponent.Serializer.fromJsonLenient(string);
+    }
+
     public static ITextComponent getEmptyLine() {
 
         return new StringTextComponent("");

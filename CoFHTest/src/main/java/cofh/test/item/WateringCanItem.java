@@ -1,6 +1,7 @@
 package cofh.test.item;
 
 import cofh.core.item.FluidContainerItem;
+import cofh.core.util.ChatHelper;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -114,8 +116,8 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         int y = offsetPos.getY();
         int z = offsetPos.getZ();
 
-        for (int i = x - radius; i <= x + radius; i++) {
-            for (int k = z - radius; k <= z + radius; k++) {
+        for (int i = x - radius; i <= x + radius; ++i) {
+            for (int k = z - radius; k <= z + radius; ++k) {
                 Utils.spawnParticles(world, ParticleTypes.FALLING_WATER, i + world.rand.nextDouble(), y - 1 + world.rand.nextDouble(), k + world.rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
@@ -194,7 +196,7 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
 
         player.world.playSound(null, player.getPosition(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 0.6F, 1.0F - 0.1F * getMode(stack));
         int radius = getRadius(stack) * 2 + 1;
-        // ChatHelper.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.cofh.area").appendText(": " + radius + "x" + radius));
+        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius));
     }
     // endregion
 }

@@ -355,8 +355,7 @@ public class AOEHelper {
         int y = pos.getY();
         int z = pos.getZ();
 
-        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
+        if (player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
             return ImmutableList.of();
         }
         for (int i = x - radius; i <= x + radius; ++i) {

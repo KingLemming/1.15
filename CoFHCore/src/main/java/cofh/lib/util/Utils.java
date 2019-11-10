@@ -101,7 +101,7 @@ public class Utils {
             }
         }
         PlayerInventory inv = player.inventory;
-        for (int i = 0; i < inv.mainInventory.size(); i++) {
+        for (int i = 0; i < inv.mainInventory.size(); ++i) {
             if (inv.mainInventory.get(i).isEmpty()) {
                 inv.mainInventory.set(i, stack.copy());
                 return true;
@@ -219,7 +219,7 @@ public class Utils {
         ListNBT list = stack.getTag().getList(TAG_ENCHANTMENTS, TAG_COMPOUND);
         String encId = String.valueOf(ForgeRegistries.ENCHANTMENTS.getKey(ench));
 
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); ++i) {
             CompoundNBT tag = list.getCompound(i);
             String id = tag.getString("id");
             if (encId.equals(id)) {

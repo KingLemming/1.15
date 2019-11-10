@@ -35,7 +35,7 @@ public class InventoryHelper {
             return true;
         }
         int openSlot = -1;
-        for (int i = startIndex; i <= endIndex; i++) {
+        for (int i = startIndex; i <= endIndex; ++i) {
             if (itemsIdentical(stack, inventory[i]) && inventory[i].getMaxStackSize() > inventory[i].getCount()) {
                 int hold = inventory[i].getMaxStackSize() - inventory[i].getCount();
                 if (hold >= stack.getCount()) {
@@ -159,7 +159,7 @@ public class InventoryHelper {
     //                return false;
     //            }
     //            int initialAmount = amount;
-    //            for (int i = 0; i < handler.getSlots() && amount > 0; i++) {
+    //            for (int i = 0; i < handler.getSlots() && amount > 0; ++i) {
     //                ItemStack query = handler.extractItem(i, amount, true);
     //                if (query.isEmpty()) {      // Skip empty slots.
     //                    continue;
