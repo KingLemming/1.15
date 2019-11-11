@@ -43,9 +43,9 @@ public class RailBlockDefault extends AbstractRailBlock {
         this(disableCorners, Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL));
     }
 
-    public RailBlockDefault(boolean disableCorners, Properties properties) {
+    public RailBlockDefault(boolean disableCorners, Properties builder) {
 
-        super(disableCorners, properties);
+        super(disableCorners, builder);
     }
 
     public RailBlockDefault setMaxSpeed(float maxSpeed) {

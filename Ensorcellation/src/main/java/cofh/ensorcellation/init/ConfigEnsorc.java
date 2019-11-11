@@ -228,7 +228,7 @@ public class ConfigEnsorc {
         comment = "If TRUE, the Trueshot Enchantment is available for various Bows.";
         enableTrueshot = SERVER_CONFIG.comment(comment).define("Enable", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelTrueshot = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        levelTrueshot = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Volley");

@@ -20,21 +20,21 @@ public class CropsBlockTall extends CropsBlockCoFH {
     protected int splitAge = 4;
     protected int splitOffset;
 
-    public CropsBlockTall(Properties properties, PlantType type, int growLight, float growMod) {
+    public CropsBlockTall(Properties builder, PlantType type, int growLight, float growMod) {
 
-        super(properties, type, growLight, growMod);
+        super(builder, type, growLight, growMod);
         this.splitOffset = getSplitAge() + getMaximumAge() - getHarvestAge();
     }
 
-    public CropsBlockTall(Properties properties, int growLight, float growMod) {
+    public CropsBlockTall(Properties builder, int growLight, float growMod) {
 
-        super(properties, growLight, growMod);
+        super(builder, growLight, growMod);
         this.splitOffset = getSplitAge() + getMaximumAge() - getHarvestAge();
     }
 
-    public CropsBlockTall(Properties properties) {
+    public CropsBlockTall(Properties builder) {
 
-        super(properties);
+        super(builder);
         this.splitOffset = getSplitAge() + getMaximumAge() - getHarvestAge();
     }
 

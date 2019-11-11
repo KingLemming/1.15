@@ -38,16 +38,16 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     protected Predicate<FluidStack> validator;
     protected int fluidCapacity;
 
-    public FluidContainerItem(Properties properties, int fluidCapacity, Predicate<FluidStack> validator) {
+    public FluidContainerItem(Properties builder, int fluidCapacity, Predicate<FluidStack> validator) {
 
-        super(properties);
+        super(builder);
         this.fluidCapacity = fluidCapacity;
         this.validator = validator;
     }
 
-    public FluidContainerItem(Properties properties, int fluidCapacity) {
+    public FluidContainerItem(Properties builder, int fluidCapacity) {
 
-        this(properties, fluidCapacity, e -> true);
+        this(builder, fluidCapacity, e -> true);
     }
 
     @Override

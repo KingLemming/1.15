@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cofh_test:items/seeds/seed_bell_pepper"
+    "layer0": "cofh_test:item/seeds/seed_bell_pepper"
   }
 }

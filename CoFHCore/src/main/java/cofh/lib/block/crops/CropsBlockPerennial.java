@@ -9,19 +9,19 @@ import static cofh.lib.util.constants.Constants.AGE_PERENNIAL;
 
 public class CropsBlockPerennial extends CropsBlockCoFH {
 
-    public CropsBlockPerennial(Properties properties, PlantType type, int growLight, float growMod) {
+    public CropsBlockPerennial(Properties builder, PlantType type, int growLight, float growMod) {
 
-        super(properties, type, growLight, growMod);
+        super(builder, type, growLight, growMod);
     }
 
-    public CropsBlockPerennial(Properties properties, int growLight, float growMod) {
+    public CropsBlockPerennial(Properties builder, int growLight, float growMod) {
 
-        super(properties, growLight, growMod);
+        super(builder, growLight, growMod);
     }
 
-    public CropsBlockPerennial(Properties properties) {
+    public CropsBlockPerennial(Properties builder) {
 
-        super(properties);
+        super(builder);
         growMod = 0.25F;
     }
 

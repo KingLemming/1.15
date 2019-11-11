@@ -18,9 +18,9 @@ public class MetalStorageBlock extends Block {
         this(Properties.create(Material.IRON, MaterialColor.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE));
     }
 
-    public MetalStorageBlock(Properties properties) {
+    public MetalStorageBlock(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     @Override

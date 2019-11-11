@@ -41,22 +41,22 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     protected Supplier<Item> crop = AIR_SUPPLY;
     protected Supplier<Item> seed = AIR_SUPPLY;
 
-    public CropsBlockCoFH(Properties properties, PlantType type, int growLight, float growMod) {
+    public CropsBlockCoFH(Properties builder, PlantType type, int growLight, float growMod) {
 
-        super(properties);
+        super(builder);
         this.type = type;
         this.growLight = growLight;
         this.growMod = growMod;
     }
 
-    public CropsBlockCoFH(Properties properties, int growLight, float growMod) {
+    public CropsBlockCoFH(Properties builder, int growLight, float growMod) {
 
-        this(properties, PlantType.Crop, growLight, growMod);
+        this(builder, PlantType.Crop, growLight, growMod);
     }
 
-    public CropsBlockCoFH(Properties properties) {
+    public CropsBlockCoFH(Properties builder) {
 
-        this(properties, PlantType.Crop, 9, 1.0F);
+        this(builder, PlantType.Crop, 9, 1.0F);
     }
 
     public CropsBlockCoFH setCrop(Supplier<Item> crop) {

@@ -31,5 +31,10 @@
   "item.cofh_test.seed_spinach": "Spinach Seeds",
   "item.cofh_test.seed_strawberry": "Strawberry Seeds",
   "item.cofh_test.seed_tea": "Tea Seeds",
-  "item.cofh_test.seed_tomato": "Tomato Seeds"
+  "item.cofh_test.seed_tomato": "Tomato Seeds",
+
+  "item.cofh_test.explosive_arrow": "Explosive Arrow",
+  "item.cofh_test.prismarine_arrow": "Prismarine Arrow",
+  "item.cofh_test.slime_arrow": "Slime Arrow",
+  "item.cofh_test.shulker_arrow": "Shulker Arrow"
 }

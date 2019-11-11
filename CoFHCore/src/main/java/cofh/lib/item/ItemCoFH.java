@@ -28,9 +28,9 @@ public class ItemCoFH extends Item {
     protected boolean creative;
     protected int enchantability;
 
-    public ItemCoFH(Properties properties) {
+    public ItemCoFH(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     public ItemCoFH setCreative(boolean creative) {

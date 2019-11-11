@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "cofh_test:items/tools/diamond_excavator"
+    "layer0": "cofh_test:item/tools/diamond_excavator"
   }
 }

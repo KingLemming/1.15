@@ -30,26 +30,26 @@ public class SickleItem extends ToolItem {
     private int radius;
     private int height;
 
-    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, int height, Properties properties) {
+    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, int height, Properties builder) {
 
-        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_BLOCKS, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_BLOCKS, builder.addToolType(SICKLE, tier.getHarvestLevel()));
         this.radius = radius;
         this.height = height;
     }
 
-    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties properties) {
+    public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
 
-        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, attackSpeedIn, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, builder.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
-    public SickleItem(IItemTier tier, float attackDamageIn, Properties properties) {
+    public SickleItem(IItemTier tier, float attackDamageIn, Properties builder) {
 
-        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, attackDamageIn, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, builder.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
-    public SickleItem(IItemTier tier, Properties properties) {
+    public SickleItem(IItemTier tier, Properties builder) {
 
-        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, properties.addToolType(SICKLE, tier.getHarvestLevel()));
+        this(tier, DEFAULT_ATTACK_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_BASE_RADIUS, DEFAULT_BASE_HEIGHT, builder.addToolType(SICKLE, tier.getHarvestLevel()));
     }
 
     @Override

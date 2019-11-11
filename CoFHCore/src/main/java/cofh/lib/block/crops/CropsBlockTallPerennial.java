@@ -7,19 +7,19 @@ import static cofh.lib.util.constants.Constants.AGE_TALL_PERENNIAL;
 
 public class CropsBlockTallPerennial extends CropsBlockTall {
 
-    public CropsBlockTallPerennial(Properties properties, PlantType type, int growLight, float growMod) {
+    public CropsBlockTallPerennial(Properties builder, PlantType type, int growLight, float growMod) {
 
-        super(properties, type, growLight, growMod);
+        super(builder, type, growLight, growMod);
     }
 
-    public CropsBlockTallPerennial(Properties properties, int growLight, float growMod) {
+    public CropsBlockTallPerennial(Properties builder, int growLight, float growMod) {
 
-        super(properties, growLight, growMod);
+        super(builder, growLight, growMod);
     }
 
-    public CropsBlockTallPerennial(Properties properties) {
+    public CropsBlockTallPerennial(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cofh_test:items/crops/crop_tea"
+    "layer0": "cofh_test:item/crops/crop_tea"
   }
 }

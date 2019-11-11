@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "cofh_test:items/tools/wrench"
+    "layer0": "cofh_test:item/tools/wrench"
   }
 }

@@ -30,14 +30,14 @@ public class HorseArmorItemCoFH extends HorseArmorItem {
     protected boolean creative;
     protected int enchantability;
 
-    public HorseArmorItemCoFH(int protection, String texture, Properties properties) {
+    public HorseArmorItemCoFH(int protection, String texture, Properties builder) {
 
-        super(protection, texture, properties);
+        super(protection, texture, builder);
     }
 
-    public HorseArmorItemCoFH(int protection, ResourceLocation texture, Properties properties) {
+    public HorseArmorItemCoFH(int protection, ResourceLocation texture, Properties builder) {
 
-        super(protection, texture, properties);
+        super(protection, texture, builder);
     }
 
     public HorseArmorItemCoFH setCreative(boolean creative) {

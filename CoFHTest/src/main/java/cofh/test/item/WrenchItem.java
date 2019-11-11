@@ -26,9 +26,9 @@ import java.util.List;
 
 public class WrenchItem extends ItemCoFH {
 
-    public WrenchItem(Properties properties) {
+    public WrenchItem(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     @Override

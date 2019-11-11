@@ -17,9 +17,9 @@ public class BowItemCoFH extends BowItem implements IArcheryBowItem {
     protected float damageModifier = 1.0F;
     protected float velocityModifier = 1.0F;
 
-    public BowItemCoFH(Properties properties) {
+    public BowItemCoFH(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     public BowItemCoFH setParams(IItemTier tier) {

@@ -7,9 +7,9 @@ public class ShearsItemCoFH extends ShearsItem {
 
     protected int enchantability = 1;
 
-    public ShearsItemCoFH(Properties properties) {
+    public ShearsItemCoFH(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     public ShearsItemCoFH setParamas(IItemTier tier) {

@@ -45,9 +45,9 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     protected int radius;
     protected int effectiveness;
 
-    public WateringCanItem(Properties properties, int fluidCapacity, int radius, int effectiveness) {
+    public WateringCanItem(Properties builder, int fluidCapacity, int radius, int effectiveness) {
 
-        super(properties, fluidCapacity, IS_WATER);
+        super(builder, fluidCapacity, IS_WATER);
         this.radius = radius;
         this.effectiveness = effectiveness;
 

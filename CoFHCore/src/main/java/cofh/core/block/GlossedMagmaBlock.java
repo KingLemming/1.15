@@ -26,9 +26,9 @@ public class GlossedMagmaBlock extends MagmaBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
-    public GlossedMagmaBlock(Properties properties) {
+    public GlossedMagmaBlock(Properties builder) {
 
-        super(properties);
+        super(builder);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
     }
 

@@ -32,9 +32,9 @@ public class MagnetItem extends EnergyContainerItem implements IMultiModeItem {
 
     protected int radius;
 
-    public MagnetItem(Properties properties, int maxEnergy, int maxReceive, int radius) {
+    public MagnetItem(Properties builder, int maxEnergy, int maxReceive, int radius) {
 
-        super(properties, maxEnergy, 0, maxReceive);
+        super(builder, maxEnergy, 0, maxReceive);
     }
 
     @Override

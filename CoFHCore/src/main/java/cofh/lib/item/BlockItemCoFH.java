@@ -24,9 +24,9 @@ public class BlockItemCoFH extends BlockItem {
     protected boolean showInItemGroup = true;
     protected boolean creative;
 
-    public BlockItemCoFH(Block blockIn, Properties properties) {
+    public BlockItemCoFH(Block blockIn, Properties builder) {
 
-        super(blockIn, properties);
+        super(blockIn, builder);
     }
 
     public BlockItemCoFH setCreative(boolean creative) {

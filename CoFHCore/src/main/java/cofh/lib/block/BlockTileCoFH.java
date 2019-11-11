@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public abstract class BlockTileCoFH extends Block implements IDismantleable {
 
-    public BlockTileCoFH(Properties properties) {
+    public BlockTileCoFH(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     @Override

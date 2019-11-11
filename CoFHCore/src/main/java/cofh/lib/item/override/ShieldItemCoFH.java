@@ -29,9 +29,9 @@ public class ShieldItemCoFH extends ShieldItem {
     protected boolean creative;
     protected int enchantability;
 
-    public ShieldItemCoFH(Properties properties) {
+    public ShieldItemCoFH(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
     public ShieldItemCoFH setCreative(boolean creative) {

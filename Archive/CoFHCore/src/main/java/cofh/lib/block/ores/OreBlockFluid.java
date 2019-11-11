@@ -13,9 +13,9 @@ public class OreBlockFluid extends Block {
         this(Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE));
     }
 
-    public OreBlockFluid(Properties properties) {
+    public OreBlockFluid(Properties builder) {
 
-        super(properties);
+        super(builder);
     }
 
 }

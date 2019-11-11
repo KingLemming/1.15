@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cofh_test:items/seeds/seed_green_bean"
+    "layer0": "cofh_test:item/seeds/seed_green_bean"
   }
 }
