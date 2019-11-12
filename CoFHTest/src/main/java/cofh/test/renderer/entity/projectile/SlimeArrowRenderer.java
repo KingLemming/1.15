@@ -1,6 +1,5 @@
-package cofh.test.renderer.entity;
+package cofh.test.renderer.entity.projectile;
 
-import cofh.test.entity.projectile.ExplosiveArrowEntity;
 import cofh.test.entity.projectile.SlimeArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

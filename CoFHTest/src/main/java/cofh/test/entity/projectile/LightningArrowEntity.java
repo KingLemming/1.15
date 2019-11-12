@@ -2,38 +2,41 @@ package cofh.test.entity.projectile;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.EXPLOSIVE_ARROW_ENTITY;
-import static cofh.test.CoFHTest.EXPLOSIVE_ARROW_ITEM;
+import static cofh.test.CoFHTest.LIGHTNING_ARROW_ENTITY;
 
 public class LightningArrowEntity extends AbstractArrowEntity {
 
-    public LightningArrowEntity(EntityType<? extends LightningArrowEntity> p_i50158_1_, World p_i50158_2_) {
+    public LightningArrowEntity(EntityType<? extends LightningArrowEntity> entityIn, World worldIn) {
 
-        super(p_i50158_1_, p_i50158_2_);
+        super(entityIn, worldIn);
     }
 
     public LightningArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(EXPLOSIVE_ARROW_ENTITY.get(), shooter, worldIn);
+        super(LIGHTNING_ARROW_ENTITY.get(), shooter, worldIn);
     }
 
     public LightningArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(EXPLOSIVE_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(LIGHTNING_ARROW_ENTITY.get(), x, y, z, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(EXPLOSIVE_ARROW_ITEM.get());
+        return new ItemStack(Items.ARROW);
     }
 
     @Override
@@ -41,21 +44,16 @@ public class LightningArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            if (!isInWater() && !isInLava()) {
-                world.createExplosion(this, posX, posY, posZ, 1.0F, Explosion.Mode.NONE);
-                this.remove();
+            if (!isInWater() && !isInLava() && this.world instanceof ServerWorld) {
+                BlockPos pos = this.getPosition();
+                if (this.world.isSkyLightMax(pos)) {
+                    LightningBoltEntity lightningboltentity = new LightningBoltEntity(this.world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, false);
+                    lightningboltentity.setCaster(getShooter() instanceof ServerPlayerEntity ? (ServerPlayerEntity) getShooter() : null);
+                    ((ServerWorld) this.world).addLightningBolt(lightningboltentity);
+                }
             }
         }
     }
-
-    //    @Override
-    //    protected void func_213868_a(EntityRayTraceResult rayTraceResultIn) {
-    //
-    //        super.func_213868_a(rayTraceResultIn);
-    //
-    //        world.createExplosion(this, posX, posY, posZ, 1.0F, Explosion.Mode.NONE);
-    //        this.remove();
-    //    }
 
     @Override
     public IPacket<?> createSpawnPacket() {

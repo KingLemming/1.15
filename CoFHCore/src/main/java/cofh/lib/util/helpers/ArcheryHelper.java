@@ -69,11 +69,13 @@ public final class ArcheryHelper {
                     if (encTrueshot > 0) {
                         accuracyMod *= (1.5F / (1 + encTrueshot));
                         damageMod *= (1.0F + 0.25F * encTrueshot);
-                        arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.10F * encTrueshot, 1.75F);
+                        arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.05F * encTrueshot, 1.75F);
                     }
-                    for (int shot = 0; shot <= encVolley; shot++) {
+                    // Each additional arrow fired at a higher arc - arrows will not be fired beyond vertically. Maximum of 5 degrees between arrows.
+                    float volleyPitch = encVolley > 0 ? MathHelper.clamp(Math.min(15.0F, 90.0F + shooter.rotationPitch) / encVolley, 0.0F, 5.0F) : 0;
+                    for (int shot = 0; shot <= encVolley; ++shot) {
                         AbstractArrowEntity arrow = createArrow(world, bow, ammo, shooter);
-                        arrow.shoot(shooter, shooter.rotationPitch, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod * (1 + shot * 2));
+                        arrow.shoot(shooter, shooter.rotationPitch - volleyPitch * shot, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod);// * (1 + shot * 2));
                         arrow.setDamage(arrow.getDamage() * damageMod);
 
                         if (arrowVelocity >= 1.0F) {
@@ -82,7 +84,7 @@ public final class ArcheryHelper {
                         if (encTrueshot > 0) {
                             arrow.setPierceLevel((byte) encTrueshot);
                         }
-                        if (encPower > 0) {
+                        if (encPower > 0 && arrow.getDamage() > 0) {
                             arrow.setDamage(arrow.getDamage() + (double) encPower * 0.5D + 0.5D);
                         }
                         if (encPunch > 0) {

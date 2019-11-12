@@ -19,9 +19,9 @@ import static cofh.test.CoFHTest.PRISMARINE_ARROW_ITEM;
 
 public class PrismarineArrowEntity extends AbstractArrowEntity {
 
-    public PrismarineArrowEntity(EntityType<? extends PrismarineArrowEntity> p_i50158_1_, World p_i50158_2_) {
+    public PrismarineArrowEntity(EntityType<? extends PrismarineArrowEntity> entityIn, World worldIn) {
 
-        super(p_i50158_1_, p_i50158_2_);
+        super(entityIn, worldIn);
     }
 
     public PrismarineArrowEntity(World worldIn, LivingEntity shooter) {

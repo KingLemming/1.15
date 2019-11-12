@@ -21,21 +21,31 @@ import static cofh.test.CoFHTest.SLIME_ARROW_ITEM;
 
 public class SlimeArrowEntity extends AbstractArrowEntity {
 
+    public static float DAMAGE = 0.5F;
+    public static float MAX_VELOCITY = 2.0F;
+    public static int KNOCKBACK = 4;
+
     private int bounces = 0;
 
-    public SlimeArrowEntity(EntityType<? extends SlimeArrowEntity> p_i50158_1_, World p_i50158_2_) {
+    public SlimeArrowEntity(EntityType<? extends SlimeArrowEntity> entityIn, World worldIn) {
 
-        super(p_i50158_1_, p_i50158_2_);
+        super(entityIn, worldIn);
+        this.damage = DAMAGE;
+        this.knockbackStrength = KNOCKBACK;
     }
 
     public SlimeArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(SLIME_ARROW_ENTITY.get(), shooter, worldIn);
+        this.damage = DAMAGE;
+        this.knockbackStrength = KNOCKBACK;
     }
 
     public SlimeArrowEntity(World worldIn, double x, double y, double z) {
 
         super(SLIME_ARROW_ENTITY.get(), x, y, z, worldIn);
+        this.damage = DAMAGE;
+        this.knockbackStrength = KNOCKBACK;
     }
 
     @Override
@@ -50,7 +60,6 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
         this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
         RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
-            // TODO: Fix
             this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
         } else if (raytraceresult$type == RayTraceResult.Type.BLOCK) {
             Vec3d motion = getMotion();
@@ -93,13 +102,19 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
+    public void setKnockbackStrength(int knockbackStrengthIn) {
+
+        this.knockbackStrength = KNOCKBACK + knockbackStrengthIn;
+    }
+
+    @Override
     public void setPierceLevel(byte level) {
 
     }
 
     public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
 
-        super.shoot(x, y, z, Math.min(velocity, 2.0F), inaccuracy);
+        super.shoot(x, y, z, Math.min(velocity, MAX_VELOCITY), inaccuracy);
     }
 
     @Override

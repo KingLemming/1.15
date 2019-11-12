@@ -31,9 +31,9 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
     private static final double SEEK_ANGLE = Math.PI / 6.0;
     private static final double SEEK_THRESHOLD = 0.5;
 
-    public ShulkerArrowEntity(EntityType<? extends ShulkerArrowEntity> p_i50158_1_, World p_i50158_2_) {
+    public ShulkerArrowEntity(EntityType<? extends ShulkerArrowEntity> entityIn, World worldIn) {
 
-        super(p_i50158_1_, p_i50158_2_);
+        super(entityIn, worldIn);
     }
 
     public ShulkerArrowEntity(World worldIn, LivingEntity shooter) {

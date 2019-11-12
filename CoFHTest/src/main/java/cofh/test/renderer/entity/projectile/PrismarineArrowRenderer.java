@@ -1,4 +1,4 @@
-package cofh.test.renderer.entity;
+package cofh.test.renderer.entity.projectile;
 
 import cofh.test.entity.projectile.PrismarineArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
