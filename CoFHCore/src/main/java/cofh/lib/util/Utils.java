@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -17,9 +19,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -31,6 +37,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.nio.file.Path;
 
 import static cofh.lib.util.constants.Tags.TAG_ENCHANTMENTS;
+import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
+import static net.minecraft.block.Blocks.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_LIST;
@@ -230,6 +238,84 @@ public class Utils {
         if (list.isEmpty()) {
             stack.removeChildTag(TAG_ENCHANTMENTS);
         }
+    }
+    // endregion
+
+    // region FREEZING
+    public static void freezeNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        BlockState blockstate = Blocks.SNOW.getDefaultState();
+        float f = (float) Math.min(16, radius);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                    if (worldIn.getBiome(blockpos$mutableblockpos).func_225486_c(blockpos) < 0.8F && isValidSnowPosition(worldIn, blockpos$mutableblockpos)) {
+                        worldIn.setBlockState(blockpos$mutableblockpos, blockstate);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void freezeNearbyWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+
+        BlockState blockstate = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
+        float f = (float) Math.min(16, radius);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                    BlockState blockstate2 = worldIn.getBlockState(blockpos);
+                    boolean isFull = blockstate2.getBlock() == Blocks.WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                    if (blockstate2.getMaterial() == Material.WATER && isFull && blockstate.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(blockstate, blockpos, ISelectionContext.dummy())) {
+                        worldIn.setBlockState(blockpos, blockstate);
+                        worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
+                    }
+                }
+            }
+        }
+    }
+
+    public static void freezeNearbyLava(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+
+        if (GLOSSED_MAGMA == null && !permanent) {
+            return;
+        }
+        BlockState blockstate = permanent ? OBSIDIAN.getDefaultState() : GLOSSED_MAGMA.getDefaultState();
+        float f = (float) Math.min(16, radius);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                    BlockState blockstate2 = worldIn.getBlockState(blockpos);
+                    boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                    if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(blockstate, blockpos, ISelectionContext.dummy())) {
+                        worldIn.setBlockState(blockpos, blockstate);
+                        worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, cofh.lib.util.helpers.MathHelper.nextInt(worldIn.rand, 60, 120));
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean isValidSnowPosition(IWorldReader worldIn, BlockPos pos) {
+
+        BlockState blockstate = worldIn.getBlockState(pos.down());
+        Block block = blockstate.getBlock();
+        if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER && block != FROSTED_ICE && block != GLOSSED_MAGMA) {
+            return Block.doesSideFillSquare(blockstate.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == Blocks.SNOW && blockstate.get(SnowBlock.LAYERS) == 8;
+        }
+        return false;
     }
     // endregion
 }

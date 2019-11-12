@@ -5,114 +5,94 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.SLIME_ARROW_ENTITY;
-import static cofh.test.CoFHTest.SLIME_ARROW_ITEM;
+import static cofh.test.CoFHTest.FROST_ARROW_ENTITY;
+import static cofh.test.CoFHTest.FROST_ARROW_ITEM;
 
-public class SlimeArrowEntity extends AbstractArrowEntity {
+public class FrostArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.5F;
-    public static float MAX_VELOCITY = 2.0F;
-    public static int KNOCKBACK = 4;
+    public static final int DURATION = 60;
+    public static final int AMPLIFIER = 1;
+    public static final int RADIUS = 4;
+    public static final boolean PERMANENT = true;
 
-    private int bounces = 0;
-    private int maxBounces = KNOCKBACK;
+    private boolean discharged;
 
-    public SlimeArrowEntity(EntityType<? extends SlimeArrowEntity> entityIn, World worldIn) {
+    public FrostArrowEntity(EntityType<? extends FrostArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
     }
 
-    public SlimeArrowEntity(World worldIn, LivingEntity shooter) {
+    public FrostArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(SLIME_ARROW_ENTITY.get(), shooter, worldIn);
-        this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
+        super(FROST_ARROW_ENTITY.get(), shooter, worldIn);
     }
 
-    public SlimeArrowEntity(World worldIn, double x, double y, double z) {
+    public FrostArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(SLIME_ARROW_ENTITY.get(), x, y, z, worldIn);
-        this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
+        super(FROST_ARROW_ENTITY.get(), x, y, z, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(SLIME_ARROW_ITEM.get());
+        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(FROST_ARROW_ITEM.get());
     }
 
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
 
-        if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
-            this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
-            this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
-        } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
-            this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
-            Vec3d motion = getMotion();
-            if (motion.lengthSquared() < 1.0D || isInWater() || bounces >= maxBounces) {
-                super.onHit(raytraceResultIn);
-                return;
+        super.onHit(raytraceResultIn);
+
+        if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
+            Utils.freezeNearbyGround(this, world, this.getPosition(), RADIUS);
+            Utils.freezeNearbyWater(this, world, this.getPosition(), RADIUS, PERMANENT);
+            Utils.freezeNearbyLava(this, world, this.getPosition(), RADIUS, PERMANENT);
+            discharged = true;
+
+            if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {
+                this.inGround = false;
+                this.setMotion(getMotion().mul((this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F)));
+                this.ticksInGround = 0;
+                this.ticksInAir = 0;
             }
-            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
-            switch (blockraytraceresult.getFace()) {
-                case DOWN:
-                case UP:
-                    this.setMotion(motion.x, motion.y * -1, motion.z);
-                    break;
-                case NORTH:
-                case SOUTH:
-                    this.setMotion(motion.x, motion.y, motion.z * -1);
-                    break;
-                case WEST:
-                case EAST:
-                    this.setMotion(motion.x * -1, motion.y, motion.z);
-                    break;
-            }
-            float f = MathHelper.sqrt(horizontalMag(motion));
-            this.rotationYaw = (float) (MathHelper.atan2(motion.x, motion.z) * (double) (180F / (float) Math.PI));
-            this.rotationPitch = (float) (MathHelper.atan2(motion.y, f) * (double) (180F / (float) Math.PI));
-            this.prevRotationYaw = this.rotationYaw;
-            this.prevRotationPitch = this.rotationPitch;
-            ++bounces;
-            --knockbackStrength;
         }
     }
 
     @Override
-    public void setIsCritical(boolean critical) {
+    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
+        super.func_213868_a(raytraceResultIn);
+        Entity entity = raytraceResultIn.getEntity();
+        entity.extinguish();
+
+        if (entity instanceof LivingEntity) {
+            LivingEntity living = (LivingEntity) entity;
+            living.addPotionEffect(new EffectInstance(Effects.SLOWNESS, DURATION, AMPLIFIER));
+            living.addPotionEffect(new EffectInstance(Effects.WEAKNESS, DURATION, AMPLIFIER));
+        }
+        if (this.isBurning() && !(entity instanceof EndermanEntity)) {
+            entity.setFire(5);
+        }
     }
 
     @Override
-    public void setKnockbackStrength(int knockbackStrengthIn) {
+    public void setFire(int seconds) {
 
-        this.knockbackStrength = KNOCKBACK + knockbackStrengthIn;
-        this.maxBounces = this.knockbackStrength;
-    }
-
-    @Override
-    public void setPierceLevel(byte level) {
-
-    }
-
-    public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
-
-        super.shoot(x, y, z, Math.min(velocity, MAX_VELOCITY), inaccuracy);
     }
 
     @Override
@@ -160,14 +140,13 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
             } else if (!this.world.isRemote) {
                 this.tryDespawn();
             }
-
             ++this.timeInGround;
         } else {
             this.timeInGround = 0;
             ++this.ticksInAir;
             Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3d2 = vec3d1.add(vec3d);
-            RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
+            RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, discharged ? RayTraceContext.FluidMode.NONE : RayTraceContext.FluidMode.SOURCE_ONLY, this));
             if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
                 vec3d2 = raytraceresult.getHitVec();
             }
@@ -198,7 +177,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
             double d2 = vec3d.y;
             double d0 = vec3d.z;
             if (Utils.isClientWorld(world)) {
-                this.world.addParticle(ParticleTypes.ITEM_SLIME, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+                this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
             }
             this.posX += d1;
             this.posY += d2;

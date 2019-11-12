@@ -69,7 +69,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
         if (!freezeLava) {
             return;
         }
-        if (living.onGround) {
+        if (living.onGround && GLOSSED_MAGMA != null) {
             BlockState blockstate = GLOSSED_MAGMA.getDefaultState();
             float f = (float) Math.min(16, 2 + level);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cofh_test:item/shulker_arrow"
+    "layer0": "cofh_test:item/projectiles/shulker_arrow"
   }
 }

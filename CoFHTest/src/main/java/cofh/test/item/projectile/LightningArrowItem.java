@@ -14,6 +14,7 @@ public class LightningArrowItem extends ArrowItemCoFH {
         super(builder);
     }
 
+    @Override
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
 
         return new LightningArrowEntity(worldIn, shooter);

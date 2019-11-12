@@ -34,8 +34,10 @@
   "item.cofh_test.seed_tomato": "Tomato Seeds",
 
   "item.cofh_test.explosive_arrow": "Explosive Arrow",
+  "item.cofh_test.frost_arrow": "Frost Arrow",
   "item.cofh_test.lightning_arrow": "Lightning Arrow",
   "item.cofh_test.prismarine_arrow": "Prismarine Arrow",
+  "item.cofh_test.shulker_arrow": "Shulker Arrow",
   "item.cofh_test.slime_arrow": "Slime Arrow",
-  "item.cofh_test.shulker_arrow": "Shulker Arrow"
+  "item.cofh_test.training_arrow": "Training Arrow"
 }

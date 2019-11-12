@@ -18,6 +18,8 @@ import static cofh.test.CoFHTest.EXPLOSIVE_ARROW_ITEM;
 
 public class ExplosiveArrowEntity extends AbstractArrowEntity {
 
+    public static float EXPLOSION_STRENGTH = 2.0F;
+
     public ExplosiveArrowEntity(EntityType<? extends ExplosiveArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
@@ -44,10 +46,8 @@ public class ExplosiveArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            if (!isInWater() && !isInLava()) {
-                world.createExplosion(this, posX, posY, posZ, 2.0F, isBurning(), Explosion.Mode.NONE);
-                this.remove();
-            }
+            world.createExplosion(this, posX, posY, posZ, EXPLOSION_STRENGTH, isBurning(), Explosion.Mode.NONE);
+            this.remove();
         }
     }
 
@@ -57,10 +57,6 @@ public class ExplosiveArrowEntity extends AbstractArrowEntity {
         Entity entity = raytraceResultIn.getEntity();
         if (this.isBurning() && !(entity instanceof EndermanEntity)) {
             entity.setFire(5);
-        }
-        if (isInWater()) {
-            entityDropItem(getArrowStack(), 0.1F);
-            this.remove();
         }
     }
 
