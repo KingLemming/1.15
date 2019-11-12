@@ -1,95 +1,49 @@
 package cofh.test.entity.projectile;
 
-import cofh.lib.util.Utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.lib.util.references.CoreReferences.CHILLED;
-import static cofh.test.CoFHTest.FROST_ARROW_ENTITY;
-import static cofh.test.CoFHTest.FROST_ARROW_ITEM;
+import static cofh.test.CoFHTest.PRISMARINE_ARROW_ENTITY;
+import static cofh.test.CoFHTest.PRISMARINE_ARROW_ITEM;
 
-public class FrostArrowEntity extends AbstractArrowEntity {
+public class PrismarineArrowEntity extends AbstractArrowEntity {
 
-    public static final int DURATION = 60;
-    public static final int AMPLIFIER = 1;
-    public static final int RADIUS = 4;
-    public static final boolean PERMANENT = true;
-
-    private boolean discharged;
-
-    public FrostArrowEntity(EntityType<? extends FrostArrowEntity> entityIn, World worldIn) {
+    public PrismarineArrowEntity(EntityType<? extends PrismarineArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
     }
 
-    public FrostArrowEntity(World worldIn, LivingEntity shooter) {
+    public PrismarineArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(FROST_ARROW_ENTITY.get(), shooter, worldIn);
+        super(PRISMARINE_ARROW_ENTITY.get(), shooter, worldIn);
     }
 
-    public FrostArrowEntity(World worldIn, double x, double y, double z) {
+    public PrismarineArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(FROST_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(PRISMARINE_ARROW_ENTITY.get(), x, y, z, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(FROST_ARROW_ITEM.get());
+        return new ItemStack(PRISMARINE_ARROW_ITEM.get());
     }
 
     @Override
-    protected void onHit(RayTraceResult raytraceResultIn) {
+    protected float getWaterDrag() {
 
-        super.onHit(raytraceResultIn);
-
-        if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.freezeNearbyGround(this, world, this.getPosition(), RADIUS);
-            Utils.freezeNearbyWater(this, world, this.getPosition(), RADIUS, PERMANENT);
-            Utils.freezeNearbyLava(this, world, this.getPosition(), RADIUS, PERMANENT);
-            discharged = true;
-
-            if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {
-                this.inGround = false;
-                this.setMotion(getMotion().mul((this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F)));
-                this.ticksInGround = 0;
-                this.ticksInAir = 0;
-            }
-        }
-    }
-
-    @Override
-    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
-
-        super.func_213868_a(raytraceResultIn);
-        Entity entity = raytraceResultIn.getEntity();
-
-        if (entity.isBurning()) {
-            entity.extinguish();
-        }
-        if (entity instanceof LivingEntity) {
-            LivingEntity living = (LivingEntity) entity;
-            living.addPotionEffect(new EffectInstance(CHILLED, DURATION, AMPLIFIER));
-        }
-    }
-
-    @Override
-    public void setFire(int seconds) {
-
+        return 0.99F;
     }
 
     @Override
@@ -137,13 +91,14 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             } else if (!this.world.isRemote) {
                 this.tryDespawn();
             }
+
             ++this.timeInGround;
         } else {
             this.timeInGround = 0;
             ++this.ticksInAir;
             Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3d2 = vec3d1.add(vec3d);
-            RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, discharged ? RayTraceContext.FluidMode.NONE : RayTraceContext.FluidMode.SOURCE_ONLY, this));
+            RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
             if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
                 vec3d2 = raytraceresult.getHitVec();
             }
@@ -173,8 +128,10 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             double d1 = vec3d.x;
             double d2 = vec3d.y;
             double d0 = vec3d.z;
-            if (Utils.isClientWorld(world)) {
-                this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+            if (this.getIsCritical()) {
+                for (int i = 0; i < 4; ++i) {
+                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
+                }
             }
             this.posX += d1;
             this.posY += d2;
@@ -202,15 +159,13 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             this.rotationYaw = MathHelper.lerp(0.2F, this.prevRotationYaw, this.rotationYaw);
             float f1 = 0.99F;
             if (this.isInWater()) {
-                for (int j = 0; j < 4; ++j) {
-                    this.world.addParticle(ParticleTypes.BUBBLE, this.posX - d1 * 0.25D, this.posY - d2 * 0.25D, this.posZ - d0 * 0.25D, d1, d2, d0);
-                }
-                f1 = this.getWaterDrag();
+                this.world.addParticle(ParticleTypes.BUBBLE, this.posX - d1 * 0.25D, this.posY - d2 * 0.25D, this.posZ - d0 * 0.25D, d1, d2, d0);
+                // f1 = this.getWaterDrag();
             }
             this.setMotion(vec3d.scale(f1));
             if (!this.hasNoGravity() && !flag) {
                 Vec3d vec3d3 = this.getMotion();
-                this.setMotion(vec3d3.x, vec3d3.y - 0.05D, vec3d3.z);
+                this.setMotion(vec3d3.x, vec3d3.y - (this.isInWater() ? 0.01D : 0.05D), vec3d3.z);
             }
             this.setPosition(this.posX, this.posY, this.posZ);
             this.doBlockCollisions();

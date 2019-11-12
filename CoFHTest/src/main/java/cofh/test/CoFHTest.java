@@ -2,11 +2,8 @@ package cofh.test;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.test.entity.projectile.*;
-import cofh.test.init.BlocksTest;
-import cofh.test.init.ItemsTest;
 import cofh.test.item.projectile.*;
 import cofh.test.renderer.entity.projectile.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -34,7 +31,6 @@ public class CoFHTest {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_TEST);
 
-    public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_TEST);
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_TEST);
     public static final DeferredRegisterCoFH<EntityType<?>> ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.ENTITIES, ID_COFH_TEST);
 
@@ -48,24 +44,6 @@ public class CoFHTest {
         }
     };
 
-    public static final RegistryObject<Item> EXPLOSIVE_ARROW_ITEM = ITEMS.register("explosive_arrow", () -> new ExplosiveArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> FROST_ARROW_ITEM = ITEMS.register("frost_arrow", () -> new FrostArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> LIGHTNING_ARROW_ITEM = ITEMS.register("lightning_arrow", () -> new LightningArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> PRISMARINE_ARROW_ITEM = ITEMS.register("prismarine_arrow", () -> new PrismarineArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> REDSTONE_ARROW_ITEM = ITEMS.register("redstone_arrow", () -> new RedstoneArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> SHULKER_ARROW_ITEM = ITEMS.register("shulker_arrow", () -> new ShulkerArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> SLIME_ARROW_ITEM = ITEMS.register("slime_arrow", () -> new SlimeArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-    public static final RegistryObject<Item> TRAINING_ARROW_ITEM = ITEMS.register("training_arrow", () -> new TrainingArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
-
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> EXPLOSIVE_ARROW_ENTITY = ENTITIES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrowEntity>create(ExplosiveArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("explosive_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> FROST_ARROW_ENTITY = ENTITIES.register("frost_arrow", () -> EntityType.Builder.<FrostArrowEntity>create(FrostArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("frost_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> LIGHTNING_ARROW_ENTITY = ENTITIES.register("lightning_arrow", () -> EntityType.Builder.<LightningArrowEntity>create(LightningArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("lightning_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> PRISMARINE_ARROW_ENTITY = ENTITIES.register("prismarine_arrow", () -> EntityType.Builder.<PrismarineArrowEntity>create(PrismarineArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("prismarine_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> REDSTONE_ARROW_ENTITY = ENTITIES.register("redstone_arrow", () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("redstone_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> SHULKER_ARROW_ENTITY = ENTITIES.register("shulker_arrow", () -> EntityType.Builder.<ShulkerArrowEntity>create(ShulkerArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("shulker_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> SLIME_ARROW_ENTITY = ENTITIES.register("slime_arrow", () -> EntityType.Builder.<SlimeArrowEntity>create(SlimeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("slime_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> TRAINING_ARROW_ENTITY = ENTITIES.register("training_arrow", () -> EntityType.Builder.<TrainingArrowEntity>create(TrainingArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("training_arrow"));
-
     public CoFHTest() {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -73,12 +51,8 @@ public class CoFHTest {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
-        BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         ENTITIES.register(modEventBus);
-
-        BlocksTest.register();
-        ItemsTest.register();
     }
 
     // region INITIALIZATION
@@ -97,6 +71,26 @@ public class CoFHTest {
         RenderingRegistry.registerEntityRenderingHandler(SlimeArrowEntity.class, SlimeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
     }
+    // endregion
+
+    // region REFERENCES
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> EXPLOSIVE_ARROW_ENTITY = ENTITIES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrowEntity>create(ExplosiveArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("explosive_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> FROST_ARROW_ENTITY = ENTITIES.register("frost_arrow", () -> EntityType.Builder.<FrostArrowEntity>create(FrostArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("frost_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> LIGHTNING_ARROW_ENTITY = ENTITIES.register("lightning_arrow", () -> EntityType.Builder.<LightningArrowEntity>create(LightningArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("lightning_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> PRISMARINE_ARROW_ENTITY = ENTITIES.register("prismarine_arrow", () -> EntityType.Builder.<PrismarineArrowEntity>create(PrismarineArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("prismarine_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> REDSTONE_ARROW_ENTITY = ENTITIES.register("redstone_arrow", () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("redstone_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> SHULKER_ARROW_ENTITY = ENTITIES.register("shulker_arrow", () -> EntityType.Builder.<ShulkerArrowEntity>create(ShulkerArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("shulker_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> SLIME_ARROW_ENTITY = ENTITIES.register("slime_arrow", () -> EntityType.Builder.<SlimeArrowEntity>create(SlimeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("slime_arrow"));
+    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> TRAINING_ARROW_ENTITY = ENTITIES.register("training_arrow", () -> EntityType.Builder.<TrainingArrowEntity>create(TrainingArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("training_arrow"));
+
+    public static final RegistryObject<Item> EXPLOSIVE_ARROW_ITEM = ITEMS.register("explosive_arrow", () -> new ExplosiveArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> FROST_ARROW_ITEM = ITEMS.register("frost_arrow", () -> new FrostArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> LIGHTNING_ARROW_ITEM = ITEMS.register("lightning_arrow", () -> new LightningArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> PRISMARINE_ARROW_ITEM = ITEMS.register("prismarine_arrow", () -> new PrismarineArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> REDSTONE_ARROW_ITEM = ITEMS.register("redstone_arrow", () -> new RedstoneArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> SHULKER_ARROW_ITEM = ITEMS.register("shulker_arrow", () -> new ShulkerArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> SLIME_ARROW_ITEM = ITEMS.register("slime_arrow", () -> new SlimeArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
+    public static final RegistryObject<Item> TRAINING_ARROW_ITEM = ITEMS.register("training_arrow", () -> new TrainingArrowItem(new Item.Properties().group(COFH_TEST_GROUP)));
     // endregion
 
 }

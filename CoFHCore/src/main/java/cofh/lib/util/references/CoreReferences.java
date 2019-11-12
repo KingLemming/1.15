@@ -21,6 +21,7 @@ public class CoreReferences {
     public static final String ID_EFFECT_MAGIC_RESISTANCE = ID_COFH_CORE + ":magic_resistance";
 
     public static final String ID_EFFECT_AMPLIFICATION = ID_COFH_CORE + ":amplification";
+    public static final String ID_EFFECT_CHILLED = ID_COFH_CORE + ":chilled";
     public static final String ID_EFFECT_CLARITY = ID_COFH_CORE + ":clarity";
     public static final String ID_EFFECT_ENDERFERENCE = ID_COFH_CORE + ":enderference";
     public static final String ID_EFFECT_LOVE = ID_COFH_CORE + ":love";
@@ -46,6 +47,9 @@ public class CoreReferences {
 
     @ObjectHolder(ID_EFFECT_AMPLIFICATION)
     public static final Effect AMPLIFICATION = null;
+
+    @ObjectHolder(ID_EFFECT_CHILLED)
+    public static final Effect CHILLED = null;
 
     @ObjectHolder(ID_EFFECT_CLARITY)
     public static final Effect CLARITY = null;

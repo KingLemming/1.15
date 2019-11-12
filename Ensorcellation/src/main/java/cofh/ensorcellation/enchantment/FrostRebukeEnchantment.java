@@ -14,13 +14,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Map;
 import java.util.Random;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
+import static cofh.lib.util.references.CoreReferences.CHILLED;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 
@@ -86,8 +86,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         if (attacker.isBurning()) {
             attacker.extinguish();
         }
-        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
-        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
+        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(CHILLED, i, level - 1));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
                 Utils.spawnParticles(attacker.world, ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);

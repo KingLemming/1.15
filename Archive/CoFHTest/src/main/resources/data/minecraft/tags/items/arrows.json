@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cofh_test:explosive_arrow",
+    "cofh_test:frost_arrow",
+    "cofh_test:lightning_arrow",
+    "cofh_test:prismarine_arrow",
+    "cofh_test:redstone_arrow",
+    "cofh_test:shulker_arrow",
+    "cofh_test:slime_arrow",
+    "cofh_test:training_arrow"
+  ]
+}

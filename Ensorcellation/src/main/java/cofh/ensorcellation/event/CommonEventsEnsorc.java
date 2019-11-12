@@ -49,7 +49,7 @@ import java.util.List;
 
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_PLAYER;
-import static cofh.lib.util.constants.Constants.UUID_REACH_DISTANCE;
+import static cofh.lib.util.constants.Constants.UUID_ENCH_REACH_DISTANCE;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.EFFICIENCY;
@@ -296,11 +296,11 @@ public class CommonEventsEnsorc {
             int encReach = getHeldEnchantmentLevel(entity, REACH);
             if (encReach > 0) {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
+                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
                 entity.getAttributes().applyAttributeModifiers(attributes);
             } else {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
+                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
                 entity.getAttributes().removeAttributeModifiers(attributes);
             }
         }

@@ -16,8 +16,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.world.server.ServerWorld;
+
+import static cofh.lib.util.references.CoreReferences.CHILLED;
 
 public class FrostAspectEnchantment extends EnchantmentCoFH {
 
@@ -69,8 +70,7 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
         if (entity.isBurning()) {
             entity.extinguish();
         }
-        entity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, i, level - 1));
-        entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, i, level - 1));
+        entity.addPotionEffect(new EffectInstance(CHILLED, i, level - 1));
         if (entity.world instanceof ServerWorld) {
             for (int j = 0; j < 4 * level; ++j) {
                 Utils.spawnParticles(entity.world, ParticleTypes.ITEM_SNOWBALL, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
