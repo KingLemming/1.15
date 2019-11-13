@@ -41,7 +41,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
     }
 
     @Override
-    public int getMaxEnchantability(int level) {
+    protected int maxDelegate(int level) {
 
         return super.getMinEnchantability(level) + 50;
     }

@@ -185,7 +185,7 @@ public class Utils {
 
     public static boolean teleportEntityTo(Entity entity, BlockPos pos) {
 
-        return teleportEntityTo(entity, pos.getX(), pos.getY(), pos.getZ());
+        return teleportEntityTo(entity, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
     }
 
     public static boolean teleportEntityTo(Entity entity, double x, double y, double z) {

@@ -21,13 +21,13 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class MagmaArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.5F;
-    public static final int DURATION = 5;
-    public static int KNOCKBACK = 3;
-    public static int KNOCKBACK_FACTOR = 1;
-    public static float MAX_VELOCITY = 3.0F;
-    public static float MIN_VELOCITY = 0.25F;
-    public static final int RADIUS = 2;
+    private static float DAMAGE = 0.5F;
+    private static final int DURATION = 5;
+    private static int KNOCKBACK = 3;
+    private static int KNOCKBACK_FACTOR = 1;
+    private static float MAX_VELOCITY = 3.0F;
+    private static float MIN_VELOCITY = 0.5F;
+    private static final int RADIUS = 2;
 
     private int bounces = 0;
     private int maxBounces = KNOCKBACK;
@@ -70,7 +70,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
                 this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
             } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
                 Vec3d motion = getMotion();
-                if (motion.lengthSquared() < 0.25F || isInWater() || bounces >= maxBounces) {
+                if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
                     super.onHit(raytraceResultIn);
                     return;
                 }
@@ -98,6 +98,11 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
                 --knockbackStrength;
             }
         }
+    }
+
+    @Override
+    public void setFire(int seconds) {
+
     }
 
     @Override

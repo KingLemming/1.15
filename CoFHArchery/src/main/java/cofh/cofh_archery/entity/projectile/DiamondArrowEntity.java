@@ -13,9 +13,9 @@ import static cofh.cofh_archery.CoFHArchery.DIAMOND_ARROW_ITEM;
 
 public class DiamondArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 4.0F;
-    public static int KNOCKBACK = 1;
-    public static int PIERCE = 2;
+    private static float DAMAGE = 4.0F;
+    private static int KNOCKBACK = 1;
+    private static int PIERCE = 1;
 
     public DiamondArrowEntity(EntityType<? extends DiamondArrowEntity> entityIn, World worldIn) {
 

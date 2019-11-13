@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 
 import static cofh.lib.capability.CapabilityArchery.*;
-import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 import static cofh.lib.util.references.EnsorcellationReferences.TRUESHOT;
 import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
@@ -60,7 +59,7 @@ public final class ArcheryHelper {
 
             if (arrowVelocity >= 0.1F) {
                 if (Utils.isServerWorld(world)) {
-                    int encVolley = MathHelper.clamp(getEnchantmentLevel(VOLLEY, bow), 0, MAX_ENCHANT_LEVEL);
+                    int encVolley = getEnchantmentLevel(VOLLEY, bow);
                     int encTrueshot = getEnchantmentLevel(TRUESHOT, bow);
                     int encPunch = getEnchantmentLevel(PUNCH, bow);
                     int encPower = getEnchantmentLevel(POWER, bow);
@@ -71,9 +70,11 @@ public final class ArcheryHelper {
                         damageMod *= (1.0F + 0.25F * encTrueshot);
                         arrowVelocity = MathHelper.clamp(0.1F, arrowVelocity + 0.05F * encTrueshot, 1.75F);
                     }
+                    int numArrows = encVolley > 0 ? 3 : 1;
                     // Each additional arrow fired at a higher arc - arrows will not be fired beyond vertically. Maximum of 5 degrees between arrows.
-                    float volleyPitch = encVolley > 0 ? MathHelper.clamp(Math.min(15.0F, 90.0F + shooter.rotationPitch) / encVolley, 0.0F, 5.0F) : 0;
-                    for (int shot = 0; shot <= encVolley; ++shot) {
+                    float volleyPitch = encVolley > 0 ? MathHelper.clamp(90.0F + shooter.rotationPitch / encVolley, 0.0F, 5.0F) : 0;
+
+                    for (int shot = 0; shot < numArrows; ++shot) {
                         AbstractArrowEntity arrow = createArrow(world, bow, ammo, shooter);
                         arrow.shoot(shooter, shooter.rotationPitch - volleyPitch * shot, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod);// * (1 + shot * 2));
                         arrow.setDamage(arrow.getDamage() * damageMod);

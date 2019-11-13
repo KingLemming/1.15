@@ -20,7 +20,7 @@ public class QuickdrawEnchantment extends EnchantmentCoFH {
     @Override
     public int getMinEnchantability(int level) {
 
-        return 5 + (level - 1) * 10;
+        return 12 + (level - 1) * 20;
     }
 
     @Override

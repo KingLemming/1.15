@@ -18,7 +18,7 @@ import static cofh.cofh_archery.CoFHArchery.EXPLOSIVE_ARROW_ITEM;
 
 public class ExplosiveArrowEntity extends AbstractArrowEntity {
 
-    public static float EXPLOSION_STRENGTH = 1.75F;
+    private static float EXPLOSION_STRENGTH = 1.9F;
 
     public ExplosiveArrowEntity(EntityType<? extends ExplosiveArrowEntity> entityIn, World worldIn) {
 
@@ -44,11 +44,11 @@ public class ExplosiveArrowEntity extends AbstractArrowEntity {
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
 
-        super.onHit(raytraceResultIn);
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             world.createExplosion(this, posX, posY, posZ, EXPLOSION_STRENGTH + this.knockbackStrength, isBurning(), Explosion.Mode.NONE);
             this.remove();
         }
+        super.onHit(raytraceResultIn);
     }
 
     @Override

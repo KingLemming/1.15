@@ -13,6 +13,18 @@ public abstract class DamageEnchantmentCoFH extends EnchantmentCoFH {
     }
 
     @Override
+    public int getMinEnchantability(int level) {
+
+        return 10 + (level - 1) * 8;
+    }
+
+    @Override
+    protected int maxDelegate(int level) {
+
+        return getMinEnchantability(level) + 20;
+    }
+
+    @Override
     public boolean canApplyTogether(Enchantment ench) {
 
         return super.canApplyTogether(ench) && !(ench instanceof DamageEnchantment) && !(ench instanceof DamageEnchantmentCoFH);

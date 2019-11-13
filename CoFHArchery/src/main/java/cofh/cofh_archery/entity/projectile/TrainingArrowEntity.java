@@ -15,7 +15,7 @@ import static cofh.cofh_archery.CoFHArchery.TRAINING_ARROW_ITEM;
 
 public class TrainingArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.0F;
+    private static float DAMAGE = 0.0F;
 
     public TrainingArrowEntity(EntityType<? extends TrainingArrowEntity> entityIn, World worldIn) {
 

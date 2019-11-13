@@ -19,11 +19,11 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class SlimeArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.5F;
-    public static int KNOCKBACK = 4;
-    public static int KNOCKBACK_FACTOR = 2;
-    public static float MAX_VELOCITY = 3.0F;
-    public static float MIN_VELOCITY = 0.25F;
+    private static float DAMAGE = 0.5F;
+    private static int KNOCKBACK = 4;
+    private static int KNOCKBACK_FACTOR = 2;
+    private static float MAX_VELOCITY = 3.0F;
+    private static float MIN_VELOCITY = 0.5F;
 
     private int bounces = 0;
     private int maxBounces = KNOCKBACK;
@@ -64,7 +64,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
         } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
             this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
             Vec3d motion = getMotion();
-            if (motion.lengthSquared() < 0.25F || isInWater() || bounces >= maxBounces) {
+            if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
                 super.onHit(raytraceResultIn);
                 return;
             }

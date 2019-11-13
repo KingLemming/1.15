@@ -19,18 +19,6 @@ public class DamageVillagerEnchantment extends DamageEnchantmentCoFH {
     }
 
     @Override
-    public int getMinEnchantability(int level) {
-
-        return 10 + (level - 1) * 8;
-    }
-
-    @Override
-    protected int maxDelegate(int level) {
-
-        return getMinEnchantability(level) + 20;
-    }
-
-    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
         Item item = stack.getItem();

@@ -21,21 +21,26 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class LightningArrowEntity extends AbstractArrowEntity {
 
+    private static float DAMAGE = 1.5F;
+
     public boolean discharged;
 
     public LightningArrowEntity(EntityType<? extends LightningArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
+        this.damage = DAMAGE;
     }
 
     public LightningArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(LIGHTNING_ARROW_ENTITY.get(), shooter, worldIn);
+        this.damage = DAMAGE;
     }
 
     public LightningArrowEntity(World worldIn, double x, double y, double z) {
 
         super(LIGHTNING_ARROW_ENTITY.get(), x, y, z, worldIn);
+        this.damage = DAMAGE;
     }
 
     @Override

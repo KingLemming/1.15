@@ -25,12 +25,12 @@ import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
 
 public class EnderArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.5F;
-    public static final int DURATION = 80;
-    public static final int DURATION_FACTOR = 2;
+    private static float DAMAGE = 0.5F;
+    private static final int DURATION = 80;
+    private static final int DURATION_FACTOR = 2;
 
     public boolean discharged;
-    public BlockPos origin;
+    private BlockPos origin;
 
     public EnderArrowEntity(EntityType<? extends EnderArrowEntity> entityIn, World worldIn) {
 

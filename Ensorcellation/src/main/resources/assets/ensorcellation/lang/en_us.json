@@ -96,7 +96,7 @@
   "enchantment.ensorcellation.trueshot.desc": "Increases the accuracy and speed of arrows, and allows them to pierce.",
 
   "enchantment.ensorcellation.volley": "Volley",
-  "enchantment.ensorcellation.volley.desc": "Additional arrows are fired with each shot. Only one arrow is consumed.",
+  "enchantment.ensorcellation.volley.desc": "Three arrows are fired in an arc. Only one arrow is consumed.",
 
   "enchantment.ensorcellation.vorpal": "Vorpal",
   "enchantment.ensorcellation.vorpal.desc": "Randomly performs powerful attacks and decapitations.",

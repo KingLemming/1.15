@@ -26,26 +26,30 @@ import static cofh.lib.util.references.CoreReferences.CHILLED;
 
 public class FrostArrowEntity extends AbstractArrowEntity {
 
-    public static final int DURATION = 80;
-    public static final int AMPLIFIER = 1;
-    public static final int RADIUS = 4;
-    public static final boolean PERMANENT = true;
+    private static float DAMAGE = 1.5F;
+    private static final int DURATION = 80;
+    private static final int AMPLIFIER = 1;
+    private static final int RADIUS = 4;
+    private static final boolean PERMANENT = true;
 
     public boolean discharged;
 
     public FrostArrowEntity(EntityType<? extends FrostArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
+        this.damage = DAMAGE;
     }
 
     public FrostArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(FROST_ARROW_ENTITY.get(), shooter, worldIn);
+        this.damage = DAMAGE;
     }
 
     public FrostArrowEntity(World worldIn, double x, double y, double z) {
 
         super(FROST_ARROW_ENTITY.get(), x, y, z, worldIn);
+        this.damage = DAMAGE;
     }
 
     @Override

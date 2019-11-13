@@ -13,14 +13,13 @@ public class VolleyEnchantment extends EnchantmentCoFH {
 
     public VolleyEnchantment() {
 
-        super(Rarity.UNCOMMON, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
-        maxLevel = 4;
+        super(Rarity.RARE, EnchantmentType.BOW, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
     }
 
     @Override
     public int getMinEnchantability(int level) {
 
-        return 1 + (level - 1) * 10;
+        return 20;
     }
 
     @Override

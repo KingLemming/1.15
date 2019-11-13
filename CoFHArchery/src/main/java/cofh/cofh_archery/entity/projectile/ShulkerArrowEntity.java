@@ -25,7 +25,9 @@ import static cofh.cofh_archery.CoFHArchery.SHULKER_ARROW_ITEM;
 public class ShulkerArrowEntity extends AbstractArrowEntity {
 
     private static final DataParameter<Integer> TARGET = EntityDataManager.createKey(ShulkerArrowEntity.class, DataSerializers.VARINT);
+    private static int ID_NO_TARGET = -1;
 
+    private static float MAX_VELOCITY = 3.0F;
     private static final double SEEK_DISTANCE = 5.0;
     private static final double SEEK_FACTOR = 0.2;
     private static final double SEEK_ANGLE = Math.PI / 6.0;
@@ -50,13 +52,18 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
     protected void registerData() {
 
         super.registerData();
-        this.getDataManager().register(TARGET, -1);
+        this.getDataManager().register(TARGET, ID_NO_TARGET);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
         return new ItemStack(SHULKER_ARROW_ITEM.get());
+    }
+
+    @Override
+    public void setFire(int seconds) {
+
     }
 
     @Override
@@ -67,7 +74,6 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
                 updateTarget();
             }
             Entity target = getTarget();
-
             if (target != null) {
                 Vec3d targetVec = getVectorToTarget(target).scale(SEEK_FACTOR);
                 Vec3d courseVec = getMotion();
@@ -78,8 +84,8 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
                 double dotProduct = courseVec.dotProduct(targetVec) / (courseLen * targetLen);
 
                 if (dotProduct > SEEK_THRESHOLD) {
-                    Vec3d newMotion = (courseVec.scale(courseLen / totalLen).add(targetVec.scale(targetLen / totalLen))).normalize().scale(2.0F);
-                    this.setMotion(newMotion.x, newMotion.y + 0.04F, newMotion.z);
+                    Vec3d newMotion = (courseVec.scale(courseLen / totalLen).add(targetVec.scale(targetLen / totalLen))).normalize().scale(MAX_VELOCITY);
+                    this.setMotion(newMotion.x, newMotion.y + 0.05F, newMotion.z);
                 } else if (Utils.isServerWorld(world)) {
                     setTarget(null);
                 }
@@ -158,7 +164,7 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
 
     private void setTarget(@Nullable Entity e) {
 
-        dataManager.set(TARGET, e == null ? -1 : e.getEntityId());
+        dataManager.set(TARGET, e == null ? ID_NO_TARGET : e.getEntityId());
     }
     // endregion
 }

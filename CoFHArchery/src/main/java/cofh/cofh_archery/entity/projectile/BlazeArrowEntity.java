@@ -23,9 +23,9 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class BlazeArrowEntity extends AbstractArrowEntity {
 
-    public static float DAMAGE = 0.5F;
-    public static final int DURATION = 10;
-    public static final int RADIUS = 4;
+    private static float DAMAGE = 1.5F;
+    private static final int DURATION = 10;
+    private static final int RADIUS = 4;
 
     public boolean discharged;
 
