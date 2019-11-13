@@ -1,15 +1,15 @@
-package cofh.test.init;
+package cofh.potions.init;
 
 import cofh.lib.item.ExcavatorItem;
 import cofh.lib.item.HammerItem;
 import cofh.lib.item.SickleItem;
-import cofh.test.item.WrenchItem;
+import cofh.potions.item.WrenchItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
 
-import static cofh.test.CoFHTest.COFH_TEST_GROUP;
-import static cofh.test.CoFHTest.ITEMS;
+import static cofh.potions.CoFHTest.COFH_TEST_GROUP;
+import static cofh.potions.CoFHTest.ITEMS;
 
 public class ItemsTest {
 

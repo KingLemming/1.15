@@ -1,4 +1,4 @@
-package cofh.test.entity.projectile;
+package cofh.potions.entity.projectile;
 
 import cofh.lib.util.Utils;
 import net.minecraft.entity.Entity;
@@ -19,8 +19,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-import static cofh.test.CoFHTest.SHULKER_ARROW_ENTITY;
-import static cofh.test.CoFHTest.SHULKER_ARROW_ITEM;
+import static cofh.potions.CoFHTest.SHULKER_ARROW_ENTITY;
+import static cofh.potions.CoFHTest.SHULKER_ARROW_ITEM;
 
 public class ShulkerArrowEntity extends AbstractArrowEntity {
 

@@ -86,7 +86,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         if (attacker.isBurning()) {
             attacker.extinguish();
         }
-        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(CHILLED, i, level - 1));
+        ((LivingEntity) attacker).addPotionEffect(new EffectInstance(CHILLED, i, level - 1, false, false));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
                 Utils.spawnParticles(attacker.world, ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);

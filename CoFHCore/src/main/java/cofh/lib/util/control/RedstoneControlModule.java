@@ -1,6 +1,6 @@
 package cofh.lib.util.control;
 
-import cofh.core.network.packet.server.PacketRedstoneControl;
+import cofh.core.network.packet.server.RedstoneControlPacket;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -104,7 +104,7 @@ public class RedstoneControlModule implements IRedstoneControllable {
         this.threshold = threshold;
         this.mode = mode;
         if (Utils.isClientWorld(tile.world())) {
-            PacketRedstoneControl.sendToServer(this.tile);
+            RedstoneControlPacket.sendToServer(this.tile);
         } else {
             tile.onControlUpdate();
         }

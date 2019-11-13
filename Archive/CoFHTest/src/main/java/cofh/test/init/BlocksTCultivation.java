@@ -1,4 +1,4 @@
-package cofh.test.init;
+package cofh.potions.init;
 
 import cofh.lib.block.crops.CropsBlockCoFH;
 import cofh.lib.block.crops.CropsBlockPerennial;
@@ -7,8 +7,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.RegistryObject;
 
-import static cofh.test.CoFHTest.BLOCKS;
-import static cofh.test.init.ItemsTCultivation.*;
+import static cofh.potions.CoFHTest.BLOCKS;
+import static cofh.potions.init.ItemsTCultivation.*;
 import static net.minecraft.block.Block.Properties.create;
 
 public class BlocksTCultivation {

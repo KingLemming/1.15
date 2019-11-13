@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "cofh_archery:blaze_arrow",
+    "cofh_archery:diamond_arrow",
+    "cofh_archery:ender_arrow",
+    "cofh_archery:explosive_arrow",
+    "cofh_archery:frost_arrow",
+    "cofh_archery:lightning_arrow",
+    "cofh_archery:magma_arrow",
+    "cofh_archery:prismarine_arrow",
+    "cofh_archery:redstone_arrow",
+    "cofh_archery:shulker_arrow",
+    "cofh_archery:slime_arrow",
+    "cofh_archery:training_arrow"
+  ]
+}

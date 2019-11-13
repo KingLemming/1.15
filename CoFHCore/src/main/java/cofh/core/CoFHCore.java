@@ -1,10 +1,10 @@
 package cofh.core;
 
-import cofh.core.event.ClientEventsCore;
-import cofh.core.event.CommonEventsCore;
-import cofh.core.init.BlocksCore;
-import cofh.core.init.ConfigCore;
-import cofh.core.init.EffectsCore;
+import cofh.core.event.CoreClientEvents;
+import cofh.core.event.CoreCommonEvents;
+import cofh.core.init.CoreBlocks;
+import cofh.core.init.CoreConfig;
+import cofh.core.init.CoreEffects;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityAOE;
@@ -17,7 +17,6 @@ import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -52,10 +51,10 @@ public class CoFHCore {
         EFFECTS.register(modEventBus);
         ITEMS.register(modEventBus);
 
-        ConfigCore.register();
+        CoreConfig.register();
 
-        BlocksCore.register();
-        EffectsCore.register();
+        CoreBlocks.register();
+        CoreEffects.register();
     }
 
     // region INITIALIZATION
@@ -66,19 +65,19 @@ public class CoFHCore {
         CapabilityEnchantable.register();
         CapabilityShield.register();
 
-        CommonEventsCore.register();
+        CoreCommonEvents.register();
 
         ArcheryEvents.register();
         AOEEvents.register();
         ShieldEvents.register();
         EffectEvents.register();
 
-        packetHandler = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "network"));
+        // packetHandler = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "network"));
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        ClientEventsCore.register();
+        CoreClientEvents.register();
 
         AOEClientEvents.register();
     }

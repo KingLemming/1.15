@@ -10,7 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -75,7 +75,7 @@ public class EffectEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
 
         if (event.isCanceled()) {
             return;
@@ -91,10 +91,12 @@ public class EffectEvents {
         orb.getPersistentData().putBoolean(ID_EFFECT_CLARITY, true);
     }
 
+    // region HELPERS
     private static int getXPValue(int baseExp, int amplifier) {
 
         return baseExp * (100 + clarityMod * (1 + amplifier)) / 100;
     }
+    // endregion
 
     private static int clarityMod = 40;
 

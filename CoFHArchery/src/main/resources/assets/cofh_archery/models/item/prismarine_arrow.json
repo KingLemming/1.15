@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cofh_archery:item/projectiles/prismarine_arrow"
+  }
+}

@@ -17,4 +17,10 @@ public class EffectCoFH extends Effect {
         super(typeIn, liquidColorIn);
     }
 
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+
+        return duration > 0;
+    }
+
 }

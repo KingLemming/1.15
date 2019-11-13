@@ -5,5 +5,7 @@ include 'Ensorcellation'
 //include 'Quartermastery'
 //include 'ThermalSeries'
 
-include 'CoFHTest'
+include 'CoFHArchery'
+include 'CoFHPotions'
+
 include 'Workspace'

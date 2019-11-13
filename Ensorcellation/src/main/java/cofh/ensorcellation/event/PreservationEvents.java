@@ -1,7 +1,7 @@
 package cofh.ensorcellation.event;
 
 import cofh.ensorcellation.enchantment.override.MendingEnchantmentAlt;
-import cofh.ensorcellation.init.ConfigEnsorc;
+import cofh.ensorcellation.init.ModConfig;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -38,7 +38,7 @@ public class PreservationEvents {
         if (event.isCanceled()) {
             return;
         }
-        if (!ConfigEnsorc.enableMendingOverride) {
+        if (!ModConfig.enableMendingOverride) {
             return;
         }
         ItemStack left = event.getItemInput();
@@ -58,7 +58,7 @@ public class PreservationEvents {
         if (event.isCanceled()) {
             return;
         }
-        if (!ConfigEnsorc.enableMendingOverride) {
+        if (!ModConfig.enableMendingOverride) {
             return;
         }
         ItemStack left = event.getLeft();
@@ -101,12 +101,12 @@ public class PreservationEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
 
         if (event.isCanceled()) {
             return;
         }
-        if (!ConfigEnsorc.enableMendingOverride) {
+        if (!ModConfig.enableMendingOverride) {
             return;
         }
         PlayerEntity player = event.getPlayer();

@@ -1,4 +1,4 @@
-package cofh.test;
+package cofh.potions;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.item.Item;

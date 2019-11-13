@@ -1,7 +1,7 @@
-package cofh.test.item.projectile;
+package cofh.potions.item.projectile;
 
 import cofh.lib.item.override.ArrowItemCoFH;
-import cofh.test.entity.projectile.ExplosiveArrowEntity;
+import cofh.potions.entity.projectile.ExplosiveArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;

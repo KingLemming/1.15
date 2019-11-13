@@ -23,7 +23,6 @@ import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
 
 public class ShieldItemCoFH extends ShieldItem {
 
-    protected String info;
     protected boolean showEnchantEffect = true;
     protected boolean showInItemGroup = true;
     protected boolean creative;
@@ -58,18 +57,6 @@ public class ShieldItemCoFH extends ShieldItem {
             return;
         }
         super.fillItemGroup(group, items);
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        if (info == null && this.getRegistryName() != null) {
-            info = "info." + this.getRegistryName().getNamespace() + "." + this.getRegistryName().getPath();
-        }
-        if (canLocalize(info)) {
-            tooltip.add(getInfoTextComponent(info));
-        }
     }
 
     @Override

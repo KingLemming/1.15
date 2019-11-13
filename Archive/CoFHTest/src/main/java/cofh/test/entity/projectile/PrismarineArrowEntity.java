@@ -1,4 +1,4 @@
-package cofh.test.entity.projectile;
+package cofh.potions.entity.projectile;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -14,8 +14,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.PRISMARINE_ARROW_ENTITY;
-import static cofh.test.CoFHTest.PRISMARINE_ARROW_ITEM;
+import static cofh.potions.CoFHTest.PRISMARINE_ARROW_ENTITY;
+import static cofh.potions.CoFHTest.PRISMARINE_ARROW_ITEM;
 
 public class PrismarineArrowEntity extends AbstractArrowEntity {
 

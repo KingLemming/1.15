@@ -55,8 +55,11 @@ minecraft {
                 // ThermalSeries {
                 //     source project(':ThermalSeries').sourceSets.main
                 // }
-                CoFHTest {
-                    source project(':CoFHTest').sourceSets.main
+                CoFHArchery {
+                    source project(':CoFHArchery').sourceSets.main
+                }
+                CoFHPotions {
+                    source project(':CoFHPotions').sourceSets.main
                 }
             }
         }
@@ -87,8 +90,11 @@ minecraft {
                 // ThermalSeries {
                 //     source project(':ThermalSeries').sourceSets.main
                 // }
-                CoFHTest {
-                    source project(':CoFHTest').sourceSets.main
+                CoFHArchery {
+                    source project(':CoFHArchery').sourceSets.main
+                }
+                CoFHPotions {
+                    source project(':CoFHPotions').sourceSets.main
                 }
             }
         }
@@ -104,7 +110,8 @@ dependencies {
     compile project(':Ensorcellation')
     //compile project(':Quartermastery')
     //compile project(':ThermalSeries')
-    compile project(':CoFHTest')
+    compile project(':CoFHArchery')
+    compile project(':CoFHPotions')
 }
 
 jar {

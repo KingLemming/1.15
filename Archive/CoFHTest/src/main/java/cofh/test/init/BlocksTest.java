@@ -1,4 +1,4 @@
-package cofh.test.init;
+package cofh.potions.init;
 
 public class BlocksTest {
 

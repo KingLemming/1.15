@@ -1,3 +1,3 @@
-package cofh.test.entity;
+package cofh.potions.entity;
 
 public class BlizzEntity {}

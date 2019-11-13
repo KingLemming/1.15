@@ -1,28 +1,35 @@
 package cofh.lib.util;
 
+import cofh.lib.util.helpers.MathHelper;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.block.SnowBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.util.Direction;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.world.IWorldReader;
@@ -35,6 +42,7 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import static cofh.lib.util.constants.Tags.TAG_ENCHANTMENTS;
 import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
@@ -59,9 +67,9 @@ public class Utils {
         return !world.isRemote;
     }
 
-    public static boolean isFakePlayer(Entity player) {
+    public static boolean isFakePlayer(Entity entity) {
 
-        return player instanceof FakePlayer;
+        return entity instanceof FakePlayer;
     }
 
     public static String createPrettyJSON(String jsonString) {
@@ -197,7 +205,22 @@ public class Utils {
         if (MinecraftForge.EVENT_BUS.post(event)) {
             return false;
         }
-        entity.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+        if (entity instanceof ServerPlayerEntity && !isFakePlayer(entity)) {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            if (player.connection.getNetworkManager().isChannelOpen() && !player.isSleeping()) {
+                if (entity.isPassenger()) {
+                    entity.stopRiding();
+                }
+                entity.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                entity.fallDistance = 0.0F;
+            }
+        } else {
+            if (entity.isPassenger()) {
+                entity.stopRiding();
+            }
+            entity.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+            entity.fallDistance = 0.0F;
+        }
         entity.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
         return true;
     }
@@ -241,10 +264,52 @@ public class Utils {
     }
     // endregion
 
+    // region BURNING
+    public static void igniteNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius, int duration) {
+
+        AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
+        List<LivingEntity> mobs = worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE);
+        mobs.removeIf(Entity::isInWater);
+        mobs.removeIf(Entity::isImmuneToFire);
+        mobs.removeIf(mob -> mob instanceof EndermanEntity);
+        for (LivingEntity mob : mobs) {
+            mob.setFire(duration);
+        }
+    }
+
+    public static void igniteNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        BlockState blockstate = FIRE.getDefaultState();
+        float f = (float) Math.min(16, radius);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                    if (isValidFirePosition(worldIn, blockpos$mutableblockpos)) {
+                        worldIn.setBlockState(blockpos$mutableblockpos, blockstate);
+                    }
+                }
+            }
+        }
+    }
+
+    private static boolean isValidFirePosition(World worldIn, BlockPos pos) {
+
+        BlockState state = worldIn.getBlockState(pos.down());
+        if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
+            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(3) == 0;
+        }
+        return false;
+    }
+    // endregion
+
     // region FREEZING
     public static void freezeNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        BlockState blockstate = Blocks.SNOW.getDefaultState();
+        BlockState state = SNOW.getDefaultState();
         float f = (float) Math.min(16, radius);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -254,16 +319,20 @@ public class Utils {
                 BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
                 if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
                     if (worldIn.getBiome(blockpos$mutableblockpos).func_225486_c(blockpos) < 0.8F && isValidSnowPosition(worldIn, blockpos$mutableblockpos)) {
-                        worldIn.setBlockState(blockpos$mutableblockpos, blockstate);
+                        worldIn.setBlockState(blockpos$mutableblockpos, state);
                     }
                 }
+                // TODO: Snow layering?
+                //                else if (blockstate1.getBlock() == SNOW && blockstate1.get(SnowBlock.LAYERS) < 3) {
+                //                    worldIn.setBlockState(blockpos$mutableblockpos, blockstate1.with(SnowBlock.LAYERS, Math.min(blockstate1.get(SnowBlock.LAYERS) + 1, 3)));
+                //                }
             }
         }
     }
 
     public static void freezeNearbyWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
 
-        BlockState blockstate = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
+        BlockState state = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
         float f = (float) Math.min(16, radius);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -273,9 +342,9 @@ public class Utils {
                 BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
                 if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
-                    boolean isFull = blockstate2.getBlock() == Blocks.WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.WATER && isFull && blockstate.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(blockstate, blockpos, ISelectionContext.dummy())) {
-                        worldIn.setBlockState(blockpos, blockstate);
+                    boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                    if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
+                        worldIn.setBlockState(blockpos, state);
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
                 }
@@ -288,7 +357,7 @@ public class Utils {
         if (GLOSSED_MAGMA == null && !permanent) {
             return;
         }
-        BlockState blockstate = permanent ? OBSIDIAN.getDefaultState() : GLOSSED_MAGMA.getDefaultState();
+        BlockState state = permanent ? OBSIDIAN.getDefaultState() : GLOSSED_MAGMA.getDefaultState();
         float f = (float) Math.min(16, radius);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -298,24 +367,24 @@ public class Utils {
                 BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
                 if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
-                    boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(blockstate, blockpos, ISelectionContext.dummy())) {
-                        worldIn.setBlockState(blockpos, blockstate);
-                        worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, cofh.lib.util.helpers.MathHelper.nextInt(worldIn.rand, 60, 120));
+                    boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                    if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
+                        worldIn.setBlockState(blockpos, state);
+                        worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
                 }
             }
         }
     }
 
-    public static boolean isValidSnowPosition(IWorldReader worldIn, BlockPos pos) {
+    public static boolean isValidSnowPosition(World worldIn, BlockPos pos) {
 
-        BlockState blockstate = worldIn.getBlockState(pos.down());
-        Block block = blockstate.getBlock();
-        if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER && block != FROSTED_ICE && block != GLOSSED_MAGMA) {
-            return Block.doesSideFillSquare(blockstate.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == Blocks.SNOW && blockstate.get(SnowBlock.LAYERS) == 8;
+        BlockState state = worldIn.getBlockState(pos.down());
+        Block block = state.getBlock();
+        if (block == ICE || block == PACKED_ICE || block == BARRIER || block == FROSTED_ICE || block == GLOSSED_MAGMA) {
+            return false;
         }
-        return false;
+        return Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == SNOW && state.get(SnowBlock.LAYERS) == 8;
     }
     // endregion
 }

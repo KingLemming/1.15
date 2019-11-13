@@ -1,4 +1,4 @@
-package cofh.test.entity.projectile;
+package cofh.potions.entity.projectile;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,8 +10,8 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.TRAINING_ARROW_ENTITY;
-import static cofh.test.CoFHTest.TRAINING_ARROW_ITEM;
+import static cofh.potions.CoFHTest.TRAINING_ARROW_ENTITY;
+import static cofh.potions.CoFHTest.TRAINING_ARROW_ITEM;
 
 public class TrainingArrowEntity extends AbstractArrowEntity {
 

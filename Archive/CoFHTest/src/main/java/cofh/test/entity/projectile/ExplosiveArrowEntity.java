@@ -1,4 +1,4 @@
-package cofh.test.entity.projectile;
+package cofh.potions.entity.projectile;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,8 +13,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.EXPLOSIVE_ARROW_ENTITY;
-import static cofh.test.CoFHTest.EXPLOSIVE_ARROW_ITEM;
+import static cofh.potions.CoFHTest.EXPLOSIVE_ARROW_ENTITY;
+import static cofh.potions.CoFHTest.EXPLOSIVE_ARROW_ITEM;
 
 public class ExplosiveArrowEntity extends AbstractArrowEntity {
 

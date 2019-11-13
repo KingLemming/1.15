@@ -1,11 +1,11 @@
-package cofh.test;
+package cofh.potions;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
-import cofh.test.entity.projectile.*;
-import cofh.test.init.BlocksTest;
-import cofh.test.init.ItemsTest;
-import cofh.test.item.projectile.*;
-import cofh.test.renderer.entity.projectile.*;
+import cofh.potions.entity.projectile.*;
+import cofh.potions.init.BlocksTest;
+import cofh.potions.init.ItemsTest;
+import cofh.potions.item.projectile.*;
+import cofh.potions.renderer.entity.projectile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

@@ -1,16 +1,16 @@
-package cofh.test.init;
+package cofh.potions.init;
 
 import cofh.lib.item.BlockNamedItemCoFH;
 import cofh.lib.item.ItemCoFH;
-import cofh.test.item.WateringCanItem;
+import cofh.potions.item.WateringCanItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 
-import static cofh.test.CoFHTest.COFH_TEST_GROUP;
-import static cofh.test.CoFHTest.ITEMS;
-import static cofh.test.init.BlocksTCultivation.*;
-import static cofh.test.init.FoodsTCultivation.*;
+import static cofh.potions.CoFHTest.COFH_TEST_GROUP;
+import static cofh.potions.CoFHTest.ITEMS;
+import static cofh.potions.init.BlocksTCultivation.*;
+import static cofh.potions.init.FoodsTCultivation.*;
 
 public class ItemsTCultivation {
 

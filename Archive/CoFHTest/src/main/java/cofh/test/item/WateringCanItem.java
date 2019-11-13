@@ -1,4 +1,4 @@
-package cofh.test.item;
+package cofh.potions.item;
 
 import cofh.core.item.FluidContainerItem;
 import cofh.core.util.ChatHelper;

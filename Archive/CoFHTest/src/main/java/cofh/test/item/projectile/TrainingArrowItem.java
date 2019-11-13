@@ -1,7 +1,7 @@
-package cofh.test.item.projectile;
+package cofh.potions.item.projectile;
 
 import cofh.lib.item.override.ArrowItemCoFH;
-import cofh.test.entity.projectile.TrainingArrowEntity;
+import cofh.potions.entity.projectile.TrainingArrowEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;

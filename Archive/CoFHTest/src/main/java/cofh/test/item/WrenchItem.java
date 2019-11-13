@@ -1,4 +1,4 @@
-package cofh.test.item;
+package cofh.potions.item;
 
 import cofh.lib.block.IDismantleable;
 import cofh.lib.item.ItemCoFH;

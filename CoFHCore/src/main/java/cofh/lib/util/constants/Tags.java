@@ -11,6 +11,7 @@ public class Tags {
     public static final String TAG_ACTIVE = "Active";
     public static final String TAG_ACTIVE_TRACK = "WasActive";
     public static final String TAG_AMOUNT = "Amount";
+    public static final String TAG_ARROW_DATA = "ArrowData";
     public static final String TAG_ARROWS = "Arrows";
     public static final String TAG_AUGMENTS = "Augments";
     public static final String TAG_COLORS = "Colors";
@@ -28,6 +29,7 @@ public class Tags {
     public static final String TAG_INDEX = "Index";
     public static final String TAG_ITEM_INV = "ItemInv";
     public static final String TAG_MODE = "Mode";
+    public static final String TAG_ORIGIN = "Origin";
     public static final String TAG_OWNER_NAME = "OwnerName";
     public static final String TAG_OWNER_UUID = "OwnerUUID";
     public static final String TAG_POTION = "Potion";

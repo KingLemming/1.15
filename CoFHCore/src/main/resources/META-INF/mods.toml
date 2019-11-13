@@ -4,13 +4,13 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="cofh_core"
-    version="0.1.1b"
+    version="0.2.0b"
     displayName="CoFH Core"
     updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core/update.json"
     displayURL="https://teamcofh.com/"
     logoFile="logo.png"
     credits="Team CoFH"
-    authors="King Lemming, covers1624, skyboy"
+    authors="King Lemming, Zeldo Kavira, covers1624, skyboy, Cynycal, Drullkus"
     description='''
 Core Library required for the functionality of all CoFH mods.
 

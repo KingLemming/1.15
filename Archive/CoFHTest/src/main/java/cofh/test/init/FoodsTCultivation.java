@@ -1,4 +1,4 @@
-package cofh.test.init;
+package cofh.potions.init;
 
 import net.minecraft.item.Food;
 

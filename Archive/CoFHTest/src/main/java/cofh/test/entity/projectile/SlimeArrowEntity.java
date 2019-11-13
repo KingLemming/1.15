@@ -1,4 +1,4 @@
-package cofh.test.entity.projectile;
+package cofh.potions.entity.projectile;
 
 import cofh.lib.util.Utils;
 import net.minecraft.block.BlockState;
@@ -16,8 +16,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.test.CoFHTest.SLIME_ARROW_ENTITY;
-import static cofh.test.CoFHTest.SLIME_ARROW_ITEM;
+import static cofh.potions.CoFHTest.SLIME_ARROW_ENTITY;
+import static cofh.potions.CoFHTest.SLIME_ARROW_ITEM;
 
 public class SlimeArrowEntity extends AbstractArrowEntity {
 
