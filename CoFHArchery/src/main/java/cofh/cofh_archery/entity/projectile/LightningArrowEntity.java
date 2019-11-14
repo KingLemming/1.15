@@ -63,7 +63,6 @@ public class LightningArrowEntity extends AbstractArrowEntity {
                         LightningBoltEntity bolt = new LightningBoltEntity(this.world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, false);
                         bolt.setCaster(getShooter() instanceof ServerPlayerEntity ? (ServerPlayerEntity) getShooter() : null);
                         ((ServerWorld) this.world).addLightningBolt(bolt);
-
                     }
                 }
             }

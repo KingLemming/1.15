@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.SaplingGrowTreeEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -76,7 +76,7 @@ public class CoreCommonEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void handlePlayerPickupXpEvent(PlayerPickupXpEvent event) {
+    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
 
         if (event.isCanceled()) {
             return;

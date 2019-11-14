@@ -1,7 +1,6 @@
 package cofh.cofh_archery.init;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -55,40 +54,13 @@ public class ModConfig {
         SERVER_CONFIG.push("Arrows");
 
         SERVER_CONFIG.push("Blaze");
-        comment = "If TRUE, Blaze Arrows are craftable.";
-
-        SERVER_CONFIG.push("Diamond");
-        comment = "If TRUE, Diamond Arrows are craftable.";
-
-        SERVER_CONFIG.push("Ender");
-        comment = "If TRUE, Ender Arrows are craftable.";
+        comment = "Adjust this to set the effect radius for the Blaze Arrow.";
 
         SERVER_CONFIG.push("Explosive");
-        comment = "If TRUE, Explosive Arrows are craftable.";
+        comment = "Adjust this to set the explosion strength for the Explosive Arrow.";
 
         SERVER_CONFIG.push("Frost");
-        comment = "If TRUE, Frost Arrows are craftable.";
-
-        SERVER_CONFIG.push("Lightning");
-        comment = "If TRUE, Lightning Arrows are craftable.";
-
-        SERVER_CONFIG.push("Magma");
-        comment = "If TRUE, Magma Arrows are craftable.";
-
-        SERVER_CONFIG.push("Prismarine");
-        comment = "If TRUE, Prismarine Arrows are craftable.";
-
-        SERVER_CONFIG.push("Redstone");
-        comment = "If TRUE, Redstone Arrows are craftable.";
-
-        SERVER_CONFIG.push("Shulker");
-        comment = "If TRUE, Shulker Arrows are craftable.";
-
-        SERVER_CONFIG.push("Slime");
-        comment = "If TRUE, Slime Arrows are craftable.";
-
-        SERVER_CONFIG.push("Training");
-        comment = "If TRUE, Training Arrows are craftable.";
+        comment = "Adjust this to set the effect radius for the Frost Arrow.";
     }
 
     private static void refreshServerConfig() {
@@ -101,18 +73,7 @@ public class ModConfig {
     // endregion
 
     // region VARIABLES
-    private static BooleanValue enableBlaze;
-    private static BooleanValue enableDiamond;
-    private static BooleanValue enableEnder;
-    private static BooleanValue enableExplosive;
-    private static BooleanValue enableFrost;
-    private static BooleanValue enableLightning;
-    private static BooleanValue enableMagma;
-    private static BooleanValue enablePrismarine;
-    private static BooleanValue enableRedstone;
-    private static BooleanValue enableShulker;
-    private static BooleanValue enableSlime;
-    private static BooleanValue enableTraining;
+
     // endregion
 
     // region CONFIGURATION

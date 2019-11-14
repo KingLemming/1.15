@@ -36,12 +36,12 @@ public class CoreClientEvents {
     public static void handleItemTooltipEvent(ItemTooltipEvent event) {
 
         ItemStack stack = event.getItemStack();
-//        if (CoreConfig.enableItemDescriptions) {
-//            String infoKey = stack.getItem().getTranslationKey(stack) + ".desc";
-//            if (StringHelper.canLocalize(infoKey)) {
-//                event.getToolTip().add(getInfoTextComponent(infoKey));
-//            }
-//        }
+        //        if (CoreConfig.enableItemDescriptions) {
+        //            String infoKey = stack.getItem().getTranslationKey(stack) + ".desc";
+        //            if (StringHelper.canLocalize(infoKey)) {
+        //                event.getToolTip().add(getInfoTextComponent(infoKey));
+        //            }
+        //        }
         if (CoreConfig.enableEnchantmentDescriptions) {
             if (stack.getTag() == null) {
                 return;

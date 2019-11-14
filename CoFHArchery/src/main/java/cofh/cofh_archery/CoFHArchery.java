@@ -3,11 +3,14 @@ package cofh.cofh_archery;
 import cofh.cofh_archery.entity.projectile.*;
 import cofh.cofh_archery.item.projectile.*;
 import cofh.cofh_archery.renderer.entity.projectile.*;
+import cofh.core.potion.TrainingEffect;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +21,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,8 +32,9 @@ public class CoFHArchery {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_ARCHERY);
 
-    public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_ARCHERY);
+    public static final DeferredRegisterCoFH<Effect> EFFECTS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_ARCHERY);
     public static final DeferredRegisterCoFH<EntityType<?>> ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.ENTITIES, ID_COFH_ARCHERY);
+    public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_ARCHERY);
 
     public static final ItemGroup COFH_ARCHERY_GROUP = new ItemGroup(-1, ID_COFH_ARCHERY) {
 
@@ -48,8 +53,13 @@ public class CoFHArchery {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
-        ITEMS.register(modEventBus);
+        EFFECTS.register(modEventBus);
         ENTITIES.register(modEventBus);
+        ITEMS.register(modEventBus);
+
+        EFFECTS.register("training_miss", () -> new TrainingEffect(EffectType.NEUTRAL, 0x888888));
+        EFFECTS.register("training_streak", () -> new TrainingEffect(EffectType.NEUTRAL, 0x888888));
+        EFFECTS.register("training_target", () -> new TrainingEffect(EffectType.NEUTRAL, 0x888888));
     }
 
     // region INITIALIZATION
@@ -103,6 +113,15 @@ public class CoFHArchery {
     public static final RegistryObject<Item> SHULKER_ARROW_ITEM = ITEMS.register("shulker_arrow", () -> new ShulkerArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> SLIME_ARROW_ITEM = ITEMS.register("slime_arrow", () -> new SlimeArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> TRAINING_ARROW_ITEM = ITEMS.register("training_arrow", () -> new TrainingArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
+
+    @ObjectHolder(ID_COFH_ARCHERY + ":training_miss")
+    public static final Effect TRAINING_MISS = null;
+
+    @ObjectHolder(ID_COFH_ARCHERY + ":training_streak")
+    public static final Effect TRAINING_STREAK = null;
+
+    @ObjectHolder(ID_COFH_ARCHERY + ":training_target")
+    public static final Effect TRAINING_TARGET = null;
     // endregion
 
 }

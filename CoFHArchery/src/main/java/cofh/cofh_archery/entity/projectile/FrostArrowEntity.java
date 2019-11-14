@@ -195,11 +195,11 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             double d1 = vec3d.x;
             double d2 = vec3d.y;
             double d0 = vec3d.z;
-//            if (this.getIsCritical()) {
-//                for (int i = 0; i < 4; ++i) {
-//                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
-//                }
-//            }
+            //            if (this.getIsCritical()) {
+            //                for (int i = 0; i < 4; ++i) {
+            //                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
+            //                }
+            //            }
             this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
 
             this.posX += d1;

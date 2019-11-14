@@ -5,6 +5,7 @@ import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.CoreBlocks;
 import cofh.core.init.CoreConfig;
 import cofh.core.init.CoreEffects;
+import cofh.core.init.CoreItems;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityAOE;
@@ -55,6 +56,7 @@ public class CoFHCore {
 
         CoreBlocks.register();
         CoreEffects.register();
+        CoreItems.register();
     }
 
     // region INITIALIZATION

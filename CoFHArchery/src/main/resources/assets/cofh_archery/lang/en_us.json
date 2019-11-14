@@ -1,4 +1,8 @@
 {
+  "effect.cofh_archery.training_miss": "Broken Streak",
+  "effect.cofh_archery.training_streak": "Hit Streak",
+  "effect.cofh_archery.training_target": "Tagged",
+
   "item.cofh_archery.blaze_arrow": "Blaze Arrow",
   "item.cofh_archery.blaze_arrow.desc": "Ignites target and blocks on impact.",
   "item.cofh_archery.diamond_arrow": "Diamond Arrow",

@@ -17,6 +17,10 @@ public class CoreItems {
     private static boolean overrideHorseArmor;
     private static boolean overrideShield;
 
+    public static void register() {
+
+    }
+
     public static void registerHorseArmorOverrides() {
 
         if (overrideHorseArmor) {
@@ -38,10 +42,6 @@ public class CoreItems {
         overrideShield = true;
 
         ITEMS.register("minecraft:shield", () -> new ShieldItemCoFH((new Item.Properties()).maxDamage(336).group(ItemGroup.COMBAT)).setEnchantability(15));
-    }
-
-    public static void registerPotionOverrides() {
-
     }
 
 }
