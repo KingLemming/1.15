@@ -13,6 +13,8 @@
   "item.cofh_archery.lightning_arrow.desc": "Calls down a lightning bolt on impact.",
   "item.cofh_archery.magma_arrow": "Magma Arrow",
   "item.cofh_archery.magma_arrow.desc": "Like a Slime Arrow. Less bounce, more fire.",
+  "item.cofh_archery.phantasmal_arrow": "Phantasmal Arrow",
+  "item.cofh_archery.phantasmal_arrow.desc": "Flies straight, pierces everything.",
   "item.cofh_archery.prismarine_arrow": "Prismarine Arrow",
   "item.cofh_archery.prismarine_arrow.desc": "Improved flight when underwater.",
   "item.cofh_archery.redstone_arrow": "Redstone Arrow",
@@ -21,5 +23,5 @@
   "item.cofh_archery.slime_arrow": "Slime Arrow",
   "item.cofh_archery.slime_arrow.desc": "Bounces a number of times. Low damage, high knockback.",
   "item.cofh_archery.training_arrow": "Training Arrow",
-  "item.cofh_archery.training_arrow.desc": "Deals no damage at all."
+  "item.cofh_archery.training_arrow.desc": "Deals no damage, used for practice."
 }

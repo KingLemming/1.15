@@ -17,6 +17,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.cofh_archery.CoFHArchery.FROST_ARROW_ENTITY;
@@ -82,12 +83,12 @@ public class FrostArrowEntity extends AbstractArrowEntity {
     protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
         super.func_213868_a(raytraceResultIn);
-        Entity entity = raytraceResultIn.getEntity();
 
+        Entity entity = raytraceResultIn.getEntity();
         if (entity.isBurning()) {
             entity.extinguish();
         }
-        if (entity instanceof LivingEntity) {
+        if (!entity.isInvulnerable() && entity instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entity;
             living.addPotionEffect(new EffectInstance(CHILLED, DURATION, AMPLIFIER, false, false));
         }
@@ -181,7 +182,7 @@ public class FrostArrowEntity extends AbstractArrowEntity {
                         entityraytraceresult = null;
                     }
                 }
-                if (raytraceresult != null && !flag && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+                if (raytraceresult != null && !flag && !ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
                     this.onHit(raytraceresult);
                     this.isAirBorne = true;
                 }
@@ -194,9 +195,13 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             double d1 = vec3d.x;
             double d2 = vec3d.y;
             double d0 = vec3d.z;
-            if (Utils.isClientWorld(world)) {
-                this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
-            }
+//            if (this.getIsCritical()) {
+//                for (int i = 0; i < 4; ++i) {
+//                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
+//                }
+//            }
+            this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+
             this.posX += d1;
             this.posY += d2;
             this.posZ += d0;

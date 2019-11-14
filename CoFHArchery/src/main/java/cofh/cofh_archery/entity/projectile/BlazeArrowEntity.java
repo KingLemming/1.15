@@ -57,6 +57,7 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
     protected void onHit(RayTraceResult raytraceResultIn) {
 
         super.onHit(raytraceResultIn);
+
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             Utils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
             Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS);
@@ -68,8 +69,9 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
     protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
         super.func_213868_a(raytraceResultIn);
+
         Entity entity = raytraceResultIn.getEntity();
-        if (!isInWater() && !(entity instanceof EndermanEntity)) {
+        if (!entity.isInvulnerable() && !entity.isImmuneToFire() && !isInWater() && !(entity instanceof EndermanEntity)) {
             entity.setFire(DURATION);
         }
     }
@@ -99,9 +101,6 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         super.tick();
 
-        if (!isBurning() && !isInWater()) {
-            this.setFire(DURATION);
-        }
         if (!this.inGround || this.func_203047_q()) {
             if (Utils.isClientWorld(world) && !isInWater()) {
                 Vec3d vec3d = this.getMotion();

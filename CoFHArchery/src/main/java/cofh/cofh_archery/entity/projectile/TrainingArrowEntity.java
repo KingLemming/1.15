@@ -1,5 +1,6 @@
 package cofh.cofh_archery.entity.projectile;
 
+import cofh.lib.util.Utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -45,7 +46,7 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
     @Override
     protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
-        if (!this.world.isRemote) {
+        if (Utils.isServerWorld(world)) {
             if (this.pickupStatus == AbstractArrowEntity.PickupStatus.ALLOWED) {
                 this.entityDropItem(this.getArrowStack(), 0.1F);
             }

@@ -12,6 +12,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.cofh_archery.CoFHArchery.PRISMARINE_ARROW_ENTITY;
@@ -91,7 +92,6 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
             } else if (!this.world.isRemote) {
                 this.tryDespawn();
             }
-
             ++this.timeInGround;
         } else {
             this.timeInGround = 0;
@@ -115,7 +115,7 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
                         entityraytraceresult = null;
                     }
                 }
-                if (raytraceresult != null && !flag && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+                if (raytraceresult != null && !flag && !ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
                     this.onHit(raytraceresult);
                     this.isAirBorne = true;
                 }

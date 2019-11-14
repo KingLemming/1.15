@@ -15,24 +15,27 @@ public class DiamondArrowEntity extends AbstractArrowEntity {
 
     private static float DAMAGE = 4.0F;
     private static int KNOCKBACK = 1;
-    private static int PIERCE = 1;
+    private static byte PIERCE = 1;
 
     public DiamondArrowEntity(EntityType<? extends DiamondArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
         this.damage = DAMAGE;
+        setPierceLevel((byte) 0);
     }
 
     public DiamondArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(DIAMOND_ARROW_ENTITY.get(), shooter, worldIn);
         this.damage = DAMAGE;
+        setPierceLevel((byte) 0);
     }
 
     public DiamondArrowEntity(World worldIn, double x, double y, double z) {
 
         super(DIAMOND_ARROW_ENTITY.get(), x, y, z, worldIn);
         this.damage = DAMAGE;
+        setPierceLevel((byte) 0);
     }
 
     @Override

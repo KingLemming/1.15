@@ -66,6 +66,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
             this.setHitSound(SoundEvents.ENTITY_MAGMA_CUBE_SQUISH);
             Utils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
             Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS);
+
             if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
                 this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
             } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
@@ -101,18 +102,19 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    public void setFire(int seconds) {
-
-    }
-
-    @Override
     protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
         super.func_213868_a(raytraceResultIn);
+
         Entity entity = raytraceResultIn.getEntity();
         if (!isInWater() && !(entity instanceof EndermanEntity)) {
             entity.setFire(DURATION);
         }
+    }
+
+    @Override
+    public void setFire(int seconds) {
+
     }
 
     @Override
@@ -142,6 +144,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
     public void tick() {
 
         super.tick();
+
         if (!this.inGround || this.func_203047_q()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();

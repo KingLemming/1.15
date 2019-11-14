@@ -58,38 +58,40 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
 
-        if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
+        if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
-            this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
-        } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
-            this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
-            Vec3d motion = getMotion();
-            if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
-                super.onHit(raytraceResultIn);
-                return;
+
+            if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
+                this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
+            } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
+                Vec3d motion = getMotion();
+                if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
+                    super.onHit(raytraceResultIn);
+                    return;
+                }
+                BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
+                switch (blockraytraceresult.getFace()) {
+                    case DOWN:
+                    case UP:
+                        this.setMotion(motion.x, motion.y * -1, motion.z);
+                        break;
+                    case NORTH:
+                    case SOUTH:
+                        this.setMotion(motion.x, motion.y, motion.z * -1);
+                        break;
+                    case WEST:
+                    case EAST:
+                        this.setMotion(motion.x * -1, motion.y, motion.z);
+                        break;
+                }
+                float f = MathHelper.sqrt(horizontalMag(motion));
+                this.rotationYaw = (float) (MathHelper.atan2(motion.x, motion.z) * (double) (180F / (float) Math.PI));
+                this.rotationPitch = (float) (MathHelper.atan2(motion.y, f) * (double) (180F / (float) Math.PI));
+                this.prevRotationYaw = this.rotationYaw;
+                this.prevRotationPitch = this.rotationPitch;
+                ++bounces;
+                --knockbackStrength;
             }
-            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
-            switch (blockraytraceresult.getFace()) {
-                case DOWN:
-                case UP:
-                    this.setMotion(motion.x, motion.y * -1, motion.z);
-                    break;
-                case NORTH:
-                case SOUTH:
-                    this.setMotion(motion.x, motion.y, motion.z * -1);
-                    break;
-                case WEST:
-                case EAST:
-                    this.setMotion(motion.x * -1, motion.y, motion.z);
-                    break;
-            }
-            float f = MathHelper.sqrt(horizontalMag(motion));
-            this.rotationYaw = (float) (MathHelper.atan2(motion.x, motion.z) * (double) (180F / (float) Math.PI));
-            this.rotationPitch = (float) (MathHelper.atan2(motion.y, f) * (double) (180F / (float) Math.PI));
-            this.prevRotationYaw = this.rotationYaw;
-            this.prevRotationPitch = this.rotationPitch;
-            ++bounces;
-            --knockbackStrength;
         }
     }
 
@@ -125,6 +127,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     public void tick() {
 
         super.tick();
+
         if (!this.inGround || this.func_203047_q()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();

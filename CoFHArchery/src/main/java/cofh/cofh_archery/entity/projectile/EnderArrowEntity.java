@@ -112,6 +112,7 @@ public class EnderArrowEntity extends AbstractArrowEntity {
     public void tick() {
 
         super.tick();
+
         if (!this.inGround || this.func_203047_q()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();
