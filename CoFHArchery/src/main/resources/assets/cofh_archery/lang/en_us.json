@@ -26,6 +26,8 @@
   "item.cofh_archery.shulker_arrow.desc": "Homes in on a target.",
   "item.cofh_archery.slime_arrow": "Slime Arrow",
   "item.cofh_archery.slime_arrow.desc": "Bounces a number of times. Low damage, high knockback.",
+  "item.cofh_archery.spore_arrow": "Spore Arrow",
+  "item.cofh_archery.spore_arrow.desc": "Spreads the glory of fungus.",
   "item.cofh_archery.training_arrow": "Training Arrow",
   "item.cofh_archery.training_arrow.desc": "Deals no damage, used for practice."
 }

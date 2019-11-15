@@ -305,6 +305,29 @@ public class Utils {
     }
     // endregion
 
+    // region FUNGUS
+    public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        BlockState state = MYCELIUM.getDefaultState();
+        BlockState dirt = DIRT.getDefaultState();
+
+        float f = (float) Math.min(16, radius);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                    if (worldIn.getBlockState(blockpos) == dirt) {
+                        worldIn.setBlockState(blockpos, state);
+                    }
+                }
+            }
+        }
+    }
+    // endregion
+
     // region FREEZING
     public static void freezeNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
 

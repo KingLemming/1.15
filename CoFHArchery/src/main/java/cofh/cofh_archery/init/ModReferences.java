@@ -26,6 +26,7 @@ public class ModReferences {
     public static final String ID_REDSTONE_ARROW = ID_COFH_ARCHERY + ":redstone_arrow";
     public static final String ID_SHULKER_ARROW = ID_COFH_ARCHERY + ":shulker_arrow";
     public static final String ID_SLIME_ARROW = ID_COFH_ARCHERY + ":slime_arrow";
+    public static final String ID_SPORE_ARROW = ID_COFH_ARCHERY + ":spore_arrow";
     public static final String ID_TRAINING_ARROW = ID_COFH_ARCHERY + ":training_arrow";
 
     public static final String ID_EFFECT_TRAINING_MISS = ID_COFH_ARCHERY + ":training_miss";
@@ -81,6 +82,9 @@ public class ModReferences {
     @ObjectHolder(ID_SLIME_ARROW)
     public static final EntityType SLIME_ARROW_ENTITY = null;
 
+    @ObjectHolder(ID_SPORE_ARROW)
+    public static final EntityType SPORE_ARROW_ENTITY = null;
+
     @ObjectHolder(ID_TRAINING_ARROW)
     public static final EntityType TRAINING_ARROW_ENTITY = null;
     // endregion
@@ -121,6 +125,9 @@ public class ModReferences {
 
     @ObjectHolder(ID_SLIME_ARROW)
     public static final Item SLIME_ARROW_ITEM = null;
+
+    @ObjectHolder(ID_SPORE_ARROW)
+    public static final Item SPORE_ARROW_ITEM = null;
 
     @ObjectHolder(ID_TRAINING_ARROW)
     public static final Item TRAINING_ARROW_ITEM = null;

@@ -80,6 +80,7 @@ public class CoFHArchery {
         // RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ShulkerArrowEntity.class, ShulkerArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SlimeArrowEntity.class, SlimeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
     }
     // endregion
