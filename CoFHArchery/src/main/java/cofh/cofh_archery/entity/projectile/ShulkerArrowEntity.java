@@ -19,8 +19,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-import static cofh.cofh_archery.CoFHArchery.SHULKER_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.SHULKER_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.SHULKER_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.SHULKER_ARROW_ITEM;
 
 public class ShulkerArrowEntity extends AbstractArrowEntity {
 
@@ -40,12 +40,12 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
 
     public ShulkerArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(SHULKER_ARROW_ENTITY.get(), shooter, worldIn);
+        super(SHULKER_ARROW_ENTITY, shooter, worldIn);
     }
 
     public ShulkerArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(SHULKER_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(SHULKER_ARROW_ENTITY, x, y, z, worldIn);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(SHULKER_ARROW_ITEM.get());
+        return new ItemStack(SHULKER_ARROW_ITEM);
     }
 
     @Override

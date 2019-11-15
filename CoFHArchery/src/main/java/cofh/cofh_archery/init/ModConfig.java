@@ -67,6 +67,10 @@ public class ModConfig {
         SERVER_CONFIG.push("Explosive");
         comment = "Adjust this to set the explosion strength for the Explosive Arrow.";
         explosiveArrowStrength = SERVER_CONFIG.comment(comment).defineInRange("Strength", ExplosiveArrowEntity.explosionStrength, 0.5D, 16.0D);
+        comment = "If TRUE, explosions break blocks.";
+        explosiveArrowBreakBlocks = SERVER_CONFIG.comment(comment).define("Break Blocks", ExplosiveArrowEntity.explosionsBreakBlocks);
+        comment = "If TRUE, explosions cause fires if the arrow is on fire.";
+        explosiveArrowCauseFire = SERVER_CONFIG.comment(comment).define("Cause Fires", ExplosiveArrowEntity.explosionsCauseFire);
         comment = "If TRUE, explosion strength is modified by knockback bonuses, such as the Punch Enchantment.";
         explosiveArrowKnockbackBoost = SERVER_CONFIG.comment(comment).define("Knockback Boost", ExplosiveArrowEntity.knockbackBoost);
 
@@ -92,6 +96,8 @@ public class ModConfig {
         BlazeArrowEntity.radius = blazeArrowRadius.get();
 
         ExplosiveArrowEntity.explosionStrength = explosiveArrowStrength.get();
+        ExplosiveArrowEntity.explosionsBreakBlocks = explosiveArrowBreakBlocks.get();
+        ExplosiveArrowEntity.explosionsCauseFire = explosiveArrowCauseFire.get();
         ExplosiveArrowEntity.knockbackBoost = explosiveArrowKnockbackBoost.get();
 
         FrostArrowEntity.radius = frostArrowRadius.get();
@@ -116,11 +122,13 @@ public class ModConfig {
     private static IntValue blazeArrowRadius;
 
     private static DoubleValue explosiveArrowStrength;
+    private static BooleanValue explosiveArrowBreakBlocks;
+    private static BooleanValue explosiveArrowCauseFire;
     private static BooleanValue explosiveArrowKnockbackBoost;
 
     private static IntValue frostArrowRadius;
-    private static BooleanValue frostArrowPermanentWater;
     private static BooleanValue frostArrowPermanentLava;
+    private static BooleanValue frostArrowPermanentWater;
 
     private static IntValue slimeArrowBounces;
     private static IntValue slimeArrowKnockback;

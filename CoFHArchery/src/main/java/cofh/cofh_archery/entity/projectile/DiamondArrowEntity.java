@@ -8,8 +8,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.DIAMOND_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.DIAMOND_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.DIAMOND_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.DIAMOND_ARROW_ITEM;
 
 public class DiamondArrowEntity extends AbstractArrowEntity {
 
@@ -26,14 +26,14 @@ public class DiamondArrowEntity extends AbstractArrowEntity {
 
     public DiamondArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(DIAMOND_ARROW_ENTITY.get(), shooter, worldIn);
+        super(DIAMOND_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         setPierceLevel((byte) 0);
     }
 
     public DiamondArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(DIAMOND_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(DIAMOND_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         setPierceLevel((byte) 0);
     }
@@ -41,7 +41,7 @@ public class DiamondArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(DIAMOND_ARROW_ITEM.get());
+        return new ItemStack(DIAMOND_ARROW_ITEM);
     }
 
     @Override

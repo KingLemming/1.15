@@ -1,5 +1,6 @@
 package cofh.ensorcellation.init;
 
+import cofh.ensorcellation.enchantment.ExpBoostEnchantment;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.override.*;
 

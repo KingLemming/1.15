@@ -20,8 +20,6 @@ public class CoreReferences {
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
     public static final String ID_EFFECT_MAGIC_RESISTANCE = ID_COFH_CORE + ":magic_resistance";
 
-    // public static final String ID_EFFECT_ARCHERY_TRAINING = ID_COFH_CORE + ":archery_training";
-
     public static final String ID_EFFECT_AMPLIFICATION = ID_COFH_CORE + ":amplification";
     public static final String ID_EFFECT_CHILLED = ID_COFH_CORE + ":chilled";
     public static final String ID_EFFECT_CLARITY = ID_COFH_CORE + ":clarity";

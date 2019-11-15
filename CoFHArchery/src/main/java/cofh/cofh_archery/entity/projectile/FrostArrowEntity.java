@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.FROST_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.FROST_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.FROST_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.FROST_ARROW_ITEM;
 import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 import static cofh.lib.util.references.CoreReferences.CHILLED;
 
@@ -45,20 +45,20 @@ public class FrostArrowEntity extends AbstractArrowEntity {
 
     public FrostArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(FROST_ARROW_ENTITY.get(), shooter, worldIn);
+        super(FROST_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
     }
 
     public FrostArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(FROST_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(FROST_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(FROST_ARROW_ITEM.get());
+        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(FROST_ARROW_ITEM);
     }
 
     @Override

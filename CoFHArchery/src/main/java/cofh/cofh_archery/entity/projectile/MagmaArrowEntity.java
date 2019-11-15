@@ -16,7 +16,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.MAGMA_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.MAGMA_ARROW_ENTITY;
 import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class MagmaArrowEntity extends AbstractArrowEntity {
@@ -41,14 +41,14 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
 
     public MagmaArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(MAGMA_ARROW_ENTITY.get(), shooter, worldIn);
+        super(MAGMA_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         this.knockbackStrength = KNOCKBACK;
     }
 
     public MagmaArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(MAGMA_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(MAGMA_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         this.knockbackStrength = KNOCKBACK;
     }

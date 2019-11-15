@@ -8,8 +8,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.REDSTONE_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.REDSTONE_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.REDSTONE_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.REDSTONE_ARROW_ITEM;
 
 public class RedstoneArrowEntity extends AbstractArrowEntity {
 
@@ -20,18 +20,18 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
 
     public RedstoneArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(REDSTONE_ARROW_ENTITY.get(), shooter, worldIn);
+        super(REDSTONE_ARROW_ENTITY, shooter, worldIn);
     }
 
     public RedstoneArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(REDSTONE_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(REDSTONE_ARROW_ENTITY, x, y, z, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(REDSTONE_ARROW_ITEM.get());
+        return new ItemStack(REDSTONE_ARROW_ITEM);
     }
 
     //    @Override

@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.PRISMARINE_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.PRISMARINE_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.PRISMARINE_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.PRISMARINE_ARROW_ITEM;
 
 public class PrismarineArrowEntity extends AbstractArrowEntity {
 
@@ -27,18 +27,18 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
 
     public PrismarineArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(PRISMARINE_ARROW_ENTITY.get(), shooter, worldIn);
+        super(PRISMARINE_ARROW_ENTITY, shooter, worldIn);
     }
 
     public PrismarineArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(PRISMARINE_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(PRISMARINE_ARROW_ENTITY, x, y, z, worldIn);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(PRISMARINE_ARROW_ITEM.get());
+        return new ItemStack(PRISMARINE_ARROW_ITEM);
     }
 
     @Override

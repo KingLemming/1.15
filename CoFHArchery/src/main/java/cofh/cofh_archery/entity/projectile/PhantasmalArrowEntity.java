@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.PHANTASMAL_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.PHANTASMAL_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.PHANTASMAL_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.PHANTASMAL_ARROW_ITEM;
 
 public class PhantasmalArrowEntity extends AbstractArrowEntity {
 
@@ -34,7 +34,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
 
     public PhantasmalArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(PHANTASMAL_ARROW_ENTITY.get(), shooter, worldIn);
+        super(PHANTASMAL_ARROW_ENTITY, shooter, worldIn);
         setGlowing(GLOWING);
         setNoGravity(NO_GRAVITY);
         setPierceLevel(PIERCE);
@@ -42,7 +42,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
 
     public PhantasmalArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(PHANTASMAL_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(PHANTASMAL_ARROW_ENTITY, x, y, z, worldIn);
         setGlowing(GLOWING);
         setNoGravity(NO_GRAVITY);
         setPierceLevel(PIERCE);
@@ -51,7 +51,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(PHANTASMAL_ARROW_ITEM.get());
+        return new ItemStack(PHANTASMAL_ARROW_ITEM);
     }
 
     @Override

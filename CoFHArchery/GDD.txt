@@ -1,0 +1,35 @@
+CoFH Archery
+================================================================================
+-Purpose is to provide useful, fun, and balanced-ish features relating to
+    bows, arrows, and crossbows.
+
+Arrows
+--------------------------------------------------------------------------------
+-Obviously a big part of the mod.
+
+Basic
+----------------------------------------
+Diamond - 2x Damage, +1 Pierce, +1 Knockback
+Prismarine - No water slowdown; reduced gravity in water.
+
+Elemental
+----------------------------------------
+Blaze - Burns target and ignites radius around it.
+Frost - Chills target and freezes area around it.
+Lightning - Calls down a lightning bolt, if it hits outside.
+
+Quirky
+----------------------------------------
+Ender - Teleports player to location; or swaps places with the target.
+Phantasmal - Flies through blocks, unlimited pierce, ignores gravity and armor. Glows.
+Shulker - Homes in on a target.
+Slime - Bounces! +Large Knockback
+
+Terraforming
+----------------------------------------
+Spore - Transforms Dirt into Podzol and Grass into Mycelium in an area. Also turns cows into Mooshrooms.
+
+Minigame
+----------------------------------------
+Challenge - No damage, stacks "Archer's Gambit" effect. XP for maintaining streak, penalty for losing it.
+Training - No damage, stacks a "Hit Streak" effect. Advancements.

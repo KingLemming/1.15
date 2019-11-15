@@ -17,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.*;
+import static cofh.cofh_archery.init.ModReferences.*;
 
 public class TrainingArrowEntity extends AbstractArrowEntity {
 
@@ -36,14 +36,14 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
 
     public TrainingArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(TRAINING_ARROW_ENTITY.get(), shooter, worldIn);
+        super(TRAINING_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         this.origin = shooter.getPosition();
     }
 
     public TrainingArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(TRAINING_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(TRAINING_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         this.origin = new BlockPos(x, y, z);
     }
@@ -51,7 +51,7 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(TRAINING_ARROW_ITEM.get());
+        return new ItemStack(TRAINING_ARROW_ITEM);
     }
 
     @Override

@@ -18,8 +18,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.ENDER_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.ENDER_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.ENDER_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.ENDER_ARROW_ITEM;
 import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
 
@@ -40,14 +40,14 @@ public class EnderArrowEntity extends AbstractArrowEntity {
 
     public EnderArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(ENDER_ARROW_ENTITY.get(), shooter, worldIn);
+        super(ENDER_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         this.origin = shooter.getPosition();
     }
 
     public EnderArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(ENDER_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(ENDER_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         this.origin = new BlockPos(x, y, z);
     }
@@ -55,7 +55,7 @@ public class EnderArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(ENDER_ARROW_ITEM.get());
+        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(ENDER_ARROW_ITEM);
     }
 
     @Override

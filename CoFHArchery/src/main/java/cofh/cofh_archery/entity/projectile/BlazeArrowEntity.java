@@ -17,8 +17,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.BLAZE_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.BLAZE_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.BLAZE_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.BLAZE_ARROW_ITEM;
 import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class BlazeArrowEntity extends AbstractArrowEntity {
@@ -38,20 +38,20 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
     public BlazeArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(BLAZE_ARROW_ENTITY.get(), shooter, worldIn);
+        super(BLAZE_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
     }
 
     public BlazeArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(BLAZE_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(BLAZE_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(BLAZE_ARROW_ITEM.get());
+        return discharged ? new ItemStack(Items.ARROW) : new ItemStack(BLAZE_ARROW_ITEM);
     }
 
     @Override

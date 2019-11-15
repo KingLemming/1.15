@@ -13,8 +13,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.CoFHArchery.SLIME_ARROW_ENTITY;
-import static cofh.cofh_archery.CoFHArchery.SLIME_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.SLIME_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.SLIME_ARROW_ITEM;
 import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class SlimeArrowEntity extends AbstractArrowEntity {
@@ -39,14 +39,14 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
 
     public SlimeArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(SLIME_ARROW_ENTITY.get(), shooter, worldIn);
+        super(SLIME_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         this.knockbackStrength = knockback;
     }
 
     public SlimeArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(SLIME_ARROW_ENTITY.get(), x, y, z, worldIn);
+        super(SLIME_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         this.knockbackStrength = knockback;
     }
@@ -54,7 +54,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(SLIME_ARROW_ITEM.get());
+        return new ItemStack(SLIME_ARROW_ITEM);
     }
 
     @Override
