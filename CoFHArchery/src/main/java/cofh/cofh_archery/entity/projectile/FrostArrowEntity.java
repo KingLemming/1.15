@@ -30,8 +30,10 @@ public class FrostArrowEntity extends AbstractArrowEntity {
     private static float DAMAGE = 1.5F;
     private static final int DURATION = 80;
     private static final int AMPLIFIER = 1;
-    private static final int RADIUS = 4;
-    private static final boolean PERMANENT = true;
+
+    public static int radius = 4;
+    public static boolean permanentLava = true;
+    public static boolean permanentWater = true;
 
     public boolean discharged;
 
@@ -65,9 +67,9 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         super.onHit(raytraceResultIn);
 
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.freezeNearbyGround(this, world, this.getPosition(), RADIUS);
-            Utils.freezeNearbyWater(this, world, this.getPosition(), RADIUS, PERMANENT);
-            Utils.freezeNearbyLava(this, world, this.getPosition(), RADIUS, PERMANENT);
+            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
+            Utils.freezeNearbyWater(this, world, this.getPosition(), radius, permanentWater);
+            Utils.freezeNearbyLava(this, world, this.getPosition(), radius, permanentLava);
             discharged = true;
 
             if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {

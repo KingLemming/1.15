@@ -20,33 +20,35 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 public class SlimeArrowEntity extends AbstractArrowEntity {
 
     private static float DAMAGE = 0.5F;
-    private static int KNOCKBACK = 4;
-    private static int KNOCKBACK_FACTOR = 2;
     private static float MAX_VELOCITY = 3.0F;
     private static float MIN_VELOCITY = 0.5F;
 
-    private int bounces = 0;
-    private int maxBounces = KNOCKBACK;
+    public static int bounces = 4;
+    public static int knockback = 4;
+    public static int knockbackFactor = 2;
+
+    private int curBounces = 0;
+    private int maxBounces = bounces;
 
     public SlimeArrowEntity(EntityType<? extends SlimeArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
         this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
+        this.knockbackStrength = knockback;
     }
 
     public SlimeArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(SLIME_ARROW_ENTITY.get(), shooter, worldIn);
         this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
+        this.knockbackStrength = knockback;
     }
 
     public SlimeArrowEntity(World worldIn, double x, double y, double z) {
 
         super(SLIME_ARROW_ENTITY.get(), x, y, z, worldIn);
         this.damage = DAMAGE;
-        this.knockbackStrength = KNOCKBACK;
+        this.knockbackStrength = knockback;
     }
 
     @Override
@@ -65,7 +67,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
                 this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
             } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
                 Vec3d motion = getMotion();
-                if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
+                if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || curBounces >= maxBounces) {
                     super.onHit(raytraceResultIn);
                     return;
                 }
@@ -89,7 +91,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
                 this.rotationPitch = (float) (MathHelper.atan2(motion.y, f) * (double) (180F / (float) Math.PI));
                 this.prevRotationYaw = this.rotationYaw;
                 this.prevRotationPitch = this.rotationPitch;
-                ++bounces;
+                ++curBounces;
                 --knockbackStrength;
             }
         }
@@ -108,7 +110,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     @Override
     public void setKnockbackStrength(int knockbackStrengthIn) {
 
-        super.setKnockbackStrength(KNOCKBACK + knockbackStrengthIn * KNOCKBACK_FACTOR);
+        super.setKnockbackStrength(knockback + knockbackStrengthIn * knockbackFactor);
         this.maxBounces = this.knockbackStrength;
     }
 
@@ -143,7 +145,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     public void writeAdditional(CompoundNBT compound) {
 
         super.writeAdditional(compound);
-        compound.putInt(TAG_ARROW_DATA, bounces);
+        compound.putInt(TAG_ARROW_DATA, curBounces);
 
     }
 
@@ -151,7 +153,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     public void readAdditional(CompoundNBT compound) {
 
         super.readAdditional(compound);
-        bounces = compound.getInt(TAG_ARROW_DATA);
+        curBounces = compound.getInt(TAG_ARROW_DATA);
     }
 
     @Override

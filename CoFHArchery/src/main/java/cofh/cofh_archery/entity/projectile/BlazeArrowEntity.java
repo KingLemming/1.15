@@ -25,7 +25,8 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
     private static float DAMAGE = 1.5F;
     private static final int DURATION = 10;
-    private static final int RADIUS = 4;
+
+    public static int radius = 4;
 
     public boolean discharged;
 
@@ -59,8 +60,8 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
         super.onHit(raytraceResultIn);
 
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
-            Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS);
+            Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, DURATION);
+            Utils.igniteNearbyGround(this, world, this.getPosition(), radius);
             discharged = true;
         }
     }

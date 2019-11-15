@@ -79,7 +79,7 @@ public class EnderArrowEntity extends AbstractArrowEntity {
                     ((LivingEntity) shooter).addPotionEffect(new EffectInstance(ENDERFERENCE, duration, 0, false, false));
                 }
                 Entity entity = ((EntityRayTraceResult) raytraceResultIn).getEntity();
-                if (entity instanceof LivingEntity) {
+                if (entity instanceof LivingEntity && entity.isNonBoss()) {
                     Utils.teleportEntityTo(entity, originPos);
                     ((LivingEntity) entity).addPotionEffect(new EffectInstance(ENDERFERENCE, duration, 0, false, false));
                 }

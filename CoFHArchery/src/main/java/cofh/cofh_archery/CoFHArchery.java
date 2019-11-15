@@ -75,7 +75,7 @@ public class CoFHArchery {
         RenderingRegistry.registerEntityRenderingHandler(ExplosiveArrowEntity.class, ExplosiveArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FrostArrowEntity.class, FrostArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(LightningArrowEntity.class, LightningArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
+        // RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PhantasmalArrowEntity.class, PhantasmalArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PrismarineArrowEntity.class, PrismarineArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
@@ -92,7 +92,7 @@ public class CoFHArchery {
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> EXPLOSIVE_ARROW_ENTITY = ENTITIES.register("explosive_arrow", () -> EntityType.Builder.<ExplosiveArrowEntity>create(ExplosiveArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("explosive_arrow"));
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> FROST_ARROW_ENTITY = ENTITIES.register("frost_arrow", () -> EntityType.Builder.<FrostArrowEntity>create(FrostArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("frost_arrow"));
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> LIGHTNING_ARROW_ENTITY = ENTITIES.register("lightning_arrow", () -> EntityType.Builder.<LightningArrowEntity>create(LightningArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("lightning_arrow"));
-    public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> MAGMA_ARROW_ENTITY = ENTITIES.register("magma_arrow", () -> EntityType.Builder.<MagmaArrowEntity>create(MagmaArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("magma_arrow"));
+    // public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> MAGMA_ARROW_ENTITY = ENTITIES.register("magma_arrow", () -> EntityType.Builder.<MagmaArrowEntity>create(MagmaArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("magma_arrow"));
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> PHANTASMAL_ARROW_ENTITY = ENTITIES.register("phantasmal_arrow", () -> EntityType.Builder.<PhantasmalArrowEntity>create(PhantasmalArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("phantasmal_arrow"));
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> PRISMARINE_ARROW_ENTITY = ENTITIES.register("prismarine_arrow", () -> EntityType.Builder.<PrismarineArrowEntity>create(PrismarineArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("prismarine_arrow"));
     public static final RegistryObject<EntityType<? extends AbstractArrowEntity>> REDSTONE_ARROW_ENTITY = ENTITIES.register("redstone_arrow", () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build("redstone_arrow"));
@@ -106,7 +106,7 @@ public class CoFHArchery {
     public static final RegistryObject<Item> EXPLOSIVE_ARROW_ITEM = ITEMS.register("explosive_arrow", () -> new ExplosiveArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> FROST_ARROW_ITEM = ITEMS.register("frost_arrow", () -> new FrostArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> LIGHTNING_ARROW_ITEM = ITEMS.register("lightning_arrow", () -> new LightningArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
-    public static final RegistryObject<Item> MAGMA_ARROW_ITEM = ITEMS.register("magma_arrow", () -> new MagmaArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
+    // public static final RegistryObject<Item> MAGMA_ARROW_ITEM = ITEMS.register("magma_arrow", () -> new MagmaArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> PHANTASMAL_ARROW_ITEM = ITEMS.register("phantasmal_arrow", () -> new PhantasmalArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> PRISMARINE_ARROW_ITEM = ITEMS.register("prismarine_arrow", () -> new PrismarineArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
     public static final RegistryObject<Item> REDSTONE_ARROW_ITEM = ITEMS.register("redstone_arrow", () -> new RedstoneArrowItem(new Item.Properties().group(COFH_ARCHERY_GROUP)));
