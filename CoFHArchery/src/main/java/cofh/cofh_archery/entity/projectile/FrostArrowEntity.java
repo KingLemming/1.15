@@ -2,6 +2,7 @@ package cofh.cofh_archery.entity.projectile;
 
 import cofh.lib.util.Utils;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -28,8 +29,9 @@ import static cofh.lib.util.references.CoreReferences.CHILLED;
 public class FrostArrowEntity extends AbstractArrowEntity {
 
     private static float DAMAGE = 1.5F;
-    private static final int DURATION = 80;
-    private static final int AMPLIFIER = 1;
+    private static final int EFFECT_AMPLIFIER = 1;
+    private static final int EFFECT_DURATION = 100;
+    private static final int CLOUD_DURATION = 20;
 
     public static int radius = 4;
     public static boolean permanentLava = true;
@@ -67,11 +69,13 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         super.onHit(raytraceResultIn);
 
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
-            Utils.freezeNearbyWater(this, world, this.getPosition(), radius, permanentWater);
-            Utils.freezeNearbyLava(this, world, this.getPosition(), radius, permanentLava);
-            discharged = true;
-
+            if (radius > 0) {
+                Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
+                Utils.freezeNearbyWater(this, world, this.getPosition(), radius, permanentWater);
+                Utils.freezeNearbyLava(this, world, this.getPosition(), radius, permanentLava);
+                discharged = true;
+                makeAreaOfEffectCloud();
+            }
             if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {
                 this.inGround = false;
                 this.setMotion(getMotion().mul((this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F)));
@@ -92,7 +96,7 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         }
         if (!entity.isInvulnerable() && entity instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entity;
-            living.addPotionEffect(new EffectInstance(CHILLED, DURATION, AMPLIFIER, false, false));
+            living.addPotionEffect(new EffectInstance(CHILLED, EFFECT_DURATION, EFFECT_AMPLIFIER, false, false));
         }
     }
 
@@ -264,6 +268,21 @@ public class FrostArrowEntity extends AbstractArrowEntity {
     public IPacket<?> createSpawnPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    private void makeAreaOfEffectCloud() {
+
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
+        cloud.setRadius(1);
+        cloud.setParticleData(ParticleTypes.ITEM_SNOWBALL);
+        cloud.setDuration(CLOUD_DURATION);
+        cloud.setWaitTime(0);
+        cloud.setRadiusPerTick((radius - cloud.getRadius()) / (float) cloud.getDuration());
+
+        world.addEntity(cloud);
     }
 
 }

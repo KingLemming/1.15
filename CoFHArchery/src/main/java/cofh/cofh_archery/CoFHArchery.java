@@ -1,6 +1,7 @@
 package cofh.cofh_archery;
 
 import cofh.cofh_archery.entity.projectile.*;
+import cofh.cofh_archery.init.ModConfig;
 import cofh.cofh_archery.init.ModEffects;
 import cofh.cofh_archery.init.ModEntities;
 import cofh.cofh_archery.init.ModItems;
@@ -56,6 +57,8 @@ public class CoFHArchery {
         ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);
 
+        ModConfig.register();
+
         ModEffects.register();
         ModEntities.register();
         ModItems.register();
@@ -80,7 +83,7 @@ public class CoFHArchery {
         // RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ShulkerArrowEntity.class, ShulkerArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SlimeArrowEntity.class, SlimeArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
+        // RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
     }
     // endregion

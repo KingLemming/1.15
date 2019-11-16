@@ -61,8 +61,9 @@ public class ModConfig {
         SERVER_CONFIG.push("Arrows");
 
         SERVER_CONFIG.push("Blaze");
-        comment = "Adjust this to set the effect radius for the Blaze Arrow.";
-        blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.radius, 1, 16);
+        comment = "Adjust this to set the effect radius for the Blaze Arrow. Set to 0 to disable, but that would be boring.";
+        blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.radius, 0, 16);
+        SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Explosive");
         comment = "Adjust this to set the explosion strength for the Explosive Arrow.";
@@ -73,25 +74,35 @@ public class ModConfig {
         explosiveArrowCauseFire = SERVER_CONFIG.comment(comment).define("Cause Fires", ExplosiveArrowEntity.explosionsCauseFire);
         comment = "If TRUE, explosion strength is modified by knockback bonuses, such as the Punch Enchantment.";
         explosiveArrowKnockbackBoost = SERVER_CONFIG.comment(comment).define("Knockback Boost", ExplosiveArrowEntity.knockbackBoost);
+        SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Frost");
-        comment = "Adjust this to set the effect radius for the Frost Arrow.";
-        frostArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", 4, 1, 16);
+        comment = "Adjust this to set the effect radius for the Frost Arrow. Set to 0 to disable, but that would be boring.";
+        frostArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", FrostArrowEntity.radius, 0, 16);
         comment = "If TRUE, Frost Arrows will convert Lava into Obsidian. If FALSE, Glossed Magma.";
         frostArrowPermanentLava = SERVER_CONFIG.comment(comment).define("Permanent Lava Freeze", FrostArrowEntity.permanentLava);
         comment = "If TRUE, Frost Arrows will convert Water into Ice. If FALSE, Frosted Ice.";
         frostArrowPermanentWater = SERVER_CONFIG.comment(comment).define("Permanent Water Freeze", FrostArrowEntity.permanentWater);
+        SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Slime");
         comment = "Adjust this to set the number of bounces for the Slime Arrow.";
         slimeArrowBounces = SERVER_CONFIG.comment(comment).defineInRange("Bounces", SlimeArrowEntity.bounces, 1, 16);
         comment = "Adjust this to set the knockback strength for the Slime Arrow.";
         slimeArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", SlimeArrowEntity.knockback, 0, 16);
-        comment = "Adjust this to set the relative knockback strength modifier provided by knockback bonuses, such as the Punch Enchantment.";
-        slimeArrowKnockbackBoost = SERVER_CONFIG.comment(comment).defineInRange("Knockback Factor", SlimeArrowEntity.knockbackFactor, 1, 16);
+        SERVER_CONFIG.pop();
     }
 
     private static void refreshServerConfig() {
+
+        refreshArrowConfig();
+    }
+
+    private static void refreshClientConfig() {
+
+    }
+
+    private static void refreshArrowConfig() {
 
         BlazeArrowEntity.radius = blazeArrowRadius.get();
 
@@ -106,15 +117,6 @@ public class ModConfig {
 
         SlimeArrowEntity.bounces = slimeArrowBounces.get();
         SlimeArrowEntity.knockback = slimeArrowKnockback.get();
-        SlimeArrowEntity.knockbackFactor = slimeArrowKnockbackBoost.get();
-    }
-
-    private static void refreshClientConfig() {
-
-    }
-
-    private static void refreshArrowConfig() {
-
     }
     // endregion
 
@@ -132,7 +134,6 @@ public class ModConfig {
 
     private static IntValue slimeArrowBounces;
     private static IntValue slimeArrowKnockback;
-    private static IntValue slimeArrowKnockbackBoost;
     // endregion
 
     // region CONFIGURATION

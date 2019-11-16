@@ -27,7 +27,7 @@ public class ModEntities {
         // ENTITIES.register(ID_REDSTONE_ARROW, () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_REDSTONE_ARROW));
         ENTITIES.register(ID_SHULKER_ARROW, () -> EntityType.Builder.<ShulkerArrowEntity>create(ShulkerArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SHULKER_ARROW));
         ENTITIES.register(ID_SLIME_ARROW, () -> EntityType.Builder.<SlimeArrowEntity>create(SlimeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SLIME_ARROW));
-        ENTITIES.register(ID_SPORE_ARROW, () -> EntityType.Builder.<SporeArrowEntity>create(SporeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SPORE_ARROW));
+        // ENTITIES.register(ID_SPORE_ARROW, () -> EntityType.Builder.<SporeArrowEntity>create(SporeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SPORE_ARROW));
         ENTITIES.register(ID_TRAINING_ARROW, () -> EntityType.Builder.<TrainingArrowEntity>create(TrainingArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_TRAINING_ARROW));
     }
 

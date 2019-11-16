@@ -2,6 +2,7 @@ package cofh.lib.util.references;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -28,6 +29,8 @@ public class CoreReferences {
     public static final String ID_EFFECT_PANACEA = ID_COFH_CORE + ":panacea";
 
     public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
+
+    public static final String ID_ECTOPLASM = ID_COFH_CORE + ":ectoplasm";
     // endregion
 
     // region BLOCKS
@@ -67,5 +70,10 @@ public class CoreReferences {
     // region ENCHANTMENTS
     @ObjectHolder(ID_HOLDING)
     public static final Enchantment HOLDING = null;
+    // endregion
+
+    // region ITEMS
+    @ObjectHolder(ID_ECTOPLASM)
+    public static final Item ECTOPLASM = null;
     // endregion
 }

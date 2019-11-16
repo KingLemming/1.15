@@ -10,11 +10,11 @@
       "item": "minecraft:arrow"
     },
     "X": {
-      "item": "minecraft:slime_ball"
+      "item": "minecraft:end_crystal"
     }
   },
   "result": {
-    "item": "cofh_archery:slime_arrow",
+    "item": "cofh_archery:shulker_arrow",
     "count": 4
   }
 }

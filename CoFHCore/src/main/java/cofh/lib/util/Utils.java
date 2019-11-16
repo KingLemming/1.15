@@ -299,32 +299,62 @@ public class Utils {
 
         BlockState state = worldIn.getBlockState(pos.down());
         if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
-            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(3) == 0;
+            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(4) == 0;
         }
         return false;
     }
     // endregion
 
-    // region FUNGUS
-    public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
-
-        BlockState state = MYCELIUM.getDefaultState();
-        BlockState dirt = DIRT.getDefaultState();
+    public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState stateIn, BlockState stateOut, int radius, boolean requireAir) {
 
         float f = (float) Math.min(16, radius);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
-                    if (worldIn.getBlockState(blockpos) == dirt) {
-                        worldIn.setBlockState(blockpos, state);
+        if (requireAir) {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                    blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                    BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+                    if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+                        if (worldIn.getBlockState(blockpos) == stateIn) {
+                            worldIn.setBlockState(blockpos, stateOut);
+                        }
+                    }
+                }
+            }
+        } else {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                    if (worldIn.getBlockState(blockpos) == stateIn) {
+                        worldIn.setBlockState(blockpos, stateOut);
                     }
                 }
             }
         }
+    }
+
+    // region FUNGUS
+    public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        transformArea(entity, worldIn, pos, DIRT.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
+        //
+        //        BlockState state = MYCELIUM.getDefaultState();
+        //        BlockState dirt = DIRT.getDefaultState();
+        //
+        //        float f = (float) Math.min(16, radius);
+        //        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        //
+        //        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
+        //            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+        //                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+        //                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
+        //                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+        //                    if (worldIn.getBlockState(blockpos) == dirt) {
+        //                        worldIn.setBlockState(blockpos, state);
+        //                    }
+        //                }
+        //            }
+        //        }
     }
     // endregion
 
@@ -344,6 +374,10 @@ public class Utils {
                         worldIn.setBlockState(blockpos$mutableblockpos, state);
                     }
                 }
+                // TODO: Fire extinguishing?
+                //                else if (blockstate1.getBlock() == FIRE) {
+                //                    worldIn.setBlockState(blockpos$mutableblockpos, AIR.getDefaultState());
+                //                }
                 // TODO: Snow layering?
                 //                else if (blockstate1.getBlock() == SNOW && blockstate1.get(SnowBlock.LAYERS) < 3) {
                 //                    worldIn.setBlockState(blockpos$mutableblockpos, blockstate1.with(SnowBlock.LAYERS, Math.min(blockstate1.get(SnowBlock.LAYERS) + 1, 3)));

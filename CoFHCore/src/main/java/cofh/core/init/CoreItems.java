@@ -1,5 +1,6 @@
 package cofh.core.init;
 
+import cofh.lib.item.ItemCoFH;
 import cofh.lib.item.override.DyeableHorseArmorItemCoFH;
 import cofh.lib.item.override.HorseArmorItemCoFH;
 import cofh.lib.item.override.ShieldItemCoFH;
@@ -7,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 import static cofh.core.CoFHCore.ITEMS;
+import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
 
 public class CoreItems {
 
@@ -19,6 +21,7 @@ public class CoreItems {
 
     public static void register() {
 
+        ITEMS.register(ID_ECTOPLASM, () -> new ItemCoFH(new Item.Properties().group(ItemGroup.MISC)));
     }
 
     public static void registerHorseArmorOverrides() {

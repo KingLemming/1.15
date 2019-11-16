@@ -10,11 +10,11 @@
       "item": "minecraft:arrow"
     },
     "X": {
-      "item": "minecraft:slime_ball"
+      "item": "minecraft:nether_star"
     }
   },
   "result": {
-    "item": "cofh_archery:slime_arrow",
+    "item": "cofh_archery:lightning_arrow",
     "count": 4
   }
 }

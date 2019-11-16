@@ -10,11 +10,11 @@
       "item": "minecraft:arrow"
     },
     "X": {
-      "item": "minecraft:slime_ball"
+      "item": "cofh_core:ectoplasm"
     }
   },
   "result": {
-    "item": "cofh_archery:slime_arrow",
+    "item": "cofh_archery:phantasmal_arrow",
     "count": 4
   }
 }

@@ -24,9 +24,9 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 public class BlazeArrowEntity extends AbstractArrowEntity {
 
     private static float DAMAGE = 1.5F;
-    private static final int DURATION = 10;
+    private static final int EFFECT_DURATION = 10;
 
-    public static int radius = 4;
+    public static int radius = 2;
 
     public boolean discharged;
 
@@ -60,9 +60,11 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
         super.onHit(raytraceResultIn);
 
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, DURATION);
-            Utils.igniteNearbyGround(this, world, this.getPosition(), radius);
-            discharged = true;
+            if (radius > 0 && !isInWater()) {
+                Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, EFFECT_DURATION);
+                Utils.igniteNearbyGround(this, world, this.getPosition(), radius);
+                discharged = true;
+            }
         }
     }
 
@@ -73,7 +75,7 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         Entity entity = raytraceResultIn.getEntity();
         if (!entity.isInvulnerable() && !entity.isImmuneToFire() && !isInWater() && !(entity instanceof EndermanEntity)) {
-            entity.setFire(DURATION);
+            entity.setFire(EFFECT_DURATION);
         }
     }
 
@@ -125,6 +127,12 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         super.readAdditional(compound);
         discharged = compound.getBoolean(TAG_ARROW_DATA);
+    }
+
+    @Override
+    public boolean isBurning() {
+
+        return !this.world.isRemote;
     }
 
     @Override

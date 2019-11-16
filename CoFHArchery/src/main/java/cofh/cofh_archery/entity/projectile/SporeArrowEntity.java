@@ -1,6 +1,7 @@
 package cofh.cofh_archery.entity.projectile;
 
 import cofh.lib.util.Utils;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -59,6 +60,7 @@ public class SporeArrowEntity extends AbstractArrowEntity {
 
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             Utils.transformMycelium(this, world, this.getPosition(), radius);
+            makeAreaOfEffectCloud();
             discharged = true;
         }
     }
@@ -105,7 +107,9 @@ public class SporeArrowEntity extends AbstractArrowEntity {
                 double d1 = vec3d.x;
                 double d2 = vec3d.y;
                 double d0 = vec3d.z;
-                this.world.addParticle(ParticleTypes.MYCELIUM, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+                for (int i = 0; i < 4; ++i) {
+                    this.world.addParticle(ParticleTypes.MYCELIUM, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
+                }
             }
         }
     }
@@ -129,6 +133,21 @@ public class SporeArrowEntity extends AbstractArrowEntity {
     public IPacket<?> createSpawnPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    private void makeAreaOfEffectCloud() {
+
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
+        cloud.setRadius(radius);
+        cloud.setParticleData(ParticleTypes.MYCELIUM);
+        cloud.setDuration(200);
+        cloud.setWaitTime(10);
+        cloud.setRadiusPerTick(-cloud.getRadius() / (float) cloud.getDuration());
+
+        world.addEntity(cloud);
     }
 
 }

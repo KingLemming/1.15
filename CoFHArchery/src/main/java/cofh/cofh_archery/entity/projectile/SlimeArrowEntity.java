@@ -25,7 +25,6 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
 
     public static int bounces = 4;
     public static int knockback = 4;
-    public static int knockbackFactor = 2;
 
     private int curBounces = 0;
     private int maxBounces = bounces;
@@ -110,7 +109,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
     @Override
     public void setKnockbackStrength(int knockbackStrengthIn) {
 
-        super.setKnockbackStrength(knockback + knockbackStrengthIn * knockbackFactor);
+        super.setKnockbackStrength(knockback + knockbackStrengthIn);
         this.maxBounces = this.knockbackStrength;
     }
 

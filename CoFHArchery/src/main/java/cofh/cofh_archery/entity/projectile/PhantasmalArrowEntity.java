@@ -21,7 +21,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
     private static boolean NO_GRAVITY = true;
 
     private static int MAX_TICKS = 200;
-    private static float MAX_VELOCITY = 3.0F;
+    private static float MAX_VELOCITY = 2.5F;
     private static byte PIERCE = 16;
 
     public PhantasmalArrowEntity(EntityType<? extends PhantasmalArrowEntity> entityIn, World worldIn) {
