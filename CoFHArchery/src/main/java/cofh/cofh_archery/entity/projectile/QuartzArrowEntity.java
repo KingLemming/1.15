@@ -8,32 +8,32 @@ import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.cofh_archery.init.ModReferences.DIAMOND_ARROW_ENTITY;
-import static cofh.cofh_archery.init.ModReferences.DIAMOND_ARROW_ITEM;
+import static cofh.cofh_archery.init.ModReferences.QUARTZ_ARROW_ENTITY;
+import static cofh.cofh_archery.init.ModReferences.QUARTZ_ARROW_ITEM;
 
-public class DiamondArrowEntity extends AbstractArrowEntity {
+public class QuartzArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 4.0F;
-    private static int KNOCKBACK = 0;
-    private static byte PIERCE = 1;
+    private static float DAMAGE = 2.5F;
+    private static int KNOCKBACK = 1;
+    private static byte PIERCE = 0;
 
-    public DiamondArrowEntity(EntityType<? extends DiamondArrowEntity> entityIn, World worldIn) {
+    public QuartzArrowEntity(EntityType<? extends QuartzArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
         this.damage = DAMAGE;
         setPierceLevel((byte) 0);
     }
 
-    public DiamondArrowEntity(World worldIn, LivingEntity shooter) {
+    public QuartzArrowEntity(World worldIn, LivingEntity shooter) {
 
-        super(DIAMOND_ARROW_ENTITY, shooter, worldIn);
+        super(QUARTZ_ARROW_ENTITY, shooter, worldIn);
         this.damage = DAMAGE;
         setPierceLevel((byte) 0);
     }
 
-    public DiamondArrowEntity(World worldIn, double x, double y, double z) {
+    public QuartzArrowEntity(World worldIn, double x, double y, double z) {
 
-        super(DIAMOND_ARROW_ENTITY, x, y, z, worldIn);
+        super(QUARTZ_ARROW_ENTITY, x, y, z, worldIn);
         this.damage = DAMAGE;
         setPierceLevel((byte) 0);
     }
@@ -41,7 +41,7 @@ public class DiamondArrowEntity extends AbstractArrowEntity {
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(DIAMOND_ARROW_ITEM);
+        return new ItemStack(QUARTZ_ARROW_ITEM);
     }
 
     @Override

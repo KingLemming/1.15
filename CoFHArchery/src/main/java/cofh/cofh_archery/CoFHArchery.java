@@ -77,14 +77,16 @@ public class CoFHArchery {
         RenderingRegistry.registerEntityRenderingHandler(ExplosiveArrowEntity.class, ExplosiveArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FrostArrowEntity.class, FrostArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(LightningArrowEntity.class, LightningArrowRenderer::new);
-        // RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PhantasmalArrowEntity.class, PhantasmalArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PrismarineArrowEntity.class, PrismarineArrowRenderer::new);
-        // RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(QuartzArrowEntity.class, QuartzArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ShulkerArrowEntity.class, ShulkerArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SlimeArrowEntity.class, SlimeArrowRenderer::new);
-        // RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(VerdantArrowEntity.class, VerdantArrowRenderer::new);
     }
     // endregion
 }

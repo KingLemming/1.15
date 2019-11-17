@@ -23,11 +23,13 @@ public class ModReferences {
     public static final String ID_MAGMA_ARROW = ID_COFH_ARCHERY + ":magma_arrow";
     public static final String ID_PHANTASMAL_ARROW = ID_COFH_ARCHERY + ":phantasmal_arrow";
     public static final String ID_PRISMARINE_ARROW = ID_COFH_ARCHERY + ":prismarine_arrow";
+    public static final String ID_QUARTZ_ARROW = ID_COFH_ARCHERY + ":quartz_arrow";
     public static final String ID_REDSTONE_ARROW = ID_COFH_ARCHERY + ":redstone_arrow";
     public static final String ID_SHULKER_ARROW = ID_COFH_ARCHERY + ":shulker_arrow";
     public static final String ID_SLIME_ARROW = ID_COFH_ARCHERY + ":slime_arrow";
     public static final String ID_SPORE_ARROW = ID_COFH_ARCHERY + ":spore_arrow";
     public static final String ID_TRAINING_ARROW = ID_COFH_ARCHERY + ":training_arrow";
+    public static final String ID_VERDANT_ARROW = ID_COFH_ARCHERY + ":verdant_arrow";
 
     public static final String ID_EFFECT_TRAINING_MISS = ID_COFH_ARCHERY + ":training_miss";
     public static final String ID_EFFECT_TRAINING_STREAK = ID_COFH_ARCHERY + ":training_streak";
@@ -73,6 +75,9 @@ public class ModReferences {
     @ObjectHolder(ID_PRISMARINE_ARROW)
     public static final EntityType PRISMARINE_ARROW_ENTITY = null;
 
+    @ObjectHolder(ID_QUARTZ_ARROW)
+    public static final EntityType QUARTZ_ARROW_ENTITY = null;
+
     @ObjectHolder(ID_REDSTONE_ARROW)
     public static final EntityType REDSTONE_ARROW_ENTITY = null;
 
@@ -87,6 +92,9 @@ public class ModReferences {
 
     @ObjectHolder(ID_TRAINING_ARROW)
     public static final EntityType TRAINING_ARROW_ENTITY = null;
+
+    @ObjectHolder(ID_VERDANT_ARROW)
+    public static final EntityType VERDANT_ARROW_ENTITY = null;
     // endregion
 
     // region ITEMS
@@ -117,6 +125,9 @@ public class ModReferences {
     @ObjectHolder(ID_PRISMARINE_ARROW)
     public static final Item PRISMARINE_ARROW_ITEM = null;
 
+    @ObjectHolder(ID_QUARTZ_ARROW)
+    public static final Item QUARTZ_ARROW_ITEM = null;
+
     @ObjectHolder(ID_REDSTONE_ARROW)
     public static final Item REDSTONE_ARROW_ITEM = null;
 
@@ -131,5 +142,8 @@ public class ModReferences {
 
     @ObjectHolder(ID_TRAINING_ARROW)
     public static final Item TRAINING_ARROW_ITEM = null;
+
+    @ObjectHolder(ID_VERDANT_ARROW)
+    public static final Item VERDANT_ARROW_ITEM = null;
     // endregion
 }

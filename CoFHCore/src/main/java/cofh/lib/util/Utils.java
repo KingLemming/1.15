@@ -333,28 +333,15 @@ public class Utils {
         }
     }
 
-    // region FUNGUS
+    // region TRANSFORMS
+    public static void transformGrass(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        transformArea(entity, worldIn, pos, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState(), radius, true);
+    }
+
     public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
 
         transformArea(entity, worldIn, pos, DIRT.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
-        //
-        //        BlockState state = MYCELIUM.getDefaultState();
-        //        BlockState dirt = DIRT.getDefaultState();
-        //
-        //        float f = (float) Math.min(16, radius);
-        //        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-        //
-        //        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-        //            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-        //                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-        //                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-        //                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
-        //                    if (worldIn.getBlockState(blockpos) == dirt) {
-        //                        worldIn.setBlockState(blockpos, state);
-        //                    }
-        //                }
-        //            }
-        //        }
     }
     // endregion
 
