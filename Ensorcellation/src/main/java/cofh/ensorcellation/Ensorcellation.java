@@ -33,7 +33,6 @@ public class Ensorcellation {
 
         ENCHANTMENTS.register(modEventBus);
 
-
         ModConfig.register();
 
         ModEnchantments.register();

@@ -299,7 +299,7 @@ public class Utils {
 
         BlockState state = worldIn.getBlockState(pos.down());
         if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
-            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(4) == 0;
+            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(4) == 0; // Random 1 in 4 chance.
         }
         return false;
     }
@@ -342,6 +342,7 @@ public class Utils {
     public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
 
         transformArea(entity, worldIn, pos, DIRT.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
+        transformArea(entity, worldIn, pos, GRASS_BLOCK.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
     }
     // endregion
 

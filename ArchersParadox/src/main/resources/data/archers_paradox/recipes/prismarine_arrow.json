@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:arrow"
+    },
+    "X": {
+      "item": "minecraft:prismarine"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:prismarine_arrow",
+    "count": 4
+  }
+}

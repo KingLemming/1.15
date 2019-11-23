@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "archers_paradox:diamond_arrow",
+    "archers_paradox:ender_arrow",
+    "archers_paradox:explosive_arrow",
+    "archers_paradox:frost_arrow",
+    "archers_paradox:lightning_arrow",
+    "archers_paradox:phantasmal_arrow",
+    "archers_paradox:prismarine_arrow",
+    "archers_paradox:shulker_arrow",
+    "archers_paradox:slime_arrow",
+    "archers_paradox:training_arrow"
+  ]
+}

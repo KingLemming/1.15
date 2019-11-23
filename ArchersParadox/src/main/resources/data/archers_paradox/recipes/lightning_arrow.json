@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:arrow"
+    },
+    "X": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:lightning_arrow",
+    "count": 4
+  }
+}

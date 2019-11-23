@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cofh_archery:item/projectiles/ender_arrow"
-  }
-}

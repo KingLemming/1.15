@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:arrow"
+    },
+    "X": {
+      "item": "minecraft:end_crystal"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:shulker_arrow",
+    "count": 4
+  }
+}

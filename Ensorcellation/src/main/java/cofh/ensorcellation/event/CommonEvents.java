@@ -1,6 +1,5 @@
 package cofh.ensorcellation.event;
 
-import cofh.ensorcellation.enchantment.ExpBoostEnchantment;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.nyi.SmashingEnchantment;
 import cofh.ensorcellation.enchantment.nyi.SmeltingEnchantment;

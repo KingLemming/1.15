@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:arrow"
+    },
+    "X": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:training_arrow",
+    "count": 4
+  }
+}

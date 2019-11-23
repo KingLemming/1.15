@@ -39,7 +39,6 @@ public class Constants {
     public static final String ID_COFH_CORE = "cofh_core";
     public static final String ID_COFH_LIB = "cofh_lib";
 
-    public static final String ID_COFH_ARCHERY = "cofh_archery";
     public static final String ID_COFH_POTIONS = "cofh_potions";
 
     public static final String ID_THERMAL_SERIES = "thermal";
@@ -52,6 +51,7 @@ public class Constants {
     public static final String ID_THERMAL_INNOVATION = "thermal_innovation";
     public static final String ID_THERMAL_LOCOMOTION = "thermal_locomotion";
 
+    public static final String ID_ARCHERS_PARADOX = "archers_paradox";
     public static final String ID_ENSORCELLATION = "ensorcellation";
     public static final String ID_ENSTORAGEMENT = "enstoragement";
     public static final String ID_ORBULATION = "orbulation";
