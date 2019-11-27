@@ -10,14 +10,14 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:quartz"
     },
     "Y": {
       "item": "minecraft:feather"
     }
   },
   "result": {
-    "item": "archers_paradox:diamond_arrow",
+    "item": "archers_paradox:quartz_arrow",
     "count": 4
   }
 }

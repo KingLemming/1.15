@@ -20,6 +20,7 @@ public class ModItems {
         ItemGroup group = ARCHERS_PARADOX_GROUP;
 
         ITEMS.register(ID_BLAZE_ARROW, () -> new BlazeArrowItem(new Item.Properties().group(group)));
+        ITEMS.register(ID_CHALLENGE_ARROW, () -> new ChallengeArrowItem(new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
         ITEMS.register(ID_DIAMOND_ARROW, () -> new DiamondArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_ENDER_ARROW, () -> new EnderArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_EXPLOSIVE_ARROW, () -> new ExplosiveArrowItem(new Item.Properties().group(group)));

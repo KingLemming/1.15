@@ -7,6 +7,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.HorseArmorItem;
@@ -27,6 +28,7 @@ import static net.minecraft.enchantment.Enchantments.THORNS;
 public class FrostRebukeEnchantment extends EnchantmentCoFH {
 
     public static int chance = 20;
+    public static boolean mobsAffectPlayers = false;
 
     public FrostRebukeEnchantment() {
 
@@ -80,8 +82,10 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         if (!(attacker instanceof LivingEntity)) {
             return;
         }
+        if (user instanceof PlayerEntity || !(attacker instanceof PlayerEntity) || mobsAffectPlayers) {
+            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+        }
         Random rand = user.getRNG();
-        ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
         int i = 20 + 20 * rand.nextInt(3 * level);
         if (attacker.isBurning()) {
             attacker.extinguish();

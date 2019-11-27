@@ -16,6 +16,7 @@ public class ModEntities {
     public static void register() {
 
         ENTITIES.register(ID_BLAZE_ARROW, () -> EntityType.Builder.<BlazeArrowEntity>create(BlazeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_BLAZE_ARROW));
+        ENTITIES.register(ID_CHALLENGE_ARROW, () -> EntityType.Builder.<ChallengeArrowEntity>create(ChallengeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_CHALLENGE_ARROW));
         ENTITIES.register(ID_DIAMOND_ARROW, () -> EntityType.Builder.<DiamondArrowEntity>create(DiamondArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_DIAMOND_ARROW));
         ENTITIES.register(ID_ENDER_ARROW, () -> EntityType.Builder.<EnderArrowEntity>create(EnderArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_ENDER_ARROW));
         ENTITIES.register(ID_EXPLOSIVE_ARROW, () -> EntityType.Builder.<ExplosiveArrowEntity>create(ExplosiveArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_EXPLOSIVE_ARROW));

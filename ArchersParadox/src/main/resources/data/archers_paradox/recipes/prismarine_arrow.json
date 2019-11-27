@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
-    "#X#",
-    " # "
+    "X",
+    "#",
+    "Y"
   ],
   "key": {
     "#": {
-      "item": "minecraft:arrow"
+      "item": "minecraft:stick"
     },
     "X": {
       "item": "minecraft:prismarine"
+    },
+    "Y": {
+      "item": "minecraft:feather"
     }
   },
   "result": {

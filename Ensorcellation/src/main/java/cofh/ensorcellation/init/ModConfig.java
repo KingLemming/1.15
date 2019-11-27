@@ -80,6 +80,8 @@ public class ModConfig {
         levelDisplacement = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
         chanceDisplacement = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
+        comment = "If TRUE, mobs wearing armor with this Enchantment can teleport players.";
+        allowMobsDisplacement = SERVER_CONFIG.comment(comment).define("Mobs Teleport Players", DisplacementEnchantment.mobsAffectPlayers);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Flaming Rebuke");
@@ -89,6 +91,8 @@ public class ModConfig {
         levelFireRebuke = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
         chanceFireRebuke = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
+        comment = "If TRUE, mobs wearing armor with this Enchantment can knockback players.";
+        allowMobsFireRebuke = SERVER_CONFIG.comment(comment).define("Mobs Knockback Players", FireRebukeEnchantment.mobsAffectPlayers);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Chilling Rebuke");
@@ -98,6 +102,8 @@ public class ModConfig {
         levelFrostRebuke = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
         chanceFrostRebuke = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 20, 1, 100);
+        comment = "If TRUE, mobs wearing armor with this Enchantment can knockback players.";
+        allowMobsFrostRebuke = SERVER_CONFIG.comment(comment).define("Mobs Knockback Players", FrostRebukeEnchantment.mobsAffectPlayers);
         SERVER_CONFIG.pop();
 
         // HELMET
@@ -425,16 +431,19 @@ public class ModConfig {
             ((EnchantmentCoFH) DISPLACEMENT).setEnable(enableDisplacement.get());
             ((EnchantmentCoFH) DISPLACEMENT).setMaxLevel(levelDisplacement.get());
             DisplacementEnchantment.chance = chanceDisplacement.get();
+            DisplacementEnchantment.mobsAffectPlayers = allowMobsDisplacement.get();
         }
         if (FIRE_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FIRE_REBUKE).setEnable(enableFireRebuke.get());
             ((EnchantmentCoFH) FIRE_REBUKE).setMaxLevel(levelFireRebuke.get());
             FireRebukeEnchantment.chance = chanceFireRebuke.get();
+            FireRebukeEnchantment.mobsAffectPlayers = allowMobsFireRebuke.get();
         }
         if (FROST_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FROST_REBUKE).setEnable(enableFrostRebuke.get());
             ((EnchantmentCoFH) FROST_REBUKE).setMaxLevel(levelFrostRebuke.get());
             FrostRebukeEnchantment.chance = chanceFrostRebuke.get();
+            FrostRebukeEnchantment.mobsAffectPlayers = allowMobsFrostRebuke.get();
         }
         // HELMET
         if (AIR_AFFINITY instanceof EnchantmentCoFH) {
@@ -626,14 +635,17 @@ public class ModConfig {
     private static BooleanValue enableDisplacement;
     private static IntValue levelDisplacement;
     private static IntValue chanceDisplacement;
+    private static BooleanValue allowMobsDisplacement;
 
     private static BooleanValue enableFireRebuke;
     private static IntValue levelFireRebuke;
     private static IntValue chanceFireRebuke;
+    private static BooleanValue allowMobsFireRebuke;
 
     private static BooleanValue enableFrostRebuke;
     private static IntValue levelFrostRebuke;
     private static IntValue chanceFrostRebuke;
+    private static BooleanValue allowMobsFrostRebuke;
 
     // HELMET
     private static BooleanValue enableAirWorker;

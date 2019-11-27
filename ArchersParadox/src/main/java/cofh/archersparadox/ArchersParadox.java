@@ -72,6 +72,7 @@ public class ArchersParadox {
     private void clientSetup(final FMLClientSetupEvent event) {
 
         RenderingRegistry.registerEntityRenderingHandler(BlazeArrowEntity.class, BlazeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ChallengeArrowEntity.class, ChallengeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DiamondArrowEntity.class, DiamondArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EnderArrowEntity.class, EnderArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ExplosiveArrowEntity.class, ExplosiveArrowRenderer::new);

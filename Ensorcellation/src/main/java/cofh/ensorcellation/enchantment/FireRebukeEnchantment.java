@@ -7,6 +7,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.HorseArmorItem;
@@ -26,9 +27,10 @@ import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
-    private static HashSet<Tuple<Entity, Integer>> AFFLICTED_MOBS = new HashSet<>();
+    private static HashSet<Tuple<Entity, Integer>> AFFLICTED_ENTITIES = new HashSet<>();
 
     public static int chance = 20;
+    public static boolean mobsAffectPlayers = false;
 
     public FireRebukeEnchantment() {
 
@@ -82,9 +84,11 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
         if (!(attacker instanceof LivingEntity)) {
             return;
         }
+        if (user instanceof PlayerEntity || !(attacker instanceof PlayerEntity) || mobsAffectPlayers) {
+            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+        }
         Random rand = user.getRNG();
-        ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
-        AFFLICTED_MOBS.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
+        AFFLICTED_ENTITIES.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
                 Utils.spawnParticles(attacker.world, ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
@@ -99,13 +103,13 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
 
     public static void setFireToMobs() {
 
-        if (AFFLICTED_MOBS.isEmpty()) {
+        if (AFFLICTED_ENTITIES.isEmpty()) {
             return;
         }
-        for (Tuple<Entity, Integer> entry : AFFLICTED_MOBS) {
+        for (Tuple<Entity, Integer> entry : AFFLICTED_ENTITIES) {
             entry.getA().setFire(entry.getB());
         }
-        AFFLICTED_MOBS.clear();
+        AFFLICTED_ENTITIES.clear();
     }
     // endregion
 }
