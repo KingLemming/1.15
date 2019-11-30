@@ -22,9 +22,11 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class VerdantArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 0.5F;
+    private static final int CLOUD_DURATION = 20;
 
-    public static int radius = 4;
+    public static float baseDamage = 0.5F;
+    public static int effectRadius = 4;
+    public static int effectGrowCount = 4;
     public static boolean transform = true;
 
     public boolean discharged;
@@ -32,19 +34,19 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
     public VerdantArrowEntity(EntityType<? extends VerdantArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public VerdantArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(VERDANT_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public VerdantArrowEntity(World worldIn, double x, double y, double z) {
 
         super(VERDANT_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     @Override
@@ -58,10 +60,16 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            Utils.transformGrass(this, world, this.getPosition(), radius);
-            makeAreaOfEffectCloud();
-            discharged = true;
+            if (effectRadius > 0 && !isInWater()) {
+                Utils.transformGrass(this, world, this.getPosition(), effectRadius);
+                Utils.growPlants(this, world, this.getPosition(), effectRadius, effectGrowCount);
+                makeAreaOfEffectCloud();
+                discharged = true;
+            }
         }
     }
 
@@ -70,6 +78,7 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
 
         super.func_213868_a(raytraceResultIn);
 
+        // TODO: Mob transforms go here, if any.
         //        Entity entity = raytraceResultIn.getEntity();
         //        if (!entity.isInvulnerable() && entity instanceof CowEntity) {
         //
@@ -102,14 +111,12 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
         super.tick();
 
         if (!this.inGround || this.func_203047_q()) {
-            if (Utils.isClientWorld(world)) {
+            if (Utils.isClientWorld(world) && !isInWater()) {
                 Vec3d vec3d = this.getMotion();
                 double d1 = vec3d.x;
                 double d2 = vec3d.y;
                 double d0 = vec3d.z;
-                for (int i = 0; i < 4; ++i) {
-                    this.world.addParticle(ParticleTypes.HAPPY_VILLAGER, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
-                }
+                this.world.addParticle(ParticleTypes.HAPPY_VILLAGER, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
             }
         }
     }
@@ -141,11 +148,11 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
             return;
         }
         AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
-        cloud.setRadius(radius);
+        cloud.setRadius(1);
         cloud.setParticleData(ParticleTypes.HAPPY_VILLAGER);
-        cloud.setDuration(200);
-        cloud.setWaitTime(10);
-        cloud.setRadiusPerTick(-cloud.getRadius() / (float) cloud.getDuration());
+        cloud.setDuration(CLOUD_DURATION);
+        cloud.setWaitTime(0);
+        cloud.setRadiusPerTick((effectRadius - cloud.getRadius()) / (float) cloud.getDuration());
 
         world.addEntity(cloud);
     }

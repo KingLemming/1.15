@@ -31,6 +31,8 @@ public class CoreReferences {
     public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
 
     public static final String ID_ECTOPLASM = ID_COFH_CORE + ":ectoplasm";
+
+    // public static final String ID_PARTICLE_SNOW = ID_COFH_CORE + ":snow";
     // endregion
 
     // region BLOCKS
@@ -75,5 +77,10 @@ public class CoreReferences {
     // region ITEMS
     @ObjectHolder(ID_ECTOPLASM)
     public static final Item ECTOPLASM = null;
+    // endregion
+
+    // region PARTICLES
+    //    @ObjectHolder(ID_PARTICLE_SNOW)
+    //    public static final BasicParticleType SNOW = null;
     // endregion
 }

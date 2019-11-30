@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "archers_paradox:phantasmal_arrow"
+    ]
+  },
+  "criteria": {
+    "has_ectoplasm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "cofh_core:ectoplasm"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "archers_paradox:phantasmal_arrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ectoplasm",
+      "has_the_recipe"
+    ]
+  ]
+}

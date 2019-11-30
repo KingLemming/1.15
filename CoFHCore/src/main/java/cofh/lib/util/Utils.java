@@ -7,10 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.SnowBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -25,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvents;
@@ -41,7 +39,10 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static cofh.lib.util.constants.Tags.TAG_ENCHANTMENTS;
 import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
@@ -278,71 +279,63 @@ public class Utils {
 
     public static void igniteNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        BlockState blockstate = FIRE.getDefaultState();
-        float f = (float) Math.min(16, radius);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
-                    if (isValidFirePosition(worldIn, blockpos$mutableblockpos)) {
-                        worldIn.setBlockState(blockpos$mutableblockpos, blockstate);
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
+                    if (isValidFirePosition(worldIn, mutable, 0.1)) {
+                        worldIn.setBlockState(mutable, ((FireBlock) FIRE).getStateForPlacement(worldIn, mutable));
                     }
                 }
             }
         }
     }
 
-    private static boolean isValidFirePosition(World worldIn, BlockPos pos) {
+    public static void igniteSpecial(Entity entity, World worldIn, BlockPos pos, int radius, boolean campfire, boolean tnt) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                BlockState state = worldIn.getBlockState(blockpos);
+                if (campfire && isUnlitCampfire(state)) {
+                    worldIn.setBlockState(blockpos, state.with(BlockStateProperties.LIT, true));
+                }
+                if (tnt && isUnlitTNT(state)) {
+                    TNTBlock.explode(worldIn, blockpos);
+                    worldIn.setBlockState(blockpos, AIR.getDefaultState());
+                }
+            }
+        }
+    }
+
+    private static boolean isValidFirePosition(World worldIn, BlockPos pos, double chance) {
 
         BlockState state = worldIn.getBlockState(pos.down());
         if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
-            return state.getMaterial().isFlammable() || worldIn.rand.nextInt(4) == 0; // Random 1 in 4 chance.
+            return state.getMaterial().isFlammable() || worldIn.rand.nextDouble() < chance; // Random 1 in 4 chance.
         }
         return false;
     }
-    // endregion
 
-    public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState stateIn, BlockState stateOut, int radius, boolean requireAir) {
+    private static boolean isUnlitCampfire(BlockState state) {
 
-        float f = (float) Math.min(16, radius);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-        if (requireAir) {
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                    blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                    BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                    if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
-                        if (worldIn.getBlockState(blockpos) == stateIn) {
-                            worldIn.setBlockState(blockpos, stateOut);
-                        }
-                    }
-                }
-            }
-        } else {
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                    if (worldIn.getBlockState(blockpos) == stateIn) {
-                        worldIn.setBlockState(blockpos, stateOut);
-                    }
-                }
-            }
-        }
+        return state.getBlock() == CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
     }
 
-    // region TRANSFORMS
-    public static void transformGrass(Entity entity, World worldIn, BlockPos pos, int radius) {
+    private static boolean isUnlitTNT(BlockState state) {
 
-        transformArea(entity, worldIn, pos, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState(), radius, true);
-    }
-
-    public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
-
-        transformArea(entity, worldIn, pos, DIRT.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
-        transformArea(entity, worldIn, pos, GRASS_BLOCK.getDefaultState(), MYCELIUM.getDefaultState(), radius, true);
+        return state.getBlock() == TNT;
     }
     // endregion
 
@@ -350,25 +343,28 @@ public class Utils {
     public static void freezeNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
 
         BlockState state = SNOW.getDefaultState();
-        float f = (float) Math.min(16, radius);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
-                    if (worldIn.getBiome(blockpos$mutableblockpos).func_225486_c(blockpos) < 0.8F && isValidSnowPosition(worldIn, blockpos$mutableblockpos)) {
-                        worldIn.setBlockState(blockpos$mutableblockpos, state);
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
+                    if (worldIn.getBiome(mutable).func_225486_c(blockpos) < 0.8F && isValidSnowPosition(worldIn, mutable)) {
+                        worldIn.setBlockState(mutable, state);
                     }
                 }
                 // TODO: Fire extinguishing?
                 //                else if (blockstate1.getBlock() == FIRE) {
-                //                    worldIn.setBlockState(blockpos$mutableblockpos, AIR.getDefaultState());
+                //                    worldIn.setBlockState(mutable, AIR.getDefaultState());
                 //                }
                 // TODO: Snow layering?
                 //                else if (blockstate1.getBlock() == SNOW && blockstate1.get(SnowBlock.LAYERS) < 3) {
-                //                    worldIn.setBlockState(blockpos$mutableblockpos, blockstate1.with(SnowBlock.LAYERS, Math.min(blockstate1.get(SnowBlock.LAYERS) + 1, 3)));
+                //                    worldIn.setBlockState(mutable, blockstate1.with(SnowBlock.LAYERS, Math.min(blockstate1.get(SnowBlock.LAYERS) + 1, 3)));
                 //                }
             }
         }
@@ -377,14 +373,17 @@ public class Utils {
     public static void freezeNearbyWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
 
         BlockState state = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
-        float f = (float) Math.min(16, radius);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
                     if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
@@ -402,14 +401,17 @@ public class Utils {
             return;
         }
         BlockState state = permanent ? OBSIDIAN.getDefaultState() : GLOSSED_MAGMA.getDefaultState();
-        float f = (float) Math.min(16, radius);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {
-            if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                blockpos$mutableblockpos.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                BlockState blockstate1 = worldIn.getBlockState(blockpos$mutableblockpos);
-                if (blockstate1.isAir(worldIn, blockpos$mutableblockpos)) {
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
                     if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
@@ -431,4 +433,166 @@ public class Utils {
         return Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP) || block == SNOW && state.get(SnowBlock.LAYERS) == 8;
     }
     // endregion
+
+    // region AREA TRANSFORMS / MISC
+    public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState replaceable, BlockState replacement, int radius, boolean requireAir) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+
+        if (requireAir) {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+                if (distance < f2) {
+                    mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                    BlockState blockstate1 = worldIn.getBlockState(mutable);
+                    if (blockstate1.isAir(worldIn, mutable)) {
+                        if (worldIn.getBlockState(blockpos) == replaceable) {
+                            worldIn.setBlockState(blockpos, replacement);
+                        }
+                    }
+                }
+            }
+        } else {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+                if (distance < f2) {
+                    if (worldIn.getBlockState(blockpos) == replaceable) {
+                        worldIn.setBlockState(blockpos, replacement);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void transformArea(Entity entity, World worldIn, BlockPos pos, Set<BlockState> replaceable, BlockState replacement, int radius, boolean requireAir) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+
+        if (requireAir) {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+                if (distance < f2) {
+                    mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                    BlockState blockstate1 = worldIn.getBlockState(mutable);
+                    if (blockstate1.isAir(worldIn, mutable)) {
+                        if (replaceable.contains(worldIn.getBlockState(blockpos))) {
+                            worldIn.setBlockState(blockpos, replacement);
+                        }
+                    }
+                }
+            }
+        } else {
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
+                    if (replaceable.contains(worldIn.getBlockState(blockpos))) {
+                        worldIn.setBlockState(blockpos, replacement);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void transformGrass(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        transformArea(entity, worldIn, pos, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState(), radius, true);
+    }
+
+    public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        Set<BlockState> replaceable = new HashSet<>();
+        Collections.addAll(replaceable, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState());
+        transformArea(entity, worldIn, pos, replaceable, MYCELIUM.getDefaultState(), radius, true);
+    }
+
+    public static void growMushrooms(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        int grow = 0;
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+
+        mutable.setPos(entity.getPosition().up());
+        BlockState blockstate1 = worldIn.getBlockState(mutable);
+        if (blockstate1.isAir(worldIn, mutable)) {
+            if (isValidMushroomPosition(worldIn, entity.getPosition(), 1.0)) {
+                worldIn.setBlockState(mutable, worldIn.rand.nextBoolean() ? BROWN_MUSHROOM.getDefaultState() : RED_MUSHROOM.getDefaultState());
+                ++grow;
+            }
+        }
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            if (grow >= count) {
+                return;
+            }
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
+                    if (isValidMushroomPosition(worldIn, blockpos, 0.5 - (distance / f2))) {
+                        worldIn.setBlockState(mutable, worldIn.rand.nextBoolean() ? BROWN_MUSHROOM.getDefaultState() : RED_MUSHROOM.getDefaultState());
+                        ++grow;
+                    }
+                }
+            }
+        }
+    }
+
+    private static boolean isValidMushroomPosition(World worldIn, BlockPos pos, double chance) {
+
+        Block block = worldIn.getBlockState(pos).getBlock();
+        return worldIn.rand.nextDouble() < chance && (block == MYCELIUM || block == PODZOL);
+    }
+
+    public static void growPlants(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        int grow = 0;
+
+        BlockState state = worldIn.getBlockState(entity.getPosition());
+        if (state.getBlock() instanceof IGrowable) {
+            IGrowable growable = (IGrowable) state.getBlock();
+            if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
+                if (!worldIn.isRemote) {
+                    if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
+                        growable.grow(worldIn, worldIn.rand, pos, state);
+                        ++grow;
+                    }
+                }
+            }
+        }
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            if (grow >= count) {
+                return;
+            }
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                state = worldIn.getBlockState(blockpos);
+                if (state.getBlock() instanceof IGrowable) {
+                    IGrowable growable = (IGrowable) state.getBlock();
+                    if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
+                        if (!worldIn.isRemote) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
+                                growable.grow(worldIn, worldIn.rand, pos, state);
+                                ++grow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // endregion
+
+    private static int HORZ_MAX = 16;
+    private static int VERT_MAX = 4;
+
 }

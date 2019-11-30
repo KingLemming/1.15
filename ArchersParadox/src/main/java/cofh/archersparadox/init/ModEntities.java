@@ -26,12 +26,12 @@ public class ModEntities {
         ENTITIES.register(ID_PHANTASMAL_ARROW, () -> EntityType.Builder.<PhantasmalArrowEntity>create(PhantasmalArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_PHANTASMAL_ARROW));
         ENTITIES.register(ID_PRISMARINE_ARROW, () -> EntityType.Builder.<PrismarineArrowEntity>create(PrismarineArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_PRISMARINE_ARROW));
         ENTITIES.register(ID_QUARTZ_ARROW, () -> EntityType.Builder.<QuartzArrowEntity>create(QuartzArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_QUARTZ_ARROW));
-        ENTITIES.register(ID_REDSTONE_ARROW, () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_REDSTONE_ARROW));
+        // ENTITIES.register(ID_REDSTONE_ARROW, () -> EntityType.Builder.<RedstoneArrowEntity>create(RedstoneArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_REDSTONE_ARROW));
         ENTITIES.register(ID_SHULKER_ARROW, () -> EntityType.Builder.<ShulkerArrowEntity>create(ShulkerArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SHULKER_ARROW));
         ENTITIES.register(ID_SLIME_ARROW, () -> EntityType.Builder.<SlimeArrowEntity>create(SlimeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SLIME_ARROW));
         ENTITIES.register(ID_SPORE_ARROW, () -> EntityType.Builder.<SporeArrowEntity>create(SporeArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_SPORE_ARROW));
         ENTITIES.register(ID_TRAINING_ARROW, () -> EntityType.Builder.<TrainingArrowEntity>create(TrainingArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_TRAINING_ARROW));
-        // ENTITIES.register(ID_VERDANT_ARROW, () -> EntityType.Builder.<VerdantArrowEntity>create(VerdantArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_VERDANT_ARROW));
+        ENTITIES.register(ID_VERDANT_ARROW, () -> EntityType.Builder.<VerdantArrowEntity>create(VerdantArrowEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).build(ID_VERDANT_ARROW));
     }
 
 }

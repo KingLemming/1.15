@@ -17,6 +17,7 @@ import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -40,6 +41,7 @@ public class CoFHCore {
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Effect> EFFECTS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_CORE);
+    public static final DeferredRegisterCoFH<ParticleType<?>> PARTICLES = new DeferredRegisterCoFH<>(ForgeRegistries.PARTICLE_TYPES, ID_COFH_CORE);
 
     public CoFHCore() {
 
@@ -51,12 +53,14 @@ public class CoFHCore {
         BLOCKS.register(modEventBus);
         EFFECTS.register(modEventBus);
         ITEMS.register(modEventBus);
+        // PARTICLES.register(modEventBus);
 
         CoreConfig.register();
 
         CoreBlocks.register();
         CoreEffects.register();
         CoreItems.register();
+        // CoreParticles.register();
     }
 
     // region INITIALIZATION

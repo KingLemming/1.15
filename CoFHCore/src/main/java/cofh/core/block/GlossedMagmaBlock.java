@@ -63,12 +63,12 @@ public class GlossedMagmaBlock extends MagmaBlock {
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 
         if ((random.nextInt(9) == 0 || this.shouldMelt(worldIn, pos, 4)) && this.slightlyMelt(state, worldIn, pos)) {
-            try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain()) {
+            try (BlockPos.PooledMutableBlockPos mutable = BlockPos.PooledMutableBlockPos.retain()) {
                 for (Direction direction : Direction.values()) {
-                    blockpos$pooledmutableblockpos.setPos(pos).move(direction);
-                    BlockState blockstate = worldIn.getBlockState(blockpos$pooledmutableblockpos);
-                    if (blockstate.getBlock() == this && !this.slightlyMelt(blockstate, worldIn, blockpos$pooledmutableblockpos)) {
-                        worldIn.getPendingBlockTicks().scheduleTick(blockpos$pooledmutableblockpos, this, MathHelper.nextInt(random, 20, 40));
+                    mutable.setPos(pos).move(direction);
+                    BlockState blockstate = worldIn.getBlockState(mutable);
+                    if (blockstate.getBlock() == this && !this.slightlyMelt(blockstate, worldIn, mutable)) {
+                        worldIn.getPendingBlockTicks().scheduleTick(mutable, this, MathHelper.nextInt(random, 20, 40));
                     }
                 }
             }
@@ -93,10 +93,10 @@ public class GlossedMagmaBlock extends MagmaBlock {
     protected boolean shouldMelt(IBlockReader worldIn, BlockPos pos, int neighborsRequired) {
 
         int i = 0;
-        try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain()) {
+        try (BlockPos.PooledMutableBlockPos mutable = BlockPos.PooledMutableBlockPos.retain()) {
             for (Direction direction : Direction.values()) {
-                blockpos$pooledmutableblockpos.setPos(pos).move(direction);
-                if (worldIn.getBlockState(blockpos$pooledmutableblockpos).getBlock() == this) {
+                mutable.setPos(pos).move(direction);
+                if (worldIn.getBlockState(mutable).getBlock() == this) {
                     ++i;
                     if (i >= neighborsRequired) {
                         return false;

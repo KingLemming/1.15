@@ -14,6 +14,48 @@ import net.minecraft.world.World;
 public interface IArcheryBowItem extends IArcheryItem {
 
     /**
+     * Return the total accuracy multiplier for this item - LOWER IS BETTER - 1.0F is default.
+     * Note that weapons and ammo can BOTH have this!
+     *
+     * @param bow     ItemStack representing the bow.
+     * @param ammo    ItemStack representing the ammo.
+     * @param shooter Player holding the bow.
+     * @return Total accuracy modifier - 0.5F means arrows will shoot with half as much variance.
+     */
+    default float getAccuracyModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+
+        return 1.0F;
+    }
+
+    /**
+     * Return the total damage multiplier for this item - 1.0F is default.
+     * Note that weapons and ammo can BOTH have this!
+     *
+     * @param bow     ItemStack representing the bow.
+     * @param ammo    ItemStack representing the ammo.
+     * @param shooter Player holding the bow.
+     * @return Total damage modifier - 1.1F would be 10% more.
+     */
+    default float getDamageModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+
+        return 1.0F;
+    }
+
+    /**
+     * Return the total arrow speed multiplier for this item - 1.0F is default.
+     * Note that weapons and ammo can BOTH have this!
+     *
+     * @param bow     ItemStack representing the bow.
+     * @param ammo    ItemStack representing the ammo.
+     * @param shooter Player holding the bow.
+     * @return Total speed modifier - as an example, 1.1F would be 10% more.
+     */
+    default float getVelocityModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+
+        return 1.0F;
+    }
+
+    /**
      * This method handles the entire shooting process - these parameters are essentially passed in from the onArrowLoosed event.
      *
      * @param bow     ItemStack representing the bow.
@@ -26,18 +68,6 @@ public interface IArcheryBowItem extends IArcheryItem {
     default boolean fireArrow(ItemStack bow, ItemStack ammo, PlayerEntity shooter, int charge, World world) {
 
         return ArcheryHelper.fireArrow(bow, ammo, shooter, charge, world);
-    }
-
-    /**
-     * Determine if the bow should handle arrow entity creation, based on both the bow and the ammo to be fired.
-     *
-     * @param bow  ItemStack representing the bow.
-     * @param ammo ItemStack representing the ammo.
-     * @return TRUE if the bow should handle creation of the arrow entity.
-     */
-    default boolean handleArrowCreation(ItemStack bow, ItemStack ammo) {
-
-        return false;
     }
 
 }

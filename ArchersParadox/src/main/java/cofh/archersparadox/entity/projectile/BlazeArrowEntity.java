@@ -1,6 +1,7 @@
 package cofh.archersparadox.entity.projectile;
 
 import cofh.lib.util.Utils;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,29 +24,30 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class BlazeArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 1.5F;
+    private static int CLOUD_DURATION = 20;
 
-    public static int attrDuration = 10;
-    public static int attrRadius = 2;
+    public static float baseDamage = 1.5F;
+    public static int effectDuration = 10;
+    public static int effectRadius = 2;
 
     public boolean discharged;
 
     public BlazeArrowEntity(EntityType<? extends BlazeArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public BlazeArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(BLAZE_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public BlazeArrowEntity(World worldIn, double x, double y, double z) {
 
         super(BLAZE_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     @Override
@@ -59,12 +61,17 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            if (attrRadius > 0 && !isInWater()) {
-                if (attrDuration - 5 > 0) {
-                    Utils.igniteNearbyEntities(this, world, this.getPosition(), attrRadius, attrDuration - 5);
+            if (effectRadius > 0 && !isInWater()) {
+                if (effectDuration - 5 > 0) {
+                    Utils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
                 }
-                Utils.igniteNearbyGround(this, world, this.getPosition(), attrRadius);
+                Utils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true);
+                Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius);
+                makeAreaOfEffectCloud();
                 discharged = true;
             }
         }
@@ -77,7 +84,7 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         Entity entity = raytraceResultIn.getEntity();
         if (!entity.isInvulnerable() && !entity.isImmuneToFire() && !isInWater() && !(entity instanceof EndermanEntity)) {
-            entity.setFire(attrDuration);
+            entity.setFire(effectDuration);
         }
     }
 
@@ -141,6 +148,21 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
     public IPacket<?> createSpawnPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    private void makeAreaOfEffectCloud() {
+
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
+        cloud.setRadius(1);
+        cloud.setParticleData(ParticleTypes.FLAME);
+        cloud.setDuration(CLOUD_DURATION);
+        cloud.setWaitTime(0);
+        cloud.setRadiusPerTick((effectRadius - cloud.getRadius()) / (float) cloud.getDuration());
+
+        world.addEntity(cloud);
     }
 
 }

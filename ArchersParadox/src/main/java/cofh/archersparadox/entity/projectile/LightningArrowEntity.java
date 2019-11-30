@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.lib.util.Utils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
@@ -21,26 +22,26 @@ import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
 
 public class LightningArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 1.5F;
+    public static float baseDamage = 1.5F;
 
     public boolean discharged;
 
     public LightningArrowEntity(EntityType<? extends LightningArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public LightningArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(LIGHTNING_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public LightningArrowEntity(World worldIn, double x, double y, double z) {
 
         super(LIGHTNING_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     @Override
@@ -54,6 +55,9 @@ public class LightningArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (!isInWater() && !isInLava()) {
                 BlockPos pos = this.getPosition();

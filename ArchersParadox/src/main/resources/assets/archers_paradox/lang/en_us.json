@@ -19,8 +19,6 @@
   "item.archers_paradox.frost_arrow.desc": "Chills target and freezes nearby blocks on impact.",
   "item.archers_paradox.lightning_arrow": "Lightning Arrow",
   "item.archers_paradox.lightning_arrow.desc": "Calls down a lightning bolt on impact.",
-  "item.archers_paradox.magma_arrow": "Magma Arrow",
-  "item.archers_paradox.magma_arrow.desc": "Like a Slime Arrow. Less bounce, more fire.",
   "item.archers_paradox.phantasmal_arrow": "Phantasmal Arrow",
   "item.archers_paradox.phantasmal_arrow.desc": "Flies straight, pierces everything.",
   "item.archers_paradox.prismarine_arrow": "Prismarine Arrow",
@@ -35,5 +33,7 @@
   "item.archers_paradox.spore_arrow": "Spore Arrow",
   "item.archers_paradox.spore_arrow.desc": "Spreads the glory of fungus.",
   "item.archers_paradox.training_arrow": "Training Arrow",
-  "item.archers_paradox.training_arrow.desc": "Deals no damage, used for practice."
+  "item.archers_paradox.training_arrow.desc": "Deals no damage, used for practice.",
+  "item.archers_paradox.verdant_arrow": "Verdant Arrow",
+  "item.archers_paradox.verdant_arrow.desc": "Makes the world just a bit more lush."
 }

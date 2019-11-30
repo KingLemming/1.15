@@ -59,18 +59,18 @@ public class ModConfig {
 
         SERVER_CONFIG.push("Blaze");
         comment = "Adjust this to set the burn duration for the Blaze Arrow (in seconds). Nearby targets will burn for 5 seconds less than a direct target.";
-        blazeArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Fire Duration", BlazeArrowEntity.attrDuration, 5, 30);
+        blazeArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Fire Duration", BlazeArrowEntity.effectDuration, 5, 30);
         comment = "Adjust this to set the effect radius for the Blaze Arrow. Set to 0 to disable, but that would be boring.";
-        blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.attrRadius, 0, 16);
+        blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Diamond");
         comment = "Adjust this to set the damage for the Diamond Arrow. Base Arrow value is 2.0.";
-        diamondArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", DiamondArrowEntity.attrDamage, 0.5, 16.0);
+        diamondArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", DiamondArrowEntity.baseDamage, 0.5, 16.0);
         comment = "Adjust this to set the inherent knockback strength of the Diamond Arrow. Base Arrow value is 0.";
-        diamondArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", DiamondArrowEntity.attrKnockback, 0, 16);
+        diamondArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", DiamondArrowEntity.baseKnockback, 0, 16);
         comment = "Adjust this to set the inherent pierce of the Diamond Arrow. Base Arrow value is 0.";
-        diamondArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", DiamondArrowEntity.attrPierce, 0, 16);
+        diamondArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", DiamondArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Explosive");
@@ -86,7 +86,7 @@ public class ModConfig {
 
         SERVER_CONFIG.push("Frost");
         comment = "Adjust this to set the effect radius for the Frost Arrow. Set to 0 to disable, but that would be boring.";
-        frostArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", FrostArrowEntity.attrRadius, 0, 16);
+        frostArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", FrostArrowEntity.effectRadius, 0, 16);
         comment = "If TRUE, Frost Arrows will convert Lava into Obsidian. If FALSE, Glossed Magma.";
         frostArrowPermanentLava = SERVER_CONFIG.comment(comment).define("Permanent Lava Freeze", FrostArrowEntity.permanentLava);
         comment = "If TRUE, Frost Arrows will convert Water into Ice. If FALSE, Frosted Ice.";
@@ -95,29 +95,39 @@ public class ModConfig {
 
         SERVER_CONFIG.push("Prismarine");
         comment = "Adjust this to set the damage for the Prismarine Arrow. Base Arrow value is 2.0.";
-        prismarineArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", PrismarineArrowEntity.attrDamage, 0.5, 16.0);
+        prismarineArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", PrismarineArrowEntity.baseDamage, 0.5, 16.0);
         comment = "Adjust this to set the inherent knockback strength of the Prismarine Arrow. Base Arrow value is 0.";
-        prismarineArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", PrismarineArrowEntity.attrKnockback, 0, 16);
+        prismarineArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", PrismarineArrowEntity.baseKnockback, 0, 16);
         comment = "Adjust this to set the inherent pierce of the Prismarine Arrow. Base Arrow value is 0.";
-        prismarineArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", PrismarineArrowEntity.attrPierce, 0, 16);
+        prismarineArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", PrismarineArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Quartz");
         comment = "Adjust this to set the damage for the Quartz Arrow. Base Arrow value is 2.0.";
-        quartzArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", QuartzArrowEntity.attrDamage, 0.5, 16.0);
+        quartzArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", QuartzArrowEntity.baseDamage, 0.5, 16.0);
         comment = "Adjust this to set the inherent knockback strength of the Quartz Arrow. Base Arrow value is 0.";
-        quartzArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", QuartzArrowEntity.attrKnockback, 0, 16);
+        quartzArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", QuartzArrowEntity.baseKnockback, 0, 16);
         comment = "Adjust this to set the inherent pierce of the Quartz Arrow. Base Arrow value is 0.";
-        quartzArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", QuartzArrowEntity.attrPierce, 0, 16);
+        quartzArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", QuartzArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Slime");
         comment = "Adjust this to set the number of bounces for the Slime Arrow.";
-        slimeArrowBounces = SERVER_CONFIG.comment(comment).defineInRange("Bounces", SlimeArrowEntity.attrBounces, 1, 16);
+        slimeArrowBounces = SERVER_CONFIG.comment(comment).defineInRange("Bounces", SlimeArrowEntity.baseBounces, 1, 16);
         comment = "Adjust this to set the inherent knockback strength of the Slime Arrow. Base Arrow value is 0.";
-        slimeArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", SlimeArrowEntity.attrKnockback, 0, 16);
+        slimeArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", SlimeArrowEntity.baseKnockback, 0, 16);
         comment = "If TRUE, bounces are modified by knockback bonuses, such as the Punch Enchantment.";
         slimeArrowKnockbackBoost = SERVER_CONFIG.comment(comment).define("Knockback Boost", SlimeArrowEntity.knockbackBoost);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Spore");
+        comment = "Adjust this to set the effect radius for the Spore Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
+        sporeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", SporeArrowEntity.effectRadius, 0, 16);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Verdant");
+        comment = "Adjust this to set the effect radius for the Verdant Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
+        verdantArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", VerdantArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
     }
 
@@ -132,33 +142,37 @@ public class ModConfig {
 
     private static void refreshArrowConfig() {
 
-        BlazeArrowEntity.attrDuration = blazeArrowDuration.get();
-        BlazeArrowEntity.attrRadius = blazeArrowRadius.get();
+        BlazeArrowEntity.effectDuration = blazeArrowDuration.get();
+        BlazeArrowEntity.effectRadius = blazeArrowRadius.get();
 
-        DiamondArrowEntity.attrDamage = diamondArrowDamage.get().floatValue();
-        DiamondArrowEntity.attrKnockback = diamondArrowKnockback.get();
-        DiamondArrowEntity.attrPierce = diamondArrowPierce.get().byteValue();
+        DiamondArrowEntity.baseDamage = diamondArrowDamage.get().floatValue();
+        DiamondArrowEntity.baseKnockback = diamondArrowKnockback.get();
+        DiamondArrowEntity.basePierce = diamondArrowPierce.get().byteValue();
 
         ExplosiveArrowEntity.explosionStrength = explosiveArrowStrength.get();
         ExplosiveArrowEntity.explosionsBreakBlocks = explosiveArrowBreakBlocks.get();
         ExplosiveArrowEntity.explosionsCauseFire = explosiveArrowCauseFire.get();
         ExplosiveArrowEntity.knockbackBoost = explosiveArrowKnockbackBoost.get();
 
-        FrostArrowEntity.attrRadius = frostArrowRadius.get();
+        FrostArrowEntity.effectRadius = frostArrowRadius.get();
         FrostArrowEntity.permanentLava = frostArrowPermanentLava.get();
         FrostArrowEntity.permanentWater = frostArrowPermanentWater.get();
 
-        PrismarineArrowEntity.attrDamage = prismarineArrowDamage.get().floatValue();
-        PrismarineArrowEntity.attrKnockback = prismarineArrowKnockback.get();
-        PrismarineArrowEntity.attrPierce = prismarineArrowPierce.get().byteValue();
+        PrismarineArrowEntity.baseDamage = prismarineArrowDamage.get().floatValue();
+        PrismarineArrowEntity.baseKnockback = prismarineArrowKnockback.get();
+        PrismarineArrowEntity.basePierce = prismarineArrowPierce.get().byteValue();
 
-        QuartzArrowEntity.attrDamage = quartzArrowDamage.get().floatValue();
-        QuartzArrowEntity.attrKnockback = quartzArrowKnockback.get();
-        QuartzArrowEntity.attrPierce = quartzArrowPierce.get().byteValue();
+        QuartzArrowEntity.baseDamage = quartzArrowDamage.get().floatValue();
+        QuartzArrowEntity.baseKnockback = quartzArrowKnockback.get();
+        QuartzArrowEntity.basePierce = quartzArrowPierce.get().byteValue();
 
-        SlimeArrowEntity.attrBounces = slimeArrowBounces.get();
-        SlimeArrowEntity.attrKnockback = slimeArrowKnockback.get();
+        SlimeArrowEntity.baseBounces = slimeArrowBounces.get();
+        SlimeArrowEntity.baseKnockback = slimeArrowKnockback.get();
         SlimeArrowEntity.knockbackBoost = slimeArrowKnockbackBoost.get();
+
+        SporeArrowEntity.effectRadius = sporeArrowRadius.get();
+
+        VerdantArrowEntity.effectRadius = verdantArrowRadius.get();
     }
     // endregion
 
@@ -190,6 +204,10 @@ public class ModConfig {
     private static IntValue slimeArrowBounces;
     private static IntValue slimeArrowKnockback;
     private static BooleanValue slimeArrowKnockbackBoost;
+
+    private static IntValue sporeArrowRadius;
+
+    private static IntValue verdantArrowRadius;
     // endregion
 
     // region CONFIGURATION

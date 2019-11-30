@@ -13,14 +13,14 @@ import static cofh.archersparadox.init.ModReferences.QUARTZ_ARROW_ITEM;
 
 public class QuartzArrowEntity extends AbstractArrowEntity {
 
-    public static float attrDamage = 2.5F;
-    public static int attrKnockback = 1;
-    public static byte attrPierce = 0;
+    public static float baseDamage = 2.5F;
+    public static int baseKnockback = 1;
+    public static byte basePierce = 0;
 
     public QuartzArrowEntity(EntityType<? extends QuartzArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = attrDamage;
+        this.damage = baseDamage;
         setKnockbackStrength(0);
         setPierceLevel((byte) 0);
     }
@@ -28,7 +28,7 @@ public class QuartzArrowEntity extends AbstractArrowEntity {
     public QuartzArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(QUARTZ_ARROW_ENTITY, shooter, worldIn);
-        this.damage = attrDamage;
+        this.damage = baseDamage;
         setKnockbackStrength(0);
         setPierceLevel((byte) 0);
     }
@@ -36,7 +36,7 @@ public class QuartzArrowEntity extends AbstractArrowEntity {
     public QuartzArrowEntity(World worldIn, double x, double y, double z) {
 
         super(QUARTZ_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = attrDamage;
+        this.damage = baseDamage;
         setKnockbackStrength(0);
         setPierceLevel((byte) 0);
     }
@@ -50,13 +50,13 @@ public class QuartzArrowEntity extends AbstractArrowEntity {
     @Override
     public void setKnockbackStrength(int knockbackStrengthIn) {
 
-        super.setKnockbackStrength(attrKnockback + knockbackStrengthIn);
+        super.setKnockbackStrength(baseKnockback + knockbackStrengthIn);
     }
 
     @Override
     public void setPierceLevel(byte level) {
 
-        super.setPierceLevel((byte) (attrPierce + level));
+        super.setPierceLevel((byte) (basePierce + level));
     }
 
     @Override

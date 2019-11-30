@@ -28,12 +28,12 @@ import static cofh.lib.util.references.CoreReferences.CHILLED;
 
 public class FrostArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 1.5F;
-    private static final int EFFECT_AMPLIFIER = 1;
-    private static final int EFFECT_DURATION = 100;
-    private static final int CLOUD_DURATION = 20;
+    private static int CLOUD_DURATION = 20;
 
-    public static int attrRadius = 4;
+    public static float baseDamage = 1.5F;
+    public static int effectAmplifier = 1;
+    public static int effectDuration = 100;
+    public static int effectRadius = 4;
     public static boolean permanentLava = true;
     public static boolean permanentWater = true;
 
@@ -42,19 +42,19 @@ public class FrostArrowEntity extends AbstractArrowEntity {
     public FrostArrowEntity(EntityType<? extends FrostArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public FrostArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(FROST_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public FrostArrowEntity(World worldIn, double x, double y, double z) {
 
         super(FROST_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     @Override
@@ -68,13 +68,16 @@ public class FrostArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
+        if (Utils.isClientWorld(world)) {
+            return;
+        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            if (attrRadius > 0) {
-                Utils.freezeNearbyGround(this, world, this.getPosition(), attrRadius);
-                Utils.freezeNearbyWater(this, world, this.getPosition(), attrRadius, permanentWater);
-                Utils.freezeNearbyLava(this, world, this.getPosition(), attrRadius, permanentLava);
-                discharged = true;
+            if (effectRadius > 0) {
+                Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
+                Utils.freezeNearbyWater(this, world, this.getPosition(), effectRadius, permanentWater);
+                Utils.freezeNearbyLava(this, world, this.getPosition(), effectRadius, permanentLava);
                 makeAreaOfEffectCloud();
+                discharged = true;
             }
             if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {
                 this.inGround = false;
@@ -96,7 +99,7 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         }
         if (!entity.isInvulnerable() && entity instanceof LivingEntity) {
             LivingEntity living = (LivingEntity) entity;
-            living.addPotionEffect(new EffectInstance(CHILLED, EFFECT_DURATION, EFFECT_AMPLIFIER, false, false));
+            living.addPotionEffect(new EffectInstance(CHILLED, effectDuration, effectAmplifier, false, false));
         }
     }
 
@@ -280,7 +283,7 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         cloud.setParticleData(ParticleTypes.ITEM_SNOWBALL);
         cloud.setDuration(CLOUD_DURATION);
         cloud.setWaitTime(0);
-        cloud.setRadiusPerTick((attrRadius - cloud.getRadius()) / (float) cloud.getDuration());
+        cloud.setRadiusPerTick((effectRadius - cloud.getRadius()) / (float) cloud.getDuration());
 
         world.addEntity(cloud);
     }

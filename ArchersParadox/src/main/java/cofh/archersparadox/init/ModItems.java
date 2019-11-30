@@ -30,12 +30,12 @@ public class ModItems {
         ITEMS.register(ID_PHANTASMAL_ARROW, () -> new PhantasmalArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_PRISMARINE_ARROW, () -> new PrismarineArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_QUARTZ_ARROW, () -> new QuartzArrowItem(new Item.Properties().group(group)));
-        ITEMS.register(ID_REDSTONE_ARROW, () -> new RedstoneArrowItem(new Item.Properties().group(group)));
+        // ITEMS.register(ID_REDSTONE_ARROW, () -> new RedstoneArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_SHULKER_ARROW, () -> new ShulkerArrowItem(new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
         ITEMS.register(ID_SLIME_ARROW, () -> new SlimeArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_SPORE_ARROW, () -> new SporeArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_TRAINING_ARROW, () -> new TrainingArrowItem(new Item.Properties().group(group)));
-        // ITEMS.register(ID_VERDANT_ARROW, () -> new VerdantArrowItem(new Item.Properties().group(group)));
+        ITEMS.register(ID_VERDANT_ARROW, () -> new VerdantArrowItem(new Item.Properties().group(group)));
     }
 
 }

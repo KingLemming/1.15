@@ -53,9 +53,9 @@ public final class ArcheryHelper {
             }
             float arrowVelocity = BowItem.getArrowVelocity(charge);
 
-            float accuracyMod = bowObj.getAccuracyModifier(bow, ammo, shooter) * ammoObj.getAccuracyModifier(bow, ammo, shooter);
-            float damageMod = bowObj.getDamageModifier(bow, ammo, shooter) * ammoObj.getDamageModifier(bow, ammo, shooter);
-            float velocityMod = bowObj.getVelocityModifier(bow, ammo, shooter) * ammoObj.getVelocityModifier(bow, ammo, shooter);
+            float accuracyMod = bowObj.getAccuracyModifier(bow, ammo, shooter);
+            float damageMod = bowObj.getDamageModifier(bow, ammo, shooter);
+            float velocityMod = bowObj.getVelocityModifier(bow, ammo, shooter);
 
             if (arrowVelocity >= 0.1F) {
                 if (Utils.isServerWorld(world)) {
@@ -75,7 +75,7 @@ public final class ArcheryHelper {
                     float volleyPitch = encVolley > 0 ? MathHelper.clamp(90.0F + shooter.rotationPitch / encVolley, 0.0F, 5.0F) : 0;
 
                     for (int shot = 0; shot < numArrows; ++shot) {
-                        AbstractArrowEntity arrow = createArrow(world, bow, ammo, shooter);
+                        AbstractArrowEntity arrow = createArrow(world, ammo, shooter);
                         arrow.shoot(shooter, shooter.rotationPitch - volleyPitch * shot, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod);// * (1 + shot * 2));
                         arrow.setDamage(arrow.getDamage() * damageMod);
 
@@ -121,15 +121,10 @@ public final class ArcheryHelper {
         return isArrow(ammo) ? ((ArrowItem) ammo.getItem()).createArrow(world, ammo, shooter) : ((ArrowItem) Items.ARROW).createArrow(world, ammo, shooter);
     }
 
-    public static AbstractArrowEntity createArrow(World world, ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+    public static AbstractArrowEntity createArrow(World world, ItemStack ammo, PlayerEntity shooter) {
 
-        LazyOptional<IArcheryBowItem> bowCap = bow.getCapability(BOW_ITEM_CAPABILITY);
         LazyOptional<IArcheryAmmoItem> ammoCap = ammo.getCapability(AMMO_ITEM_CAPABILITY);
-
-        if (bowCap.map(cap -> cap.handleArrowCreation(bow, ammo)).orElse(false) && ammoCap.map(cap -> cap.deferArrowCreation(bow, ammo)).orElse(true)) {
-            return bowCap.map(cap -> cap.createArrowEntity(world, bow, ammo, shooter)).orElse(createDefaultArrow(world, ammo, shooter));
-        }
-        return ammoCap.map(cap -> cap.createArrowEntity(world, bow, ammo, shooter)).orElse(createDefaultArrow(world, ammo, shooter));
+        return ammoCap.map(cap -> cap.createArrowEntity(world, ammo, shooter)).orElse(createDefaultArrow(world, ammo, shooter));
     }
 
     public static ItemStack findAmmo(PlayerEntity shooter) {

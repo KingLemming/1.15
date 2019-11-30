@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:arrow"
+      "item": "cofh_core:ectoplasm"
     },
     "X": {
-      "item": "cofh_core:ectoplasm"
+      "item": "minecraft:arrow"
     }
   },
   "result": {
     "item": "archers_paradox:phantasmal_arrow",
-    "count": 4
+    "count": 2
   }
 }

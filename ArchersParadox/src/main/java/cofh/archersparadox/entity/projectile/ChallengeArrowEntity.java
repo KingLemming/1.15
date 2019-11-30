@@ -21,37 +21,38 @@ import static cofh.archersparadox.init.ModReferences.*;
 
 public class ChallengeArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 0.0F;
+    private static float baseDamage = 0.0F;
     private static final int DISTANCE_FACTOR = 4;
     private static final int DURATION = 200;
     private static final int MIN_DURATION = 40;
 
+    public boolean discharged;
     private BlockPos origin;
 
     public ChallengeArrowEntity(EntityType<? extends ChallengeArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public ChallengeArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(CHALLENGE_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
         this.origin = shooter.getPosition();
     }
 
     public ChallengeArrowEntity(World worldIn, double x, double y, double z) {
 
         super(CHALLENGE_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
         this.origin = new BlockPos(x, y, z);
     }
 
     @Override
     protected ItemStack getArrowStack() {
 
-        return new ItemStack(CHALLENGE_ARROW_ITEM);
+        return discharged ? new ItemStack(TRAINING_ARROW_ITEM) : new ItemStack(CHALLENGE_ARROW_ITEM);
     }
 
     @Override
