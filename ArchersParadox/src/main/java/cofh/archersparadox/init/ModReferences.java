@@ -32,20 +32,28 @@ public class ModReferences {
     public static final String ID_TRAINING_ARROW = ID_ARCHERS_PARADOX + ":training_arrow";
     public static final String ID_VERDANT_ARROW = ID_ARCHERS_PARADOX + ":verdant_arrow";
 
+    public static final String ID_EFFECT_CHALLENGE_COMPLETE = ID_ARCHERS_PARADOX + ":challenge_complete";
+    public static final String ID_EFFECT_CHALLENGE_MISS = ID_ARCHERS_PARADOX + ":challenge_miss";
+    public static final String ID_EFFECT_CHALLENGE_STREAK = ID_ARCHERS_PARADOX + ":challenge_streak";
     public static final String ID_EFFECT_TRAINING_MISS = ID_ARCHERS_PARADOX + ":training_miss";
     public static final String ID_EFFECT_TRAINING_STREAK = ID_ARCHERS_PARADOX + ":training_streak";
-    public static final String ID_EFFECT_TRAINING_TARGET = ID_ARCHERS_PARADOX + ":training_target";
     // endregion
 
     // region EFFECTS
+    @ObjectHolder(ID_EFFECT_CHALLENGE_COMPLETE)
+    public static final Effect CHALLENGE_COMPLETE = null;
+
+    @ObjectHolder(ID_EFFECT_CHALLENGE_MISS)
+    public static final Effect CHALLENGE_MISS = null;
+
+    @ObjectHolder(ID_EFFECT_CHALLENGE_STREAK)
+    public static final Effect CHALLENGE_STREAK = null;
+
     @ObjectHolder(ID_EFFECT_TRAINING_MISS)
     public static final Effect TRAINING_MISS = null;
 
     @ObjectHolder(ID_EFFECT_TRAINING_STREAK)
     public static final Effect TRAINING_STREAK = null;
-
-    @ObjectHolder(ID_EFFECT_TRAINING_TARGET)
-    public static final Effect TRAINING_TARGET = null;
     // endregion
 
     // region ENTITIES

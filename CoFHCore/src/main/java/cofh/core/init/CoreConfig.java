@@ -77,7 +77,7 @@ public class CoreConfig {
         clientEnableEnchantmentDescriptions = CLIENT_CONFIG.comment(comment).define("Show Enchantment Descriptions", enableEnchantmentDescriptions);
 
         comment = "If TRUE, Item descriptions will be added to their tooltips if possible.";
-        clientEnableItemDescriptions = CLIENT_CONFIG.comment(comment).define("Show Enchantment Descriptions", enableItemDescriptions);
+        clientEnableItemDescriptions = CLIENT_CONFIG.comment(comment).define("Show Item Descriptions", enableItemDescriptions);
 
         CLIENT_CONFIG.pop();
         clientSpec = CLIENT_CONFIG.build();

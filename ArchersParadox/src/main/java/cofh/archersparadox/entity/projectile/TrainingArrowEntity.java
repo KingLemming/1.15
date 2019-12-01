@@ -21,8 +21,9 @@ import static cofh.archersparadox.init.ModReferences.*;
 
 public class TrainingArrowEntity extends AbstractArrowEntity {
 
-    private static float DAMAGE = 0.0F;
+    private static float baseDamage = 0.0F;
     private static final int DISTANCE_FACTOR = 4;
+    private static final int MAX_DISTANCE = 10;
     private static final int DURATION = 200;
     private static final int MIN_DURATION = 40;
 
@@ -31,20 +32,20 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
     public TrainingArrowEntity(EntityType<? extends TrainingArrowEntity> entityIn, World worldIn) {
 
         super(entityIn, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
     }
 
     public TrainingArrowEntity(World worldIn, LivingEntity shooter) {
 
         super(TRAINING_ARROW_ENTITY, shooter, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
         this.origin = shooter.getPosition();
     }
 
     public TrainingArrowEntity(World worldIn, double x, double y, double z) {
 
         super(TRAINING_ARROW_ENTITY, x, y, z, worldIn);
-        this.damage = DAMAGE;
+        this.damage = baseDamage;
         this.origin = new BlockPos(x, y, z);
     }
 
@@ -66,7 +67,9 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
                     shooter.removeActivePotionEffect(TRAINING_STREAK);
 
                     Vec3d originVec = new Vec3d(origin == null ? shooter.getPosition() : origin);
-                    int distanceBonus = (int) (DISTANCE_FACTOR * originVec.distanceTo(this.getPositionVec()));
+                    double distance = originVec.distanceTo(this.getPositionVec());
+                    int distanceBonus = (int) (DISTANCE_FACTOR * distance);
+
                     shooter.addPotionEffect(new EffectInstance(TRAINING_MISS, Math.max(MIN_DURATION, DURATION - distanceBonus), 0, false, false));
                     shooter.world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.BLOCK_GLASS_BREAK, shooter.getSoundCategory(), 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                 }
@@ -84,17 +87,20 @@ public class TrainingArrowEntity extends AbstractArrowEntity {
 
             if (getShooter() instanceof PlayerEntity && !Utils.isFakePlayer(getShooter())) {
                 PlayerEntity shooter = (PlayerEntity) getShooter();
-                if (shooter != target && !shooter.isPotionActive(TRAINING_MISS) && !target.isPotionActive(TRAINING_TARGET)) {
+                if (shooter != target && !shooter.isPotionActive(TRAINING_MISS)) {
                     int trainingCount = 0;
                     if (shooter.isPotionActive(TRAINING_STREAK)) {
                         trainingCount = shooter.getActivePotionEffect(TRAINING_STREAK).getAmplifier() + 1;
                     }
                     Vec3d originVec = new Vec3d(origin == null ? shooter.getPosition() : origin);
-                    int distanceBonus = (int) (DISTANCE_FACTOR * originVec.distanceTo(this.getPositionVec()));
-                    shooter.addPotionEffect(new EffectInstance(TRAINING_STREAK, DURATION + distanceBonus, trainingCount, false, false));
-                    target.addPotionEffect(new EffectInstance(TRAINING_TARGET, Math.max(MIN_DURATION, DURATION - distanceBonus), 0, false, false));
-                    shooter.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1.0F, Math.min(0.6F + 0.05F * trainingCount, 1.1F));
-                    shooter.world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.BLOCK_NOTE_BLOCK_CHIME, shooter.getSoundCategory(), 1.0F, Math.min(0.6F + 0.05F * trainingCount, 1.1F));
+                    double distance = originVec.distanceTo(this.getPositionVec());
+
+                    if (distance >= Math.min(MAX_DISTANCE, trainingCount)) {
+                        int distanceBonus = (int) (DISTANCE_FACTOR * distance);
+                        shooter.addPotionEffect(new EffectInstance(TRAINING_STREAK, DURATION + distanceBonus, trainingCount, false, false));
+                        shooter.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1.0F, Math.min(0.6F + 0.05F * trainingCount, 1.1F));
+                        shooter.world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.BLOCK_NOTE_BLOCK_CHIME, shooter.getSoundCategory(), 1.0F, Math.min(0.6F + 0.05F * trainingCount, 1.1F));
+                    }
                 }
             }
         }

@@ -51,20 +51,21 @@ public class ExplosiveArrowEntity extends AbstractArrowEntity {
     @Override
     protected void onHit(RayTraceResult raytraceResultIn) {
 
+        super.onHit(raytraceResultIn);
+
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             world.createExplosion(this, posX, posY, posZ, (float) (explosionStrength + (knockbackBoost ? knockbackStrength : 0)), explosionsCauseFire && isBurning(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.remove();
         }
-        super.onHit(raytraceResultIn);
     }
 
     @Override
     protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
 
+        super.func_213868_a(raytraceResultIn);
+
         Entity entity = raytraceResultIn.getEntity();
-        if (this.isBurning() && !(entity instanceof EndermanEntity)) {
-            entity.setFire(5);
-        }
+        entity.hurtResistantTime = 0;
     }
 
     @Override

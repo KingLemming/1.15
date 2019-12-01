@@ -61,17 +61,16 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0 && !isInWater()) {
-                if (effectDuration - 5 > 0) {
-                    Utils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
+                if (Utils.isServerWorld(world)) {
+                    if (effectDuration - 5 > 0) {
+                        Utils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
+                    }
+                    Utils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true);
+                    Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius);
+                    makeAreaOfEffectCloud();
                 }
-                Utils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true);
-                Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius);
-                makeAreaOfEffectCloud();
                 discharged = true;
             }
         }
@@ -152,9 +151,6 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
 
     private void makeAreaOfEffectCloud() {
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
         cloud.setRadius(1);
         cloud.setParticleData(ParticleTypes.FLAME);

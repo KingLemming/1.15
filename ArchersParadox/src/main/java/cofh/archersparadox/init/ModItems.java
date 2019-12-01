@@ -25,6 +25,7 @@ public class ModItems {
         ITEMS.register(ID_ENDER_ARROW, () -> new EnderArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_EXPLOSIVE_ARROW, () -> new ExplosiveArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_FROST_ARROW, () -> new FrostArrowItem(new Item.Properties().group(group)));
+        // ITEMS.register(ID_GLOWSTONE_ARROW, () -> new GlowstoneARrowItem(new Item.Properties().group(ggroup)));
         ITEMS.register(ID_LIGHTNING_ARROW, () -> new LightningArrowItem(new Item.Properties().group(group)));
         // ITEMS.register(ID_MAGMA_ARROW, () -> new MagmaArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_PHANTASMAL_ARROW, () -> new PhantasmalArrowItem(new Item.Properties().group(group)));

@@ -21,7 +21,7 @@ public class CoreItems {
 
     public static void register() {
 
-        ITEMS.register(ID_ECTOPLASM, () -> new ItemCoFH(new Item.Properties().group(ItemGroup.MISC)));
+        ITEMS.register(ID_ECTOPLASM, () -> new ItemCoFH(new Item.Properties().group(ItemGroup.BREWING)));
     }
 
     public static void registerHorseArmorOverrides() {

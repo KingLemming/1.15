@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
+    "Y#Z",
     "#X#",
-    " # "
+    "Z#Y"
   ],
   "key": {
     "#": {
@@ -11,6 +11,12 @@
     },
     "X": {
       "item": "minecraft:end_crystal"
+    },
+    "Y": {
+      "item": "minecraft:end_stone"
+    },
+    "Z": {
+      "item": "minecraft:popped_chorus_fruit"
     }
   },
   "result": {

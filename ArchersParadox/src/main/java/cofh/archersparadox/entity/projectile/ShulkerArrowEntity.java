@@ -12,7 +12,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -25,13 +28,15 @@ import static cofh.archersparadox.init.ModReferences.SHULKER_ARROW_ITEM;
 public class ShulkerArrowEntity extends AbstractArrowEntity {
 
     private static final DataParameter<Integer> TARGET = EntityDataManager.createKey(ShulkerArrowEntity.class, DataSerializers.VARINT);
-    private static int ID_NO_TARGET = -1;
+    private static final int ID_NO_TARGET = -1;
 
-    private static float MAX_VELOCITY = 3.0F;
+    private static final float MAX_VELOCITY = 3.0F;
     private static final double SEEK_DISTANCE = 5.0;
     private static final double SEEK_FACTOR = 0.2;
     private static final double SEEK_ANGLE = Math.PI / 6.0;
     private static final double SEEK_THRESHOLD = 0.5;
+
+    public static int effectDuration = 100;
 
     public ShulkerArrowEntity(EntityType<? extends ShulkerArrowEntity> entityIn, World worldIn) {
 
@@ -59,6 +64,18 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
     protected ItemStack getArrowStack() {
 
         return new ItemStack(SHULKER_ARROW_ITEM);
+    }
+
+    @Override
+    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
+
+        super.func_213868_a(raytraceResultIn);
+
+        Entity entity = raytraceResultIn.getEntity();
+        if (!entity.isInvulnerable() && entity instanceof LivingEntity && effectDuration > 0) {
+            LivingEntity living = (LivingEntity) entity;
+            living.addPotionEffect(new EffectInstance(Effects.LEVITATION, effectDuration));
+        }
     }
 
     @Override

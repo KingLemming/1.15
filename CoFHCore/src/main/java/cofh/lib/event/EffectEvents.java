@@ -2,7 +2,6 @@ package cofh.lib.event;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
@@ -75,20 +74,18 @@ public class EffectEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
+    public static void handleXpChangeEvent(PlayerXpEvent.XpChange event) {
 
-        if (event.isCanceled()) {
+        if (event.isCanceled() || event.getAmount() <= 0) {
             return;
         }
         PlayerEntity player = event.getPlayer();
-        ExperienceOrbEntity orb = event.getOrb();
 
         EffectInstance clarityEffect = player.getActivePotionEffect(CLARITY);
-        if (clarityEffect == null || orb.getPersistentData().contains(ID_EFFECT_CLARITY)) {
+        if (clarityEffect == null) {
             return;
         }
-        orb.xpValue = getXPValue(orb.xpValue, clarityEffect.getAmplifier());
-        orb.getPersistentData().putBoolean(ID_EFFECT_CLARITY, true);
+        event.setAmount(getXPValue(event.getAmount(), clarityEffect.getAmplifier()));
     }
 
     // region HELPERS

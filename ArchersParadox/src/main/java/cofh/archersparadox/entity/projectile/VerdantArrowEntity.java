@@ -60,14 +60,13 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0 && !isInWater()) {
-                Utils.transformGrass(this, world, this.getPosition(), effectRadius);
-                Utils.growPlants(this, world, this.getPosition(), effectRadius, effectGrowCount);
-                makeAreaOfEffectCloud();
+                if (Utils.isServerWorld(world)) {
+                    Utils.transformGrass(this, world, this.getPosition(), effectRadius);
+                    Utils.growPlants(this, world, this.getPosition(), effectRadius, effectGrowCount);
+                    makeAreaOfEffectCloud();
+                }
                 discharged = true;
             }
         }
@@ -144,9 +143,6 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
 
     private void makeAreaOfEffectCloud() {
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
         cloud.setRadius(1);
         cloud.setParticleData(ParticleTypes.HAPPY_VILLAGER);

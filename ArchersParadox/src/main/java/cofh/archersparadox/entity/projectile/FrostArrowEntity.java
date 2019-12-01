@@ -68,15 +68,14 @@ public class FrostArrowEntity extends AbstractArrowEntity {
 
         super.onHit(raytraceResultIn);
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0) {
-                Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                Utils.freezeNearbyWater(this, world, this.getPosition(), effectRadius, permanentWater);
-                Utils.freezeNearbyLava(this, world, this.getPosition(), effectRadius, permanentLava);
-                makeAreaOfEffectCloud();
+                if (Utils.isServerWorld(world)) {
+                    Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
+                    Utils.freezeNearbyWater(this, world, this.getPosition(), effectRadius, permanentWater);
+                    Utils.freezeNearbyLava(this, world, this.getPosition(), effectRadius, permanentLava);
+                    makeAreaOfEffectCloud();
+                }
                 discharged = true;
             }
             if (inBlockState != null && inBlockState.getFluidState() != Fluids.EMPTY.getDefaultState()) {
@@ -275,9 +274,6 @@ public class FrostArrowEntity extends AbstractArrowEntity {
 
     private void makeAreaOfEffectCloud() {
 
-        if (Utils.isClientWorld(world)) {
-            return;
-        }
         AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
         cloud.setRadius(1);
         cloud.setParticleData(ParticleTypes.ITEM_SNOWBALL);

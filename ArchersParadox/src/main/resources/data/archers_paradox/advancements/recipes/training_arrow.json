@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "minecraft:recipes/combat/arrow",
   "rewards": {
     "recipes": [
       "archers_paradox:training_arrow"
@@ -16,6 +16,12 @@
         ]
       }
     },
+    "has_pre_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:arrow"
+      }
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -27,6 +33,9 @@
     [
       "has_rabbit_hide",
       "has_the_recipe"
+    ],
+    [
+      "has_pre_recipe"
     ]
   ]
 }

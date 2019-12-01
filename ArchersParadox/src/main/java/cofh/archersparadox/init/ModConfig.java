@@ -59,7 +59,7 @@ public class ModConfig {
 
         SERVER_CONFIG.push("Blaze");
         comment = "Adjust this to set the burn duration for the Blaze Arrow (in seconds). Nearby targets will burn for 5 seconds less than a direct target.";
-        blazeArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Fire Duration", BlazeArrowEntity.effectDuration, 5, 30);
+        blazeArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Burn Duration", BlazeArrowEntity.effectDuration, 5, 30);
         comment = "Adjust this to set the effect radius for the Blaze Arrow. Set to 0 to disable, but that would be boring.";
         blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
@@ -109,6 +109,11 @@ public class ModConfig {
         quartzArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", QuartzArrowEntity.baseKnockback, 0, 16);
         comment = "Adjust this to set the inherent pierce of the Quartz Arrow. Base Arrow value is 0.";
         quartzArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", QuartzArrowEntity.basePierce, 0, 16);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Shulker");
+        comment = "Adjust this to set the effect duration (Levitation) for the Shulker Arrow. Set to 0 to disable.";
+        shulkerArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Effect Duration", ShulkerArrowEntity.effectDuration, 0, 9600);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Slime");
@@ -166,6 +171,8 @@ public class ModConfig {
         QuartzArrowEntity.baseKnockback = quartzArrowKnockback.get();
         QuartzArrowEntity.basePierce = quartzArrowPierce.get().byteValue();
 
+        ShulkerArrowEntity.effectDuration = shulkerArrowDuration.get();
+
         SlimeArrowEntity.baseBounces = slimeArrowBounces.get();
         SlimeArrowEntity.baseKnockback = slimeArrowKnockback.get();
         SlimeArrowEntity.knockbackBoost = slimeArrowKnockbackBoost.get();
@@ -204,6 +211,8 @@ public class ModConfig {
     private static IntValue slimeArrowBounces;
     private static IntValue slimeArrowKnockback;
     private static BooleanValue slimeArrowKnockbackBoost;
+
+    private static IntValue shulkerArrowDuration;
 
     private static IntValue sporeArrowRadius;
 

@@ -101,7 +101,7 @@ public class PreservationEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
+    public static void handlePickupXpEvent(PlayerXpEvent.PickupXp event) {
 
         if (event.isCanceled()) {
             return;

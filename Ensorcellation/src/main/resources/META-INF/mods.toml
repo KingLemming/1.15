@@ -28,7 +28,7 @@ Suitable for both lightly and heavily modded worlds.
 [[dependencies.ensorcellation]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1,)"
+    versionRange="[28.1.90,)"
     ordering="NONE"
     side="BOTH"
 

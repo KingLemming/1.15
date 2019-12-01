@@ -2,40 +2,31 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:slime_arrow"
+      "cofh_core:ectoplasm"
     ]
   },
   "criteria": {
-    "has_slime_ball": {
+    "has_ghast_tear": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:slime_ball"
+            "item": "minecraft:ghast_tear"
           }
         ]
-      }
-    },
-    "has_pre_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "minecraft:arrow"
       }
     },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:slime_arrow"
+        "recipe": "cofh_core:ectoplasm"
       }
     }
   },
   "requirements": [
     [
-      "has_slime_ball",
+      "has_ghast_tear",
       "has_the_recipe"
-    ],
-    [
-      "has_pre_recipe"
     ]
   ]
 }

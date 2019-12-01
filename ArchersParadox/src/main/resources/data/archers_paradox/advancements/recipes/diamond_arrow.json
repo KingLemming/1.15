@@ -16,6 +16,12 @@
         ]
       }
     },
+    "has_pre_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:arrow"
+      }
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -27,6 +33,9 @@
     [
       "has_diamond",
       "has_the_recipe"
+    ],
+    [
+      "has_pre_recipe"
     ]
   ]
 }

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:slime_arrow"
+      "archers_paradox:verdant_arrow"
     ]
   },
   "criteria": {
-    "has_slime_ball": {
+    "has_grass_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:slime_ball"
+            "item": "minecraft:grass_block"
           }
         ]
       }
@@ -25,13 +25,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:slime_arrow"
+        "recipe": "archers_paradox:verdant_arrow"
       }
     }
   },
   "requirements": [
     [
-      "has_slime_ball",
+      "has_grass_block",
       "has_the_recipe"
     ],
     [

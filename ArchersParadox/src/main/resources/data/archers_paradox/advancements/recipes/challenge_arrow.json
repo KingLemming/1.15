@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:slime_arrow"
+      "archers_paradox:challenge_arrow"
     ]
   },
   "criteria": {
-    "has_slime_ball": {
+    "has_experience_bottle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:slime_ball"
+            "item": "minecraft:experience_bottle"
           }
         ]
       }
@@ -19,19 +19,19 @@
     "has_pre_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:arrow"
+        "recipe": "archers_paradox:training_arrow"
       }
     },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:slime_arrow"
+        "recipe": "archers_paradox:challenge_arrow"
       }
     }
   },
   "requirements": [
     [
-      "has_slime_ball",
+      "has_experience_bottle",
       "has_the_recipe"
     ],
     [

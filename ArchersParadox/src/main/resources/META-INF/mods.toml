@@ -26,7 +26,7 @@ Suitable for both lightly and heavily modded worlds.
 [[dependencies.archers_paradox]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1,)"
+    versionRange="[28.1.90,)"
     ordering="NONE"
     side="BOTH"
 

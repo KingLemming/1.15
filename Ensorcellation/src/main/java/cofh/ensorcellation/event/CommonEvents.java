@@ -377,7 +377,7 @@ public class CommonEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void handlePlayerPickupXpEvent(PlayerXpEvent.PickupXp event) {
+    public static void handlePickupXpEvent(PlayerXpEvent.PickupXp event) {
 
         PlayerEntity player = event.getPlayer();
         ExperienceOrbEntity orb = event.getOrb();

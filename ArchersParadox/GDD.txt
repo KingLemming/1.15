@@ -1,4 +1,4 @@
-CoFH Archery
+Archer's Paradox
 ================================================================================
 -Purpose is to provide useful, fun, and balanced-ish features relating to
     bows, arrows, and crossbows.
@@ -22,15 +22,17 @@ Lightning - Calls down a lightning bolt, if it hits outside.
 Quirky
 ----------------------------------------
 Ender - Teleports player to location; or swaps places with the target.
+Explosive - This one is obvious.
 Phantasmal - Flies through blocks, unlimited pierce, ignores gravity and armor. Glows.
 Shulker - Homes in on a target.
 Slime - Bounces! +Large Knockback
 
 Terraforming
 ----------------------------------------
-Spore - Transforms Dirt into Podzol and Grass into Mycelium in an area. Also turns cows into Mooshrooms.
+Spore - Transforms Dirt and Grass into Mycelium in an area.
+Verdant - Transforms Dirt into Grass and Grass into Mycelium in an area. Also grows crops/plants.
 
 Minigame
 ----------------------------------------
 Challenge - No damage, stacks "Archer's Gambit" effect. XP for maintaining streak, penalty for losing it.
-Training - No damage, stacks a "Hit Streak" effect. Advancements.
+Training - No damage, stacks a "Hit Streak" effect. Advancements (NYI).

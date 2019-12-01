@@ -6,9 +6,9 @@ import net.minecraft.potion.EffectType;
 import java.util.Collections;
 import java.util.List;
 
-public class TrainingEffect extends EffectCoFH {
+public class NeutralEffect extends EffectCoFH {
 
-    public TrainingEffect(EffectType typeIn, int liquidColorIn) {
+    public NeutralEffect(EffectType typeIn, int liquidColorIn) {
 
         super(typeIn, liquidColorIn);
     }

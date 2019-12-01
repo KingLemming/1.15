@@ -26,6 +26,6 @@ Also contains a number of optional gameplay tweaks for convenience.
 [[dependencies.cofh_core]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1,)"
+    versionRange="[28.1.90,)"
     ordering="NONE"
     side="BOTH"
