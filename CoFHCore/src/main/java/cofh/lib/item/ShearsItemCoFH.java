@@ -12,7 +12,13 @@ public class ShearsItemCoFH extends ShearsItem {
         super(builder);
     }
 
-    public ShearsItemCoFH setParamas(IItemTier tier) {
+    public ShearsItemCoFH(IItemTier tier, Properties builder) {
+
+        super(builder);
+        setParams(tier);
+    }
+
+    public ShearsItemCoFH setParams(IItemTier tier) {
 
         this.enchantability = tier.getEnchantability();
         return this;

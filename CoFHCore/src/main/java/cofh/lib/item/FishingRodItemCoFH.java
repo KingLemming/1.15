@@ -21,6 +21,12 @@ public class FishingRodItemCoFH extends FishingRodItem {
         super(builder);
     }
 
+    public FishingRodItemCoFH(IItemTier tier, Properties builder) {
+
+        super(builder);
+        setParams(tier);
+    }
+
     public FishingRodItemCoFH setParams(IItemTier tier) {
 
         enchantability = tier.getEnchantability();

@@ -4,8 +4,10 @@ include 'CoFHCore'
 include 'ArchersParadox'
 include 'Ensorcellation'
 //include 'Quartermastery'
-//include 'ThermalSeries'
+
+include 'ThermalCore'
 
 include 'CoFHPotions'
+include 'CoFHTools'
 
 include 'Workspace'

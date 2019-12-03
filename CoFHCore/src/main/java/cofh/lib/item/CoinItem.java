@@ -1,6 +1,6 @@
 package cofh.lib.item;
 
-public class CoinItem extends CountedItemCoFH {
+public class CoinItem extends CountedItem {
 
     public CoinItem(Properties builder) {
 

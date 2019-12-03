@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "cofh_test:block/crops/plant_bell_pepper_9"
-  }
-}

@@ -19,7 +19,7 @@ public class CoFHPotions {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_POTIONS);
 
-    public static final DeferredRegisterCoFH<Potion> POTIONS = new DeferredRegisterCoFH<>(ForgeRegistries.POTION_TYPES, ID_ENSORCELLATION);
+    public static final DeferredRegisterCoFH<Potion> POTIONS = new DeferredRegisterCoFH<>(ForgeRegistries.POTION_TYPES, ID_COFH_POTIONS);
 
     public CoFHPotions() {
 

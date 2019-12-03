@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/cofh/feedback"
+
+[[mods]]
+    modId="cofh_tools"
+    version="0.0.1a"
+    displayName="CoFH Tools"
+    credits="Team CoFH"
+    authors="King Lemming"
+    description='''
+CoFH Tools!
+'''
+[[dependencies.cofh_tools]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.cofh_tools]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28.1.90,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.cofh_tools]]
+    modId="cofh_core"
+    mandatory=true
+    versionRange="[0.2,)"
+    ordering="NONE"
+    side="BOTH"

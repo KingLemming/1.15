@@ -1,0 +1,30 @@
+{
+  "block.thermal.enderium_block": "Block of Enderium",
+  "block.thermal.lumium_block": "Block of Lumium",
+  "block.thermal.signalum_block": "Block of Signalum",
+
+  "itemGroup.thermal.blocks": "Thermal Series: Blocks",
+  "itemGroup.thermal.items": "Thermal Series: Items",
+  "itemGroup.thermal.tools": "Thermal Series: Tools",
+
+  "item.thermal.enderium_coin": "Enderium Coin",
+  "item.thermal.enderium_dust": "Enderium Blend",
+  "item.thermal.enderium_gear": "Enderium Gear",
+  "item.thermal.enderium_ingot": "Enderium Ingot",
+  "item.thermal.enderium_nugget": "Enderium Nugget",
+  "item.thermal.enderium_plate": "Enderium Plate",
+
+  "item.thermal.lumium_coin": "Lumium Coin",
+  "item.thermal.lumium_dust": "Lumium Blend",
+  "item.thermal.lumium_gear": "Lumium Gear",
+  "item.thermal.lumium_ingot": "Lumium Ingot",
+  "item.thermal.lumium_nugget": "Lumium Nugget",
+  "item.thermal.lumium_plate": "Lumium Plate",
+
+  "item.thermal.signalum_coin": "Signalum Coin",
+  "item.thermal.signalum_dust": "Signalum Blend",
+  "item.thermal.signalum_gear": "Signalum Gear",
+  "item.thermal.signalum_ingot": "Signalum Ingot",
+  "item.thermal.signalum_nugget": "Signalum Nugget",
+  "item.thermal.signalum_plate": "Signalum Plate"
+}

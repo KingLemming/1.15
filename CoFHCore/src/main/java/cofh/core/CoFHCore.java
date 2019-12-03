@@ -75,8 +75,8 @@ public class CoFHCore {
 
         ArcheryEvents.register();
         AOEEvents.register();
-        ShieldEvents.register();
         EffectEvents.register();
+        ShieldEvents.register();
 
         // packetHandler = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "network"));
     }

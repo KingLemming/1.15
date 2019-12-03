@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/cofh/feedback"
+
+[[mods]]
+    modId="thermal"
+    version="0.1.0a"
+    displayName="Thermal Series"
+    credits="Team CoFH"
+    authors="King Lemming"
+    description='''
+Thermal Series!
+'''
+[[dependencies.thermal]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thermal]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28.1.90,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thermal]]
+    modId="cofh_core"
+    mandatory=true
+    versionRange="[0.2,)"
+    ordering="NONE"
+    side="BOTH"

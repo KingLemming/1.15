@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "cofh_test:block/crops/plant_onion_3"
-  }
-}

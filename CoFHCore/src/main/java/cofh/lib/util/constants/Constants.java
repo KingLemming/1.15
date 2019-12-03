@@ -40,8 +40,9 @@ public class Constants {
     public static final String ID_COFH_LIB = "cofh_lib";
 
     public static final String ID_COFH_POTIONS = "cofh_potions";
+    public static final String ID_COFH_TOOLS = "cofh_tools";
 
-    public static final String ID_THERMAL_SERIES = "thermal";
+    public static final String ID_THERMAL = "thermal";
 
     public static final String ID_THERMAL_ATOMICS = "thermal_atomics";
     public static final String ID_THERMAL_CULTIVATION = "thermal_cultivation";

@@ -22,6 +22,12 @@ public class BowItemCoFH extends BowItem implements IArcheryBowItem {
         super(builder);
     }
 
+    public BowItemCoFH(IItemTier tier, Properties builder) {
+
+        super(builder);
+        setParams(tier);
+    }
+
     public BowItemCoFH setParams(IItemTier tier) {
 
         this.enchantability = tier.getEnchantability();
