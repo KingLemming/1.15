@@ -55,9 +55,26 @@ minecraft {
                 // Quartermastery {
                 //     source project(':Quartermastery').sourceSets.main
                 // }
+
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
                 }
+                ThermalCultivation {
+                    source project(':ThermalCultivation').sourceSets.main
+                }
+                ThermalDynamics {
+                    source project(':ThermalDynamics').sourceSets.main
+                }
+                ThermalExpansion {
+                    source project(':ThermalExpansion').sourceSets.main
+                }
+                ThermalFoundation {
+                    source project(':ThermalFoundation').sourceSets.main
+                }
+                ThermalInnovation {
+                    source project(':ThermalInnovation').sourceSets.main
+                }
+
                 CoFHPotions {
                     source project(':CoFHPotions').sourceSets.main
                 }
@@ -93,9 +110,26 @@ minecraft {
                 // Quartermastery {
                 //     source project(':Quartermastery').sourceSets.main
                 // }
+
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
                 }
+                ThermalCultivation {
+                    source project(':ThermalCultivation').sourceSets.main
+                }
+                ThermalDynamics {
+                    source project(':ThermalDynamics').sourceSets.main
+                }
+                ThermalExpansion {
+                    source project(':ThermalExpansion').sourceSets.main
+                }
+                ThermalFoundation {
+                    source project(':ThermalFoundation').sourceSets.main
+                }
+                ThermalInnovation {
+                    source project(':ThermalInnovation').sourceSets.main
+                }
+
                 CoFHPotions {
                     source project(':CoFHPotions').sourceSets.main
                 }
@@ -113,10 +147,18 @@ dependencies {
 
     compile project(':CoFHCore')
     //compile project(':CoFHWorld')
+
     compile project(':ArchersParadox')
     compile project(':Ensorcellation')
     //compile project(':Quartermastery')
+
     compile project(':ThermalCore')
+    compile project(':ThermalCultivation')
+    compile project(':ThermalDynamics')
+    compile project(':ThermalExpansion')
+    compile project(':ThermalFoundation')
+    compile project(':ThermalInnovation')
+
     compile project(':CoFHPotions')
     compile project(':CoFHTools')
 }

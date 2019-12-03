@@ -1,0 +1,42 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/cofh/feedback"
+
+[[mods]]
+    modId="thermal_foundation"
+    version="0.1.0a"
+    displayName="Thermal Foundation"
+    displayURL="https://teamcofh.com/"
+    logoFile="logo.png"
+    credits="Team CoFH"
+    authors="King Lemming"
+    description='''
+Thermal Foundation!
+'''
+[[dependencies.thermal_foundation]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thermal_foundation]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28.1.90,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thermal_foundation]]
+    modId="cofh_core"
+    mandatory=true
+    versionRange="[0.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thermal_foundation]]
+    modId="thermal"
+    mandatory=true
+    versionRange="[0.1.0a]"
+    ordering="NONE"
+    side="BOTH"

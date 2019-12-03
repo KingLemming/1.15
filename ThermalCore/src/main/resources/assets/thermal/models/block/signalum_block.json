@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:blocks/signalum_block"
+    "all": "thermal:block/signalum_block"
   }
 }

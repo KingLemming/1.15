@@ -16,7 +16,7 @@ import net.minecraftforge.common.ToolType;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.ThermalReferences.*;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCoreBlocks {

@@ -5,9 +5,9 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class TCoreReferences {
+public class ThermalReferences {
 
-    private TCoreReferences() {
+    private ThermalReferences() {
 
     }
 

@@ -6,6 +6,11 @@ include 'Ensorcellation'
 //include 'Quartermastery'
 
 include 'ThermalCore'
+include 'ThermalCultivation'
+include 'ThermalDynamics'
+include 'ThermalExpansion'
+include 'ThermalFoundation'
+include 'ThermalInnovation'
 
 include 'CoFHPotions'
 include 'CoFHTools'

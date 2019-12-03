@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:blocks/lumium_block"
+    "all": "thermal:block/lumium_block"
   }
 }
