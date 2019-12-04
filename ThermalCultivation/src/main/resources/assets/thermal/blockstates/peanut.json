@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thermal:block/peanut_0"
+    },
+    "age=1": {
+      "model": "thermal:block/peanut_1"
+    },
+    "age=2": {
+      "model": "thermal:block/peanut_2"
+    },
+    "age=3": {
+      "model": "thermal:block/peanut_3"
+    },
+    "age=4": {
+      "model": "thermal:block/peanut_4"
+    },
+    "age=5": {
+      "model": "thermal:block/peanut_5"
+    },
+    "age=6": {
+      "model": "thermal:block/peanut_6"
+    },
+    "age=7": {
+      "model": "thermal:block/peanut_7"
+    },
+    "age=8": {
+      "model": "thermal:block/peanut_8"
+    },
+    "age=9": {
+      "model": "thermal:block/peanut_9"
+    },
+    "age=10": {
+      "model": "thermal:block/peanut_10"
+    }
+  }
+}

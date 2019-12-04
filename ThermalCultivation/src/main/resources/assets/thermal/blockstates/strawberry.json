@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thermal:block/strawberry_0"
+    },
+    "age=1": {
+      "model": "thermal:block/strawberry_1"
+    },
+    "age=2": {
+      "model": "thermal:block/strawberry_2"
+    },
+    "age=3": {
+      "model": "thermal:block/strawberry_3"
+    },
+    "age=4": {
+      "model": "thermal:block/strawberry_4"
+    },
+    "age=5": {
+      "model": "thermal:block/strawberry_5"
+    },
+    "age=6": {
+      "model": "thermal:block/strawberry_6"
+    },
+    "age=7": {
+      "model": "thermal:block/strawberry_7"
+    },
+    "age=8": {
+      "model": "thermal:block/strawberry_8"
+    },
+    "age=9": {
+      "model": "thermal:block/strawberry_9"
+    },
+    "age=10": {
+      "model": "thermal:block/strawberry_10"
+    }
+  }
+}

@@ -44,7 +44,7 @@ public class TCoreBlocks {
         BLOCKS.register(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(15)));
         BLOCKS.register(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).lightValue(3)));
 
-        ItemGroup group = TCoreItemGroups.THERMAL_BLOCKS;
+        ItemGroup group = ThermalItemGroups.THERMAL_BLOCKS;
 
         ITEMS.register(ID_SIGNALUM_BLOCK, () -> new BlockItemCoFH(SIGNALUM_BLOCK, new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
         ITEMS.register(ID_LUMIUM_BLOCK, () -> new BlockItemCoFH(LUMIUM_BLOCK, new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));

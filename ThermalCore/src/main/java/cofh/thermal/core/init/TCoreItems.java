@@ -24,48 +24,30 @@ public class TCoreItems {
 
     private static void registerVanillaItems() {
 
-        ItemGroup group = ItemGroup.MISC;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
-        register("dust_coal", group);
-        register("dust_charcoal", group);
-        register("dust_obsidian", group);
+        //        register("dust_coal", group);
+        //        register("dust_charcoal", group);
+        //        register("dust_obsidian", group);
+        //
+        //        register("ingot_wood", group);
+        //        register("dust_wood", group);
+        //        register("gear_wood", group);
+        //
+        //        // register("ingot_stone", group);
+        //        // register("dust_stone", group);
+        //        register("gear_stone", group);
 
-        register("ingot_wood", group);
-        register("dust_wood", group);
-        register("gear_wood", group);
+        registerMetalSet("iron", group, true);
+        registerMetalSet("gold", group, true);
 
-        // register("ingot_stone", group);
-        // register("dust_stone", group);
-        register("gear_stone", group);
-
-        // Ingot
-        // Nugget
-        register("dust_iron", group);
-        register("gear_iron", group);
-        register("plate_iron", group);
-
-        // Ingot
-        // Nugget
-        register("dust_gold", group);
-        register("gear_gold", group);
-        register("plate_gold", group);
-
-        // Gem
-        register("nugget_diamond", group);
-        register("dust_diamond", group);
-        register("gear_diamond", group);
-        register("plate_diamond", group);
-
-        // Gem
-        register("nugget_emerald", group);
-        register("dust_emerald", group);
-        register("gear_emerald", group);
-        register("plate_emerald", group);
+        registerGemSet("diamond", group, true);
+        registerGemSet("emerald", group, true);
     }
 
     private static void registerThermalItems() {
 
-        ItemGroup group = TCoreItemGroups.THERMAL_ITEMS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
         Rarity rarity = Rarity.UNCOMMON;
 
         registerMetalSet("signalum", group, rarity);
@@ -76,7 +58,7 @@ public class TCoreItems {
     // region HELPERS
     private static RegistryObject<Item> register(String name, ItemGroup group) {
 
-        return ITEMS.register(name, () -> new ItemCoFH(new Item.Properties().group(group)));
+        return register(name, group, Rarity.COMMON);
     }
 
     private static RegistryObject<Item> register(String name, ItemGroup group, Rarity rarity) {
@@ -86,18 +68,40 @@ public class TCoreItems {
 
     private static void registerMetalSet(String prefix, ItemGroup group) {
 
-        registerMetalSet(prefix, group, Rarity.COMMON);
-    }
-
-    private static void registerGemSet(String prefix, ItemGroup group) {
-
-        registerGemSet(prefix, group, Rarity.COMMON);
+        registerMetalSet(prefix, group, Rarity.COMMON, false);
     }
 
     private static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity) {
 
-        ITEMS.register(prefix + "_ingot", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        registerMetalSet(prefix, group, rarity, false);
+    }
+
+    private static void registerMetalSet(String prefix, ItemGroup group, boolean vanilla) {
+
+        registerMetalSet(prefix, group, Rarity.COMMON, vanilla);
+    }
+
+    private static void registerGemSet(String prefix, ItemGroup group) {
+
+        registerGemSet(prefix, group, Rarity.COMMON, false);
+    }
+
+    private static void registerGemSet(String prefix, ItemGroup group, Rarity rarity) {
+
+        registerGemSet(prefix, group, rarity, false);
+    }
+
+    private static void registerGemSet(String prefix, ItemGroup group, boolean vanilla) {
+
+        registerGemSet(prefix, group, Rarity.COMMON, vanilla);
+    }
+
+    private static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity, boolean vanilla) {
+
+        if (!vanilla) {
+            ITEMS.register(prefix + "_ingot", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+            ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        }
         ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)));
@@ -105,15 +109,17 @@ public class TCoreItems {
         ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
     }
 
-    private static void registerGemSet(String prefix, ItemGroup group, Rarity rarity) {
+    private static void registerGemSet(String prefix, ItemGroup group, Rarity rarity, boolean vanilla) {
 
-        ITEMS.register(prefix + "_gem", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        if (!vanilla) {
+            ITEMS.register(prefix + "_gem", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        }
         ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)));
 
-        ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
+        // ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
     }
     // endregion
 }

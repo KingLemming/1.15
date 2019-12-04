@@ -3,7 +3,7 @@ package cofh.thermal.foundation.init;
 import cofh.lib.item.CoinItem;
 import cofh.lib.item.CountedItem;
 import cofh.lib.item.ItemCoFH;
-import cofh.thermal.core.init.TCoreItemGroups;
+import cofh.thermal.core.init.ThermalItemGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
@@ -19,25 +19,47 @@ public class TFndItems {
 
     public static void register() {
 
-        ItemGroup group = TCoreItemGroups.THERMAL_ITEMS;
+        registerThermalMetals();
+    }
+
+    private static void registerThermalMetals() {
+
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerMetalSet("copper", group);
-        registerMetalSet("tin", group);
         registerMetalSet("silver", group);
+
+        registerMetalSet("tin", group);
         registerMetalSet("lead", group);
-        registerMetalSet("aluminum", group);
+
         registerMetalSet("nickel", group);
         registerMetalSet("platinum", group);
-        registerMetalSet("iridium", group);
 
-        registerMetalSet("steel", group);
         registerMetalSet("bronze", group);
         registerMetalSet("electrum", group);
         registerMetalSet("invar", group);
         registerMetalSet("constantan", group);
+    }
+
+    private static void registerThermalGems() {
+
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerGemSet("ruby", group);
         registerGemSet("sapphire", group);
+    }
+
+    private static void registerExtraMetals() {
+
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
+
+        registerMetalSet("aluminum", group);
+        registerMetalSet("zinc", group);
+        registerMetalSet("titanium", group);
+        registerMetalSet("osmium", group);
+        registerMetalSet("iridium", group);
+
+        registerMetalSet("steel", group);
     }
 
     // region HELPERS

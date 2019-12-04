@@ -15,6 +15,10 @@ public class ThermalReferences {
     public static final String ID_SIGNALUM_BLOCK = ID_THERMAL + ":signalum_block";
     public static final String ID_LUMIUM_BLOCK = ID_THERMAL + ":lumium_block";
     public static final String ID_ENDERIUM_BLOCK = ID_THERMAL + ":enderium_block";
+
+    private static final String ID_REDSTONE_FLUID = ID_THERMAL + ":fluid_redstone";
+    private static final String ID_GLOWSTONE_FLUID = ID_THERMAL + ":fluid_glowstone";
+    private static final String ID_ENDER_FLUID = ID_THERMAL + ":fluid_ender";
     // endregion
 
     // region BLOCKS

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thermal:block/onion_0"
+    },
+    "age=1": {
+      "model": "thermal:block/onion_1"
+    },
+    "age=2": {
+      "model": "thermal:block/onion_2"
+    },
+    "age=3": {
+      "model": "thermal:block/onion_3"
+    },
+    "age=4": {
+      "model": "thermal:block/onion_4"
+    },
+    "age=5": {
+      "model": "thermal:block/onion_5"
+    },
+    "age=6": {
+      "model": "thermal:block/onion_6"
+    },
+    "age=7": {
+      "model": "thermal:block/onion_7"
+    }
+  }
+}
