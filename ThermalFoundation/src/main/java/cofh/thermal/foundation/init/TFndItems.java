@@ -20,6 +20,7 @@ public class TFndItems {
     public static void register() {
 
         registerThermalMetals();
+        registerThermalGems();
     }
 
     private static void registerThermalMetals() {
@@ -27,11 +28,9 @@ public class TFndItems {
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerMetalSet("copper", group);
-        registerMetalSet("silver", group);
-
         registerMetalSet("tin", group);
+        registerMetalSet("silver", group);
         registerMetalSet("lead", group);
-
         registerMetalSet("nickel", group);
         registerMetalSet("platinum", group);
 
@@ -102,7 +101,7 @@ public class TFndItems {
         ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
         ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)));
 
-        ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
+        // ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
     }
     // endregion
 }

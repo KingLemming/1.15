@@ -47,7 +47,9 @@ public class BlockItemCoFH extends BlockItem {
         if (!showInItemGroup) {
             return;
         }
-        super.fillItemGroup(group, items);
+        if (getBlock() != null) {
+            super.fillItemGroup(group, items);
+        }
     }
 
     @Override
