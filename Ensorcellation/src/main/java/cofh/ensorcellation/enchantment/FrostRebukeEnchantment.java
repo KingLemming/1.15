@@ -68,7 +68,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         if (!(attacker instanceof LivingEntity)) {
             return;
         }
-        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.func_222189_b(FROST_REBUKE, user);
+        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.getRandomItemWithEnchantment(FROST_REBUKE, user);
         if (shouldHit(level, user.getRNG())) {
             onHit(user, attacker, level);
             if (stack != null) {

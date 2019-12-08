@@ -68,7 +68,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
             Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS);
 
             if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
-                this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
+                this.onEntityHit((EntityRayTraceResult) raytraceResultIn);
             } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
                 Vec3d motion = getMotion();
                 if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || bounces >= maxBounces) {
@@ -102,9 +102,9 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
+    protected void onEntityHit(EntityRayTraceResult raytraceResultIn) {
 
-        super.func_213868_a(raytraceResultIn);
+        super.onEntityHit(raytraceResultIn);
 
         Entity entity = raytraceResultIn.getEntity();
         if (!isInWater() && !(entity instanceof EndermanEntity)) {
@@ -145,7 +145,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
 
         super.tick();
 
-        if (!this.inGround || this.func_203047_q()) {
+        if (!this.inGround || this.getNoClip()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();
                 double d1 = vec3d.x;

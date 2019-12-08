@@ -56,7 +56,7 @@ public class ThornsEnchantmentImp extends EnchantmentOverride {
     public void onUserHurt(LivingEntity user, Entity attacker, int level) {
 
         Random rand = user.getRNG();
-        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.func_222189_b(THORNS, user);
+        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.getRandomItemWithEnchantment(THORNS, user);
         if (shouldHit(level, rand)) {
             if (attacker != null) {
                 attacker.attackEntityFrom(DamageSource.causeThornsDamage(user), (float) ThornsEnchantment.getDamage(level, rand));

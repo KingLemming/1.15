@@ -113,7 +113,7 @@ public class EnderArrowEntity extends AbstractArrowEntity {
 
         super.tick();
 
-        if (!this.inGround || this.func_203047_q()) {
+        if (!this.inGround || this.getNoClip()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();
                 double d1 = vec3d.x;

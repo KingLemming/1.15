@@ -74,6 +74,9 @@ minecraft {
                 ThermalInnovation {
                     source project(':ThermalInnovation').sourceSets.main
                 }
+                ThermalLocomotion {
+                    source project(':ThermalLocomotion').sourceSets.main
+                }
 
                 CoFHPotions {
                     source project(':CoFHPotions').sourceSets.main
@@ -129,6 +132,9 @@ minecraft {
                 ThermalInnovation {
                     source project(':ThermalInnovation').sourceSets.main
                 }
+                ThermalLocomotion {
+                    source project(':ThermalLocomotion').sourceSets.main
+                }
 
                 CoFHPotions {
                     source project(':CoFHPotions').sourceSets.main
@@ -158,6 +164,7 @@ dependencies {
     compile project(':ThermalExpansion')
     compile project(':ThermalFoundation')
     compile project(':ThermalInnovation')
+    compile project(':ThermalLocomotion')
 
     compile project(':CoFHPotions')
     compile project(':CoFHTools')

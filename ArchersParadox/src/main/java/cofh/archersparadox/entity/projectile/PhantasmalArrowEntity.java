@@ -55,10 +55,10 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
+    protected void onEntityHit(EntityRayTraceResult raytraceResultIn) {
 
         Vec3d motion = getMotion();
-        super.func_213868_a(raytraceResultIn);
+        super.onEntityHit(raytraceResultIn);
 
         if (isAlive()) {
             setMotion(motion);
@@ -95,7 +95,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
         }
         this.baseTick();
 
-        boolean flag = this.func_203047_q();
+        boolean flag = this.getNoClip();
         Vec3d vec3d = this.getMotion();
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt(horizontalMag(vec3d));
@@ -146,7 +146,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
             vec3d2 = raytraceresult.getHitVec();
         }
         while (this.isAlive()) {
-            EntityRayTraceResult entityraytraceresult = this.func_213866_a(vec3d1, vec3d2);
+            EntityRayTraceResult entityraytraceresult = this.rayTraceEntities(vec3d1, vec3d2);
             if (entityraytraceresult != null) {
                 raytraceresult = entityraytraceresult;
             }

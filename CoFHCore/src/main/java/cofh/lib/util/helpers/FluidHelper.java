@@ -51,6 +51,11 @@ public class FluidHelper {
         return color;
     }
 
+    public static int fluidHashcode(FluidStack stack) {
+
+        return stack.getTag() != null ? stack.getFluid().hashCode() + 31 * stack.getTag().hashCode() : stack.getFluid().hashCode();
+    }
+
     // region POTION HELPERS
     public static boolean hasPotionTag(FluidStack stack) {
 

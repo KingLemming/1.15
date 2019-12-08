@@ -73,9 +73,9 @@ public class SporeArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
+    protected void onEntityHit(EntityRayTraceResult raytraceResultIn) {
 
-        super.func_213868_a(raytraceResultIn);
+        super.onEntityHit(raytraceResultIn);
 
         // TODO: Mob transforms go here, if any.
         //        Entity entity = raytraceResultIn.getEntity();
@@ -109,7 +109,7 @@ public class SporeArrowEntity extends AbstractArrowEntity {
 
         super.tick();
 
-        if (!this.inGround || this.func_203047_q()) {
+        if (!this.inGround || this.getNoClip()) {
             if (Utils.isClientWorld(world) && !isInWater()) {
                 Vec3d vec3d = this.getMotion();
                 double d1 = vec3d.x;

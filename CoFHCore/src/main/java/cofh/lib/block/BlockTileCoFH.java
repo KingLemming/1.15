@@ -8,6 +8,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
@@ -44,13 +45,13 @@ public abstract class BlockTileCoFH extends Block implements IDismantleable {
 
     // region IDismantleable
     @Override
-    public ArrayList<ItemStack> dismantleBlock(IBlockReader world, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
+    public ArrayList<ItemStack> dismantleBlock(World world, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
 
         return null;
     }
 
     @Override
-    public boolean canDismantle(IBlockReader world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public boolean canDismantle(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 
         return false;
     }

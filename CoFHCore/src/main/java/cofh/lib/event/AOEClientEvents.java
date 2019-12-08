@@ -69,7 +69,7 @@ public class AOEClientEvents {
         if (renderEntity == null) {
             return;
         }
-        RayTraceResult traceResult = renderEntity.func_213324_a(controller.getBlockReachDistance(), event.getPartialTicks(), false);
+        RayTraceResult traceResult = renderEntity.pick(controller.getBlockReachDistance(), event.getPartialTicks(), false);
         if (traceResult.getType() != RayTraceResult.Type.BLOCK) {
             return;
         }

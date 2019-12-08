@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "thermal:lumium_rail",
+    "thermal:lumium_rail_crossover"
+  ]
+}

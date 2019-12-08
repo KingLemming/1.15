@@ -76,7 +76,7 @@ public class ChallengeArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void func_213868_a(EntityRayTraceResult raytraceResultIn) {
+    protected void onEntityHit(EntityRayTraceResult raytraceResultIn) {
 
         Entity entity = raytraceResultIn.getEntity();
         if (entity instanceof LivingEntity) {

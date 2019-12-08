@@ -1,7 +1,5 @@
 package cofh.thermal.core.init;
 
-import cofh.thermal.core.fluid.ThermalFluid;
-
 public class TCoreFluids {
 
     private TCoreFluids() {

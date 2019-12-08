@@ -20,6 +20,9 @@
   "block.thermal.iridium_block": "Block of Iridium",
   "block.thermal.steel_block": "Block of Steel",
 
+  "block.thermal.lumium_rail": "Lumium Rail",
+  "block.thermal.lumium_rail_crossover": "Lumium Crossover Rail",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.items": "Thermal Series: Items",
   "itemGroup.thermal.tools": "Thermal Series: Tools",

@@ -64,7 +64,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
             this.setHitSound(SoundEvents.BLOCK_SLIME_BLOCK_HIT);
 
             if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
-                this.func_213868_a((EntityRayTraceResult) raytraceResultIn);
+                this.onEntityHit((EntityRayTraceResult) raytraceResultIn);
             } else if (raytraceResultIn.getType() == RayTraceResult.Type.BLOCK) {
                 Vec3d motion = getMotion();
                 if (motion.lengthSquared() < MIN_VELOCITY || isInWater() || curBounces >= maxBounces) {
@@ -132,7 +132,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
 
         super.tick();
 
-        if (!this.inGround || this.func_203047_q()) {
+        if (!this.inGround || this.getNoClip()) {
             if (Utils.isClientWorld(world)) {
                 Vec3d vec3d = this.getMotion();
                 double d1 = vec3d.x;

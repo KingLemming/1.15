@@ -4,12 +4,15 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.properties.RailShape;
 import net.minecraft.util.Direction.Plane;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
@@ -60,7 +63,7 @@ public class Constants {
     public static final String ID_REDSTONE_ARSENAL = "redstonearsenal";
     // endregion
 
-    // region BLOCK PROPERTIES
+    // region BLOCKSTATE PROPERTIES
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
     public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
@@ -69,6 +72,14 @@ public class Constants {
     public static final IntegerProperty AGE_TALL_PERENNIAL = IntegerProperty.create("age", 0, 15);
     public static final DirectionProperty FACING_ALL = DirectionProperty.create("facing");
     public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Plane.HORIZONTAL);
+
+    private static final Predicate<RailShape> PRED_STRAIGHT = dir -> dir != RailShape.NORTH_EAST && dir != RailShape.NORTH_WEST && dir != RailShape.SOUTH_EAST && dir != RailShape.SOUTH_WEST;
+    private static final Predicate<RailShape> PRED_NO_SLOPE = dir -> dir != RailShape.ASCENDING_EAST && dir != RailShape.ASCENDING_WEST && dir != RailShape.ASCENDING_NORTH && dir != RailShape.ASCENDING_SOUTH;
+
+    public static final EnumProperty<RailShape> RAIL_DEFAULT = EnumProperty.create("shape", RailShape.class);
+    public static final EnumProperty<RailShape> RAIL_STRAIGHT = EnumProperty.create("shape", RailShape.class, PRED_STRAIGHT::test);
+    public static final EnumProperty<RailShape> RAIL_FLAT = EnumProperty.create("shape", RailShape.class, PRED_NO_SLOPE::test);
+    public static final EnumProperty<RailShape> RAIL_STRAIGHT_FLAT = EnumProperty.create("shape", RailShape.class, dir -> PRED_STRAIGHT.test(dir) && PRED_NO_SLOPE.test(dir));
     // endregion
 
     // region GLOBALS

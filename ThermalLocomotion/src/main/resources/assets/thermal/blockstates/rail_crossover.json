@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "shape=north_south": {
+      "model": "thermal:block/rail_crossover"
+    },
+    "shape=east_west": {
+      "model": "thermal:block/rail_crossover",
+      "y": 90
+    }
+  }
+}

@@ -67,7 +67,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
         if (!(attacker instanceof LivingEntity)) {
             return;
         }
-        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.func_222189_b(DISPLACEMENT, user);
+        Map.Entry<EquipmentSlotType, ItemStack> stack = EnchantmentHelper.getRandomItemWithEnchantment(DISPLACEMENT, user);
         if (shouldHit(level, user.getRNG())) {
             onHit(user, attacker, level);
             if (stack != null) {

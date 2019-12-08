@@ -34,6 +34,9 @@ public class ThermalReferences {
     public static final String ID_REDSTONE_FLUID = ID_THERMAL + ":fluid_redstone";
     public static final String ID_GLOWSTONE_FLUID = ID_THERMAL + ":fluid_glowstone";
     public static final String ID_ENDER_FLUID = ID_THERMAL + ":fluid_ender";
+
+    public static final String ID_LUMIUM_RAIL = ID_THERMAL + ":lumium_rail";
+    public static final String ID_LUMIUM_RAIL_CROSSOVER = ID_THERMAL + ":lumium_rail_crossover";
     // endregion
 
     // region BLOCKS
@@ -82,4 +85,11 @@ public class ThermalReferences {
     @ObjectHolder(ID_SAPPHIRE_BLOCK)
     public static final Block SAPPHIRE_BLOCK = null;
     // endregion
+
+    @ObjectHolder(ID_LUMIUM_RAIL)
+    public static final Block LUMIUM_RAIL = null;
+
+    @ObjectHolder(ID_LUMIUM_RAIL_CROSSOVER)
+    public static final Block LUMIUM_RAIL_CROSSOVER = null;
+
 }

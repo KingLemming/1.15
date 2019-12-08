@@ -1,0 +1,6 @@
+{
+  "parent": "block/rail_flat",
+  "textures": {
+    "rail": "thermal:block/wooden_rail_corner"
+  }
+}
