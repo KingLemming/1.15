@@ -16,6 +16,15 @@
   "block.thermal.silver_block": "Block of Silver",
   "block.thermal.tin_block": "Block of Tin",
 
+  "block.thermal.copper_ore": "Copper Ore",
+  "block.thermal.lead_ore": "Lead Ore",
+  "block.thermal.nickel_ore": "Nickel Ore",
+  "block.thermal.platinum_ore": "Platinum Ore",
+  "block.thermal.ruby_ore": "Ruby Ore",
+  "block.thermal.sapphire_ore": "Sapphire Ore",
+  "block.thermal.silver_ore": "Silver Ore",
+  "block.thermal.tin_ore": "Tin Ore",
+
   "block.thermal.aluminum_block": "Block of Aluminum",
   "block.thermal.iridium_block": "Block of Iridium",
   "block.thermal.steel_block": "Block of Steel",

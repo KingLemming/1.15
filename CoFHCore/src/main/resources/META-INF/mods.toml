@@ -20,12 +20,12 @@ Also contains a number of optional gameplay tweaks for convenience.
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.cofh_core]]
     modId="forge"
     mandatory=true
     versionRange="[28.1.90,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"

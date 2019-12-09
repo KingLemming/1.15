@@ -9,7 +9,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.helpers.StringHelper.decompose;
@@ -25,6 +27,7 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
     private final IForgeRegistry<T> type;
     private final String modid;
     private List<Supplier<? extends T>> entries = new ArrayList<>();
+    private Map<ResourceLocation, RegistryObject> registryObjects = new HashMap<>();
 
     public DeferredRegisterCoFH(IForgeRegistry<T> reg, String modid) {
 
@@ -32,26 +35,74 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
         this.modid = modid;
     }
 
-    public <I extends T> RegistryObject<I> register(final String resourceLoc, final Supplier<I> sup) {
+    // region REGISTRATION
+    public synchronized <I extends T> RegistryObject<I> register(final String resourceLoc, final Supplier<I> sup) {
 
         return register(decompose(modid, resourceLoc, ':'), sup);
     }
 
-    public <I extends T> RegistryObject<I> register(final String[] resourceLoc, final Supplier<I> sup) {
+    private synchronized <I extends T> RegistryObject<I> register(final String[] resourceLoc, final Supplier<I> sup) {
 
         return register(resourceLoc[0], resourceLoc[1], sup);
     }
 
-    public <I extends T> RegistryObject<I> register(final String modid, final String name, final Supplier<I> sup) {
+    public synchronized <I extends T> RegistryObject<I> register(final String modid, final String name, final Supplier<I> sup) {
 
         return register(new ResourceLocation(modid, name), sup);
     }
 
-    public <I extends T> RegistryObject<I> register(final ResourceLocation resourceLoc, final Supplier<I> sup) {
+    public synchronized <I extends T> RegistryObject<I> register(final ResourceLocation resourceLoc, final Supplier<I> sup) {
 
         entries.add(() -> sup.get().setRegistryName(resourceLoc));
-        return RegistryObject.of(resourceLoc.toString(), this.type);
+        RegistryObject<I> reg = RegistryObject.of(resourceLoc, this.type);
+        registryObjects.put(resourceLoc, reg);
+        return reg;
     }
+    // endregion
+
+    // region OBJECT RETRIEVAL
+    public T get(final String resourceLoc) {
+
+        return get(decompose(modid, resourceLoc, ':'));
+    }
+
+    private T get(final String[] resourceLoc) {
+
+        return get(resourceLoc[0], resourceLoc[1]);
+    }
+
+    public T get(final String modid, final String name) {
+
+        return get(new ResourceLocation(modid, name));
+    }
+
+    public T get(final ResourceLocation resourceLoc) {
+
+        RegistryObject<T> reg = registryObjects.get(resourceLoc);
+        return reg == null ? null : reg.get();
+    }
+
+    // region SUPPLIER RETRIEVAL
+    public RegistryObject<T> getSup(final String resourceLoc) {
+
+        return getSup(decompose(modid, resourceLoc, ':'));
+    }
+
+    private RegistryObject<T> getSup(final String[] resourceLoc) {
+
+        return getSup(resourceLoc[0], resourceLoc[1]);
+    }
+
+    public RegistryObject<T> getSup(final String modid, final String name) {
+
+        return getSup(new ResourceLocation(modid, name));
+    }
+
+    public RegistryObject<T> getSup(final ResourceLocation resourceLoc) {
+
+        return registryObjects.get(resourceLoc);
+    }
+    // endregion
 
     public void register(IEventBus bus) {
 

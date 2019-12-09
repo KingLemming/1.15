@@ -17,26 +17,26 @@ Thermal Dynamics!
     modId="minecraft"
     mandatory=true
     versionRange="[1.14.4]"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.thermal_dynamics]]
     modId="forge"
     mandatory=true
     versionRange="[28.1.90,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.thermal_dynamics]]
     modId="cofh_core"
     mandatory=true
     versionRange="[0.2,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.thermal_dynamics]]
     modId="thermal"
     mandatory=true
     versionRange="[0.1.0a]"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
