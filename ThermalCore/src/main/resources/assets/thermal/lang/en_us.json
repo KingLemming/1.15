@@ -29,8 +29,17 @@
   "block.thermal.iridium_block": "Block of Iridium",
   "block.thermal.steel_block": "Block of Steel",
 
+  "block.thermal.lumium_activator_rail": "Lumium Activator Rail",
+  "block.thermal.lumium_crossover_rail": "Lumium Crossover Rail",
+  "block.thermal.lumium_detector_rail": "Lumium Detector Rail",
+  "block.thermal.lumium_powered_rail": "Powered Lumium Rail",
   "block.thermal.lumium_rail": "Lumium Rail",
-  "block.thermal.lumium_rail_crossover": "Lumium Crossover Rail",
+
+  "block.thermal.prismarine_activator_rail": "Prismarine Activator Rail",
+  "block.thermal.prismarine_crossover_rail": "Prismarine Crossover Rail",
+  "block.thermal.prismarine_detector_rail": "Prismarine Detector Rail",
+  "block.thermal.prismarine_powered_rail": "Powered Prismarine Rail",
+  "block.thermal.prismarine_rail": "Prismarine Rail",
 
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.items": "Thermal Series: Items",

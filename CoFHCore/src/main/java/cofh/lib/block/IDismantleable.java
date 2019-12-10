@@ -1,8 +1,11 @@
 package cofh.lib.block;
 
+import cofh.lib.util.Utils;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -18,11 +21,25 @@ public interface IDismantleable {
     /**
      * Dismantles the block. If returnDrops is true, the drop(s) should be placed into the player's inventory.
      */
-    ArrayList<ItemStack> dismantleBlock(World world, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops);
+    default ArrayList<ItemStack> dismantleBlock(World world, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
+
+        ItemStack dropBlock = new ItemStack((IItemProvider) this);
+        world.setBlockState(pos, Blocks.AIR.getDefaultState());
+
+        if (!returnDrops) {
+            Utils.dropDismantleStackIntoWorld(dropBlock, world, pos);
+        }
+        ArrayList<ItemStack> ret = new ArrayList<>();
+        ret.add(dropBlock);
+        return ret;
+    }
 
     /**
      * Return true if the block can be dismantled. The criteria for this is entirely up to the block.
      */
-    boolean canDismantle(World world, BlockPos pos, BlockState state, PlayerEntity player);
+    default boolean canDismantle(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+
+        return true;
+    }
 
 }

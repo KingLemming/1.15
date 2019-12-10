@@ -1,6 +1,0 @@
-{
-  "parent": "block/template_rail_raised_ne",
-  "textures": {
-    "rail": "thermal:block/wooden_rail"
-  }
-}

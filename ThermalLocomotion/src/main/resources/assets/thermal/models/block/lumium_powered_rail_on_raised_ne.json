@@ -1,0 +1,6 @@
+{
+  "parent": "block/template_rail_raised_ne",
+  "textures": {
+    "rail": "thermal:block/lumium_powered_rail_on"
+  }
+}
