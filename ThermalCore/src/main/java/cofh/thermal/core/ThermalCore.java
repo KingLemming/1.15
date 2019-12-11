@@ -33,6 +33,12 @@ public class ThermalCore {
     public static final DeferredRegisterCoFH<TileEntityType<?>> TILE_ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL);
     public static final DeferredRegisterCoFH<ContainerType<?>> CONTAINERS = new DeferredRegisterCoFH<>(ForgeRegistries.CONTAINERS, ID_THERMAL);
 
+    static {
+        TCoreBlocks.register();
+        TCoreFluids.register();
+        TCoreItems.register();
+    }
+
     public ThermalCore() {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -45,10 +51,6 @@ public class ThermalCore {
         BLOCKS.register(modEventBus);
         FLUIDS.register(modEventBus);
         ITEMS.register(modEventBus);
-
-        TCoreBlocks.register();
-        TCoreFluids.register();
-        TCoreItems.register();
     }
 
     // region INITIALIZATION

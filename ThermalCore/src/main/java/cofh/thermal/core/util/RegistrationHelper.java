@@ -44,6 +44,11 @@ public class RegistrationHelper {
     // endregion
 
     // region ITEMS
+    public static RegistryObject<Item> registerItem(String name, Supplier<Item> sup) {
+
+        return ITEMS.register(name, sup);
+    }
+
     public static RegistryObject<Item> registerItem(String name) {
 
         return registerItem(name, THERMAL_ITEMS, Rarity.COMMON);

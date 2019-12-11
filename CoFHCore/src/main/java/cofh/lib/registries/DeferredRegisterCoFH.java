@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -98,6 +99,7 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
         return getSup(new ResourceLocation(modid, name));
     }
 
+    @Nullable
     public RegistryObject<T> getSup(final ResourceLocation resourceLoc) {
 
         return registryObjects.get(resourceLoc);

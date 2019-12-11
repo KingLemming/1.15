@@ -1,10 +1,11 @@
 package cofh.thermal.core.init;
 
+import cofh.lib.item.WrenchItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 
-import static cofh.thermal.core.util.RegistrationHelper.registerGemSet;
-import static cofh.thermal.core.util.RegistrationHelper.registerMetalSet;
+import static cofh.thermal.core.util.RegistrationHelper.*;
 
 public class TCoreItems {
 
@@ -42,6 +43,8 @@ public class TCoreItems {
     }
 
     private static void registerThermalItems() {
+
+        registerItem("wrench", () -> new WrenchItem(new Item.Properties().group(ThermalItemGroups.THERMAL_TOOLS)));
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
         Rarity rarity = Rarity.UNCOMMON;
