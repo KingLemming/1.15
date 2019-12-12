@@ -6,12 +6,15 @@
     ]
   },
   "criteria": {
-    "has_mycelium": {
+    "has_components": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "minecraft:mycelium"
+          },
+          {
+            "item": "minecraft:bone_meal"
           }
         ]
       }
@@ -31,7 +34,7 @@
   },
   "requirements": [
     [
-      "has_mycelium",
+      "has_components",
       "has_the_recipe"
     ],
     [

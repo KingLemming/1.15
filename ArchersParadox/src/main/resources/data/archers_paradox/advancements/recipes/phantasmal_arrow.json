@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_ectoplasm": {
+    "has_components": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_ectoplasm",
+      "has_components",
       "has_the_recipe"
     ],
     [

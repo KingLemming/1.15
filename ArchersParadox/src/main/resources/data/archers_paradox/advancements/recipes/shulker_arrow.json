@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:explosive_arrow"
+      "archers_paradox:shulker_arrow"
     ]
   },
   "criteria": {
@@ -11,7 +11,10 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tnt"
+            "item": "minecraft:ender_eye"
+          },
+          {
+            "item": "minecraft:end_stone"
           }
         ]
       }
@@ -25,7 +28,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:explosive_arrow"
+        "recipe": "archers_paradox:shulker_arrow"
       }
     }
   },

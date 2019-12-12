@@ -30,7 +30,7 @@ Thermal Locomotion!
 [[dependencies.thermal_locomotion]]
     modId="cofh_core"
     mandatory=true
-    versionRange="[0.2,)"
+    versionRange="[0.3,)"
     ordering="AFTER"
     side="BOTH"
 

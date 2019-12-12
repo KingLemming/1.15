@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_rabbit_hide": {
+    "has_components": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_rabbit_hide",
+      "has_components",
       "has_the_recipe"
     ],
     [

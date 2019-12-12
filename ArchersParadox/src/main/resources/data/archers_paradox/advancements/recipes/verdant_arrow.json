@@ -6,12 +6,15 @@
     ]
   },
   "criteria": {
-    "has_grass_block": {
+    "has_components": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "minecraft:grass_block"
+          },
+          {
+            "item": "minecraft:bone_meal"
           }
         ]
       }
@@ -31,7 +34,7 @@
   },
   "requirements": [
     [
-      "has_grass_block",
+      "has_components",
       "has_the_recipe"
     ],
     [

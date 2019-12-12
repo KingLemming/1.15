@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="archers_paradox"
-    version="0.1.0b"
+    version="0.3.0b"
     displayName="Archer's Paradox"
     updateJSONURL="https://raw.github.com/cofh/version/master/archers_paradox/update.json"
     displayURL="https://teamcofh.com/"
@@ -33,6 +33,6 @@ Suitable for both lightly and heavily modded worlds.
 [[dependencies.archers_paradox]]
     modId="cofh_core"
     mandatory=true
-    versionRange="[0.2,)"
+    versionRange="[0.3,)"
     ordering="AFTER"
     side="BOTH"
