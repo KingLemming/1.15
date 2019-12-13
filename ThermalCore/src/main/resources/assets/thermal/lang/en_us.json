@@ -29,6 +29,8 @@
   "block.thermal.iridium_block": "Block of Iridium",
   "block.thermal.steel_block": "Block of Steel",
 
+  "block.thermal.crossover_rail": "Crossover Rail",
+
   "block.thermal.lumium_activator_rail": "Lumium Activator Rail",
   "block.thermal.lumium_crossover_rail": "Lumium Crossover Rail",
   "block.thermal.lumium_detector_rail": "Lumium Detector Rail",
@@ -45,7 +47,33 @@
   "itemGroup.thermal.items": "Thermal Series: Items",
   "itemGroup.thermal.tools": "Thermal Series: Tools",
 
+  "item.thermal.fire_catalyst": "Igneous Catalyst",
+  "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.wrench": "Crescent Hammer",
+
+  "item.thermal.iron_coin": "Iron Coin",
+  "item.thermal.iron_dust": "Iron Dust",
+  "item.thermal.iron_gear": "Iron Gear",
+  "item.thermal.iron_nugget": "Iron Nugget",
+  "item.thermal.iron_plate": "Iron Plate",
+
+  "item.thermal.gold_coin": "Gold Coin",
+  "item.thermal.gold_dust": "Gold Dust",
+  "item.thermal.gold_gear": "Gold Gear",
+  "item.thermal.gold_nugget": "Gold Nugget",
+  "item.thermal.gold_plate": "Gold Plate",
+
+  "item.thermal.diamond_coin": "Diamond Coin",
+  "item.thermal.diamond_dust": "Diamond Dust",
+  "item.thermal.diamond_gear": "Diamond Gear",
+  "item.thermal.diamond_nugget": "Diamond Nugget",
+  "item.thermal.diamond_plate": "Diamond Plate",
+
+  "item.thermal.emerald_coin": "Emerald Coin",
+  "item.thermal.emerald_dust": "Emerald Dust",
+  "item.thermal.emerald_gear": "Emerald Gear",
+  "item.thermal.emerald_nugget": "Emerald Nugget",
+  "item.thermal.emerald_plate": "Emerald Plate",
 
   "item.thermal.enderium_coin": "Enderium Coin",
   "item.thermal.enderium_dust": "Enderium Blend",

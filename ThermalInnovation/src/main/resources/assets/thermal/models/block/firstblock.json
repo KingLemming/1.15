@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "thermal:block/firstblock",
+    "down": "thermal:block/firstblock",
+    "up": "thermal:block/firstblock",
+    "east": "thermal:block/firstblock",
+    "west": "thermal:block/firstblock",
+    "north": "thermal:block/firstblock_front",
+    "south": "thermal:block/firstblock"
+  }
+}

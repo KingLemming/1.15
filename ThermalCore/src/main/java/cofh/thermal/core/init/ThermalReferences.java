@@ -61,6 +61,8 @@ public class ThermalReferences {
     // endregion
 
     // region LOCOMOTION
+    public static final String ID_CROSSOVER_RAIL = "crossover_rail";
+
     public static final String ID_LUMIUM_ACTIVATOR_RAIL = "lumium_activator_rail";
     public static final String ID_LUMIUM_CROSSOVER_RAIL = "lumium_crossover_rail";
     public static final String ID_LUMIUM_DETECTOR_RAIL = "lumium_detector_rail";

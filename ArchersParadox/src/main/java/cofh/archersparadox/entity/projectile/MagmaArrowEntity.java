@@ -65,7 +65,7 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             this.setHitSound(SoundEvents.ENTITY_MAGMA_CUBE_SQUISH);
             Utils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
-            Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS);
+            Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS, 0.1);
 
             if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
                 this.onEntityHit((EntityRayTraceResult) raytraceResultIn);

@@ -2,11 +2,11 @@ package cofh.thermal.core.init;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.ThermalCore.ITEMS;
 
 public class ThermalItemGroups {
 
@@ -20,7 +20,7 @@ public class ThermalItemGroups {
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
 
-            return new ItemStack(Items.REDSTONE);
+            return new ItemStack(ITEMS.get("enderium_block"));
         }
     };
 
@@ -30,7 +30,7 @@ public class ThermalItemGroups {
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
 
-            return new ItemStack(Items.REDSTONE);
+            return new ItemStack(ITEMS.get("signalum_gear"));
         }
     };
 
@@ -40,7 +40,7 @@ public class ThermalItemGroups {
         @OnlyIn(Dist.CLIENT)
         public ItemStack createIcon() {
 
-            return new ItemStack(Items.REDSTONE);
+            return new ItemStack(ITEMS.get("wrench"));
         }
     };
 

@@ -18,6 +18,8 @@ public class TLocBlocks {
 
     public static void register() {
 
+        registerBlock(ID_CROSSOVER_RAIL, () -> new CrossoverRailBlock(create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
+
         registerBlock(ID_PRISMARINE_RAIL, () -> new RailBlockWL(create(Material.IRON, MaterialColor.AIR).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL).lightValue(8)));
         registerBlock(ID_PRISMARINE_CROSSOVER_RAIL, () -> new CrossoverRailBlockWL(create(Material.IRON, MaterialColor.AIR).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL).lightValue(8)));
         registerBlock(ID_PRISMARINE_POWERED_RAIL, () -> new PoweredRailBlockWL(create(Material.IRON, MaterialColor.AIR).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL).lightValue(8), true));

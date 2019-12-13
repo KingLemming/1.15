@@ -1,6 +1,7 @@
-package cofh.lib.item;
+package cofh.thermal.core.item;
 
 import cofh.lib.block.IDismantleable;
+import cofh.lib.item.ItemCoFH;
 import cofh.lib.util.Utils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
@@ -78,6 +79,18 @@ public class WrenchItem extends ItemCoFH {
             // multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) this.attackSpeed, AttributeModifier.Operation.ADDITION));
         }
         return multimap;
+    }
+
+    @Override
+    public ItemStack getContainerItem(ItemStack stack) {
+
+        return new ItemStack(this);
+    }
+
+    @Override
+    public boolean hasContainerItem(ItemStack stack) {
+
+        return true;
     }
 
 }

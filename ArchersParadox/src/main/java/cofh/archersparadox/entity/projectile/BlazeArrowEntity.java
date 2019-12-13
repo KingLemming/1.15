@@ -68,7 +68,7 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
                         Utils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
                     }
                     Utils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true);
-                    Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius);
+                    Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius, 0.1);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

@@ -51,6 +51,8 @@ public class ThermalCore {
         BLOCKS.register(modEventBus);
         FLUIDS.register(modEventBus);
         ITEMS.register(modEventBus);
+        TILE_ENTITIES.register(modEventBus);
+        CONTAINERS.register(modEventBus);
     }
 
     // region INITIALIZATION

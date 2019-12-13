@@ -2,6 +2,7 @@ package cofh.lib.energy;
 
 import cofh.lib.util.IResourceStorage;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.IEnergyStorage;
 
 import static cofh.lib.util.constants.Tags.TAG_ENERGY;
@@ -11,7 +12,7 @@ import static cofh.lib.util.constants.Tags.TAG_ENERGY;
  *
  * @author King Lemming
  */
-public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
+public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBTSerializable<CompoundNBT> {
 
     protected int energy;
     protected int capacity;
@@ -105,6 +106,18 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage {
         }
         nbt.putInt(TAG_ENERGY, energy);
         return nbt;
+    }
+
+    @Override
+    public CompoundNBT serializeNBT() {
+
+        return writeToNBT(new CompoundNBT());
+    }
+
+    @Override
+    public void deserializeNBT(CompoundNBT nbt) {
+
+        readFromNBT(nbt);
     }
     // endregion
 

@@ -277,7 +277,7 @@ public class Utils {
         }
     }
 
-    public static void igniteNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius) {
+    public static void igniteNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius, double chance) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
@@ -290,7 +290,7 @@ public class Utils {
                 mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                 BlockState blockstate1 = worldIn.getBlockState(mutable);
                 if (blockstate1.isAir(worldIn, mutable)) {
-                    if (isValidFirePosition(worldIn, mutable, 0.1)) {
+                    if (isValidFirePosition(worldIn, mutable, chance)) {
                         worldIn.setBlockState(mutable, ((FireBlock) FIRE).getStateForPlacement(worldIn, mutable));
                     }
                 }
