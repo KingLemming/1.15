@@ -5,10 +5,6 @@ import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
-import net.minecraft.state.IProperty;
-import net.minecraft.state.properties.RailShape;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

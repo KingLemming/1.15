@@ -1,8 +1,10 @@
 package cofh.lib.util.helpers;
 
+import cofh.lib.fluid.FluidStorageCoFH;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
@@ -10,12 +12,22 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +67,149 @@ public class FluidHelper {
 
         return stack.getTag() != null ? stack.getFluid().hashCode() + 31 * stack.getTag().hashCode() : stack.getFluid().hashCode();
     }
+
+    // region BLOCK TRANSFER
+    public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
+
+        return tank.getFluidStack() == null ? extractFromAdjacent(tile, tank, tank.getCapacity(), side) : extractFromAdjacent(tile, tank, new FluidStack(tank.getFluidStack(), tank.getSpace()), side);
+    }
+
+    public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, int amount, Direction side) {
+
+        TileEntity adjTile = BlockHelper.getAdjacentTileEntity(tile, side);
+        Direction opposite = side.getOpposite();
+
+        IFluidHandler handler = getFluidHandlerCap(adjTile, opposite);
+        if (handler == EmptyFluidHandler.INSTANCE) {
+            return false;
+        }
+        FluidStack drainStack = handler.drain(amount, IFluidHandler.FluidAction.SIMULATE);
+        int drainAmount = tank.fill(drainStack, IFluidHandler.FluidAction.EXECUTE);
+        if (drainAmount > 0) {
+            handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, FluidStack resource, Direction side) {
+
+        TileEntity adjTile = BlockHelper.getAdjacentTileEntity(tile, side);
+        Direction opposite = side.getOpposite();
+
+        IFluidHandler handler = getFluidHandlerCap(adjTile, opposite);
+        if (handler == EmptyFluidHandler.INSTANCE) {
+            return false;
+        }
+        FluidStack drainStack = handler.drain(resource, IFluidHandler.FluidAction.SIMULATE);
+        int drainAmount = tank.fill(drainStack, IFluidHandler.FluidAction.EXECUTE);
+        if (drainAmount > 0) {
+            handler.drain(new FluidStack(resource, drainAmount), IFluidHandler.FluidAction.EXECUTE);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean insertIntoAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
+
+        return insertIntoAdjacent(tile, tank, tank.getAmount(), side);
+    }
+
+    public static boolean insertIntoAdjacent(TileEntity tile, FluidStorageCoFH tank, int amount, Direction side) {
+
+        if (tank.isEmpty()) {
+            return false;
+        }
+        TileEntity adjTile = BlockHelper.getAdjacentTileEntity(tile, side);
+        Direction opposite = side.getOpposite();
+
+        IFluidHandler handler = getFluidHandlerCap(adjTile, opposite);
+        if (handler == EmptyFluidHandler.INSTANCE) {
+            return false;
+        }
+        int fillAmount = handler.fill(new FluidStack(tank.getFluidStack(), amount), IFluidHandler.FluidAction.EXECUTE);
+        if (fillAmount > 0) {
+            tank.drain(fillAmount, IFluidHandler.FluidAction.EXECUTE);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean hasFluidHandlerCap(TileEntity tile, Direction face) {
+
+        return tile != null && tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, face).isPresent();
+    }
+
+    public static IFluidHandler getFluidHandlerCap(TileEntity tile, Direction face) {
+
+        return tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, face).orElse(EmptyFluidHandler.INSTANCE);
+    }
+    // endregion
+
+    // region CAPABILITY HELPERS
+
+    /**
+     * Attempts to drain the item to an IFluidHandler.
+     *
+     * @param stack   The stack to drain from.
+     * @param handler The IFluidHandler to fill.
+     * @param player  The player using the item.
+     * @param hand    The hand the player is holding the item in.
+     * @return If the interaction was successful.
+     */
+    public static boolean drainItemToHandler(ItemStack stack, IFluidHandler handler, PlayerEntity player, Hand hand) {
+
+        if (stack.isEmpty() || handler == null || player == null) {
+            return false;
+        }
+        IItemHandler playerInv = new InvWrapper(player.inventory);
+        FluidActionResult result = FluidUtil.tryEmptyContainerAndStow(stack, handler, playerInv, Integer.MAX_VALUE, player, true);
+        if (result.isSuccess()) {
+            player.setHeldItem(hand, result.getResult());
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Attempts to fill the item from an IFluidHandler.
+     *
+     * @param stack   The stack to fill.
+     * @param handler The IFluidHandler to drain from.
+     * @param player  The player using the item.
+     * @param hand    The hand the player is holding the item in.
+     * @return If the interaction was successful.
+     */
+    public static boolean fillItemFromHandler(ItemStack stack, IFluidHandler handler, PlayerEntity player, Hand hand) {
+
+        if (stack.isEmpty() || handler == null || player == null) {
+            return false;
+        }
+        IItemHandler playerInv = new InvWrapper(player.inventory);
+        FluidActionResult result = FluidUtil.tryFillContainerAndStow(stack, handler, playerInv, Integer.MAX_VALUE, player, true);
+        if (result.isSuccess()) {
+            player.setHeldItem(hand, result.getResult());
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Attempts to interact the item with an IFluidHandler.
+     * Interaction will always try and fill the item first, if this fails it will attempt to drain the item.
+     *
+     * @param stack   The stack to interact with.
+     * @param handler The Handler to fill / drain.
+     * @param player  The player using the item.
+     * @param hand    The hand the player is holding the item in.
+     * @return If any interaction with the handler was successful.
+     */
+    public static boolean interactWithHandler(ItemStack stack, IFluidHandler handler, PlayerEntity player, Hand hand) {
+
+        return fillItemFromHandler(stack, handler, player, hand) || drainItemToHandler(stack, handler, player, hand);
+    }
+
+    // endregion
 
     // region POTION HELPERS
     public static boolean hasPotionTag(FluidStack stack) {
@@ -120,6 +275,7 @@ public class FluidHelper {
             }
         }
     }
+    // endregion
 
     // region PROPERTY HELPERS
     public static int luminosity(Fluid fluid) {

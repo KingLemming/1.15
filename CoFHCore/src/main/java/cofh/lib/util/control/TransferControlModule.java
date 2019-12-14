@@ -50,7 +50,7 @@ public class TransferControlModule implements ITransferControllable {
     // endregion
 
     // region NBT
-    public TransferControlModule readFromNBT(CompoundNBT nbt) {
+    public TransferControlModule read(CompoundNBT nbt) {
 
         enableAutoInput = nbt.getBoolean(TAG_ENABLE_IN);
         enableAutoOutput = nbt.getBoolean(TAG_ENABLE_OUT);
@@ -58,7 +58,7 @@ public class TransferControlModule implements ITransferControllable {
         return this;
     }
 
-    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
 
         nbt.putBoolean(TAG_ENABLE_IN, enableAutoInput);
         nbt.putBoolean(TAG_ENABLE_OUT, enableAutoOutput);

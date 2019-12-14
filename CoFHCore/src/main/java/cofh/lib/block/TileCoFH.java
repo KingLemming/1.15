@@ -1,5 +1,6 @@
 package cofh.lib.block;
 
+import cofh.lib.util.Utils;
 import cofh.lib.util.control.ISecurable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,19 +24,27 @@ public class TileCoFH extends TileEntity implements ITileCallback {
         super(tileEntityTypeIn);
     }
 
-    // region PASSTHROUGHS
+    @Override
+    public void onLoad() {
+
+        super.onLoad();
+
+        if (world != null && Utils.isClientWorld(world) && !hasClientUpdate()) {
+            world.tickableTileEntities.remove(this);
+        }
+        validate();
+    }
+
+    // region HELPERS
     protected int getComparatorInputOverride() {
 
         return 0;
     }
 
-    protected int getLightValue() {
+    protected void neighborChanged() {
 
-        return 0;
     }
-    // endregion
 
-    // region HELPERS
     protected boolean hasClientUpdate() {
 
         return false;
@@ -53,7 +62,7 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
     public boolean isUsableByPlayer(PlayerEntity player) {
 
-        return playerWithinDistance(player, 64D) && world.getTileEntity(pos) == this;
+        return playerWithinDistance(player, 64D) && world != null && world.getTileEntity(pos) == this;
     }
 
     public boolean onWrench(PlayerEntity player, Direction side) {

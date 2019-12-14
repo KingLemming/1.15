@@ -7,6 +7,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.RailShape;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Plane;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -101,6 +102,7 @@ public class Constants {
     public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 10;
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
+    public static final Direction[] DIRECTIONS = Direction.values();
     // endregion
 
     // region GUI
