@@ -1,4 +1,4 @@
-package cofh.thermal.core.block;
+package cofh.thermal.core.block.machine;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
@@ -8,6 +8,7 @@ import cofh.lib.util.control.ReconfigControlModule;
 import cofh.lib.util.control.TransferControlModule;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
+import cofh.thermal.core.block.AbstractTileBase;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -148,12 +149,12 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
         for (int i = inputTracker + 1; i <= inputTracker + 6; i++) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isInput()) {
-                for (ItemStorageCoFH slot : getInputSlots()) {
+                for (ItemStorageCoFH slot : inputSlots()) {
                     if (slot.getSpace() > 0) {
                         InventoryHelper.extractFromAdjacent(this, slot, slot.getSpace(), side);
                     }
                 }
-                for (FluidStorageCoFH tank : getInputTanks()) {
+                for (FluidStorageCoFH tank : inputTanks()) {
                     if (tank.getSpace() > 0) {
                         FluidHelper.extractFromAdjacent(this, tank, side);
                     }
@@ -178,10 +179,10 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
         for (int i = outputTracker + 1; i <= outputTracker + 6; i++) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isOutput()) {
-                for (ItemStorageCoFH slot : getOutputSlots()) {
+                for (ItemStorageCoFH slot : outputSlots()) {
                     InventoryHelper.insertIntoAdjacent(this, slot, 64, side);
                 }
-                for (FluidStorageCoFH tank : getOutputTanks()) {
+                for (FluidStorageCoFH tank : outputTanks()) {
                     FluidHelper.insertIntoAdjacent(this, tank, side);
                 }
                 if (!updateTracker) {

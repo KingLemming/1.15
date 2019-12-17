@@ -71,6 +71,33 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     }
     // endregion
 
+    // region TIME CHECKS
+    public static final int TIME_CONSTANT = 32;
+    public static final int TIME_CONSTANT_HALF = TIME_CONSTANT / 2;
+    public static final int TIME_CONSTANT_QUARTER = TIME_CONSTANT / 4;
+    public static final int TIME_CONSTANT_EIGHTH = TIME_CONSTANT / 8;
+
+    protected final boolean timeCheck() {
+
+        return world.getGameTime() % TIME_CONSTANT == 0;
+    }
+
+    protected final boolean timeCheckHalf() {
+
+        return world.getGameTime() % TIME_CONSTANT_HALF == 0;
+    }
+
+    protected final boolean timeCheckQuarter() {
+
+        return world.getGameTime() % TIME_CONSTANT_QUARTER == 0;
+    }
+
+    protected final boolean timeCheckEighth() {
+
+        return world.getGameTime() % TIME_CONSTANT_EIGHTH == 0;
+    }
+    // endregion
+
     // region NETWORK
     @Nullable
     @Override

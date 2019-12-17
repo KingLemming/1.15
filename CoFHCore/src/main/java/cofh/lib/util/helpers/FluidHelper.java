@@ -68,6 +68,28 @@ public class FluidHelper {
         return stack.getTag() != null ? stack.getFluid().hashCode() + 31 * stack.getTag().hashCode() : stack.getFluid().hashCode();
     }
 
+    // region COMPARISON
+    public static boolean fluidsEqual(FluidStack resourceA, FluidStack resourceB) {
+
+        return resourceA != null && resourceA.isFluidEqual(resourceB) || resourceA == null && resourceB == null;
+    }
+
+    public static boolean fluidsEqual(Fluid fluidA, FluidStack resourceB) {
+
+        return fluidA != null && resourceB != null && fluidA == resourceB.getFluid();
+    }
+
+    public static boolean fluidsEqual(FluidStack resourceA, Fluid fluidB) {
+
+        return fluidB != null && resourceA != null && fluidB == resourceA.getFluid();
+    }
+
+    public static boolean fluidsEqual(Fluid fluidA, Fluid fluidB) {
+
+        return fluidA != null && fluidA.equals(fluidB);
+    }
+    // endregion
+
     // region BLOCK TRANSFER
     public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
 

@@ -14,6 +14,7 @@ import cofh.lib.util.control.IRedstoneControllableTile;
 import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
+import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -34,7 +35,7 @@ import java.util.List;
 import static cofh.lib.util.constants.Constants.ACTIVE;
 import static cofh.lib.util.constants.Tags.*;
 
-public abstract class AbstractTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider {
+public abstract class AbstractTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
 
     protected TimeTracker timeTracker = new TimeTracker();
     protected ManagedItemInv inventory = new ManagedItemInv(this, TAG_ITEM_INV);
@@ -73,22 +74,24 @@ public abstract class AbstractTileBase extends TileCoFH implements ISecurableTil
         }
     }
 
-    protected List<? extends ItemStorageCoFH> getInputSlots() {
+    @Override
+    public List<? extends ItemStorageCoFH> inputSlots() {
 
         return inventory.getInputSlots();
     }
 
-    protected List<? extends FluidStorageCoFH> getInputTanks() {
+    @Override
+    public List<? extends FluidStorageCoFH> inputTanks() {
 
         return tankInv.getInputTanks();
     }
 
-    protected List<? extends ItemStorageCoFH> getOutputSlots() {
+    protected List<? extends ItemStorageCoFH> outputSlots() {
 
         return inventory.getOutputSlots();
     }
 
-    protected List<? extends FluidStorageCoFH> getOutputTanks() {
+    protected List<? extends FluidStorageCoFH> outputTanks() {
 
         return tankInv.getOutputTanks();
     }
