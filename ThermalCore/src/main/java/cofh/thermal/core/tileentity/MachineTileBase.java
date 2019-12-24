@@ -1,4 +1,4 @@
-package cofh.thermal.core.block.machine;
+package cofh.thermal.core.tileentity;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
@@ -8,7 +8,6 @@ import cofh.lib.util.control.ReconfigControlModule;
 import cofh.lib.util.control.TransferControlModule;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
-import cofh.thermal.core.block.AbstractTileBase;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -34,7 +33,7 @@ import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_INPUT;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_OUTPUT;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileBase extends AbstractTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
+public abstract class MachineTileBase extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
 
     protected Direction facing;
     protected FluidStack renderFluid;
@@ -204,7 +203,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
         reconfigControl.writeToBuffer(buffer);
         transferControl.writeToBuffer(buffer);
 
-        // buffer.writeFluidStack(renderFluid);
+        buffer.writeFluidStack(renderFluid);
 
         return buffer;
     }
@@ -214,7 +213,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
 
         super.getGuiPacket(buffer);
 
-        // buffer.writeFluidStack(renderFluid);
+        buffer.writeFluidStack(renderFluid);
 
         return buffer;
     }
@@ -224,7 +223,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
 
         super.getControlPacket(buffer);
 
-        // buffer.writeFluidStack(renderFluid);
+        buffer.writeFluidStack(renderFluid);
 
         return buffer;
     }
@@ -237,7 +236,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
         reconfigControl.readFromBuffer(buffer);
         transferControl.readFromBuffer(buffer);
 
-        // renderFluid = buffer.readFluidStack();
+        renderFluid = buffer.readFluidStack();
     }
 
     @Override
@@ -245,7 +244,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
 
         super.handleGuiPacket(buffer);
 
-        // renderFluid = buffer.readFluidStack();
+        renderFluid = buffer.readFluidStack();
     }
 
     @Override
@@ -253,7 +252,7 @@ public abstract class MachineTileBase extends AbstractTileBase implements ITicka
 
         super.handleControlPacket(buffer);
 
-        // renderFluid = buffer.readFluidStack();
+        renderFluid = buffer.readFluidStack();
     }
     // endregion
 

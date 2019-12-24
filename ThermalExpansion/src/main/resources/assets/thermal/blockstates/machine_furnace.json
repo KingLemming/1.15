@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,active=false": {
+      "model": "thermal:block/firstblock"
+    },
+    "facing=south,active=false": {
+      "model": "thermal:block/firstblock",
+      "y": 180
+    },
+    "facing=west,active=false": {
+      "model": "thermal:block/firstblock",
+      "y": 270
+    },
+    "facing=east,active=false": {
+      "model": "thermal:block/firstblock",
+      "y": 90
+    },
+    "facing=north,active=true": {
+      "model": "thermal:block/firstblock_powered"
+    },
+    "facing=south,active=true": {
+      "model": "thermal:block/firstblock_powered",
+      "y": 180
+    },
+    "facing=west,active=true": {
+      "model": "thermal:block/firstblock_powered",
+      "y": 270
+    },
+    "facing=east,active=true": {
+      "model": "thermal:block/firstblock_powered",
+      "y": 90
+    }
+  }
+}

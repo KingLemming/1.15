@@ -1,34 +1,30 @@
-package cofh.thermal.core.block;
+package cofh.lib.block;
 
-import cofh.lib.block.TileBlockCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.ACTIVE;
-import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
+import static cofh.lib.util.constants.Constants.FACING_ALL;
 
-public class Abstract4WayTileBlock extends TileBlockCoFH {
+public class TileBlock6Way extends TileBlockCoFH {
 
-    public final Supplier<TileEntity> supplier;
+    public TileBlock6Way(Properties builder, Supplier<? extends TileEntity> supplier) {
 
-    public Abstract4WayTileBlock(Properties builder, Supplier<TileEntity> supplier) {
-
-        super(builder);
-        this.supplier = supplier;
+        super(builder, supplier);
+        this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 
         super.fillStateContainer(builder);
-        builder.add(FACING_HORIZONTAL);
+        builder.add(FACING_ALL);
         builder.add(ACTIVE);
     }
 
@@ -38,17 +34,11 @@ public class Abstract4WayTileBlock extends TileBlockCoFH {
         return state.get(ACTIVE) ? super.getLightValue(state) : 0;
     }
 
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-
-        return supplier.get();
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
-        return this.getDefaultState().with(FACING_HORIZONTAL, context.getPlayer().getAdjustedHorizontalFacing().getOpposite()).with(ACTIVE, false);
+        return this.getDefaultState().with(FACING_ALL, context.getNearestLookingDirection().getOpposite()).with(ACTIVE, false);
     }
 
 }

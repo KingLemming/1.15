@@ -1,4 +1,4 @@
-package cofh.thermal.core.block.machine;
+package cofh.thermal.core.tileentity;
 
 import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.energy.EnergyStorageCoFH;

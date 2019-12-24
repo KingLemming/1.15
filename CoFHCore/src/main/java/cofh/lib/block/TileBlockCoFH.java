@@ -1,6 +1,7 @@
 package cofh.lib.block;
 
 import cofh.core.util.ChatHelper;
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.SecurityHelper;
@@ -21,12 +22,16 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 public abstract class TileBlockCoFH extends Block implements IDismantleable {
 
-    public TileBlockCoFH(Properties builder) {
+    protected final Supplier<? extends TileEntity> supplier;
+
+    public TileBlockCoFH(Properties builder, Supplier<? extends TileEntity> supplier) {
 
         super(builder);
+        this.supplier = supplier;
     }
 
     @Override
@@ -38,7 +43,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 
-        return null;
+        return supplier.get();
     }
 
     @Override

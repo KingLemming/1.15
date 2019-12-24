@@ -1,6 +1,6 @@
 package cofh.lib.fluid;
 
-import cofh.lib.block.ITileCallback;
+import cofh.lib.tileentity.ITileCallback;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;

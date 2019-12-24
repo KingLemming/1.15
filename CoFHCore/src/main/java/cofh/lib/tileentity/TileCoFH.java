@@ -1,4 +1,4 @@
-package cofh.lib.block;
+package cofh.lib.tileentity;
 
 import cofh.lib.util.Utils;
 import cofh.lib.util.control.ISecurable;
@@ -36,16 +36,16 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     }
 
     // region HELPERS
-    protected int getComparatorInputOverride() {
+    public int getComparatorInputOverride() {
 
         return 0;
     }
 
-    protected void neighborChanged() {
+    public void neighborChanged() {
 
     }
 
-    protected boolean hasClientUpdate() {
+    public boolean hasClientUpdate() {
 
         return false;
     }

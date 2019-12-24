@@ -1,8 +1,8 @@
-package cofh.thermal.core.block;
+package cofh.thermal.core.tileentity;
 
 import cofh.core.network.packet.client.TileControlPacket;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.block.TileCoFH;
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.fluid.ManagedTankInv;
@@ -35,7 +35,7 @@ import java.util.List;
 import static cofh.lib.util.constants.Constants.ACTIVE;
 import static cofh.lib.util.constants.Tags.*;
 
-public abstract class AbstractTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
+public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
 
     protected TimeTracker timeTracker = new TimeTracker();
     protected ManagedItemInv inventory = new ManagedItemInv(this, TAG_ITEM_INV);
@@ -48,7 +48,7 @@ public abstract class AbstractTileBase extends TileCoFH implements ISecurableTil
     public boolean isActive;
     public boolean wasActive;
 
-    public AbstractTileBase(TileEntityType<?> tileEntityTypeIn) {
+    public ThermalTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
     }
@@ -102,7 +102,7 @@ public abstract class AbstractTileBase extends TileCoFH implements ISecurableTil
     }
 
     @Override
-    protected void neighborChanged() {
+    public void neighborChanged() {
 
         if (world != null) {
             redstoneControl.setPower(world.getRedstonePowerFromNeighbors(pos));
@@ -164,8 +164,7 @@ public abstract class AbstractTileBase extends TileCoFH implements ISecurableTil
         buffer.writeInt(energyStorage.getEnergyStored());
 
         for (int i = 0; i < tankInv.getTanks(); i++) {
-            // TODO: Forge
-            // buffer.writeFluidStack(tankInv.get(i));
+            buffer.writeFluidStack(tankInv.get(i));
         }
         return buffer;
     }
@@ -199,8 +198,7 @@ public abstract class AbstractTileBase extends TileCoFH implements ISecurableTil
         energyStorage.setEnergyStored(buffer.readInt());
 
         for (int i = 0; i < tankInv.getTanks(); i++) {
-            // TODO: Forge
-            // tankInv.set(i, buffer.readFluidStack());
+            tankInv.set(i, buffer.readFluidStack());
         }
     }
 

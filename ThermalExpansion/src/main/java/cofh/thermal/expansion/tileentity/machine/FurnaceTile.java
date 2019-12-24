@@ -1,7 +1,7 @@
-package cofh.thermal.expansion.block.machine;
+package cofh.thermal.expansion.tileentity.machine;
 
 import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.thermal.core.block.machine.MachineTileProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 import static cofh.lib.util.StorageGroup.INPUT;
 import static cofh.lib.util.StorageGroup.OUTPUT;
 import static cofh.lib.util.helpers.ItemHelper.itemsIdentical;
+import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_TILE;
 
 public class FurnaceTile extends MachineTileProcess {
 
@@ -21,8 +22,7 @@ public class FurnaceTile extends MachineTileProcess {
 
     public FurnaceTile() {
 
-        // TODO: Furnace Type
-        super(null);
+        super(MACHINE_FURNACE_TILE);
 
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlot(outputSlot, OUTPUT);
@@ -42,6 +42,7 @@ public class FurnaceTile extends MachineTileProcess {
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
+        // TODO: WHEEE
         return null;
     }
 

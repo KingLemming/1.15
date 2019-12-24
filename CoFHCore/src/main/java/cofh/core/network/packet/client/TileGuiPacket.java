@@ -1,9 +1,9 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
-import cofh.lib.block.TileCoFH;
 import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
+import cofh.lib.tileentity.TileCoFH;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.ServerPlayerEntity;

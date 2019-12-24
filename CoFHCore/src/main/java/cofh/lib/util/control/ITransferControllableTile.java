@@ -1,6 +1,6 @@
 package cofh.lib.util.control;
 
-import cofh.lib.block.ITileCallback;
+import cofh.lib.tileentity.ITileCallback;
 
 public interface ITransferControllableTile extends ITransferControllable, ITileCallback {
 

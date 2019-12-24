@@ -1,6 +1,6 @@
 package cofh.lib.inventory;
 
-import cofh.lib.block.ITileCallback;
+import cofh.lib.tileentity.ITileCallback;
 import cofh.lib.util.StorageGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
