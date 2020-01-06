@@ -38,7 +38,6 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     protected int mY;
     protected int lastIndex = -1;
 
-    protected String name;
     protected String info;
     protected ResourceLocation texture;
     protected PlayerEntity player;
@@ -54,7 +53,6 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     public ContainerScreenCoFH(T screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 
         super(screenContainer, inv, titleIn);
-
         player = inv.player;
     }
 
@@ -112,8 +110,8 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         // GlStateManager.pushMatrix();
         // GlStateManager.translatef(guiLeft, guiTop, 0.0F);
 
-        if (drawTitle & name != null) {
-            getFontRenderer().drawString(localize(name), getCenteredOffset(localize(name)), 6, 0x404040);
+        if (drawTitle & title != null) {
+            this.drawCenteredString(this.font, this.title.getFormattedText(), this.width / 2, 50, 0x404040);
         }
         if (drawInventory) {
             getFontRenderer().drawString(localize("container.inventory"), 8, ySize - 96 + 3, 0x404040);
@@ -603,6 +601,21 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         Tessellator.getInstance().draw();
         GlStateManager.enableTexture();
         GlStateManager.disableBlend();
+    }
+
+    @Override
+    public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height) {
+
+        float f = 0.00390625F;
+        float f1 = 0.00390625F;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(x + 0, (y + height), blitOffset).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + width), (y + height), blitOffset).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + width), (y + 0), blitOffset).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + 0), (y + 0), blitOffset).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
+        tessellator.draw();
     }
 
     @Override
