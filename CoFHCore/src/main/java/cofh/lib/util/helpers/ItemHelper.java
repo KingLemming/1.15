@@ -110,24 +110,14 @@ public class ItemHelper {
     // endregion
 
     // region COMPARISON
-    public static boolean itemsIdentical(ItemStack stackA, ItemStack stackB) {
+    public static boolean itemsEqualWithTags(ItemStack stackA, ItemStack stackB) {
 
-        return itemsEqual(stackA, stackB) && doNBTsMatch(stackA.getTag(), stackB.getTag());
+        return itemsEqual(stackA, stackB) && ItemStack.areItemStackTagsEqual(stackA, stackB);
     }
 
     public static boolean itemsEqual(ItemStack stackA, ItemStack stackB) {
 
-        return itemsEqual(stackA.getItem(), stackB.getItem());
-    }
-
-    public static boolean itemsEqual(Item itemA, Item itemB) {
-
-        return itemA != null && itemB != null && (itemA == itemB || itemA.equals(itemB));
-    }
-
-    public static boolean doNBTsMatch(CompoundNBT nbtA, CompoundNBT nbtB) {
-
-        return nbtA == null && nbtB == null || nbtA != null && nbtB != null && nbtA.equals(nbtB);
+        return ItemStack.areItemsEqual(stackA, stackB);
     }
 
     /**

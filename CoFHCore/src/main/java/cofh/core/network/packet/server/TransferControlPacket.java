@@ -20,7 +20,7 @@ public class TransferControlPacket extends PacketBase implements IPacketServer {
 
     public TransferControlPacket() {
 
-        super(PACKET_TRANSFER_CONTROL, CoFHCore.packetHandler);
+        super(PACKET_TRANSFER_CONTROL, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

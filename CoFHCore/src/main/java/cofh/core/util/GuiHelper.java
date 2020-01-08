@@ -9,6 +9,8 @@ import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.util.control.IReconfigurable;
 
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
+import static cofh.lib.util.helpers.StringHelper.canLocalize;
+import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class GuiHelper {
 
@@ -76,5 +78,55 @@ public class GuiHelper {
     public static final String SCALE_SPIN = PATH_ELEMENTS + "scale_spin.png";
     public static final String SCALE_SUN = PATH_ELEMENTS + "scale_sun.png";
     public static final String SCALE_SNOWFLAKE = PATH_ELEMENTS + "scale_snowflake.png";
+    // endregion
+
+    // region TABS
+    public static String generateTabInfo(String key) {
+
+        int i = 0;
+        String line = key + "." + i;
+        StringBuilder builder = new StringBuilder();
+        while (canLocalize(line)) {
+            if (i > 0) {
+                builder.append("\n\n");
+            }
+            builder.append(localize(line));
+            i++;
+            line = key + "." + i;
+        }
+        return builder.toString();
+    }
+    // endregion
+
+    // region TUTORIAL TAB HELPERS
+    public static String tutorialTabAugment() {
+
+        return localize("info.cofh.tutorial.tabAugment");
+    }
+
+    public static String tutorialTabAugmentUpgrade() {
+
+        return localize("info.cofh.tutorial.tabAugmentUpgrade");
+    }
+
+    public static String tutorialTabConfiguration() {
+
+        return localize("info.cofh.tutorial.tabConfiguration");
+    }
+
+    public static String tutorialTabRedstone() {
+
+        return localize("info.cofh.tutorial.tabRedstone");
+    }
+
+    public static String tutorialTabSecurity() {
+
+        return localize("info.cofh.tutorial.tabSecurity");
+    }
+
+    public static String tutorialTabFluxRequired() {
+
+        return localize("info.cofh.tutorial.fluxRequired");
+    }
     // endregion
 }

@@ -217,7 +217,7 @@ public abstract class ElementBase {
 
     }
 
-    public boolean mouseWheel(double mouseX, double mouseY, int movement) {
+    public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         return false;
     }

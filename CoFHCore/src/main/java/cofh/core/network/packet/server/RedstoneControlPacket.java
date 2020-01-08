@@ -21,7 +21,7 @@ public class RedstoneControlPacket extends PacketBase implements IPacketServer {
 
     public RedstoneControlPacket() {
 
-        super(PACKET_REDSTONE_CONTROL, CoFHCore.packetHandler);
+        super(PACKET_REDSTONE_CONTROL, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

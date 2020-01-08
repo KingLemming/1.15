@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
-import static cofh.lib.util.helpers.ItemHelper.itemsIdentical;
+import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 /**
  * Implementation of an Item Storage object.
@@ -138,7 +138,7 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
                 setItemStack(stack);
             }
             return ItemStack.EMPTY;
-        } else if (itemsIdentical(item, stack)) {
+        } else if (itemsEqualWithTags(item, stack)) {
             int totalCount = item.getCount() + stack.getCount();
             int limit = getSlotLimit(0);
             if (totalCount <= limit) {

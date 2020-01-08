@@ -1,5 +1,6 @@
 package cofh.lib.util.control;
 
+import cofh.core.network.packet.server.SecurityControlPacket;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
@@ -94,8 +95,7 @@ public class SecurityControlModule implements ISecurable {
 
         this.access = access;
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            // PacketSecurityControl.sendToServer(tile);
+            SecurityControlPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }

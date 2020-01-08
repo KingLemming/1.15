@@ -22,7 +22,7 @@ public class TileStatePacket extends PacketBase implements IPacketClient {
 
     public TileStatePacket() {
 
-        super(PACKET_STATE, CoFHCore.packetHandler);
+        super(PACKET_STATE, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

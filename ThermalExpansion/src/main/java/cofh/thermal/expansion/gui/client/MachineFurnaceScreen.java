@@ -1,28 +1,27 @@
-package cofh.thermal.expansion.gui;
+package cofh.thermal.expansion.gui.client;
 
 import cofh.core.gui.element.ElementScaled;
 import cofh.core.gui.element.ElementScaled.StartDirection;
 import cofh.lib.util.helpers.StringHelper;
-import cofh.thermal.core.gui.MachineScreenBase;
-import cofh.thermal.core.tileentity.MachineTileBase;
+import cofh.thermal.core.gui.client.MachineScreenBase;
+import cofh.thermal.expansion.inventory.container.MachineFurnaceContainer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class MachineFurnaceScreen<T extends Container> extends MachineScreenBase {
+public class MachineFurnaceScreen extends MachineScreenBase<MachineFurnaceContainer> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/furnace.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
-    public MachineFurnaceScreen(T screenContainer, PlayerInventory inv, MachineTileBase tile) {
+    public MachineFurnaceScreen(MachineFurnaceContainer container, PlayerInventory inv, ITextComponent titleIn) {
 
-        super(screenContainer, inv, tile, StringHelper.getTextComponent("tile.thermal.machine_furnace"));
+        super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_furnace"));
         texture = TEXTURE;
-        // TODO: Info
-        // generateTabInfo("tab.thermal.machine_furnace")
+        info = generateTabInfo("info.thermal.machine_furnace");
     }
 
     @Override

@@ -3,7 +3,8 @@ package cofh.thermal.expansion.init;
 import cofh.thermal.expansion.block.tutorial.FirstBlock;
 import cofh.thermal.expansion.block.tutorial.FirstBlockContainer;
 import cofh.thermal.expansion.block.tutorial.FirstBlockTile;
-import cofh.thermal.expansion.tileentity.machine.FurnaceTile;
+import cofh.thermal.expansion.inventory.container.MachineFurnaceContainer;
+import cofh.thermal.expansion.tileentity.MachineFurnaceTile;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
@@ -25,10 +26,10 @@ public class TExpReferences {
     public static Block MACHINE_FURNACE_BLOCK;
 
     @ObjectHolder(ID_MACHINE_FURNACE)
-    public static TileEntityType<FurnaceTile> MACHINE_FURNACE_TILE;
+    public static TileEntityType<MachineFurnaceTile> MACHINE_FURNACE_TILE;
 
-//    @ObjectHolder(ID_MACHINE_FURNACE)
-//    public static ContainerType<FurnaceContainer> MACHINE_FURNACE_CONTAINER;
+    @ObjectHolder(ID_MACHINE_FURNACE)
+    public static ContainerType<MachineFurnaceContainer> MACHINE_FURNACE_CONTAINER;
 
     @ObjectHolder("thermal:firstblock")
     public static FirstBlock FIRSTBLOCK;

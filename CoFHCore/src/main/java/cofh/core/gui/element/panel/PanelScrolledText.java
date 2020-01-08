@@ -88,7 +88,7 @@ public abstract class PanelScrolledText extends PanelBase {
     }
 
     @Override
-    public boolean mouseWheel(double mouseX, double mouseY, int movement) {
+    public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         if (!fullyOpen) {
             return false;

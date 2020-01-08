@@ -1,6 +1,7 @@
 package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.block.tutorial.FirstBlockScreen;
+import cofh.thermal.expansion.gui.client.MachineFurnaceScreen;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
 import net.minecraft.client.gui.ScreenManager;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.expansion.init.TExpReferences.FIRSTBLOCK_CONTAINER;
+import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_CONTAINER;
 
 @Mod(ID_THERMAL_EXPANSION)
 public class ThermalExpansion {
@@ -39,6 +41,7 @@ public class ThermalExpansion {
     private void clientSetup(final FMLClientSetupEvent event) {
 
         ScreenManager.registerFactory(FIRSTBLOCK_CONTAINER, FirstBlockScreen::new);
+        ScreenManager.registerFactory(MACHINE_FURNACE_CONTAINER, MachineFurnaceScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

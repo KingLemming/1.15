@@ -1,12 +1,9 @@
-package cofh.thermal.core.gui;
+package cofh.thermal.core.gui.client;
 
 import cofh.core.gui.client.ContainerScreenCoFH;
 import cofh.core.gui.element.ElementScaled;
 import cofh.core.gui.element.panel.PanelInfo;
-import cofh.core.gui.element.panel.PanelRedstoneControl;
-import cofh.core.gui.element.panel.PanelSecurity;
 import cofh.core.util.GuiHelper;
-import cofh.lib.util.helpers.SecurityHelper;
 import cofh.thermal.core.tileentity.MachineTileBase;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -22,9 +19,9 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
     protected ElementScaled progress;
     protected ElementScaled speed;
 
-    public MachineScreenBase(T screenContainer, PlayerInventory inv, MachineTileBase tile, ITextComponent titleIn) {
+    public MachineScreenBase(T container, PlayerInventory inv, MachineTileBase tile, ITextComponent titleIn) {
 
-        super(screenContainer, inv, titleIn);
+        super(container, inv, titleIn);
         this.tile = tile;
     }
 
@@ -33,12 +30,14 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
 
         super.init();
 
-        addPanel(new PanelInfo(this, info));
-        if (SecurityHelper.hasSecurity(tile)) {
-            addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
+        if (info != null && !info.isEmpty()) {
+            addPanel(new PanelInfo(this, info));
         }
-        addPanel(new PanelRedstoneControl(this, tile));
-        // addPanel(new PanelConfiguration(this, tile, tile));
+        //        if (SecurityHelper.hasSecurity(tile)) {
+        //            addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
+        //        }
+        //        addPanel(new PanelRedstoneControl(this, tile));
+        //        // addPanel(new PanelConfiguration(this, tile, tile));
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
             addElement(GuiHelper.createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()));

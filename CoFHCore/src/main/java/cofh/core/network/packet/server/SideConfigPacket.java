@@ -21,7 +21,7 @@ public class SideConfigPacket extends PacketBase implements IPacketServer {
 
     public SideConfigPacket() {
 
-        super(PACKET_SIDE_CONFIG, CoFHCore.packetHandler);
+        super(PACKET_SIDE_CONFIG, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

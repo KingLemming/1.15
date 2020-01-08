@@ -29,6 +29,12 @@
   "block.thermal.iridium_block": "Block of Iridium",
   "block.thermal.steel_block": "Block of Steel",
 
+  "block.thermal.machine_furnace": "Redstone Furnace",
+
+  "info.thermal.machine_furnace.0": "Smelts things using Redstone Flux.",
+  "info.thermal.machine_furnace.1": "Uses very little energy to cook food.",
+  "info.thermal.machine_furnace.2": "Om nom nom.",
+
   "block.thermal.crossover_rail": "Crossover Rail",
 
   "block.thermal.lumium_activator_rail": "Lumium Activator Rail",

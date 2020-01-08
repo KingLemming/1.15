@@ -12,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_COFH_POTIONS;
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
 
 @Mod(ID_COFH_POTIONS)
 public class CoFHPotions {

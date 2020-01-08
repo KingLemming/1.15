@@ -145,7 +145,7 @@ public abstract class ElementSlider extends ElementBase {
     protected abstract void dragSlider(int x, int y);
 
     @Override
-    public boolean mouseWheel(double mouseX, double mouseY, int movement) {
+    public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         if (movement > 0) {
             setValue(_value - 1);

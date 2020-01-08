@@ -22,4 +22,5 @@ public interface IGuiAccess {
     void drawTexturedModalRect(int x, int y, int u, int v, int width, int height);
 
     void drawTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, float texH);
+
 }

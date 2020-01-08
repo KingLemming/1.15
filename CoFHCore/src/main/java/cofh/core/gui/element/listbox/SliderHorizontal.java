@@ -39,4 +39,5 @@ public class SliderHorizontal extends ElementSlider {
         v += Math.round(_sliderWidth * (v / (float) width) + (_sliderWidth * 0.25f));
         setValue(_valueMin + ((_valueMax - _valueMin) * v / width));
     }
+
 }

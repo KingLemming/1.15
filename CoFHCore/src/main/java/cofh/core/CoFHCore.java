@@ -2,10 +2,16 @@ package cofh.core;
 
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
+import cofh.core.gui.TexturesCoFH;
 import cofh.core.init.CoreBlocks;
 import cofh.core.init.CoreConfig;
 import cofh.core.init.CoreEffects;
 import cofh.core.init.CoreItems;
+import cofh.core.network.packet.client.IndexedChatPacket;
+import cofh.core.network.packet.client.TileControlPacket;
+import cofh.core.network.packet.client.TileGuiPacket;
+import cofh.core.network.packet.client.TileStatePacket;
+import cofh.core.network.packet.server.*;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityAOE;
@@ -19,6 +25,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -29,13 +36,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.lib.util.constants.Constants.*;
 
 @Mod(ID_COFH_CORE)
 public class CoFHCore {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
-    public static PacketHandler packetHandler;
+    public static final PacketHandler PACKET_HANDLER = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "general"));
     public static Proxy proxy = DistExecutor.runForDist(() -> ProxyClient::new, () -> Proxy::new);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
@@ -44,6 +51,8 @@ public class CoFHCore {
     public static final DeferredRegisterCoFH<ParticleType<?>> PARTICLES = new DeferredRegisterCoFH<>(ForgeRegistries.PARTICLE_TYPES, ID_COFH_CORE);
 
     public CoFHCore() {
+
+        registerPackets();
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -83,10 +92,29 @@ public class CoFHCore {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
+        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        modEventBus.addListener(TexturesCoFH::preStitch);
+        modEventBus.addListener(TexturesCoFH::postStitch);
+
         CoreClientEvents.register();
 
         AOEClientEvents.register();
     }
     // endregion
+
+    private void registerPackets() {
+
+        PACKET_HANDLER.registerPacket(PACKET_CONTROL, TileControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_GUI, TileGuiPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_STATE, TileStatePacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_CHAT, IndexedChatPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SECURITY, SecurityPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SECURITY_CONTROL, SecurityControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_REDSTONE_CONTROL, RedstoneControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_TRANSFER_CONTROL, TransferControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SIDE_CONFIG, SideConfigPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, MultiModeItemPacket::new);
+    }
 
 }

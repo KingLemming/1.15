@@ -336,7 +336,7 @@ public abstract class PanelBase extends ElementBase {
     }
 
     @Override
-    public boolean mouseWheel(double mouseX, double mouseY, int movement) {
+    public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         mouseX -= this.posX();
         mouseY -= this.posY;

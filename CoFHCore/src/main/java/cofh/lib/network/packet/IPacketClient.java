@@ -67,7 +67,7 @@ public interface IPacketClient extends IPacket {
         PlayerList playerList = server.getPlayerList();
         for (ServerPlayerEntity player : playerList.getPlayers()) {
             if (playerList.canSendCommands(player.getGameProfile())) {
-                if (packet == null) { //So we don't serialize multiple times.
+                if (packet == null) { // So we don't serialize multiple times.
                     packet = toVanillaPacket(NetworkDirection.PLAY_TO_CLIENT);
                 }
                 player.connection.sendPacket(packet);

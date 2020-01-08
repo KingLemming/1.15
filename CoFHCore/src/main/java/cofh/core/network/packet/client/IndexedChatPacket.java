@@ -17,7 +17,7 @@ public class IndexedChatPacket extends PacketBase implements IPacketClient {
 
     public IndexedChatPacket() {
 
-        super(PACKET_CHAT, CoFHCore.packetHandler);
+        super(PACKET_CHAT, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

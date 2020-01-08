@@ -20,7 +20,7 @@ public class SecurityControlPacket extends PacketBase implements IPacketServer {
 
     public SecurityControlPacket() {
 
-        super(PACKET_SECURITY_CONTROL, CoFHCore.packetHandler);
+        super(PACKET_SECURITY_CONTROL, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

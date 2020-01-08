@@ -27,6 +27,7 @@ public class FirstBlockScreen extends ContainerScreen<FirstBlockContainer> {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 
+        this.font.drawString(this.title.getFormattedText(), 60.0F, 6.0F, 4210752);
         drawString(Minecraft.getInstance().fontRenderer, "Energy: " + container.getEnergy(), 10, 10, 0xffffff);
     }
 

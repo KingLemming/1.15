@@ -2,6 +2,7 @@ package cofh.lib.inventory.container.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
 
 public class SlotCoFH extends Slot {
 
@@ -25,10 +26,10 @@ public class SlotCoFH extends Slot {
         return slotStackLimit;
     }
 
-    //    @Override
-    //    public boolean isItemValid(ItemStack stack) {
-    //
-    //        return inventory.isItemValidForSlot(slotIndex, stack);
-    //    }
+    @Override
+    public boolean isItemValid(ItemStack stack) {
+
+        return inventory.isItemValidForSlot(slotIndex, stack);
+    }
 
 }

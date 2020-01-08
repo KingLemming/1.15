@@ -213,7 +213,7 @@ public class ElementListBox extends ElementBase {
     }
 
     @Override
-    public boolean mouseWheel(double mouseX, double mouseY, int movement) {
+    public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         if (Screen.hasControlDown()) {
             if (movement > 0) {

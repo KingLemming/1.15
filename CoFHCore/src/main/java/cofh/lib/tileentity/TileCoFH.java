@@ -1,10 +1,14 @@
 package cofh.lib.tileentity;
 
+import cofh.core.network.packet.client.TileGuiPacket;
 import cofh.lib.util.Utils;
 import cofh.lib.util.control.ISecurable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
@@ -14,6 +18,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 
 import javax.annotation.Nullable;
 
@@ -33,6 +38,17 @@ public class TileCoFH extends TileEntity implements ITileCallback {
             world.tickableTileEntities.remove(this);
         }
         validate();
+    }
+
+    public void receiveGuiNetworkData(int id, int data) {
+
+    }
+
+    public void sendGuiNetworkData(Container container, IContainerListener player) {
+
+        if (player instanceof ServerPlayerEntity && (!(player instanceof FakePlayer))) {
+            TileGuiPacket.sendToClient(this, (ServerPlayerEntity) player);
+        }
     }
 
     // region HELPERS

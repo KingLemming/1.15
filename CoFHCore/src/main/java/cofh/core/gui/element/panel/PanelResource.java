@@ -32,4 +32,5 @@ public class PanelResource extends PanelBase {
         maxHeight = 92;
         maxWidth = 100;
     }
+
 }

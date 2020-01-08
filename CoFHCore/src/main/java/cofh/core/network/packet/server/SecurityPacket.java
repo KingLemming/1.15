@@ -16,7 +16,7 @@ public class SecurityPacket extends PacketBase implements IPacketServer {
 
     public SecurityPacket() {
 
-        super(PACKET_SECURITY, CoFHCore.packetHandler);
+        super(PACKET_SECURITY, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

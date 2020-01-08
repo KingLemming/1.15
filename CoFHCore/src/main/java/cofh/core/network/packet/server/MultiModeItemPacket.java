@@ -17,7 +17,7 @@ public class MultiModeItemPacket extends PacketBase implements IPacketServer {
 
     public MultiModeItemPacket() {
 
-        super(PACKET_KEY_MULTIMODE, CoFHCore.packetHandler);
+        super(PACKET_KEY_MULTIMODE, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

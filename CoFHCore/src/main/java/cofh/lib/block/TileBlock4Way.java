@@ -5,10 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 
 import javax.annotation.Nullable;
-
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.ACTIVE;
@@ -20,8 +20,6 @@ public class TileBlock4Way extends TileBlockCoFH {
 
         super(builder, supplier);
         this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));
-
-        System.out.println("CHECK: " + supplier);
     }
 
     @Override
@@ -43,6 +41,18 @@ public class TileBlock4Way extends TileBlockCoFH {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
         return this.getDefaultState().with(FACING_HORIZONTAL, context.getPlayer().getAdjustedHorizontalFacing().getOpposite()).with(ACTIVE, false);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+
+        return state.with(FACING_HORIZONTAL, rot.rotate(state.get(FACING_HORIZONTAL)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+
+        return state.rotate(mirrorIn.toRotation(state.get(FACING_HORIZONTAL)));
     }
 
 }

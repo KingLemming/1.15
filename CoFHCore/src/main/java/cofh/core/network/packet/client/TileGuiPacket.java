@@ -21,7 +21,7 @@ public class TileGuiPacket extends PacketBase implements IPacketClient {
 
     public TileGuiPacket() {
 
-        super(PACKET_GUI, CoFHCore.packetHandler);
+        super(PACKET_GUI, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

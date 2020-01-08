@@ -17,7 +17,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import java.util.List;
 
-import static cofh.lib.util.helpers.ItemHelper.itemsIdentical;
+import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 /**
  * This class contains helper functions related to Inventories and Inventory manipulation.
@@ -45,7 +45,7 @@ public class InventoryHelper {
         }
         int openSlot = -1;
         for (int i = startIndex; i <= endIndex; ++i) {
-            if (itemsIdentical(stack, inventory[i]) && inventory[i].getMaxStackSize() > inventory[i].getCount()) {
+            if (itemsEqualWithTags(stack, inventory[i]) && inventory[i].getMaxStackSize() > inventory[i].getCount()) {
                 int hold = inventory[i].getMaxStackSize() - inventory[i].getCount();
                 if (hold >= stack.getCount()) {
                     inventory[i].grow(stack.getCount());
@@ -99,55 +99,51 @@ public class InventoryHelper {
         int iterOrder = !reverseDirection ? 1 : -1;
 
         Slot slot;
-        ItemStack existingStack;
+        ItemStack prevStack;
 
         if (stack.isStackable()) {
-            while (stack.getCount() > 0 && (!reverseDirection && i <= endIndex || reverseDirection && i >= startIndex)) {
+            while (!stack.isEmpty() && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
                 slot = slots.get(i);
                 if (slot instanceof SlotFalseCopy) {
                     i += iterOrder;
                     continue;
                 }
-                existingStack = slot.getStack();
-                if (!existingStack.isEmpty()) {
-                    int maxStack = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
-                    int rmv = Math.min(maxStack, stack.getCount());
-                    if (slot.isItemValid(ItemHelper.cloneStack(stack, rmv)) && itemsIdentical(existingStack, stack)) {
-                        int existingSize = existingStack.getCount() + stack.getCount();
-                        if (existingSize <= maxStack) {
-                            stack.setCount(0);
-                            existingStack.setCount(existingSize);
-                            slot.putStack(existingStack);
-                            successful = true;
-                        } else if (existingStack.getCount() < maxStack) {
-                            stack.shrink(maxStack - existingStack.getCount());
-                            existingStack.setCount(maxStack);
-                            slot.putStack(existingStack);
-                            successful = true;
-                        }
+                prevStack = slot.getStack();
+                if (!prevStack.isEmpty() && itemsEqualWithTags(prevStack, stack)) {
+                    int size = prevStack.getCount() + stack.getCount();
+                    int maxSize = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
+                    if (size <= maxSize) {
+                        stack.setCount(0);
+                        prevStack.setCount(size);
+                        // slot.putStack(prevStack); // TODO: Determine if this is more correct.
+                        slot.onSlotChanged();
+                        successful = true;
+                    } else if (prevStack.getCount() < maxSize) {
+                        stack.shrink(maxSize - prevStack.getCount());
+                        prevStack.setCount(maxSize);
+                        // slot.putStack(prevStack); // TODO: Determine if this is more correct.
+                        slot.onSlotChanged();
+                        successful = true;
                     }
                 }
                 i += iterOrder;
             }
         }
-        if (stack.getCount() > 0) {
+        if (!stack.isEmpty()) {
             i = !reverseDirection ? startIndex : endIndex - 1;
-            while (stack.getCount() > 0 && (!reverseDirection && i <= endIndex || reverseDirection && i >= startIndex)) {
+            while (stack.getCount() > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
                 slot = slots.get(i);
                 if (slot instanceof SlotFalseCopy) {
                     i += iterOrder;
                     continue;
                 }
-                existingStack = slot.getStack();
-                if (existingStack.isEmpty()) {
-                    int maxStack = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
-                    int rmv = Math.min(maxStack, stack.getCount());
-
-                    if (slot.isItemValid(ItemHelper.cloneStack(stack, rmv))) {
-                        existingStack = stack.split(rmv);
-                        slot.putStack(existingStack);
-                        successful = true;
-                    }
+                prevStack = slot.getStack();
+                if (prevStack.isEmpty() && slot.isItemValid(stack)) {
+                    int maxSize = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
+                    int splitSize = Math.min(maxSize, stack.getCount());
+                    slot.putStack(stack.split(splitSize));
+                    slot.onSlotChanged();
+                    successful = true;
                 }
                 i += iterOrder;
             }

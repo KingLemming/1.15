@@ -1,5 +1,6 @@
 package cofh.lib.util.control;
 
+import cofh.core.network.packet.server.SideConfigPacket;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -112,8 +113,7 @@ public class ReconfigControlModule implements IReconfigurable {
         sides[side.ordinal()] = sides[side.ordinal()].prev();
 
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            //PacketSideConfig.sendToServer(this.tile);
+            SideConfigPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }
@@ -129,8 +129,7 @@ public class ReconfigControlModule implements IReconfigurable {
         sides[side.ordinal()] = sides[side.ordinal()].next();
 
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            //PacketSideConfig.sendToServer(this.tile);
+            SideConfigPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }
@@ -146,8 +145,7 @@ public class ReconfigControlModule implements IReconfigurable {
         sides[side.ordinal()] = config;
 
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            //PacketSideConfig.sendToServer(this.tile);
+            SideConfigPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }
@@ -160,8 +158,7 @@ public class ReconfigControlModule implements IReconfigurable {
         sides = new SideConfig[]{SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
 
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            // PacketSideConfig.sendToServer(this.tile);
+            SideConfigPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }

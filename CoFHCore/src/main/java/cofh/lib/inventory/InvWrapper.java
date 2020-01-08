@@ -92,13 +92,9 @@ public class InvWrapper implements IInventory {
     }
 
     @Override
-    public void openInventory(PlayerEntity player) {
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
 
-    }
-
-    @Override
-    public void closeInventory(PlayerEntity player) {
-
+        return inventory.isItemValid(index, stack);
     }
 
     @Override

@@ -76,7 +76,7 @@ public class AOEEvents {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void handleUseHoeEvent(UseHoeEvent event) {
 
-        if (event.isCanceled()) {
+        if (event.isCanceled() || event.getResult() == Event.Result.ALLOW) {
             return;
         }
         PlayerEntity player = event.getPlayer();

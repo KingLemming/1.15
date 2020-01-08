@@ -20,7 +20,7 @@ import static cofh.lib.util.constants.Tags.TAG_PROCESS;
 import static cofh.lib.util.constants.Tags.TAG_PROCESS_MAX;
 import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
-import static cofh.lib.util.helpers.ItemHelper.itemsIdentical;
+import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileProcess extends MachineTileBase {
 
@@ -44,6 +44,8 @@ public abstract class MachineTileProcess extends MachineTileBase {
 
     @Override
     public void tick() {
+
+        energyStorage.modify(10);
 
         boolean curActive = isActive;
 
@@ -189,7 +191,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 if (output.getCount() >= output.getMaxStackSize()) {
                     continue;
                 }
-                if (itemsIdentical(output, recipeOutput)) {
+                if (itemsEqualWithTags(output, recipeOutput)) {
                     used[i] = true;
                     matched = true;
                     break;
@@ -267,7 +269,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 boolean matched = false;
                 for (ItemStorageCoFH slotOutput : slotOutputs) {
                     ItemStack output = slotOutput.getItemStack();
-                    if (itemsIdentical(output, recipeOutput) && output.getCount() < output.getMaxStackSize()) {
+                    if (itemsEqualWithTags(output, recipeOutput) && output.getCount() < output.getMaxStackSize()) {
                         output.grow(outputCount);
                         matched = true;
                         break;

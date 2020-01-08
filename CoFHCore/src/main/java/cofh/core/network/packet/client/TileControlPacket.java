@@ -22,7 +22,7 @@ public class TileControlPacket extends PacketBase implements IPacketClient {
 
     public TileControlPacket() {
 
-        super(PACKET_CONTROL, CoFHCore.packetHandler);
+        super(PACKET_CONTROL, CoFHCore.PACKET_HANDLER);
     }
 
     @Override

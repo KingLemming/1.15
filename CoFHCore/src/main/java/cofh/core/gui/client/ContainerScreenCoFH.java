@@ -50,9 +50,9 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     protected boolean drawInventory = true;
     protected boolean showTooltips = true;
 
-    public ContainerScreenCoFH(T screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public ContainerScreenCoFH(T container, PlayerInventory inv, ITextComponent titleIn) {
 
-        super(screenContainer, inv, titleIn);
+        super(container, inv, titleIn);
         player = inv.player;
     }
 
@@ -107,19 +107,14 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 
-        // GlStateManager.pushMatrix();
-        // GlStateManager.translatef(guiLeft, guiTop, 0.0F);
-
         if (drawTitle & title != null) {
-            this.drawCenteredString(this.font, this.title.getFormattedText(), this.width / 2, 50, 0x404040);
+            getFontRenderer().drawString(localize(title.getFormattedText()), getCenteredOffset(localize(title.getFormattedText())), 6, 0x404040);
         }
         if (drawInventory) {
             getFontRenderer().drawString(localize("container.inventory"), 8, ySize - 96 + 3, 0x404040);
         }
         drawPanels(true);
         drawElements(true);
-
-        // GlStateManager.popMatrix();
     }
 
     // region ELEMENTS
@@ -135,7 +130,6 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         if (element != null && element.visible()) {
             element.addTooltip(tooltip, mX, mY);
         }
-
         drawTooltipHoveringText(tooltip, mX + guiLeft, mY + guiTop, font);
         tooltip.clear();
     }
@@ -228,7 +222,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
 
     private ElementBase getElementAtPosition(int mouseX, int mouseY) {
 
-        for (int i = elements.size(); --i > 0; ) {
+        for (int i = elements.size(); i-- > 0; ) {
             ElementBase element = elements.get(i);
             if (element.intersectsWith(mouseX, mouseY)) {
                 return element;
@@ -272,7 +266,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
 
     private void updateElements() {
 
-        for (int i = elements.size(); --i > 0; ) {
+        for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
             if (c.visible() && c.enabled()) {
                 c.update(mX, mY);
@@ -282,7 +276,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
 
     private void updatePanels() {
 
-        for (int i = panels.size(); --i > 0; ) {
+        for (int i = panels.size(); i-- > 0; ) {
             PanelBase c = panels.get(i);
             if (c.visible() && c.enabled()) {
                 c.update(mX, mY);
@@ -316,7 +310,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         mouseX -= guiLeft;
         mouseY -= guiTop;
 
-        for (int i = elements.size(); --i > 0; ) {
+        for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
             if (!c.visible() || !c.enabled() || !c.intersectsWith(mouseX, mouseY)) {
                 continue;
@@ -328,7 +322,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         PanelBase panel = getPanelAtPosition(mouseX, mouseY);
         if (panel != null) {
             if (!panel.mouseClicked(mouseX, mouseY, mouseButton)) {
-                for (int i = panels.size(); --i > 0; ) {
+                for (int i = panels.size(); i-- > 0; ) {
                     PanelBase other = panels.get(i);
                     if (other != panel && other.open && other.side == panel.side) {
                         other.toggleOpen();
@@ -375,7 +369,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
         mouseY -= guiTop;
 
         if (mouseButton >= 0 && mouseButton <= 2) { // 0:left, 1:right, 2: middle
-            for (int i = elements.size(); --i > 0; ) {
+            for (int i = elements.size(); i-- > 0; ) {
                 ElementBase c = elements.get(i);
                 if (!c.visible() || !c.enabled()) { // no bounds checking on mouseUp events
                     continue;
@@ -407,9 +401,33 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     }
 
     @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double movement) {
+
+        if (movement != 0) {
+            for (int i = elements.size(); i-- > 0; ) {
+                ElementBase c = elements.get(i);
+                if (!c.visible() || !c.enabled() || !c.intersectsWith(mX, mY)) {
+                    continue;
+                }
+                if (c.mouseWheel(mX, mY, movement)) {
+                    return true;
+                }
+            }
+            PanelBase panel = getPanelAtPosition(mX, mY);
+            if (panel != null && panel.mouseWheel(mX, mY, movement)) {
+                return true;
+            }
+            if (mouseWheel(mX, mY, movement)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     protected boolean func_195363_d(int keyCode, int scanCode) {
 
-        for (int i = elements.size(); --i > 0; ) {
+        for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
             if (!c.visible() || !c.enabled()) {
                 continue;
@@ -423,7 +441,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
     // endregion
 
     // region HELPERS
-    protected boolean mouseWheel(int mouseX, int mouseY, int wheelMovement) {
+    protected boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         return false;
     }
@@ -533,7 +551,7 @@ public abstract class ContainerScreenCoFH<T extends Container> extends Container
 
         RenderHelper.setBlockTextureSheet();
         RenderHelper.resetColor();
-        blit(x, y, 16, 16, blitOffset, icon);
+        blit(x, y, blitOffset, 16, 16, icon);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cofh.lib.util.control;
 
+import cofh.core.network.packet.server.TransferControlPacket;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -102,8 +103,7 @@ public class TransferControlModule implements ITransferControllable {
             enableAutoOutput = output;
         }
         if (Utils.isClientWorld(tile.world())) {
-            // TODO: Fix
-            // PacketTransferControl.sendToServer(this.tile);
+            TransferControlPacket.sendToServer(tile);
         } else {
             tile.onControlUpdate();
         }

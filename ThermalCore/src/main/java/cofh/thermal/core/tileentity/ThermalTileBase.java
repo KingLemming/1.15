@@ -2,12 +2,12 @@ package cofh.thermal.core.tileentity;
 
 import cofh.core.network.packet.client.TileControlPacket;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.fluid.ManagedTankInv;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.inventory.ManagedItemInv;
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.StorageGroup;
 import cofh.lib.util.TimeTracker;
 import cofh.lib.util.control.IRedstoneControllableTile;
