@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "thermal:platinum_ore"
+  },
+  "result": "thermal:platinum_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "platinum_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:platinum_nugget"
+    }
+  },
+  "result": {
+    "item": "thermal:platinum_ingot"
+  }
+}

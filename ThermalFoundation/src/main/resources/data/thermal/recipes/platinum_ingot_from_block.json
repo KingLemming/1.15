@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "platinum_ingot",
+  "ingredients": [
+    {
+      "item": "thermal:platinum_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:platinum_ingot",
+    "count": 9
+  }
+}

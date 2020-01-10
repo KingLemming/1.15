@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "thermal:invar_dust"
+  },
+  "result": "thermal:invar_ingot",
+  "cookingtime": 100
+}

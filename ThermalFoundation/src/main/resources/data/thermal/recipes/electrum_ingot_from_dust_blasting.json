@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "thermal:electrum_dust"
+  },
+  "result": "thermal:electrum_ingot",
+  "cookingtime": 100
+}

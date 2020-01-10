@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lead_ingot_from_nugget"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_lead_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:lead_nugget",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lead_ingot_from_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_lead_nugget",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:platinum_ingot_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_platinum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:platinum_ingot",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_platinum_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:platinum_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:platinum_ingot_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_platinum_ingot",
+      "has_platinum_block",
+      "has_the_recipe"
+    ]
+  ]
+}

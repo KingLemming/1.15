@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "thermal:tin_dust"
+  },
+  "result": "thermal:tin_ingot",
+  "cookingtime": 200
+}

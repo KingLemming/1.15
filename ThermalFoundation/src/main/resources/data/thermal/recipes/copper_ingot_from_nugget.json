@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "copper_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:copper_nugget"
+    }
+  },
+  "result": {
+    "item": "thermal:copper_ingot"
+  }
+}

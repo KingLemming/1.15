@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lead_ingot",
+  "ingredients": [
+    {
+      "item": "thermal:lead_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:lead_ingot",
+    "count": 9
+  }
+}

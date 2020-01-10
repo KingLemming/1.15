@@ -1,4 +1,22 @@
 {
+  "info.cofh.information": "Information",
+
+  "info.cofh.security": "Security",
+  "info.cofh.access": "Access",
+  "info.cofh.access_friends": "Restricted",
+  "info.cofh.access_private": "Owner Only",
+  "info.cofh.access_public": "Public Access",
+  "info.cofh.access_team": "Team Only",
+
+  "info.cofh.redstone_control": "Redstone Control",
+  "info.cofh.control_status": "Control Status",
+  "info.cofh.disabled": "Disabled",
+  "info.cofh.enabled": "Enabled",
+  "info.cofh.ignored": "Ignored",
+  "info.cofh.high": "High",
+  "info.cofh.low": "Low",
+  "info.cofh.signal_required": "Signal Required",
+
   "block.cofh_core.glossed_magma": "Glossed Magma",
 
   "effect.cofh_core.amplification": "Amplification",
@@ -11,6 +29,8 @@
   "effect.cofh_core.love": "Love",
   "effect.cofh_core.magic_resistance": "Magic Resistance",
   "effect.cofh_core.panacea": "Panacea",
+
+  "item.cofh_core.ectoplasm": "Ectoplasm",
 
   "enchantment.minecraft.aqua_affinity.desc": "Removes the mining speed penalty when underwater.",
   "enchantment.minecraft.bane_of_arthropods.desc": "Slows and increases damage to Arthropod mobs.",
@@ -49,10 +69,6 @@
   "enchantment.minecraft.thorns.desc": "Damages attackers.",
   "enchantment.minecraft.unbreaking.desc": "Increases effective durability.",
   "enchantment.minecraft.vanishing_curse.desc": "The item will disappear forever when the owner dies.",
-
-  "info.cofh_core.information": "Information",
-
-  "item.cofh_core.ectoplasm": "Ectoplasm",
 
   "item.minecraft.lingering_potion.effect.amplification": "Lingering Potion of Amplification",
   "item.minecraft.lingering_potion.effect.clarity": "Lingering Potion of Clarity",

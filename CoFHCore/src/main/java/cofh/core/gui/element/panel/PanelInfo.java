@@ -40,7 +40,7 @@ public class PanelInfo extends PanelScrolledText {
     @Override
     public String getTitle() {
 
-        return localize("info.cofh_core.information");
+        return localize("info.cofh.information");
     }
 
 }

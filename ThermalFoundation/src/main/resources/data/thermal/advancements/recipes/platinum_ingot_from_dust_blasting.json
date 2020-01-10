@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:platinum_ingot_from_dust_blasting"
+    ]
+  },
+  "criteria": {
+    "has_platinum_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:platinum_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:platinum_ingot_from_dust_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_platinum_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

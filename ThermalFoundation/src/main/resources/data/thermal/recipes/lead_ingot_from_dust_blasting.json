@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "thermal:lead_dust"
+  },
+  "result": "thermal:lead_ingot",
+  "cookingtime": 100
+}

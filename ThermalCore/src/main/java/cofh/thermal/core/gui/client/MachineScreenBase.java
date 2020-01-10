@@ -3,6 +3,7 @@ package cofh.thermal.core.gui.client;
 import cofh.core.gui.client.ContainerScreenCoFH;
 import cofh.core.gui.element.ElementScaled;
 import cofh.core.gui.element.panel.PanelInfo;
+import cofh.core.gui.element.panel.PanelRedstoneControl;
 import cofh.core.util.GuiHelper;
 import cofh.thermal.core.tileentity.MachineTileBase;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,8 +37,8 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
         //        if (SecurityHelper.hasSecurity(tile)) {
         //            addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
         //        }
-        //        addPanel(new PanelRedstoneControl(this, tile));
-        //        // addPanel(new PanelConfiguration(this, tile, tile));
+        addPanel(new PanelRedstoneControl(this, tile));
+        // addPanel(new PanelConfiguration(this, tile, tile));
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
             addElement(GuiHelper.createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()));
