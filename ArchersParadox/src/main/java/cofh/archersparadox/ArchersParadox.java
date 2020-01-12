@@ -1,5 +1,6 @@
 package cofh.archersparadox;
 
+import cofh.archersparadox.data.GeneratorRecipes;
 import cofh.archersparadox.entity.projectile.*;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
@@ -7,6 +8,7 @@ import cofh.archersparadox.init.ModEntities;
 import cofh.archersparadox.init.ModItems;
 import cofh.archersparadox.renderer.entity.projectile.*;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -52,6 +55,7 @@ public class ArchersParadox {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::gatherData);
 
         EFFECTS.register(modEventBus);
         ENTITIES.register(modEventBus);
@@ -88,6 +92,27 @@ public class ArchersParadox {
         RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(VerdantArrowEntity.class, VerdantArrowRenderer::new);
+    }
+    // endregion
+
+    // region DATA
+    private void gatherData(final GatherDataEvent event) {
+
+        if (event.includeServer()) {
+            registerServerProviders(event.getGenerator());
+        }
+        if (event.includeClient()) {
+            registerClientProviders(event.getGenerator(), event);
+        }
+    }
+
+    private void registerServerProviders(DataGenerator generator) {
+
+        generator.addProvider(new GeneratorRecipes(generator));
+    }
+
+    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
+
     }
     // endregion
 }

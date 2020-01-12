@@ -5,16 +5,14 @@ import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
 import net.minecraft.block.Block;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -47,6 +45,7 @@ public class ThermalCore {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::enqueueIMC);
         modEventBus.addListener(this::processIMC);
+        modEventBus.addListener(this::gatherData);
 
         BLOCKS.register(modEventBus);
         FLUIDS.register(modEventBus);
@@ -69,6 +68,26 @@ public class ThermalCore {
     }
 
     private void processIMC(final InterModProcessEvent event) {
+
+    }
+    // endregion
+
+    // region DATA
+    private void gatherData(final GatherDataEvent event) {
+
+        if (event.includeServer()) {
+            registerServerProviders(event.getGenerator());
+        }
+        if (event.includeClient()) {
+            registerClientProviders(event.getGenerator(), event);
+        }
+    }
+
+    private void registerServerProviders(DataGenerator generator) {
+
+    }
+
+    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
     }
     // endregion

@@ -22,6 +22,7 @@ import cofh.lib.event.*;
 import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
@@ -31,6 +32,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -72,6 +74,20 @@ public class CoFHCore {
         // CoreParticles.register();
     }
 
+    private void registerPackets() {
+
+        PACKET_HANDLER.registerPacket(PACKET_CONTROL, TileControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_GUI, TileGuiPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_STATE, TileStatePacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_CHAT, IndexedChatPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SECURITY, SecurityPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SECURITY_CONTROL, SecurityControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_REDSTONE_CONTROL, RedstoneControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_TRANSFER_CONTROL, TransferControlPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_SIDE_CONFIG, SideConfigPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, MultiModeItemPacket::new);
+    }
+
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
@@ -103,18 +119,24 @@ public class CoFHCore {
     }
     // endregion
 
-    private void registerPackets() {
+    // region DATA
+    private void gatherData(final GatherDataEvent event) {
 
-        PACKET_HANDLER.registerPacket(PACKET_CONTROL, TileControlPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_GUI, TileGuiPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_STATE, TileStatePacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_CHAT, IndexedChatPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_SECURITY, SecurityPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_SECURITY_CONTROL, SecurityControlPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_REDSTONE_CONTROL, RedstoneControlPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_TRANSFER_CONTROL, TransferControlPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_SIDE_CONFIG, SideConfigPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, MultiModeItemPacket::new);
+        if (event.includeServer()) {
+            registerServerProviders(event.getGenerator());
+        }
+        if (event.includeClient()) {
+            registerClientProviders(event.getGenerator(), event);
+        }
     }
+
+    private void registerServerProviders(DataGenerator generator) {
+
+    }
+
+    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
+
+    }
+    // endregion
 
 }
