@@ -5,6 +5,7 @@ import net.minecraft.item.ItemGroup;
 import static cofh.thermal.core.init.ThermalItemGroups.THERMAL_ITEMS;
 import static cofh.thermal.core.init.ThermalReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerCropAndSeed;
+import static cofh.thermal.cultivation.init.TCulFoods.*;
 
 public class TCulItems {
 
@@ -22,20 +23,21 @@ public class TCulItems {
 
         // ANNUAL
         registerCropAndSeed(ID_BARLEY);
-        registerCropAndSeed(ID_ONION);
+        registerCropAndSeed(ID_ONION, ONION);
+        registerCropAndSeed(ID_RADISH, RADISH);
         registerCropAndSeed(ID_RICE);
         registerCropAndSeed(ID_SADIROOT);
-        registerCropAndSeed(ID_SPINACH);
+        registerCropAndSeed(ID_SPINACH, SPINACH);
 
         // PERENNIAL
-        registerCropAndSeed(ID_BELL_PEPPER);
-        registerCropAndSeed(ID_GREEN_BEAN);
-        registerCropAndSeed(ID_PEANUT);
-        registerCropAndSeed(ID_STRAWBERRY);
-        registerCropAndSeed(ID_TOMATO);
+        registerCropAndSeed(ID_BELL_PEPPER, BELL_PEPPER);
+        registerCropAndSeed(ID_GREEN_BEAN, GREEN_BEAN);
+        registerCropAndSeed(ID_PEANUT, PEANUT);
+        registerCropAndSeed(ID_STRAWBERRY, STRAWBERRY);
+        registerCropAndSeed(ID_TOMATO, TOMATO);
 
         // BREWING
-        registerCropAndSeed(ID_COFFEE);
+        registerCropAndSeed(ID_COFFEE, COFFEE_CHERRY);
         registerCropAndSeed(ID_TEA);
     }
 

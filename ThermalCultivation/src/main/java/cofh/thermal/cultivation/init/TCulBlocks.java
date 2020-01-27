@@ -20,6 +20,7 @@ public class TCulBlocks {
         // ANNUAL
         registerAnnual(ID_BARLEY);
         registerAnnual(ID_ONION);
+        registerAnnual(ID_RADISH);
         registerAnnual(ID_RICE);
         registerAnnual(ID_SADIROOT);
         registerAnnual(ID_SPINACH);

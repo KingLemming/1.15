@@ -10,6 +10,7 @@ public class TCulFoods {
 
     public static final Food CORN = new Food.Builder().hunger(3).saturation(0.6F).build();
     public static final Food ONION = new Food.Builder().hunger(1).saturation(0.3F).build();
+    public static final Food RADISH = new Food.Builder().hunger(1).saturation(0.3F).build();
     public static final Food SPINACH = new Food.Builder().hunger(1).saturation(0.3F).build();
 
     public static final Food BELL_PEPPER = new Food.Builder().hunger(1).saturation(0.3F).build();

@@ -6,6 +6,7 @@ import cofh.lib.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
@@ -164,9 +165,23 @@ public class RegistrationHelper {
         registerCropAndSeed(id, THERMAL_ITEMS);
     }
 
+    public static void registerCropAndSeed(String id, Food food) {
+
+        registerCropAndSeed(id, THERMAL_ITEMS, food);
+    }
+
     public static void registerCropAndSeed(String id, ItemGroup group) {
 
-        ITEMS.register(id, () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerCropAndSeed(id, group, null);
+    }
+
+    public static void registerCropAndSeed(String id, ItemGroup group, Food food) {
+
+        if (food != null) {
+            ITEMS.register(id, () -> new ItemCoFH(new Item.Properties().group(group).food(food)));
+        } else {
+            ITEMS.register(id, () -> new ItemCoFH(new Item.Properties().group(group)));
+        }
         ITEMS.register(seeds(id), () -> new BlockNamedItemCoFH(BLOCKS.get(id), new Item.Properties().group(group)));
     }
 

@@ -74,8 +74,13 @@ public final class ArcheryHelper {
                     // Each additional arrow fired at a higher arc - arrows will not be fired beyond vertically. Maximum of 5 degrees between arrows.
                     float volleyPitch = encVolley > 0 ? MathHelper.clamp(90.0F + shooter.rotationPitch / encVolley, 0.0F, 5.0F) : 0;
 
+                    BowItem bowItem = bow.getItem() instanceof BowItem ? (BowItem) bow.getItem() : null;
+
                     for (int shot = 0; shot < numArrows; ++shot) {
                         AbstractArrowEntity arrow = createArrow(world, ammo, shooter);
+                        if (bowItem != null) {
+                            arrow = bowItem.customeArrow(arrow);
+                        }
                         arrow.shoot(shooter, shooter.rotationPitch - volleyPitch * shot, shooter.rotationYaw, 0.0F, arrowVelocity * 3.0F * velocityMod, accuracyMod);// * (1 + shot * 2));
                         arrow.setDamage(arrow.getDamage() * damageMod);
 

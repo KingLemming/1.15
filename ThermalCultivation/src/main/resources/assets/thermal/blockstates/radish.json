@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thermal:block/radish_0"
+    },
+    "age=1": {
+      "model": "thermal:block/radish_1"
+    },
+    "age=2": {
+      "model": "thermal:block/radish_2"
+    },
+    "age=3": {
+      "model": "thermal:block/radish_3"
+    },
+    "age=4": {
+      "model": "thermal:block/radish_4"
+    },
+    "age=5": {
+      "model": "thermal:block/radish_5"
+    },
+    "age=6": {
+      "model": "thermal:block/radish_6"
+    },
+    "age=7": {
+      "model": "thermal:block/radish_7"
+    }
+  }
+}

@@ -46,6 +46,7 @@ public class ThermalReferences {
     // region CULTIVATION
     public static final String ID_BARLEY = "barley";
     public static final String ID_ONION = "onion";
+    public static final String ID_RADISH = "radish";
     public static final String ID_RICE = "rice";
     public static final String ID_SADIROOT = "sadiroot";
     public static final String ID_SPINACH = "spinach";
