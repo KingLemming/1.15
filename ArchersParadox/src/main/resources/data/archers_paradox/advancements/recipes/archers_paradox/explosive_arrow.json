@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:prismarine_arrow"
+      "archers_paradox:explosive_arrow"
     ]
   },
   "criteria": {
@@ -11,12 +11,12 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:prismarine_shard"
+            "item": "minecraft:tnt"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -25,7 +25,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:prismarine_arrow"
+        "recipe": "archers_paradox:explosive_arrow"
       }
     }
   },
@@ -35,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

@@ -25,6 +25,12 @@ public abstract class EnchantmentCoFH extends Enchantment {
         return this;
     }
 
+    public EnchantmentCoFH setTreasure(boolean treasure) {
+
+        this.treasure = treasure;
+        return this;
+    }
+
     public EnchantmentCoFH setAllowOnBooks(boolean allowOnBooks) {
 
         this.allowOnBooks = allowOnBooks;

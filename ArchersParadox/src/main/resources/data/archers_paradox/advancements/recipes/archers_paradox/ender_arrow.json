@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:phantasmal_arrow"
+      "archers_paradox:ender_arrow"
     ]
   },
   "criteria": {
@@ -11,12 +11,12 @@
       "conditions": {
         "items": [
           {
-            "item": "cofh_core:ectoplasm"
+            "item": "minecraft:ender_pearl"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -25,7 +25,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:phantasmal_arrow"
+        "recipe": "archers_paradox:ender_arrow"
       }
     }
   },
@@ -35,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

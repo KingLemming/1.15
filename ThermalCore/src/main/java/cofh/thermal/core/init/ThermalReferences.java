@@ -14,6 +14,8 @@ public class ThermalReferences {
     public static final String ID_REDSTONE_FLUID = "fluid_redstone";
     public static final String ID_GLOWSTONE_FLUID = "fluid_glowstone";
     public static final String ID_ENDER_FLUID = "fluid_ender";
+
+    public static final String ID_WRENCH = "wrench";
     // endregion
 
     // region FOUNDATION

@@ -6,11 +6,11 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:arrow"
-    },
     "X": {
       "item": "minecraft:nether_star"
+    },
+    "#": {
+      "item": "minecraft:arrow"
     }
   },
   "result": {

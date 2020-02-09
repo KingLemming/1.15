@@ -6,9 +6,6 @@
     "Z#Y"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:arrow"
-    },
     "X": {
       "item": "minecraft:mycelium"
     },
@@ -17,6 +14,9 @@
     },
     "Z": {
       "tag": "forge:mushrooms"
+    },
+    "#": {
+      "item": "minecraft:arrow"
     }
   },
   "result": {

@@ -6,9 +6,6 @@
     "Z#Y"
   ],
   "key": {
-    "#": {
-      "item": "archers_paradox:training_arrow"
-    },
     "X": {
       "item": "minecraft:experience_bottle"
     },
@@ -17,6 +14,9 @@
     },
     "Z": {
       "tag": "forge:gems/lapis"
+    },
+    "#": {
+      "item": "archers_paradox:training_arrow"
     }
   },
   "result": {

@@ -69,6 +69,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Magic Protection");
         comment = "If TRUE, the Magic Protection Enchantment is available for Armor and Horse Armor.";
         enableProtectionMagic = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureProtectionMagic = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelProtectionMagic = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -76,6 +78,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Displacement");
         comment = "If TRUE, the Displacement Enchantment is available for Armor, Shields, and Horse Armor.";
         enableDisplacement = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureDisplacement = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDisplacement = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
@@ -87,6 +91,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Flaming Rebuke");
         comment = "If TRUE, the Flaming Rebuke Enchantment is available for Armor, Shields, and Horse Armor.";
         enableFireRebuke = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureFireRebuke = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFireRebuke = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
@@ -98,6 +104,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Chilling Rebuke");
         comment = "If TRUE, the Chilling Rebuke Enchantment is available for Armor, Shields, and Horse Armor.";
         enableFrostRebuke = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureFrostRebuke = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostRebuke = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
@@ -110,11 +118,15 @@ public class ModConfig {
         SERVER_CONFIG.push("Air Affinity");
         comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
         enableAirWorker = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureAirWorker = SERVER_CONFIG.comment(comment).define("Treasure", false);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Gourmand");
         comment = "If TRUE, the Gourmand Enchantment is available for Helmets.";
         enableGourmand = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureGourmand = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelGourmand = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -123,6 +135,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Ender Disruption");
         comment = "If TRUE, the Ender Disruption Enchantment is available for various Weapons.";
         enableDamageEnder = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureDamageEnder = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDamageEnder = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -130,6 +144,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Vigilante");
         comment = "If TRUE, the Vigilante Enchantment is available for various Weapons.";
         enableDamageIllager = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureDamageIllager = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDamageIllager = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -137,6 +153,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Outlaw");
         comment = "If TRUE, the Outlaw Enchantment is available for various Weapons.";
         enableDamageVillager = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureDamageVillager = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelDamageVillager = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
         comment = "If TRUE, the Outlaw Enchantment causes Villagers (and Iron Golems) to drop Emeralds when killed.";
@@ -146,6 +164,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Cavalier");
         comment = "If TRUE, the Cavalier Enchantment is available for various Weapons.";
         enableCavalier = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureCavalier = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelCavalier = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -153,6 +173,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Frost Aspect");
         comment = "If TRUE, the Frost Aspect Enchantment is available for various Weapons.";
         enableFrostAspect = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureFrostAspect = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostAspect = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -160,6 +182,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Leech");
         comment = "If TRUE, the Leech Enchantment is available for various Weapons.";
         enableLeech = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureLeech = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelLeech = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -167,6 +191,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Magic Edge");
         comment = "If TRUE, the Magic Edge Enchantment is available for various Weapons.";
         enableMagicEdge = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureMagicEdge = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelMagicEdge = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -174,6 +200,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Vorpal");
         comment = "If TRUE, the Vorpal Enchantment is available for various Weapons.";
         enableVorpal = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureVorpal = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelVorpal = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the base critical hit chance of the Enchantment (in percentage).";
@@ -192,6 +220,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Excavating");
         comment = "If TRUE, the Excavating Enchantment is available for various Tools.";
         enableExcavating = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureExcavating = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelExcavating = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -199,6 +229,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Insight");
         comment = "If TRUE, the Insight Enchantment is available for various Tools and Weapons.";
         enableExpBoost = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureExpBoost = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this to change the max experience awarded per level of the Enchantment.";
@@ -208,6 +240,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Reach");
         comment = "If TRUE, the Reach Enchantment is available for various Tools.";
         enableReach = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureReach = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelReach = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -216,6 +250,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Hunter's Bounty");
         comment = "If TRUE, the Hunter's Bounty Enchantment is available for Bows.";
         enableHunter = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureHunter = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelHunter = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).";
@@ -225,6 +261,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Quick Draw");
         comment = "If TRUE, the Quick Draw Enchantment is available for various Bows.";
         enableQuickDraw = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureQuickDraw = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelQuickDraw = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -232,6 +270,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Trueshot");
         comment = "If TRUE, the Trueshot Enchantment is available for various Bows.";
         enableTrueshot = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureTrueshot = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelTrueshot = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -239,12 +279,16 @@ public class ModConfig {
         SERVER_CONFIG.push("Volley");
         comment = "If TRUE, the Volley Enchantment is available for various Bows.";
         enableVolley = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureVolley = SERVER_CONFIG.comment(comment).define("Treasure", false);
         SERVER_CONFIG.pop();
 
         // FISHING RODS
         SERVER_CONFIG.push("Angler's Bounty");
         comment = "If TRUE, the Angler's Bounty Enchantment is available for Fishing Rods.";
         enableAngler = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureAngler = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelAngler = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         comment = "Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).";
@@ -255,6 +299,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Furrowing");
         comment = "If TRUE, the Furrowing Enchantment is available for Hoes.";
         enableFurrowing = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureFurrowing = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFurrowing = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -262,6 +308,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Tilling");
         comment = "If TRUE, the Tilling Enchantment is available for Hoes.";
         enableTilling = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureTilling = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelTilling = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -269,17 +317,23 @@ public class ModConfig {
         SERVER_CONFIG.push("Weeding");
         comment = "If TRUE, the Weeding Enchantment is available for Hoes.";
         enableWeeding = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureWeeding = SERVER_CONFIG.comment(comment).define("Treasure", false);
         SERVER_CONFIG.pop();
 
         // SHIELDS
         SERVER_CONFIG.push("Bulwark");
         comment = "If TRUE, the Bulwark Enchantment is available for Shields.";
         enableBulwark = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureBulwark = SERVER_CONFIG.comment(comment).define("Treasure", false);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Phalanx");
         comment = "If TRUE, the Phalanx Enchantment is available for Shields.";
         enablePhalanx = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasurePhalanx = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelPhalanx = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
@@ -296,6 +350,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Soulbound");
         comment = "If TRUE, the Soulbound Enchantment is available.";
         enableSoulbound = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureSoulbound = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment. If permanent, this setting is ignored.";
         levelSoulbound = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         comment = "If TRUE, the Soulbound Enchantment is permanent (and will remove excess levels when triggered).";
@@ -366,6 +422,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Frost Walker");
         comment = "If TRUE, the Frost Walker Enchantment is replaced with an improved and more configurable version which works on more items, such as Horse Armor.";
         enableFrostWalker = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureFrostWalker = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelFrostWalker = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         comment = "If TRUE, the Frost Walker Enchantment will also chill Lava into Glossed Magma.";
@@ -398,6 +456,8 @@ public class ModConfig {
         SERVER_CONFIG.push("Mending");
         comment = "If TRUE, the Mending Enchantment is replaced with a new Enchantment - Preservation. This enchantment allows you to repair items at an Anvil without paying an increasing XP cost for every time you repair it. Additionally, these repairs have a much lower chance of damaging the anvil.";
         alternateMending = SERVER_CONFIG.comment(comment).define("Alternate Mending", false);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureMending = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage). Only used if Alternate Mending (Preservation) is enabled.";
         damageMending = SERVER_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
         SERVER_CONFIG.pop();
@@ -425,22 +485,26 @@ public class ModConfig {
         // ARMOR
         if (PROTECTION_MAGIC instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) PROTECTION_MAGIC).setEnable(enableProtectionMagic.get());
+            ((EnchantmentCoFH) PROTECTION_MAGIC).setTreasure(treasureProtectionMagic.get());
             ((EnchantmentCoFH) PROTECTION_MAGIC).setMaxLevel(levelProtectionMagic.get());
         }
         if (DISPLACEMENT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DISPLACEMENT).setEnable(enableDisplacement.get());
+            ((EnchantmentCoFH) DISPLACEMENT).setTreasure(treasureDisplacement.get());
             ((EnchantmentCoFH) DISPLACEMENT).setMaxLevel(levelDisplacement.get());
             DisplacementEnchantment.chance = chanceDisplacement.get();
             DisplacementEnchantment.mobsAffectPlayers = allowMobsDisplacement.get();
         }
         if (FIRE_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FIRE_REBUKE).setEnable(enableFireRebuke.get());
+            ((EnchantmentCoFH) FIRE_REBUKE).setTreasure(treasureFireRebuke.get());
             ((EnchantmentCoFH) FIRE_REBUKE).setMaxLevel(levelFireRebuke.get());
             FireRebukeEnchantment.chance = chanceFireRebuke.get();
             FireRebukeEnchantment.mobsAffectPlayers = allowMobsFireRebuke.get();
         }
         if (FROST_REBUKE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FROST_REBUKE).setEnable(enableFrostRebuke.get());
+            ((EnchantmentCoFH) FROST_REBUKE).setTreasure(treasureFrostRebuke.get());
             ((EnchantmentCoFH) FROST_REBUKE).setMaxLevel(levelFrostRebuke.get());
             FrostRebukeEnchantment.chance = chanceFrostRebuke.get();
             FrostRebukeEnchantment.mobsAffectPlayers = allowMobsFrostRebuke.get();
@@ -448,43 +512,53 @@ public class ModConfig {
         // HELMET
         if (AIR_AFFINITY instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirWorker.get());
+            ((EnchantmentCoFH) AIR_AFFINITY).setTreasure(treasureAirWorker.get());
         }
         if (GOURMAND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) GOURMAND).setEnable(enableGourmand.get());
+            ((EnchantmentCoFH) GOURMAND).setTreasure(treasureGourmand.get());
             ((EnchantmentCoFH) GOURMAND).setMaxLevel(levelGourmand.get());
         }
         // WEAPONS
         if (DAMAGE_ENDER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DAMAGE_ENDER).setEnable(enableDamageEnder.get());
+            ((EnchantmentCoFH) DAMAGE_ENDER).setTreasure(treasureDamageEnder.get());
             ((EnchantmentCoFH) DAMAGE_ENDER).setMaxLevel(levelDamageEnder.get());
         }
         if (DAMAGE_ILLAGER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setEnable(enableDamageIllager.get());
+            ((EnchantmentCoFH) DAMAGE_ILLAGER).setTreasure(treasureDamageIllager.get());
             ((EnchantmentCoFH) DAMAGE_ILLAGER).setMaxLevel(levelDamageIllager.get());
         }
         if (DAMAGE_VILLAGER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) DAMAGE_VILLAGER).setEnable(enableDamageVillager.get());
+            ((EnchantmentCoFH) DAMAGE_VILLAGER).setTreasure(treasureDamageVillager.get());
             ((EnchantmentCoFH) DAMAGE_VILLAGER).setMaxLevel(levelDamageVillager.get());
             DamageVillagerEnchantment.enableEmeraldDrops = dropsDamageVillager.get();
         }
         if (CAVALIER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) CAVALIER).setEnable(enableCavalier.get());
+            ((EnchantmentCoFH) CAVALIER).setTreasure(treasureCavalier.get());
             ((EnchantmentCoFH) CAVALIER).setMaxLevel(levelCavalier.get());
         }
         if (FROST_ASPECT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FROST_ASPECT).setEnable(enableFrostAspect.get());
+            ((EnchantmentCoFH) FROST_ASPECT).setTreasure(treasureFrostAspect.get());
             ((EnchantmentCoFH) FROST_ASPECT).setMaxLevel(levelFrostAspect.get());
         }
         if (LEECH instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) LEECH).setEnable(enableLeech.get());
+            ((EnchantmentCoFH) LEECH).setTreasure(treasureLeech.get());
             ((EnchantmentCoFH) LEECH).setMaxLevel(levelLeech.get());
         }
         if (MAGIC_EDGE instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) MAGIC_EDGE).setEnable(enableMagicEdge.get());
+            ((EnchantmentCoFH) MAGIC_EDGE).setTreasure(treasureMagicEdge.get());
             ((EnchantmentCoFH) MAGIC_EDGE).setMaxLevel(levelMagicEdge.get());
         }
         if (VORPAL instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) VORPAL).setEnable(enableVorpal.get());
+            ((EnchantmentCoFH) VORPAL).setTreasure(treasureVorpal.get());
             ((EnchantmentCoFH) VORPAL).setMaxLevel(levelVorpal.get());
             VorpalEnchantment.critBase = critBaseVorpal.get();
             VorpalEnchantment.critLevel = critLevelVorpal.get();
@@ -495,58 +569,71 @@ public class ModConfig {
         // TOOLS
         if (EXCAVATING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) EXCAVATING).setEnable(enableExcavating.get());
+            ((EnchantmentCoFH) EXCAVATING).setTreasure(treasureExcavating.get());
             ((EnchantmentCoFH) EXCAVATING).setMaxLevel(levelExcavating.get());
         }
         if (EXP_BOOST instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) EXP_BOOST).setEnable(enableExpBoost.get());
+            ((EnchantmentCoFH) EXP_BOOST).setTreasure(treasureExpBoost.get());
             ((EnchantmentCoFH) EXP_BOOST).setMaxLevel(levelExpBoost.get());
             ExpBoostEnchantment.experience = amountExpBoost.get();
         }
         if (REACH instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) REACH).setEnable(enableReach.get());
+            ((EnchantmentCoFH) REACH).setTreasure(treasureReach.get());
             ((EnchantmentCoFH) REACH).setMaxLevel(levelReach.get());
         }
         // BOWS
         if (HUNTER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) HUNTER).setEnable(enableHunter.get());
+            ((EnchantmentCoFH) HUNTER).setTreasure(treasureHunter.get());
             ((EnchantmentCoFH) HUNTER).setMaxLevel(levelHunter.get());
             HunterEnchantment.chance = chanceHunter.get();
         }
         if (QUICK_DRAW instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) QUICK_DRAW).setEnable(enableQuickDraw.get());
+            ((EnchantmentCoFH) QUICK_DRAW).setTreasure(treasureQuickDraw.get());
             ((EnchantmentCoFH) QUICK_DRAW).setMaxLevel(levelQuickDraw.get());
         }
         if (TRUESHOT instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) TRUESHOT).setEnable(enableTrueshot.get());
+            ((EnchantmentCoFH) TRUESHOT).setTreasure(treasureTrueshot.get());
             ((EnchantmentCoFH) TRUESHOT).setMaxLevel(levelTrueshot.get());
         }
         if (VOLLEY instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) VOLLEY).setEnable(enableVolley.get());
+            ((EnchantmentCoFH) VOLLEY).setTreasure(treasureVolley.get());
         }
         // FISHING RODS
         if (ANGLER instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) ANGLER).setEnable(enableAngler.get());
+            ((EnchantmentCoFH) ANGLER).setTreasure(treasureAngler.get());
             ((EnchantmentCoFH) ANGLER).setMaxLevel(levelAngler.get());
             AnglerEnchantment.chance = chanceAngler.get();
         }
         // HOES
         if (FURROWING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FURROWING).setEnable(enableFurrowing.get());
+            ((EnchantmentCoFH) FURROWING).setTreasure(treasureFurrowing.get());
             ((EnchantmentCoFH) FURROWING).setMaxLevel(levelFurrowing.get());
         }
         if (TILLING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) TILLING).setEnable(enableTilling.get());
+            ((EnchantmentCoFH) TILLING).setTreasure(treasureTilling.get());
             ((EnchantmentCoFH) TILLING).setMaxLevel(levelTilling.get());
         }
         if (WEEDING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) WEEDING).setEnable(enableWeeding.get());
+            ((EnchantmentCoFH) WEEDING).setTreasure(treasureWeeding.get());
         }
         // SHIELDS
         if (BULWARK instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) BULWARK).setEnable(enableBulwark.get());
+            ((EnchantmentCoFH) BULWARK).setTreasure(treasureBulwark.get());
         }
         if (PHALANX instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) PHALANX).setEnable(enablePhalanx.get());
+            ((EnchantmentCoFH) PHALANX).setTreasure(treasurePhalanx.get());
             ((EnchantmentCoFH) PHALANX).setMaxLevel(levelPhalanx.get());
         }
         // MISC
@@ -557,6 +644,7 @@ public class ModConfig {
         //        }
         if (SOULBOUND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) SOULBOUND).setEnable(enableSoulbound.get());
+            ((EnchantmentCoFH) SOULBOUND).setTreasure(treasureSoulbound.get());
             ((EnchantmentCoFH) SOULBOUND).setMaxLevel(levelSoulbound.get());
             SoulboundEnchantment.permanent = permanentSoulbound.get();
         }
@@ -598,6 +686,7 @@ public class ModConfig {
         }
         if (FROST_WALKER instanceof FrostWalkerEnchantmentImp) {
             ((EnchantmentCoFH) FROST_WALKER).setEnable(enableFrostWalker.get());
+            ((EnchantmentCoFH) FROST_WALKER).setTreasure(treasureFrostWalker.get());
             ((EnchantmentCoFH) FROST_WALKER).setMaxLevel(levelFrostWalker.get());
             ((FrostWalkerEnchantmentImp) FROST_WALKER).setFreezeLava(enableFreezeLava.get());
         }
@@ -616,6 +705,7 @@ public class ModConfig {
         }
         if (MENDING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) MENDING).setEnable(alternateMending.get());
+            ((EnchantmentCoFH) MENDING).setTreasure(treasureMending.get());
             MendingEnchantmentAlt.anvilDamage = damageMending.get() / 100F;
         }
     }
@@ -630,53 +720,67 @@ public class ModConfig {
 
     // ARMOR
     private static BooleanValue enableProtectionMagic;
+    private static BooleanValue treasureProtectionMagic;
     private static IntValue levelProtectionMagic;
 
     private static BooleanValue enableDisplacement;
+    private static BooleanValue treasureDisplacement;
     private static IntValue levelDisplacement;
     private static IntValue chanceDisplacement;
     private static BooleanValue allowMobsDisplacement;
 
     private static BooleanValue enableFireRebuke;
+    private static BooleanValue treasureFireRebuke;
     private static IntValue levelFireRebuke;
     private static IntValue chanceFireRebuke;
     private static BooleanValue allowMobsFireRebuke;
 
     private static BooleanValue enableFrostRebuke;
+    private static BooleanValue treasureFrostRebuke;
     private static IntValue levelFrostRebuke;
     private static IntValue chanceFrostRebuke;
     private static BooleanValue allowMobsFrostRebuke;
 
     // HELMET
     private static BooleanValue enableAirWorker;
+    private static BooleanValue treasureAirWorker;
 
     private static BooleanValue enableGourmand;
+    private static BooleanValue treasureGourmand;
     private static IntValue levelGourmand;
 
     // WEAPONS
     private static BooleanValue enableDamageEnder;
+    private static BooleanValue treasureDamageEnder;
     private static IntValue levelDamageEnder;
 
     private static BooleanValue enableDamageIllager;
+    private static BooleanValue treasureDamageIllager;
     private static IntValue levelDamageIllager;
 
     private static BooleanValue enableDamageVillager;
+    private static BooleanValue treasureDamageVillager;
     private static IntValue levelDamageVillager;
     private static BooleanValue dropsDamageVillager;
 
     private static BooleanValue enableCavalier;
+    private static BooleanValue treasureCavalier;
     private static IntValue levelCavalier;
 
     private static BooleanValue enableFrostAspect;
+    private static BooleanValue treasureFrostAspect;
     private static IntValue levelFrostAspect;
 
     private static BooleanValue enableLeech;
+    private static BooleanValue treasureLeech;
     private static IntValue levelLeech;
 
     private static BooleanValue enableMagicEdge;
+    private static BooleanValue treasureMagicEdge;
     private static IntValue levelMagicEdge;
 
     private static BooleanValue enableVorpal;
+    private static BooleanValue treasureVorpal;
     private static IntValue levelVorpal;
     private static IntValue critBaseVorpal;
     private static IntValue critLevelVorpal;
@@ -686,46 +790,59 @@ public class ModConfig {
 
     // TOOLS
     private static BooleanValue enableExcavating;
+    private static BooleanValue treasureExcavating;
     private static IntValue levelExcavating;
 
     private static BooleanValue enableExpBoost;
+    private static BooleanValue treasureExpBoost;
     private static IntValue levelExpBoost;
     private static IntValue amountExpBoost;
 
     private static BooleanValue enableReach;
+    private static BooleanValue treasureReach;
     private static IntValue levelReach;
 
     // BOWS
     private static BooleanValue enableHunter;
+    private static BooleanValue treasureHunter;
     private static IntValue levelHunter;
     private static IntValue chanceHunter;
 
     private static BooleanValue enableQuickDraw;
+    private static BooleanValue treasureQuickDraw;
     private static IntValue levelQuickDraw;
 
     private static BooleanValue enableTrueshot;
+    private static BooleanValue treasureTrueshot;
     private static IntValue levelTrueshot;
 
     private static BooleanValue enableVolley;
+    private static BooleanValue treasureVolley;
 
     // FISHING RODS
     private static BooleanValue enableAngler;
+    private static BooleanValue treasureAngler;
     private static IntValue levelAngler;
     private static IntValue chanceAngler;
 
     // HOES
     private static BooleanValue enableFurrowing;
+    private static BooleanValue treasureFurrowing;
     private static IntValue levelFurrowing;
 
     private static BooleanValue enableTilling;
+    private static BooleanValue treasureTilling;
     private static IntValue levelTilling;
 
     private static BooleanValue enableWeeding;
+    private static BooleanValue treasureWeeding;
 
     // SHIELDS
     private static BooleanValue enableBulwark;
+    private static BooleanValue treasureBulwark;
 
     private static BooleanValue enablePhalanx;
+    private static BooleanValue treasurePhalanx;
     private static IntValue levelPhalanx;
 
     // MISC
@@ -734,6 +851,7 @@ public class ModConfig {
     //    private static IntValue levelHolding;
 
     private static BooleanValue enableSoulbound;
+    private static BooleanValue treasureSoulbound;
     private static IntValue levelSoulbound;
     private static BooleanValue permanentSoulbound;
 
@@ -762,6 +880,7 @@ public class ModConfig {
     private static IntValue levelFireAspect;
 
     private static BooleanValue enableFrostWalker;
+    private static BooleanValue treasureFrostWalker;
     private static IntValue levelFrostWalker;
     private static BooleanValue enableFreezeLava;
 
@@ -776,6 +895,7 @@ public class ModConfig {
     private static IntValue chanceThorns;
 
     private static BooleanValue alternateMending;
+    private static BooleanValue treasureMending;
     private static IntValue damageMending;
     // endregion
 

@@ -6,9 +6,6 @@
     "Z#Y"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:arrow"
-    },
     "X": {
       "item": "minecraft:grass_block"
     },
@@ -16,7 +13,10 @@
       "item": "minecraft:bone_meal"
     },
     "Z": {
-      "tag": "minecraft:small_flowers"
+      "tag": "forge:seeds"
+    },
+    "#": {
+      "item": "minecraft:arrow"
     }
   },
   "result": {

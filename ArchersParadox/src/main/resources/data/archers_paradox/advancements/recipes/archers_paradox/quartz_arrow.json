@@ -16,7 +16,7 @@
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -35,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

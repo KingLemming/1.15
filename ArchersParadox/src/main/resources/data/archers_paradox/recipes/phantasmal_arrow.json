@@ -6,11 +6,11 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "cofh_core:ectoplasm"
-    },
     "X": {
       "item": "minecraft:arrow"
+    },
+    "#": {
+      "item": "cofh_core:ectoplasm"
     }
   },
   "result": {

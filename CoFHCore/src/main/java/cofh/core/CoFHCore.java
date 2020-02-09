@@ -1,5 +1,7 @@
 package cofh.core;
 
+import cofh.core.data.CoreGenLootTables;
+import cofh.core.data.CoreGenRecipes;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.gui.TexturesCoFH;
@@ -60,6 +62,7 @@ public class CoFHCore {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::gatherData);
 
         BLOCKS.register(modEventBus);
         EFFECTS.register(modEventBus);
@@ -132,6 +135,8 @@ public class CoFHCore {
 
     private void registerServerProviders(DataGenerator generator) {
 
+        generator.addProvider(new CoreGenLootTables(generator));
+        generator.addProvider(new CoreGenRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

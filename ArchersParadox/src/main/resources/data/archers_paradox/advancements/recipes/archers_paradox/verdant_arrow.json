@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:explosive_arrow"
+      "archers_paradox:verdant_arrow"
     ]
   },
   "criteria": {
@@ -11,12 +11,15 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tnt"
+            "item": "minecraft:grass_block"
+          },
+          {
+            "item": "minecraft:bone_meal"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -25,7 +28,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:explosive_arrow"
+        "recipe": "archers_paradox:verdant_arrow"
       }
     }
   },
@@ -35,7 +38,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

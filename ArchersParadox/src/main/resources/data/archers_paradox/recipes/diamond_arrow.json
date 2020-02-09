@@ -6,11 +6,11 @@
     "Y"
   ],
   "key": {
+    "X": {
+      "tag": "forge:gems/diamond"
+    },
     "#": {
       "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:diamond"
     },
     "Y": {
       "item": "minecraft:feather"

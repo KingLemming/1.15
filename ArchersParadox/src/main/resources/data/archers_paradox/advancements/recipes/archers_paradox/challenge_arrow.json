@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:frost_arrow"
+      "archers_paradox:challenge_arrow"
     ]
   },
   "criteria": {
@@ -11,21 +11,21 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:packed_ice"
+            "item": "minecraft:experience_bottle"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:arrow"
+        "recipe": "archers_paradox:training_arrow"
       }
     },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:frost_arrow"
+        "recipe": "archers_paradox:challenge_arrow"
       }
     }
   },
@@ -35,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

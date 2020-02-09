@@ -27,6 +27,7 @@ public class CoreReferences {
     public static final String ID_EFFECT_ENDERFERENCE = ID_COFH_CORE + ":enderference";
     public static final String ID_EFFECT_LOVE = ID_COFH_CORE + ":love";
     public static final String ID_EFFECT_PANACEA = ID_COFH_CORE + ":panacea";
+    public static final String ID_EFFECT_REDERGIZED = ID_COFH_CORE + ":redergized";
 
     public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
 

@@ -6,11 +6,11 @@
     "Y"
   ],
   "key": {
+    "X": {
+      "tag": "forge:gems/prismarine"
+    },
     "#": {
       "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:prismarine_shard"
     },
     "Y": {
       "item": "minecraft:feather"

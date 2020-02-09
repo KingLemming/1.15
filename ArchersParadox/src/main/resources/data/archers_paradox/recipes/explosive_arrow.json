@@ -6,11 +6,11 @@
     " # "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:arrow"
-    },
     "X": {
       "item": "minecraft:tnt"
+    },
+    "#": {
+      "item": "minecraft:arrow"
     }
   },
   "result": {

@@ -32,7 +32,7 @@ import java.util.List;
 
 import static cofh.lib.util.helpers.StringHelper.localize;
 
-public abstract class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T> implements IGuiAccess {
+public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T> implements IGuiAccess {
 
     protected int mX;
     protected int mY;

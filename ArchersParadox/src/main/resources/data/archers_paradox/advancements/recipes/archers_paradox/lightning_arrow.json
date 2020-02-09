@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "archers_paradox:blaze_arrow"
+      "archers_paradox:lightning_arrow"
     ]
   },
   "criteria": {
@@ -11,12 +11,12 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:blaze_powder"
+            "item": "minecraft:nether_star"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -25,7 +25,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:blaze_arrow"
+        "recipe": "archers_paradox:lightning_arrow"
       }
     }
   },
@@ -35,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

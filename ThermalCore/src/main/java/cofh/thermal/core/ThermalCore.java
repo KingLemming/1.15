@@ -1,6 +1,8 @@
 package cofh.thermal.core;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.data.TCoreGenLootTables;
+import cofh.thermal.core.data.TCoreGenRecipes;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
@@ -85,6 +87,8 @@ public class ThermalCore {
 
     private void registerServerProviders(DataGenerator generator) {
 
+        generator.addProvider(new TCoreGenLootTables(generator));
+        generator.addProvider(new TCoreGenRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

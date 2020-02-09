@@ -1,8 +1,8 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "minecraft:recipes/combat/arrow",
   "rewards": {
     "recipes": [
-      "archers_paradox:verdant_arrow"
+      "archers_paradox:training_arrow"
     ]
   },
   "criteria": {
@@ -11,15 +11,12 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:grass_block"
-          },
-          {
-            "item": "minecraft:bone_meal"
+            "item": "minecraft:rabbit_hide"
           }
         ]
       }
     },
-    "has_pre_recipe": {
+    "has_arrow_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "minecraft:arrow"
@@ -28,7 +25,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "archers_paradox:verdant_arrow"
+        "recipe": "archers_paradox:training_arrow"
       }
     }
   },
@@ -38,7 +35,7 @@
       "has_the_recipe"
     ],
     [
-      "has_pre_recipe"
+      "has_arrow_recipe"
     ]
   ]
 }

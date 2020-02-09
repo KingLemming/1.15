@@ -6,11 +6,11 @@
     "Y"
   ],
   "key": {
+    "X": {
+      "tag": "forge:slimeballs"
+    },
     "#": {
       "item": "minecraft:stick"
-    },
-    "X": {
-      "item": "minecraft:slime_ball"
     },
     "Y": {
       "item": "minecraft:feather"
