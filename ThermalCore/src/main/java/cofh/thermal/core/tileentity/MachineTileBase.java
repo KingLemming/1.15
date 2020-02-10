@@ -36,7 +36,7 @@ import static cofh.lib.util.helpers.BlockHelper.*;
 public abstract class MachineTileBase extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
 
     protected Direction facing;
-    protected FluidStack renderFluid;
+    protected FluidStack renderFluid = FluidStack.EMPTY.copy();
 
     protected int inputTracker;
     protected int outputTracker;

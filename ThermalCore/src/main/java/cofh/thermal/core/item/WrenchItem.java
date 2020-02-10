@@ -37,15 +37,14 @@ public class WrenchItem extends ItemCoFH {
 
     }
 
-    @Override
-    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+    protected boolean useDelegate(ItemStack stack, ItemUseContext context) {
 
         World world = context.getWorld();
         BlockPos pos = context.getPos();
         PlayerEntity player = context.getPlayer();
 
-        if (world.isAirBlock(pos) || player == null) {
-            return ActionResultType.PASS;
+        if (player == null || world.isAirBlock(pos)) {
+            return false;
         }
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
@@ -61,13 +60,27 @@ public class WrenchItem extends ItemCoFH {
                 world.setBlockState(pos, rotState);
             }
         }
-        return ActionResultType.SUCCESS;
+        return true;
     }
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
 
-        return ActionResultType.SUCCESS;
+        PlayerEntity player = context.getPlayer();
+        if (player == null) {
+            return ActionResultType.FAIL;
+        }
+        return player.canPlayerEdit(context.getPos(), context.getFace(), context.getItem()) ? ActionResultType.SUCCESS : ActionResultType.FAIL;
+    }
+
+    @Override
+    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+
+        PlayerEntity player = context.getPlayer();
+        if (player == null) {
+            return ActionResultType.PASS;
+        }
+        return player.canPlayerEdit(context.getPos(), context.getFace(), stack) && useDelegate(stack, context) ? ActionResultType.SUCCESS : ActionResultType.PASS;
     }
 
     @Override

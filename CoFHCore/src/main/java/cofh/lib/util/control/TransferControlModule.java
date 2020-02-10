@@ -96,14 +96,19 @@ public class TransferControlModule implements ITransferControllable {
     @Override
     public void setControl(boolean input, boolean output) {
 
+        boolean curInput = this.enableAutoInput;
+        boolean curOutput = this.enableAutoOutput;
+
         if (hasTransferIn()) {
-            enableAutoInput = input;
+            this.enableAutoInput = input;
         }
         if (hasTransferOut()) {
-            enableAutoOutput = output;
+            this.enableAutoOutput = output;
         }
         if (Utils.isClientWorld(tile.world())) {
             TransferControlPacket.sendToServer(tile);
+            this.enableAutoInput = curInput;
+            this.enableAutoOutput = curOutput;
         } else {
             tile.onControlUpdate();
         }

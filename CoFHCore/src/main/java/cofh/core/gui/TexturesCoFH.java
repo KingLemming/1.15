@@ -60,9 +60,9 @@ public class TexturesCoFH {
         AtlasTexture map = event.getMap();
 
         ICON_ACCESS_PUBLIC = map.getAtlasSprite(ICONS_ + "icon_access_public");
-        ICON_ACCESS_TEAM = map.getAtlasSprite(ICONS_ + "icon_access_team");
-        ICON_ACCESS_FRIENDS = map.getAtlasSprite(ICONS_ + "icon_access_friends");
         ICON_ACCESS_PRIVATE = map.getAtlasSprite(ICONS_ + "icon_access_private");
+        ICON_ACCESS_FRIENDS = map.getAtlasSprite(ICONS_ + "icon_access_friends");
+        ICON_ACCESS_TEAM = map.getAtlasSprite(ICONS_ + "icon_access_team");
 
         ICON_ACCEPT = map.getAtlasSprite(ICONS_ + "icon_accept");
         ICON_ACCEPT_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_accept_inactive");
@@ -99,9 +99,9 @@ public class TexturesCoFH {
     private static final String ICONS_ = "cofh_core:gui/icons/";
 
     public static TextureAtlasSprite ICON_ACCESS_PUBLIC;
-    public static TextureAtlasSprite ICON_ACCESS_TEAM;
-    public static TextureAtlasSprite ICON_ACCESS_FRIENDS;
     public static TextureAtlasSprite ICON_ACCESS_PRIVATE;
+    public static TextureAtlasSprite ICON_ACCESS_FRIENDS;
+    public static TextureAtlasSprite ICON_ACCESS_TEAM;
 
     public static TextureAtlasSprite ICON_ACCEPT;
     public static TextureAtlasSprite ICON_ACCEPT_INACTIVE;

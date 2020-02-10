@@ -1,16 +1,20 @@
 package cofh.lib.block;
 
 import cofh.core.util.ChatHelper;
+import cofh.lib.item.IPlacementItem;
 import cofh.lib.tileentity.TileCoFH;
+import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
@@ -47,20 +52,20 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
-        if (Utils.isClientWorld(world)) {
-            return false;
+        if (Utils.isClientWorld(worldIn)) {
+            return true;
         }
-        TileEntity tile = world.getTileEntity(pos);
+        TileEntity tile = worldIn.getTileEntity(pos);
         if (!(tile instanceof TileCoFH) || tile.isRemoved()) {
             return false;
         }
         if (!((TileCoFH) tile).canPlayerChange(player) && SecurityHelper.hasSecurity(tile)) {
-            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("chat.cofh.secure_warning", SecurityHelper.getOwnerName(tile)));
+            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.secure_warning", SecurityHelper.getOwnerName(tile)));
             return false;
         }
-        if (onBlockActivatedDelegate(world, pos, state, player, hand, result)) {
+        if (onBlockActivatedDelegate(worldIn, pos, state, player, handIn, hit)) {
             return true;
         }
         if (tile instanceof INamedContainerProvider) {
@@ -76,8 +81,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
         if (tile == null || !tile.canPlayerChange(player)) {
             return false;
         }
-        tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).map(handler -> FluidHelper.interactWithHandler(player.getHeldItem(hand), handler, player, hand));
-        return false;
+        return tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).map(handler -> FluidHelper.interactWithHandler(player.getHeldItem(hand), handler, player, hand)).orElse(false);
     }
 
     @Override
@@ -88,6 +92,19 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
             tile.neighborChanged();
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+
+        if (!(placer instanceof PlayerEntity) || Utils.isClientWorld(worldIn)) {
+            return;
+        }
+        ItemStack offhand = placer.getHeldItemOffhand();
+        if (!offhand.isEmpty() && offhand.getItem() instanceof IPlacementItem) {
+            PlayerEntity player = (PlayerEntity) placer;
+            ((IPlacementItem) offhand.getItem()).onBlockPlacement(offhand, new ItemUseContext(player, Hand.OFF_HAND, RayTracer.retrace(player)));
+        }
     }
 
     @Override

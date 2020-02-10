@@ -73,7 +73,7 @@ public final class RenderHelper {
     // region DRAW METHODS
     public static void drawFluid(int x, int y, FluidStack fluid, int width, int height) {
 
-        if (fluid == null) {
+        if (fluid.isEmpty()) {
             return;
         }
         GL11.glPushMatrix();

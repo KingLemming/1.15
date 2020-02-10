@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=north,active=false": {
-      "model": "thermal:block/firstblock"
+      "model": "thermal:block/machine_furnace"
     },
     "facing=south,active=false": {
-      "model": "thermal:block/firstblock",
+      "model": "thermal:block/machine_furnace",
       "y": 180
     },
     "facing=west,active=false": {
-      "model": "thermal:block/firstblock",
+      "model": "thermal:block/machine_furnace",
       "y": 270
     },
     "facing=east,active=false": {
-      "model": "thermal:block/firstblock",
+      "model": "thermal:block/machine_furnace",
       "y": 90
     },
     "facing=north,active=true": {
-      "model": "thermal:block/firstblock_powered"
+      "model": "thermal:block/machine_furnace_active"
     },
     "facing=south,active=true": {
-      "model": "thermal:block/firstblock_powered",
+      "model": "thermal:block/machine_furnace_active",
       "y": 180
     },
     "facing=west,active=true": {
-      "model": "thermal:block/firstblock_powered",
+      "model": "thermal:block/machine_furnace_active",
       "y": 270
     },
     "facing=east,active=true": {
-      "model": "thermal:block/firstblock_powered",
+      "model": "thermal:block/machine_furnace_active",
       "y": 90
     }
   }

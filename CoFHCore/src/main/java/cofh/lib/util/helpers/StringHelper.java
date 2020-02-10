@@ -57,14 +57,13 @@ public final class StringHelper {
         } else if (fluid.getAttributes().getRarity() == Rarity.EPIC) {
             name += PINK;
         }
-        name += fluid.getAttributes().getDisplayName(stack) + END;
-
+        name += fluid.getAttributes().getDisplayName(stack).getUnformattedComponentText() + END;
         return name;
     }
 
     public static String getFluidName(FluidStack stack, String defaultName) {
 
-        if (stack == null) {
+        if (stack.isEmpty()) {
             return defaultName;
         }
         return getFluidName(stack);

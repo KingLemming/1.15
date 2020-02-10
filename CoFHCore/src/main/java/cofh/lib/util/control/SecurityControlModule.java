@@ -93,9 +93,12 @@ public class SecurityControlModule implements ISecurable {
     @Override
     public void setAccess(AccessMode access) {
 
+        AccessMode curAccess = this.access;
         this.access = access;
+
         if (Utils.isClientWorld(tile.world())) {
             SecurityControlPacket.sendToServer(tile);
+            this.access = curAccess;
         } else {
             tile.onControlUpdate();
         }

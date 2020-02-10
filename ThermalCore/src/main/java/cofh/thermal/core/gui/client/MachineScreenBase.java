@@ -2,9 +2,12 @@ package cofh.thermal.core.gui.client;
 
 import cofh.core.gui.client.ContainerScreenCoFH;
 import cofh.core.gui.element.ElementScaled;
+import cofh.core.gui.element.ElementScaledFluid;
 import cofh.core.gui.element.panel.PanelInfo;
 import cofh.core.gui.element.panel.PanelRedstoneControl;
+import cofh.core.gui.element.panel.PanelSecurity;
 import cofh.core.util.GuiHelper;
+import cofh.lib.util.helpers.SecurityHelper;
 import cofh.thermal.core.tileentity.MachineTileBase;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -17,6 +20,7 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
 
     protected MachineTileBase tile;
 
+    protected ElementScaledFluid progressOverlay;
     protected ElementScaled progress;
     protected ElementScaled speed;
 
@@ -34,9 +38,9 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
         if (info != null && !info.isEmpty()) {
             addPanel(new PanelInfo(this, info));
         }
-        //        if (SecurityHelper.hasSecurity(tile)) {
-        //            addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
-        //        }
+        //if (SecurityHelper.hasSecurity(tile)) {
+        addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
+        //}
         addPanel(new PanelRedstoneControl(this, tile));
         // addPanel(new PanelConfiguration(this, tile, tile));
 
@@ -52,6 +56,20 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
 
         if (progress != null) {
             progress.setQuantity(tile.getScaledProgress(PROGRESS));
+        }
+        if (progressOverlay != null) {
+            progressOverlay.setQuantity(tile.getScaledProgress(PROGRESS));
+
+            if (progress != null) {
+                if (tile.getRenderFluid().isEmpty()) {
+                    progress.setVisible(true);
+                    progressOverlay.setVisible(false);
+                } else {
+                    progressOverlay.setFluid(tile.getRenderFluid());
+                    progressOverlay.setVisible(true);
+                    progress.setVisible(false);
+                }
+            }
         }
         if (speed != null) {
             speed.setQuantity(tile.getScaledSpeed(SPEED));

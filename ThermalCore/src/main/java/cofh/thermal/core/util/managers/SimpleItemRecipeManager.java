@@ -6,6 +6,8 @@ import cofh.lib.inventory.ItemStackHolder;
 import cofh.lib.util.ComparableItemStack;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.recipes.IMachineRecipe;
+import cofh.thermal.core.util.recipes.IRecipeCatalyst;
+import cofh.thermal.core.util.recipes.SimpleCatalyst;
 import cofh.thermal.core.util.recipes.SimpleItemRecipe;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
@@ -57,7 +59,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
 
     public IMachineRecipe addRecipe(int energy, ItemStack input, ItemStack output, float chance) {
 
-        if (maxOutputItems <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0 || validRecipe(input)) {
+        if (maxOutputItems <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0) {
             return null;
         }
         energy = (energy * getDefaultScale()) / 100;
@@ -69,7 +71,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
 
     public IMachineRecipe addRecipe(int energy, ItemStack input, List<ItemStack> output, List<Float> chance) {
 
-        if (input.isEmpty() || output.isEmpty() || output.size() > maxOutputItems || energy <= 0 || validRecipe(input)) {
+        if (input.isEmpty() || output.isEmpty() || output.size() > maxOutputItems || energy <= 0) {
             return null;
         }
         for (ItemStack stack : output) {
@@ -86,7 +88,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
 
     public IMachineRecipe addRecipe(int energy, ItemStack input, FluidStack output) {
 
-        if (maxOutputFluids <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0 || validRecipe(input)) {
+        if (maxOutputFluids <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0) {
             return null;
         }
         energy = (energy * getDefaultScale()) / 100;
@@ -98,7 +100,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
 
     public IMachineRecipe addRecipe(int energy, ItemStack input, List<ItemStack> output, List<Float> chance, List<FluidStack> outputFluids) {
 
-        if (input.isEmpty() || output.isEmpty() && outputFluids.isEmpty() || output.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0 || validRecipe(input)) {
+        if (input.isEmpty() || output.isEmpty() && outputFluids.isEmpty() || output.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
         }
         for (ItemStack stack : output) {
@@ -144,6 +146,42 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
     @Override
     public void refresh() {
 
+    }
+    // endregion
+
+    // region CATALYZED CLASS
+    public static abstract class Catalyzed extends SimpleItemRecipeManager {
+
+        protected Map<ComparableItemStack, IRecipeCatalyst> catalystMap = new Object2ObjectOpenHashMap<>();
+
+        protected Catalyzed(int defaultEnergy, int maxOutputItems, int maxOutputFluids) {
+
+            super(defaultEnergy, maxOutputItems, maxOutputFluids);
+        }
+
+        // region CATALYSTS
+        public IRecipeCatalyst getCatalyst(ItemStack input) {
+
+            return catalystMap.get(convert(input));
+        }
+
+        public IRecipeCatalyst addCatalyst(ItemStack input, float primaryMod, float secondaryMod, float energyMod, float minChance, float useChance) {
+
+            SimpleCatalyst catalyst = new SimpleCatalyst(primaryMod, secondaryMod, energyMod, minChance, useChance);
+            catalystMap.put(convert(input), catalyst);
+            return catalyst;
+        }
+
+        public boolean validCatalyst(ItemStack input) {
+
+            return getCatalyst(input) != null;
+        }
+
+        public IRecipeCatalyst removeCatalyst(ItemStack input) {
+
+            return catalystMap.remove(convert(input));
+        }
+        // endregion
     }
     // endregion
 }

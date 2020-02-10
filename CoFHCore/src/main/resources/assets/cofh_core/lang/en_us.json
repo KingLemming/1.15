@@ -1,12 +1,18 @@
 {
   "info.cofh.information": "Information",
 
+  "info.cofh.secure_block": "This block now belongs to you.",
+  "info.cofh.secure_item": "This item now belongs to you.",
+  "info.cofh.secure_notice": "Notice: Server Ops are able to freely access 'secure' blocks on this server.",
+  "info.cofh.secure_warning": "This is private and belongs to %s! You could have lost your hand!",
+
   "info.cofh.security": "Security",
   "info.cofh.access": "Access",
-  "info.cofh.access_friends": "Restricted",
+  "info.cofh.access_friends": "Friends Only",
   "info.cofh.access_private": "Owner Only",
   "info.cofh.access_public": "Public Access",
   "info.cofh.access_team": "Team Only",
+  "info.cofh.owner": "Owner",
 
   "info.cofh.redstone_control": "Redstone Control",
   "info.cofh.control_status": "Control Status",
@@ -29,6 +35,7 @@
   "effect.cofh_core.love": "Love",
   "effect.cofh_core.magic_resistance": "Magic Resistance",
   "effect.cofh_core.panacea": "Panacea",
+  "effect.cofh_core.redergized": "Redergized",
 
   "item.cofh_core.ectoplasm": "Ectoplasm",
 

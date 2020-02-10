@@ -8,8 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 
 import javax.annotation.Nullable;
 
@@ -71,46 +69,46 @@ public class MachineFurnaceTile extends MachineTileProcess {
     // endregion
 
     // TODO: Determine WHY.
-    @Override
-    public void tick() {
-
-        energyStorage.modify(10);
-
-        boolean curActive = isActive;
-
-        if (isActive) {
-            processTick();
-            if (canProcessFinish()) {
-                processFinish();
-                transferOutput();
-                transferInput();
-                if (!redstoneControl.getState() || !canProcessStart()) {
-                    processOff();
-                } else {
-                    processStart();
-                }
-            } else if (energyStorage.isEmpty()) {
-                processOff();
-            }
-        } else if (redstoneControl.getState()) {
-            if (timeCheck()) {
-                transferOutput();
-                transferInput();
-            }
-            if (timeCheckQuarter() && canProcessStart()) {
-                processStart();
-                processTick();
-                isActive = true;
-            }
-        }
-        updateActiveState(curActive);
-        // chargeEnergy();
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-
-        return new StringTextComponent(getType().getRegistryName().getPath());
-    }
+    //    @Override
+    //    public void tick() {
+    //
+    //        energyStorage.modify(10);
+    //
+    //        boolean curActive = isActive;
+    //
+    //        if (isActive) {
+    //            processTick();
+    //            if (canProcessFinish()) {
+    //                processFinish();
+    //                transferOutput();
+    //                transferInput();
+    //                if (!redstoneControl.getState() || !canProcessStart()) {
+    //                    processOff();
+    //                } else {
+    //                    processStart();
+    //                }
+    //            } else if (energyStorage.isEmpty()) {
+    //                processOff();
+    //            }
+    //        } else if (redstoneControl.getState()) {
+    //            if (timeCheck()) {
+    //                transferOutput();
+    //                transferInput();
+    //            }
+    //            if (timeCheckQuarter() && canProcessStart()) {
+    //                processStart();
+    //                processTick();
+    //                isActive = true;
+    //            }
+    //        }
+    //        updateActiveState(curActive);
+    //        // chargeEnergy();
+    //    }
+    //
+    //    @Override
+    //    public ITextComponent getDisplayName() {
+    //
+    //        return new StringTextComponent(getType().getRegistryName().getPath());
+    //    }
 
 }

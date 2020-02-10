@@ -54,40 +54,49 @@ public class PanelSecurity extends PanelBase {
             case PUBLIC:
                 drawPanelIcon(ICON_ACCESS_PUBLIC);
                 break;
+            case PRIVATE:
+                drawPanelIcon(ICON_ACCESS_PRIVATE);
+                break;
             case FRIENDS:
                 drawPanelIcon(ICON_ACCESS_FRIENDS);
                 break;
-            case PRIVATE:
-                drawPanelIcon(ICON_ACCESS_PRIVATE);
+            case TEAM:
+                drawPanelIcon(ICON_ACCESS_TEAM);
                 break;
         }
         if (!fullyOpen) {
             return;
         }
         getFontRenderer().drawStringWithShadow(localize("info.cofh.security"), sideOffset() + 18, 6, headerColor);
-        getFontRenderer().drawStringWithShadow(localize("info.cofh.access") + ":", sideOffset() + 6, 42, subheaderColor);
+        getFontRenderer().drawStringWithShadow(localize("info.cofh.access") + ":", sideOffset() + 6, 66, subheaderColor);
 
-        gui.drawIcon(ICON_BUTTON, 28, 20);
-        gui.drawIcon(ICON_BUTTON, 48, 20);
-        gui.drawIcon(ICON_BUTTON, 68, 20);
+        gui.drawIcon(ICON_BUTTON, 38, 22);
+        gui.drawIcon(ICON_BUTTON, 58, 22);
+        gui.drawIcon(ICON_BUTTON, 38, 42);
+        gui.drawIcon(ICON_BUTTON, 58, 42);
 
         switch (mySecurable.getAccess()) {
             case PUBLIC:
-                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 28, 20);
-                getFontRenderer().drawString(localize("info.cofh.access_public"), sideOffset() + 14, 54, textColor);
-                break;
-            case FRIENDS:
-                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 48, 20);
-                getFontRenderer().drawString(localize("info.cofh.access_friends"), sideOffset() + 14, 54, textColor);
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 38, 22);
+                getFontRenderer().drawString(localize("info.cofh.access_public"), sideOffset() + 14, 78, textColor);
                 break;
             case PRIVATE:
-                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 68, 20);
-                getFontRenderer().drawString(localize("info.cofh.access_private"), sideOffset() + 14, 54, textColor);
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 58, 22);
+                getFontRenderer().drawString(localize("info.cofh.access_private"), sideOffset() + 14, 78, textColor);
+                break;
+            case FRIENDS:
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 38, 42);
+                getFontRenderer().drawString(localize("info.cofh.access_friends"), sideOffset() + 14, 78, textColor);
+                break;
+            case TEAM:
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 58, 42);
+                getFontRenderer().drawString(localize("info.cofh.access_team"), sideOffset() + 14, 78, textColor);
                 break;
         }
-        gui.drawIcon(ICON_ACCESS_PUBLIC, 28, 20);
-        gui.drawIcon(ICON_ACCESS_FRIENDS, 48, 20);
-        gui.drawIcon(ICON_ACCESS_PRIVATE, 68, 20);
+        gui.drawIcon(ICON_ACCESS_PUBLIC, 38, 22);
+        gui.drawIcon(ICON_ACCESS_PRIVATE, 58, 22);
+        gui.drawIcon(ICON_ACCESS_FRIENDS, 38, 42);
+        gui.drawIcon(ICON_ACCESS_TEAM, 58, 42);
 
         RenderHelper.resetColor();
     }
@@ -104,7 +113,7 @@ public class PanelSecurity extends PanelBase {
         float colorG = (backgroundColor >> 8 & 255) / 255.0F * 0.6F;
         float colorB = (backgroundColor & 255) / 255.0F * 0.6F;
         GlStateManager.color4f(colorR, colorG, colorB, 1.0F);
-        gui.drawTexturedModalRect(24, 16, 16, 20, 64, 24);
+        gui.drawTexturedModalRect(34, 18, 16, 20, 44, 44);
         RenderHelper.resetColor();
     }
 
@@ -117,11 +126,14 @@ public class PanelSecurity extends PanelBase {
                 case PUBLIC:
                     tooltip.add(YELLOW + localize("info.cofh.access_public"));
                     break;
+                case PRIVATE:
+                    tooltip.add(YELLOW + localize("info.cofh.access_private"));
+                    break;
                 case FRIENDS:
                     tooltip.add(YELLOW + localize("info.cofh.access_friends"));
                     break;
-                case PRIVATE:
-                    tooltip.add(YELLOW + localize("info.cofh.access_private"));
+                case TEAM:
+                    tooltip.add(YELLOW + localize("info.cofh.access_team"));
                     break;
                 default:
             }
@@ -130,12 +142,14 @@ public class PanelSecurity extends PanelBase {
         int x = mouseX - this.posX();
         int y = mouseY - this.posY;
 
-        if (28 <= x && x < 44 && 20 <= y && y < 36) {
+        if (38 <= x && x < 54 && 22 <= y && y < 38) {
             tooltip.add(localize("info.cofh.access_public"));
-        } else if (48 <= x && x < 64 && 20 <= y && y < 36) {
-            tooltip.add(localize("info.cofh.access_friends"));
-        } else if (68 <= x && x < 84 && 20 <= y && y < 36) {
+        } else if (58 <= x && x < 74 && 22 <= y && y < 38) {
             tooltip.add(localize("info.cofh.access_private"));
+        } else if (38 <= x && x < 54 && 42 <= y && y < 58) {
+            tooltip.add(localize("info.cofh.access_friends"));
+        } else if (58 <= x && x < 74 && 42 <= y && y < 58) {
+            tooltip.add(localize("info.cofh.access_team"));
         }
     }
 
@@ -151,23 +165,28 @@ public class PanelSecurity extends PanelBase {
         double x = mouseX - this.posX();
         double y = mouseY - this.posY;
 
-        if (x < 24 || x >= 88 || y < 16 || y >= 40) {
+        if (x < 34 || x >= 78 || y < 18 || y >= 62) {
             return false;
         }
-        if (28 <= x && x < 44 && 20 <= y && y < 36) {
+        if (38 <= x && x < 54 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PUBLIC) {
                 mySecurable.setAccess(PUBLIC);
                 SoundHelper.playClickSound(0.4F);
             }
-        } else if (48 <= x && x < 64 && 20 <= y && y < 36) {
-            if (mySecurable.getAccess() != FRIENDS) {
-                mySecurable.setAccess(FRIENDS);
-                SoundHelper.playClickSound(0.6F);
-            }
-        } else if (68 <= x && x < 84 && 20 <= y && y < 36) {
+        } else if (58 <= x && x < 74 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PRIVATE) {
                 mySecurable.setAccess(PRIVATE);
                 SoundHelper.playClickSound(0.8F);
+            }
+        } else if (38 <= x && x < 54 && 42 <= y && y < 58) {
+            if (mySecurable.getAccess() != FRIENDS) {
+                mySecurable.setAccess(FRIENDS);
+                SoundHelper.playClickSound(0.5F);
+            }
+        } else if (58 <= x && x < 74 && 42 <= y && y < 58) {
+            if (mySecurable.getAccess() != TEAM) {
+                mySecurable.setAccess(TEAM);
+                SoundHelper.playClickSound(0.7F);
             }
         }
         return true;

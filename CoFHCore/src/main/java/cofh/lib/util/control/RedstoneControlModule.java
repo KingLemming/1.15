@@ -101,10 +101,15 @@ public class RedstoneControlModule implements IRedstoneControllable {
     @Override
     public void setControl(int threshold, ControlMode mode) {
 
+        int curThreshold = this.threshold;
+        ControlMode curMode = this.mode;
         this.threshold = threshold;
         this.mode = mode;
+
         if (Utils.isClientWorld(tile.world())) {
             RedstoneControlPacket.sendToServer(this.tile);
+            this.threshold = curThreshold;
+            this.mode = curMode;
         } else {
             tile.onControlUpdate();
         }

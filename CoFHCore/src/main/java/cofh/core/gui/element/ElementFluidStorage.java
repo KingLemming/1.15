@@ -49,6 +49,7 @@ public class ElementFluidStorage extends ElementResourceStorage {
         if (tank.getAmount() > 0) {
             tooltip.add(StringHelper.getFluidName(tank.getFluidStack()));
             if (FluidHelper.hasPotionTag(tank.getFluidStack())) {
+                // TODO: Fix
                 // FluidHelper.addPotionTooltip(tank.getFluidStack(), tooltip);
             }
         }
