@@ -39,6 +39,7 @@ public class Constants {
 
     // region MOD IDS
     public static final String ID_MINECRAFT = "minecraft";
+    public static final String ID_FORGE = "forge";
     public static final String ID_COFH = "cofh";
     public static final String ID_COFH_CORE = "cofh_core";
     public static final String ID_COFH_LIB = "cofh_lib";

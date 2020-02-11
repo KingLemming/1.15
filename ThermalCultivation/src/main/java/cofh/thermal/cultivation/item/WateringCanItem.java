@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_WATER;
-import static cofh.lib.util.constants.Tags.TAG_ACTIVE;
+import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 import static cofh.lib.util.helpers.FluidHelper.IS_WATER;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 

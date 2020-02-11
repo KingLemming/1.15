@@ -4,5 +4,6 @@
     "item": "thermal:nickel_dust"
   },
   "result": "thermal:nickel_ingot",
+  "experience": 0.0,
   "cookingtime": 100
 }

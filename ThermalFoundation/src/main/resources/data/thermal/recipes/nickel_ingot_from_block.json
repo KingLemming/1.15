@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "nickel_ingot",
   "ingredients": [
     {
       "item": "thermal:nickel_block"

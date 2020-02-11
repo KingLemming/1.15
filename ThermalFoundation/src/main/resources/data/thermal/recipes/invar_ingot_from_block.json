@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "invar_ingot",
   "ingredients": [
     {
       "item": "thermal:invar_block"

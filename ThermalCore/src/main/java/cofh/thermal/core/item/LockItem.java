@@ -39,16 +39,18 @@ public class LockItem extends ItemCoFH implements IPlacementItem {
     protected boolean useDelegate(ItemStack stack, ItemUseContext context) {
 
         World world = context.getWorld();
-        BlockPos pos = context.getPos();
         PlayerEntity player = context.getPlayer();
 
         if (player == null || Utils.isClientWorld(world)) {
             return false;
         }
+        BlockPos pos = context.getPos();
         TileEntity tile = world.getTileEntity(pos);
+
         if (tile instanceof ISecurable) {
-            if (((ISecurable) tile).setOwner(player.getGameProfile())) {
-                ((ISecurable) tile).setAccess(ISecurable.AccessMode.PUBLIC);
+            ISecurable securable = (ISecurable) tile;
+            if (securable.setOwner(player.getGameProfile())) {
+                securable.setAccess(ISecurable.AccessMode.PUBLIC);
                 if (!player.abilities.isCreativeMode) {
                     stack.shrink(1);
                 }

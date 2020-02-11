@@ -6,7 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
-import static cofh.lib.util.constants.Tags.TAG_FLUID;
+import static cofh.lib.util.constants.NBTTags.TAG_FLUID;
 
 /**
  * Implement this interface on Item classes that support external manipulation of their internal

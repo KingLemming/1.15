@@ -4,5 +4,6 @@
     "item": "thermal:lead_dust"
   },
   "result": "thermal:lead_ingot",
+  "experience": 0.0,
   "cookingtime": 200
 }

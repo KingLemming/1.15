@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XI",
+    "IX"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "thermal:lumium_rail"
+    }
+  },
+  "result": {
+    "item": "thermal:lumium_crossover_rail"
+  }
+}

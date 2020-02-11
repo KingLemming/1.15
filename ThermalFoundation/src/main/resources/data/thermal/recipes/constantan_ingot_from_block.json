@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "constantan_ingot",
   "ingredients": [
     {
       "item": "thermal:constantan_block"

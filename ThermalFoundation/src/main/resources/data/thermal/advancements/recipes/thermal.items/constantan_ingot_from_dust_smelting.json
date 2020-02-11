@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:constantan_ingot_from_dust_smelting"
+    ]
+  },
+  "criteria": {
+    "has_constantan_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:constantan_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:constantan_ingot_from_dust_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_constantan_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

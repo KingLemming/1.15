@@ -1,7 +1,8 @@
 package cofh.thermal.foundation;
 
-import cofh.thermal.foundation.data.TFndGenLootTables;
-import cofh.thermal.foundation.data.TFndGenRecipes;
+import cofh.thermal.foundation.data.TFndLootTables;
+import cofh.thermal.foundation.data.TFndRecipes;
+import cofh.thermal.foundation.data.TFndTags;
 import cofh.thermal.foundation.init.TFndBlocks;
 import cofh.thermal.foundation.init.TFndItems;
 import net.minecraft.data.DataGenerator;
@@ -38,8 +39,12 @@ public class ThermalFoundation {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new TFndGenLootTables(generator));
-        generator.addProvider(new TFndGenRecipes(generator));
+        generator.addProvider(new TFndTags.Block(generator));
+        generator.addProvider(new TFndTags.Item(generator));
+        generator.addProvider(new TFndTags.Fluid(generator));
+
+        generator.addProvider(new TFndLootTables(generator));
+        generator.addProvider(new TFndRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

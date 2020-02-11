@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XSX",
+    "XCX",
+    "XSX"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "S": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "X": {
+      "item": "minecraft:powered_rail"
+    }
+  },
+  "result": {
+    "item": "thermal:prismarine_powered_rail",
+    "count": 6
+  }
+}

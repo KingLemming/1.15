@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
-import static cofh.lib.util.constants.Tags.TAG_ACTIVE;
+import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class ItemCoFH extends Item {
 

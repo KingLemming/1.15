@@ -4,5 +4,6 @@
     "item": "thermal:invar_dust"
   },
   "result": "thermal:invar_ingot",
+  "experience": 0.0,
   "cookingtime": 100
 }

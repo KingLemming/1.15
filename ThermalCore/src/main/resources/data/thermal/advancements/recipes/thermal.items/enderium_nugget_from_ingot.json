@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:enderium_nugget_from_ingot"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_enderium_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:enderium_nugget",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_enderium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:enderium_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:enderium_nugget_from_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_enderium_nugget",
+      "has_enderium_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

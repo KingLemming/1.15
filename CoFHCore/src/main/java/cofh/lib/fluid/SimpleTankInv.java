@@ -10,8 +10,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Tags.TAG_TANK;
-import static cofh.lib.util.constants.Tags.TAG_TANK_INV;
+import static cofh.lib.util.constants.NBTTags.TAG_TANK;
+import static cofh.lib.util.constants.NBTTags.TAG_TANK_INV;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 /**

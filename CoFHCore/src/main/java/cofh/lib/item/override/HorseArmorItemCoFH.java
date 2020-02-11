@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
-import static cofh.lib.util.constants.Tags.TAG_ACTIVE;
+import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class HorseArmorItemCoFH extends HorseArmorItem {
 

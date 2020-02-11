@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "electrum_ingot",
   "ingredients": [
     {
       "item": "thermal:electrum_block"

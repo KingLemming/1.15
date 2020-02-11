@@ -18,7 +18,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.archersparadox.init.ModReferences.VERDANT_ARROW_ENTITY;
 import static cofh.archersparadox.init.ModReferences.VERDANT_ARROW_ITEM;
-import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
+import static cofh.lib.util.constants.NBTTags.TAG_ARROW_DATA;
 
 public class VerdantArrowEntity extends AbstractArrowEntity {
 

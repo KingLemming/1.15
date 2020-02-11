@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:enderium_ingot_from_dust_blasting"
+    ]
+  },
+  "criteria": {
+    "has_enderium_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:enderium_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:enderium_ingot_from_dust_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enderium_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

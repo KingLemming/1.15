@@ -3,7 +3,7 @@ package cofh.lib.util.helpers;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
-import static cofh.lib.util.constants.Tags.TAG_ENERGY;
+import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 
 /**
  * This class contains helper functions related to Redstone Flux, aka the Forge Energy system.

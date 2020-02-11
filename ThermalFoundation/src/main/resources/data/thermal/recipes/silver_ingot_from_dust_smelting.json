@@ -4,5 +4,6 @@
     "item": "thermal:silver_dust"
   },
   "result": "thermal:silver_ingot",
+  "experience": 0.0,
   "cookingtime": 200
 }

@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
-import static cofh.lib.util.constants.Tags.TAG_PROCESS;
-import static cofh.lib.util.constants.Tags.TAG_PROCESS_MAX;
+import static cofh.lib.util.constants.NBTTags.TAG_PROCESS;
+import static cofh.lib.util.constants.NBTTags.TAG_PROCESS_MAX;
 import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;

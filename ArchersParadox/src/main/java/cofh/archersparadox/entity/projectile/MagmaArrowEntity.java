@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.archersparadox.init.ModReferences.MAGMA_ARROW_ENTITY;
-import static cofh.lib.util.constants.Tags.TAG_ARROW_DATA;
+import static cofh.lib.util.constants.NBTTags.TAG_ARROW_DATA;
 
 public class MagmaArrowEntity extends AbstractArrowEntity {
 

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_FLUX;
-import static cofh.lib.util.constants.Tags.TAG_ENERGY;
+import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 import static cofh.lib.util.helpers.StringHelper.*;
 import static cofh.lib.util.references.CoreReferences.HOLDING;
 

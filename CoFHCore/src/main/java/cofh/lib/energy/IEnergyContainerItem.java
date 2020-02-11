@@ -4,7 +4,7 @@ import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.item.ItemStack;
 
-import static cofh.lib.util.constants.Tags.TAG_ENERGY;
+import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 
 /**
  * Implement this interface on Item classes that support external manipulation of their internal energy storages.

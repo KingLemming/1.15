@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XIX",
+    "XIX",
+    "XIX"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/lumium"
+    },
+    "X": {
+      "item": "minecraft:detector_rail"
+    }
+  },
+  "result": {
+    "item": "thermal:lumium_detector_rail",
+    "count": 6
+  }
+}

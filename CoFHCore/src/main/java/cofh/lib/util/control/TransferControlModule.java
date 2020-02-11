@@ -5,8 +5,8 @@ import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
-import static cofh.lib.util.constants.Tags.TAG_ENABLE_IN;
-import static cofh.lib.util.constants.Tags.TAG_ENABLE_OUT;
+import static cofh.lib.util.constants.NBTTags.TAG_ENABLE_IN;
+import static cofh.lib.util.constants.NBTTags.TAG_ENABLE_OUT;
 
 public class TransferControlModule implements ITransferControllable {
 

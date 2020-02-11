@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:prismarine_detector_rail"
+    ]
+  },
+  "criteria": {
+    "has_detector_rail": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:detector_rail"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:prismarine_detector_rail"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_detector_rail",
+      "has_the_recipe"
+    ]
+  ]
+}

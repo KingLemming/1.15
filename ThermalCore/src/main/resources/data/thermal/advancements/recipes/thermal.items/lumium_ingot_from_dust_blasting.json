@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lumium_ingot_from_dust_blasting"
+    ]
+  },
+  "criteria": {
+    "has_lumium_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:lumium_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lumium_ingot_from_dust_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lumium_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

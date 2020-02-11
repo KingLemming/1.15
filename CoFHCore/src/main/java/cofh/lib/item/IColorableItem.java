@@ -3,8 +3,8 @@ package cofh.lib.item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
-import static cofh.lib.util.constants.Tags.TAG_COLORS;
-import static cofh.lib.util.constants.Tags.TAG_INDEX;
+import static cofh.lib.util.constants.NBTTags.TAG_COLORS;
+import static cofh.lib.util.constants.NBTTags.TAG_INDEX;
 
 public interface IColorableItem extends INBTCopyIngredient {
 

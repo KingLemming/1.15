@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lumium_activator_rail"
+    ]
+  },
+  "criteria": {
+    "has_activator_rail": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:activator_rail"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lumium_activator_rail"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_activator_rail",
+      "has_the_recipe"
+    ]
+  ]
+}

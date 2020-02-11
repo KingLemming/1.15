@@ -4,5 +4,6 @@
     "item": "thermal:copper_dust"
   },
   "result": "thermal:copper_ingot",
+  "experience": 0.0,
   "cookingtime": 200
 }

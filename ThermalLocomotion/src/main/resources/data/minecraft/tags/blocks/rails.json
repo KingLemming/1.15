@@ -1,15 +1,16 @@
 {
   "replace": false,
   "values": [
-    "thermal:lumium_rail",
-    "thermal:lumium_crossover_rail",
-    "thermal:lumium_powered_rail",
-    "thermal:lumium_activator_rail",
-    "thermal:lumium_detector_rail",
+    "thermal:crossover_rail",
     "thermal:prismarine_rail",
     "thermal:prismarine_crossover_rail",
     "thermal:prismarine_powered_rail",
     "thermal:prismarine_activator_rail",
-    "thermal:prismarine_detector_rail"
+    "thermal:prismarine_detector_rail",
+    "thermal:lumium_rail",
+    "thermal:lumium_crossover_rail",
+    "thermal:lumium_powered_rail",
+    "thermal:lumium_activator_rail",
+    "thermal:lumium_detector_rail"
   ]
 }

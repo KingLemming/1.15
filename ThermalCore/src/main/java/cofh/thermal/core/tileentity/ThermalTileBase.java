@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.ACTIVE;
-import static cofh.lib.util.constants.Tags.*;
+import static cofh.lib.util.constants.NBTTags.*;
 
 public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
 

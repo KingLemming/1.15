@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.constants.Tags.*;
+import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_INPUT;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_OUTPUT;
 import static cofh.lib.util.helpers.BlockHelper.*;

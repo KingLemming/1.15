@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static cofh.lib.util.constants.Tags.TAG_POTION;
+import static cofh.lib.util.constants.NBTTags.TAG_POTION;
 
 public class FluidHelper {
 

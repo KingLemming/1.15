@@ -9,7 +9,7 @@ import net.minecraft.network.PacketBuffer;
 
 import java.util.UUID;
 
-import static cofh.lib.util.constants.Tags.*;
+import static cofh.lib.util.constants.NBTTags.*;
 
 public class SecurityControlModule implements ISecurable {
 

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "copper_ingot",
   "ingredients": [
     {
       "item": "thermal:copper_block"

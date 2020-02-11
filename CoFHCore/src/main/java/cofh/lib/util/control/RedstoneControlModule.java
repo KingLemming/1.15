@@ -5,7 +5,7 @@ import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
-import static cofh.lib.util.constants.Tags.*;
+import static cofh.lib.util.constants.NBTTags.*;
 
 public class RedstoneControlModule implements IRedstoneControllable {
 

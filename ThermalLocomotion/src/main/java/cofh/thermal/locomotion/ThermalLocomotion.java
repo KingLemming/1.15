@@ -1,7 +1,8 @@
 package cofh.thermal.locomotion;
 
-import cofh.thermal.locomotion.data.TLocGenLootTables;
-import cofh.thermal.locomotion.data.TLocGenRecipes;
+import cofh.thermal.locomotion.data.TLocLootTables;
+import cofh.thermal.locomotion.data.TLocRecipes;
+import cofh.thermal.locomotion.data.TLocTags;
 import cofh.thermal.locomotion.init.TLocBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,8 +37,12 @@ public class ThermalLocomotion {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new TLocGenLootTables(generator));
-        generator.addProvider(new TLocGenRecipes(generator));
+        generator.addProvider(new TLocTags.Block(generator));
+        generator.addProvider(new TLocTags.Item(generator));
+        generator.addProvider(new TLocTags.Fluid(generator));
+
+        generator.addProvider(new TLocLootTables(generator));
+        generator.addProvider(new TLocRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

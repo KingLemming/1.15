@@ -41,43 +41,33 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
 
     protected abstract void addTables();
 
-    protected LootTable.Builder createSilkTouchTable(String name, Block block, Item lootItem, float min, float max) {
+    protected LootTable.Builder createSilkTouchTable(String name, Block block, Item lootItem, float min, float max, int bonus) {
 
-        LootPool.Builder builder = LootPool.builder().name(name)
-                .rolls(ConstantRange.of(1))
-                .addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(block).acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))))), ItemLootEntry.builder(lootItem)
-                        .acceptFunction(SetCount.builder(new RandomValueRange(min, max))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 1))
-                        .acceptFunction(ExplosionDecay.builder())));
+        LootPool.Builder builder = LootPool.builder().name(name).rolls(ConstantRange.of(1)).addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(block).acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))))), ItemLootEntry.builder(lootItem).acceptFunction(SetCount.builder(new RandomValueRange(min, max))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, bonus)).acceptFunction(ExplosionDecay.builder())));
         return LootTable.builder().addLootPool(builder);
     }
 
-    protected LootTable.Builder createStandardTable(String name, Block block) {
+    protected LootTable.Builder createSilkTouchOreTable(Block block, Item lootItem) {
 
-        LootPool.Builder builder = LootPool.builder().name(name)
-                .rolls(ConstantRange.of(1))
-                .addEntry(ItemLootEntry.builder(block)
-                        .acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))
-                        .acceptFunction(CopyNbt.func_215881_a(CopyNbt.Source.BLOCK_ENTITY)
-                                .func_216055_a("Info", "BlockEntityTag.Info", CopyNbt.Action.REPLACE)
-                                .func_216055_a("Items", "BlockEntityTag.Items", CopyNbt.Action.REPLACE)
-                                .func_216055_a("Energy", "BlockEntityTag.Energy", CopyNbt.Action.REPLACE))
-                        .acceptFunction(SetContents.func_215920_b()
-                                .func_216075_a(DynamicLootEntry.func_216162_a(new ResourceLocation("minecraft", "contents")))));
+        LootPool.Builder builder = LootPool.builder().rolls(ConstantRange.of(1)).addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(block).acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))))), ItemLootEntry.builder(lootItem).acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)).acceptFunction(ExplosionDecay.builder())));
         return LootTable.builder().addLootPool(builder);
     }
 
     protected LootTable.Builder createSimpleTable(Block block) {
 
-        LootPool.Builder builder = LootPool.builder()
-                .rolls(ConstantRange.of(1))
-                .addEntry(ItemLootEntry.builder(block))
-                .acceptCondition(SurvivesExplosion.builder());
+        LootPool.Builder builder = LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(block)).acceptCondition(SurvivesExplosion.builder());
         return LootTable.builder().addLootPool(builder);
     }
 
     protected LootTable.Builder createEmptyTable() {
 
         return LootTable.builder();
+    }
+
+    protected LootTable.Builder createStandardTileTable(String name, Block block) {
+
+        LootPool.Builder builder = LootPool.builder().name(name).rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(block).acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY)).acceptFunction(CopyNbt.func_215881_a(CopyNbt.Source.BLOCK_ENTITY).func_216055_a("Info", "BlockEntityTag.Info", CopyNbt.Action.REPLACE).func_216055_a("Items", "BlockEntityTag.Items", CopyNbt.Action.REPLACE).func_216055_a("Energy", "BlockEntityTag.Energy", CopyNbt.Action.REPLACE)).acceptFunction(SetContents.func_215920_b().func_216075_a(DynamicLootEntry.func_216162_a(new ResourceLocation("minecraft", "contents")))));
+        return LootTable.builder().addLootPool(builder);
     }
 
     @Override

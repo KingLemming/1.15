@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static cofh.lib.util.constants.Tags.TAG_AMOUNT;
-import static cofh.lib.util.constants.Tags.TAG_FLUID;
+import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT;
+import static cofh.lib.util.constants.NBTTags.TAG_FLUID;
 import static cofh.lib.util.helpers.FluidHelper.addPotionTooltip;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;

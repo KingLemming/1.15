@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "lead_ingot",
   "ingredients": [
     {
       "item": "thermal:lead_block"

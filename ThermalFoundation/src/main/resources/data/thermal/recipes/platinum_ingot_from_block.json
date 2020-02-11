@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "platinum_ingot",
   "ingredients": [
     {
       "item": "thermal:platinum_block"

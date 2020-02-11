@@ -4,6 +4,6 @@
     "item": "thermal:tin_ore"
   },
   "result": "thermal:tin_ingot",
-  "experience": 0.7,
+  "experience": 0.6,
   "cookingtime": 100
 }

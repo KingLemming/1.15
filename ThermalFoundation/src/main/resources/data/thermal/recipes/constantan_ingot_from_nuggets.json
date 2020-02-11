@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:constantan_nugget"
+    }
+  },
+  "result": {
+    "item": "thermal:constantan_ingot"
+  }
+}

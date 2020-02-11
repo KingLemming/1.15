@@ -4,7 +4,7 @@ import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.nyi.SmashingEnchantment;
 import cofh.ensorcellation.enchantment.nyi.SmeltingEnchantment;
 import cofh.ensorcellation.enchantment.override.FrostWalkerEnchantmentImp;
-import cofh.lib.util.constants.Tags;
+import cofh.lib.util.constants.NBTTags;
 import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -182,7 +182,7 @@ public class CommonEvents {
                     PlayerEntity target = (ServerPlayerEntity) event.getEntity();
                     itemSkull = new ItemStack(PLAYER_HEAD);
                     CompoundNBT tag = new CompoundNBT();
-                    tag.putString(Tags.TAG_SKULL_OWNER, target.getName().getString());
+                    tag.putString(NBTTags.TAG_SKULL_OWNER, target.getName().getString());
                     itemSkull.setTag(tag);
                 } else if (entity instanceof SkeletonEntity) {
                     itemSkull = new ItemStack(SKELETON_SKULL);

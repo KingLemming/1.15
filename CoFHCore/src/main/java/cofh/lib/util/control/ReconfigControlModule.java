@@ -6,7 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 
-import static cofh.lib.util.constants.Tags.TAG_SIDES;
+import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_ACCESSIBLE;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
 

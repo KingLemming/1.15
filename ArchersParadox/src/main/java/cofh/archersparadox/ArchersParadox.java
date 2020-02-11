@@ -1,6 +1,7 @@
 package cofh.archersparadox;
 
-import cofh.archersparadox.data.ModGenRecipes;
+import cofh.archersparadox.data.ModRecipes;
+import cofh.archersparadox.data.ModTags;
 import cofh.archersparadox.entity.projectile.*;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
@@ -108,7 +109,8 @@ public class ArchersParadox {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new ModGenRecipes(generator));
+        generator.addProvider(new ModTags.Item(generator));
+        generator.addProvider(new ModRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
