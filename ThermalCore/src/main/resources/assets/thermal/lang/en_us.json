@@ -98,6 +98,10 @@
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.wrench": "Crescent Hammer",
 
+  "item.thermal.redstone_fluid_bucket": "Destabilized Redstone Bucket",
+  "item.thermal.glowstone_fluid_bucket": "Energized Glowstone Bucket",
+  "item.thermal.ender_fluid_bucket": "Resonant Ender Bucket",
+
   "item.thermal.iron_coin": "Iron Coin",
   "item.thermal.iron_dust": "Iron Dust",
   "item.thermal.iron_gear": "Iron Gear",

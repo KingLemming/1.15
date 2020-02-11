@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "loader": "forge:bucket",
+  "textures": {
+    "fluid": "thermal:block/fluids/redstone_still"
+  }
+}
