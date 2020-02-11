@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "archers_paradox:blaze_arrow",
+    "archers_paradox:challenge_arrow",
+    "archers_paradox:diamond_arrow",
+    "archers_paradox:ender_arrow",
+    "archers_paradox:explosive_arrow",
+    "archers_paradox:frost_arrow",
+    "archers_paradox:lightning_arrow",
+    "archers_paradox:phantasmal_arrow",
+    "archers_paradox:prismarine_arrow",
+    "archers_paradox:quartz_arrow",
+    "archers_paradox:shulker_arrow",
+    "archers_paradox:slime_arrow",
+    "archers_paradox:spore_arrow",
+    "archers_paradox:training_arrow",
+    "archers_paradox:verdant_arrow"
+  ]
+}

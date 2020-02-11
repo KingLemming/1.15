@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:packed_ice"
+    },
+    "#": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:frost_arrow",
+    "count": 4
+  }
+}

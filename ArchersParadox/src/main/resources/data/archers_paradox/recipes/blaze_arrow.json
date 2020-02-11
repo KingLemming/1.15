@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:blaze_powder"
+    },
+    "#": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:blaze_arrow",
+    "count": 4
+  }
+}
