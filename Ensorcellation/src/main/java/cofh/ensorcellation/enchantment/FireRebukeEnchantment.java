@@ -85,13 +85,13 @@ public class FireRebukeEnchantment extends EnchantmentCoFH {
             return;
         }
         if (user instanceof PlayerEntity || !(attacker instanceof PlayerEntity) || mobsAffectPlayers) {
-            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.getPosX() - attacker.getPosX(), user.getPosZ() - attacker.getPosZ());
         }
         Random rand = user.getRNG();
         AFFLICTED_ENTITIES.add(new Tuple<>(attacker, 1 + rand.nextInt(3 * level)));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
-                Utils.spawnParticles(attacker.world, ParticleTypes.FLAME, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(attacker.world, ParticleTypes.FLAME, attacker.getPosX() + rand.nextDouble(), attacker.getPosY() + 1.0D + rand.nextDouble(), attacker.getPosZ() + rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }

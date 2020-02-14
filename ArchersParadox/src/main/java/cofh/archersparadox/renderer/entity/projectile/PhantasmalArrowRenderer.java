@@ -18,7 +18,7 @@ public class PhantasmalArrowRenderer extends ArrowRenderer<PhantasmalArrowEntity
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(PhantasmalArrowEntity entity) {
+    public ResourceLocation getEntityTexture(PhantasmalArrowEntity entity) {
 
         return TEXTURE;
     }

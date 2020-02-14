@@ -50,8 +50,8 @@ public class MagicEdgeEnchantment extends DamageEnchantmentCoFH {
 
         if (entity.world instanceof ServerWorld) {
             for (int i = 0; i < 2 * level; ++i) {
-                Utils.spawnParticles(entity.world, ParticleTypes.ENCHANT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
-                Utils.spawnParticles(entity.world, ParticleTypes.ENCHANTED_HIT, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(entity.world, ParticleTypes.ENCHANT, entity.getPosX() + entity.world.rand.nextDouble(), entity.getPosY() + 1.0D + entity.world.rand.nextDouble(), entity.getPosZ() + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(entity.world, ParticleTypes.ENCHANTED_HIT, entity.getPosX() + entity.world.rand.nextDouble(), entity.getPosY() + 1.0D + entity.world.rand.nextDouble(), entity.getPosZ() + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }

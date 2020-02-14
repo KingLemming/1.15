@@ -106,7 +106,7 @@ public final class ArcheryHelper {
                     }
                     bowObj.onArrowLoosed(bow, ammo, shooter);
                 }
-                world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.rand.nextFloat() * 0.4F + 1.2F) + arrowVelocity * 0.5F);
+                world.playSound(null, shooter.getPosX(), shooter.getPosY(), shooter.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.rand.nextFloat() * 0.4F + 1.2F) + arrowVelocity * 0.5F);
 
                 if (!infinite && !shooter.abilities.isCreativeMode) {
                     ammoObj.onArrowLoosed(bow, ammo, shooter);

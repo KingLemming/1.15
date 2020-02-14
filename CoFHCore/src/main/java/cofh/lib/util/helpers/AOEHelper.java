@@ -71,7 +71,7 @@ public class AOEHelper {
         int z = pos.getZ();
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSneaking() || !canToolAffect(tool, stack, world, pos) || radius <= 0) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isDiscrete() || !canToolAffect(tool, stack, world, pos) || radius <= 0) {
             return ImmutableList.of();
         }
         switch (traceResult.getFace()) {
@@ -139,7 +139,7 @@ public class AOEHelper {
         int depth_max = 0;
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && depth <= 0)) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isDiscrete() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && depth <= 0)) {
             return ImmutableList.of();
         }
         switch (traceResult.getFace()) {
@@ -216,7 +216,7 @@ public class AOEHelper {
         int y = pos.getY();
         int z = pos.getZ();
 
-        if (player.isSneaking() || !canToolAffect(tool, stack, world, pos) || length <= 0) {
+        if (player.isDiscrete() || !canToolAffect(tool, stack, world, pos) || length <= 0) {
             return ImmutableList.of();
         }
         switch (player.getHorizontalFacing()) {
@@ -274,7 +274,7 @@ public class AOEHelper {
         int z = pos.getZ();
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isSneaking() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isDiscrete() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
             return ImmutableList.of();
         }
         for (int i = x - radius; i <= x + radius; ++i) {
@@ -302,7 +302,7 @@ public class AOEHelper {
         int y = pos.getY();
         int z = pos.getZ();
 
-        if (player.isSneaking() || !canHoeAffect(world, pos, weeding) || length <= 0) {
+        if (player.isDiscrete() || !canHoeAffect(world, pos, weeding) || length <= 0) {
             return ImmutableList.of();
         }
         switch (player.getHorizontalFacing()) {
@@ -355,7 +355,7 @@ public class AOEHelper {
         int y = pos.getY();
         int z = pos.getZ();
 
-        if (player.isSneaking() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
+        if (player.isDiscrete() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
             return ImmutableList.of();
         }
         for (int i = x - radius; i <= x + radius; ++i) {

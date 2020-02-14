@@ -111,7 +111,7 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
                 double d1 = vec3d.x;
                 double d2 = vec3d.y;
                 double d0 = vec3d.z;
-                this.world.addParticle(RedstoneParticleData.REDSTONE_DUST, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+                this.world.addParticle(RedstoneParticleData.REDSTONE_DUST, this.getPosX() + d1 * 0.25D, this.getPosY() + d2 * 0.25D, this.getPosZ() + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
             }
         }
     }
@@ -139,7 +139,7 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
 
     private void makeAreaOfEffectCloud() {
 
-        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, posX, posY, posZ);
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY(), getPosZ());
         cloud.setRadius(1);
         cloud.setParticleData(RedstoneParticleData.REDSTONE_DUST);
         cloud.setDuration(CLOUD_DURATION);

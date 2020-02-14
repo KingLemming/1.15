@@ -18,7 +18,7 @@ public class ShulkerArrowRenderer extends ArrowRenderer<ShulkerArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(ShulkerArrowEntity entity) {
+    public ResourceLocation getEntityTexture(ShulkerArrowEntity entity) {
 
         return TEXTURE;
     }

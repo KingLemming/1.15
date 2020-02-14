@@ -18,7 +18,7 @@ public class ChallengeArrowRenderer extends ArrowRenderer<ChallengeArrowEntity> 
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(ChallengeArrowEntity entity) {
+    public ResourceLocation getEntityTexture(ChallengeArrowEntity entity) {
 
         return entity.discharged ? TrainingArrowRenderer.TEXTURE : TEXTURE;
     }

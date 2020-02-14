@@ -18,7 +18,7 @@ public class TrainingArrowRenderer extends ArrowRenderer<TrainingArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(TrainingArrowEntity entity) {
+    public ResourceLocation getEntityTexture(TrainingArrowEntity entity) {
 
         return TEXTURE;
     }

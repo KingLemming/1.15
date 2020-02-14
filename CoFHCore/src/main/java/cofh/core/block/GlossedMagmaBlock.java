@@ -18,6 +18,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -60,10 +61,10 @@ public class GlossedMagmaBlock extends MagmaBlock {
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 
         if ((random.nextInt(9) == 0 || this.shouldMelt(worldIn, pos, 4)) && this.slightlyMelt(state, worldIn, pos)) {
-            try (BlockPos.PooledMutableBlockPos mutable = BlockPos.PooledMutableBlockPos.retain()) {
+            try (BlockPos.PooledMutable mutable = BlockPos.PooledMutable.retain()) {
                 for (Direction direction : Direction.values()) {
                     mutable.setPos(pos).move(direction);
                     BlockState blockstate = worldIn.getBlockState(mutable);
@@ -93,7 +94,7 @@ public class GlossedMagmaBlock extends MagmaBlock {
     protected boolean shouldMelt(IBlockReader worldIn, BlockPos pos, int neighborsRequired) {
 
         int i = 0;
-        try (BlockPos.PooledMutableBlockPos mutable = BlockPos.PooledMutableBlockPos.retain()) {
+        try (BlockPos.PooledMutable mutable = BlockPos.PooledMutable.retain()) {
             for (Direction direction : Direction.values()) {
                 mutable.setPos(pos).move(direction);
                 if (worldIn.getBlockState(mutable).getBlock() == this) {

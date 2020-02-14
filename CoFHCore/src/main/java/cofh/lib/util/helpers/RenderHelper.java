@@ -1,6 +1,6 @@
 package cofh.lib.util.helpers;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -39,7 +39,7 @@ public final class RenderHelper {
 
     public static AtlasTexture textureMap() {
 
-        return Minecraft.getInstance().getTextureMap();
+        return Minecraft.getInstance().getModelManager().getAtlasTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
     }
 
     public static Tessellator tessellator() {
@@ -77,13 +77,13 @@ public final class RenderHelper {
             return;
         }
         GL11.glPushMatrix();
-        GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        RenderSystem.enableBlend();
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         int color = fluid.getFluid().getAttributes().getColor(fluid);
         setBlockTextureSheet();
         setGLColorFromInt(color);
-        drawTiledTexture(x, y, getTexture(fluid.getFluid().getAttributes().getStill(fluid)), width, height);
+        drawTiledTexture(x, y, getTexture(fluid.getFluid().getAttributes().getStillTexture(fluid)), width, height);
         GL11.glPopMatrix();
     }
 
@@ -123,7 +123,7 @@ public final class RenderHelper {
             }
         }
         resetColor();
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public static void drawScaledTexturedModalRectFromSprite(int x, int y, TextureAtlasSprite icon, int width, int height) {
@@ -131,30 +131,33 @@ public final class RenderHelper {
         if (icon == null) {
             return;
         }
-        double minU = icon.getMinU();
-        double maxU = icon.getMaxU();
-        double minV = icon.getMinV();
-        double maxV = icon.getMaxV();
+        float minU = icon.getMinU();
+        float maxU = icon.getMaxU();
+        float minV = icon.getMinV();
+        float maxV = icon.getMaxV();
+
+        float u = minU + (maxU - minU) * width / 16F;
+        float v = minV + (maxV - minV) * height / 16F;
 
         BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(x, y + height, 0).tex(minU, minV + (maxV - minV) * height / 16F).endVertex();
-        buffer.pos(x + width, y + height, 0).tex(minU + (maxU - minU) * width / 16F, minV + (maxV - minV) * height / 16F).endVertex();
-        buffer.pos(x + width, y, 0).tex(minU + (maxU - minU) * width / 16F, minV).endVertex();
+        buffer.pos(x, y + height, 0).tex(minU, v).endVertex();
+        buffer.pos(x + width, y + height, 0).tex(u, v).endVertex();
+        buffer.pos(x + width, y, 0).tex(u, minV).endVertex();
         buffer.pos(x, y, 0).tex(minU, minV).endVertex();
         Tessellator.getInstance().draw();
     }
 
     public static void drawStencil(int xStart, int yStart, int xEnd, int yEnd, int flag) {
 
-        GlStateManager.disableTexture();
+        RenderSystem.disableTexture();
         GL11.glStencilFunc(GL11.GL_ALWAYS, flag, flag);
         GL11.glStencilOp(GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_REPLACE);
         GL11.glStencilMask(flag);
-        GlStateManager.colorMask(false, false, false, false);
-        GlStateManager.depthMask(false);
+        RenderSystem.colorMask(false, false, false, false);
+        RenderSystem.depthMask(false);
         GL11.glClearStencil(0);
-        GlStateManager.clear(GL11.GL_STENCIL_BUFFER_BIT, false);
+        RenderSystem.clear(GL11.GL_STENCIL_BUFFER_BIT, false);
 
         BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
@@ -164,11 +167,11 @@ public final class RenderHelper {
         buffer.pos(xStart, yStart, 0).endVertex();
         Tessellator.getInstance().draw();
 
-        GlStateManager.enableTexture();
+        RenderSystem.enableTexture();
         GL11.glStencilFunc(GL11.GL_EQUAL, flag, flag);
         GL11.glStencilMask(0);
-        GlStateManager.colorMask(true, true, true, true);
-        GlStateManager.depthMask(true);
+        RenderSystem.colorMask(true, true, true, true);
+        RenderSystem.depthMask(true);
     }
     // endregion
 
@@ -183,21 +186,26 @@ public final class RenderHelper {
         net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
     }
 
-    public static void enableGUIStandardItemLighting() {
+    public static void setupGuiFlatDiffuseLighting() {
 
-        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+        net.minecraft.client.renderer.RenderHelper.setupGuiFlatDiffuseLighting();
+    }
+
+    public static void setupGui3DDiffuseLighting() {
+
+        net.minecraft.client.renderer.RenderHelper.setupGui3DDiffuseLighting();
     }
     // endregion
 
     // region TEXTURE GETTERS
     public static TextureAtlasSprite getTexture(String location) {
 
-        return textureMap().getAtlasSprite(location);
+        return textureMap().getSprite(new ResourceLocation(location));
     }
 
     public static TextureAtlasSprite getTexture(ResourceLocation location) {
 
-        return getTexture(location.toString());
+        return textureMap().getSprite(location);
     }
 
     public static TextureAtlasSprite getFluidTexture(Fluid fluid) {
@@ -207,7 +215,7 @@ public final class RenderHelper {
 
     public static TextureAtlasSprite getFluidTexture(FluidStack fluid) {
 
-        return getTexture(fluid.getFluid().getAttributes().getStill(fluid));
+        return getTexture(fluid.getFluid().getAttributes().getStillTexture(fluid));
     }
     // endregion
 
@@ -216,12 +224,12 @@ public final class RenderHelper {
         float red = (float) (color >> 16 & 255) / 255.0F;
         float green = (float) (color >> 8 & 255) / 255.0F;
         float blue = (float) (color & 255) / 255.0F;
-        GlStateManager.color4f(red, green, blue, 1.0F);
+        RenderSystem.color4f(red, green, blue, 1.0F);
     }
 
     public static void resetColor() {
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public static void bindTexture(ResourceLocation texture) {

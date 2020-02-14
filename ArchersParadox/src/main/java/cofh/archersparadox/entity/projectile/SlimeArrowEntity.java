@@ -138,7 +138,7 @@ public class SlimeArrowEntity extends AbstractArrowEntity {
                 double d1 = vec3d.x;
                 double d2 = vec3d.y;
                 double d0 = vec3d.z;
-                this.world.addParticle(ParticleTypes.ITEM_SLIME, this.posX + d1 * 0.25D, this.posY + d2 * 0.25D, this.posZ + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+                this.world.addParticle(ParticleTypes.ITEM_SLIME, this.getPosX() + d1 * 0.25D, this.getPosY() + d2 * 0.25D, this.getPosZ() + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
             }
         }
     }

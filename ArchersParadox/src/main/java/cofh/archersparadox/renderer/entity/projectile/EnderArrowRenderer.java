@@ -22,7 +22,7 @@ public class EnderArrowRenderer extends ArrowRenderer<EnderArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EnderArrowEntity entity) {
+    public ResourceLocation getEntityTexture(EnderArrowEntity entity) {
 
         return entity.discharged ? ARROW : TEXTURE;
     }

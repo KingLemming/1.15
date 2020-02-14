@@ -4,7 +4,7 @@ import cofh.core.gui.IGuiAccess;
 import cofh.lib.util.control.ISecurable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 import java.util.List;
 import java.util.UUID;
@@ -112,7 +112,7 @@ public class PanelSecurity extends PanelBase {
         float colorR = (backgroundColor >> 16 & 255) / 255.0F * 0.6F;
         float colorG = (backgroundColor >> 8 & 255) / 255.0F * 0.6F;
         float colorB = (backgroundColor & 255) / 255.0F * 0.6F;
-        GlStateManager.color4f(colorR, colorG, colorB, 1.0F);
+        RenderSystem.color4f(colorR, colorG, colorB, 1.0F);
         gui.drawTexturedModalRect(34, 18, 16, 20, 44, 44);
         RenderHelper.resetColor();
     }

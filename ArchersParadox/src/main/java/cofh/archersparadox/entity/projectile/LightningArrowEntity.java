@@ -58,7 +58,7 @@ public class LightningArrowEntity extends AbstractArrowEntity {
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (!isInWater() && !isInLava()) {
                 BlockPos pos = this.getPosition();
-                if (this.world.isSkyLightMax(pos)) {
+                if (this.world.canSeeSky(pos)) {
                     if (Utils.isServerWorld(world)) {
                         LightningBoltEntity bolt = new LightningBoltEntity(this.world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, false);
                         bolt.setCaster(getShooter() instanceof ServerPlayerEntity ? (ServerPlayerEntity) getShooter() : null);

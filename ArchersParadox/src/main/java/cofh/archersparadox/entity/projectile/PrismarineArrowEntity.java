@@ -89,13 +89,13 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
             this.prevRotationYaw = this.rotationYaw;
             this.prevRotationPitch = this.rotationPitch;
         }
-        BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
+        BlockPos blockpos = new BlockPos(this.getPosX(), this.getPosY(), this.getPosZ());
         BlockState blockstate = this.world.getBlockState(blockpos);
         if (!blockstate.isAir(this.world, blockpos) && !flag) {
             VoxelShape voxelshape = blockstate.getCollisionShape(this.world, blockpos);
             if (!voxelshape.isEmpty()) {
                 for (AxisAlignedBB axisalignedbb : voxelshape.toBoundingBoxList()) {
-                    if (axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
+                    if (axisalignedbb.offset(blockpos).contains(new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ()))) {
                         this.inGround = true;
                         break;
                     }
@@ -109,19 +109,19 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
             this.extinguish();
         }
         if (this.inGround && !flag) {
-            if (this.inBlockState != blockstate && this.world.areCollisionShapesEmpty(this.getBoundingBox().grow(0.06D))) {
+            if (this.inBlockState != blockstate && this.world.func_226664_a_(this.getBoundingBox().grow(0.06D))) {
                 this.inGround = false;
                 this.setMotion(vec3d.mul((this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F)));
                 this.ticksInGround = 0;
                 this.ticksInAir = 0;
             } else if (!this.world.isRemote) {
-                this.tryDespawn();
+                this.func_225516_i_();
             }
             ++this.timeInGround;
         } else {
             this.timeInGround = 0;
             ++this.ticksInAir;
-            Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vec3d1 = new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ());
             Vec3d vec3d2 = vec3d1.add(vec3d);
             RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
             if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
@@ -155,12 +155,10 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
             double d0 = vec3d.z;
             if (this.getIsCritical()) {
                 for (int i = 0; i < 4; ++i) {
-                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
+                    this.world.addParticle(ParticleTypes.CRIT, this.getPosX() + d1 * (double) i / 4.0D, this.getPosY() + d2 * (double) i / 4.0D, this.getPosZ() + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
                 }
             }
-            this.posX += d1;
-            this.posY += d2;
-            this.posZ += d0;
+            this.setRawPosition(this.getPosX() + d1, this.getPosY() + d2, this.getPosZ() + d0);
             float f4 = MathHelper.sqrt(horizontalMag(vec3d));
             if (flag) {
                 this.rotationYaw = (float) (MathHelper.atan2(-d1, -d0) * (double) (180F / (float) Math.PI));
@@ -185,7 +183,7 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
             float f1 = 0.99F;
             //            if (this.isInWater()) {
             //                for (int j = 0; j < 4; ++j) {
-            //                    this.world.addParticle(ParticleTypes.BUBBLE, this.posX - d1 * 0.25D, this.posY - d2 * 0.25D, this.posZ - d0 * 0.25D, d1, d2, d0);
+            //                    this.world.addParticle(ParticleTypes.BUBBLE, this.getPosX() - d1 * 0.25D, this.getPosY() - d2 * 0.25D, this.getPosZ() - d0 * 0.25D, d1, d2, d0);
             //                }
             //                f1 = this.getWaterDrag();
             //            }
@@ -194,7 +192,7 @@ public class PrismarineArrowEntity extends AbstractArrowEntity {
                 Vec3d vec3d3 = this.getMotion();
                 this.setMotion(vec3d3.x, vec3d3.y - (this.isInWater() ? 0.01D : 0.05D), vec3d3.z);
             }
-            this.setPosition(this.posX, this.posY, this.posZ);
+            this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
             this.doBlockCollisions();
         }
     }

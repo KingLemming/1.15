@@ -83,7 +83,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
             return;
         }
         if (user instanceof PlayerEntity || !(attacker instanceof PlayerEntity) || mobsAffectPlayers) {
-            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.posX - attacker.posX, user.posZ - attacker.posZ);
+            ((LivingEntity) attacker).knockBack(user, 0.5F * level, user.getPosX() - attacker.getPosX(), user.getPosZ() - attacker.getPosZ());
         }
         Random rand = user.getRNG();
         int i = 20 + 20 * rand.nextInt(3 * level);
@@ -93,7 +93,7 @@ public class FrostRebukeEnchantment extends EnchantmentCoFH {
         ((LivingEntity) attacker).addPotionEffect(new EffectInstance(CHILLED, i, level - 1, false, false));
         if (attacker.world instanceof ServerWorld) {
             for (int j = 0; j < 3 * level; ++j) {
-                Utils.spawnParticles(attacker.world, ParticleTypes.ITEM_SNOWBALL, attacker.posX + rand.nextDouble(), attacker.posY + 1.0D + rand.nextDouble(), attacker.posZ + rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(attacker.world, ParticleTypes.ITEM_SNOWBALL, attacker.getPosX() + rand.nextDouble(), attacker.getPosY() + 1.0D + rand.nextDouble(), attacker.getPosZ() + rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }

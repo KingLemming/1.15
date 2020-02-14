@@ -139,7 +139,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
         if (this.ticksInAir >= MAX_TICKS) {
             this.remove();
         }
-        Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d vec3d1 = new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ());
         Vec3d vec3d2 = vec3d1.add(vec3d);
         RayTraceResult raytraceresult = this.world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
         if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
@@ -176,9 +176,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
         //                    this.world.addParticle(ParticleTypes.CRIT, this.posX + d1 * (double) i / 4.0D, this.posY + d2 * (double) i / 4.0D, this.posZ + d0 * (double) i / 4.0D, -d1, -d2 + 0.2D, -d0);
         //                }
         //            }
-        this.posX += d1;
-        this.posY += d2;
-        this.posZ += d0;
+        this.setRawPosition(this.getPosX() + d1, this.getPosY() + d2, this.getPosZ() + d0);
         float f4 = MathHelper.sqrt(horizontalMag(vec3d));
         if (flag) {
             this.rotationYaw = (float) (MathHelper.atan2(-d1, -d0) * (double) (180F / (float) Math.PI));
@@ -212,7 +210,7 @@ public class PhantasmalArrowEntity extends AbstractArrowEntity {
         //                Vec3d vec3d3 = this.getMotion();
         //                this.setMotion(vec3d3.x, vec3d3.y - 0.05D, vec3d3.z);
         //            }
-        this.setPosition(this.posX, this.posY, this.posZ);
+        this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
         //            this.doBlockCollisions();
         //    }
     }

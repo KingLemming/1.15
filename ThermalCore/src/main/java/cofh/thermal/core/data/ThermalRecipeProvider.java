@@ -1,9 +1,10 @@
 package cofh.thermal.core.data;
 
-import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 
 import java.util.function.Consumer;
 
@@ -157,6 +158,12 @@ public class ThermalRecipeProvider extends RecipeProvider {
             }
         }
         // @formatter:on
+    }
+
+    // TODO: WTF Mojang
+    protected InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
+
+        return this.hasItem(new ItemPredicate(null, itemIn.asItem(), amount, MinMaxBounds.IntBound.UNBOUNDED, EnchantmentPredicate.field_226534_b_, EnchantmentPredicate.field_226534_b_, null, NBTPredicate.ANY)); // ItemPredicate.Builder.create().item(itemIn).count(amount).build());
     }
     // endregion
 }

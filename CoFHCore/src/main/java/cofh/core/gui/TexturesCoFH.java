@@ -11,9 +11,11 @@ public class TexturesCoFH {
 
     }
 
+    private static String BLOCK_ATLAS = "minecraft:textures/atlas/blocks.png";
+
     public static void preStitch(TextureStitchEvent.Pre event) {
 
-        if (!event.getMap().getBasePath().equals("textures")) {
+        if (!event.getMap().getBasePath().toString().equals(BLOCK_ATLAS)) {
             return;
         }
         event.addSprite(new ResourceLocation(ICONS_ + "icon_access_public"));
@@ -54,45 +56,45 @@ public class TexturesCoFH {
 
     public static void postStitch(TextureStitchEvent.Post event) {
 
-        if (!event.getMap().getBasePath().equals("textures")) {
+        if (!event.getMap().getBasePath().toString().equals(BLOCK_ATLAS)) {
             return;
         }
         AtlasTexture map = event.getMap();
 
-        ICON_ACCESS_PUBLIC = map.getAtlasSprite(ICONS_ + "icon_access_public");
-        ICON_ACCESS_PRIVATE = map.getAtlasSprite(ICONS_ + "icon_access_private");
-        ICON_ACCESS_FRIENDS = map.getAtlasSprite(ICONS_ + "icon_access_friends");
-        ICON_ACCESS_TEAM = map.getAtlasSprite(ICONS_ + "icon_access_team");
+        ICON_ACCESS_PUBLIC = map.getSprite(new ResourceLocation(ICONS_ + "icon_access_public"));
+        ICON_ACCESS_PRIVATE = map.getSprite(new ResourceLocation(ICONS_ + "icon_access_private"));
+        ICON_ACCESS_FRIENDS = map.getSprite(new ResourceLocation(ICONS_ + "icon_access_friends"));
+        ICON_ACCESS_TEAM = map.getSprite(new ResourceLocation(ICONS_ + "icon_access_team"));
 
-        ICON_ACCEPT = map.getAtlasSprite(ICONS_ + "icon_accept");
-        ICON_ACCEPT_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_accept_inactive");
-        ICON_AUGMENT = map.getAtlasSprite(ICONS_ + "icon_augment");
-        ICON_BUTTON = map.getAtlasSprite(ICONS_ + "icon_button");
-        ICON_BUTTON_HIGHLIGHT = map.getAtlasSprite(ICONS_ + "icon_button_highlight");
-        ICON_BUTTON_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_button_inactive");
-        ICON_CANCEL = map.getAtlasSprite(ICONS_ + "icon_cancel");
-        ICON_CANCEL_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_cancel_inactive");
-        ICON_CONFIG = map.getAtlasSprite(ICONS_ + "icon_config");
-        ICON_ENERGY = map.getAtlasSprite(ICONS_ + "icon_energy");
-        ICON_NOPE = map.getAtlasSprite(ICONS_ + "icon_nope");
-        ICON_INFORMATION = map.getAtlasSprite(ICONS_ + "icon_information");
-        ICON_STEAM = map.getAtlasSprite(ICONS_ + "icon_steam");
-        ICON_TUTORIAL = map.getAtlasSprite(ICONS_ + "icon_tutorial");
+        ICON_ACCEPT = map.getSprite(new ResourceLocation(ICONS_ + "icon_accept"));
+        ICON_ACCEPT_INACTIVE = map.getSprite(new ResourceLocation(ICONS_ + "icon_accept_inactive"));
+        ICON_AUGMENT = map.getSprite(new ResourceLocation(ICONS_ + "icon_augment"));
+        ICON_BUTTON = map.getSprite(new ResourceLocation(ICONS_ + "icon_button"));
+        ICON_BUTTON_HIGHLIGHT = map.getSprite(new ResourceLocation(ICONS_ + "icon_button_highlight"));
+        ICON_BUTTON_INACTIVE = map.getSprite(new ResourceLocation(ICONS_ + "icon_button_inactive"));
+        ICON_CANCEL = map.getSprite(new ResourceLocation(ICONS_ + "icon_cancel"));
+        ICON_CANCEL_INACTIVE = map.getSprite(new ResourceLocation(ICONS_ + "icon_cancel_inactive"));
+        ICON_CONFIG = map.getSprite(new ResourceLocation(ICONS_ + "icon_config"));
+        ICON_ENERGY = map.getSprite(new ResourceLocation(ICONS_ + "icon_energy"));
+        ICON_NOPE = map.getSprite(new ResourceLocation(ICONS_ + "icon_nope"));
+        ICON_INFORMATION = map.getSprite(new ResourceLocation(ICONS_ + "icon_information"));
+        ICON_STEAM = map.getSprite(new ResourceLocation(ICONS_ + "icon_steam"));
+        ICON_TUTORIAL = map.getSprite(new ResourceLocation(ICONS_ + "icon_tutorial"));
 
-        ICON_INPUT = map.getAtlasSprite(ICONS_ + "icon_input");
-        ICON_OUTPUT = map.getAtlasSprite(ICONS_ + "icon_output");
+        ICON_INPUT = map.getSprite(new ResourceLocation(ICONS_ + "icon_input"));
+        ICON_OUTPUT = map.getSprite(new ResourceLocation(ICONS_ + "icon_output"));
 
-        ICON_REDSTONE_OFF = map.getAtlasSprite(ICONS_ + "icon_redstone_off");
-        ICON_REDSTONE_ON = map.getAtlasSprite(ICONS_ + "icon_redstone_on");
+        ICON_REDSTONE_OFF = map.getSprite(new ResourceLocation(ICONS_ + "icon_redstone_off"));
+        ICON_REDSTONE_ON = map.getSprite(new ResourceLocation(ICONS_ + "icon_redstone_on"));
 
-        ICON_RS_TORCH_OFF = map.getAtlasSprite(ICONS_ + "icon_rs_torch_off");
-        ICON_RS_TORCH_ON = map.getAtlasSprite(ICONS_ + "icon_rs_torch_on");
+        ICON_RS_TORCH_OFF = map.getSprite(new ResourceLocation(ICONS_ + "icon_rs_torch_off"));
+        ICON_RS_TORCH_ON = map.getSprite(new ResourceLocation(ICONS_ + "icon_rs_torch_on"));
 
-        ICON_ARROW_DOWN = map.getAtlasSprite(ICONS_ + "icon_arrow_down");
-        ICON_ARROW_DOWN_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_arrow_down_inactive");
+        ICON_ARROW_DOWN = map.getSprite(new ResourceLocation(ICONS_ + "icon_arrow_down"));
+        ICON_ARROW_DOWN_INACTIVE = map.getSprite(new ResourceLocation(ICONS_ + "icon_arrow_down_inactive"));
 
-        ICON_ARROW_UP = map.getAtlasSprite(ICONS_ + "icon_arrow_up");
-        ICON_ARROW_UP_INACTIVE = map.getAtlasSprite(ICONS_ + "icon_arrow_up_inactive");
+        ICON_ARROW_UP = map.getSprite(new ResourceLocation(ICONS_ + "icon_arrow_up"));
+        ICON_ARROW_UP_INACTIVE = map.getSprite(new ResourceLocation(ICONS_ + "icon_arrow_up_inactive"));
     }
 
     // region ICONS

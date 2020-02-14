@@ -18,7 +18,7 @@ public class SporeArrowRenderer extends ArrowRenderer<SporeArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SporeArrowEntity entity) {
+    public ResourceLocation getEntityTexture(SporeArrowEntity entity) {
 
         return TEXTURE;
     }

@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="cofh_core"
-    version="0.3.0b"
+    version="0.3.1b"
     displayName="CoFH Core"
     updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core/update.json"
     displayURL="https://teamcofh.com/"
@@ -19,13 +19,13 @@ Also contains a number of optional gameplay tweaks for convenience.
 [[dependencies.cofh_core]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.cofh_core]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1.90,)"
+    versionRange="[31.1.0,)"
     ordering="AFTER"
     side="BOTH"

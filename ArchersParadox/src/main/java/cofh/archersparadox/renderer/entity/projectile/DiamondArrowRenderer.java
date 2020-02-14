@@ -18,7 +18,7 @@ public class DiamondArrowRenderer extends ArrowRenderer<DiamondArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(DiamondArrowEntity entity) {
+    public ResourceLocation getEntityTexture(DiamondArrowEntity entity) {
 
         return TEXTURE;
     }

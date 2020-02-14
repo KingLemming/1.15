@@ -233,7 +233,7 @@ public class ModConfig {
     }
 
     @SubscribeEvent
-    public static void configReloading(final net.minecraftforge.fml.config.ModConfig.ConfigReloading event) {
+    public static void configReloading(final net.minecraftforge.fml.config.ModConfig.Reloading event) {
 
         switch (event.getConfig().getType()) {
             case CLIENT:

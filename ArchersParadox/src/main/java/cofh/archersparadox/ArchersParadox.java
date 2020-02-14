@@ -2,7 +2,6 @@ package cofh.archersparadox;
 
 import cofh.archersparadox.data.ModRecipes;
 import cofh.archersparadox.data.ModTags;
-import cofh.archersparadox.entity.projectile.*;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
 import cofh.archersparadox.init.ModEntities;
@@ -29,6 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static cofh.archersparadox.init.ModReferences.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 
 @Mod(ID_ARCHERS_PARADOX)
@@ -76,23 +76,23 @@ public class ArchersParadox {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        RenderingRegistry.registerEntityRenderingHandler(BlazeArrowEntity.class, BlazeArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(ChallengeArrowEntity.class, ChallengeArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(DiamondArrowEntity.class, DiamondArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EnderArrowEntity.class, EnderArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(ExplosiveArrowEntity.class, ExplosiveArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(FrostArrowEntity.class, FrostArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(LightningArrowEntity.class, LightningArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BLAZE_ARROW_ENTITY, BlazeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(CHALLENGE_ARROW_ENTITY, ChallengeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DIAMOND_ARROW_ENTITY, DiamondArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ENDER_ARROW_ENTITY, EnderArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EXPLOSIVE_ARROW_ENTITY, ExplosiveArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(FROST_ARROW_ENTITY, FrostArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_ARROW_ENTITY, LightningArrowRenderer::new);
         // RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(PhantasmalArrowEntity.class, PhantasmalArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(PrismarineArrowEntity.class, PrismarineArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(QuartzArrowEntity.class, QuartzArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(PHANTASMAL_ARROW_ENTITY, PhantasmalArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(PRISMARINE_ARROW_ENTITY, PrismarineArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(QUARTZ_ARROW_ENTITY, QuartzArrowRenderer::new);
         // RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(ShulkerArrowEntity.class, ShulkerArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SlimeArrowEntity.class, SlimeArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SporeArrowEntity.class, SporeArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(TrainingArrowEntity.class, TrainingArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(VerdantArrowEntity.class, VerdantArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SHULKER_ARROW_ENTITY, ShulkerArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SLIME_ARROW_ENTITY, SlimeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SPORE_ARROW_ENTITY, SporeArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(TRAINING_ARROW_ENTITY, TrainingArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(VERDANT_ARROW_ENTITY, VerdantArrowRenderer::new);
     }
     // endregion
 

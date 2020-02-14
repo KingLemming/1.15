@@ -18,7 +18,7 @@ public class SlimeArrowRenderer extends ArrowRenderer<SlimeArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SlimeArrowEntity entity) {
+    public ResourceLocation getEntityTexture(SlimeArrowEntity entity) {
 
         return TEXTURE;
     }

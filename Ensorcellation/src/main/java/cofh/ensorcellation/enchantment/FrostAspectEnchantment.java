@@ -73,7 +73,7 @@ public class FrostAspectEnchantment extends EnchantmentCoFH {
         entity.addPotionEffect(new EffectInstance(CHILLED, i, level - 1, false, false));
         if (entity.world instanceof ServerWorld) {
             for (int j = 0; j < 4 * level; ++j) {
-                Utils.spawnParticles(entity.world, ParticleTypes.ITEM_SNOWBALL, entity.posX + entity.world.rand.nextDouble(), entity.posY + 1.0D + entity.world.rand.nextDouble(), entity.posZ + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
+                Utils.spawnParticles(entity.world, ParticleTypes.ITEM_SNOWBALL, entity.getPosX() + entity.world.rand.nextDouble(), entity.getPosY() + 1.0D + entity.world.rand.nextDouble(), entity.getPosZ() + entity.world.rand.nextDouble(), 1, 0, 0, 0, 0);
             }
         }
     }

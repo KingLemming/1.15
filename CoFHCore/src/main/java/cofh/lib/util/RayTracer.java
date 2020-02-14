@@ -63,7 +63,7 @@ public class RayTracer {
 
     public static Vec3d getCorrectedHeadVec(PlayerEntity player) {
 
-        return new Vec3d(player.posX, player.posY + player.getEyeHeight(), player.posZ);
+        return new Vec3d(player.getPosX(), player.getPosY() + player.getEyeHeight(), player.getPosZ());
     }
 
     public static double getBlockReachDistance(PlayerEntity player) {

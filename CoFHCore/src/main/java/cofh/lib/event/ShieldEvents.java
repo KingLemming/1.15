@@ -64,7 +64,7 @@ public class ShieldEvents {
             Vec3d vec3d2 = source.getDamageLocation();
             if (vec3d2 != null) {
                 Vec3d vec3d = living.getLook(1.0F);
-                Vec3d vec3d1 = vec3d2.subtractReverse(new Vec3d(living.posX, living.posY, living.posZ)).normalize();
+                Vec3d vec3d1 = vec3d2.subtractReverse(new Vec3d(living.getPosX(), living.getPosY(), living.getPosZ())).normalize();
                 vec3d1 = new Vec3d(vec3d1.x, 0.0D, vec3d1.z);
                 return vec3d1.dotProduct(vec3d) < 0.0D;
             }

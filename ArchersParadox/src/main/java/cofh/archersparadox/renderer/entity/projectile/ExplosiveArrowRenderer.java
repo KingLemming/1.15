@@ -18,7 +18,7 @@ public class ExplosiveArrowRenderer extends ArrowRenderer<ExplosiveArrowEntity> 
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(ExplosiveArrowEntity entity) {
+    public ResourceLocation getEntityTexture(ExplosiveArrowEntity entity) {
 
         return TEXTURE;
     }

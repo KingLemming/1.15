@@ -95,7 +95,7 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         if (player == null || Utils.isFakePlayer(player) && !allowFakePlayers) {
             return ActionResultType.FAIL;
         }
-        if (player.isSneaking()) {
+        if (player.isDiscrete()) {
             BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.SOURCE_ONLY);
             if (traceResult.getType() != RayTraceResult.Type.MISS) {
                 if (isWater(world.getBlockState(traceResult.getPos()))) {
@@ -158,7 +158,7 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         }
         BlockPos tracePos = traceResult.getPos();
 
-        if (!playerIn.isSneaking() || !worldIn.isBlockModifiable(playerIn, tracePos) || Utils.isFakePlayer(playerIn) && !allowFakePlayers) {
+        if (!playerIn.isDiscrete() || !worldIn.isBlockModifiable(playerIn, tracePos) || Utils.isFakePlayer(playerIn) && !allowFakePlayers) {
             return new ActionResult<>(ActionResultType.FAIL, stack);
         }
         if (isWater(worldIn.getBlockState(tracePos)) && getSpace(stack) > 0) {

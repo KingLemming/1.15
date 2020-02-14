@@ -5,7 +5,7 @@ import cofh.core.gui.TexturesCoFH;
 import cofh.lib.util.control.IRedstoneControllable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 import java.util.List;
 
@@ -97,7 +97,7 @@ public class PanelRedstoneControl extends PanelBase {
         float colorR = (backgroundColor >> 16 & 255) / 255.0F * 0.6F;
         float colorG = (backgroundColor >> 8 & 255) / 255.0F * 0.6F;
         float colorB = (backgroundColor & 255) / 255.0F * 0.6F;
-        GlStateManager.color4f(colorR, colorG, colorB, 1.0F);
+        RenderSystem.color4f(colorR, colorG, colorB, 1.0F);
         gui.drawTexturedModalRect(24, 16, 16, 20, 64, 24);
         RenderHelper.resetColor();
     }

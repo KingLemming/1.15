@@ -14,14 +14,14 @@ Thermal Series!
 [[dependencies.thermal]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.thermal]]
     modId="forge"
     mandatory=true
-    versionRange="[28.1.90,)"
+    versionRange="[31.1.0,)"
     ordering="AFTER"
     side="BOTH"
 

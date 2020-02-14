@@ -1,31 +1,27 @@
 package cofh.lib.event;
 
+import cofh.lib.util.RayTracer;
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.MatrixApplyingVertexBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerController;
 import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.model.ModelBakery;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
@@ -52,96 +48,158 @@ public class AOEClientEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void renderExtraBlockBreak(RenderWorldLastEvent event) {
+    public static void renderBlockHighlights(DrawHighlightEvent.HighlightBlock event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        PlayerEntity player = Minecraft.getInstance().player;
+        if (player == null) {
+            return;
+        }
+        ItemStack stack = player.getHeldItemMainhand();
+        if (!validAOEItem(stack)) {
+            return;
+        }
+        ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getTarget().getPos(), player);
+
+        WorldRenderer worldRender = event.getContext();
+        MatrixStack matrix = event.getMatrix();
+        IVertexBuilder vertexBuilder = worldRender.renderTypeTextures.getBufferSource().getBuffer(RenderType.lines());
+        Entity viewEntity = renderInfo.getRenderViewEntity();
+        World world = player.world;
+
+        Vec3d vec3d = renderInfo.getProjectedView();
+        double d0 = vec3d.getX();
+        double d1 = vec3d.getY();
+        double d2 = vec3d.getZ();
+
+        for (BlockPos pos : areaBlocks) {
+            if (world.getWorldBorder().contains(pos)) {
+                worldRender.drawSelectionBox(matrix, vertexBuilder, viewEntity, d0, d1, d2, pos, world.getBlockState(pos));
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void renderBlockDamageProgress(RenderWorldLastEvent event) {
 
         PlayerController controller = Minecraft.getInstance().playerController;
-
         if (controller == null) {
             return;
         }
         PlayerEntity player = Minecraft.getInstance().player;
         ItemStack stack = player.getHeldItemMainhand();
 
-        if (!validAOEItem(stack)) {
+        if (!validAOEMiningItem(stack)) {
             return;
         }
         Entity renderEntity = Minecraft.getInstance().getRenderViewEntity();
         if (renderEntity == null) {
             return;
         }
-        RayTraceResult traceResult = renderEntity.pick(controller.getBlockReachDistance(), event.getPartialTicks(), false);
+        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
         if (traceResult.getType() != RayTraceResult.Type.BLOCK) {
             return;
         }
-        BlockRayTraceResult blockResult = (BlockRayTraceResult) traceResult;
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, blockResult.getPos(), player);
-        for (BlockPos pos : areaBlocks) {
-            event.getContext().drawSelectionBox(Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), new BlockRayTraceResult(DUMMY_VEC, blockResult.getFace(), pos, false), 0);
-        }
-        if (!validAOEMiningItem(stack)) {
-            return;
-        }
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, traceResult.getPos(), player);
         if (controller.isHittingBlock) {
-            drawBlockDamageTexture(Tessellator.getInstance(), Tessellator.getInstance().getBuffer(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), player.getEntityWorld(), areaBlocks);
+            System.out.println("called");
+            drawBlockDamageTexture(event.getContext(), event.getMatrixStack(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), player.getEntityWorld(), areaBlocks);
         }
     }
 
     // region HELPERS
-    private static void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder bufferIn, ActiveRenderInfo renderInfo, World world, List<BlockPos> blocks) {
+    private static void drawBlockDamageTexture(WorldRenderer worldRender, MatrixStack matrixStackIn, ActiveRenderInfo renderInfo, World world, List<BlockPos> areaBlocks) {
 
         double d0 = renderInfo.getProjectedView().x;
         double d1 = renderInfo.getProjectedView().y;
         double d2 = renderInfo.getProjectedView().z;
 
-        TextureManager textureManager = Minecraft.getInstance().textureManager;
         int progress = (int) (Minecraft.getInstance().playerController.curBlockDamageMP * 10.0F) - 1;
-
         if (progress < 0) {
             return;
         }
-        textureManager.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
-        preRenderDamagedBlocks();
+        BlockRendererDispatcher dispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
+        IVertexBuilder vertexBuilder = worldRender.renderTypeTextures.getCrumblingBufferSource().getBuffer(ModelBakery.DESTROY_RENDER_TYPES.get(progress + 1));
 
-        bufferIn.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-        bufferIn.setTranslation(-d0, -d1, -d2);
-        bufferIn.noColor();
-        for (BlockPos pos : blocks) {
-            TileEntity tile = world.getTileEntity(pos);
-            boolean hasBreak = tile != null && tile.canRenderBreaking();
-            if (!hasBreak) {
-                BlockState state = world.getBlockState(pos);
-                if (state.getMaterial() != Material.AIR) {
-                    Minecraft.getInstance().getBlockRendererDispatcher().renderBlockDamage(state, pos, Minecraft.getInstance().worldRenderer.destroyBlockIcons[progress], world);
-                }
-            }
+        double scale = 0.95D;
+
+        for (BlockPos pos : areaBlocks) {
+            matrixStackIn.push();
+            matrixStackIn.translate(scale * (pos.getX() - d0), scale * (pos.getY() - d1), scale * (pos.getZ() - d2));
+            IVertexBuilder matrixBuilder = new MatrixApplyingVertexBuilder(vertexBuilder, matrixStackIn.getLast());
+            dispatcher.renderBlockDamage(world.getBlockState(pos), pos, world, matrixStackIn, matrixBuilder);
+            matrixStackIn.pop();
         }
-        tessellatorIn.draw();
-        bufferIn.setTranslation(0.0D, 0.0D, 0.0D);
-        postRenderDamagedBlocks();
     }
+    // endregion
 
-    private static void preRenderDamagedBlocks() {
-
-        GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.DST_COLOR, GlStateManager.DestFactor.SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.enableBlend();
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.5F);
-        GlStateManager.polygonOffset(-1.0F, -10.0F);
-        GlStateManager.enablePolygonOffset();
-        GlStateManager.alphaFunc(516, 0.1F);
-        GlStateManager.enableAlphaTest();
-        GlStateManager.pushMatrix();
-    }
-
-    private static void postRenderDamagedBlocks() {
-
-        GlStateManager.disableAlphaTest();
-        GlStateManager.polygonOffset(0.0F, 0.0F);
-        GlStateManager.disablePolygonOffset();
-        GlStateManager.enableAlphaTest();
-        GlStateManager.depthMask(true);
-        GlStateManager.popMatrix();
-    }
-
-    private static final Vec3d DUMMY_VEC = new Vec3d(0, 0, 0);
+    // region TUTORIAL
+    //    @SubscribeEvent
+    //    public static void render(RenderWorldLastEvent event) {
+    //
+    //        ClientPlayerEntity player = Minecraft.getInstance().player;
+    //
+    //        if (player.getHeldItemMainhand().getItem() == Items.NETHER_STAR) {
+    //            locateTileEntities(player, event.getMatrixStack());
+    //        }
+    //    }
+    //
+    //    private static void blueLine(IVertexBuilder builder, Matrix4f positionMatrix, BlockPos pos, float dx1, float dy1, float dz1, float dx2, float dy2, float dz2) {
+    //
+    //        builder.pos(positionMatrix, pos.getX() + dx1, pos.getY() + dy1, pos.getZ() + dz1).color(0.0f, 0.0f, 1.0f, 1.0f).endVertex();
+    //        builder.pos(positionMatrix, pos.getX() + dx2, pos.getY() + dy2, pos.getZ() + dz2).color(0.0f, 0.0f, 1.0f, 1.0f).endVertex();
+    //    }
+    //
+    //    private static void locateTileEntities(ClientPlayerEntity player, MatrixStack matrixStack) {
+    //
+    //        IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+    //        IVertexBuilder builder = buffer.getBuffer(MyRenderType.OVERLAY_LINES);
+    //
+    //        BlockPos playerPos = player.getPosition();
+    //        int px = playerPos.getX();
+    //        int py = playerPos.getY();
+    //        int pz = playerPos.getZ();
+    //        World world = player.getEntityWorld();
+    //
+    //        matrixStack.push();
+    //
+    //        Vec3d projectedView = Minecraft.getInstance().gameRenderer.getActiveRenderInfo().getProjectedView();
+    //        matrixStack.translate(-projectedView.x, -projectedView.y, -projectedView.z);
+    //
+    //        Matrix4f positionMatrix = matrixStack.getLast().getPositionMatrix();
+    //
+    //        BlockPos.Mutable pos = new BlockPos.Mutable();
+    //        for (int dx = -10; dx <= 10; dx++) {
+    //            for (int dy = -10; dy <= 10; dy++) {
+    //                for (int dz = -10; dz <= 10; dz++) {
+    //                    pos.setPos(px + dx, py + dy, pz + dz);
+    //                    if (world.getTileEntity(pos) != null) {
+    //                        blueLine(builder, positionMatrix, pos, 0, 0, 0, 1, 0, 0);
+    //                        blueLine(builder, positionMatrix, pos, 0, 1, 0, 1, 1, 0);
+    //                        blueLine(builder, positionMatrix, pos, 0, 0, 1, 1, 0, 1);
+    //                        blueLine(builder, positionMatrix, pos, 0, 1, 1, 1, 1, 1);
+    //
+    //                        blueLine(builder, positionMatrix, pos, 0, 0, 0, 0, 0, 1);
+    //                        blueLine(builder, positionMatrix, pos, 1, 0, 0, 1, 0, 1);
+    //                        blueLine(builder, positionMatrix, pos, 0, 1, 0, 0, 1, 1);
+    //                        blueLine(builder, positionMatrix, pos, 1, 1, 0, 1, 1, 1);
+    //
+    //                        blueLine(builder, positionMatrix, pos, 0, 0, 0, 0, 1, 0);
+    //                        blueLine(builder, positionMatrix, pos, 1, 0, 0, 1, 1, 0);
+    //                        blueLine(builder, positionMatrix, pos, 0, 0, 1, 0, 1, 1);
+    //                        blueLine(builder, positionMatrix, pos, 1, 0, 1, 1, 1, 1);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //
+    //        matrixStack.pop();
+    //
+    //        //RenderSystem.disableDepthTest();
+    //        buffer.finish(MyRenderType.OVERLAY_LINES);
+    //    }
     // endregion
 }

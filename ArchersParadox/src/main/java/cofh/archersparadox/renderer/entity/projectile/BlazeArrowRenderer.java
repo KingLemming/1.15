@@ -22,7 +22,7 @@ public class BlazeArrowRenderer extends ArrowRenderer<BlazeArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(BlazeArrowEntity entity) {
+    public ResourceLocation getEntityTexture(BlazeArrowEntity entity) {
 
         return entity.discharged ? ARROW : TEXTURE;
     }

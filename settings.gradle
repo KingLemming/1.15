@@ -1,4 +1,4 @@
-rootProject.name = '1.14'
+rootProject.name = '1.15'
 include 'CoFHCore'
 //include 'CoFHWorld'
 include 'ArchersParadox'

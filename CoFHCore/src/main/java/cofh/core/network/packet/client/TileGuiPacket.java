@@ -5,7 +5,6 @@ import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
 import cofh.lib.tileentity.TileCoFH;
 import io.netty.buffer.Unpooled;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -27,7 +26,11 @@ public class TileGuiPacket extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        World world = Minecraft.getInstance().world;
+        World world = CoFHCore.proxy.getClientWorld();
+        if (world == null) {
+            CoFHCore.LOG.error("Client world is null! (Is this being called on the server?)");
+            return;
+        }
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCoFH) {
             ((TileCoFH) tile).handleGuiPacket(buffer);

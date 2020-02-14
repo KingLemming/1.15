@@ -142,7 +142,7 @@ public class CoreConfig {
     }
 
     @SubscribeEvent
-    public static void configReloading(final ModConfig.ConfigReloading event) {
+    public static void configReloading(final ModConfig.Reloading event) {
 
         switch (event.getConfig().getType()) {
             case CLIENT:

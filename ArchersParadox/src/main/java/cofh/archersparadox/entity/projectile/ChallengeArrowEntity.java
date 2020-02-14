@@ -68,7 +68,7 @@ public class ChallengeArrowEntity extends AbstractArrowEntity {
                     shooter.removeActivePotionEffect(CHALLENGE_STREAK);
 
                     shooter.addPotionEffect(new EffectInstance(CHALLENGE_MISS, MISS_DURATION, 0, false, false));
-                    shooter.world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.BLOCK_GLASS_BREAK, shooter.getSoundCategory(), 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                    shooter.world.playSound(null, shooter.getPosX(), shooter.getPosY(), shooter.getPosZ(), SoundEvents.BLOCK_GLASS_BREAK, shooter.getSoundCategory(), 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                 }
             }
         }
@@ -96,7 +96,7 @@ public class ChallengeArrowEntity extends AbstractArrowEntity {
                         int distanceBonus = (int) (DISTANCE_FACTOR * distance);
                         shooter.addPotionEffect(new EffectInstance(CHALLENGE_STREAK, DURATION + distanceBonus, challengeCount, false, false));
                         shooter.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1.0F, Math.min(0.6F + 0.05F * challengeCount, 1.1F));
-                        shooter.world.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.BLOCK_NOTE_BLOCK_CHIME, shooter.getSoundCategory(), 1.0F, Math.min(0.6F + 0.05F * challengeCount, 1.1F));
+                        shooter.world.playSound(null, shooter.getPosX(), shooter.getPosY(), shooter.getPosZ(), SoundEvents.BLOCK_NOTE_BLOCK_CHIME, shooter.getSoundCategory(), 1.0F, Math.min(0.6F + 0.05F * challengeCount, 1.1F));
                         discharged = true;
                     }
                 }

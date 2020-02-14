@@ -72,7 +72,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
         if (living.onGround && GLOSSED_MAGMA != null) {
             BlockState state = GLOSSED_MAGMA.getDefaultState();
             float f = (float) Math.min(16, 2 + level);
-            BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+            BlockPos.Mutable mutable = new BlockPos.Mutable();
 
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -1.0D, -f), pos.add(f, -1.0D, f))) {
                 if (blockpos.withinDistance(living.getPositionVec(), f)) {
@@ -81,7 +81,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
                     if (blockstate1.isAir(worldIn, mutable)) {
                         BlockState blockstate2 = worldIn.getBlockState(blockpos);
                         boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy()) && !ForgeEventFactory.onBlockPlace(living, new BlockSnapshot(worldIn, blockpos, blockstate2), Direction.UP)) {
+                        if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy()) && !ForgeEventFactory.onBlockPlace(living, new BlockSnapshot(worldIn, blockpos, blockstate2), Direction.UP)) {
                             worldIn.setBlockState(blockpos, state);
                             worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(living.getRNG(), 60, 120));
                         }

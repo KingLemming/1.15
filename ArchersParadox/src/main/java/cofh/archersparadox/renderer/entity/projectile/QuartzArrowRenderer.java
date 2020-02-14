@@ -18,7 +18,7 @@ public class QuartzArrowRenderer extends ArrowRenderer<QuartzArrowEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(QuartzArrowEntity entity) {
+    public ResourceLocation getEntityTexture(QuartzArrowEntity entity) {
 
         return TEXTURE;
     }

@@ -14,8 +14,8 @@ public class ColorHelper {
 
     public static int getColorFrom(ResourceLocation location) {
 
-        AtlasTexture textureMap = Minecraft.getInstance().getTextureMap();
-        TextureAtlasSprite sprite = textureMap.getAtlasSprite(location.toString());
+        AtlasTexture textureMap = Minecraft.getInstance().getModelManager().getAtlasTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
+        TextureAtlasSprite sprite = textureMap.getSprite(location);
         return getColorFrom(sprite);
     }
 

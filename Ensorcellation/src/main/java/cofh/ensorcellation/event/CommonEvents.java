@@ -157,7 +157,7 @@ public class CommonEvents {
             for (int i = 0; i < encHunter; ++i) {
                 if (player.getRNG().nextInt(100) < HunterEnchantment.chance) {
                     for (ItemStack stack : loottable.generate(lootcontext$builder.build(LootParameterSets.ENTITY))) {
-                        ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, stack);
+                        ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), stack);
                         event.getDrops().add(drop);
                     }
                 }
@@ -169,7 +169,7 @@ public class CommonEvents {
             int emeraldDrop = MathHelper.nextInt(0, encDamageVillager);
             if (emeraldDrop > 0) {
                 ItemStack stack = new ItemStack(EMERALD, emeraldDrop);
-                ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, stack);
+                ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), stack);
                 event.getDrops().add(drop);
             }
         }
@@ -197,7 +197,7 @@ public class CommonEvents {
             if (itemSkull.isEmpty()) {
                 return;
             }
-            ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, itemSkull);
+            ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), itemSkull);
             drop.setPickupDelay(10);
             event.getDrops().add(drop);
         }
@@ -357,10 +357,10 @@ public class CommonEvents {
                 }
             }
             for (ItemStack stack : list) {
-                ItemEntity drop = new ItemEntity(hook.world, hook.posX, hook.posY, hook.posZ, stack);
-                double d0 = player.posX - hook.posX;
-                double d1 = player.posY - hook.posY;
-                double d2 = player.posZ - hook.posZ;
+                ItemEntity drop = new ItemEntity(hook.world, hook.getPosX(), hook.getPosY(), hook.getPosZ(), stack);
+                double d0 = player.getPosX() - hook.getPosX();
+                double d1 = player.getPosY() - hook.getPosY();
+                double d2 = player.getPosZ() - hook.getPosZ();
                 double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
                 drop.setMotion(d0 * 0.1D, d1 * 0.1D + Math.sqrt(d3) * 0.08D, d2 * 0.1D);
                 hook.world.addEntity(drop);
@@ -372,7 +372,7 @@ public class CommonEvents {
         // EXP BOOST
         int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
         if (encExpBoost > 0) {
-            hook.world.addEntity(new ExperienceOrbEntity(player.world, player.posX, player.posY + 0.5D, player.posZ + 0.5D, ExpBoostEnchantment.getExp(0, encExpBoost, player.world.rand)));
+            hook.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, ExpBoostEnchantment.getExp(0, encExpBoost, player.world.rand)));
         }
     }
 
@@ -433,7 +433,7 @@ public class CommonEvents {
         // EXCAVATING
         int encExcavating = getHeldEnchantmentLevel(player, EXCAVATING);
         if (encExcavating > 0) {
-            if (!player.isSneaking()) {
+            if (!player.isDiscrete()) {
                 event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
             }
             int encEfficiency = getHeldEnchantmentLevel(player, EFFICIENCY);

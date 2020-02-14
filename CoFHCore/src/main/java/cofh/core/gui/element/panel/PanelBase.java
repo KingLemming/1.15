@@ -3,7 +3,7 @@ package cofh.core.gui.element.panel;
 import cofh.core.gui.IGuiAccess;
 import cofh.core.gui.element.ElementBase;
 import cofh.lib.util.helpers.RenderHelper;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
@@ -109,7 +109,7 @@ public abstract class PanelBase extends ElementBase {
         float colorG = (backgroundColor >> 8 & 255) / 255.0F;
         float colorB = (backgroundColor & 255) / 255.0F;
 
-        GlStateManager.color4f(colorR, colorG, colorB, 1.0F);
+        RenderSystem.color4f(colorR, colorG, colorB, 1.0F);
 
         RenderHelper.bindTexture(texture);
 
@@ -127,8 +127,8 @@ public abstract class PanelBase extends ElementBase {
         mouseX -= this.posX();
         mouseY -= this.posY;
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(this.posX(), this.posY, 0.0F);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(this.posX(), this.posY, 0.0F);
 
         drawBackground();
 
@@ -137,7 +137,7 @@ public abstract class PanelBase extends ElementBase {
                 element.drawBackground(mouseX, mouseY);
             }
         }
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override
@@ -146,8 +146,8 @@ public abstract class PanelBase extends ElementBase {
         mouseX -= this.posX();
         mouseY -= this.posY;
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(this.posX(), this.posY, 0.0F);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(this.posX(), this.posY, 0.0F);
 
         drawForeground();
 
@@ -156,7 +156,7 @@ public abstract class PanelBase extends ElementBase {
                 element.drawForeground(mouseX, mouseY);
             }
         }
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override

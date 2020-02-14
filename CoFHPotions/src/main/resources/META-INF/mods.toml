@@ -14,7 +14,7 @@ CoFH Potions!
 [[dependencies.cofh_potions]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
     ordering="AFTER"
     side="BOTH"
 

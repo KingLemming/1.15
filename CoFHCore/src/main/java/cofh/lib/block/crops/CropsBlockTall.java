@@ -8,6 +8,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.PlantType;
 
@@ -60,7 +61,7 @@ public class CropsBlockTall extends CropsBlockCoFH {
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 
         if (!worldIn.isAreaLoaded(pos, 1) || isTop(state)) {
             return;
@@ -93,7 +94,7 @@ public class CropsBlockTall extends CropsBlockCoFH {
 
     // region IGrowable
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 
         if (canHarvest(state)) {
             return;

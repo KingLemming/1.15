@@ -282,7 +282,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             double distance = blockpos.distanceSq(entity.getPositionVec(), true);
@@ -346,7 +346,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             double distance = blockpos.distanceSq(entity.getPositionVec(), true);
@@ -354,7 +354,7 @@ public class Utils {
                 mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                 BlockState blockstate1 = worldIn.getBlockState(mutable);
                 if (blockstate1.isAir(worldIn, mutable)) {
-                    if (worldIn.getBiome(mutable).func_225486_c(blockpos) < 0.8F && isValidSnowPosition(worldIn, mutable)) {
+                    if (worldIn.getBiome(mutable).getTemperature(blockpos) < 0.8F && isValidSnowPosition(worldIn, mutable)) {
                         worldIn.setBlockState(mutable, state);
                     }
                 }
@@ -376,7 +376,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             double distance = blockpos.distanceSq(entity.getPositionVec(), true);
@@ -386,7 +386,7 @@ public class Utils {
                 if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
+                    if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
@@ -404,7 +404,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             double distance = blockpos.distanceSq(entity.getPositionVec(), true);
@@ -414,7 +414,7 @@ public class Utils {
                 if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_217350_a(state, blockpos, ISelectionContext.dummy())) {
+                    if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
@@ -440,7 +440,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         if (requireAir) {
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
@@ -472,7 +472,7 @@ public class Utils {
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         if (requireAir) {
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
@@ -516,7 +516,7 @@ public class Utils {
         float v = (float) Math.min(VERT_MAX, radius);
         float f2 = f * f;
         int grow = 0;
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         mutable.setPos(entity.getPosition().up());
         BlockState blockstate1 = worldIn.getBlockState(mutable);
@@ -563,7 +563,7 @@ public class Utils {
             if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
                 if (!worldIn.isRemote) {
                     if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
-                        growable.grow(worldIn, worldIn.rand, pos, state);
+                        growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
                         ++grow;
                     }
                 }
@@ -581,7 +581,7 @@ public class Utils {
                     if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
                         if (!worldIn.isRemote) {
                             if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
-                                growable.grow(worldIn, worldIn.rand, pos, state);
+                                growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
                                 ++grow;
                             }
                         }

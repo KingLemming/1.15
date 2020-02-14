@@ -53,7 +53,7 @@ public class ExplosiveArrowEntity extends AbstractArrowEntity {
         super.onHit(raytraceResultIn);
 
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-            world.createExplosion(this, posX, posY, posZ, (float) (explosionStrength + (knockbackBoost ? knockbackStrength : 0)), explosionsCauseFire && isBurning(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) (explosionStrength + (knockbackBoost ? knockbackStrength : 0)), explosionsCauseFire && isBurning(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.remove();
         }
     }

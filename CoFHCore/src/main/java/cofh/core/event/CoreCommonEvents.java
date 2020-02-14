@@ -143,7 +143,7 @@ public class CoreCommonEvents {
     //            for (int i = 0; i < encHunter; ++i) {
     //                if (player.getRNG().nextInt(100) < HunterEnchantment.chance) {
     //                    for (ItemStack stack : loottable.generate(lootcontext$builder.build(LootParameterSets.ENTITY))) {
-    //                        ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, stack);
+    //                        ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), stack);
     //                        event.getDrops().add(drop);
     //                    }
     //                }
@@ -155,7 +155,7 @@ public class CoreCommonEvents {
     //            int emeraldDrop = MathHelper.nextInt(0, encDamageVillager);
     //            if (emeraldDrop > 0) {
     //                ItemStack stack = new ItemStack(EMERALD, emeraldDrop);
-    //                ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, stack);
+    //                ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), stack);
     //                event.getDrops().add(drop);
     //            }
     //        }
@@ -183,7 +183,7 @@ public class CoreCommonEvents {
     //            if (itemSkull.isEmpty()) {
     //                return;
     //            }
-    //            ItemEntity drop = new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, itemSkull);
+    //            ItemEntity drop = new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), itemSkull);
     //            drop.setPickupDelay(10);
     //            event.getDrops().add(drop);
     //        }

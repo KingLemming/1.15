@@ -111,7 +111,7 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
                     double d1 = vec3d.x;
                     double d2 = vec3d.y;
                     double d0 = vec3d.z;
-                    this.world.addParticle(ParticleTypes.END_ROD, this.posX + d1, this.posY + d2, this.posZ + d0, -d1, -d2 + 0.2D, -d0);
+                    this.world.addParticle(ParticleTypes.END_ROD, this.getPosX() + d1, this.getPosY() + d2, this.getPosZ() + d0, -d1, -d2 + 0.2D, -d0);
                 }
             }
         }
@@ -136,7 +136,7 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
             setTarget(target = null);
         }
         if (target == null) {
-            AxisAlignedBB positionBB = new AxisAlignedBB(posX, posY, posZ, posX, posY, posZ);
+            AxisAlignedBB positionBB = new AxisAlignedBB(getPosX(), getPosY(), getPosZ(), getPosX(), getPosY(), getPosZ());
             AxisAlignedBB targetBB = positionBB;
 
             Vec3d courseVec = getMotion().scale(SEEK_DISTANCE).rotateYaw((float) SEEK_ANGLE);
@@ -170,7 +170,7 @@ public class ShulkerArrowEntity extends AbstractArrowEntity {
 
     private Vec3d getVectorToTarget(Entity target) {
 
-        return new Vec3d(target.posX - this.posX, (target.posY + (double) target.getEyeHeight()) - this.posY, target.posZ - this.posZ);
+        return new Vec3d(target.getPosX() - this.getPosX(), (target.getPosY() + (double) target.getEyeHeight()) - this.getPosY(), target.getPosZ() - this.getPosZ());
     }
 
     @Nullable

@@ -49,12 +49,12 @@ public class WrenchItem extends ItemCoFH {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (player.isSneaking() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(world, pos, state, player)) {
+        if (player.isDiscrete() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(world, pos, state, player)) {
             if (Utils.isServerWorld(world)) {
                 ((IDismantleable) block).dismantleBlock(world, pos, state, player, false);
             }
             player.swingArm(context.getHand());
-        } else if (!player.isSneaking()) {
+        } else if (!player.isDiscrete()) {
             BlockState rotState = block.rotate(state, world, pos, Rotation.CLOCKWISE_90);
             if (rotState != state) {
                 world.setBlockState(pos, rotState);

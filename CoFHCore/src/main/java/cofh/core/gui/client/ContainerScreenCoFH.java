@@ -7,8 +7,7 @@ import cofh.core.gui.element.panel.PanelTracker;
 import cofh.lib.inventory.container.slot.SlotFalseCopy;
 import cofh.lib.util.helpers.RenderHelper;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
-import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -95,13 +94,13 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         } else {
             drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         }
-        GlStateManager.pushMatrix();
-        GlStateManager.translatef(guiLeft, guiTop, 0.0F);
+        RenderSystem.pushMatrix();
+        RenderSystem.translatef(guiLeft, guiTop, 0.0F);
 
         drawPanels(false);
         drawElements(false);
 
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     @Override
@@ -477,9 +476,9 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         if (tooltip == null || tooltip.isEmpty()) {
             return;
         }
-        GlStateManager.disableRescaleNormal();
-        GlStateManager.disableLighting();
-        GlStateManager.disableDepthTest();
+        RenderSystem.disableRescaleNormal();
+        RenderSystem.disableLighting();
+        RenderSystem.disableDepthTest();
         int k = 0;
 
         for (String s : tooltip) {
@@ -502,7 +501,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         if (j1 + k1 + 6 > this.height) {
             j1 = this.height - k1 - 6;
         }
-        this.blitOffset = 300;
+        this.setBlitOffset(300);
         itemRenderer.zLevel = 300.0F;
         int l1 = -267386864;
         this.fillGradient(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l1, l1);
@@ -526,11 +525,11 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
             }
             j1 += 10;
         }
-        this.blitOffset = 0;
+        this.setBlitOffset(0);
         itemRenderer.zLevel = 0.0F;
-        GlStateManager.enableLighting();
-        GlStateManager.enableDepthTest();
-        GlStateManager.enableRescaleNormal();
+        RenderSystem.enableLighting();
+        RenderSystem.enableDepthTest();
+        RenderSystem.enableRescaleNormal();
     }
     // endregion
 
@@ -551,7 +550,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
 
         RenderHelper.setBlockTextureSheet();
         RenderHelper.resetColor();
-        blit(x, y, blitOffset, 16, 16, icon);
+        blit(x, y, this.getBlitOffset(), 16, 16, icon);
     }
 
     @Override
@@ -574,17 +573,17 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         float r = (color >> 16 & 255) / 255.0F;
         float g = (color >> 8 & 255) / 255.0F;
         float b = (color & 255) / 255.0F;
-        GlStateManager.disableTexture();
-        GlStateManager.color4f(r, g, b, a);
+        RenderSystem.disableTexture();
+        RenderSystem.color4f(r, g, b, a);
 
         BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-        buffer.pos(x1, y2, blitOffset).endVertex();
-        buffer.pos(x2, y2, blitOffset).endVertex();
-        buffer.pos(x2, y1, blitOffset).endVertex();
-        buffer.pos(x1, y1, blitOffset).endVertex();
+        buffer.pos(x1, y2, this.getBlitOffset()).endVertex();
+        buffer.pos(x2, y2, this.getBlitOffset()).endVertex();
+        buffer.pos(x2, y1, this.getBlitOffset()).endVertex();
+        buffer.pos(x1, y1, this.getBlitOffset()).endVertex();
         Tessellator.getInstance().draw();
-        GlStateManager.enableTexture();
+        RenderSystem.enableTexture();
     }
 
     @Override
@@ -605,20 +604,20 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         float r = (color >> 16 & 255) / 255.0F;
         float g = (color >> 8 & 255) / 255.0F;
         float b = (color & 255) / 255.0F;
-        GlStateManager.enableBlend();
-        GlStateManager.disableTexture();
-        GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.color4f(r, g, b, a);
+        RenderSystem.enableBlend();
+        RenderSystem.disableTexture();
+        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA.param, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA.param);
+        RenderSystem.color4f(r, g, b, a);
 
         BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-        buffer.pos(x1, y2, blitOffset).endVertex();
-        buffer.pos(x2, y2, blitOffset).endVertex();
-        buffer.pos(x2, y1, blitOffset).endVertex();
-        buffer.pos(x1, y1, blitOffset).endVertex();
+        buffer.pos(x1, y2, this.getBlitOffset()).endVertex();
+        buffer.pos(x2, y2, this.getBlitOffset()).endVertex();
+        buffer.pos(x2, y1, this.getBlitOffset()).endVertex();
+        buffer.pos(x1, y1, this.getBlitOffset()).endVertex();
         Tessellator.getInstance().draw();
-        GlStateManager.enableTexture();
-        GlStateManager.disableBlend();
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
     }
 
     @Override
@@ -629,10 +628,10 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(x + 0, (y + height), blitOffset).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
-        bufferbuilder.pos((x + width), (y + height), blitOffset).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
-        bufferbuilder.pos((x + width), (y + 0), blitOffset).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
-        bufferbuilder.pos((x + 0), (y + 0), blitOffset).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
+        bufferbuilder.pos(x + 0, (y + height), this.getBlitOffset()).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + width), (y + height), this.getBlitOffset()).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + height) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + width), (y + 0), this.getBlitOffset()).tex(((float) (textureX + width) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
+        bufferbuilder.pos((x + 0), (y + 0), this.getBlitOffset()).tex(((float) (textureX + 0) * 0.00390625F), ((float) (textureY + 0) * 0.00390625F)).endVertex();
         tessellator.draw();
     }
 
@@ -643,10 +642,10 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         float texV = 1 / texH;
         BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(x, y + height, blitOffset).tex((u) * texU, (v + height) * texV).endVertex();
-        buffer.pos(x + width, y + height, blitOffset).tex((u + width) * texU, (v + height) * texV).endVertex();
-        buffer.pos(x + width, y, blitOffset).tex((u + width) * texU, (v) * texV).endVertex();
-        buffer.pos(x, y, blitOffset).tex((u) * texU, (v) * texV).endVertex();
+        buffer.pos(x, y + height, this.getBlitOffset()).tex((u) * texU, (v + height) * texV).endVertex();
+        buffer.pos(x + width, y + height, this.getBlitOffset()).tex((u + width) * texU, (v + height) * texV).endVertex();
+        buffer.pos(x + width, y, this.getBlitOffset()).tex((u + width) * texU, (v) * texV).endVertex();
+        buffer.pos(x, y, this.getBlitOffset()).tex((u) * texU, (v) * texV).endVertex();
         Tessellator.getInstance().draw();
     }
     // endregion
