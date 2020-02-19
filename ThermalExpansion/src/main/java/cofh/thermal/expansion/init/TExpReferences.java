@@ -23,6 +23,14 @@ public class TExpReferences {
     public static final String ID_MACHINE_CENTRIFUGE = ID_THERMAL + ":machine_centrifuge";
     // endregion
 
+    // region DYNAMOS
+    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
+    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
+    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
+    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
+    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
+    // endregion
+
     @ObjectHolder(ID_MACHINE_FURNACE)
     public static Block MACHINE_FURNACE_BLOCK;
     @ObjectHolder(ID_MACHINE_FURNACE)

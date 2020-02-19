@@ -58,48 +58,4 @@ public class MachineCentrifugeTile extends MachineTileProcess {
         return inputSlot.getCount() >= itemInputCounts.get(0);
     }
     // endregion
-
-    // TODO: Determine WHY.
-    //    @Override
-    //    public void tick() {
-    //
-    //        energyStorage.modify(10);
-    //
-    //        boolean curActive = isActive;
-    //
-    //        if (isActive) {
-    //            processTick();
-    //            if (canProcessFinish()) {
-    //                processFinish();
-    //                transferOutput();
-    //                transferInput();
-    //                if (!redstoneControl.getState() || !canProcessStart()) {
-    //                    processOff();
-    //                } else {
-    //                    processStart();
-    //                }
-    //            } else if (energyStorage.isEmpty()) {
-    //                processOff();
-    //            }
-    //        } else if (redstoneControl.getState()) {
-    //            if (timeCheck()) {
-    //                transferOutput();
-    //                transferInput();
-    //            }
-    //            if (timeCheckQuarter() && canProcessStart()) {
-    //                processStart();
-    //                processTick();
-    //                isActive = true;
-    //            }
-    //        }
-    //        updateActiveState(curActive);
-    //        // chargeEnergy();
-    //    }
-    //
-    //    @Override
-    //    public ITextComponent getDisplayName() {
-    //
-    //        return new StringTextComponent(getType().getRegistryName().getPath());
-    //    }
-
 }

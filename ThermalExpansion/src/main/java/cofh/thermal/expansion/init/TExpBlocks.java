@@ -2,6 +2,7 @@ package cofh.thermal.expansion.init;
 
 import cofh.core.util.ProxyUtils;
 import cofh.lib.block.TileBlock4Way;
+import cofh.lib.block.TileBlock6Way;
 import cofh.thermal.expansion.inventory.container.*;
 import cofh.thermal.expansion.tileentity.*;
 import net.minecraft.block.Block;
@@ -29,6 +30,12 @@ public class TExpBlocks {
         registerBlock(ID_MACHINE_PULVERIZER, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), MachinePulverizerTile::new));
         registerBlock(ID_MACHINE_INSOLATOR, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(15), MachineInsolatorTile::new));
         registerBlock(ID_MACHINE_CENTRIFUGE, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), MachineCentrifugeTile::new));
+
+//        registerBlock(ID_DYNAMO_STIRLING, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoStirlingTile::new));
+//        registerBlock(ID_DYNAMO_COMPRESSION, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoCompressionTile::new));
+//        registerBlock(ID_DYNAMO_MAGMATIC, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoMagmaticTile::new));
+//        registerBlock(ID_DYNAMO_NUMISMATIC, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoNumismaticTile::new));
+//        registerBlock(ID_DYNAMO_LAPIDARY, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoLapidaryTile::new));
 
         TILE_ENTITIES.register(ID_MACHINE_FURNACE, () -> TileEntityType.Builder.create(MachineFurnaceTile::new, MACHINE_FURNACE_BLOCK).build(null));
         TILE_ENTITIES.register(ID_MACHINE_SAWMILL, () -> TileEntityType.Builder.create(MachineSawmillTile::new, MACHINE_SAWMILL_BLOCK).build(null));

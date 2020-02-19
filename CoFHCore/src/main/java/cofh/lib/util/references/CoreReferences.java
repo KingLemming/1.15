@@ -1,9 +1,11 @@
 package cofh.lib.util.references;
 
+import cofh.core.tileentity.SignalAirTile;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
@@ -16,6 +18,8 @@ public class CoreReferences {
 
     // region IDS
     public static final String ID_GLOSSED_MAGMA = ID_COFH_CORE + ":glossed_magma";
+    public static final String ID_SIGNAL_AIR = ID_COFH_CORE + ":signal_air";
+    public static final String ID_LIGHT_AIR = ID_COFH_CORE + ":light_air";
 
     public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
@@ -39,6 +43,17 @@ public class CoreReferences {
     // region BLOCKS
     @ObjectHolder(ID_GLOSSED_MAGMA)
     public static final Block GLOSSED_MAGMA = null;
+
+    @ObjectHolder(ID_SIGNAL_AIR)
+    public static final Block SIGNAL_AIR = null;
+
+    @ObjectHolder(ID_LIGHT_AIR)
+    public static final Block LIGHT_AIR = null;
+    // endregion
+
+    // region TILES
+    @ObjectHolder(ID_SIGNAL_AIR)
+    public static final TileEntityType<SignalAirTile> SIGNAL_AIR_TILE = null;
     // endregion
 
     // region EFFECTS

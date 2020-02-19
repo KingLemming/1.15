@@ -61,6 +61,9 @@ public class RedstoneArrowEntity extends AbstractArrowEntity {
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0 && !isInWater()) {
                 if (Utils.isServerWorld(world)) {
+
+                    // TODO: Redstone area effect
+                    // Utils.red
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

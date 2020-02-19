@@ -2,6 +2,7 @@ package cofh.archersparadox;
 
 import cofh.archersparadox.data.ModRecipes;
 import cofh.archersparadox.data.ModTags;
+import cofh.archersparadox.entity.projectile.RedstoneArrowEntity;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
 import cofh.archersparadox.init.ModEntities;
@@ -87,7 +88,7 @@ public class ArchersParadox {
         RenderingRegistry.registerEntityRenderingHandler(PHANTASMAL_ARROW_ENTITY, PhantasmalArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PRISMARINE_ARROW_ENTITY, PrismarineArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(QUARTZ_ARROW_ENTITY, QuartzArrowRenderer::new);
-        // RenderingRegistry.registerEntityRenderingHandler(RedstoneArrowEntity.class, RedstoneArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(REDSTONE_ARROW_ENTITY, RedstoneArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SHULKER_ARROW_ENTITY, ShulkerArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SLIME_ARROW_ENTITY, SlimeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SPORE_ARROW_ENTITY, SporeArrowRenderer::new);

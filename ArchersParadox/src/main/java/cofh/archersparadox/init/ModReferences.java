@@ -20,6 +20,7 @@ public class ModReferences {
     public static final String ID_ENDER_ARROW = ID_ARCHERS_PARADOX + ":ender_arrow";
     public static final String ID_EXPLOSIVE_ARROW = ID_ARCHERS_PARADOX + ":explosive_arrow";
     public static final String ID_FROST_ARROW = ID_ARCHERS_PARADOX + ":frost_arrow";
+    public static final String ID_GLOWSTONE_ARROW = ID_ARCHERS_PARADOX + ":glowstone_arrow";
     public static final String ID_LIGHTNING_ARROW = ID_ARCHERS_PARADOX + ":lightning_arrow";
     public static final String ID_MAGMA_ARROW = ID_ARCHERS_PARADOX + ":magma_arrow";
     public static final String ID_PHANTASMAL_ARROW = ID_ARCHERS_PARADOX + ":phantasmal_arrow";
@@ -75,6 +76,9 @@ public class ModReferences {
     @ObjectHolder(ID_FROST_ARROW)
     public static final EntityType FROST_ARROW_ENTITY = null;
 
+    @ObjectHolder(ID_GLOWSTONE_ARROW)
+    public static final EntityType GLOWSTONE_ARROW_ENTITY = null;
+
     @ObjectHolder(ID_LIGHTNING_ARROW)
     public static final EntityType LIGHTNING_ARROW_ENTITY = null;
 
@@ -127,6 +131,9 @@ public class ModReferences {
 
     @ObjectHolder(ID_FROST_ARROW)
     public static final Item FROST_ARROW_ITEM = null;
+
+    @ObjectHolder(ID_GLOWSTONE_ARROW)
+    public static final Item GLOWSTONE_ARROW_ITEM = null;
 
     @ObjectHolder(ID_LIGHTNING_ARROW)
     public static final Item LIGHTNING_ARROW_ITEM = null;

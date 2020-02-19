@@ -22,6 +22,7 @@
   "item.archers_paradox.frost_arrow.desc": "Chills target and freezes nearby blocks on impact.",
 
   "item.archers_paradox.glowstone_arrow": "Glowstone Arrow",
+  "item.archers_paradox.glowstone_arrow.desc": "",
 
   "item.archers_paradox.lightning_arrow": "Lightning Arrow",
   "item.archers_paradox.lightning_arrow.desc": "Calls down a lightning bolt on impact.",
@@ -33,6 +34,7 @@
   "item.archers_paradox.quartz_arrow.desc": "Slightly increased damage and knockback.",
 
   "item.archers_paradox.redstone_arrow": "Redstone Arrow",
+  "item.archers_paradox.redstone_arrow.desc": "",
 
   "item.archers_paradox.shulker_arrow": "Shulker Arrow",
   "item.archers_paradox.shulker_arrow.desc": "Homes in on a target.",

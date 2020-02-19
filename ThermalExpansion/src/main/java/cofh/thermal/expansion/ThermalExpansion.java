@@ -53,4 +53,25 @@ public class ThermalExpansion {
 
     }
     // endregion
+
+    //    public void serverStarting(FMLServerAboutToStartEvent event)
+    //    {
+    //        event.getServer().getResourceManager().addReloadListener(
+    //                new ReloadListener<DataCollection>()
+    //                {
+    //                    @Override
+    //                    protected DataCollection prepare(IResourceManager resourceManagerIn, IProfiler profilerIn)
+    //                    {
+    //                        return new DataCollection(stuffs);
+    //                    }
+    //
+    //                    @Override
+    //                    protected void apply(DataCollection splashList, IResourceManager resourceManagerIn, IProfiler profilerIn)
+    //                    {
+    //                        stuffs.prepare();
+    //                        stuffs.syncToAllClients();
+    //                    }
+    //                }
+    //        );
+    //    }
 }

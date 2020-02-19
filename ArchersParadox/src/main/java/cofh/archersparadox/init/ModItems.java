@@ -25,13 +25,13 @@ public class ModItems {
         ITEMS.register(ID_ENDER_ARROW, () -> new EnderArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_EXPLOSIVE_ARROW, () -> new ExplosiveArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_FROST_ARROW, () -> new FrostArrowItem(new Item.Properties().group(group)));
-        // ITEMS.register(ID_GLOWSTONE_ARROW, () -> new GlowstoneArrowItem(new Item.Properties().group(group)));
+        ITEMS.register(ID_GLOWSTONE_ARROW, () -> new GlowstoneArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_LIGHTNING_ARROW, () -> new LightningArrowItem(new Item.Properties().group(group)));
         // ITEMS.register(ID_MAGMA_ARROW, () -> new MagmaArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_PHANTASMAL_ARROW, () -> new PhantasmalArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_PRISMARINE_ARROW, () -> new PrismarineArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_QUARTZ_ARROW, () -> new QuartzArrowItem(new Item.Properties().group(group)));
-        // ITEMS.register(ID_REDSTONE_ARROW, () -> new RedstoneArrowItem(new Item.Properties().group(group)));
+        ITEMS.register(ID_REDSTONE_ARROW, () -> new RedstoneArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_SHULKER_ARROW, () -> new ShulkerArrowItem(new Item.Properties().group(group).rarity(Rarity.UNCOMMON)));
         ITEMS.register(ID_SLIME_ARROW, () -> new SlimeArrowItem(new Item.Properties().group(group)));
         ITEMS.register(ID_SPORE_ARROW, () -> new SporeArrowItem(new Item.Properties().group(group)));

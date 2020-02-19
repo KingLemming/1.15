@@ -434,6 +434,9 @@ public class Utils {
     }
     // endregion
 
+    // TODO: Redstone area effect
+    // public static void
+
     // region AREA TRANSFORMS / MISC
     public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState replaceable, BlockState replacement, int radius, boolean requireAir) {
 
