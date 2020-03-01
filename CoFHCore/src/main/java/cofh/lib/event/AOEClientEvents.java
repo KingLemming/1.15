@@ -105,7 +105,6 @@ public class AOEClientEvents {
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, traceResult.getPos(), player);
         if (controller.isHittingBlock) {
-            System.out.println("called");
             drawBlockDamageTexture(event.getContext(), event.getMatrixStack(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), player.getEntityWorld(), areaBlocks);
         }
     }

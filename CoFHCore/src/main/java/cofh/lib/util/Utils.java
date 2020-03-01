@@ -39,13 +39,11 @@ import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ENCHANTMENTS;
 import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
+import static cofh.lib.util.references.CoreReferences.SIGNAL_AIR;
 import static net.minecraft.block.Blocks.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
@@ -89,6 +87,19 @@ public class Utils {
     }
 
     // region PARTICLE UTILS
+    public static void spawnBlockParticlesClient(World world, IParticleData particle, BlockPos pos, Random rand, int count) {
+
+        for (int i = 0; i < count; ++i) {
+            double d0 = (double) pos.getX() + rand.nextDouble();
+            double d1 = (double) pos.getY() + rand.nextDouble();
+            double d2 = (double) pos.getZ() + rand.nextDouble();
+            double d3 = (rand.nextDouble() - 0.5D) * 0.5D;
+            double d4 = (rand.nextDouble() - 0.5D) * 0.5D;
+            double d5 = (rand.nextDouble() - 0.5D) * 0.5D;
+            world.addParticle(particle, d0, d1, d2, d3, d4, d5);
+        }
+    }
+
     public static void spawnParticles(World world, IParticleData particle, double posX, double posY, double posZ, int particleCount, double xOffset, double yOffset, double zOffset, double speed) {
 
         if (isServerWorld(world)) {
@@ -434,9 +445,6 @@ public class Utils {
     }
     // endregion
 
-    // TODO: Redstone area effect
-    // public static void
-
     // region AREA TRANSFORMS / MISC
     public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState replaceable, BlockState replacement, int radius, boolean requireAir) {
 
@@ -511,6 +519,11 @@ public class Utils {
         Set<BlockState> replaceable = new HashSet<>();
         Collections.addAll(replaceable, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, MYCELIUM.getDefaultState(), radius, true);
+    }
+
+    public static void transformSignalAir(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        transformArea(entity, worldIn, pos, AIR.getDefaultState(), SIGNAL_AIR.getDefaultState(), radius, false);
     }
 
     public static void growMushrooms(Entity entity, World worldIn, BlockPos pos, int radius, int count) {

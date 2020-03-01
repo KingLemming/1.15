@@ -70,6 +70,7 @@ public class CoFHCore {
         EFFECTS.register(modEventBus);
         ITEMS.register(modEventBus);
         // PARTICLES.register(modEventBus);
+        TILE_ENTITIES.register(modEventBus);
 
         CoreConfig.register();
 

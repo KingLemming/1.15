@@ -416,9 +416,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
             if (panel != null && panel.mouseWheel(mX, mY, movement)) {
                 return true;
             }
-            if (mouseWheel(mX, mY, movement)) {
-                return true;
-            }
+            return mouseWheel(mX, mY, movement);
         }
         return false;
     }

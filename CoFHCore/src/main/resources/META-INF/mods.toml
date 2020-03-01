@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[31,)"
 issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="cofh_core"
-    version="0.3.1b"
+    version="0.3.2b"
     displayName="CoFH Core"
     updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core/update.json"
     displayURL="https://teamcofh.com/"

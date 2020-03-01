@@ -1,6 +1,6 @@
 package cofh.core.block;
 
-import cofh.core.tileentity.SignalAirTile;
+import cofh.core.tileentity.EnderAirTile;
 import cofh.lib.util.Utils;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
@@ -8,7 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.RedstoneParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -24,11 +24,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class SignalAirBlock extends AirBlock {
+public class EnderAirBlock extends AirBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public SignalAirBlock(Properties builder) {
+    public EnderAirBlock(Properties builder) {
 
         super(builder);
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false));
@@ -72,27 +72,7 @@ public class SignalAirBlock extends AirBlock {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 
-        return new SignalAirTile();
-    }
-
-    @Override
-    public boolean canProvidePower(BlockState state) {
-
-        return true;
-    }
-
-    @Override
-    public int getStrongPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
-
-        // return side == Direction.DOWN ? blockState.getWeakPower(blockAccess, pos, side) : 0;
-        return blockState.getWeakPower(blockAccess, pos, side);
-    }
-
-    @Override
-    public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
-
-        TileEntity tile = blockAccess.getTileEntity(pos);
-        return tile instanceof SignalAirTile ? ((SignalAirTile) tile).getPower() : 0;
+        return new EnderAirTile();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -100,7 +80,7 @@ public class SignalAirBlock extends AirBlock {
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
         if (rand.nextInt(8) == 0) {
-            Utils.spawnBlockParticlesClient(worldIn, RedstoneParticleData.REDSTONE_DUST, pos, rand, 2);
+            Utils.spawnBlockParticlesClient(worldIn, ParticleTypes.PORTAL, pos, rand, 2);
         }
     }
 

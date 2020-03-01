@@ -1,5 +1,6 @@
 package cofh.lib.util.references;
 
+import cofh.core.tileentity.GlowAirTile;
 import cofh.core.tileentity.SignalAirTile;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -19,7 +20,8 @@ public class CoreReferences {
     // region IDS
     public static final String ID_GLOSSED_MAGMA = ID_COFH_CORE + ":glossed_magma";
     public static final String ID_SIGNAL_AIR = ID_COFH_CORE + ":signal_air";
-    public static final String ID_LIGHT_AIR = ID_COFH_CORE + ":light_air";
+    public static final String ID_GLOW_AIR = ID_COFH_CORE + ":glow_air";
+    public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
 
     public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
@@ -47,13 +49,22 @@ public class CoreReferences {
     @ObjectHolder(ID_SIGNAL_AIR)
     public static final Block SIGNAL_AIR = null;
 
-    @ObjectHolder(ID_LIGHT_AIR)
-    public static final Block LIGHT_AIR = null;
+    @ObjectHolder(ID_GLOW_AIR)
+    public static final Block GLOW_AIR = null;
+
+    @ObjectHolder(ID_ENDER_AIR)
+    public static final Block ENDER_AIR = null;
     // endregion
 
     // region TILES
     @ObjectHolder(ID_SIGNAL_AIR)
     public static final TileEntityType<SignalAirTile> SIGNAL_AIR_TILE = null;
+
+    @ObjectHolder(ID_GLOW_AIR)
+    public static final TileEntityType<GlowAirTile> GLOW_AIR_TILE = null;
+
+    @ObjectHolder(ID_ENDER_AIR)
+    public static final TileEntityType<GlowAirTile> ENDER_AIR_TILE = null;
     // endregion
 
     // region EFFECTS
