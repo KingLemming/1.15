@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:redstone"
+    },
+    "#": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:redstone_arrow",
+    "count": 4
+  }
+}

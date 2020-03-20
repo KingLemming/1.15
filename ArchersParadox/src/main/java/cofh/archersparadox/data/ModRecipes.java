@@ -65,6 +65,15 @@ public class ModRecipes extends RecipeProvider {
                 .addCriterion("has_components", hasItem(Tags.Items.GEMS_DIAMOND))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_DISPLACEMENT_ARROW), 4)
+                .key('X', Items.GUNPOWDER)
+                .key('#', ITEMS.get(ID_ENDER_ARROW))
+                .patternLine(" # ")
+                .patternLine("#X#")
+                .patternLine(" # ")
+                .addCriterion("has_components", hasItem(ITEMS.get(ID_ENDER_ARROW)))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_ENDER_ARROW), 4)
                 .key('X', Items.ENDER_PEARL)
                 .key('#', Items.ARROW)
@@ -90,6 +99,15 @@ public class ModRecipes extends RecipeProvider {
                 .patternLine("#X#")
                 .patternLine(" # ")
                 .addCriterion("has_components", hasItem(Items.PACKED_ICE))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_GLOWSTONE_ARROW), 4)
+                .key('X', Items.GLOWSTONE_DUST)
+                .key('#', Items.ARROW)
+                .patternLine(" # ")
+                .patternLine("#X#")
+                .patternLine(" # ")
+                .addCriterion("has_components", hasItem(Items.GLOWSTONE_DUST))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_LIGHTNING_ARROW), 4)
@@ -130,14 +148,14 @@ public class ModRecipes extends RecipeProvider {
                 .addCriterion("has_components", hasItem(Tags.Items.GEMS_QUARTZ))
                 .build(consumer);
 
-//        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_REDSTONE_ARROW), 4)
-//                .key('X', Items.REDSTONE)
-//                .key('#', Items.ARROW)
-//                .patternLine(" # ")
-//                .patternLine("#X#")
-//                .patternLine(" # ")
-//                .addCriterion("has_components", hasItem(Items.REDSTONE))
-//                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_REDSTONE_ARROW), 4)
+                .key('X', Items.REDSTONE)
+                .key('#', Items.ARROW)
+                .patternLine(" # ")
+                .patternLine("#X#")
+                .patternLine(" # ")
+                .addCriterion("has_components", hasItem(Items.REDSTONE))
+                .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_SHULKER_ARROW), 4)
                 .key('X', Items.ENDER_EYE)

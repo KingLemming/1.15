@@ -1,12 +1,14 @@
 package cofh.core.block;
 
 import cofh.core.tileentity.GlowAirTile;
+import cofh.lib.util.Utils;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -77,9 +79,9 @@ public class GlowAirBlock extends AirBlock {
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        //        if (rand.nextInt(8) == 0) {
-        //            Utils.spawnBlockParticlesClient(worldIn, ParticleTypes.PORTAL, pos, rand, 2);
-        //        }
+        if (rand.nextInt(16) == 0) {
+            Utils.spawnBlockParticlesClient(worldIn, ParticleTypes.INSTANT_EFFECT, pos, rand, 2);
+        }
     }
 
 }

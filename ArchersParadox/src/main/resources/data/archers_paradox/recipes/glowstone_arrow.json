@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "#": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "archers_paradox:glowstone_arrow",
+    "count": 4
+  }
+}

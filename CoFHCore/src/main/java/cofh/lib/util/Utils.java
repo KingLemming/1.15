@@ -42,8 +42,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ENCHANTMENTS;
-import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
-import static cofh.lib.util.references.CoreReferences.SIGNAL_AIR;
+import static cofh.lib.util.references.CoreReferences.*;
 import static net.minecraft.block.Blocks.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
@@ -523,7 +522,23 @@ public class Utils {
 
     public static void transformSignalAir(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        transformArea(entity, worldIn, pos, AIR.getDefaultState(), SIGNAL_AIR.getDefaultState(), radius, false);
+        Set<BlockState> replaceable = new HashSet<>();
+        Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
+        transformArea(entity, worldIn, pos, replaceable, SIGNAL_AIR.getDefaultState(), radius, false);
+    }
+
+    public static void transformGlowAir(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        Set<BlockState> replaceable = new HashSet<>();
+        Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
+        transformArea(entity, worldIn, pos, replaceable, GLOW_AIR.getDefaultState(), radius, false);
+    }
+
+    public static void transformEnderAir(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        Set<BlockState> replaceable = new HashSet<>();
+        Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
+        transformArea(entity, worldIn, pos, replaceable, ENDER_AIR.getDefaultState(), radius, false);
     }
 
     public static void growMushrooms(Entity entity, World worldIn, BlockPos pos, int radius, int count) {

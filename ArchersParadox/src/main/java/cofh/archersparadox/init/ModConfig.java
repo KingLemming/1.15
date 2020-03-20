@@ -73,6 +73,11 @@ public class ModConfig {
         diamondArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", DiamondArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
+        SERVER_CONFIG.push("Displacement");
+        comment = "Adjust this to set the effect radius for the Displacement Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
+        displacementArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", DisplacementArrowEntity.effectRadius, 0, 16);
+        SERVER_CONFIG.pop();
+
         SERVER_CONFIG.push("Explosive");
         comment = "Adjust this to set the explosion strength for the Explosive Arrow.";
         explosiveArrowStrength = SERVER_CONFIG.comment(comment).defineInRange("Strength", ExplosiveArrowEntity.explosionStrength, 0.5D, 16.0D);
@@ -93,6 +98,11 @@ public class ModConfig {
         frostArrowPermanentWater = SERVER_CONFIG.comment(comment).define("Permanent Water Freeze", FrostArrowEntity.permanentWater);
         SERVER_CONFIG.pop();
 
+        SERVER_CONFIG.push("Glowstone");
+        comment = "Adjust this to set the effect radius for the Glowstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
+        glowstoneArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", GlowstoneArrowEntity.effectRadius, 0, 16);
+        SERVER_CONFIG.pop();
+
         SERVER_CONFIG.push("Prismarine");
         comment = "Adjust this to set the damage for the Prismarine Arrow. Base Arrow value is 2.0.";
         prismarineArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", PrismarineArrowEntity.baseDamage, 0.5, 16.0);
@@ -109,6 +119,11 @@ public class ModConfig {
         quartzArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", QuartzArrowEntity.baseKnockback, 0, 16);
         comment = "Adjust this to set the inherent pierce of the Quartz Arrow. Base Arrow value is 0.";
         quartzArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", QuartzArrowEntity.basePierce, 0, 16);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Redstone");
+        comment = "Adjust this to set the effect radius for the Redstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
+        redstoneArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", RedstoneArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Shulker");
@@ -154,6 +169,8 @@ public class ModConfig {
         DiamondArrowEntity.baseKnockback = diamondArrowKnockback.get();
         DiamondArrowEntity.basePierce = diamondArrowPierce.get().byteValue();
 
+        DisplacementArrowEntity.effectRadius = displacementArrowRadius.get();
+
         ExplosiveArrowEntity.explosionStrength = explosiveArrowStrength.get();
         ExplosiveArrowEntity.explosionsBreakBlocks = explosiveArrowBreakBlocks.get();
         ExplosiveArrowEntity.explosionsCauseFire = explosiveArrowCauseFire.get();
@@ -163,6 +180,8 @@ public class ModConfig {
         FrostArrowEntity.permanentLava = frostArrowPermanentLava.get();
         FrostArrowEntity.permanentWater = frostArrowPermanentWater.get();
 
+        GlowstoneArrowEntity.effectRadius = glowstoneArrowRadius.get();
+
         PrismarineArrowEntity.baseDamage = prismarineArrowDamage.get().floatValue();
         PrismarineArrowEntity.baseKnockback = prismarineArrowKnockback.get();
         PrismarineArrowEntity.basePierce = prismarineArrowPierce.get().byteValue();
@@ -170,6 +189,8 @@ public class ModConfig {
         QuartzArrowEntity.baseDamage = quartzArrowDamage.get().floatValue();
         QuartzArrowEntity.baseKnockback = quartzArrowKnockback.get();
         QuartzArrowEntity.basePierce = quartzArrowPierce.get().byteValue();
+
+        RedstoneArrowEntity.effectRadius = redstoneArrowRadius.get();
 
         ShulkerArrowEntity.effectDuration = shulkerArrowDuration.get();
 
@@ -191,6 +212,8 @@ public class ModConfig {
     private static IntValue diamondArrowKnockback;
     private static IntValue diamondArrowPierce;
 
+    private static IntValue displacementArrowRadius;
+
     private static DoubleValue explosiveArrowStrength;
     private static BooleanValue explosiveArrowBreakBlocks;
     private static BooleanValue explosiveArrowCauseFire;
@@ -200,6 +223,8 @@ public class ModConfig {
     private static BooleanValue frostArrowPermanentLava;
     private static BooleanValue frostArrowPermanentWater;
 
+    private static IntValue glowstoneArrowRadius;
+
     private static DoubleValue prismarineArrowDamage;
     private static IntValue prismarineArrowKnockback;
     private static IntValue prismarineArrowPierce;
@@ -207,6 +232,8 @@ public class ModConfig {
     private static DoubleValue quartzArrowDamage;
     private static IntValue quartzArrowKnockback;
     private static IntValue quartzArrowPierce;
+
+    private static IntValue redstoneArrowRadius;
 
     private static IntValue slimeArrowBounces;
     private static IntValue slimeArrowKnockback;

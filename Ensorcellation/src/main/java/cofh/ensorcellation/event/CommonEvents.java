@@ -444,7 +444,7 @@ public class CommonEvents {
     }
     // endregion
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    // @SubscribeEvent(priority = EventPriority.LOW)
     // TODO: Event does not fire yet.
     public void handleHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
 

@@ -9,9 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -19,6 +21,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashSet;
+import java.util.List;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
@@ -70,6 +73,34 @@ public class AOEEvents {
                 break;
             }
             playerMP.interactionManager.tryHarvestBlock(pos);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void handleBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        PlayerEntity player = event.getPlayer();
+
+        ItemStack stack = player.getHeldItemMainhand();
+        if (!validAOEMiningItem(stack)) {
+            return;
+        }
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getPos(), player);
+
+        float oldSpeed = event.getOriginalSpeed();
+        float newSpeed = event.getNewSpeed();
+
+        float curHardness = event.getState().getBlockHardness(player.world, event.getPos());
+        if (curHardness <= 0) {
+            return;
+        }
+        float maxHardness = getMaxHardness(player.world, areaBlocks, curHardness);
+
+        if (maxHardness > curHardness) {
+            event.setNewSpeed(event.getOriginalSpeed() * curHardness / maxHardness);
         }
     }
 
@@ -137,4 +168,19 @@ public class AOEEvents {
         }
     }
 
+    // region HELPERS
+    private static float getMaxHardness(IBlockReader world, List<BlockPos> areaBlocks, float curHardness) {
+
+        float maxHardness = curHardness;
+        float testHardness;
+
+        for (BlockPos pos : areaBlocks) {
+            testHardness = world.getBlockState(pos).getBlockHardness(world, pos);
+            if (testHardness > maxHardness) {
+                maxHardness = testHardness;
+            }
+        }
+        return maxHardness;
+    }
+    // endregion
 }

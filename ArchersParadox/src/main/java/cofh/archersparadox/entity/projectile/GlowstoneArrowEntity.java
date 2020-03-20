@@ -1,5 +1,7 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.lib.util.Utils;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -7,7 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -48,20 +53,21 @@ public class GlowstoneArrowEntity extends AbstractArrowEntity {
         return discharged ? new ItemStack(Items.ARROW) : new ItemStack(GLOWSTONE_ARROW_ITEM);
     }
 
-    //    @Override
-    //    protected void onHit(RayTraceResult raytraceResultIn) {
-    //
-    //        super.onHit(raytraceResultIn);
-    //
-    //        if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
-    //            if (effectRadius > 0 && !isInWater()) {
-    //                if (Utils.isServerWorld(world)) {
-    //                    makeAreaOfEffectCloud();
-    //                }
-    //                discharged = true;
-    //            }
-    //        }
-    //    }
+    @Override
+    protected void onHit(RayTraceResult raytraceResultIn) {
+
+        super.onHit(raytraceResultIn);
+
+        if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
+            if (effectRadius > 0 && !isInWater()) {
+                if (Utils.isServerWorld(world)) {
+                    Utils.transformGlowAir(this, world, this.getPosition(), effectRadius);
+                    // makeAreaOfEffectCloud();
+                }
+                discharged = true;
+            }
+        }
+    }
 
     @Override
     protected void onEntityHit(EntityRayTraceResult raytraceResultIn) {
@@ -95,28 +101,27 @@ public class GlowstoneArrowEntity extends AbstractArrowEntity {
 
     }
 
-    //    @Override
-    //    public void tick() {
-    //
-    //        super.tick();
-    //
-    //        if (!this.inGround || this.getNoClip()) {
-    //            if (Utils.isClientWorld(world) && !isInWater()) {
-    //                Vec3d vec3d = this.getMotion();
-    //                double d1 = vec3d.x;
-    //                double d2 = vec3d.y;
-    //                double d0 = vec3d.z;
-    //                this.world.addParticle(GlowstoneParticleData.GLOWSTONE_DUST, this.getPosX() + d1 * 0.25D, this.getPosY() + d2 * 0.25D, this.getPosZ() + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
-    //            }
-    //        }
-    //    }
+    @Override
+    public void tick() {
+
+        super.tick();
+
+        if (!this.inGround || this.getNoClip()) {
+            if (Utils.isClientWorld(world) && !isInWater()) {
+                Vec3d vec3d = this.getMotion();
+                double d1 = vec3d.x;
+                double d2 = vec3d.y;
+                double d0 = vec3d.z;
+                this.world.addParticle(ParticleTypes.INSTANT_EFFECT, this.getPosX() + d1 * 0.25D, this.getPosY() + d2 * 0.25D, this.getPosZ() + d0 * 0.25D, -d1, -d2 + 0.2D, -d0);
+            }
+        }
+    }
 
     @Override
     public void writeAdditional(CompoundNBT compound) {
 
         super.writeAdditional(compound);
         compound.putBoolean(TAG_ARROW_DATA, discharged);
-
     }
 
     @Override
@@ -132,16 +137,16 @@ public class GlowstoneArrowEntity extends AbstractArrowEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    //    private void makeAreaOfEffectCloud() {
-    //
-    //        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY(), getPosZ());
-    //        cloud.setRadius(1);
-    //        cloud.setParticleData(GlowstoneParticleData.GLOWSTONE_DUST);
-    //        cloud.setDuration(CLOUD_DURATION);
-    //        cloud.setWaitTime(0);
-    //        cloud.setRadiusPerTick((effectRadius - cloud.getRadius()) / (float) cloud.getDuration());
-    //
-    //        world.addEntity(cloud);
-    //    }
+    private void makeAreaOfEffectCloud() {
+
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY(), getPosZ());
+        cloud.setRadius(1);
+        cloud.setParticleData(ParticleTypes.INSTANT_EFFECT);
+        cloud.setDuration(CLOUD_DURATION);
+        cloud.setWaitTime(0);
+        cloud.setRadiusPerTick((effectRadius - cloud.getRadius()) / (float) cloud.getDuration());
+
+        world.addEntity(cloud);
+    }
 
 }

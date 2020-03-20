@@ -2,7 +2,6 @@ package cofh.archersparadox;
 
 import cofh.archersparadox.data.ModRecipes;
 import cofh.archersparadox.data.ModTags;
-import cofh.archersparadox.entity.projectile.RedstoneArrowEntity;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
 import cofh.archersparadox.init.ModEntities;
@@ -80,9 +79,11 @@ public class ArchersParadox {
         RenderingRegistry.registerEntityRenderingHandler(BLAZE_ARROW_ENTITY, BlazeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(CHALLENGE_ARROW_ENTITY, ChallengeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DIAMOND_ARROW_ENTITY, DiamondArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DISPLACEMENT_ARROW_ENTITY, DisplacementArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ENDER_ARROW_ENTITY, EnderArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EXPLOSIVE_ARROW_ENTITY, ExplosiveArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(FROST_ARROW_ENTITY, FrostArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(GLOWSTONE_ARROW_ENTITY, GlowstoneArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_ARROW_ENTITY, LightningArrowRenderer::new);
         // RenderingRegistry.registerEntityRenderingHandler(MagmaArrowEntity.class, MagmaArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(PHANTASMAL_ARROW_ENTITY, PhantasmalArrowRenderer::new);
