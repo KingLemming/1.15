@@ -71,6 +71,9 @@
   "enchantment.ensorcellation.phalanx": "Phalanx",
   "enchantment.ensorcellation.phalanx.desc": "Allows the wielder to move faster while using a shield.",
 
+  "enchantment.ensorcellation.pilfering": "Pilfering",
+  "enchantment.ensorcellation.pilfering.desc": "May steal a piece of armor from hooked targets.",
+
   "enchantment.ensorcellation.preservation": "Preservation",
   "enchantment.ensorcellation.preservation.desc": "Removes the increasing XP cost for repairing an item.",
 

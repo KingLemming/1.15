@@ -70,6 +70,7 @@ public class EnsorcellationReferences {
 
     // FISHING RODS
     public static final String ID_ANGLER = ID_ENSORCELLATION + ":angler";
+    public static final String ID_PILFERING = ID_ENSORCELLATION + ":pilfering";
 
     // HOES
     public static final String ID_FURROWING = ID_ENSORCELLATION + ":furrowing";
@@ -171,6 +172,9 @@ public class EnsorcellationReferences {
     // FISHING RODS
     @ObjectHolder(ID_ANGLER)
     public static final Enchantment ANGLER = null;
+
+    @ObjectHolder(ID_PILFERING)
+    public static final Enchantment PILFERING = null;
 
     // HOES
     @ObjectHolder(ID_FURROWING)

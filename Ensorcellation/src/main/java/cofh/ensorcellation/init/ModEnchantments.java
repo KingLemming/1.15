@@ -60,6 +60,7 @@ public class ModEnchantments {
 
         // FISHING RODS
         ENCHANTMENTS.register(ID_ANGLER, AnglerEnchantment::new);
+        ENCHANTMENTS.register(ID_PILFERING, PilferingEnchantment::new);
 
         // HOES
         ENCHANTMENTS.register(ID_FURROWING, FurrowingEnchantment::new);

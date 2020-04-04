@@ -1,4 +1,4 @@
-package cofh.ensorcellation.enchantment.nyi;
+package cofh.ensorcellation.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
@@ -9,23 +9,24 @@ import net.minecraft.item.ItemStack;
 
 public class PilferingEnchantment extends EnchantmentCoFH {
 
-    public static int chance = 50;
+    public static boolean allowPlayerStealing = true;
 
     public PilferingEnchantment() {
 
         super(Rarity.RARE, EnchantmentType.FISHING_ROD, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        treasure = true;
     }
 
     @Override
     public int getMinEnchantability(int level) {
 
-        return 15;
+        return 25;
     }
 
     @Override
     protected int maxDelegate(int level) {
 
-        return this.getMinEnchantability(level) + 50;
+        return getMinEnchantability(level) + 50;
     }
 
     @Override

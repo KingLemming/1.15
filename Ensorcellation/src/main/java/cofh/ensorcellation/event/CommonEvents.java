@@ -4,6 +4,7 @@ import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.nyi.SmashingEnchantment;
 import cofh.ensorcellation.enchantment.nyi.SmeltingEnchantment;
 import cofh.ensorcellation.enchantment.override.FrostWalkerEnchantmentImp;
+import cofh.lib.util.Utils;
 import cofh.lib.util.constants.NBTTags;
 import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.HashMultimap;
@@ -42,6 +43,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -405,6 +407,42 @@ public class CommonEvents {
     }
     // endregion
 
+    // region PLAYER INTERACTION
+    @SubscribeEvent
+    public static void handlePlayerRightClickEvent(PlayerInteractEvent event) {
+
+        if (event.isCanceled()) {
+            return;
+        }
+        if (!(event instanceof PlayerInteractEvent.RightClickItem || event instanceof PlayerInteractEvent.RightClickBlock || event instanceof PlayerInteractEvent.RightClickEmpty)) {
+            return;
+        }
+        PlayerEntity player = event.getPlayer();
+        if (event.getPlayer().fishingBobber == null || Utils.isClientWorld(player.world)) {
+            return;
+        }
+        FishingBobberEntity hook = player.fishingBobber;
+        Entity entity = hook.caughtEntity;
+
+        if (entity instanceof PlayerEntity && !PilferingEnchantment.allowPlayerStealing) {
+            return;
+        }
+        int encPilfer = getHeldEnchantmentLevel(player, PILFERING);
+        if (encPilfer > 0 && entity instanceof LivingEntity) {
+            LivingEntity living = (LivingEntity) entity;
+            ItemStack armor = stealArmor(living);
+            if (armor.isEmpty()) {
+                return;
+            }
+            ItemEntity armorEntity = new ItemEntity(living.world, living.getPosX(), living.getPosY() + 0.5D, living.getPosZ(), armor);
+            armorEntity.setOwnerId(player.getUniqueID());
+            armorEntity.setPickupDelay(5);
+            armorEntity.world.addEntity(armorEntity);
+            armorEntity.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
+        }
+    }
+    // endregion
+
     // region BLOCK BREAKING
     @SubscribeEvent
     public static void handleBlockBreakEvent(BlockEvent.BreakEvent event) {
@@ -508,6 +546,20 @@ public class CommonEvents {
     private static final Multimap<String, AttributeModifier> VITALITY_ATTRIBUTE = HashMultimap.create();
 
     private static final int MAX_FOOD_LEVEL = 20;
+
+    private static ItemStack stealArmor(LivingEntity living) {
+
+        ItemStack stack = ItemStack.EMPTY;
+        for (EquipmentSlotType slot : ARMOR_SLOTS) {
+            if (living.getItemStackFromSlot(slot).isEmpty()) {
+                continue;
+            }
+            stack = living.getItemStackFromSlot(slot);
+            living.setItemStackToSlot(slot, ItemStack.EMPTY);
+            break;
+        }
+        return stack;
+    }
 
     static {
         REACH_ATTRIBUTE.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, 1, ADDITION).setSaved(false));

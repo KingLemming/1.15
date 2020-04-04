@@ -307,6 +307,15 @@ public class ModConfig {
         chanceAngler = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 50, 1, 100);
         SERVER_CONFIG.pop();
 
+        SERVER_CONFIG.push("Pilfering");
+        comment = "If TRUE, the Pilfering Enchantment is available for Fishing Rods.";
+        enablePilfering = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasurePilfering = SERVER_CONFIG.comment(comment).define("Treasure", true);
+        comment = "This sets whether or not the Enchantment works on Players.";
+        playerStealPilfering = SERVER_CONFIG.comment(comment).define("Allow Player Stealing", true);
+        SERVER_CONFIG.pop();
+
         // HOES
         SERVER_CONFIG.push("Furrowing");
         comment = "If TRUE, the Furrowing Enchantment is available for Hoes.";
@@ -630,6 +639,11 @@ public class ModConfig {
             ((EnchantmentCoFH) ANGLER).setMaxLevel(levelAngler.get());
             AnglerEnchantment.chance = chanceAngler.get();
         }
+        if (PILFERING instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) PILFERING).setEnable(enablePilfering.get());
+            ((EnchantmentCoFH) PILFERING).setTreasure(treasurePilfering.get());
+            PilferingEnchantment.allowPlayerStealing = playerStealPilfering.get();
+        }
         // HOES
         if (FURROWING instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) FURROWING).setEnable(enableFurrowing.get());
@@ -849,6 +863,10 @@ public class ModConfig {
     private static BooleanValue treasureAngler;
     private static IntValue levelAngler;
     private static IntValue chanceAngler;
+
+    private static BooleanValue enablePilfering;
+    private static BooleanValue treasurePilfering;
+    private static BooleanValue playerStealPilfering;
 
     // HOES
     private static BooleanValue enableFurrowing;

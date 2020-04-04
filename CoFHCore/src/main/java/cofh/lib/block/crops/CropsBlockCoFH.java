@@ -176,7 +176,7 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
             return true;
         }
         if (getPostHarvestAge() >= 0) {
-            Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
+            Utils.dropItemStackIntoWorldWithRandomness(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
             world.setBlockState(pos, withAge(getPostHarvestAge()), 2);
         } else {
             world.destroyBlock(pos, true);

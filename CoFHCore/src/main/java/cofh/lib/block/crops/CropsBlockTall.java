@@ -138,15 +138,15 @@ public class CropsBlockTall extends CropsBlockCoFH {
             return true;
         }
         if (getPostHarvestAge() >= 0) {
-            Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
+            Utils.dropItemStackIntoWorldWithRandomness(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos);
             if (isTop(state)) {
                 world.setBlockState(pos, this.withAge(getPostHarvestAge() + getSplitOffset()), 2);
                 world.setBlockState(pos.down(), this.withAge(getPostHarvestAge()), 2);
-                Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos.down());
+                Utils.dropItemStackIntoWorldWithRandomness(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos.down());
             } else {
                 world.setBlockState(pos, this.withAge(getPostHarvestAge()), 2);
                 world.setBlockState(pos.up(), this.withAge(getPostHarvestAge() + getSplitOffset()), 2);
-                Utils.dropItemStackIntoWorldWithVelocity(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos.up());
+                Utils.dropItemStackIntoWorldWithRandomness(new ItemStack(getCropItem(), 2 + MathHelper.binomialDist(fortune, 0.5D)), world, pos.up());
             }
         } else {
             world.destroyBlock(pos, true);

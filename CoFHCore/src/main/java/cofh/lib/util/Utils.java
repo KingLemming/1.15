@@ -141,12 +141,12 @@ public class Utils {
         return dropItemStackIntoWorld(stack, world, pos, false);
     }
 
-    public static boolean dropItemStackIntoWorldWithVelocity(ItemStack stack, World world, BlockPos pos) {
+    public static boolean dropItemStackIntoWorldWithRandomness(ItemStack stack, World world, BlockPos pos) {
 
         return dropItemStackIntoWorld(stack, world, new Vec3d(pos), true);
     }
 
-    public static boolean dropItemStackIntoWorldWithVelocity(ItemStack stack, World world, Vec3d pos) {
+    public static boolean dropItemStackIntoWorldWithRandomness(ItemStack stack, World world, Vec3d pos) {
 
         return dropItemStackIntoWorld(stack, world, pos, true);
     }
