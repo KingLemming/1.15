@@ -1,20 +1,15 @@
 package cofh.ensorcellation.enchantment;
 
 import cofh.lib.enchantment.EnchantmentCoFH;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
 
 public class ReachEnchantment extends EnchantmentCoFH {
 
     public ReachEnchantment() {
 
-        super(Rarity.UNCOMMON, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.UNCOMMON, EnchantmentType.ARMOR_CHEST, new EquipmentSlotType[]{EquipmentSlotType.CHEST});
         maxLevel = 3;
     }
 
@@ -33,14 +28,7 @@ public class ReachEnchantment extends EnchantmentCoFH {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
-        Item item = stack.getItem();
-        return enable && (item instanceof ToolItem || item instanceof HoeItem || supportsEnchantment(stack));
-    }
-
-    @Override
-    public boolean canApplyTogether(Enchantment ench) {
-
-        return super.canApplyTogether(ench) && ench != Enchantments.KNOCKBACK;
+        return enable && (type != null && type.canEnchantItem(stack.getItem()) || supportsEnchantment(stack));
     }
 
 }

@@ -11,6 +11,8 @@ import com.google.common.collect.Multimap;
 import net.minecraft.enchantment.FrostWalkerEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -48,8 +50,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.List;
 
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
-import static cofh.lib.util.constants.Constants.DAMAGE_PLAYER;
-import static cofh.lib.util.constants.Constants.UUID_ENCH_REACH_DISTANCE;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.EFFICIENCY;
@@ -204,6 +205,31 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void handleLivingEquipmentChangeEvent(LivingEquipmentChangeEvent event) {
+
+        LivingEntity entity = event.getEntityLiving();
+        AbstractAttributeMap entityAttributes = event.getEntityLiving().getAttributes();
+
+        // REACH
+        int encReach = getMaxEnchantmentLevel(REACH, entity);
+        if (encReach > 0) {
+            Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+            attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(true));
+            entityAttributes.applyAttributeModifiers(attributes);
+        } else {
+            entityAttributes.removeAttributeModifiers(REACH_ATTRIBUTE);
+        }
+        int encVitality = getMaxEnchantmentLevel(VITALITY, entity);
+        if (encVitality > 0) {
+            Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+            attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(UUID_ENCH_VITALITY_HEALTH, ID_VITALITY, encVitality * VitalityEnchantment.health, ADDITION).setSaved(true));
+            entityAttributes.applyAttributeModifiers(attributes);
+        } else {
+            entityAttributes.removeAttributeModifiers(VITALITY_ATTRIBUTE);
+        }
+    }
+
+    @SubscribeEvent
     public static void handleLivingExperienceDropEvent(LivingExperienceDropEvent event) {
 
         if (event.isCanceled()) {
@@ -213,14 +239,14 @@ public class CommonEvents {
 
         if (player != null) {
             // CURSE OF FOOLISHNESS
-            int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+            int encFool = getMaxEnchantmentLevel(CURSE_FOOL, player);
             if (encFool > 0) {
                 event.setDroppedExperience(0);
                 event.setCanceled(true);
                 return;
             }
             // EXP BOOST
-            int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
+            int encExpBoost = getMaxEnchantmentLevel(EXP_BOOST, player);
             if (encExpBoost > 0) {
                 event.setDroppedExperience(ExpBoostEnchantment.getExp(event.getDroppedExperience(), encExpBoost, player.world.rand));
             }
@@ -291,19 +317,6 @@ public class CommonEvents {
             FrostWalkerEnchantment.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
             FrostWalkerEnchantmentImp.freezeNearby(entity, entity.world, new BlockPos(entity), encFrostWalker);
         }
-        if (entity instanceof PlayerEntity) {
-            // REACH
-            int encReach = getHeldEnchantmentLevel(entity, REACH);
-            if (encReach > 0) {
-                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
-                entity.getAttributes().applyAttributeModifiers(attributes);
-            } else {
-                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                attributes.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, encReach, ADDITION).setSaved(false));
-                entity.getAttributes().removeAttributeModifiers(attributes);
-            }
-        }
     }
 
     @SubscribeEvent
@@ -325,7 +338,7 @@ public class CommonEvents {
                 int playerFood = playerStats.getFoodLevel();
 
                 playerStats.addStats(foodLevel + encGourmand, foodSaturation + encGourmand * 0.1F);
-                playerStats.setFoodLevel(Math.min(playerFood + encGourmand, 20));
+                playerStats.setFoodLevel(Math.min(playerFood + encGourmand, MAX_FOOD_LEVEL));
             }
         }
     }
@@ -370,7 +383,7 @@ public class CommonEvents {
             }
         }
         // EXP BOOST
-        int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
+        int encExpBoost = getMaxEnchantmentLevel(EXP_BOOST, player);
         if (encExpBoost > 0) {
             hook.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5D, player.getPosZ() + 0.5D, ExpBoostEnchantment.getExp(0, encExpBoost, player.world.rand)));
         }
@@ -383,7 +396,7 @@ public class CommonEvents {
         ExperienceOrbEntity orb = event.getOrb();
 
         // CURSE OF FOOLISHNESS
-        int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+        int encFool = getMaxEnchantmentLevel(CURSE_FOOL, player);
         if (encFool > 0) {
             orb.xpValue = 0;
             orb.remove();
@@ -405,13 +418,13 @@ public class CommonEvents {
         }
         if (event.getExpToDrop() > 0) {
             // CURSE OF FOOLISHNESS
-            int encFool = getHeldEnchantmentLevel(player, CURSE_FOOL);
+            int encFool = getMaxEnchantmentLevel(CURSE_FOOL, player);
             if (encFool > 0) {
                 event.setExpToDrop(0);
                 return;
             }
             // EXP BOOST
-            int encExpBoost = getHeldEnchantmentLevel(player, EXP_BOOST);
+            int encExpBoost = getMaxEnchantmentLevel(EXP_BOOST, player);
             if (encExpBoost > 0) {
                 event.setExpToDrop(ExpBoostEnchantment.getExp(event.getExpToDrop(), encExpBoost, player.world.rand));
             }
@@ -490,4 +503,15 @@ public class CommonEvents {
         }
     }
 
+    // region HELPERS
+    private static final Multimap<String, AttributeModifier> REACH_ATTRIBUTE = HashMultimap.create();
+    private static final Multimap<String, AttributeModifier> VITALITY_ATTRIBUTE = HashMultimap.create();
+
+    private static final int MAX_FOOD_LEVEL = 20;
+
+    static {
+        REACH_ATTRIBUTE.put(PlayerEntity.REACH_DISTANCE.getName(), new AttributeModifier(UUID_ENCH_REACH_DISTANCE, ID_REACH, 1, ADDITION).setSaved(false));
+        VITALITY_ATTRIBUTE.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(UUID_ENCH_VITALITY_HEALTH, ID_VITALITY, 1, ADDITION).setSaved(false));
+    }
+    // endregion
 }

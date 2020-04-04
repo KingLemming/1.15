@@ -5,15 +5,13 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import java.util.Random;
+public class VitalityEnchantment extends EnchantmentCoFH {
 
-public class ExpBoostEnchantment extends EnchantmentCoFH {
+    public static int health = 4;
 
-    public static int experience = 4;
+    public VitalityEnchantment() {
 
-    public ExpBoostEnchantment() {
-
-        super(Rarity.UNCOMMON, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[]{EquipmentSlotType.HEAD});
+        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_CHEST, new EquipmentSlotType[]{EquipmentSlotType.CHEST});
         maxLevel = 3;
     }
 
@@ -35,10 +33,4 @@ public class ExpBoostEnchantment extends EnchantmentCoFH {
         return enable && (type != null && type.canEnchantItem(stack.getItem()) || supportsEnchantment(stack));
     }
 
-    // region HELPERS
-    public static int getExp(int baseExp, int level, Random rand) {
-
-        return baseExp + level + rand.nextInt(1 + level * experience);
-    }
-    // endregion
 }

@@ -3,13 +3,13 @@ package cofh.ensorcellation.enchantment;
 import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 
 public class CurseFoolEnchant extends EnchantmentCoFH {
 
     public CurseFoolEnchant() {
 
-        super(Rarity.VERY_RARE, EnchantmentType.DIGGER, new EquipmentSlotType[]{EquipmentSlotType.MAINHAND});
+        super(Rarity.VERY_RARE, EnchantmentType.ARMOR_HEAD, new EquipmentSlotType[]{EquipmentSlotType.HEAD});
         treasure = true;
     }
 
@@ -28,8 +28,7 @@ public class CurseFoolEnchant extends EnchantmentCoFH {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
 
-        Item item = stack.getItem();
-        return enable && (item instanceof SwordItem || item instanceof ToolItem || item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem || supportsEnchantment(stack));
+        return enable && type != null && type.canEnchantItem(stack.getItem());
     }
 
     @Override

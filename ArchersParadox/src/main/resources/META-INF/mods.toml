@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="archers_paradox"
-    version="0.3.0b"
+    version="0.4.0b"
     displayName="Archer's Paradox"
     updateJSONURL="https://raw.github.com/cofh/version/master/archers_paradox/update.json"
     displayURL="https://teamcofh.com/"

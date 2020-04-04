@@ -38,7 +38,12 @@ public class EnsorcellationReferences {
 
     // HELMET
     public static final String ID_AIR_AFFINITY = ID_ENSORCELLATION + ":air_affinity";
+    public static final String ID_EXP_BOOST = ID_ENSORCELLATION + ":exp_boost";
     public static final String ID_GOURMAND = ID_ENSORCELLATION + ":gourmand";
+
+    // CHESTPLATE
+    public static final String ID_REACH = ID_ENSORCELLATION + ":reach";
+    public static final String ID_VITALITY = ID_ENSORCELLATION + ":vitality";
 
     // WEAPONS
     public static final String ID_DAMAGE_ENDER = ID_ENSORCELLATION + ":damage_ender";
@@ -53,9 +58,7 @@ public class EnsorcellationReferences {
 
     // TOOLS
     public static final String ID_EXCAVATING = ID_ENSORCELLATION + ":excavating";
-    public static final String ID_EXP_BOOST = ID_ENSORCELLATION + ":exp_boost";
     public static final String ID_PROSPECTING = ID_ENSORCELLATION + ":prospecting";
-    public static final String ID_REACH = ID_ENSORCELLATION + ":reach";
     public static final String ID_SMASHING = ID_ENSORCELLATION + ":smashing";
     public static final String ID_SMELTING = ID_ENSORCELLATION + ":smelting";
 
@@ -104,8 +107,18 @@ public class EnsorcellationReferences {
     @ObjectHolder(ID_AIR_AFFINITY)
     public static final Enchantment AIR_AFFINITY = null;
 
+    @ObjectHolder(ID_EXP_BOOST)
+    public static final Enchantment EXP_BOOST = null;
+
     @ObjectHolder(ID_GOURMAND)
     public static final Enchantment GOURMAND = null;
+
+    // CHESTPLATE
+    @ObjectHolder(ID_REACH)
+    public static final Enchantment REACH = null;
+
+    @ObjectHolder(ID_VITALITY)
+    public static final Enchantment VITALITY = null;
 
     // WEAPONS
     @ObjectHolder(ID_DAMAGE_ENDER)
@@ -135,12 +148,6 @@ public class EnsorcellationReferences {
     // TOOLS
     @ObjectHolder(ID_EXCAVATING)
     public static final Enchantment EXCAVATING = null;
-
-    @ObjectHolder(ID_EXP_BOOST)
-    public static final Enchantment EXP_BOOST = null;
-
-    @ObjectHolder(ID_REACH)
-    public static final Enchantment REACH = null;
 
     @ObjectHolder(ID_SMASHING)
     public static final Enchantment SMASHING = null;

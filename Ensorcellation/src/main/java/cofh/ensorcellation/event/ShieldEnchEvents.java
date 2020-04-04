@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -55,7 +56,6 @@ public class ShieldEnchEvents {
         LivingEntity entity = event.getEntityLiving();
         DamageSource source = event.getSource();
         Entity attacker = source.getTrueSource();
-
         ItemStack stack = entity.getActiveItemStack();
 
         if (canBlockDamageSource(entity, source) && attacker != null) {
@@ -79,6 +79,15 @@ public class ShieldEnchEvents {
             if (FrostRebukeEnchantment.shouldHit(encFrostRebuke, entity.getRNG())) {
                 FrostRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
             }
+            // BULWARK
+            int encBulwark = getEnchantmentLevel(BULWARK, stack);
+            if (encBulwark > 0 && attacker instanceof PlayerEntity) {
+                PlayerEntity playerAttacker = (PlayerEntity) attacker;
+                if (playerAttacker.getRNG().nextFloat() < 0.5F) {
+                    playerAttacker.getCooldownTracker().setCooldown(playerAttacker.getHeldItemMainhand().getItem(), 100);
+                    attacker.world.setEntityState(attacker, (byte) 30);
+                }
+            }
         }
     }
 
@@ -89,15 +98,17 @@ public class ShieldEnchEvents {
             return;
         }
         LivingEntity entity = event.getEntityLiving();
+        ItemStack stack = entity.getActiveItemStack();
 
-        ItemStack shield = entity.getActiveItemStack();
-        if (shield.getItem().isShield(shield, entity)) {
-            int encBulwark = getEnchantmentLevel(BULWARK, shield);
-            int encPhalanx = getEnchantmentLevel(PHALANX, shield);
+        if (stack.getItem().isShield(stack, entity)) {
             Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+            int encBulwark = getEnchantmentLevel(BULWARK, stack);
+            int encPhalanx = getEnchantmentLevel(PHALANX, stack);
+            // BULWARK
             if (encBulwark > 0) {
                 attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_ENCH_BULWARK_KNOCKBACK_RESISTANCE, ID_BULWARK, 1.0D, ADDITION).setSaved(false));
             }
+            // PHALANX
             if (encPhalanx > 0) {
                 attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_ENCH_PHALANX_MOVEMENT_SPEED, ID_PHALANX, PhalanxEnchantment.SPEED * encPhalanx, MULTIPLY_TOTAL).setSaved(false));
             }
@@ -105,10 +116,7 @@ public class ShieldEnchEvents {
                 entity.getAttributes().applyAttributeModifiers(attributes);
             }
         } else {
-            Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-            attributes.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_ENCH_BULWARK_KNOCKBACK_RESISTANCE, ID_BULWARK, 1.0D, ADDITION).setSaved(false));
-            attributes.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_ENCH_PHALANX_MOVEMENT_SPEED, ID_PHALANX, PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
-            entity.getAttributes().removeAttributeModifiers(attributes);
+            entity.getAttributes().removeAttributeModifiers(SHIELD_ATTRIBUTES);
         }
     }
 
@@ -132,6 +140,13 @@ public class ShieldEnchEvents {
             }
         }
         return false;
+    }
+
+    private static final Multimap<String, AttributeModifier> SHIELD_ATTRIBUTES = HashMultimap.create();
+
+    static {
+        SHIELD_ATTRIBUTES.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(UUID_ENCH_BULWARK_KNOCKBACK_RESISTANCE, ID_BULWARK, 1.0D, ADDITION).setSaved(false));
+        SHIELD_ATTRIBUTES.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID_ENCH_PHALANX_MOVEMENT_SPEED, ID_PHALANX, PhalanxEnchantment.SPEED, MULTIPLY_TOTAL).setSaved(false));
     }
     // endregion
 }

@@ -90,7 +90,12 @@ public class SoulboundEvents {
             ItemStack stack = oldPlayer.inventory.mainInventory.get(i);
             int encSoulbound = getEnchantmentLevel(SOULBOUND, stack);
             if (encSoulbound > 0) {
-                if (player.world.rand.nextInt(1 + encSoulbound) == 0) {
+                if (SoulboundEnchantment.permanent) {
+                    if (encSoulbound > 1) {
+                        removeEnchantment(stack, SOULBOUND);
+                        addEnchantment(stack, SOULBOUND, 1);
+                    }
+                } else if (player.world.rand.nextInt(1 + encSoulbound) == 0) {
                     removeEnchantment(stack, SOULBOUND);
                     if (encSoulbound > 1) {
                         addEnchantment(stack, SOULBOUND, encSoulbound - 1);

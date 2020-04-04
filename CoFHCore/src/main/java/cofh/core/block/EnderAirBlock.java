@@ -5,15 +5,21 @@ import cofh.lib.util.Utils;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
@@ -24,7 +30,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
+
 public class EnderAirBlock extends AirBlock {
+
+    protected static boolean teleport = true;
+    protected static int duration = 100;
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -81,6 +92,29 @@ public class EnderAirBlock extends AirBlock {
 
         if (rand.nextInt(8) == 0) {
             Utils.spawnBlockParticlesClient(worldIn, ParticleTypes.PORTAL, pos, rand, 2);
+        }
+    }
+
+    @Override
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+
+        if (!teleport || Utils.isClientWorld(worldIn)) {
+            return;
+        }
+        if (entityIn instanceof ItemEntity || entityIn instanceof ExperienceOrbEntity) {
+            return;
+        }
+        BlockPos randPos = pos.add(-8 + worldIn.rand.nextInt(17), worldIn.rand.nextInt(8), -8 + worldIn.rand.nextInt(17));
+
+        if (!worldIn.getBlockState(randPos).getMaterial().isSolid()) {
+            if (entityIn instanceof LivingEntity) {
+                if (Utils.teleportEntityTo(entityIn, randPos)) {
+                    ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(ENDERFERENCE, duration, 0, false, false));
+                }
+            } else if (worldIn.getGameTime() % duration == 0) {
+                entityIn.setPosition(randPos.getX(), randPos.getY(), randPos.getZ());
+                entityIn.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
+            }
         }
     }
 

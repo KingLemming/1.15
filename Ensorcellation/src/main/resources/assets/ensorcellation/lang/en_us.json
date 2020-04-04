@@ -95,6 +95,9 @@
   "enchantment.ensorcellation.trueshot": "Trueshot",
   "enchantment.ensorcellation.trueshot.desc": "Increases the accuracy and speed of arrows, and allows them to pierce.",
 
+  "enchantment.ensorcellation.vitality": "Vitality",
+  "enchantment.ensorcellation.vitality.desc": "Increases the maximum health of the the wearer.",
+
   "enchantment.ensorcellation.volley": "Volley",
   "enchantment.ensorcellation.volley.desc": "Three arrows are fired in an arc. Only one arrow is consumed.",
 

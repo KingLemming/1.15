@@ -28,7 +28,12 @@ public class ModEnchantments {
 
         // HELMET
         ENCHANTMENTS.register(ID_AIR_AFFINITY, AirAffinityEnchantment::new);
+        ENCHANTMENTS.register(ID_EXP_BOOST, ExpBoostEnchantment::new);
         ENCHANTMENTS.register(ID_GOURMAND, GourmandEnchantment::new);
+
+        // CHESTPLATE
+        ENCHANTMENTS.register(ID_REACH, ReachEnchantment::new);
+        ENCHANTMENTS.register(ID_VITALITY, VitalityEnchantment::new);
 
         // WEAPONS
         ENCHANTMENTS.register(ID_DAMAGE_ENDER, DamageEnderEnchantment::new);
@@ -43,8 +48,6 @@ public class ModEnchantments {
 
         // TOOLS
         ENCHANTMENTS.register(ID_EXCAVATING, ExcavatingEnchantment::new);
-        ENCHANTMENTS.register(ID_EXP_BOOST, ExpBoostEnchantment::new);
-        ENCHANTMENTS.register(ID_REACH, ReachEnchantment::new);
         // ENCHANTMENTS.register(ID_PROSPECTOR, ProspectorEnchantment::new);
         // ENCHANTMENTS.register(ID_SMASHING, SmashingEnchantment::new);
         // ENCHANTMENTS.register(ID_SMELTING, SmeltingEnchantment::new);

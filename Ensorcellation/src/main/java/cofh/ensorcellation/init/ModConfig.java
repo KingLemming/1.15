@@ -117,9 +117,20 @@ public class ModConfig {
         // HELMET
         SERVER_CONFIG.push("Air Affinity");
         comment = "If TRUE, the Air Affinity Enchantment is available for Helmets.";
-        enableAirWorker = SERVER_CONFIG.comment(comment).define("Enable", true);
+        enableAirAffinity = SERVER_CONFIG.comment(comment).define("Enable", true);
         comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
-        treasureAirWorker = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        treasureAirAffinity = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Insight");
+        comment = "If TRUE, the Insight Enchantment is available for Helmets.";
+        enableExpBoost = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureExpBoost = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        comment = "Adjust this to change the max experience awarded per level of the Enchantment.";
+        amountExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Experience Amount", 4, 1, 1000);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Gourmand");
@@ -129,6 +140,27 @@ public class ModConfig {
         treasureGourmand = SERVER_CONFIG.comment(comment).define("Treasure", false);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelGourmand = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        SERVER_CONFIG.pop();
+
+        // CHESTPLATE
+        SERVER_CONFIG.push("Reach");
+        comment = "If TRUE, the Reach Enchantment is available for Chestplates.";
+        enableReach = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureReach = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelReach = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        SERVER_CONFIG.pop();
+
+        SERVER_CONFIG.push("Vitality");
+        comment = "If TRUE, the Vitality Enchantment is available for Chestplates.";
+        enableVitality = SERVER_CONFIG.comment(comment).define("Enable", true);
+        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
+        treasureVitality = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        comment = "This option adjusts the maximum allowable level for the Enchantment.";
+        levelVitality = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        comment = "Adjust this value to set the health granted level of the Enchantment. (There are 2 health per heart icon.)";
+        healthLevelVitality = SERVER_CONFIG.comment(comment).defineInRange("Health / Level", 4, 1, 10);
         SERVER_CONFIG.pop();
 
         // WEAPONS
@@ -224,26 +256,6 @@ public class ModConfig {
         treasureExcavating = SERVER_CONFIG.comment(comment).define("Treasure", true);
         comment = "This option adjusts the maximum allowable level for the Enchantment.";
         levelExcavating = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        SERVER_CONFIG.pop();
-
-        SERVER_CONFIG.push("Insight");
-        comment = "If TRUE, the Insight Enchantment is available for various Tools and Weapons.";
-        enableExpBoost = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
-        treasureExpBoost = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this to change the max experience awarded per level of the Enchantment.";
-        amountExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Experience Amount", 4, 1, 1000);
-        SERVER_CONFIG.pop();
-
-        SERVER_CONFIG.push("Reach");
-        comment = "If TRUE, the Reach Enchantment is available for various Tools.";
-        enableReach = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
-        treasureReach = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelReach = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         // BOWS
@@ -511,13 +523,31 @@ public class ModConfig {
         }
         // HELMET
         if (AIR_AFFINITY instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirWorker.get());
-            ((EnchantmentCoFH) AIR_AFFINITY).setTreasure(treasureAirWorker.get());
+            ((EnchantmentCoFH) AIR_AFFINITY).setEnable(enableAirAffinity.get());
+            ((EnchantmentCoFH) AIR_AFFINITY).setTreasure(treasureAirAffinity.get());
+        }
+        if (EXP_BOOST instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) EXP_BOOST).setEnable(enableExpBoost.get());
+            ((EnchantmentCoFH) EXP_BOOST).setTreasure(treasureExpBoost.get());
+            ((EnchantmentCoFH) EXP_BOOST).setMaxLevel(levelExpBoost.get());
+            ExpBoostEnchantment.experience = amountExpBoost.get();
         }
         if (GOURMAND instanceof EnchantmentCoFH) {
             ((EnchantmentCoFH) GOURMAND).setEnable(enableGourmand.get());
             ((EnchantmentCoFH) GOURMAND).setTreasure(treasureGourmand.get());
             ((EnchantmentCoFH) GOURMAND).setMaxLevel(levelGourmand.get());
+        }
+        // CHESTPLATE
+        if (REACH instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) REACH).setEnable(enableReach.get());
+            ((EnchantmentCoFH) REACH).setTreasure(treasureReach.get());
+            ((EnchantmentCoFH) REACH).setMaxLevel(levelReach.get());
+        }
+        if (VITALITY instanceof EnchantmentCoFH) {
+            ((EnchantmentCoFH) VITALITY).setEnable(enableVitality.get());
+            ((EnchantmentCoFH) VITALITY).setTreasure(treasureVitality.get());
+            ((EnchantmentCoFH) VITALITY).setMaxLevel(levelVitality.get());
+            VitalityEnchantment.health = healthLevelVitality.get();
         }
         // WEAPONS
         if (DAMAGE_ENDER instanceof EnchantmentCoFH) {
@@ -571,17 +601,6 @@ public class ModConfig {
             ((EnchantmentCoFH) EXCAVATING).setEnable(enableExcavating.get());
             ((EnchantmentCoFH) EXCAVATING).setTreasure(treasureExcavating.get());
             ((EnchantmentCoFH) EXCAVATING).setMaxLevel(levelExcavating.get());
-        }
-        if (EXP_BOOST instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) EXP_BOOST).setEnable(enableExpBoost.get());
-            ((EnchantmentCoFH) EXP_BOOST).setTreasure(treasureExpBoost.get());
-            ((EnchantmentCoFH) EXP_BOOST).setMaxLevel(levelExpBoost.get());
-            ExpBoostEnchantment.experience = amountExpBoost.get();
-        }
-        if (REACH instanceof EnchantmentCoFH) {
-            ((EnchantmentCoFH) REACH).setEnable(enableReach.get());
-            ((EnchantmentCoFH) REACH).setTreasure(treasureReach.get());
-            ((EnchantmentCoFH) REACH).setMaxLevel(levelReach.get());
         }
         // BOWS
         if (HUNTER instanceof EnchantmentCoFH) {
@@ -742,12 +761,27 @@ public class ModConfig {
     private static BooleanValue allowMobsFrostRebuke;
 
     // HELMET
-    private static BooleanValue enableAirWorker;
-    private static BooleanValue treasureAirWorker;
+    private static BooleanValue enableAirAffinity;
+    private static BooleanValue treasureAirAffinity;
+
+    private static BooleanValue enableExpBoost;
+    private static BooleanValue treasureExpBoost;
+    private static IntValue levelExpBoost;
+    private static IntValue amountExpBoost;
 
     private static BooleanValue enableGourmand;
     private static BooleanValue treasureGourmand;
     private static IntValue levelGourmand;
+
+    // CHESTPLATE
+    private static BooleanValue enableReach;
+    private static BooleanValue treasureReach;
+    private static IntValue levelReach;
+
+    private static BooleanValue enableVitality;
+    private static BooleanValue treasureVitality;
+    private static IntValue levelVitality;
+    private static IntValue healthLevelVitality;
 
     // WEAPONS
     private static BooleanValue enableDamageEnder;
@@ -792,15 +826,6 @@ public class ModConfig {
     private static BooleanValue enableExcavating;
     private static BooleanValue treasureExcavating;
     private static IntValue levelExcavating;
-
-    private static BooleanValue enableExpBoost;
-    private static BooleanValue treasureExpBoost;
-    private static IntValue levelExpBoost;
-    private static IntValue amountExpBoost;
-
-    private static BooleanValue enableReach;
-    private static BooleanValue treasureReach;
-    private static IntValue levelReach;
 
     // BOWS
     private static BooleanValue enableHunter;
