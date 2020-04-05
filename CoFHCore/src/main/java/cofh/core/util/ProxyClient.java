@@ -2,8 +2,10 @@ package cofh.core.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ProxyClient extends Proxy {
 
@@ -28,12 +30,6 @@ public class ProxyClient extends Proxy {
     public World getClientWorld() {
 
         return Minecraft.getInstance().world;
-    }
-
-    @Override
-    public boolean isServer() {
-
-        return false;
     }
 
     @Override

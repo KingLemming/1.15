@@ -1,8 +1,10 @@
 package cofh.thermal.expansion;
 
+import cofh.thermal.core.init.ThermalRecipeManager;
 import cofh.thermal.expansion.gui.client.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
+import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +31,12 @@ public class ThermalExpansion {
 
         TExpBlocks.register();
         TExpItems.register();
+
+        ThermalRecipeManager.register(FurnaceRecipeManager.instance());
+        //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
+        //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
+        //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
+        //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
     }
 
     // region INITIALIZATION
@@ -53,25 +61,4 @@ public class ThermalExpansion {
 
     }
     // endregion
-
-    //    public void serverStarting(FMLServerAboutToStartEvent event)
-    //    {
-    //        event.getServer().getResourceManager().addReloadListener(
-    //                new ReloadListener<DataCollection>()
-    //                {
-    //                    @Override
-    //                    protected DataCollection prepare(IResourceManager resourceManagerIn, IProfiler profilerIn)
-    //                    {
-    //                        return new DataCollection(stuffs);
-    //                    }
-    //
-    //                    @Override
-    //                    protected void apply(DataCollection splashList, IResourceManager resourceManagerIn, IProfiler profilerIn)
-    //                    {
-    //                        stuffs.prepare();
-    //                        stuffs.syncToAllClients();
-    //                    }
-    //                }
-    //        );
-    //    }
 }

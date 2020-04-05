@@ -8,6 +8,7 @@ import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.recipes.IDynamoFuel;
 import cofh.thermal.core.util.recipes.SimpleFluidFuel;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -100,7 +101,7 @@ public abstract class SimpleFluidFuelManager extends AbstractManager implements 
 
     // region IManager
     @Override
-    public void refresh() {
+    public void refresh(RecipeManager recipeManager) {
 
     }
     // endregion

@@ -1,6 +1,17 @@
 package cofh.thermal.expansion.util.managers.machine;
 
+import cofh.core.CoFHCore;
 import cofh.thermal.core.util.managers.SimpleItemRecipeManager;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+
+import java.util.Map;
 
 public class FurnaceRecipeManager extends SimpleItemRecipeManager {
 
@@ -47,40 +58,36 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
     }
 
     @Override
-    public void initialize() {
+    public void refresh(RecipeManager recipeManager) {
+
+        System.out.println(CoFHCore.proxy.isClient());
+        if (recipeManager == null) {
+            return;
+        }
+        clear();
 
         if (defaultFurnaceRecipes) {
-            //            Map<ItemStack, ItemStack> smeltingList = FurnaceRecipes.instance().getSmeltingList();
-            //            ItemStack output;
-            //            int energy;
-            //
-            //            for (ItemStack key : smeltingList.keySet()) {
-            //                if (key.isEmpty() || validRecipe(key)) {
-            //                    continue;
-            //                }
-            //                output = smeltingList.get(key);
-            //                if (hasPreferredOre(getOreName(output))) {
-            //                    output = cloneStack(getPreferredOre(getOreName(output)), output.getCount());
-            //                }
-            //                energy = defaultEnergy;
-            //
-            //                if (defaultFoodRecipes && output.getItem() instanceof ItemFood) {
-            //                    energy /= 2;
-            //                }
-            //                if (defaultDustRecipes && hasOrePrefix(key, PREFIX_DUST) && hasOrePrefix(output, PREFIX_INGOT)) {
-            //                    addRecipe(energy * 3 / 4, key, output);
-            //                } else {
-            //                    if (getItemDamage(key) == OreDictionary.WILDCARD_VALUE) {
-            //                        ItemStack testKey = cloneStack(key);
-            //                        testKey.setItemDamage(0);
-            //                        if (hasOreName(testKey) && defaultValidator.validate(getOreName(testKey))) {
-            //                            addRecipe(energy, testKey, output);
-            //                            continue;
-            //                        }
-            //                    }
-            //                    addRecipe(energy, key, output);
-            //                }
-            //            }
+            Map<ResourceLocation, IRecipe<IInventory>> smeltingRecipes = recipeManager.getRecipes(IRecipeType.SMELTING);
+
+            System.out.println(smeltingRecipes.size());
+            for (Map.Entry<ResourceLocation, IRecipe<IInventory>> entry : smeltingRecipes.entrySet()) {
+                IRecipe<IInventory> smeltingRecipe = entry.getValue();
+                ItemStack recipeOutput = smeltingRecipe.getRecipeOutput();
+                if (!smeltingRecipe.isDynamic() && !recipeOutput.isEmpty()) {
+                    int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
+
+                    NonNullList<Ingredient> ingredients = smeltingRecipe.getIngredients();
+                    System.out.println("Processing a recipe: " + smeltingRecipe);
+                    if (ingredients.isEmpty()) {
+                        // TODO: Log an error.
+                        continue;
+                    }
+                    for (ItemStack recipeInput : ingredients.get(0).getMatchingStacks()) {
+                        addRecipe(energy, recipeInput, recipeOutput);
+                        System.out.println("Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy);
+                    }
+                }
+            }
         }
     }
     // endregion

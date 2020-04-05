@@ -7,15 +7,23 @@ import cofh.thermal.core.data.TCoreTags;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
+import cofh.thermal.core.init.ThermalRecipeManager;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
+import net.minecraft.profiler.IProfiler;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -50,6 +58,10 @@ public class ThermalCore {
         modEventBus.addListener(this::processIMC);
         modEventBus.addListener(this::gatherData);
 
+        MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
+        MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
+        MinecraftForge.EVENT_BUS.addListener(this::recipesUpdated);
+
         BLOCKS.register(modEventBus);
         FLUIDS.register(modEventBus);
         ITEMS.register(modEventBus);
@@ -72,6 +84,38 @@ public class ThermalCore {
 
     private void processIMC(final InterModProcessEvent event) {
 
+    }
+
+    public void serverAboutToStart(FMLServerAboutToStartEvent event) {
+
+        ThermalRecipeManager.SERVER.setRecipeManager(event.getServer().getRecipeManager());
+
+        event.getServer().getResourceManager().addReloadListener(
+                new ReloadListener<Void>() {
+
+                    @Override
+                    protected Void prepare(IResourceManager resourceManagerIn, IProfiler profilerIn) {
+
+                        return null;
+                    }
+
+                    @Override
+                    protected void apply(Void nothing, IResourceManager resourceManagerIn, IProfiler profilerIn) {
+
+                        ThermalRecipeManager.SERVER.refresh();
+                    }
+                }
+        );
+    }
+
+    private void serverStarted(FMLServerStartedEvent event) {
+
+        System.out.println("STARTED");
+    }
+
+    private void recipesUpdated(RecipesUpdatedEvent event) {
+
+        System.out.println("RECIPES UPDATED");
     }
     // endregion
 

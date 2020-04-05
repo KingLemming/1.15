@@ -9,6 +9,7 @@ import cofh.thermal.core.util.recipes.IDynamoFuel;
 import cofh.thermal.core.util.recipes.SimpleItemFuel;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.RecipeManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -86,7 +87,7 @@ public abstract class SimpleItemFuelManager extends AbstractManager implements I
 
     // region IManager
     @Override
-    public void refresh() {
+    public void refresh(RecipeManager recipeManager) {
 
     }
     // endregion

@@ -11,6 +11,7 @@ import cofh.thermal.core.util.recipes.SimpleCatalyst;
 import cofh.thermal.core.util.recipes.SimpleItemRecipe;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
@@ -35,6 +36,11 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
         super(defaultEnergy);
         this.maxOutputItems = maxOutputItems;
         this.maxOutputFluids = maxOutputFluids;
+    }
+
+    protected void clear() {
+
+        recipeMap.clear();
     }
 
     public boolean validRecipe(ItemStack input) {
@@ -144,7 +150,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
 
     // region IManager
     @Override
-    public void refresh() {
+    public void refresh(RecipeManager recipeManager) {
 
     }
     // endregion

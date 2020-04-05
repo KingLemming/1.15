@@ -57,10 +57,4 @@ public abstract class AbstractManager implements IManager {
         return scaleFactor;
     }
 
-    // region IManager
-    @Override
-    public void initialize() {
-
-    }
-    // endregion
 }

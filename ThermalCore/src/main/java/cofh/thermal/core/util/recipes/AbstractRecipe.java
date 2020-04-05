@@ -95,4 +95,8 @@ public abstract class AbstractRecipe implements IMachineRecipe {
         return energy;
     }
     // endregion
+
+    // region IRecipe
+
+    // endregion
 }
