@@ -26,6 +26,11 @@ public class Proxy {
         return null;
     }
 
+    public boolean isServer() {
+
+        return true;
+    }
+
     public boolean isClient() {
 
         return false;

@@ -31,7 +31,7 @@ public class PanaceaEffect extends EffectCoFH {
     }
 
     // region HELPERS
-    private void clearHarmfulEffects(LivingEntity entity) {
+    public static void clearHarmfulEffects(LivingEntity entity) {
 
         if (Utils.isClientWorld(entity.world)) {
             return;

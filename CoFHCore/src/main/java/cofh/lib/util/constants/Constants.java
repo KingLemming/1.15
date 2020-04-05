@@ -91,6 +91,7 @@ public class Constants {
     public static final int ITEM_ACTIVE_DURATION = 40;
     public static final int MAGMATIC_TEMPERATURE = 1000;
     public static final int MAX_ENCHANT_LEVEL = 10;
+    public static final int MAX_FOOD_LEVEL = 20;
     public static final int MB_PER_XP = 20;
     public static final int NETWORK_UPDATE_DISTANCE = 192;
     public static final int RF_PER_FURNACE_UNIT = 10;
@@ -104,6 +105,12 @@ public class Constants {
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     public static final Direction[] DIRECTIONS = Direction.values();
+    // endregion
+
+    // region COMMANDS
+    public static final String DURATION = "duration";
+    public static final String PLAYER = "player";
+    public static final String TARGETS = "targets";
     // endregion
 
     // region GUI

@@ -545,8 +545,6 @@ public class CommonEvents {
     private static final Multimap<String, AttributeModifier> REACH_ATTRIBUTE = HashMultimap.create();
     private static final Multimap<String, AttributeModifier> VITALITY_ATTRIBUTE = HashMultimap.create();
 
-    private static final int MAX_FOOD_LEVEL = 20;
-
     private static ItemStack stealArmor(LivingEntity living) {
 
         ItemStack stack = ItemStack.EMPTY;

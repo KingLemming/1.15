@@ -1,5 +1,6 @@
 package cofh.core.init;
 
+import cofh.core.command.*;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
@@ -43,6 +44,19 @@ public class CoreConfig {
 
         String comment;
 
+        SERVER_CONFIG.push("Commands");
+        comment = "The required permission level for the '/cofh crafting' command.";
+        permissionCrafting = SERVER_CONFIG.comment(comment).defineInRange("Crafting Permission Level", SubCommandCrafting.permissionLevel, 0, 4);
+        comment = "The required permission level for the '/cofh enderchest' command.";
+        permissionEnderChest = SERVER_CONFIG.comment(comment).defineInRange("EnderChest Permission Level", SubCommandEnderChest.permissionLevel, 0, 4);
+        comment = "The required permission level for the '/cofh heal' command.";
+        permissionHeal = SERVER_CONFIG.comment(comment).defineInRange("Heal Permission Level", SubCommandHeal.permissionLevel, 0, 4);
+        comment = "The required permission level for the '/cofh ignite' command.";
+        permissionIgnite = SERVER_CONFIG.comment(comment).defineInRange("Ignite Permission Level", SubCommandIgnite.permissionLevel, 0, 4);
+        comment = "The required permission level for the '/cofh repair' command.";
+        permissionRepair = SERVER_CONFIG.comment(comment).defineInRange("Repair Permission Level", SubCommandRepair.permissionLevel, 0, 4);
+        SERVER_CONFIG.pop();
+
         SERVER_CONFIG.push("Enchantments");
         comment = "If TRUE, Feather Falling will prevent Farmland from being trampled. This option will work with alternative versions (overrides) of Feather Falling.";
         serverImprovedFeatherFalling = SERVER_CONFIG.comment(comment).define("Improved Feather Falling", improvedFeatherFalling);
@@ -71,19 +85,25 @@ public class CoreConfig {
     private static void genClientConfig() {
 
         String comment;
-        CLIENT_CONFIG.push("Tooltips");
 
+        CLIENT_CONFIG.push("Tooltips");
         comment = "If TRUE, Enchantment descriptions will be added to the tooltip for Enchanted Books containing only a single enchantment.";
         clientEnableEnchantmentDescriptions = CLIENT_CONFIG.comment(comment).define("Show Enchantment Descriptions", enableEnchantmentDescriptions);
 
         comment = "If TRUE, Item descriptions will be added to their tooltips if possible.";
         clientEnableItemDescriptions = CLIENT_CONFIG.comment(comment).define("Show Item Descriptions", enableItemDescriptions);
-
         CLIENT_CONFIG.pop();
+
         clientSpec = CLIENT_CONFIG.build();
     }
 
     private static void refreshServerConfig() {
+
+        SubCommandCrafting.permissionLevel = permissionCrafting.get();
+        SubCommandEnderChest.permissionLevel = permissionEnderChest.get();
+        SubCommandHeal.permissionLevel = permissionHeal.get();
+        SubCommandIgnite.permissionLevel = permissionIgnite.get();
+        SubCommandRepair.permissionLevel = permissionRepair.get();
 
         improvedFeatherFalling = serverImprovedFeatherFalling.get();
         improvedMending = serverImprovedMending.get();
@@ -103,6 +123,12 @@ public class CoreConfig {
     // endregion
 
     // region VARIABLES
+    public static IntValue permissionCrafting;
+    public static IntValue permissionEnderChest;
+    public static IntValue permissionHeal;
+    public static IntValue permissionIgnite;
+    public static IntValue permissionRepair;
+
     public static boolean improvedFeatherFalling = true;
     public static boolean improvedMending = true;
 

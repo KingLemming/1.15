@@ -31,6 +31,12 @@ public class ProxyClient extends Proxy {
     }
 
     @Override
+    public boolean isServer() {
+
+        return false;
+    }
+
+    @Override
     public boolean isClient() {
 
         return true;

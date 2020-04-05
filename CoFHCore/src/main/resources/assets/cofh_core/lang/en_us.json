@@ -1,4 +1,13 @@
 {
+  "commands.cofh.heal.success.single": "Healed %s",
+  "commands.cofh.heal.success.multiple": "Healed %s entities",
+  "commands.cofh.ignite.success.single": "Ignited %s",
+  "commands.cofh.ignite.success.multiple": "Ignited %s entities",
+  "commands.cofh.repair.success.single": "Repaired equipment for %s",
+  "commands.cofh.repair.success.multiple": "Repaired equipment for %s entities",
+  "commands.cofh.zap.success.single": "Zapped %s",
+  "commands.cofh.zap.success.multiple": "Zapped %s entities",
+
   "info.cofh.information": "Information",
 
   "info.cofh.secure_block": "This block now belongs to you.",

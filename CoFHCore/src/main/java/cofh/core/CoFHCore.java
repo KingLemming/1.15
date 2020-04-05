@@ -1,5 +1,6 @@
 package cofh.core;
 
+import cofh.core.command.CoFHCommand;
 import cofh.core.data.CoreLootTables;
 import cofh.core.data.CoreRecipes;
 import cofh.core.event.CoreClientEvents;
@@ -30,12 +31,14 @@ import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -65,6 +68,8 @@ public class CoFHCore {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
+
+        MinecraftForge.EVENT_BUS.addListener(this::serverStarting);
 
         BLOCKS.register(modEventBus);
         EFFECTS.register(modEventBus);
@@ -108,8 +113,6 @@ public class CoFHCore {
         AOEEvents.register();
         EffectEvents.register();
         ShieldEvents.register();
-
-        // packetHandler = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "network"));
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -122,6 +125,11 @@ public class CoFHCore {
         CoreClientEvents.register();
 
         AOEClientEvents.register();
+    }
+
+    private void serverStarting(final FMLServerStartingEvent event) {
+
+        CoFHCommand.initialize(event.getCommandDispatcher());
     }
     // endregion
 
@@ -146,5 +154,4 @@ public class CoFHCore {
 
     }
     // endregion
-
 }

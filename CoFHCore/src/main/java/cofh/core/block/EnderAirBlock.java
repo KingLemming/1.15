@@ -35,7 +35,7 @@ import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
 public class EnderAirBlock extends AirBlock {
 
     protected static boolean teleport = true;
-    protected static int duration = 100;
+    protected static int duration = 40;
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -104,7 +104,7 @@ public class EnderAirBlock extends AirBlock {
         if (entityIn instanceof ItemEntity || entityIn instanceof ExperienceOrbEntity) {
             return;
         }
-        BlockPos randPos = pos.add(-8 + worldIn.rand.nextInt(17), worldIn.rand.nextInt(8), -8 + worldIn.rand.nextInt(17));
+        BlockPos randPos = pos.add(-16 + worldIn.rand.nextInt(33), worldIn.rand.nextInt(8), -16 + worldIn.rand.nextInt(33));
 
         if (!worldIn.getBlockState(randPos).getMaterial().isSolid()) {
             if (entityIn instanceof LivingEntity) {
