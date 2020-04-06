@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.internal;
 
 import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.item.ItemStack;
@@ -23,5 +23,7 @@ public interface IMachineRecipe {
     List<Integer> getInputFluidCounts(IThermalInventory inventory);
 
     int getEnergy(IThermalInventory inventory);
+
+    float getExperience(IThermalInventory inventory);
 
 }

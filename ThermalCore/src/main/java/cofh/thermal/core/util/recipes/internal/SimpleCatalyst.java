@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.internal;
 
 public class SimpleCatalyst implements IRecipeCatalyst {
 

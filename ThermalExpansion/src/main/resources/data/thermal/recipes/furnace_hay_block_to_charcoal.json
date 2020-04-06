@@ -1,0 +1,10 @@
+{
+  "type": "thermal:furnace",
+  "input": {
+    "item": "minecraft:hay_block"
+  },
+  "output": {
+    "item": "minecraft:charcoal"
+  },
+  "experience": 0.15
+}

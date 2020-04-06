@@ -4,7 +4,9 @@ import cofh.thermal.core.init.ThermalRecipeManager;
 import cofh.thermal.expansion.gui.client.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
+import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
+import cofh.thermal.expansion.util.managers.machine.SawmillRecipeManager;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -31,9 +33,10 @@ public class ThermalExpansion {
 
         TExpBlocks.register();
         TExpItems.register();
+        TExpRecipes.register();
 
         ThermalRecipeManager.register(FurnaceRecipeManager.instance());
-        //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
+        ThermalRecipeManager.register(SawmillRecipeManager.instance());
         //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
         //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());
         //        ThermalManagers.instance().register(FurnaceRecipeManager.instance());

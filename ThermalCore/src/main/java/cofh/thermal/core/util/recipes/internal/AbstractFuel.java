@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.internal;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

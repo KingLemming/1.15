@@ -1,7 +1,7 @@
 package cofh.thermal.core.util.managers;
 
 import cofh.thermal.core.util.IThermalInventory;
-import cofh.thermal.core.util.recipes.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 
 import java.util.List;
 

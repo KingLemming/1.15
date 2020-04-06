@@ -1,0 +1,17 @@
+{
+  "type": "thermal:sawmill",
+  "input": {
+    "item": "minecraft:jungle_log"
+  },
+  "output": [
+    {
+      "item": "minecraft:jungle_planks",
+      "count": 6
+    },
+    {
+      "item": "thermal:sawdust",
+      "chance": 0.75
+    }
+  ],
+  "energy": 800
+}

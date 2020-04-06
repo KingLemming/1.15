@@ -1,0 +1,17 @@
+{
+  "type": "thermal:sawmill",
+  "input": {
+    "item": "minecraft:oak_log"
+  },
+  "output": [
+    {
+      "item": "minecraft:oak_planks",
+      "count": 6
+    },
+    {
+      "item": "thermal:sawdust",
+      "chance": 1.25
+    }
+  ],
+  "energy": 800
+}

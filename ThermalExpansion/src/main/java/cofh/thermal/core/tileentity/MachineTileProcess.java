@@ -5,7 +5,7 @@ import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
-import cofh.thermal.core.util.recipes.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;

@@ -2,52 +2,38 @@ package cofh.thermal.core.init;
 
 import cofh.thermal.core.util.managers.IManager;
 import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThermalRecipeManager implements IManager {
+public class ThermalRecipeManager {
 
-    public static final ThermalRecipeManager SERVER = new ThermalRecipeManager();
-    public static final ThermalRecipeManager CLIENT = new ThermalRecipeManager();
+    private static final ThermalRecipeManager INSTANCE = new ThermalRecipeManager();
 
+    private RecipeManager serverRecipeManager;
     private final List<IManager> managers = new ArrayList<>();
 
-    private RecipeManager recipeManager;
+    public static ThermalRecipeManager instance() {
 
-    public static ThermalRecipeManager instance(@Nullable World world) {
-
-        return world != null && world.isRemote ? CLIENT : SERVER;
+        return INSTANCE;
     }
 
     private ThermalRecipeManager() {
 
     }
 
-    public void setRecipeManager(RecipeManager recipeManager) {
+    public void setServerRecipeManager(RecipeManager recipeManager) {
 
-        this.recipeManager = recipeManager;
+        this.serverRecipeManager = recipeManager;
     }
 
     public static void register(IManager manager) {
 
-        if (!SERVER.managers.contains(manager)) {
-            SERVER.managers.add(manager);
-        }
-        if (!CLIENT.managers.contains(manager)) {
-            CLIENT.managers.add(manager);
+        if (!instance().managers.contains(manager)) {
+            instance().managers.add(manager);
         }
     }
 
-    public void refresh() {
-
-        refresh(recipeManager);
-    }
-
-    // region IManager
-    @Override
     public void config() {
 
         for (IManager sub : managers) {
@@ -55,10 +41,25 @@ public class ThermalRecipeManager implements IManager {
         }
     }
 
-    @Override
-    public void refresh(RecipeManager recipeManager) {
+    public void refreshServer() {
 
+        if (this.serverRecipeManager == null) {
+            // TODO: Throw error.
+            return;
+        }
+        for (IManager sub : managers) {
+            sub.refresh(this.serverRecipeManager);
+        }
+    }
+
+    public void refreshClient(RecipeManager recipeManager) {
+
+        if (this.serverRecipeManager != null) {
+            return;
+        }
         if (recipeManager == null) {
+            // TODO: Throw error.
+            return;
         }
         for (IManager sub : managers) {
             sub.refresh(recipeManager);

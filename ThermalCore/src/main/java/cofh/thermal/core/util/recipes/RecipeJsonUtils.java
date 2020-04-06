@@ -1,9 +1,7 @@
-package cofh.thermal.core.util.parsers;
+package cofh.thermal.core.util.recipes;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,28 +13,16 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 
-public abstract class AbstractContentParser implements IContentParser {
+public abstract class RecipeJsonUtils {
 
-    public static final Map<String, ItemStack> CONSTANTS = new Object2ObjectOpenHashMap<>();
+    private RecipeJsonUtils() {
 
-    protected abstract void parseObject(JsonObject object);
-
-    protected void parseArray(JsonArray array) {
-
-        for (JsonElement object : array) {
-            if (!preCheck(object.getAsJsonObject())) {
-                continue;
-            }
-            parseObject(object.getAsJsonObject());
-        }
     }
 
-    protected boolean preCheck(JsonObject object) {
+    public static boolean validityCheck(JsonObject object) {
 
         if (object.has(COMMENT)) {
             return false;
@@ -49,32 +35,6 @@ public abstract class AbstractContentParser implements IContentParser {
         }
         return true;
     }
-
-    // region IContentParser
-    @Override
-    public void preProcess() {
-
-    }
-
-    @Override
-    public boolean process(JsonElement element) {
-
-        if (element.isJsonObject()) {
-            parseObject(element.getAsJsonObject());
-            return true;
-        }
-        if (element.isJsonArray()) {
-            parseArray(element.getAsJsonArray());
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void postProcess() {
-
-    }
-    // endregion
 
     // region HELPERS
     public static void parseInputs(List<ItemStack> items, List<FluidStack> fluids, JsonElement element) {
@@ -147,14 +107,6 @@ public abstract class AbstractContentParser implements IContentParser {
                 count = itemObject.get(COUNT).getAsInt();
             } else if (itemObject.has(AMOUNT)) {
                 count = itemObject.get(AMOUNT).getAsInt();
-            }
-
-            /* CONSTANT */
-            if (itemObject.has(CONSTANT)) {
-                constant = itemObject.get(CONSTANT).getAsString();
-                if (CONSTANTS.containsKey(constant)) {
-                    return cloneStack(CONSTANTS.get(constant), count);
-                }
             }
 
             /* ITEM */
@@ -288,11 +240,11 @@ public abstract class AbstractContentParser implements IContentParser {
     public static final String COMMENT = "//";
     public static final String CONSTANT = "constant";
     public static final String COUNT = "count";
-    public static final String DATA = "data";
     public static final String DEPENDENCY = "dependency";
     public static final String ENABLE = "enable";
     public static final String ENERGY = "energy";
     public static final String ENERGY_MOD = "energy_mod";
+    public static final String EXPERIENCE = "experience";
     public static final String ENTRY = "entry";
     public static final String FLUID = "fluid";
     public static final String INPUT = "input";

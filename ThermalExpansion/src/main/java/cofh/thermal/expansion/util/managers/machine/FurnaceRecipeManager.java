@@ -1,7 +1,10 @@
 package cofh.thermal.expansion.util.managers.machine;
 
-import cofh.core.CoFHCore;
+import cofh.lib.inventory.FalseIInventory;
+import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SimpleItemRecipeManager;
+import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.expansion.init.TExpRecipes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -60,34 +63,29 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
     @Override
     public void refresh(RecipeManager recipeManager) {
 
-        System.out.println(CoFHCore.proxy.isClient());
-        if (recipeManager == null) {
-            return;
-        }
         clear();
-
         if (defaultFurnaceRecipes) {
             Map<ResourceLocation, IRecipe<IInventory>> smeltingRecipes = recipeManager.getRecipes(IRecipeType.SMELTING);
-
-            System.out.println(smeltingRecipes.size());
             for (Map.Entry<ResourceLocation, IRecipe<IInventory>> entry : smeltingRecipes.entrySet()) {
                 IRecipe<IInventory> smeltingRecipe = entry.getValue();
                 ItemStack recipeOutput = smeltingRecipe.getRecipeOutput();
                 if (!smeltingRecipe.isDynamic() && !recipeOutput.isEmpty()) {
                     int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
-
                     NonNullList<Ingredient> ingredients = smeltingRecipe.getIngredients();
-                    System.out.println("Processing a recipe: " + smeltingRecipe);
                     if (ingredients.isEmpty()) {
                         // TODO: Log an error.
                         continue;
                     }
                     for (ItemStack recipeInput : ingredients.get(0).getMatchingStacks()) {
                         addRecipe(energy, recipeInput, recipeOutput);
-                        System.out.println("Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy);
+                        ThermalCore.LOG.debug("Furnace - Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy + " RF");
                     }
                 }
             }
+        }
+        Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_FURNACE);
+        for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
+            addRecipe((ThermalIRecipe) entry.getValue());
         }
     }
     // endregion

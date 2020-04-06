@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.internal;
 
 import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.item.ItemStack;
@@ -16,19 +16,24 @@ import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 public class SimpleItemRecipe extends AbstractRecipe {
 
     // region SINGLE ITEM OUTPUT
-    public SimpleItemRecipe(int energy, ItemStack input, ItemStack output, float chance) {
+    public SimpleItemRecipe(int energy, float experience, ItemStack input, ItemStack output, float chance) {
 
-        super(energy);
+        super(energy, experience);
         this.inputItems.add(input);
         this.outputItems.add(output);
         this.outputItemChances.add(chance);
     }
+
+    public SimpleItemRecipe(int energy, ItemStack input, ItemStack output, float chance) {
+
+        this(energy, 0.0F, input, output, chance);
+    }
     // endregion
 
     // region MULTIPLE ITEM OUTPUT
-    public SimpleItemRecipe(int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance) {
+    public SimpleItemRecipe(int energy, float experience, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance) {
 
-        super(energy);
+        super(energy, experience);
         this.inputItems.add(input);
         this.outputItems.addAll(output);
 
@@ -41,21 +46,31 @@ public class SimpleItemRecipe extends AbstractRecipe {
             }
         }
     }
+
+    public SimpleItemRecipe(int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance) {
+
+        this(energy, 0.0F, input, output, chance);
+    }
     // endregion
 
     // region SINGLE FLUID OUTPUT
-    public SimpleItemRecipe(int energy, ItemStack input, FluidStack output) {
+    public SimpleItemRecipe(int energy, float experience, ItemStack input, FluidStack output) {
 
-        super(energy);
+        super(energy, experience);
         this.inputItems.add(input);
         this.outputFluids.add(output);
+    }
+
+    public SimpleItemRecipe(int energy, ItemStack input, FluidStack output) {
+
+        this(energy, 0.0F, input, output);
     }
     // endregion
 
     // region ITEM + FLUID OUTPUT
-    public SimpleItemRecipe(int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
+    public SimpleItemRecipe(int energy, float experience, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
 
-        super(energy);
+        super(energy, experience);
         this.inputItems.add(input);
         this.outputItems.addAll(output);
 
@@ -70,6 +85,11 @@ public class SimpleItemRecipe extends AbstractRecipe {
         if (fluids != null) {
             this.outputFluids.addAll(fluids);
         }
+    }
+
+    public SimpleItemRecipe(int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
+
+        this(energy, 0.0F, input, output, chance, fluids);
     }
     // endregion
 

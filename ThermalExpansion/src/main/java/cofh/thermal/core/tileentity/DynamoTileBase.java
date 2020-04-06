@@ -1,6 +1,6 @@
 package cofh.thermal.core.tileentity;
 
-import cofh.thermal.core.util.recipes.IDynamoFuel;
+import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;

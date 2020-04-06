@@ -14,6 +14,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,6 +25,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -41,6 +44,7 @@ public class ThermalCore {
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_THERMAL);
     public static final DeferredRegisterCoFH<TileEntityType<?>> TILE_ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL);
     public static final DeferredRegisterCoFH<ContainerType<?>> CONTAINERS = new DeferredRegisterCoFH<>(ForgeRegistries.CONTAINERS, ID_THERMAL);
+    public static final DeferredRegisterCoFH<IRecipeSerializer<?>> RECIPE_SERIALIZERS = new DeferredRegisterCoFH<>(ForgeRegistries.RECIPE_SERIALIZERS, ID_THERMAL);
 
     static {
         TCoreBlocks.register();
@@ -60,6 +64,8 @@ public class ThermalCore {
 
         MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
         MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
+        MinecraftForge.EVENT_BUS.addListener(this::serverStopping);
+        MinecraftForge.EVENT_BUS.addListener(this::serverStopped);
         MinecraftForge.EVENT_BUS.addListener(this::recipesUpdated);
 
         BLOCKS.register(modEventBus);
@@ -67,6 +73,7 @@ public class ThermalCore {
         ITEMS.register(modEventBus);
         TILE_ENTITIES.register(modEventBus);
         CONTAINERS.register(modEventBus);
+        RECIPE_SERIALIZERS.register(modEventBus);
     }
 
     // region INITIALIZATION
@@ -88,7 +95,7 @@ public class ThermalCore {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
 
-        ThermalRecipeManager.SERVER.setRecipeManager(event.getServer().getRecipeManager());
+        ThermalRecipeManager.instance().setServerRecipeManager(event.getServer().getRecipeManager());
 
         event.getServer().getResourceManager().addReloadListener(
                 new ReloadListener<Void>() {
@@ -102,7 +109,7 @@ public class ThermalCore {
                     @Override
                     protected void apply(Void nothing, IResourceManager resourceManagerIn, IProfiler profilerIn) {
 
-                        ThermalRecipeManager.SERVER.refresh();
+                        ThermalRecipeManager.instance().refreshServer();
                     }
                 }
         );
@@ -110,12 +117,20 @@ public class ThermalCore {
 
     private void serverStarted(FMLServerStartedEvent event) {
 
-        System.out.println("STARTED");
+    }
+
+    private void serverStopping(FMLServerStoppingEvent event) {
+
+    }
+
+    private void serverStopped(FMLServerStoppedEvent event) {
+
+        ThermalRecipeManager.instance().setServerRecipeManager(null);
     }
 
     private void recipesUpdated(RecipesUpdatedEvent event) {
 
-        System.out.println("RECIPES UPDATED");
+        ThermalRecipeManager.instance().refreshClient(event.getRecipeManager());
     }
     // endregion
 

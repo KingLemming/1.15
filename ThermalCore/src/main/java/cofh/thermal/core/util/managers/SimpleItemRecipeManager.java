@@ -5,10 +5,11 @@ import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.inventory.ItemStackHolder;
 import cofh.lib.util.ComparableItemStack;
 import cofh.thermal.core.util.IThermalInventory;
-import cofh.thermal.core.util.recipes.IMachineRecipe;
-import cofh.thermal.core.util.recipes.IRecipeCatalyst;
-import cofh.thermal.core.util.recipes.SimpleCatalyst;
-import cofh.thermal.core.util.recipes.SimpleItemRecipe;
+import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
+import cofh.thermal.core.util.recipes.internal.SimpleCatalyst;
+import cofh.thermal.core.util.recipes.internal.SimpleItemRecipe;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.RecipeManager;
@@ -56,6 +57,11 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
     public IMachineRecipe removeRecipe(ItemStack input) {
 
         return recipeMap.remove(convert(input));
+    }
+
+    public IMachineRecipe addRecipe(ThermalIRecipe recipe) {
+
+        return addRecipe(recipe.getEnergy(), recipe.getInputItems().get(0), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
     }
 
     public IMachineRecipe addRecipe(int energy, ItemStack input, ItemStack output) {

@@ -36,6 +36,8 @@ public class TCoreItems {
         //        // register("dust_stone", group);
         //        register("gear_stone", group);
 
+        registerItem("sawdust", group);
+
         registerMetalSet("iron", group, true);
         registerMetalSet("gold", group, true);
 

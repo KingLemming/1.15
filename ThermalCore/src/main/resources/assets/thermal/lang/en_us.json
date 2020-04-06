@@ -93,6 +93,8 @@
   "itemGroup.thermal.items": "Thermal Series: Items",
   "itemGroup.thermal.tools": "Thermal Series: Tools",
 
+  "item.thermal.sawdust": "Sawdust",
+
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",

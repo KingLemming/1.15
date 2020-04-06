@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.internal;
 
 import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.item.ItemStack;
@@ -15,11 +15,14 @@ public abstract class AbstractRecipe implements IMachineRecipe {
     protected final List<ItemStack> outputItems = new ArrayList<>();
     protected final List<FluidStack> outputFluids = new ArrayList<>();
     protected final List<Float> outputItemChances = new ArrayList<>();
-    protected final int energy;
 
-    public AbstractRecipe(int energy) {
+    protected final int energy;
+    protected final float experience;
+
+    public AbstractRecipe(int energy, float experience) {
 
         this.energy = energy;
+        this.experience = Math.max(0.0F, experience);
     }
 
     // region IMachineRecipe
@@ -94,9 +97,11 @@ public abstract class AbstractRecipe implements IMachineRecipe {
 
         return energy;
     }
-    // endregion
 
-    // region IRecipe
+    @Override
+    public float getExperience(IThermalInventory inventory) {
 
+        return experience;
+    }
     // endregion
 }

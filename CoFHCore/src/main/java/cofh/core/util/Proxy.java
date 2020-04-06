@@ -1,10 +1,8 @@
 package cofh.core.util;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class Proxy {
 
