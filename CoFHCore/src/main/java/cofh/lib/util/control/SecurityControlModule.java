@@ -107,6 +107,9 @@ public class SecurityControlModule implements ISecurable {
     @Override
     public boolean setOwner(GameProfile profile) {
 
+        if (!isSecurable()) {
+            return false;
+        }
         if (SecurityHelper.isDefaultProfile(owner) && !SecurityHelper.isDefaultProfile(profile)) {
             owner = profile;
             if (Utils.isServerWorld(tile.world())) {

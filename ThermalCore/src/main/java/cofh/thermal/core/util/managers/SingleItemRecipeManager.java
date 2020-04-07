@@ -61,6 +61,14 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
         return getRecipe(Collections.singletonList(new ItemStackHolder(input)), Collections.emptyList());
     }
 
+    protected IMachineRecipe getRecipe(List<? extends IItemStackAccess> inputSlots, List<? extends IFluidStackAccess> inputTanks) {
+
+        if (inputSlots.isEmpty() || inputSlots.get(0).isEmpty()) {
+            return null;
+        }
+        return recipeMap.get(convert(inputSlots.get(0).getItemStack()));
+    }
+
     protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
@@ -107,14 +115,6 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
     public IMachineRecipe getRecipe(IThermalInventory inventory) {
 
         return getRecipe(inventory.inputSlots(), inventory.inputTanks());
-    }
-
-    public IMachineRecipe getRecipe(List<? extends IItemStackAccess> inputSlots, List<? extends IFluidStackAccess> inputTanks) {
-
-        if (inputSlots.isEmpty() || inputSlots.get(0).isEmpty()) {
-            return null;
-        }
-        return recipeMap.get(convert(inputSlots.get(0).getItemStack()));
     }
 
     @Override

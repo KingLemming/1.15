@@ -60,6 +60,35 @@ public class ThermalTags {
 
     public static class Items {
 
+        public static final Tag<Item> ORES_COPPER = forgeTag("ores/copper");
+        public static final Tag<Item> ORES_TIN = forgeTag("ores/tin");
+        public static final Tag<Item> ORES_SILVER = forgeTag("ores/silver");
+        public static final Tag<Item> ORES_LEAD = forgeTag("ores/lead");
+        public static final Tag<Item> ORES_NICKEL = forgeTag("ores/nickel");
+        public static final Tag<Item> ORES_PLATINUM = forgeTag("ores/platinum");
+
+        public static final Tag<Item> ORES_RUBY = forgeTag("ores/ruby");
+        public static final Tag<Item> ORES_SAPPHIRE = forgeTag("ores/sapphire");
+
+        public static final Tag<Item> STORAGE_BLOCKS_SIGNALUM = forgeTag("storage_blocks/signalum");
+        public static final Tag<Item> STORAGE_BLOCKS_LUMIUM = forgeTag("storage_blocks/lumium");
+        public static final Tag<Item> STORAGE_BLOCKS_ENDERIUM = forgeTag("storage_blocks/enderium");
+
+        public static final Tag<Item> STORAGE_BLOCKS_COPPER = forgeTag("storage_blocks/copper");
+        public static final Tag<Item> STORAGE_BLOCKS_TIN = forgeTag("storage_blocks/tin");
+        public static final Tag<Item> STORAGE_BLOCKS_SILVER = forgeTag("storage_blocks/silver");
+        public static final Tag<Item> STORAGE_BLOCKS_LEAD = forgeTag("storage_blocks/lead");
+        public static final Tag<Item> STORAGE_BLOCKS_NICKEL = forgeTag("storage_blocks/nickel");
+        public static final Tag<Item> STORAGE_BLOCKS_PLATINUM = forgeTag("storage_blocks/platinum");
+
+        public static final Tag<Item> STORAGE_BLOCKS_BRONZE = forgeTag("storage_blocks/bronze");
+        public static final Tag<Item> STORAGE_BLOCKS_ELECTRUM = forgeTag("storage_blocks/electrum");
+        public static final Tag<Item> STORAGE_BLOCKS_INVAR = forgeTag("storage_blocks/invar");
+        public static final Tag<Item> STORAGE_BLOCKS_CONSTANTAN = forgeTag("storage_blocks/constantan");
+
+        public static final Tag<Item> STORAGE_BLOCKS_RUBY = forgeTag("storage_blocks/ruby");
+        public static final Tag<Item> STORAGE_BLOCKS_SAPPHIRE = forgeTag("storage_blocks/sapphire");
+
         public static final Tag<Item> COINS_SIGNALUM = forgeTag("coins/signalum");
         public static final Tag<Item> COINS_LUMIUM = forgeTag("coins/lumium");
         public static final Tag<Item> COINS_ENDERIUM = forgeTag("coins/enderium");

@@ -14,11 +14,11 @@ import net.minecraft.world.World;
  */
 public abstract class ThermalRecipeBase implements IRecipe<FalseIInventory> {
 
-    protected final ResourceLocation id;
+    protected final ResourceLocation recipeId;
 
-    protected ThermalRecipeBase(ResourceLocation id) {
+    protected ThermalRecipeBase(ResourceLocation recipeId) {
 
-        this.id = id;
+        this.recipeId = recipeId;
     }
 
     // region IRecipe
@@ -55,7 +55,7 @@ public abstract class ThermalRecipeBase implements IRecipe<FalseIInventory> {
     @Override
     public ResourceLocation getId() {
 
-        return id;
+        return recipeId;
     }
 
     @Override

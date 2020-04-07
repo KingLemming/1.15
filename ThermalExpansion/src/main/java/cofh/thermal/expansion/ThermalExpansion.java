@@ -5,10 +5,7 @@ import cofh.thermal.expansion.gui.client.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.init.TExpRecipes;
-import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
-import cofh.thermal.expansion.util.managers.machine.InsolatorRecipeManager;
-import cofh.thermal.expansion.util.managers.machine.PulverizerRecipeManager;
-import cofh.thermal.expansion.util.managers.machine.SawmillRecipeManager;
+import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -41,6 +38,9 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(SawmillRecipeManager.instance());
         ThermalRecipeManager.register(PulverizerRecipeManager.instance());
         ThermalRecipeManager.register(InsolatorRecipeManager.instance());
+        ThermalRecipeManager.register(CentrifugeRecipeManager.instance());
+        ThermalRecipeManager.register(CrucibleRecipeManager.instance());
+        ThermalRecipeManager.register(RefineryRecipeManager.instance());
     }
 
     // region INITIALIZATION
@@ -55,6 +55,8 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_PULVERIZER_CONTAINER, MachinePulverizerScreen::new);
         ScreenManager.registerFactory(MACHINE_INSOLATOR_CONTAINER, MachineInsolatorScreen::new);
         ScreenManager.registerFactory(MACHINE_CENTRIFUGE_CONTAINER, MachineCentrifugeScreen::new);
+        ScreenManager.registerFactory(MACHINE_CRUCIBLE_CONTAINER, MachineCrucibleScreen::new);
+        ScreenManager.registerFactory(MACHINE_REFINERY_CONTAINER, MachineRefineryScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

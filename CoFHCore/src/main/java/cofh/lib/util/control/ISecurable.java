@@ -1,5 +1,6 @@
 package cofh.lib.util.control;
 
+import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -34,6 +35,11 @@ public interface ISecurable {
     default boolean isSecurable() {
 
         return true;
+    }
+
+    default boolean hasSecurity() {
+
+        return !SecurityHelper.isDefaultProfile(getOwner());
     }
 
     // region ACCESS MODE

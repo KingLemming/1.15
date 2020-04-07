@@ -1,7 +1,9 @@
 package cofh.thermal.expansion.init;
 
-import cofh.thermal.core.util.recipes.ThermalRecipe;
+import cofh.thermal.core.util.recipes.ThermalCatalystSerializer;
+import cofh.thermal.core.util.recipes.ThermalRecipeSerializer;
 import cofh.thermal.core.util.recipes.ThermalRecipeType;
+import cofh.thermal.expansion.util.managers.machine.*;
 import cofh.thermal.expansion.util.recipes.*;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
@@ -21,25 +23,32 @@ public class TExpRecipes {
         RECIPE_SAWMILL.register();
         RECIPE_PULVERIZER.register();
         RECIPE_INSOLATOR.register();
-        //        RECIPE_CENTRIFUGE.register();
+        RECIPE_CENTRIFUGE.register();
+        RECIPE_CRUCIBLE.register();
+        RECIPE_REFINERY.register();
 
         CATALYST_PULVERIZER.register();
         CATALYST_INSOLATOR.register();
 
-        RECIPE_SERIALIZERS.register(ID_RECIPE_FURNACE, FurnaceRecipe.Serializer::new);
-        RECIPE_SERIALIZERS.register(ID_RECIPE_SAWMILL, SawmillRecipe.Serializer::new);
-        RECIPE_SERIALIZERS.register(ID_RECIPE_PULVERIZER, PulverizerRecipe.Serializer::new);
-        RECIPE_SERIALIZERS.register(ID_RECIPE_INSOLATOR, InsolatorRecipe.Serializer::new);
+        RECIPE_SERIALIZERS.register(ID_RECIPE_FURNACE, () -> new ThermalRecipeSerializer<>(FurnaceRecipe::new, FurnaceRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_SAWMILL, () -> new ThermalRecipeSerializer<>(SawmillRecipe::new, SawmillRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_PULVERIZER, () -> new ThermalRecipeSerializer<>(PulverizerRecipe::new, PulverizerRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_INSOLATOR, () -> new InsolatorRecipeSerializer<>(InsolatorRecipe::new, InsolatorRecipeManager.instance().getDefaultEnergy(), InsolatorRecipeManager.instance().getDefaultWater()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_CENTRIFUGE, () -> new ThermalRecipeSerializer<>(CentrifugeRecipe::new, CentrifugeRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_CRUCIBLE, () -> new ThermalRecipeSerializer<>(CrucibleRecipe::new, CrucibleRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_REFINERY, () -> new ThermalRecipeSerializer<>(RefineryRecipe::new, RefineryRecipeManager.instance().getDefaultEnergy()));
 
-        RECIPE_SERIALIZERS.register(ID_CATALYST_PULVERIZER, PulverizerCatalyst.Serializer::new);
-        RECIPE_SERIALIZERS.register(ID_CATALYST_INSOLATOR, InsolatorCatalyst.Serializer::new);
+        RECIPE_SERIALIZERS.register(ID_CATALYST_PULVERIZER, () -> new ThermalCatalystSerializer<>(PulverizerCatalyst::new));
+        RECIPE_SERIALIZERS.register(ID_CATALYST_INSOLATOR, () -> new ThermalCatalystSerializer<>(InsolatorCatalyst::new));
     }
 
     public static final ThermalRecipeType<FurnaceRecipe> RECIPE_FURNACE = new ThermalRecipeType<>(ID_RECIPE_FURNACE);
     public static final ThermalRecipeType<SawmillRecipe> RECIPE_SAWMILL = new ThermalRecipeType<>(ID_RECIPE_SAWMILL);
     public static final ThermalRecipeType<PulverizerRecipe> RECIPE_PULVERIZER = new ThermalRecipeType<>(ID_RECIPE_PULVERIZER);
     public static final ThermalRecipeType<InsolatorRecipe> RECIPE_INSOLATOR = new ThermalRecipeType<>(ID_RECIPE_INSOLATOR);
-    public static final ThermalRecipeType<ThermalRecipe> RECIPE_CENTRIFUGE = new ThermalRecipeType<>(ID_RECIPE_CENTRIFUGE);
+    public static final ThermalRecipeType<CentrifugeRecipe> RECIPE_CENTRIFUGE = new ThermalRecipeType<>(ID_RECIPE_CENTRIFUGE);
+    public static final ThermalRecipeType<CrucibleRecipe> RECIPE_CRUCIBLE = new ThermalRecipeType<>(ID_RECIPE_CRUCIBLE);
+    public static final ThermalRecipeType<RefineryRecipe> RECIPE_REFINERY = new ThermalRecipeType<>(ID_RECIPE_REFINERY);
 
     public static final ThermalRecipeType<PulverizerCatalyst> CATALYST_PULVERIZER = new ThermalRecipeType<>(ID_CATALYST_PULVERIZER);
     public static final ThermalRecipeType<InsolatorCatalyst> CATALYST_INSOLATOR = new ThermalRecipeType<>(ID_CATALYST_INSOLATOR);

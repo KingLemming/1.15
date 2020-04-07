@@ -8,7 +8,6 @@ import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.recipes.InsolatorRecipe;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
@@ -24,11 +23,6 @@ public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
 
     private static final InsolatorRecipeManager INSTANCE = new InsolatorRecipeManager();
     protected static final int DEFAULT_ENERGY = 20000;
-    protected static final FluidStack DEFAULT_FLUID = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME / 2);
-
-    protected static float plantMultiplier = 2.0F;
-    protected static float tuberMultiplier = 2.5F;
-    protected static boolean defaultPlantRecipes = true;
 
     protected int defaultWater = FluidAttributes.BUCKET_VOLUME / 2;
 

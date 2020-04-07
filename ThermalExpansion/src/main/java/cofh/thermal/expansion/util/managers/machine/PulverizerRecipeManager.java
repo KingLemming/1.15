@@ -23,10 +23,6 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
     private static final PulverizerRecipeManager INSTANCE = new PulverizerRecipeManager();
     protected static final int DEFAULT_ENERGY = 4000;
 
-    protected static float oreMultiplier = 2.0F;
-    protected static boolean defaultOreRecipes = true;
-    protected static boolean defaultIngotRecipes = true;
-
     public static PulverizerRecipeManager instance() {
 
         return INSTANCE;

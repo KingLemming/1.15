@@ -17,9 +17,9 @@ public abstract class ThermalCatalyst extends ThermalRecipeBase {
     protected float minChance = 0.0F;
     protected float useChance = 1.0F;
 
-    protected ThermalCatalyst(ResourceLocation id, Ingredient ingredient, float primaryMod, float secondaryMod, float energyMod, float minChance, float useChance) {
+    protected ThermalCatalyst(ResourceLocation recipeId, Ingredient ingredient, float primaryMod, float secondaryMod, float energyMod, float minChance, float useChance) {
 
-        super(id);
+        super(recipeId);
 
         this.ingredient = ingredient;
 

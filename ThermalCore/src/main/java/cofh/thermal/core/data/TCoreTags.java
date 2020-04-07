@@ -1,5 +1,6 @@
 package cofh.thermal.core.data;
 
+import cofh.thermal.core.init.ThermalTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
@@ -8,7 +9,6 @@ import net.minecraft.data.ItemTagsProvider;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.init.ThermalReferences.*;
-import static cofh.thermal.core.init.ThermalTags.Blocks.*;
 import static cofh.thermal.core.init.ThermalTags.Items.*;
 
 public class TCoreTags {
@@ -29,9 +29,9 @@ public class TCoreTags {
         @Override
         protected void registerTags() {
 
-            getBuilder(STORAGE_BLOCKS_SIGNALUM).add(BLOCKS.get(ID_SIGNALUM_BLOCK));
-            getBuilder(STORAGE_BLOCKS_LUMIUM).add(BLOCKS.get(ID_LUMIUM_BLOCK));
-            getBuilder(STORAGE_BLOCKS_ENDERIUM).add(BLOCKS.get(ID_ENDERIUM_BLOCK));
+            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_SIGNALUM).add(BLOCKS.get(ID_SIGNALUM_BLOCK));
+            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_LUMIUM).add(BLOCKS.get(ID_LUMIUM_BLOCK));
+            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_ENDERIUM).add(BLOCKS.get(ID_ENDERIUM_BLOCK));
         }
 
     }
@@ -51,6 +51,10 @@ public class TCoreTags {
 
         @Override
         protected void registerTags() {
+
+            copy(ThermalTags.Blocks.STORAGE_BLOCKS_SIGNALUM, ThermalTags.Items.STORAGE_BLOCKS_SIGNALUM);
+            copy(ThermalTags.Blocks.STORAGE_BLOCKS_LUMIUM, ThermalTags.Items.STORAGE_BLOCKS_LUMIUM);
+            copy(ThermalTags.Blocks.STORAGE_BLOCKS_ENDERIUM, ThermalTags.Items.STORAGE_BLOCKS_ENDERIUM);
 
             getBuilder(COINS_SIGNALUM).add(ITEMS.get("signalum_coin"));
             getBuilder(COINS_LUMIUM).add(ITEMS.get("lumium_coin"));

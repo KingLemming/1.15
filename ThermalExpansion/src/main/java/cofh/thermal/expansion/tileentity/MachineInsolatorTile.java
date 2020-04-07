@@ -8,7 +8,10 @@ import cofh.thermal.expansion.inventory.container.MachineInsolatorContainer;
 import cofh.thermal.expansion.util.managers.machine.InsolatorRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
@@ -32,6 +35,8 @@ public class MachineInsolatorTile extends MachineTileProcess {
         inventory.addSlots(OUTPUT, 4);
 
         tankInv.addTank(waterTank, INPUT);
+
+        renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
     }
 
     @Override

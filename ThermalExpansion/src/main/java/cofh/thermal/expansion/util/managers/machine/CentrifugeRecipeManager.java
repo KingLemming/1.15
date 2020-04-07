@@ -13,7 +13,7 @@ import java.util.Map;
 public class CentrifugeRecipeManager extends SingleItemRecipeManager {
 
     private static final CentrifugeRecipeManager INSTANCE = new CentrifugeRecipeManager();
-    protected static final int DEFAULT_ENERGY = 8000;
+    protected static final int DEFAULT_ENERGY = 4000;
 
     public static CentrifugeRecipeManager instance() {
 

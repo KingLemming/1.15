@@ -19,7 +19,6 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
     protected static final int DEFAULT_ENERGY = 2000;
 
     protected static boolean defaultFurnaceRecipes = true;
-    protected static boolean defaultDustRecipes = true;
     protected static boolean defaultFoodRecipes = true;
 
     public static FurnaceRecipeManager instance() {

@@ -7,7 +7,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -39,38 +38,43 @@ public abstract class RecipeJsonUtils {
     }
 
     // region HELPERS
-    public static Ingredient parseIngredient(JsonObject json) {
+    public static Ingredient parseIngredient(JsonElement element) {
 
+        if (element == null || element.isJsonNull()) {
+            return Ingredient.fromStacks(ItemStack.EMPTY);
+        }
         Ingredient ingredient;
-        JsonElement element = JSONUtils.isJsonArray(json, INGREDIENT) ? JSONUtils.getJsonArray(json, INGREDIENT) : JSONUtils.getJsonObject(json, INGREDIENT);
-
+        JsonElement subElement = element.isJsonArray() ? element.getAsJsonArray() : element.getAsJsonObject();
         try {
-            ingredient = Ingredient.deserialize(element);
+            ingredient = Ingredient.deserialize(subElement);
         } catch (Throwable t) {
             ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
         }
         return ingredient;
     }
 
-    public static void parseInputs(List<ItemStack> items, List<FluidStack> fluids, JsonElement element) {
+    public static void parseInputs(List<Ingredient> ingredients, List<FluidStack> fluids, JsonElement element) {
 
         if (element.isJsonArray()) {
             for (JsonElement arrayElement : element.getAsJsonArray()) {
                 if (arrayElement.getAsJsonObject().has(FLUID)) {
                     fluids.add(parseFluidStack(arrayElement));
                 } else {
-                    items.add(parseItemStack(arrayElement));
+                    ingredients.add(parseIngredient(arrayElement.getAsJsonObject()));
                 }
             }
         } else if (element.getAsJsonObject().has(FLUID)) {
             fluids.add(parseFluidStack(element));
         } else {
-            items.add(parseItemStack(element));
+            ingredients.add(parseIngredient(element.getAsJsonObject()));
         }
     }
 
     public static void parseOutputs(List<ItemStack> items, List<Float> chances, List<FluidStack> fluids, JsonElement element) {
 
+        if (element == null) {
+            return;
+        }
         if (element.isJsonArray()) {
             for (JsonElement arrayElement : element.getAsJsonArray()) {
                 if (arrayElement.getAsJsonObject().has(FLUID)) {
@@ -88,7 +92,7 @@ public abstract class RecipeJsonUtils {
         }
     }
 
-    public static boolean parseDependencies(JsonElement element) {
+    private static boolean parseDependencies(JsonElement element) {
 
         if (element.isJsonArray()) {
             boolean check = true;
@@ -101,7 +105,37 @@ public abstract class RecipeJsonUtils {
         }
     }
 
-    public static ItemStack parseItemStack(JsonElement element) {
+    private static void parseItemStacks(List<ItemStack> items, JsonElement element) {
+
+        if (element.isJsonArray()) {
+            for (JsonElement arrayElement : element.getAsJsonArray()) {
+                items.add(parseItemStack(arrayElement));
+            }
+        } else {
+            items.add(parseItemStack(element));
+        }
+    }
+
+    private static void parseItemStacks(List<ItemStack> items, List<Float> chances, JsonElement element) {
+
+        if (element.isJsonArray()) {
+            for (JsonElement arrayElement : element.getAsJsonArray()) {
+                ItemStack stack = parseItemStack(arrayElement);
+                if (!stack.isEmpty()) {
+                    items.add(stack);
+                    chances.add(parseItemChance(arrayElement));
+                }
+            }
+        } else {
+            ItemStack stack = parseItemStack(element);
+            if (!stack.isEmpty()) {
+                items.add(stack);
+                chances.add(parseItemChance(element));
+            }
+        }
+    }
+
+    private static ItemStack parseItemStack(JsonElement element) {
 
         if (element == null || element.isJsonNull()) {
             return ItemStack.EMPTY;
@@ -144,31 +178,27 @@ public abstract class RecipeJsonUtils {
         return stack;
     }
 
-    public static void parseItemStacks(List<ItemStack> items, JsonElement element) {
+    public static void parseFluidStacks(List<FluidStack> fluids, JsonElement element) {
 
+        if (element == null) {
+            return;
+        }
         if (element.isJsonArray()) {
             for (JsonElement arrayElement : element.getAsJsonArray()) {
-                items.add(parseItemStack(arrayElement));
+                FluidStack stack = parseFluidStack(arrayElement);
+                if (!stack.isEmpty()) {
+                    fluids.add(stack);
+                }
             }
         } else {
-            items.add(parseItemStack(element));
+            FluidStack stack = parseFluidStack(element);
+            if (!stack.isEmpty()) {
+                fluids.add(stack);
+            }
         }
     }
 
-    public static void parseItemStacks(List<ItemStack> items, List<Float> chances, JsonElement element) {
-
-        if (element.isJsonArray()) {
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                items.add(parseItemStack(arrayElement));
-                chances.add(parseItemChance(arrayElement));
-            }
-        } else {
-            items.add(parseItemStack(element));
-            chances.add(parseItemChance(element));
-        }
-    }
-
-    public static FluidStack parseFluidStack(JsonElement element) {
+    private static FluidStack parseFluidStack(JsonElement element) {
 
         if (element == null || element.isJsonNull()) {
             return FluidStack.EMPTY;
@@ -211,18 +241,7 @@ public abstract class RecipeJsonUtils {
         return stack;
     }
 
-    public static void parseFluidStacks(List<FluidStack> fluids, JsonElement element) {
-
-        if (element.isJsonArray()) {
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                fluids.add(parseFluidStack(arrayElement));
-            }
-        } else {
-            fluids.add(parseFluidStack(element));
-        }
-    }
-
-    public static float parseItemChance(JsonElement element) {
+    private static float parseItemChance(JsonElement element) {
 
         JsonObject json = element.getAsJsonObject();
 
@@ -236,7 +255,7 @@ public abstract class RecipeJsonUtils {
         return BASE_CHANCE_LOCKED;
     }
 
-    public static boolean parseDependency(JsonElement element) {
+    private static boolean parseDependency(JsonElement element) {
 
         JsonObject json = element.getAsJsonObject();
 
@@ -261,6 +280,7 @@ public abstract class RecipeJsonUtils {
     public static final String ENTRY = "entry";
     public static final String FLUID = "fluid";
     public static final String INGREDIENT = "ingredient";
+    public static final String INGREDIENTS = "ingredients";
     public static final String ITEM = "item";
     public static final String LOCKED = "locked";
     public static final String MIN_CHANCE = "min_chance";
@@ -270,6 +290,7 @@ public abstract class RecipeJsonUtils {
     public static final String PRIMARY_MOD = "primary_mod";
     public static final String REMOVE = "remove";
     public static final String RESULT = "result";
+    public static final String RESULTS = "results";
     public static final String SECONDARY_MOD = "secondary_mod";
     public static final String TYPE = "type";
     public static final String USE_CHANCE = "use_chance";

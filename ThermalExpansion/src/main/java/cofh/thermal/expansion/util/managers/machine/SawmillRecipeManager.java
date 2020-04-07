@@ -14,8 +14,6 @@ public class SawmillRecipeManager extends SingleItemRecipeManager {
 
     private static final SawmillRecipeManager INSTANCE = new SawmillRecipeManager();
     protected static final int DEFAULT_ENERGY = 2000;
-    protected static float logMultiplier = 1.5F;
-    protected static boolean defaultLogRecipes = true;
 
     public static SawmillRecipeManager instance() {
 

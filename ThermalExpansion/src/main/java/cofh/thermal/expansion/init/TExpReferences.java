@@ -21,6 +21,8 @@ public class TExpReferences {
     public static final String ID_MACHINE_PULVERIZER = ID_THERMAL + ":machine_pulverizer";
     public static final String ID_MACHINE_INSOLATOR = ID_THERMAL + ":machine_insolator";
     public static final String ID_MACHINE_CENTRIFUGE = ID_THERMAL + ":machine_centrifuge";
+    public static final String ID_MACHINE_CRUCIBLE = ID_THERMAL + ":machine_crucible";
+    public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
     // endregion
 
     // region RECIPES
@@ -29,6 +31,8 @@ public class TExpReferences {
     public static final String ID_RECIPE_PULVERIZER = ID_THERMAL + ":pulverizer";
     public static final String ID_RECIPE_INSOLATOR = ID_THERMAL + ":insolator";
     public static final String ID_RECIPE_CENTRIFUGE = ID_THERMAL + ":centrifuge";
+    public static final String ID_RECIPE_CRUCIBLE = ID_THERMAL + ":crucible";
+    public static final String ID_RECIPE_REFINERY = ID_THERMAL + ":refinery";
 
     public static final String ID_CATALYST_PULVERIZER = ID_THERMAL + ":pulverizer_catalyst";
     public static final String ID_CATALYST_INSOLATOR = ID_THERMAL + ":insolator_catalyst";
@@ -80,5 +84,19 @@ public class TExpReferences {
     public static TileEntityType<MachineCentrifugeTile> MACHINE_CENTRIFUGE_TILE;
     @ObjectHolder(ID_MACHINE_CENTRIFUGE)
     public static ContainerType<MachineCentrifugeContainer> MACHINE_CENTRIFUGE_CONTAINER;
+
+    @ObjectHolder(ID_MACHINE_CRUCIBLE)
+    public static Block MACHINE_CRUCIBLE_BLOCK;
+    @ObjectHolder(ID_MACHINE_CRUCIBLE)
+    public static TileEntityType<MachineCrucibleTile> MACHINE_CRUCIBLE_TILE;
+    @ObjectHolder(ID_MACHINE_CRUCIBLE)
+    public static ContainerType<MachineCrucibleContainer> MACHINE_CRUCIBLE_CONTAINER;
+
+    @ObjectHolder(ID_MACHINE_REFINERY)
+    public static Block MACHINE_REFINERY_BLOCK;
+    @ObjectHolder(ID_MACHINE_REFINERY)
+    public static TileEntityType<MachineRefineryTile> MACHINE_REFINERY_TILE;
+    @ObjectHolder(ID_MACHINE_REFINERY)
+    public static ContainerType<MachineRefineryContainer> MACHINE_REFINERY_CONTAINER;
 
 }

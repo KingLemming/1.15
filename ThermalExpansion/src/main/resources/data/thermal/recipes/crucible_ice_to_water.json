@@ -1,0 +1,13 @@
+{
+  "type": "thermal:crucible",
+  "ingredient": {
+    "item": "minecraft:ice"
+  },
+  "result": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 900
+    }
+  ],
+  "energy": 1600
+}

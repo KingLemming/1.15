@@ -98,7 +98,7 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public SideConfig getSideConfig(Direction side) {
 
-        if (side == null) {
+        if (side == null || !isReconfigurable()) {
             return SIDE_ACCESSIBLE;
         }
         return sides[side.ordinal()];
@@ -107,7 +107,7 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean prevSideConfig(Direction side) {
 
-        if (side == null) {
+        if (!isReconfigurable() || side == null) {
             return false;
         }
         sides[side.ordinal()] = sides[side.ordinal()].prev();
@@ -123,7 +123,7 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean nextSideConfig(Direction side) {
 
-        if (side == null) {
+        if (!isReconfigurable() || side == null) {
             return false;
         }
         sides[side.ordinal()] = sides[side.ordinal()].next();
@@ -139,7 +139,7 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean setSideConfig(Direction side, SideConfig config) {
 
-        if (side == null || config == null) {
+        if (!isReconfigurable() || side == null || config == null) {
             return false;
         }
         sides[side.ordinal()] = config;
@@ -168,6 +168,9 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean hasInputSide() {
 
+        if (!isReconfigurable()) {
+            return false;
+        }
         for (SideConfig side : sides) {
             if (side.isInput()) {
                 return true;
@@ -179,6 +182,9 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean hasOutputSide() {
 
+        if (!isReconfigurable()) {
+            return false;
+        }
         for (SideConfig side : sides) {
             if (side.isOutput()) {
                 return true;

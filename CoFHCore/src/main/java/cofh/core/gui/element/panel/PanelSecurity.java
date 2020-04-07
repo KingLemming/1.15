@@ -44,7 +44,23 @@ public class PanelSecurity extends PanelBase {
         mySecurable = securable;
         myPlayer = playerID;
 
-        this.setVisible(mySecurable::isSecurable);
+        this.setVisible(mySecurable::hasSecurity);
+    }
+
+    @Override
+    protected void drawBackground() {
+
+        super.drawBackground();
+
+        if (!fullyOpen) {
+            return;
+        }
+        float colorR = (backgroundColor >> 16 & 255) / 255.0F * 0.6F;
+        float colorG = (backgroundColor >> 8 & 255) / 255.0F * 0.6F;
+        float colorB = (backgroundColor & 255) / 255.0F * 0.6F;
+        RenderSystem.color4f(colorR, colorG, colorB, 1.0F);
+        gui.drawTexturedModalRect(34, 18, 16, 20, 44, 44);
+        RenderHelper.resetColor();
     }
 
     @Override
@@ -102,22 +118,6 @@ public class PanelSecurity extends PanelBase {
     }
 
     @Override
-    protected void drawBackground() {
-
-        super.drawBackground();
-
-        if (!fullyOpen) {
-            return;
-        }
-        float colorR = (backgroundColor >> 16 & 255) / 255.0F * 0.6F;
-        float colorG = (backgroundColor >> 8 & 255) / 255.0F * 0.6F;
-        float colorB = (backgroundColor & 255) / 255.0F * 0.6F;
-        RenderSystem.color4f(colorR, colorG, colorB, 1.0F);
-        gui.drawTexturedModalRect(34, 18, 16, 20, 44, 44);
-        RenderHelper.resetColor();
-    }
-
-    @Override
     public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
 
         if (!fullyOpen) {
@@ -171,7 +171,7 @@ public class PanelSecurity extends PanelBase {
         if (38 <= x && x < 54 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PUBLIC) {
                 mySecurable.setAccess(PUBLIC);
-                SoundHelper.playClickSound(0.4F);
+                SoundHelper.playClickSound(0.5F);
             }
         } else if (58 <= x && x < 74 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PRIVATE) {
@@ -181,7 +181,7 @@ public class PanelSecurity extends PanelBase {
         } else if (38 <= x && x < 54 && 42 <= y && y < 58) {
             if (mySecurable.getAccess() != FRIENDS) {
                 mySecurable.setAccess(FRIENDS);
-                SoundHelper.playClickSound(0.5F);
+                SoundHelper.playClickSound(0.6F);
             }
         } else if (58 <= x && x < 74 && 42 <= y && y < 58) {
             if (mySecurable.getAccess() != TEAM) {

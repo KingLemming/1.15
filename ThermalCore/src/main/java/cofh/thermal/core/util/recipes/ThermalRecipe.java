@@ -5,9 +5,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
@@ -28,9 +26,9 @@ public abstract class ThermalRecipe extends ThermalRecipeBase {
     protected int energy;
     protected float experience;
 
-    protected ThermalRecipe(ResourceLocation id, int energy, float experience, @Nullable List<Ingredient> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+    protected ThermalRecipe(ResourceLocation recipeId, int energy, float experience, List<Ingredient> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> outputItemChances, List<FluidStack> outputFluids) {
 
-        super(id);
+        super(recipeId);
 
         this.energy = energy;
         this.experience = Math.max(0.0F, experience);
@@ -44,8 +42,8 @@ public abstract class ThermalRecipe extends ThermalRecipeBase {
         if (outputItems != null) {
             this.outputItems.addAll(outputItems);
 
-            if (chance != null) {
-                this.outputItemChances.addAll(chance);
+            if (outputItemChances != null) {
+                this.outputItemChances.addAll(outputItemChances);
             }
             if (this.outputItemChances.size() < this.outputItems.size()) {
                 for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
@@ -56,21 +54,6 @@ public abstract class ThermalRecipe extends ThermalRecipeBase {
         if (outputFluids != null) {
             this.outputFluids.addAll(outputFluids);
         }
-    }
-
-    protected ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, ItemStack output, float chance) {
-
-        this(id, energy, experience, Collections.singletonList(input), Collections.emptyList(), Collections.singletonList(output), Collections.singletonList(chance), Collections.emptyList());
-    }
-
-    protected ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance) {
-
-        this(id, energy, experience, Collections.singletonList(input), Collections.emptyList(), outputItems, chance, Collections.emptyList());
-    }
-
-    protected ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
-
-        this(id, energy, experience, Collections.singletonList(input), Collections.emptyList(), outputItems, chance, outputFluids);
     }
 
     // region GETTERS
