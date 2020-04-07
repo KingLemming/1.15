@@ -40,6 +40,7 @@ public class MachineInsolatorTile extends MachineTileProcess {
         curRecipe = InsolatorRecipeManager.instance().getRecipe(this);
         if (curRecipe != null) {
             itemInputCounts = curRecipe.getInputItemCounts(this);
+            fluidInputCounts = curRecipe.getInputFluidCounts(this);
         }
         return curRecipe != null;
     }
@@ -58,7 +59,7 @@ public class MachineInsolatorTile extends MachineTileProcess {
         if (!cacheRecipe()) {
             return false;
         }
-        return inputSlot.getCount() >= itemInputCounts.get(0) && waterTank.getAmount() >= fluidInputCounts.get(0);
+        return inputSlot.getCount() >= itemInputCounts.get(0) && (fluidInputCounts.isEmpty() || waterTank.getAmount() >= fluidInputCounts.get(0));
     }
     // endregion
 }

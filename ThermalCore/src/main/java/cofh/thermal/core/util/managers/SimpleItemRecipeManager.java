@@ -5,7 +5,7 @@ import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.inventory.ItemStackHolder;
 import cofh.lib.util.ComparableItemStack;
 import cofh.thermal.core.util.IThermalInventory;
-import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import cofh.thermal.core.util.recipes.internal.SimpleCatalyst;
@@ -59,29 +59,31 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
         return recipeMap.remove(convert(input));
     }
 
-    public IMachineRecipe addRecipe(ThermalIRecipe recipe) {
+    public void convertRecipe(ThermalRecipe recipe) {
 
-        return addRecipe(recipe.getEnergy(), recipe.getInputItems().get(0), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+        for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
+            addRecipe(recipe.getEnergy(), recipe.getExperience(), recipeInput, recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+        }
     }
 
-    public IMachineRecipe addRecipe(int energy, ItemStack input, ItemStack output) {
+    public IMachineRecipe addRecipe(int energy, float experience, ItemStack input, ItemStack output) {
 
-        return addRecipe(energy, input, output, BASE_CHANCE_LOCKED);
+        return addRecipe(energy, experience, input, output, BASE_CHANCE_LOCKED);
     }
 
-    public IMachineRecipe addRecipe(int energy, ItemStack input, ItemStack output, float chance) {
+    public IMachineRecipe addRecipe(int energy, float experience, ItemStack input, ItemStack output, float chance) {
 
         if (maxOutputItems <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0) {
             return null;
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, input, output, chance);
+        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, experience, input, output, chance);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
 
-    public IMachineRecipe addRecipe(int energy, ItemStack input, List<ItemStack> output, List<Float> chance) {
+    public IMachineRecipe addRecipe(int energy, float experience, ItemStack input, List<ItemStack> output, List<Float> chance) {
 
         if (input.isEmpty() || output.isEmpty() || output.size() > maxOutputItems || energy <= 0) {
             return null;
@@ -93,24 +95,24 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, input, output, chance);
+        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, experience, input, output, chance);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
 
-    public IMachineRecipe addRecipe(int energy, ItemStack input, FluidStack output) {
+    public IMachineRecipe addRecipe(int energy, float experience, ItemStack input, FluidStack output) {
 
         if (maxOutputFluids <= 0 || input.isEmpty() || output.isEmpty() || energy <= 0) {
             return null;
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, input, output);
+        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, experience, input, output);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
 
-    public IMachineRecipe addRecipe(int energy, ItemStack input, List<ItemStack> output, List<Float> chance, List<FluidStack> outputFluids) {
+    public IMachineRecipe addRecipe(int energy, float experience, ItemStack input, List<ItemStack> output, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (input.isEmpty() || output.isEmpty() && outputFluids.isEmpty() || output.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -127,7 +129,7 @@ public abstract class SimpleItemRecipeManager extends AbstractManager implements
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, input, output, chance, outputFluids);
+        SimpleItemRecipe recipe = new SimpleItemRecipe(energy, experience, input, output, chance, outputFluids);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }

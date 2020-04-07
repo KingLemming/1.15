@@ -1,9 +1,9 @@
 {
   "type": "thermal:furnace",
-  "input": {
+  "ingredient": {
     "item": "minecraft:hay_block"
   },
-  "output": {
+  "result": {
     "item": "minecraft:charcoal"
   },
   "experience": 0.15

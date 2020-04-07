@@ -23,11 +23,6 @@ public class SimpleItemRecipe extends AbstractRecipe {
         this.outputItems.add(output);
         this.outputItemChances.add(chance);
     }
-
-    public SimpleItemRecipe(int energy, ItemStack input, ItemStack output, float chance) {
-
-        this(energy, 0.0F, input, output, chance);
-    }
     // endregion
 
     // region MULTIPLE ITEM OUTPUT

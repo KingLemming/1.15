@@ -3,14 +3,11 @@ package cofh.thermal.expansion.util.managers.machine;
 import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SimpleItemRecipeManager;
-import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.item.crafting.*;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
@@ -20,6 +17,7 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
 
     private static final FurnaceRecipeManager INSTANCE = new FurnaceRecipeManager();
     protected static final int DEFAULT_ENERGY = 2000;
+
     protected static boolean defaultFurnaceRecipes = true;
     protected static boolean defaultDustRecipes = true;
     protected static boolean defaultFoodRecipes = true;
@@ -67,8 +65,9 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
         if (defaultFurnaceRecipes) {
             Map<ResourceLocation, IRecipe<IInventory>> smeltingRecipes = recipeManager.getRecipes(IRecipeType.SMELTING);
             for (Map.Entry<ResourceLocation, IRecipe<IInventory>> entry : smeltingRecipes.entrySet()) {
-                IRecipe<IInventory> smeltingRecipe = entry.getValue();
+                AbstractCookingRecipe smeltingRecipe = (AbstractCookingRecipe) entry.getValue();
                 ItemStack recipeOutput = smeltingRecipe.getRecipeOutput();
+                float experience = smeltingRecipe.getExperience();
                 if (!smeltingRecipe.isDynamic() && !recipeOutput.isEmpty()) {
                     int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
                     NonNullList<Ingredient> ingredients = smeltingRecipe.getIngredients();
@@ -77,7 +76,7 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
                         continue;
                     }
                     for (ItemStack recipeInput : ingredients.get(0).getMatchingStacks()) {
-                        addRecipe(energy, recipeInput, recipeOutput);
+                        addRecipe(energy, experience, recipeInput, recipeOutput);
                         ThermalCore.LOG.debug("Furnace - Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy + " RF");
                     }
                 }
@@ -85,7 +84,7 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_FURNACE);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
-            addRecipe((ThermalIRecipe) entry.getValue());
+            convertRecipe((ThermalRecipe) entry.getValue());
         }
     }
     // endregion

@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:jungle_log"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:jungle_planks",
       "count": 6

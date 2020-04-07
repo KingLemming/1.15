@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:birch_log"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:birch_planks",
       "count": 6

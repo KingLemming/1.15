@@ -1,10 +1,10 @@
 {
   "type": "thermal:furnace",
-  "input": {
+  "ingredient": {
     "item": "minecraft:rotten_flesh",
     "count": 4
   },
-  "output": {
+  "result": {
     "item": "minecraft:leather"
   },
   "experience": 0.1,

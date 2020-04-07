@@ -2,7 +2,7 @@ package cofh.thermal.expansion.util.managers.machine;
 
 import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.util.managers.SimpleItemRecipeManager;
-import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
@@ -39,7 +39,7 @@ public class SawmillRecipeManager extends SimpleItemRecipeManager {
         clear();
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_SAWMILL);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
-            addRecipe((ThermalIRecipe) entry.getValue());
+            convertRecipe((ThermalRecipe) entry.getValue());
         }
     }
     // endregion

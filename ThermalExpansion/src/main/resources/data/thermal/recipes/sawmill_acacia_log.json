@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:acacia_log"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:acacia_planks",
       "count": 6

@@ -93,7 +93,6 @@ public abstract class RecipeJsonUtils {
         }
         ItemStack stack;
         Item item = null;
-        String constant;
         int count = 1;
 
         if (element.isJsonPrimitive()) {
@@ -161,7 +160,6 @@ public abstract class RecipeJsonUtils {
         }
         FluidStack stack;
         Fluid fluid = null;
-        String constant;
         int amount = FluidAttributes.BUCKET_VOLUME;
 
         if (element.isJsonPrimitive()) {
@@ -247,16 +245,16 @@ public abstract class RecipeJsonUtils {
     public static final String EXPERIENCE = "experience";
     public static final String ENTRY = "entry";
     public static final String FLUID = "fluid";
-    public static final String INPUT = "input";
+    public static final String INGREDIENT = "ingredient";
     public static final String ITEM = "item";
     public static final String LOCKED = "locked";
     public static final String MIN_CHANCE = "min_chance";
     public static final String MOD = "mod";
     public static final String NBT = "nbt";
     public static final String ORE = "ore";
-    public static final String OUTPUT = "output";
     public static final String PRIMARY_MOD = "primary_mod";
     public static final String REMOVE = "remove";
+    public static final String RESULT = "result";
     public static final String SECONDARY_MOD = "secondary_mod";
     public static final String TYPE = "type";
     public static final String USE_CHANCE = "use_chance";
@@ -265,13 +263,7 @@ public abstract class RecipeJsonUtils {
     public static final String LAVA = "lava";
     public static final String WATER = "water";
 
-    public static final String RECIPE_TYPE_CROP_DEFAULT = "default-crop";
-    public static final String RECIPE_TYPE_LOG_DEFAULT = "default-log";
-    public static final String RECIPE_TYPE_ORE_DEFAULT = "default-ore";
-    public static final String RECIPE_TYPE_PLANT_DEFAULT = "default-plant";
-
-    public static final String RECIPE_TYPE_ORE = "ore";
-    public static final String RECIPE_TYPE_PLANT = "plant";
-    public static final String RECIPE_TYPE_RECYCLE = "recycle";
+    public static final String LAVA_MOD = "lava_mod";
+    public static final String WATER_MOD = "water_mod";
     // endregion
 }

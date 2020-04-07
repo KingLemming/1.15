@@ -45,7 +45,8 @@ public abstract class MachineTileProcess extends MachineTileBase {
     @Override
     public void tick() {
 
-        energyStorage.modify(10);
+        // TODO: Remove, obviously
+        energyStorage.modify(100);
 
         boolean curActive = isActive;
 

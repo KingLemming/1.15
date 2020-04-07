@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:melon"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:melon_slice",
       "count": 8

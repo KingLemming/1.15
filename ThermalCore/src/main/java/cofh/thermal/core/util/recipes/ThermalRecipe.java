@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -19,12 +20,13 @@ import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
  * This class really just serves as a way to ride on Mojang's automated recipe syncing and datapack functionality.
  * Nothing in Thermal actually uses any of this for logic whatsoever. It's part of a shim layer, nothing more.
  */
-public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
+public abstract class ThermalRecipe implements IRecipe<FalseIInventory> {
 
     protected final ResourceLocation id;
 
-    protected final List<ItemStack> inputItems = new ArrayList<>();
+    protected final List<Ingredient> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();
+
     protected final List<ItemStack> outputItems = new ArrayList<>();
     protected final List<FluidStack> outputFluids = new ArrayList<>();
     protected final List<Float> outputItemChances = new ArrayList<>();
@@ -33,7 +35,7 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
     protected float experience;
 
     // region GETTERS
-    public List<ItemStack> getInputItems() {
+    public List<Ingredient> getInputItems() {
 
         return inputItems;
     }
@@ -70,7 +72,7 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
     // endregion
 
     // region SINGLE ITEM OUTPUT
-    public ThermalIRecipe(ResourceLocation id, int energy, float experience, ItemStack input, ItemStack output, float chance) {
+    public ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, ItemStack output, float chance) {
 
         this.id = id;
         this.energy = energy;
@@ -80,14 +82,14 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
         this.outputItemChances.add(chance);
     }
 
-    public ThermalIRecipe(ResourceLocation id, int energy, ItemStack input, ItemStack output, float chance) {
+    public ThermalRecipe(ResourceLocation id, int energy, Ingredient input, ItemStack output, float chance) {
 
         this(id, energy, 0.0F, input, output, chance);
     }
     // endregion
 
     // region MULTIPLE ITEM OUTPUT
-    public ThermalIRecipe(ResourceLocation id, int energy, float experience, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance) {
+    public ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, List<ItemStack> output, @Nullable List<Float> chance) {
 
         this.id = id;
         this.energy = energy;
@@ -105,14 +107,14 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
         }
     }
 
-    public ThermalIRecipe(ResourceLocation id, int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance) {
+    public ThermalRecipe(ResourceLocation id, int energy, Ingredient input, List<ItemStack> output, @Nullable List<Float> chance) {
 
         this(id, energy, 0.0F, input, output, chance);
     }
     // endregion
 
     // region SINGLE FLUID OUTPUT
-    public ThermalIRecipe(ResourceLocation id, int energy, float experience, ItemStack input, FluidStack output) {
+    public ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, FluidStack output) {
 
         this.id = id;
         this.energy = energy;
@@ -121,14 +123,14 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
         this.outputFluids.add(output);
     }
 
-    public ThermalIRecipe(ResourceLocation id, int energy, ItemStack input, FluidStack output) {
+    public ThermalRecipe(ResourceLocation id, int energy, Ingredient input, FluidStack output) {
 
         this(id, energy, 0.0F, input, output);
     }
     // endregion
 
     // region ITEM + FLUID OUTPUT
-    public ThermalIRecipe(ResourceLocation id, int energy, float experience, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
+    public ThermalRecipe(ResourceLocation id, int energy, float experience, Ingredient input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
 
         this.id = id;
         this.energy = energy;
@@ -149,7 +151,7 @@ public abstract class ThermalIRecipe implements IRecipe<FalseIInventory> {
         }
     }
 
-    public ThermalIRecipe(ResourceLocation id, int energy, ItemStack input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
+    public ThermalRecipe(ResourceLocation id, int energy, Ingredient input, List<ItemStack> output, @Nullable List<Float> chance, @Nullable List<FluidStack> fluids) {
 
         this(id, energy, 0.0F, input, output, chance, fluids);
     }

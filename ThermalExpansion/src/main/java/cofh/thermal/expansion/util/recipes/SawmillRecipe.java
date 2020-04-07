@@ -1,13 +1,16 @@
 package cofh.thermal.expansion.util.recipes;
 
-import cofh.thermal.core.util.recipes.ThermalIRecipe;
+import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.SawmillRecipeManager;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -21,9 +24,9 @@ import static cofh.thermal.core.util.recipes.RecipeJsonUtils.*;
 import static cofh.thermal.expansion.init.TExpReferences.ID_RECIPE_SAWMILL;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SAWMILL_BLOCK;
 
-public class SawmillIRecipe extends ThermalIRecipe {
+public class SawmillRecipe extends ThermalRecipe {
 
-    private SawmillIRecipe(ResourceLocation id, int energy, float experience, ItemStack input, List<ItemStack> output, List<Float> chance) {
+    private SawmillRecipe(ResourceLocation id, int energy, float experience, Ingredient input, List<ItemStack> output, List<Float> chance) {
 
         super(id, energy, experience, input, output, chance);
     }
@@ -56,22 +59,23 @@ public class SawmillIRecipe extends ThermalIRecipe {
         return new ItemStack(MACHINE_SAWMILL_BLOCK);
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SawmillIRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<SawmillRecipe> {
 
         @Override
-        public SawmillIRecipe read(ResourceLocation recipeId, JsonObject json) {
+        public SawmillRecipe read(ResourceLocation recipeId, JsonObject json) {
 
-            ItemStack input;
+            Ingredient input;
             ArrayList<ItemStack> output = new ArrayList<>();
             ArrayList<Float> chance = new ArrayList<>();
             int energy = SawmillRecipeManager.instance().getDefaultEnergy();
             float experience = 0.0F;
 
             /* INPUT */
-            input = parseItemStack(json.get(INPUT));
+            JsonElement jsonelement = JSONUtils.isJsonArray(json, INGREDIENT) ? JSONUtils.getJsonArray(json, INGREDIENT) : JSONUtils.getJsonObject(json, INGREDIENT);
+            input = Ingredient.deserialize(jsonelement);
 
             /* OUTPUT */
-            parseItemStacks(output, chance, json.get(OUTPUT));
+            parseItemStacks(output, chance, json.get(RESULT));
 
             /* ENERGY */
             if (json.has(ENERGY)) {
@@ -84,16 +88,16 @@ public class SawmillIRecipe extends ThermalIRecipe {
             if (json.has(EXPERIENCE)) {
                 experience = json.get(EXPERIENCE).getAsFloat();
             }
-            return new SawmillIRecipe(recipeId, energy, experience, input, output, chance);
+            return new SawmillRecipe(recipeId, energy, experience, input, output, chance);
         }
 
         @Nullable
         @Override
-        public SawmillIRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public SawmillRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
 
             int energy = buffer.readVarInt();
             float experience = buffer.readFloat();
-            ItemStack input = buffer.readItemStack();
+            Ingredient input = Ingredient.read(buffer);
 
             int numOutputs = buffer.readVarInt();
             ArrayList<ItemStack> output = new ArrayList<>(numOutputs);
@@ -103,15 +107,15 @@ public class SawmillIRecipe extends ThermalIRecipe {
                 output.add(buffer.readItemStack());
                 chance.add(buffer.readFloat());
             }
-            return new SawmillIRecipe(recipeId, energy, experience, input, output, chance);
+            return new SawmillRecipe(recipeId, energy, experience, input, output, chance);
         }
 
         @Override
-        public void write(PacketBuffer buffer, SawmillIRecipe recipe) {
+        public void write(PacketBuffer buffer, SawmillRecipe recipe) {
 
             buffer.writeVarInt(recipe.energy);
             buffer.writeFloat(recipe.experience);
-            buffer.writeItemStack(recipe.inputItems.get(0));
+            recipe.inputItems.get(0).write(buffer);
 
             int numOutputs = recipe.outputItems.size();
             buffer.writeVarInt(numOutputs);

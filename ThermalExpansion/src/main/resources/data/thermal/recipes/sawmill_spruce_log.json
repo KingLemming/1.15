@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:spruce_log"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:spruce_planks",
       "count": 6

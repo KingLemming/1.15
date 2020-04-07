@@ -1,9 +1,9 @@
 {
   "type": "thermal:sawmill",
-  "input": {
+  "ingredient": {
     "item": "minecraft:oak_log"
   },
-  "output": [
+  "result": [
     {
       "item": "minecraft:oak_planks",
       "count": 6
