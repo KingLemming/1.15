@@ -3,14 +3,12 @@ package cofh.thermal.expansion.util.recipes;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -25,7 +23,7 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_BLOCK;
 
 public class FurnaceRecipe extends ThermalRecipe {
 
-    private FurnaceRecipe(ResourceLocation id, int energy, float experience, Ingredient input, ItemStack output) {
+    protected FurnaceRecipe(ResourceLocation id, int energy, float experience, Ingredient input, ItemStack output) {
 
         super(id, energy, experience, input, output, BASE_CHANCE_LOCKED);
     }
@@ -69,8 +67,7 @@ public class FurnaceRecipe extends ThermalRecipe {
             float experience = 0.0F;
 
             /* INPUT */
-            JsonElement jsonelement = JSONUtils.isJsonArray(json, INGREDIENT) ? JSONUtils.getJsonArray(json, INGREDIENT) : JSONUtils.getJsonObject(json, INGREDIENT);
-            input = Ingredient.deserialize(jsonelement);
+            input = parseIngredient(json);
 
             /* OUTPUT */
             output = parseItemStack(json.get(RESULT));

@@ -33,8 +33,8 @@ public class MachineInsolatorScreen extends MachineScreenBase<MachineInsolatorCo
 
         addElement(GuiHelper.createMediumFluidStorage(this, 34, 22, tile.getTank(0)));
 
-        progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 85, 25).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_FLUID_RIGHT, 64, 16));
-        progress = (ElementScaled) addElement(new ElementScaled(this, 85, 25).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16));
+        progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 85, 34).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_FLUID_RIGHT, 64, 16));
+        progress = (ElementScaled) addElement(new ElementScaled(this, 85, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16));
         speed = (ElementScaled) addElement(new ElementScaled(this, 62, 35).setSize(16, SPEED).setTexture(SCALE_SUN, 32, 16));
     }
 

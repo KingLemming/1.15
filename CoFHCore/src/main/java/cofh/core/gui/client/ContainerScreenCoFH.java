@@ -6,11 +6,14 @@ import cofh.core.gui.element.panel.PanelBase;
 import cofh.core.gui.element.panel.PanelTracker;
 import cofh.lib.inventory.container.slot.SlotFalseCopy;
 import cofh.lib.util.helpers.RenderHelper;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Matrix4f;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -475,7 +478,6 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
             return;
         }
         RenderSystem.disableRescaleNormal();
-        RenderSystem.disableLighting();
         RenderSystem.disableDepthTest();
         int k = 0;
 
@@ -514,18 +516,26 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         this.fillGradient(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
         this.fillGradient(i1 - 3, j1 + k1 + 2, i1 + k + 3, j1 + k1 + 3, j2, j2);
 
+        MatrixStack matrixstack = new MatrixStack();
+        IRenderTypeBuffer.Impl irendertypebuffer$impl = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+        matrixstack.translate(0.0D, 0.0D, this.itemRenderer.zLevel);
+        Matrix4f matrix4f = matrixstack.getLast().getPositionMatrix();
+
         for (int k2 = 0; k2 < tooltip.size(); ++k2) {
             String s1 = tooltip.get(k2);
-            font.drawStringWithShadow(s1, i1, j1, -1);
+            if (s1 != null) {
+                font.renderString(s1, i1, j1, -1, true, matrix4f, irendertypebuffer$impl, false, 0, 15728880);
+            }
+            //font.drawStringWithShadow(s1, i1, j1, -1);
 
             if (k2 == 0) {
                 j1 += 2;
             }
             j1 += 10;
         }
+        irendertypebuffer$impl.finish();
         this.setBlitOffset(0);
         itemRenderer.zLevel = 0.0F;
-        RenderSystem.enableLighting();
         RenderSystem.enableDepthTest();
         RenderSystem.enableRescaleNormal();
     }

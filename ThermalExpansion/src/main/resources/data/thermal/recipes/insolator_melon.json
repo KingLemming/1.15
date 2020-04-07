@@ -5,11 +5,14 @@
   },
   "result": [
     {
-      "item": "minecraft:melon_block"
+      "item": "minecraft:melon",
+      "chance": 1.1
     },
     {
-      "item": "minecraft:melon_seeds"
+      "item": "minecraft:melon_seeds",
+      "chance": 1.1
     }
   ],
-  "water": 1000
+  "energy_mod": 2.0,
+  "water_mod": 2.0
 }

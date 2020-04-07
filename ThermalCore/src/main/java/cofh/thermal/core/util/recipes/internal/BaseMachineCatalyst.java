@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes.internal;
 
-public class SimpleCatalyst implements IRecipeCatalyst {
+public class BaseMachineCatalyst implements IRecipeCatalyst {
 
     protected final float primaryMod;
     protected final float secondaryMod;
@@ -8,7 +8,7 @@ public class SimpleCatalyst implements IRecipeCatalyst {
     protected final float minChance;
     protected final float useChance;
 
-    public SimpleCatalyst(float primaryMod, float secondaryMod, float energyMod, float minChance, float useChance) {
+    public BaseMachineCatalyst(float primaryMod, float secondaryMod, float energyMod, float minChance, float useChance) {
 
         this.primaryMod = primaryMod;
         this.secondaryMod = secondaryMod;

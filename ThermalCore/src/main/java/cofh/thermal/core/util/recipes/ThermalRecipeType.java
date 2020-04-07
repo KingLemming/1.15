@@ -7,7 +7,7 @@ import net.minecraft.util.registry.Registry;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.lib.util.helpers.StringHelper.decompose;
 
-public class ThermalRecipeType<T extends ThermalRecipe> implements IRecipeType<T> {
+public class ThermalRecipeType<T extends ThermalRecipeBase> implements IRecipeType<T> {
 
     private final ResourceLocation registryName;
 

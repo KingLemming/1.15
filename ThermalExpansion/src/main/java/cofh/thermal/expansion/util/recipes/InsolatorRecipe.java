@@ -3,7 +3,6 @@ package cofh.thermal.expansion.util.recipes;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.InsolatorRecipeManager;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
@@ -11,7 +10,6 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -30,7 +28,7 @@ public class InsolatorRecipe extends ThermalRecipe {
 
     protected int water;
 
-    private InsolatorRecipe(ResourceLocation id, int energy, int water, float experience, Ingredient input, List<ItemStack> output, List<Float> chance) {
+    protected InsolatorRecipe(ResourceLocation id, int energy, int water, float experience, Ingredient input, List<ItemStack> output, List<Float> chance) {
 
         super(id, energy, experience, input, output, chance);
         this.water = water;
@@ -80,8 +78,7 @@ public class InsolatorRecipe extends ThermalRecipe {
             float experience = 0.0F;
 
             /* INPUT */
-            JsonElement jsonelement = JSONUtils.isJsonArray(json, INGREDIENT) ? JSONUtils.getJsonArray(json, INGREDIENT) : JSONUtils.getJsonObject(json, INGREDIENT);
-            input = Ingredient.deserialize(jsonelement);
+            input = parseIngredient(json);
 
             /* OUTPUT */
             parseItemStacks(output, chance, json.get(RESULT));

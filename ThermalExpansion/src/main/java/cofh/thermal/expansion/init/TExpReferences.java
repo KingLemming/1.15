@@ -29,6 +29,9 @@ public class TExpReferences {
     public static final String ID_RECIPE_PULVERIZER = ID_THERMAL + ":pulverizer";
     public static final String ID_RECIPE_INSOLATOR = ID_THERMAL + ":insolator";
     public static final String ID_RECIPE_CENTRIFUGE = ID_THERMAL + ":centrifuge";
+
+    public static final String ID_CATALYST_PULVERIZER = ID_THERMAL + ":pulverizer_catalyst";
+    public static final String ID_CATALYST_INSOLATOR = ID_THERMAL + ":insolator_catalyst";
     // endregion
 
     // region DYNAMOS

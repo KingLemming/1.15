@@ -25,10 +25,10 @@ public class MachinePulverizerContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 17));
         addSlot(new SlotCoFH(tileInv, 1, 44, 53));
-        addSlot(new SlotRemoveOnly(tileInv, 2, 107, 17));
-        addSlot(new SlotRemoveOnly(tileInv, 3, 125, 17));
-        addSlot(new SlotRemoveOnly(tileInv, 4, 107, 35));
-        addSlot(new SlotRemoveOnly(tileInv, 5, 125, 35));
+        addSlot(new SlotRemoveOnly(tileInv, 2, 107, 26));
+        addSlot(new SlotRemoveOnly(tileInv, 3, 125, 26));
+        addSlot(new SlotRemoveOnly(tileInv, 4, 107, 44));
+        addSlot(new SlotRemoveOnly(tileInv, 5, 125, 44));
         // addSlot(new SlotEnergy(myTile, myTile.getChargeSlot(), 8, 53));
 
         bindPlayerInventory(inventory);

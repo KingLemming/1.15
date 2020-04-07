@@ -4,11 +4,14 @@ import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractRecipe implements IMachineRecipe {
+import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
+
+public class BaseMachineRecipe implements IMachineRecipe {
 
     protected final List<ItemStack> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();
@@ -19,10 +22,37 @@ public abstract class AbstractRecipe implements IMachineRecipe {
     protected final int energy;
     protected final float experience;
 
-    public AbstractRecipe(int energy, float experience) {
+    public BaseMachineRecipe(int energy, float experience) {
 
         this.energy = energy;
         this.experience = Math.max(0.0F, experience);
+    }
+
+    public BaseMachineRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+
+        this(energy, experience);
+
+        if (inputItems != null) {
+            this.inputItems.addAll(inputItems);
+        }
+        if (inputFluids != null) {
+            this.inputFluids.addAll(inputFluids);
+        }
+        if (outputItems != null) {
+            this.outputItems.addAll(outputItems);
+
+            if (chance != null) {
+                this.outputItemChances.addAll(chance);
+            }
+            if (this.outputItemChances.size() < this.outputItems.size()) {
+                for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
+                    this.outputItemChances.add(BASE_CHANCE_LOCKED);
+                }
+            }
+        }
+        if (outputFluids != null) {
+            this.outputFluids.addAll(outputFluids);
+        }
     }
 
     // region IMachineRecipe

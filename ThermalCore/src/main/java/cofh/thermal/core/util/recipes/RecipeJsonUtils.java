@@ -5,7 +5,9 @@ import com.google.gson.JsonObject;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,21 +24,34 @@ public abstract class RecipeJsonUtils {
 
     }
 
-    public static boolean validityCheck(JsonObject object) {
+    public static boolean validityCheck(JsonObject json) {
 
-        if (object.has(COMMENT)) {
+        if (json.has(COMMENT)) {
             return false;
         }
-        if (object.has(ENABLE) && !object.get(ENABLE).getAsBoolean()) {
+        if (json.has(ENABLE) && !json.get(ENABLE).getAsBoolean()) {
             return false;
         }
-        if (object.has(DEPENDENCY)) {
-            return parseDependencies(object.get(DEPENDENCY));
+        if (json.has(DEPENDENCY)) {
+            return parseDependencies(json.get(DEPENDENCY));
         }
         return true;
     }
 
     // region HELPERS
+    public static Ingredient parseIngredient(JsonObject json) {
+
+        Ingredient ingredient;
+        JsonElement element = JSONUtils.isJsonArray(json, INGREDIENT) ? JSONUtils.getJsonArray(json, INGREDIENT) : JSONUtils.getJsonObject(json, INGREDIENT);
+
+        try {
+            ingredient = Ingredient.deserialize(element);
+        } catch (Throwable t) {
+            ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
+        }
+        return ingredient;
+    }
+
     public static void parseInputs(List<ItemStack> items, List<FluidStack> fluids, JsonElement element) {
 
         if (element.isJsonArray()) {
@@ -209,11 +224,11 @@ public abstract class RecipeJsonUtils {
 
     public static float parseItemChance(JsonElement element) {
 
-        JsonObject object = element.getAsJsonObject();
+        JsonObject json = element.getAsJsonObject();
 
-        if (object.has(CHANCE)) {
-            float chance = object.get(CHANCE).getAsFloat();
-            if (chance > 0.0F && object.has(LOCKED) && object.get(LOCKED).getAsBoolean()) {
+        if (json.has(CHANCE)) {
+            float chance = json.get(CHANCE).getAsFloat();
+            if (chance > 0.0F && json.has(LOCKED) && json.get(LOCKED).getAsBoolean()) {
                 chance *= BASE_CHANCE_LOCKED;
             }
             return chance;
@@ -223,10 +238,10 @@ public abstract class RecipeJsonUtils {
 
     public static boolean parseDependency(JsonElement element) {
 
-        JsonObject depObject = element.getAsJsonObject();
+        JsonObject json = element.getAsJsonObject();
 
-        if (depObject.has(MOD)) {
-            return ModList.get().isLoaded(depObject.get(MOD).getAsString());
+        if (json.has(MOD)) {
+            return ModList.get().isLoaded(json.get(MOD).getAsString());
         }
         return true;
     }

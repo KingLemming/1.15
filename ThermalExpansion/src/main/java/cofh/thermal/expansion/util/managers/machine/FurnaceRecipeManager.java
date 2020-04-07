@@ -2,7 +2,7 @@ package cofh.thermal.expansion.util.managers.machine;
 
 import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
-import cofh.thermal.core.util.managers.SimpleItemRecipeManager;
+import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipes;
 import net.minecraft.inventory.IInventory;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Map;
 
-public class FurnaceRecipeManager extends SimpleItemRecipeManager {
+public class FurnaceRecipeManager extends SingleItemRecipeManager {
 
     private static final FurnaceRecipeManager INSTANCE = new FurnaceRecipeManager();
     protected static final int DEFAULT_ENERGY = 2000;
@@ -84,7 +84,7 @@ public class FurnaceRecipeManager extends SimpleItemRecipeManager {
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_FURNACE);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
-            convertRecipe((ThermalRecipe) entry.getValue());
+            addRecipe((ThermalRecipe) entry.getValue());
         }
     }
     // endregion

@@ -1,0 +1,18 @@
+{
+  "type": "thermal:insolator",
+  "ingredient": {
+    "item": "thermal:green_bean_seeds"
+  },
+  "result": [
+    {
+      "item": "thermal:green_bean",
+      "chance": 2.5
+    },
+    {
+      "item": "thermal:green_bean_seeds",
+      "chance": 1.1
+    }
+  ],
+  "energy_mod": 1.5,
+  "water_mod": 1.5
+}
