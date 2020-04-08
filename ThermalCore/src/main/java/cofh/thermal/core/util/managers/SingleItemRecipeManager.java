@@ -141,6 +141,11 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
         }
 
         // region CATALYSTS
+        public IRecipeCatalyst getCatalyst(IItemStackAccess input) {
+
+            return catalystMap.get(convert(input.getItemStack()));
+        }
+
         public IRecipeCatalyst getCatalyst(ItemStack input) {
 
             return catalystMap.get(convert(input));

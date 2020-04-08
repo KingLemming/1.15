@@ -4,6 +4,7 @@ import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.MachinePulverizerContainer;
 import cofh.thermal.expansion.util.managers.machine.PulverizerRecipeManager;
+import cofh.thermal.expansion.util.recipes.PulverizerCatalyst;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -31,6 +32,7 @@ public class MachinePulverizerTile extends MachineTileProcess {
     protected boolean cacheRecipe() {
 
         curRecipe = PulverizerRecipeManager.instance().getRecipe(this);
+        curCatalyst = PulverizerRecipeManager.instance().getCatalyst(catalystSlot);
         if (curRecipe != null) {
             itemInputCounts = curRecipe.getInputItemCounts(this);
         }

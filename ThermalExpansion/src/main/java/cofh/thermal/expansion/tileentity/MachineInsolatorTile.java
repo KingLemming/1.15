@@ -43,6 +43,7 @@ public class MachineInsolatorTile extends MachineTileProcess {
     protected boolean cacheRecipe() {
 
         curRecipe = InsolatorRecipeManager.instance().getRecipe(this);
+        curCatalyst = InsolatorRecipeManager.instance().getCatalyst(catalystSlot);
         if (curRecipe != null) {
             itemInputCounts = curRecipe.getInputItemCounts(this);
             fluidInputCounts = curRecipe.getInputFluidCounts(this);

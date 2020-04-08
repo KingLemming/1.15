@@ -6,6 +6,7 @@ import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -25,6 +26,7 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 public abstract class MachineTileProcess extends MachineTileBase {
 
     protected IMachineRecipe curRecipe;
+    protected IRecipeCatalyst curCatalyst;
     protected List<Integer> itemInputCounts = new ArrayList<>();
     protected List<Integer> fluidInputCounts = new ArrayList<>();
 
@@ -149,6 +151,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
     protected void clearRecipe() {
 
         curRecipe = null;
+        curCatalyst = null;
         itemInputCounts = new ArrayList<>();
         fluidInputCounts = new ArrayList<>();
     }
@@ -395,7 +398,8 @@ public abstract class MachineTileProcess extends MachineTileBase {
         if (Utils.isServerWorld(world) && slot < inventory.getInputSlots().size()) {
             if (isActive) {
                 IMachineRecipe tempRecipe = curRecipe;
-                if (!validateInputs() || tempRecipe != curRecipe) {
+                IRecipeCatalyst tempCatalyst = curCatalyst;
+                if (!validateInputs() || tempRecipe != curRecipe || tempCatalyst != curCatalyst) {
                     processOff();
                 }
             }
