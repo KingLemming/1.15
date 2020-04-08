@@ -6,7 +6,7 @@
     "up": "thermal:block/machine_top",
     "east": "thermal:block/machine_side",
     "west": "thermal:block/machine_side",
-    "north": "thermal:block/machine_refinery_active",
+    "north": "thermal:block/machine_brewer_active",
     "south": "thermal:block/machine_side"
   }
 }

@@ -6,6 +6,7 @@ import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
@@ -44,16 +45,15 @@ public class ElementFluidStorage extends ElementResourceStorage {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (tank.getAmount() > 0) {
-            tooltip.add(StringHelper.getFluidName(tank.getFluidStack()));
+            tooltipList.add(StringHelper.getFluidName(tank.getFluidStack()));
             if (FluidHelper.hasPotionTag(tank.getFluidStack())) {
-                // TODO: Fix
-                // FluidHelper.addPotionTooltip(tank.getFluidStack(), tooltip);
+                FluidHelper.addPotionTooltip(tank.getFluidStack(), tooltipList);
             }
         }
-        super.addTooltip(tooltip, mouseX, mouseY);
+        super.addTooltip(tooltipList, mouseX, mouseY);
     }
 
 }

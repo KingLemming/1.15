@@ -62,6 +62,7 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
 
         clear();
         if (defaultFurnaceRecipes) {
+            ThermalCore.LOG.debug("Adding default Furnace recipes to the Redstone Furnace...");
             Map<ResourceLocation, IRecipe<IInventory>> smeltingRecipes = recipeManager.getRecipes(IRecipeType.SMELTING);
             for (Map.Entry<ResourceLocation, IRecipe<IInventory>> entry : smeltingRecipes.entrySet()) {
                 AbstractCookingRecipe smeltingRecipe = (AbstractCookingRecipe) entry.getValue();
@@ -71,12 +72,12 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
                     int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
                     NonNullList<Ingredient> ingredients = smeltingRecipe.getIngredients();
                     if (ingredients.isEmpty()) {
-                        // TODO: Log an error.
+                        ThermalCore.LOG.debug("A Minecraft Furnace recipe had an empty ingredient! That's not good - you should check your datapack:" + smeltingRecipe.toString());
                         continue;
                     }
                     for (ItemStack recipeInput : ingredients.get(0).getMatchingStacks()) {
                         addRecipe(energy, experience, recipeInput, recipeOutput);
-                        ThermalCore.LOG.debug("Furnace - Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy + " RF");
+                        // ThermalCore.LOG.debug("Furnace - Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy + " RF");
                     }
                 }
             }

@@ -281,11 +281,15 @@ public abstract class RecipeJsonUtils {
     public static final String FLUID = "fluid";
     public static final String INGREDIENT = "ingredient";
     public static final String INGREDIENTS = "ingredients";
+    public static final String INPUT = "input";
+    public static final String INPUTS = "inputs";
     public static final String ITEM = "item";
     public static final String LOCKED = "locked";
     public static final String MIN_CHANCE = "min_chance";
     public static final String MOD = "mod";
     public static final String NBT = "nbt";
+    public static final String OUTPUT = "output";
+    public static final String OUTPUTS = "outputs";
     public static final String ORE = "ore";
     public static final String PRIMARY_MOD = "primary_mod";
     public static final String REMOVE = "remove";

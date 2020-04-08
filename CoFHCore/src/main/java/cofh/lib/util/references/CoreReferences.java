@@ -22,6 +22,7 @@ public class CoreReferences {
     public static final String ID_GLOW_AIR = ID_COFH_CORE + ":glow_air";
     public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
 
+    public static final String ID_FLUID_EXPERIENCE = ID_COFH_CORE + ":experience";
     public static final String ID_FLUID_POTION = ID_COFH_CORE + ":potion";
 
     public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
@@ -58,6 +59,9 @@ public class CoreReferences {
     // endregion
 
     // region FLUIDS
+    @ObjectHolder(ID_FLUID_EXPERIENCE)
+    public static final FlowingFluid FLUID_EXPERIENCE = null;
+
     @ObjectHolder(ID_FLUID_POTION)
     public static final FlowingFluid FLUID_POTION = null;
     // endregion

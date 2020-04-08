@@ -1,0 +1,19 @@
+{
+  "type": "thermal:centrifuge",
+  "ingredient": {
+    "item": "minecraft:enchanted_book"
+  },
+  "result": [
+    {
+      "item": "minecraft:paper",
+      "count": 2
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "fluid": "cofh_core:experience",
+      "amount": 250
+    }
+  ]
+}

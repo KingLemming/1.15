@@ -1,7 +1,6 @@
 package cofh.core.fluid;
 
 import cofh.lib.fluid.FluidCoFH;
-import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -20,7 +19,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import javax.annotation.Nullable;
-import java.util.function.Supplier;
 
 import static cofh.core.CoFHCore.FLUIDS;
 import static cofh.lib.util.constants.NBTTags.TAG_POTION;
@@ -41,7 +39,7 @@ public class PotionFluid extends FluidCoFH {
         stillFluid = FLUIDS.register(key, () -> new ForgeFlowingFluid.Source(properties));
         flowingFluid = FLUIDS.register(flowing(key), () -> new ForgeFlowingFluid.Flowing(properties));
 
-        properties = new ForgeFlowingFluid.Properties(stillFluid, flowingFluid, FluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture)).luminosity(15).density(-500).viscosity(100).rarity(Rarity.UNCOMMON)).bucket(bucket).block(block).levelDecreasePerBlock(4);
+        properties = new ForgeFlowingFluid.Properties(stillFluid, flowingFluid, PotionFluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture)));
     }
 
     public static int getPotionColor(FluidStack stack) {
@@ -49,11 +47,11 @@ public class PotionFluid extends FluidCoFH {
         if (stack.getTag() != null && stack.getTag().contains("CustomPotionColor", 99)) {
             return stack.getTag().getInt("CustomPotionColor");
         } else {
-            return getPotionFromNBT(stack.getTag()) == Potions.EMPTY ? DEFAULT_COLOR : PotionUtils.getPotionColorFromEffectList(PotionUtils.getEffectsFromTag(stack.getTag()));
+            return getPotionFromFluid(stack.getTag()) == Potions.EMPTY ? DEFAULT_COLOR : PotionUtils.getPotionColorFromEffectList(PotionUtils.getEffectsFromTag(stack.getTag()));
         }
     }
 
-    public static Potion getPotionFromNBT(@Nullable CompoundNBT tag) {
+    public static Potion getPotionFromFluid(@Nullable CompoundNBT tag) {
 
         return tag == null || !tag.contains(TAG_POTION) ? Potions.EMPTY : Potion.getPotionTypeForName(tag.getString(TAG_POTION));
     }
@@ -112,12 +110,16 @@ public class PotionFluid extends FluidCoFH {
         @Override
         public ITextComponent getDisplayName(FluidStack stack) {
 
-            Potion type = PotionUtils.getPotionTypeFromNBT(stack.getTag());
-
-            if (type == Potions.EMPTY || type == Potions.WATER) {
+            Potion potion = PotionUtils.getPotionTypeFromNBT(stack.getTag());
+            if (potion == Potions.EMPTY || potion == Potions.WATER) {
                 return super.getDisplayName(stack);
             }
-            return new TranslationTextComponent(type.getNamePrefixed("potion.effect."));
+            return new TranslationTextComponent(potion.getNamePrefixed(Items.POTION.getTranslationKey() + ".effect."));
+        }
+
+        public Rarity getRarity(FluidStack stack) {
+
+            return getPotionFromFluid(stack.getTag()).getEffects().isEmpty() ? Rarity.COMMON : Rarity.UNCOMMON;
         }
 
         @Override

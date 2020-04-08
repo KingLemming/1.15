@@ -3,8 +3,8 @@ package cofh.core.gui.element.panel;
 import cofh.core.gui.IGuiAccess;
 import cofh.core.gui.TexturesCoFH;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-
-import static cofh.lib.util.helpers.StringHelper.localize;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class PanelInfo extends PanelScrolledText {
 
@@ -28,7 +28,7 @@ public class PanelInfo extends PanelScrolledText {
         textColor = defaultTextColor;
         backgroundColor = defaultBackgroundColor;
 
-        this.setVisible(!info.isEmpty());
+        this.setVisible(() -> !info.isEmpty());
     }
 
     @Override
@@ -38,9 +38,9 @@ public class PanelInfo extends PanelScrolledText {
     }
 
     @Override
-    public String getTitle() {
+    public ITextComponent getTitle() {
 
-        return localize("info.cofh.information");
+        return new TranslationTextComponent("info.cofh.information");
     }
 
 }

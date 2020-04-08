@@ -17,8 +17,8 @@ public class TExpRecipes {
 
     public static void register() {
 
+        // TODO: Convert when one a ForgeRegistry is added.
         // Recipes are self-registered as they do not currently have a proper Forge Registry.
-        // TODO: Convert when one is added.
         RECIPE_FURNACE.register();
         RECIPE_SAWMILL.register();
         RECIPE_PULVERIZER.register();

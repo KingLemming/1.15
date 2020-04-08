@@ -3,8 +3,8 @@ package cofh.lib.util.helpers;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -45,42 +45,41 @@ public final class StringHelper {
         return NumberFormat.getInstance().format(number);
     }
 
-    public static String getFluidName(FluidStack stack) {
+    public static ITextComponent getFluidName(FluidStack stack) {
 
         Fluid fluid = stack.getFluid();
+        ITextComponent name = fluid.getAttributes().getDisplayName(stack);
 
-        String name = "" + END;
-        if (fluid.getAttributes().getRarity() == Rarity.UNCOMMON) {
-            name += YELLOW;
-        } else if (fluid.getAttributes().getRarity() == Rarity.RARE) {
-            name += BRIGHT_BLUE;
-        } else if (fluid.getAttributes().getRarity() == Rarity.EPIC) {
-            name += PINK;
+        switch (fluid.getAttributes().getRarity(stack)) {
+            case UNCOMMON:
+                name.applyTextStyle(TextFormatting.YELLOW);
+                break;
+            case RARE:
+                name.applyTextStyle(TextFormatting.AQUA);
+                break;
+            case EPIC:
+                name.applyTextStyle(TextFormatting.LIGHT_PURPLE);
+                break;
         }
-        name += fluid.getAttributes().getDisplayName(stack).getUnformattedComponentText() + END;
         return name;
     }
 
-    public static String getFluidName(FluidStack stack, String defaultName) {
+    public static ITextComponent getItemName(ItemStack stack) {
 
-        if (stack.isEmpty()) {
-            return defaultName;
+        Item item = stack.getItem();
+        ITextComponent name = item.getDisplayName(stack);
+
+        switch (item.getRarity(stack)) {
+            case UNCOMMON:
+                name.applyTextStyle(TextFormatting.YELLOW);
+                break;
+            case RARE:
+                name.applyTextStyle(TextFormatting.AQUA);
+                break;
+            case EPIC:
+                name.applyTextStyle(TextFormatting.LIGHT_PURPLE);
+                break;
         }
-        return getFluidName(stack);
-    }
-
-    public static String getItemName(ItemStack stack) {
-
-        String name = "" + END;
-        if (stack.getRarity() == Rarity.UNCOMMON) {
-            name += YELLOW;
-        } else if (stack.getRarity() == Rarity.RARE) {
-            name += BRIGHT_BLUE;
-        } else if (stack.getRarity() == Rarity.EPIC) {
-            name += PINK;
-        }
-        name += stack.getDisplayName() + END;
-
         return name;
     }
 
@@ -177,29 +176,4 @@ public final class StringHelper {
         return decompose(resourceLoc, ':')[1];
     }
     // endregion
-
-    public static final String BLACK = (char) 167 + "0";
-    public static final String BLUE = (char) 167 + "1";
-    public static final String GREEN = (char) 167 + "2";
-    public static final String TEAL = (char) 167 + "3";
-    public static final String RED = (char) 167 + "4";
-    public static final String PURPLE = (char) 167 + "5";
-    public static final String ORANGE = (char) 167 + "6";
-    public static final String LIGHT_GRAY = (char) 167 + "7";
-    public static final String GRAY = (char) 167 + "8";
-    public static final String LIGHT_BLUE = (char) 167 + "9";
-    public static final String BRIGHT_GREEN = (char) 167 + "a";
-    public static final String BRIGHT_BLUE = (char) 167 + "b";
-    public static final String LIGHT_RED = (char) 167 + "c";
-    public static final String PINK = (char) 167 + "d";
-    public static final String YELLOW = (char) 167 + "e";
-    public static final String WHITE = (char) 167 + "f";
-
-    public static final String OBFUSCATED = (char) 167 + "k";
-    public static final String BOLD = (char) 167 + "l";
-    public static final String STRIKETHROUGH = (char) 167 + "m";
-    public static final String UNDERLINE = (char) 167 + "n";
-    public static final String ITALIC = (char) 167 + "o";
-    public static final String END = (char) 167 + "r";
-
 }

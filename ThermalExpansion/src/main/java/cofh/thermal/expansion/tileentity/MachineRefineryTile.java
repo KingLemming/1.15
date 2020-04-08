@@ -41,6 +41,16 @@ public class MachineRefineryTile extends MachineTileProcess {
     }
 
     @Override
+    protected boolean cacheRecipe() {
+
+        curRecipe = RefineryRecipeManager.instance().getRecipe(this);
+        if (curRecipe != null) {
+            fluidInputCounts = curRecipe.getInputFluidCounts(this);
+        }
+        return curRecipe != null;
+    }
+
+    @Override
     protected boolean cacheRenderFluid() {
 
         if (curRecipe == null) {
@@ -54,16 +64,6 @@ public class MachineRefineryTile extends MachineTileProcess {
         }
         renderFluid = new FluidStack(inputTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
-    }
-
-    @Override
-    protected boolean cacheRecipe() {
-
-        curRecipe = RefineryRecipeManager.instance().getRecipe(this);
-        if (curRecipe != null) {
-            fluidInputCounts = curRecipe.getInputFluidCounts(this);
-        }
-        return curRecipe != null;
     }
 
     @Nullable

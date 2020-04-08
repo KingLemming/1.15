@@ -6,12 +6,14 @@ import cofh.lib.util.control.IRedstoneControllable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
 import static cofh.core.gui.TexturesCoFH.*;
 import static cofh.lib.util.control.IRedstoneControllable.ControlMode.*;
-import static cofh.lib.util.helpers.StringHelper.YELLOW;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelRedstoneControl extends PanelBase {
@@ -103,19 +105,19 @@ public class PanelRedstoneControl extends PanelBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (!fullyOpen) {
-            tooltip.add(localize("info.cofh.redstone_control"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.redstone_control"));
             switch (myRSControllable.getMode()) {
                 case DISABLED:
-                    tooltip.add(YELLOW + localize("info.cofh.disabled"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.disabled").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 case LOW:
-                    tooltip.add(YELLOW + localize("info.cofh.low"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.low").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 case HIGH:
-                    tooltip.add(YELLOW + localize("info.cofh.high"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.high").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 default:
             }
@@ -125,11 +127,11 @@ public class PanelRedstoneControl extends PanelBase {
         int y = mouseY - this.posY;
 
         if (28 <= x && x < 44 && 20 <= y && y < 36) {
-            tooltip.add(localize("info.cofh.ignored"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.ignored"));
         } else if (48 <= x && x < 64 && 20 <= y && y < 36) {
-            tooltip.add(localize("info.cofh.low"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.low"));
         } else if (68 <= x && x < 84 && 20 <= y && y < 36) {
-            tooltip.add(localize("info.cofh.high"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.high"));
         }
     }
 

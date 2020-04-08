@@ -33,6 +33,16 @@ public class MachineCrucibleTile extends MachineTileProcess {
     }
 
     @Override
+    protected boolean cacheRecipe() {
+
+        curRecipe = CrucibleRecipeManager.instance().getRecipe(this);
+        if (curRecipe != null) {
+            itemInputCounts = curRecipe.getInputItemCounts(this);
+        }
+        return curRecipe != null;
+    }
+
+    @Override
     protected boolean cacheRenderFluid() {
 
         if (curRecipe == null) {
@@ -41,16 +51,6 @@ public class MachineCrucibleTile extends MachineTileProcess {
         FluidStack prevFluid = renderFluid;
         renderFluid = new FluidStack(curRecipe.getOutputFluids(this).get(0), FluidAttributes.BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
-    }
-
-    @Override
-    protected boolean cacheRecipe() {
-
-        curRecipe = CrucibleRecipeManager.instance().getRecipe(this);
-        if (curRecipe != null) {
-            itemInputCounts = curRecipe.getInputItemCounts(this);
-        }
-        return curRecipe != null;
     }
 
     @Nullable

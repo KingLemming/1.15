@@ -5,6 +5,7 @@ import cofh.core.gui.TexturesCoFH;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public abstract class PanelScrolledText extends PanelBase {
 
     public abstract TextureAtlasSprite getIcon();
 
-    public abstract String getTitle();
+    public abstract ITextComponent getTitle();
 
     @Override
     public void drawForeground() {
@@ -52,7 +53,7 @@ public abstract class PanelScrolledText extends PanelBase {
                 gui.drawIcon(TexturesCoFH.ICON_ARROW_DOWN_INACTIVE, sideOffset() + maxWidth - 20, 76);
             }
         }
-        getFontRenderer().drawStringWithShadow(getTitle(), sideOffset() + 18, 6, headerColor);
+        getFontRenderer().drawStringWithShadow(getTitle().getString(), sideOffset() + 18, 6, headerColor);
         for (int i = firstLine; i < firstLine + numLines; ++i) {
             getFontRenderer().drawString(myText.get(i), sideOffset() + 2, 20 + (i - firstLine) * getFontRenderer().FONT_HEIGHT, textColor);
         }
@@ -60,10 +61,10 @@ public abstract class PanelScrolledText extends PanelBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (!fullyOpen) {
-            tooltip.add(getTitle());
+            tooltipList.add(getTitle());
         }
     }
 

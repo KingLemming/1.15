@@ -59,17 +59,7 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
         }
         if (progressOverlay != null) {
             progressOverlay.setQuantity(tile.getScaledProgress(PROGRESS));
-
-            if (progress != null) {
-                if (tile.getRenderFluid().isEmpty()) {
-                    progress.setVisible(true);
-                    progressOverlay.setVisible(false);
-                } else {
-                    progressOverlay.setFluid(tile.getRenderFluid());
-                    progressOverlay.setVisible(true);
-                    progress.setVisible(false);
-                }
-            }
+            progressOverlay.setFluid(tile.getRenderFluid());
         }
         if (speed != null) {
             speed.setQuantity(tile.getScaledSpeed(SPEED));

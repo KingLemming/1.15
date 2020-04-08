@@ -2,14 +2,18 @@ package cofh.thermal.expansion.tileentity;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.MachineCentrifugeContainer;
 import cofh.thermal.expansion.util.managers.machine.CentrifugeRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 import static cofh.lib.util.StorageGroup.INPUT;
 import static cofh.lib.util.StorageGroup.OUTPUT;
@@ -39,6 +43,18 @@ public class MachineCentrifugeTile extends MachineTileProcess {
             itemInputCounts = curRecipe.getInputItemCounts(this);
         }
         return curRecipe != null;
+    }
+
+    @Override
+    protected boolean cacheRenderFluid() {
+
+        if (curRecipe == null) {
+            return false;
+        }
+        FluidStack prevFluid = renderFluid;
+        List<FluidStack> recipeOutputFluids = curRecipe.getOutputFluids(this);
+        renderFluid = recipeOutputFluids.isEmpty() ? FluidStack.EMPTY : new FluidStack(recipeOutputFluids.get(0), FluidAttributes.BUCKET_VOLUME);
+        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 
     @Nullable

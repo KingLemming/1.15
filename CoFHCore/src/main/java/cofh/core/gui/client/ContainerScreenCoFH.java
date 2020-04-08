@@ -46,7 +46,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
 
     protected ArrayList<PanelBase> panels = new ArrayList<>();
     protected ArrayList<ElementBase> elements = new ArrayList<>();
-    protected List<String> tooltip = new LinkedList<>();
+    protected List<ITextComponent> tooltip = new LinkedList<>();
 
     protected boolean drawTitle = true;
     protected boolean drawInventory = true;
@@ -472,16 +472,21 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         return ((xPos * 2) - font.getStringWidth(string)) / 2;
     }
 
-    protected void drawTooltipHoveringText(List<String> tooltip, int x, int y, FontRenderer font) {
+    protected void drawTooltipHoveringText(List<ITextComponent> tooltip, int x, int y, FontRenderer font) {
 
         if (tooltip == null || tooltip.isEmpty()) {
             return;
         }
+        List<String> stringTooltip = new ArrayList<>(tooltip.size());
+        for (ITextComponent textComponent : tooltip) {
+            stringTooltip.add(textComponent.getFormattedText());
+        }
+
         RenderSystem.disableRescaleNormal();
         RenderSystem.disableDepthTest();
         int k = 0;
 
-        for (String s : tooltip) {
+        for (String s : stringTooltip) {
             int l = font.getStringWidth(s);
 
             if (l > k) {
@@ -522,7 +527,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         Matrix4f matrix4f = matrixstack.getLast().getPositionMatrix();
 
         for (int k2 = 0; k2 < tooltip.size(); ++k2) {
-            String s1 = tooltip.get(k2);
+            String s1 = stringTooltip.get(k2);
             if (s1 != null) {
                 font.renderString(s1, i1, j1, -1, true, matrix4f, irendertypebuffer$impl, false, 0, 15728880);
             }

@@ -2,7 +2,8 @@ package cofh.core.gui.element;
 
 import cofh.core.gui.IGuiAccess;
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.StringHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ElementSimple extends ElementBase {
 
     protected int texU = 0;
     protected int texV = 0;
-    protected String info;
+    protected String tooltip;
 
     public ElementSimple(IGuiAccess gui, int posX, int posY) {
 
@@ -31,13 +32,13 @@ public class ElementSimple extends ElementBase {
 
     public ElementSimple clearToolTip() {
 
-        this.info = null;
+        this.tooltip = null;
         return this;
     }
 
     public ElementSimple setToolTip(String tooltip) {
 
-        this.info = tooltip;
+        this.tooltip = tooltip;
         return this;
     }
 
@@ -54,10 +55,10 @@ public class ElementSimple extends ElementBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
-        if (info != null) {
-            tooltip.add(StringHelper.localize(info));
+        if (tooltip != null) {
+            tooltipList.add(new TranslationTextComponent(tooltip));
         }
     }
 

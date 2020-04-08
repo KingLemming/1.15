@@ -5,13 +5,16 @@ import cofh.lib.util.control.ISecurable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 import java.util.UUID;
 
 import static cofh.core.gui.TexturesCoFH.*;
 import static cofh.lib.util.control.ISecurable.AccessMode.*;
-import static cofh.lib.util.helpers.StringHelper.YELLOW;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelSecurity extends PanelBase {
@@ -118,22 +121,22 @@ public class PanelSecurity extends PanelBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (!fullyOpen) {
-            tooltip.add(localize("info.cofh.owner") + ": " + mySecurable.getOwnerName());
+            tooltipList.add(new TranslationTextComponent("info.cofh.owner").appendSibling(new StringTextComponent(": " + mySecurable.getOwnerName())));
             switch (mySecurable.getAccess()) {
                 case PUBLIC:
-                    tooltip.add(YELLOW + localize("info.cofh.access_public"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.access_public").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 case PRIVATE:
-                    tooltip.add(YELLOW + localize("info.cofh.access_private"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.access_private").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 case FRIENDS:
-                    tooltip.add(YELLOW + localize("info.cofh.access_friends"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.access_friends").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 case TEAM:
-                    tooltip.add(YELLOW + localize("info.cofh.access_team"));
+                    tooltipList.add(new TranslationTextComponent("info.cofh.access_team").applyTextStyle(TextFormatting.YELLOW));
                     break;
                 default:
             }
@@ -143,13 +146,13 @@ public class PanelSecurity extends PanelBase {
         int y = mouseY - this.posY;
 
         if (38 <= x && x < 54 && 22 <= y && y < 38) {
-            tooltip.add(localize("info.cofh.access_public"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.access_public"));
         } else if (58 <= x && x < 74 && 22 <= y && y < 38) {
-            tooltip.add(localize("info.cofh.access_private"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.access_private"));
         } else if (38 <= x && x < 54 && 42 <= y && y < 58) {
-            tooltip.add(localize("info.cofh.access_friends"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.access_friends"));
         } else if (58 <= x && x < 74 && 42 <= y && y < 58) {
-            tooltip.add(localize("info.cofh.access_team"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.access_team"));
         }
     }
 

@@ -5,11 +5,13 @@ import cofh.lib.util.IResourceStorage;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
 import static cofh.lib.util.helpers.StringHelper.format;
-import static cofh.lib.util.helpers.StringHelper.localize;
 
 public abstract class ElementResourceStorage extends ElementBase {
 
@@ -52,12 +54,12 @@ public abstract class ElementResourceStorage extends ElementBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (infinite) {
-            tooltip.add(localize("info.cofh.infinite"));
+            tooltipList.add(new TranslationTextComponent("info.cofh.infinite"));
         } else {
-            tooltip.add(format(storage.getStored()) + " / " + format(storage.getCapacity()) + " " + storage.getUnit());
+            tooltipList.add(new StringTextComponent(format(storage.getStored()) + " / " + format(storage.getCapacity()) + " " + storage.getUnit()));
         }
     }
 

@@ -39,17 +39,6 @@ public class MachineBrewerTile extends MachineTileProcess {
     }
 
     @Override
-    protected boolean cacheRenderFluid() {
-
-        if (curRecipe == null) {
-            return false;
-        }
-        FluidStack prevFluid = renderFluid;
-        renderFluid = new FluidStack(curRecipe.getOutputFluids(this).get(0), FluidAttributes.BUCKET_VOLUME);
-        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
-    }
-
-    @Override
     protected boolean cacheRecipe() {
 
         curRecipe = BrewerRecipeManager.instance().getRecipe(this);
@@ -58,6 +47,17 @@ public class MachineBrewerTile extends MachineTileProcess {
             fluidInputCounts = curRecipe.getInputFluidCounts(this);
         }
         return curRecipe != null;
+    }
+
+    @Override
+    protected boolean cacheRenderFluid() {
+
+        if (curRecipe == null) {
+            return false;
+        }
+        FluidStack prevFluid = renderFluid;
+        renderFluid = new FluidStack(curRecipe.getOutputFluids(this).get(0), FluidAttributes.BUCKET_VOLUME);
+        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 
     @Nullable

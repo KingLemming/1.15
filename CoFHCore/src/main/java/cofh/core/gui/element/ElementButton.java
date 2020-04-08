@@ -2,10 +2,10 @@ package cofh.core.gui.element;
 
 import cofh.core.gui.IGuiAccess;
 import cofh.lib.util.helpers.RenderHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
-
-import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class ElementButton extends ElementButtonBase {
 
@@ -95,10 +95,10 @@ public class ElementButton extends ElementButtonBase {
     }
 
     @Override
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
         if (this.tooltip != null) {
-            tooltip.add(localize(this.tooltip));
+            tooltipList.add(new TranslationTextComponent(this.tooltip));
         }
     }
 

@@ -6,6 +6,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.helpers.FluidHelper;
+import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
@@ -23,6 +24,7 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionBrewing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
@@ -32,10 +34,11 @@ import static java.util.Arrays.asList;
 public class BrewerRecipeManager extends AbstractManager implements IRecipeManager {
 
     private static final BrewerRecipeManager INSTANCE = new BrewerRecipeManager();
-    protected static final int DEFAULT_ENERGY = 2000;
-    protected static final int DEFAULT_POTION_AMOUNT = 750;
+    protected static final int DEFAULT_ENERGY = 4000;
 
     protected static boolean defaultPotionRecipes = true;
+
+    protected int defaultPotion = FluidAttributes.BUCKET_VOLUME;
 
     protected Map<List<Integer>, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
     protected Set<Fluid> validFluids = new ObjectOpenHashSet<>();
@@ -120,7 +123,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
     public void addDefaultPotionRecipe(Potion inputPotion, Ingredient reagent, Potion outputPotion) {
 
         for (ItemStack stack : reagent.getMatchingStacks()) {
-            addRecipe(defaultEnergy, 0.0F, Collections.singletonList(stack), Collections.singletonList(PotionFluid.getPotionAsFluid(DEFAULT_POTION_AMOUNT, inputPotion)), Collections.emptyList(), Collections.emptyList(), Collections.singletonList(PotionFluid.getPotionAsFluid(DEFAULT_POTION_AMOUNT, outputPotion)));
+            addRecipe(defaultEnergy, 0.0F, Collections.singletonList(stack), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, inputPotion)), Collections.emptyList(), Collections.emptyList(), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, outputPotion)));
         }
     }
 
@@ -149,8 +152,9 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
 
         clear();
         if (defaultPotionRecipes) {
-            for (PotionBrewing.MixPredicate<Potion> test : PotionBrewing.POTION_TYPE_CONVERSIONS) {
-
+            ThermalCore.LOG.debug("Adding default Brewing Stand recipes to the Alchemical Imbuer...");
+            for (PotionBrewing.MixPredicate<Potion> mix : PotionBrewing.POTION_TYPE_CONVERSIONS) {
+                addDefaultPotionRecipe(mix.input.get(), mix.reagent, mix.output.get());
             }
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_BREWER);

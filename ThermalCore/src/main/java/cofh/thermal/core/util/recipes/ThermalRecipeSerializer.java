@@ -38,11 +38,17 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         ArrayList<Float> outputItemChances = new ArrayList<>();
         ArrayList<FluidStack> outputFluids = new ArrayList<>();
 
+        // TODO: Ingredient Stacksize > 1. Thanks Mojang.
+
         /* INPUT */
         if (json.has(INGREDIENT)) {
             parseInputs(inputItems, inputFluids, json.get(INGREDIENT));
         } else if (json.has(INGREDIENTS)) {
             parseInputs(inputItems, inputFluids, json.get(INGREDIENTS));
+        } else if (json.has(INPUT)) {
+            parseInputs(inputItems, inputFluids, json.get(INPUT));
+        } else if (json.has(INPUTS)) {
+            parseInputs(inputItems, inputFluids, json.get(INPUTS));
         }
 
         /* OUTPUT */
@@ -50,6 +56,10 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
             parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RESULT));
         } else if (json.has(RESULTS)) {
             parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RESULTS));
+        } else if (json.has(OUTPUT)) {
+            parseOutputs(outputItems, outputItemChances, outputFluids, json.get(OUTPUT));
+        } else if (json.has(OUTPUTS)) {
+            parseOutputs(outputItems, outputItemChances, outputFluids, json.get(OUTPUTS));
         }
 
         /* ENERGY */

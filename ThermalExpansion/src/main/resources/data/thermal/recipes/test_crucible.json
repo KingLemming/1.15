@@ -1,0 +1,13 @@
+{
+  "type": "thermal:crucible",
+  "ingredient": {
+    "item": "minecraft:book"
+  },
+  "result": [
+    {
+      "fluid": "cofh_core:experience",
+      "amount": 500
+    }
+  ],
+  "energy": 4000
+}

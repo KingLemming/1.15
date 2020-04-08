@@ -7,6 +7,9 @@ import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.Items;
+import net.minecraft.potion.PotionBrewing;
+import net.minecraft.potion.Potions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -42,6 +45,9 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(CrucibleRecipeManager.instance());
         ThermalRecipeManager.register(RefineryRecipeManager.instance());
         ThermalRecipeManager.register(BrewerRecipeManager.instance());
+
+        // TODO: For testing Only
+        PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
     }
 
     // region INITIALIZATION

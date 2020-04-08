@@ -3,6 +3,7 @@ package cofh.core.gui.element;
 import cofh.core.gui.IGuiAccess;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -57,7 +58,7 @@ public abstract class ElementBase {
 
     }
 
-    public void addTooltip(List<String> tooltip, int mouseX, int mouseY) {
+    public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
     }
 
