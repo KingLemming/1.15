@@ -23,6 +23,7 @@ public class TExpReferences {
     public static final String ID_MACHINE_CENTRIFUGE = ID_THERMAL + ":machine_centrifuge";
     public static final String ID_MACHINE_CRUCIBLE = ID_THERMAL + ":machine_crucible";
     public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
+    public static final String ID_MACHINE_BREWER = ID_THERMAL + ":machine_brewer";
     // endregion
 
     // region RECIPES
@@ -33,6 +34,7 @@ public class TExpReferences {
     public static final String ID_RECIPE_CENTRIFUGE = ID_THERMAL + ":centrifuge";
     public static final String ID_RECIPE_CRUCIBLE = ID_THERMAL + ":crucible";
     public static final String ID_RECIPE_REFINERY = ID_THERMAL + ":refinery";
+    public static final String ID_RECIPE_BREWER = ID_THERMAL + ":brewer";
 
     public static final String ID_CATALYST_PULVERIZER = ID_THERMAL + ":pulverizer_catalyst";
     public static final String ID_CATALYST_INSOLATOR = ID_THERMAL + ":insolator_catalyst";
@@ -98,5 +100,12 @@ public class TExpReferences {
     public static TileEntityType<MachineRefineryTile> MACHINE_REFINERY_TILE;
     @ObjectHolder(ID_MACHINE_REFINERY)
     public static ContainerType<MachineRefineryContainer> MACHINE_REFINERY_CONTAINER;
+
+    @ObjectHolder(ID_MACHINE_BREWER)
+    public static Block MACHINE_BREWER_BLOCK;
+    @ObjectHolder(ID_MACHINE_BREWER)
+    public static TileEntityType<MachineBrewerTile> MACHINE_BREWER_TILE;
+    @ObjectHolder(ID_MACHINE_BREWER)
+    public static ContainerType<MachineBrewerContainer> MACHINE_BREWER_CONTAINER;
 
 }

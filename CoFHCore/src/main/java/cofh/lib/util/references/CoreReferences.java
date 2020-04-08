@@ -2,6 +2,7 @@ package cofh.lib.util.references;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
@@ -20,6 +21,8 @@ public class CoreReferences {
     public static final String ID_SIGNAL_AIR = ID_COFH_CORE + ":signal_air";
     public static final String ID_GLOW_AIR = ID_COFH_CORE + ":glow_air";
     public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
+
+    public static final String ID_FLUID_POTION = ID_COFH_CORE + ":potion";
 
     public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
@@ -52,6 +55,11 @@ public class CoreReferences {
 
     @ObjectHolder(ID_ENDER_AIR)
     public static final Block ENDER_AIR = null;
+    // endregion
+
+    // region FLUIDS
+    @ObjectHolder(ID_FLUID_POTION)
+    public static final FlowingFluid FLUID_POTION = null;
     // endregion
 
     // region TILES

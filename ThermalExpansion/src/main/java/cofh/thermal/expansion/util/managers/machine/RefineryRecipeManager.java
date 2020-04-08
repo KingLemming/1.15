@@ -34,16 +34,16 @@ public class RefineryRecipeManager extends AbstractManager implements IRecipeMan
     protected int maxOutputItems;
     protected int maxOutputFluids;
 
-    protected RefineryRecipeManager() {
+    public static RefineryRecipeManager instance() {
+
+        return INSTANCE;
+    }
+
+    private RefineryRecipeManager() {
 
         super(DEFAULT_ENERGY);
         this.maxOutputItems = 1;
         this.maxOutputFluids = 2;
-    }
-
-    public static RefineryRecipeManager instance() {
-
-        return INSTANCE;
     }
 
     public void addRecipe(ThermalRecipe recipe) {

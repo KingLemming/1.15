@@ -38,7 +38,6 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         ArrayList<Float> outputItemChances = new ArrayList<>();
         ArrayList<FluidStack> outputFluids = new ArrayList<>();
 
-        // TODO: Multiple item inputs
         /* INPUT */
         if (json.has(INGREDIENT)) {
             parseInputs(inputItems, inputFluids, json.get(INGREDIENT));

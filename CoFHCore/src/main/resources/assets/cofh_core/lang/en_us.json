@@ -46,6 +46,8 @@
   "effect.cofh_core.panacea": "Panacea",
   "effect.cofh_core.redergized": "Redergized",
 
+  "fluid.cofh_core.potion": "Potion",
+
   "item.cofh_core.ectoplasm": "Ectoplasm",
 
   "enchantment.minecraft.aqua_affinity.desc": "Removes the mining speed penalty when underwater.",

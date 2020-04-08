@@ -1,0 +1,18 @@
+{
+  "type": "thermal:brewer",
+  "ingredient": [
+    {
+      "item": "thermal:sawdust"
+    },
+    {
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "result": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 500
+    }
+  ],
+  "energy": 1000
+}

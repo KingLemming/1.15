@@ -37,10 +37,18 @@ public class InsolatorRecipeSerializer<T extends ThermalRecipe> extends ThermalR
         ArrayList<FluidStack> outputFluids = new ArrayList<>();
 
         /* INPUT */
-        parseInputs(inputItems, inputFluids, json.get(INGREDIENT));
+        if (json.has(INGREDIENT)) {
+            parseInputs(inputItems, inputFluids, json.get(INGREDIENT));
+        } else if (json.has(INGREDIENTS)) {
+            parseInputs(inputItems, inputFluids, json.get(INGREDIENTS));
+        }
 
         /* OUTPUT */
-        parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RESULT));
+        if (json.has(RESULT)) {
+            parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RESULT));
+        } else if (json.has(RESULTS)) {
+            parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RESULTS));
+        }
 
         /* ENERGY */
         if (json.has(ENERGY)) {

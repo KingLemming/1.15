@@ -6,10 +6,7 @@ import cofh.core.data.CoreRecipes;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.gui.TexturesCoFH;
-import cofh.core.init.CoreBlocks;
-import cofh.core.init.CoreConfig;
-import cofh.core.init.CoreEffects;
-import cofh.core.init.CoreItems;
+import cofh.core.init.*;
 import cofh.core.network.packet.client.IndexedChatPacket;
 import cofh.core.network.packet.client.TileControlPacket;
 import cofh.core.network.packet.client.TileGuiPacket;
@@ -26,6 +23,7 @@ import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
@@ -54,6 +52,7 @@ public class CoFHCore {
     public static Proxy proxy = DistExecutor.runForDist(() -> ProxyClient::new, () -> Proxy::new);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
+    public static final DeferredRegisterCoFH<Fluid> FLUIDS = new DeferredRegisterCoFH<>(ForgeRegistries.FLUIDS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Effect> EFFECTS = new DeferredRegisterCoFH<>(ForgeRegistries.POTIONS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<ParticleType<?>> PARTICLES = new DeferredRegisterCoFH<>(ForgeRegistries.PARTICLE_TYPES, ID_COFH_CORE);
@@ -72,6 +71,7 @@ public class CoFHCore {
         MinecraftForge.EVENT_BUS.addListener(this::serverStarting);
 
         BLOCKS.register(modEventBus);
+        FLUIDS.register(modEventBus);
         EFFECTS.register(modEventBus);
         ITEMS.register(modEventBus);
         // PARTICLES.register(modEventBus);
@@ -80,6 +80,7 @@ public class CoFHCore {
         CoreConfig.register();
 
         CoreBlocks.register();
+        CoreFluids.register();
         CoreEffects.register();
         CoreItems.register();
         // CoreParticles.register();

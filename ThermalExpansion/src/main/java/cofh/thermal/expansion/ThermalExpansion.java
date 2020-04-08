@@ -41,6 +41,7 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(CentrifugeRecipeManager.instance());
         ThermalRecipeManager.register(CrucibleRecipeManager.instance());
         ThermalRecipeManager.register(RefineryRecipeManager.instance());
+        ThermalRecipeManager.register(BrewerRecipeManager.instance());
     }
 
     // region INITIALIZATION
@@ -57,6 +58,7 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_CENTRIFUGE_CONTAINER, MachineCentrifugeScreen::new);
         ScreenManager.registerFactory(MACHINE_CRUCIBLE_CONTAINER, MachineCrucibleScreen::new);
         ScreenManager.registerFactory(MACHINE_REFINERY_CONTAINER, MachineRefineryScreen::new);
+        ScreenManager.registerFactory(MACHINE_BREWER_CONTAINER, MachineBrewerScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
