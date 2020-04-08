@@ -66,7 +66,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void updateActiveState(boolean curActive) {
 
-        // TODO: Config time
+        // TODO: Config time delay
         if (!wasActive && curActive != isActive || wasActive && (timeTracker.hasDelayPassed(world, 40) || timeTracker.notSet())) {
             wasActive = false;
             world.setBlockState(pos, getBlockState().with(ACTIVE, isActive));
@@ -163,7 +163,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         buffer.writeInt(energyStorage.getMaxEnergyStored());
         buffer.writeInt(energyStorage.getEnergyStored());
 
-        for (int i = 0; i < tankInv.getTanks(); i++) {
+        for (int i = 0; i < tankInv.getTanks(); ++i) {
             buffer.writeFluidStack(tankInv.get(i));
         }
         return buffer;
@@ -197,7 +197,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         energyStorage.setCapacity(buffer.readInt());
         energyStorage.setEnergyStored(buffer.readInt());
 
-        for (int i = 0; i < tankInv.getTanks(); i++) {
+        for (int i = 0; i < tankInv.getTanks(); ++i) {
             tankInv.set(i, buffer.readFluidStack());
         }
     }

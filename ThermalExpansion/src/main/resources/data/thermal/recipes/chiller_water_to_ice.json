@@ -1,0 +1,13 @@
+{
+  "type": "thermal:chiller",
+  "ingredient": {
+    "fluid": "minecraft:water",
+    "amount": 900
+  },
+  "result": [
+    {
+      "item": "minecraft:ice"
+    }
+  ],
+  "energy": 2000
+}

@@ -137,6 +137,7 @@ public class AOEClientEvents {
     }
     // endregion
 
+    // TODO: Make an item that uses this.
     // region TUTORIAL
     //    @SubscribeEvent
     //    public static void render(RenderWorldLastEvent event) {

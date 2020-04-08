@@ -181,6 +181,9 @@ public class ThermalTags {
         public static final Tag<Item> PLATES_RUBY = forgeTag("plates/ruby");
         public static final Tag<Item> PLATES_SAPPHIRE = forgeTag("plates/sapphire");
 
+        public static final Tag<Item> MACHINE_DIES = tag("crafting/dies");
+        public static final Tag<Item> MACHINE_MOLDS = tag("crafting/molds");
+
         // region HELPERS
         private static Tag<Item> tag(String name) {
 

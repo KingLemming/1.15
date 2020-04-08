@@ -1,10 +1,10 @@
 package cofh.thermal.expansion.tileentity;
 
 import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.MachinePulverizerContainer;
 import cofh.thermal.expansion.util.managers.machine.PulverizerRecipeManager;
-import cofh.thermal.expansion.util.recipes.PulverizerCatalyst;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -37,6 +37,24 @@ public class MachinePulverizerTile extends MachineTileProcess {
             itemInputCounts = curRecipe.getInputItemCounts(this);
         }
         return curRecipe != null;
+    }
+
+    @Override
+    protected void resolveInputs() {
+
+        // Input Items
+        inputSlot.modify(-itemInputCounts.get(0));
+
+        int decrement = itemInputCounts.size() > 1 ? itemInputCounts.get(1) : 0;
+        if (decrement > 0) {
+            if (catalystSlot.getItemStack().isDamageable()) {
+                if (catalystSlot.getItemStack().attemptDamageItem(decrement, MathHelper.RANDOM, null)) {
+                    catalystSlot.modify(-1);
+                }
+            } else {
+                catalystSlot.modify(-decrement);
+            }
+        }
     }
 
     @Nullable

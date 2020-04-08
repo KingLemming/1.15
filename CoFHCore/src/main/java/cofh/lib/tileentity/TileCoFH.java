@@ -88,7 +88,7 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     // endregion
 
     // region TIME CHECKS
-    public static final int TIME_CONSTANT = 16;
+    public static final int TIME_CONSTANT = 32;
     public static final int TIME_CONSTANT_HALF = TIME_CONSTANT / 2;
     public static final int TIME_CONSTANT_QUARTER = TIME_CONSTANT / 4;
     public static final int TIME_CONSTANT_EIGHTH = TIME_CONSTANT / 8;

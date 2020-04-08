@@ -15,8 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.INPUT;
-import static cofh.lib.util.StorageGroup.OUTPUT;
+import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_TILE;
@@ -30,7 +29,7 @@ public class MachineBrewerTile extends MachineTileProcess {
     public MachineBrewerTile() {
 
         super(MACHINE_BREWER_TILE);
-
+        
         inventory.addSlot(inputSlot, INPUT);
         tankInv.addTank(inputTank, INPUT);
         tankInv.addTank(outputTank, OUTPUT);

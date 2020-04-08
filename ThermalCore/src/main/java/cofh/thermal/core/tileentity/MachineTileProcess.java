@@ -16,6 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
+import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.constants.NBTTags.TAG_PROCESS;
 import static cofh.lib.util.constants.NBTTags.TAG_PROCESS_MAX;
@@ -47,7 +48,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
     @Override
     public void tick() {
 
-        // TODO: Remove, obviously
+        // TODO: TESTING ONLY
         energyStorage.modify(100);
 
         boolean curActive = isActive;
@@ -95,7 +96,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
 
     protected boolean canProcessFinish() {
 
-        return process <= 0 && validateInputs();
+        return process <= 0;
     }
 
     protected void processStart() {
@@ -110,11 +111,12 @@ public abstract class MachineTileProcess extends MachineTileBase {
 
     protected void processFinish() {
 
-        if (!cacheRecipe()) {
+        if (!validateInputs()) {
             processOff();
             return;
         }
-        resolveRecipe();
+        resolveOutputs();
+        resolveInputs();
         markDirty();
         energyStorage.modify(-process);
     }
@@ -162,14 +164,14 @@ public abstract class MachineTileProcess extends MachineTileBase {
             return false;
         }
         List<? extends ItemStorageCoFH> slotInputs = inputSlots();
-        for (int i = 0; i < slotInputs.size(); i++) {
+        for (int i = 0; i < slotInputs.size() && i < itemInputCounts.size(); ++i) {
             int inputCount = itemInputCounts.get(i);
             if (inputCount > 0 && slotInputs.get(i).getItemStack().getCount() < inputCount) {
                 return false;
             }
         }
         List<? extends FluidStorageCoFH> tankInputs = inputTanks();
-        for (int i = 0; i < tankInputs.size(); i++) {
+        for (int i = 0; i < tankInputs.size() && i < fluidInputCounts.size(); ++i) {
             int inputCount = fluidInputCounts.get(i);
             FluidStack input = tankInputs.get(i).getFluidStack();
             if (inputCount > 0 && (input.isEmpty() || input.getAmount() < inputCount)) {
@@ -187,7 +189,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
         boolean[] used = new boolean[outputSlots().size()];
         for (ItemStack recipeOutput : recipeOutputItems) {
             boolean matched = false;
-            for (int i = 0; i < slotOutputs.size(); i++) {
+            for (int i = 0; i < slotOutputs.size(); ++i) {
                 if (used[i]) {
                     continue;
                 }
@@ -202,7 +204,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 }
             }
             if (!matched) {
-                for (int i = 0; i < slotOutputs.size(); i++) {
+                for (int i = 0; i < slotOutputs.size(); ++i) {
                     if (used[i]) {
                         continue;
                     }
@@ -223,7 +225,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
         used = new boolean[outputTanks().size()];
         for (FluidStack recipeOutput : recipeOutputFluids) {
             boolean matched = false;
-            for (int i = 0; i < tankOutputs.size(); i++) {
+            for (int i = 0; i < tankOutputs.size(); ++i) {
                 if (used[i] || tankOutputs.get(i).getSpace() <= 0) {
                     continue;
                 }
@@ -235,7 +237,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 }
             }
             if (!matched) {
-                for (int i = 0; i < tankOutputs.size(); i++) {
+                for (int i = 0; i < tankOutputs.size(); ++i) {
                     if (used[i]) {
                         continue;
                     }
@@ -253,26 +255,21 @@ public abstract class MachineTileProcess extends MachineTileBase {
         return true;
     }
 
-    protected void resolveRecipe() {
-
-        List<? extends ItemStorageCoFH> slotInputs = inputSlots();
-        List<? extends ItemStorageCoFH> slotOutputs = outputSlots();
-        List<? extends FluidStorageCoFH> tankInputs = inputTanks();
-        List<? extends FluidStorageCoFH> tankOutputs = outputTanks();
+    protected void resolveOutputs() {
 
         List<ItemStack> recipeOutputItems = curRecipe.getOutputItems(this);
         List<FluidStack> recipeOutputFluids = curRecipe.getOutputFluids(this);
         List<Float> recipeOutputChances = curRecipe.getOutputItemChances(this);
 
         // Output Items
-        for (int i = 0; i < recipeOutputItems.size(); i++) {
+        for (int i = 0; i < recipeOutputItems.size(); ++i) {
             ItemStack recipeOutput = recipeOutputItems.get(i);
             float chance = recipeOutputChances.get(i);
             int outputCount = chance <= BASE_CHANCE ? recipeOutput.getCount() : (int) chance;
             while (world.rand.nextFloat() < chance) {
                 boolean matched = false;
-                for (ItemStorageCoFH slotOutput : slotOutputs) {
-                    ItemStack output = slotOutput.getItemStack();
+                for (ItemStorageCoFH slot : outputSlots()) {
+                    ItemStack output = slot.getItemStack();
                     if (itemsEqualWithTags(output, recipeOutput) && output.getCount() < output.getMaxStackSize()) {
                         output.grow(outputCount);
                         matched = true;
@@ -280,9 +277,9 @@ public abstract class MachineTileProcess extends MachineTileBase {
                     }
                 }
                 if (!matched) {
-                    for (ItemStorageCoFH slotOutput : slotOutputs) {
-                        if (slotOutput.isEmpty()) {
-                            slotOutput.setItemStack(cloneStack(recipeOutput, outputCount));
+                    for (ItemStorageCoFH slot : outputSlots()) {
+                        if (slot.isEmpty()) {
+                            slot.setItemStack(cloneStack(recipeOutput, outputCount));
                             break;
                         }
                     }
@@ -291,12 +288,11 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 outputCount = 1;
             }
         }
-
         // Output Fluids
         for (FluidStack recipeOutput : recipeOutputFluids) {
             boolean matched = false;
-            for (FluidStorageCoFH tankOutput : tankOutputs) {
-                FluidStack output = tankOutput.getFluidStack();
+            for (FluidStorageCoFH tank : outputTanks()) {
+                FluidStack output = tank.getFluidStack();
                 if (fluidsEqual(output, recipeOutput)) {
                     output.setAmount(output.getAmount() + recipeOutput.getAmount());
                     matched = true;
@@ -304,23 +300,25 @@ public abstract class MachineTileProcess extends MachineTileBase {
                 }
             }
             if (!matched) {
-                for (FluidStorageCoFH tankOutput : tankOutputs) {
-                    if (tankOutput.isEmpty()) {
-                        tankOutput.setFluidStack(recipeOutput.copy());
+                for (FluidStorageCoFH tank : outputTanks()) {
+                    if (tank.isEmpty()) {
+                        tank.setFluidStack(recipeOutput.copy());
                         break;
                     }
                 }
             }
         }
+    }
+
+    protected void resolveInputs() {
 
         // Input Items
-        for (int i = 0; i < itemInputCounts.size(); i++) {
-            slotInputs.get(i).modify(-itemInputCounts.get(i));
+        for (int i = 0; i < itemInputCounts.size(); ++i) {
+            inputSlots().get(i).modify(-itemInputCounts.get(i));
         }
-
         // Input Fluids
-        for (int i = 0; i < fluidInputCounts.size(); i++) {
-            tankInputs.get(i).modify(-fluidInputCounts.get(i));
+        for (int i = 0; i < fluidInputCounts.size(); ++i) {
+            inputTanks().get(i).modify(-fluidInputCounts.get(i));
         }
     }
     // endregion

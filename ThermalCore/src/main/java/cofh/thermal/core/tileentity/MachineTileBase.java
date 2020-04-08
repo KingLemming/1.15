@@ -37,6 +37,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
 
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY.copy();
+    protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH();
 
     protected int inputTracker;
     protected int outputTracker;
@@ -47,7 +48,6 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
     public MachineTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-
         reconfigControl.setSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
     }
 
@@ -87,15 +87,15 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
 
             // TODO: 6-way facing logic.
             //			if (iPrev == SIDE_RIGHT[iFace]) {
-            //				for (int i = 0; i < 6; i++) {
+            //				for (int i = 0; i < 6; ++i) {
             //					sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
             //				}
             //			} else if (iPrev == SIDE_LEFT[iFace]) {
-            //				for (int i = 0; i < 6; i++) {
+            //				for (int i = 0; i < 6; ++i) {
             //					sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
             //				}
             //			} else if (iPrev == SIDE_OPPOSITE[iFace]) {
-            //				for (int i = 0; i < 6; i++) {
+            //				for (int i = 0; i < 6; ++i) {
             //					sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
             //				}
             //			}
@@ -110,19 +110,26 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
             SideConfig[] sides = new SideConfig[6];
 
             if (iPrev == SIDE_RIGHT[iFace]) {
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 6; ++i) {
                     sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
                 }
             } else if (iPrev == SIDE_LEFT[iFace]) {
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 6; ++i) {
                     sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
                 }
             } else if (iPrev == SIDE_OPPOSITE[iFace]) {
-                for (int i = 0; i < 6; i++) {
+                for (int i = 0; i < 6; ++i) {
                     sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
                 }
             }
             reconfigControl.setSideConfig(sides);
+        }
+    }
+
+    public void chargeEnergy() {
+
+        if (!chargeSlot.isEmpty()) {
+
         }
     }
 
@@ -145,7 +152,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
         int newTracker = inputTracker;
         boolean updateTracker = false;
 
-        for (int i = inputTracker + 1; i <= inputTracker + 6; i++) {
+        for (int i = inputTracker + 1; i <= inputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isInput()) {
                 for (ItemStorageCoFH slot : inputSlots()) {
@@ -175,7 +182,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
         int newTracker = outputTracker;
         boolean updateTracker = false;
 
-        for (int i = outputTracker + 1; i <= outputTracker + 6; i++) {
+        for (int i = outputTracker + 1; i <= outputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isOutput()) {
                 for (ItemStorageCoFH slot : outputSlots()) {

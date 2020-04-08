@@ -31,7 +31,7 @@ public class MachineBrewerScreen extends MachineScreenBase<MachineBrewerContaine
 
         super.init();
 
-        addElement(GuiHelper.createSmallFluidStorage(this, 35, 25, tile.getTank(0)));
+        addElement(GuiHelper.createMediumFluidStorage(this, 34, 22, tile.getTank(0)));
         addElement(GuiHelper.createLargeFluidStorage(this, 151, 8, tile.getTank(1)));
 
         progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 112, 34).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_DROP_RIGHT, 64, 16));

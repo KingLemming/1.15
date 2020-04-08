@@ -23,7 +23,6 @@ public class MachineBrewerContainer extends TileContainer {
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
         addSlot(new SlotCoFH(tileInv, 0, 80, 34));
-        // addSlot(new SlotEnergy(myTile, myTile.getChargeSlot(), 8, 53));
 
         bindPlayerInventory(inventory);
     }

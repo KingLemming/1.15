@@ -56,13 +56,12 @@ public class MachineRefineryTile extends MachineTileProcess {
         if (curRecipe == null) {
             return false;
         }
-        FluidStack prevFluid = renderFluid;
-
         if (inputTank.isEmpty()) {
             // This should definitely never happen, but who knows.
             return false;
         }
-        renderFluid = new FluidStack(inputTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
+        FluidStack prevFluid = renderFluid;
+        renderFluid = new FluidStack(inputTank.getFluidStack(), inputTank.isEmpty() ? 0 : FluidAttributes.BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 

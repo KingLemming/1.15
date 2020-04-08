@@ -31,10 +31,12 @@
 
   "block.thermal.machine_brewer": "Alchemical Imbuer",
   "block.thermal.machine_centrifuge": "Centrifugal Separator",
+  "block.thermal.machine_chiller": "Blast Chiller",
   "block.thermal.machine_crafter": "Sequential Fabricator",
   "block.thermal.machine_crucible": "Magma Crucible",
   "block.thermal.machine_furnace": "Redstone Furnace",
   "block.thermal.machine_insolator": "Phytogenic Insolator",
+  "block.thermal.machine_press": "Multiservo Press",
   "block.thermal.machine_pulverizer": "Pulverizer",
   "block.thermal.machine_refinery": "Fractionating Still",
   "block.thermal.machine_sawmill": "Sawmill",
@@ -61,11 +63,15 @@
   "info.thermal.machine_centrifuge.1": "Some items will process into a fluid component.",
   "info.thermal.machine_centrifuge.2": "Spin to win!",
 
+  "info.thermal.machine_chiller.0": "Rapidly freezes items and fluids.",
+  "info.thermal.machine_chiller.1": "Can use a forming mold with fluids to determine the output.",
+  "info.thermal.machine_chiller.2": "Brrr!",
+
   "info.thermal.machine_crafter.0": "Insert items into the grid to set a crafting recipe.",
   "info.thermal.machine_crafter.1": "Simply press the confirm button and walk away!",
   "info.thermal.machine_crafter.2": "Not all recipes are valid.",
 
-  "info.thermal.machine_crucible.0": "Turns solid materials into fluids.",
+  "info.thermal.machine_crucible.0": "Turns solid materials into fluids, at high heat.",
   "info.thermal.machine_crucible.1": "Very useful for creating advanced blocks.",
   "info.thermal.machine_crucible.2": "Keep away from small children and pets.",
 
@@ -76,6 +82,10 @@
   "info.thermal.machine_insolator.0": "Infuses nutrients and light into plants using Redstone Flux.",
   "info.thermal.machine_insolator.1": "Not exactly 'organic' farming.",
   "info.thermal.machine_insolator.2": "Gloriously incandescent!",
+
+  "info.thermal.machine_press.0": "Squeezes and deforms items.",
+  "info.thermal.machine_press.1": "Can use a manufacturing die to determine the output.",
+  "info.thermal.machine_press.2": "Versatile and satisfying!",
 
   "info.thermal.machine_pulverizer.0": "Smashes things into more broken things.",
   "info.thermal.machine_pulverizer.1": "Useful for processing ores or converting items.",

@@ -6,8 +6,8 @@
   "result": [
     {
       "fluid": "minecraft:water",
-      "amount": 900
+      "amount": 1000
     }
   ],
-  "energy": 1600
+  "energy": 2000
 }

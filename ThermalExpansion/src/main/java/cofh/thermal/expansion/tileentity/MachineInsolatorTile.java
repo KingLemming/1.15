@@ -3,6 +3,7 @@ package cofh.thermal.expansion.tileentity;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
+import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.MachineInsolatorContainer;
 import cofh.thermal.expansion.util.managers.machine.InsolatorRecipeManager;
@@ -23,7 +24,6 @@ public class MachineInsolatorTile extends MachineTileProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(InsolatorRecipeManager.instance()::validRecipe);
     protected ItemStorageCoFH catalystSlot = new ItemStorageCoFH(InsolatorRecipeManager.instance()::validCatalyst);
-
     protected FluidStorageCoFH waterTank = new FluidStorageCoFH(TANK_SMALL, FluidHelper.IS_WATER);
 
     public MachineInsolatorTile() {
@@ -49,6 +49,28 @@ public class MachineInsolatorTile extends MachineTileProcess {
             fluidInputCounts = curRecipe.getInputFluidCounts(this);
         }
         return curRecipe != null;
+    }
+
+    @Override
+    protected void resolveInputs() {
+
+        // Input Items
+        inputSlot.modify(-itemInputCounts.get(0));
+
+        int decrement = itemInputCounts.size() > 1 ? itemInputCounts.get(1) : 0;
+        if (decrement > 0) {
+            if (catalystSlot.getItemStack().isDamageable()) {
+                if (catalystSlot.getItemStack().attemptDamageItem(decrement, MathHelper.RANDOM, null)) {
+                    catalystSlot.modify(-1);
+                }
+            } else {
+                catalystSlot.modify(-decrement);
+            }
+        }
+        // Input Fluids
+        for (int i = 0; i < fluidInputCounts.size(); ++i) {
+            inputTanks().get(i).modify(-fluidInputCounts.get(i));
+        }
     }
 
     @Nullable

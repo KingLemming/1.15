@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.IManager;
 import net.minecraft.item.crafting.RecipeManager;
 
@@ -44,7 +45,7 @@ public class ThermalRecipeManager {
     public void refreshServer() {
 
         if (this.serverRecipeManager == null) {
-            // TODO: Throw error.
+            ThermalCore.LOG.error("The server's Recipe Manager is null! This is REALLY BAD and will prevent recipes from registering. Check your modpack and configs.");
             return;
         }
         for (IManager sub : managers) {
@@ -58,7 +59,7 @@ public class ThermalRecipeManager {
             return;
         }
         if (recipeManager == null) {
-            // TODO: Throw error.
+            ThermalCore.LOG.error("The client's Recipe Manager is null! This is REALLY BAD and will prevent recipes from registering. Check your modpack and configs.");
             return;
         }
         for (IManager sub : managers) {

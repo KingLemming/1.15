@@ -23,7 +23,6 @@ public class MachineCrucibleContainer extends TileContainer {
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 26));
-        // addSlot(new SlotEnergy(myTile, myTile.getChargeSlot(), 8, 53));
 
         bindPlayerInventory(inventory);
     }

@@ -160,7 +160,7 @@ public class ThermalRecipeProvider extends RecipeProvider {
         // @formatter:on
     }
 
-    // TODO: WTF Mojang
+    // TODO: Change if Mojang implements some better defaults...
     protected InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
 
         return this.hasItem(new ItemPredicate(null, itemIn.asItem(), amount, MinMaxBounds.IntBound.UNBOUNDED, EnchantmentPredicate.field_226534_b_, EnchantmentPredicate.field_226534_b_, null, NBTPredicate.ANY)); // ItemPredicate.Builder.create().item(itemIn).count(amount).build());

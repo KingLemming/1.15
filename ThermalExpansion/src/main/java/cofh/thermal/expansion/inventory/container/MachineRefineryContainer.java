@@ -2,6 +2,7 @@ package cofh.thermal.expansion.inventory.container;
 
 import cofh.lib.inventory.InvWrapper;
 import cofh.lib.inventory.container.TileContainer;
+import cofh.lib.inventory.container.slot.SlotCoFH;
 import cofh.lib.inventory.container.slot.SlotRemoveOnly;
 import cofh.thermal.core.tileentity.MachineTileBase;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +24,6 @@ public class MachineRefineryContainer extends TileContainer {
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
         addSlot(new SlotRemoveOnly(tileInv, 0, 107, 35));
-        // addSlot(new SlotEnergy(myTile, myTile.getChargeSlot(), 8, 53));
 
         bindPlayerInventory(inventory);
     }

@@ -2,6 +2,9 @@ package cofh.lib.util.helpers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.util.Lazy;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 
@@ -14,6 +17,11 @@ public class EnergyHelper {
 
     private EnergyHelper() {
 
+    }
+
+    public static boolean hasEnergyHandlerCap(ItemStack item) {
+
+        return !item.isEmpty() && item.getCapability(CapabilityEnergy.ENERGY).isPresent();
     }
 
     // TODO: Finish

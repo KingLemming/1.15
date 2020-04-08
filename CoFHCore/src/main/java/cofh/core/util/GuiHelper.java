@@ -91,7 +91,7 @@ public class GuiHelper {
                 builder.append("\n\n");
             }
             builder.append(localize(line));
-            i++;
+            ++i;
             line = key + "." + i;
         }
         return builder.toString();

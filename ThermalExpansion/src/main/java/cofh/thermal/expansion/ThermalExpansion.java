@@ -42,11 +42,13 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(PulverizerRecipeManager.instance());
         ThermalRecipeManager.register(InsolatorRecipeManager.instance());
         ThermalRecipeManager.register(CentrifugeRecipeManager.instance());
+        ThermalRecipeManager.register(PressRecipeManager.instance());
         ThermalRecipeManager.register(CrucibleRecipeManager.instance());
+        ThermalRecipeManager.register(ChillerRecipeManager.instance());
         ThermalRecipeManager.register(RefineryRecipeManager.instance());
         ThermalRecipeManager.register(BrewerRecipeManager.instance());
 
-        // TODO: For testing Only
+        // TODO: TESTING ONLY
         PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
     }
 
@@ -62,7 +64,9 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_PULVERIZER_CONTAINER, MachinePulverizerScreen::new);
         ScreenManager.registerFactory(MACHINE_INSOLATOR_CONTAINER, MachineInsolatorScreen::new);
         ScreenManager.registerFactory(MACHINE_CENTRIFUGE_CONTAINER, MachineCentrifugeScreen::new);
+        ScreenManager.registerFactory(MACHINE_PRESS_CONTAINER, MachinePressScreen::new);
         ScreenManager.registerFactory(MACHINE_CRUCIBLE_CONTAINER, MachineCrucibleScreen::new);
+        ScreenManager.registerFactory(MACHINE_CHILLER_CONTAINER, MachineChillerScreen::new);
         ScreenManager.registerFactory(MACHINE_REFINERY_CONTAINER, MachineRefineryScreen::new);
         ScreenManager.registerFactory(MACHINE_BREWER_CONTAINER, MachineBrewerScreen::new);
     }
