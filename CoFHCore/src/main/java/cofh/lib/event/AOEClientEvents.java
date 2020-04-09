@@ -66,7 +66,7 @@ public class AOEClientEvents {
 
         WorldRenderer worldRender = event.getContext();
         MatrixStack matrix = event.getMatrix();
-        IVertexBuilder vertexBuilder = worldRender.renderTypeTextures.getBufferSource().getBuffer(RenderType.lines());
+        IVertexBuilder vertexBuilder = worldRender.renderTypeTextures.getBufferSource().getBuffer(RenderType.getLines());
         Entity viewEntity = renderInfo.getRenderViewEntity();
         World world = player.world;
 

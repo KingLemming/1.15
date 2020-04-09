@@ -39,19 +39,19 @@ public class ThermalLocomotion {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_CROSSOVER_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_CROSSOVER_RAIL), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), RenderType.getCutout());
     }
     // endregion
 

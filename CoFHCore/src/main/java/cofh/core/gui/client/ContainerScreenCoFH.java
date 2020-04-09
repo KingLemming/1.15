@@ -524,7 +524,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         MatrixStack matrixstack = new MatrixStack();
         IRenderTypeBuffer.Impl irendertypebuffer$impl = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
         matrixstack.translate(0.0D, 0.0D, this.itemRenderer.zLevel);
-        Matrix4f matrix4f = matrixstack.getLast().getPositionMatrix();
+        Matrix4f matrix4f = matrixstack.getLast().getMatrix();
 
         for (int k2 = 0; k2 < tooltip.size(); ++k2) {
             String s1 = stringTooltip.get(k2);

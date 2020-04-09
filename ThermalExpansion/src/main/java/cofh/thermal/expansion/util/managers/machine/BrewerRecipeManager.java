@@ -6,7 +6,6 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
@@ -22,7 +21,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionBrewing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -152,10 +150,11 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
 
         clear();
         if (defaultPotionRecipes) {
-            ThermalCore.LOG.debug("Adding default Brewing Stand recipes to the Alchemical Imbuer...");
-            for (PotionBrewing.MixPredicate<Potion> mix : PotionBrewing.POTION_TYPE_CONVERSIONS) {
-                addDefaultPotionRecipe(mix.input.get(), mix.reagent, mix.output.get());
-            }
+            // TODO: Restore
+            //            ThermalCore.LOG.debug("Adding default Brewing Stand recipes to the Alchemical Imbuer...");
+            //            for (PotionBrewing.MixPredicate<Potion> mix : PotionBrewing.POTION_TYPE_CONVERSIONS) {
+            //                addDefaultPotionRecipe(mix.input.get(), mix.reagent, mix.output.get());
+            //            }
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_BREWER);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {

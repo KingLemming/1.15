@@ -5,6 +5,7 @@ import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.DataGenerator;
@@ -17,7 +18,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.core.util.RegistrationHelper.seeds;
 
 @Mod(ID_THERMAL_CULTIVATION)
 public class ThermalCultivation {
@@ -37,6 +40,41 @@ public class ThermalCultivation {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
+        // CROPS
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_BARLEY), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_ONION), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_RADISH), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_RICE), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_SADIROOT), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_SPINACH), 0.65F);
+
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_BELL_PEPPER), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_EGGPLANT), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_GREEN_BEAN), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_PEANUT), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_STRAWBERRY), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_TOMATO), 0.65F);
+
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_COFFEE), 0.65F);
+        ComposterBlock.CHANCES.put(ITEMS.get(ID_TEA), 0.65F);
+
+        // SEEDS
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BARLEY)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_ONION)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RADISH)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RICE)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SADIROOT)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SPINACH)), 0.3F);
+
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BELL_PEPPER)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_EGGPLANT)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_GREEN_BEAN)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_PEANUT)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_STRAWBERRY)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TOMATO)), 0.3F);
+
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_COFFEE)), 0.3F);
+        ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TEA)), 0.3F);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
