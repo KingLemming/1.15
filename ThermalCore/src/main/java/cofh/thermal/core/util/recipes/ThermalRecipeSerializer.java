@@ -125,7 +125,7 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         int numInputFluids = recipe.inputFluids.size();
         buffer.writeVarInt(numInputFluids);
         for (int i = 0; i < numInputFluids; ++i) {
-            buffer.writeFluidStack(recipe.inputFluids.get(0));
+            buffer.writeFluidStack(recipe.inputFluids.get(i));
         }
         int numOutputItems = recipe.outputItems.size();
         buffer.writeVarInt(numOutputItems);
@@ -136,7 +136,7 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         int numOutputFluids = recipe.outputFluids.size();
         buffer.writeVarInt(numOutputFluids);
         for (int i = 0; i < numOutputFluids; ++i) {
-            buffer.writeFluidStack(recipe.outputFluids.get(0));
+            buffer.writeFluidStack(recipe.outputFluids.get(i));
         }
     }
 

@@ -47,8 +47,8 @@ dependencies {
     } else {
         // TODO: Maven!
     }
-    //compile "mezz.jei:jei-${minecraft_version}:${jei_version}:api"
-    //runtime "mezz.jei:jei-${minecraft_version}:${jei_version}"
+    // compile "mezz.jei:jei-${minecraft_version}:${jei_version}:api"
+    // runtime "mezz.jei:jei-${minecraft_version}:${jei_version}"
 }
 
 jar {

@@ -8,11 +8,9 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
+apply plugin: 'net.minecraftforge.gradle'
 
 repositories {
 
@@ -27,6 +25,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 minecraft {
 
     mappings channel: 'snapshot', version: "${mcp_mappings}"
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {

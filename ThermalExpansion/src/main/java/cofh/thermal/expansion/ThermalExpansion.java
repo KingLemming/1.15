@@ -4,10 +4,13 @@ import cofh.thermal.core.init.ThermalRecipeManager;
 import cofh.thermal.expansion.gui.client.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
-import cofh.thermal.expansion.init.TExpRecipes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Items;
+import net.minecraft.potion.PotionBrewing;
+import net.minecraft.potion.Potions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -31,7 +34,7 @@ public class ThermalExpansion {
 
         TExpBlocks.register();
         TExpItems.register();
-        TExpRecipes.register();
+        TExpRecipeTypes.register();
 
         ThermalRecipeManager.register(FurnaceRecipeManager.instance());
         ThermalRecipeManager.register(SawmillRecipeManager.instance());
@@ -45,7 +48,7 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(BrewerRecipeManager.instance());
 
         // TODO: TESTING ONLY
-        // PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
+        PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
     }
 
     // region INITIALIZATION

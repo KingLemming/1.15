@@ -79,22 +79,22 @@ public class ThermalCultivation {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RADISH), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RICE), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SADIROOT), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SPINACH), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RADISH), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RICE), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SADIROOT), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SPINACH), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BELL_PEPPER), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_EGGPLANT), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_GREEN_BEAN), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PEANUT), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_STRAWBERRY), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TOMATO), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BELL_PEPPER), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_EGGPLANT), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_GREEN_BEAN), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PEANUT), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_STRAWBERRY), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TOMATO), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_COFFEE), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TEA), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_COFFEE), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TEA), RenderType.getCutout());
     }
     // endregion
 

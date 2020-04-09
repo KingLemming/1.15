@@ -159,7 +159,7 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             this.extinguish();
         }
         if (this.inGround && !flag) {
-            if (this.inBlockState != blockstate && this.world.func_226664_a_(this.getBoundingBox().grow(0.06D))) {
+            if (this.inBlockState != blockstate && this.world.hasNoCollisions(this.getBoundingBox().grow(0.06D))) {
                 this.inGround = false;
                 this.setMotion(vec3d.mul((this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F), (this.rand.nextFloat() * 0.2F)));
                 this.ticksInGround = 0;

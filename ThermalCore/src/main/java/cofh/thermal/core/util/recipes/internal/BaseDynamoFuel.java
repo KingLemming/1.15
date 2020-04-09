@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseDynamoFuel implements IDynamoFuel {
+public class BaseDynamoFuel implements IDynamoFuel {
 
     protected final List<ItemStack> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();

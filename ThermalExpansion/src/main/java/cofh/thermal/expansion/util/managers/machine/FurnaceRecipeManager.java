@@ -4,7 +4,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.expansion.init.TExpRecipes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -82,7 +82,7 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
                 }
             }
         }
-        Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_FURNACE);
+        Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_FURNACE);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
             addRecipe((ThermalRecipe) entry.getValue());
         }

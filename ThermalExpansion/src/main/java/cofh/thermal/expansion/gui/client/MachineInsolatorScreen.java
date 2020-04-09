@@ -6,7 +6,7 @@ import cofh.core.gui.element.ElementScaledFluid;
 import cofh.core.util.GuiHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.gui.client.MachineScreenBase;
-import cofh.thermal.expansion.inventory.container.MachineInsolatorContainer;
+import cofh.thermal.expansion.inventory.container.machine.MachineInsolatorContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;

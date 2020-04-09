@@ -11,7 +11,7 @@ import cofh.thermal.core.util.managers.IRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
-import cofh.thermal.expansion.init.TExpRecipes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.fluid.Fluid;
@@ -164,7 +164,7 @@ public class ChillerRecipeManager extends AbstractManager implements IRecipeMana
     public void refresh(RecipeManager recipeManager) {
 
         clear();
-        Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipes.RECIPE_CHILLER);
+        Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_CHILLER);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
             addRecipe((ThermalRecipe) entry.getValue());
         }

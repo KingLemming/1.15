@@ -2,8 +2,8 @@ package cofh.thermal.expansion.init;
 
 import cofh.core.util.ProxyUtils;
 import cofh.lib.block.TileBlock4Way;
-import cofh.thermal.expansion.inventory.container.*;
-import cofh.thermal.expansion.tileentity.*;
+import cofh.thermal.expansion.inventory.container.machine.*;
+import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
