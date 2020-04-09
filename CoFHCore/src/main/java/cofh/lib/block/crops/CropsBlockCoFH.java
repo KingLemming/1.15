@@ -111,7 +111,10 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
-        return harvest(worldIn, pos, state, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, player.getHeldItem(handIn))) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+        if (player.getHeldItemMainhand().isEmpty()) {
+            return harvest(worldIn, pos, state, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, player.getHeldItem(handIn))) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+        }
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     // TODO: Revisit; vanilla crop logic effectively overrides

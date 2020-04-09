@@ -4,13 +4,19 @@ import cofh.thermal.locomotion.data.TLocLootTables;
 import cofh.thermal.locomotion.data.TLocRecipes;
 import cofh.thermal.locomotion.data.TLocTags;
 import cofh.thermal.locomotion.init.TLocBlocks;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.init.ThermalReferences.*;
 
 @Mod(ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
@@ -19,10 +25,35 @@ public class ThermalLocomotion {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
         TLocBlocks.register();
     }
+
+    // region INITIALIZATION
+    private void commonSetup(final FMLCommonSetupEvent event) {
+
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_CROSSOVER_RAIL), RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), RenderType.cutout());
+    }
+    // endregion
 
     // region DATA
     private void gatherData(final GatherDataEvent event) {

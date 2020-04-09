@@ -16,7 +16,6 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.constants.NBTTags.TAG_PROCESS;
 import static cofh.lib.util.constants.NBTTags.TAG_PROCESS_MAX;
@@ -79,7 +78,7 @@ public abstract class MachineTileProcess extends MachineTileBase {
             }
         }
         updateActiveState(curActive);
-        // chargeEnergy();
+        chargeEnergy();
     }
 
     // region PROCESS

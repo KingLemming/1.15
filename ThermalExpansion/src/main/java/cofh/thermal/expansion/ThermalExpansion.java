@@ -7,6 +7,7 @@ import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.init.TExpRecipes;
 import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionBrewing;
 import net.minecraft.potion.Potions;
@@ -14,8 +15,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
@@ -30,8 +30,7 @@ public class ThermalExpansion {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::enqueueIMC);
-        modEventBus.addListener(this::processIMC);
+        modEventBus.addListener(this::gatherData);
 
         TExpBlocks.register();
         TExpItems.register();
@@ -70,12 +69,30 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_REFINERY_CONTAINER, MachineRefineryScreen::new);
         ScreenManager.registerFactory(MACHINE_BREWER_CONTAINER, MachineBrewerScreen::new);
     }
+    // endregion
 
-    private void enqueueIMC(final InterModEnqueueEvent event) {
+    // region DATA
+    private void gatherData(final GatherDataEvent event) {
 
+        if (event.includeServer()) {
+            registerServerProviders(event.getGenerator());
+        }
+        if (event.includeClient()) {
+            registerClientProviders(event.getGenerator(), event);
+        }
     }
 
-    private void processIMC(final InterModProcessEvent event) {
+    private void registerServerProviders(DataGenerator generator) {
+
+        //        generator.addProvider(new TCulTags.Block(generator));
+        //        generator.addProvider(new TCulTags.Item(generator));
+        //        generator.addProvider(new TCulTags.Fluid(generator));
+        //
+        //        generator.addProvider(new TCulLootTables(generator));
+        //        generator.addProvider(new TCulRecipes(generator));
+    }
+
+    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
     }
     // endregion

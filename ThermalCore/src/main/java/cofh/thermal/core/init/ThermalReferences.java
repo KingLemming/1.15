@@ -54,6 +54,7 @@ public class ThermalReferences {
     public static final String ID_SPINACH = "spinach";
 
     public static final String ID_BELL_PEPPER = "bell_pepper";
+    public static final String ID_EGGPLANT = "eggplant";
     public static final String ID_GREEN_BEAN = "green_bean";
     public static final String ID_PEANUT = "peanut";
     public static final String ID_STRAWBERRY = "strawberry";

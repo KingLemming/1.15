@@ -6,6 +6,7 @@ import cofh.lib.util.control.IReconfigurableTile;
 import cofh.lib.util.control.ITransferControllableTile;
 import cofh.lib.util.control.ReconfigControlModule;
 import cofh.lib.util.control.TransferControlModule;
+import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,6 +16,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -37,7 +39,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
 
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY.copy();
-    protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH();
+    protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
     protected int inputTracker;
     protected int outputTracker;
@@ -129,7 +131,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
     public void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
-
+            chargeSlot.getItemStack().getCapability(CapabilityEnergy.ENERGY, null).ifPresent(p -> energyStorage.receiveEnergy(p.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
         }
     }
 

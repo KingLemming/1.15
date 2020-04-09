@@ -29,8 +29,10 @@ public class MachineBrewerTile extends MachineTileProcess {
     public MachineBrewerTile() {
 
         super(MACHINE_BREWER_TILE);
-        
+
         inventory.addSlot(inputSlot, INPUT);
+        inventory.addSlot(chargeSlot, INTERNAL);
+
         tankInv.addTank(inputTank, INPUT);
         tankInv.addTank(outputTank, OUTPUT);
 

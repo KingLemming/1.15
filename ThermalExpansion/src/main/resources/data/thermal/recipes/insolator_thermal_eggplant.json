@@ -1,0 +1,18 @@
+{
+  "type": "thermal:insolator",
+  "ingredient": {
+    "item": "thermal:eggplant_seeds"
+  },
+  "result": [
+    {
+      "item": "thermal:eggplant",
+      "chance": 2.5
+    },
+    {
+      "item": "thermal:eggplant_seeds",
+      "chance": 1.1
+    }
+  ],
+  "energy_mod": 1.5,
+  "water_mod": 1.5
+}

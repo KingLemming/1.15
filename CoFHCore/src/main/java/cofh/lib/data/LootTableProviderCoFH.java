@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
@@ -12,8 +13,11 @@ import net.minecraft.data.IDataProvider;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.BlockStateProperty;
+import net.minecraft.world.storage.loot.conditions.ILootCondition;
 import net.minecraft.world.storage.loot.conditions.MatchTool;
 import net.minecraft.world.storage.loot.conditions.SurvivesExplosion;
 import net.minecraft.world.storage.loot.functions.*;
@@ -24,6 +28,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+
+import static cofh.lib.util.constants.Constants.AGE;
 
 public abstract class LootTableProviderCoFH extends LootTableProvider {
 
@@ -68,7 +74,41 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
         return LootTable.builder().addLootPool(builder);
     }
 
-    protected LootTable.Builder createSimpleTable(Block block) {
+    protected LootTable.Builder createCropTable(Block block, Item crop, Item seed, IntegerProperty ageProp, int age) {
+
+        ILootCondition.IBuilder harvestAge = BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(ageProp, age));
+        return LootTable.builder()
+                .addLootPool(LootPool.builder()
+                        .addEntry(ItemLootEntry.builder(crop)
+                                .acceptCondition(harvestAge)
+                                .alternatively(ItemLootEntry.builder(seed))))
+                .addLootPool(LootPool.builder()
+                        .acceptCondition(harvestAge)
+                        .addEntry(ItemLootEntry.builder(seed)
+                                // These are Mojang's numbers. No idea.
+                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3))))
+                .acceptFunction(ExplosionDecay.builder());
+    }
+
+    protected LootTable.Builder createCropTable(Block block, Item crop, Item seed) {
+
+        return createCropTable(block, crop, seed, AGE, 7);
+    }
+
+    protected LootTable.Builder createTuberTable(Block block, Item crop, IntegerProperty ageProp, int age) {
+
+        ILootCondition.IBuilder harvestAge = BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(ageProp, age));
+        return LootTable.builder()
+                .addLootPool(LootPool.builder()
+                        .addEntry(ItemLootEntry.builder(crop)))
+                .addLootPool(LootPool.builder()
+                        .acceptCondition(harvestAge)
+                        .addEntry(ItemLootEntry.builder(crop)
+                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3)))
+                .acceptFunction(ExplosionDecay.builder()));
+    }
+
+    protected LootTable.Builder createSelfDropTable(Block block) {
 
         LootPool.Builder builder = LootPool.builder()
                 .rolls(ConstantRange.of(1))

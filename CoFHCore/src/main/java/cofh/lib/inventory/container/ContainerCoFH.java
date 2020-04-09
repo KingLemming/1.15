@@ -72,7 +72,7 @@ public abstract class ContainerCoFH extends Container {
         }
         boolean res = mergeItemStack(stack, 0, invBase, false);
         if (!res && hasPlayerInventory) {
-            if (slotId > invHotbar) {
+            if (slotId >= invHotbar) {
                 return mergeItemStack(stack, invBase, invHotbar, false);
             } else {
                 return mergeItemStack(stack, invHotbar, invFull, false);
@@ -83,8 +83,6 @@ public abstract class ContainerCoFH extends Container {
     // endregion
 
     // region OVERRIDES
-    // TODO: There's a dupe bug in here.
-
     @Override
     public ItemStack transferStackInSlot(PlayerEntity player, int slotId) {
 

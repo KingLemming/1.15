@@ -22,9 +22,9 @@ public class TCoreLootTables extends LootTableProviderCoFH {
     @Override
     protected void addTables() {
 
-        lootTables.put(BLOCKS.get(ID_SIGNALUM_BLOCK), createSimpleTable(BLOCKS.get(ID_SIGNALUM_BLOCK)));
-        lootTables.put(BLOCKS.get(ID_LUMIUM_BLOCK), createSimpleTable(BLOCKS.get(ID_LUMIUM_BLOCK)));
-        lootTables.put(BLOCKS.get(ID_ENDERIUM_BLOCK), createSimpleTable(BLOCKS.get(ID_ENDERIUM_BLOCK)));
+        lootTables.put(BLOCKS.get(ID_SIGNALUM_BLOCK), createSelfDropTable(BLOCKS.get(ID_SIGNALUM_BLOCK)));
+        lootTables.put(BLOCKS.get(ID_LUMIUM_BLOCK), createSelfDropTable(BLOCKS.get(ID_LUMIUM_BLOCK)));
+        lootTables.put(BLOCKS.get(ID_ENDERIUM_BLOCK), createSelfDropTable(BLOCKS.get(ID_ENDERIUM_BLOCK)));
     }
 
 }

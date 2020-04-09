@@ -29,6 +29,7 @@ public class MachineInsolatorContainer extends TileContainer {
         addSlot(new SlotRemoveOnly(tileInv, 3, 134, 26));
         addSlot(new SlotRemoveOnly(tileInv, 4, 116, 44));
         addSlot(new SlotRemoveOnly(tileInv, 5, 134, 44));
+        addSlot(new SlotCoFH(tileInv, 6, 8, 53));
 
         bindPlayerInventory(inventory);
     }

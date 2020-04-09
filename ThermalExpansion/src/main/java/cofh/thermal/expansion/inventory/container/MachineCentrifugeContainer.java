@@ -28,6 +28,7 @@ public class MachineCentrifugeContainer extends TileContainer {
         addSlot(new SlotRemoveOnly(tileInv, 2, 125, 26));
         addSlot(new SlotRemoveOnly(tileInv, 3, 107, 44));
         addSlot(new SlotRemoveOnly(tileInv, 4, 125, 44));
+        addSlot(new SlotCoFH(tileInv, 5, 8, 53));
 
         bindPlayerInventory(inventory);
     }

@@ -25,6 +25,7 @@ public class MachineFurnaceContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 26));
         addSlot(new FurnaceResultSlot(player, tileInv, 1, 116, 35));
+        addSlot(new SlotCoFH(tileInv, 2, 8, 53));
 
         bindPlayerInventory(inventory);
     }

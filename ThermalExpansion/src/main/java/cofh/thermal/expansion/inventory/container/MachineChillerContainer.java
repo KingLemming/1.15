@@ -25,6 +25,7 @@ public class MachineChillerContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 0, 62, 26));
         addSlot(new SlotRemoveOnly(tileInv, 1, 125, 35));
+        addSlot(new SlotCoFH(tileInv, 2, 8, 53));
 
         bindPlayerInventory(inventory);
     }

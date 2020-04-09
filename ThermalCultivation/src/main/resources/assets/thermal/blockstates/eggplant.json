@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thermal:block/eggplant_0"
+    },
+    "age=1": {
+      "model": "thermal:block/eggplant_1"
+    },
+    "age=2": {
+      "model": "thermal:block/eggplant_2"
+    },
+    "age=3": {
+      "model": "thermal:block/eggplant_3"
+    },
+    "age=4": {
+      "model": "thermal:block/eggplant_4"
+    },
+    "age=5": {
+      "model": "thermal:block/eggplant_5"
+    },
+    "age=6": {
+      "model": "thermal:block/eggplant_6"
+    },
+    "age=7": {
+      "model": "thermal:block/eggplant_7"
+    },
+    "age=8": {
+      "model": "thermal:block/eggplant_8"
+    },
+    "age=9": {
+      "model": "thermal:block/eggplant_9"
+    },
+    "age=10": {
+      "model": "thermal:block/eggplant_10"
+    }
+  }
+}

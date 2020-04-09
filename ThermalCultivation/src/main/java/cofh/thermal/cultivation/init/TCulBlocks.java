@@ -27,6 +27,7 @@ public class TCulBlocks {
 
         // PERENNIAL
         registerPerennial(ID_BELL_PEPPER);
+        registerPerennial(ID_EGGPLANT);
         registerPerennial(ID_GREEN_BEAN);
         registerPerennial(ID_PEANUT);
         registerPerennial(ID_STRAWBERRY);

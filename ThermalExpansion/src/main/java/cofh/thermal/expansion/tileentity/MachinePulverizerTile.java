@@ -26,6 +26,7 @@ public class MachinePulverizerTile extends MachineTileProcess {
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlot(catalystSlot, CATALYST);
         inventory.addSlots(OUTPUT, 4);
+        inventory.addSlot(chargeSlot, INTERNAL);
     }
 
     @Override
