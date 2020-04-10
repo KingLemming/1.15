@@ -3,6 +3,10 @@
     "facing=north,active=false": {
       "model": "thermal:block/machine_centrifuge"
     },
+    "facing=east,active=false": {
+      "model": "thermal:block/machine_centrifuge",
+      "y": 90
+    },
     "facing=south,active=false": {
       "model": "thermal:block/machine_centrifuge",
       "y": 180
@@ -11,12 +15,13 @@
       "model": "thermal:block/machine_centrifuge",
       "y": 270
     },
-    "facing=east,active=false": {
-      "model": "thermal:block/machine_centrifuge",
-      "y": 90
-    },
+
     "facing=north,active=true": {
       "model": "thermal:block/machine_centrifuge_active"
+    },
+    "facing=east,active=true": {
+      "model": "thermal:block/machine_centrifuge_active",
+      "y": 90
     },
     "facing=south,active=true": {
       "model": "thermal:block/machine_centrifuge_active",
@@ -25,10 +30,6 @@
     "facing=west,active=true": {
       "model": "thermal:block/machine_centrifuge_active",
       "y": 270
-    },
-    "facing=east,active=true": {
-      "model": "thermal:block/machine_centrifuge_active",
-      "y": 90
     }
   }
 }

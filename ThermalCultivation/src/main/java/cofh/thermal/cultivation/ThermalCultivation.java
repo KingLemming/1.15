@@ -3,10 +3,14 @@ package cofh.thermal.cultivation;
 import cofh.thermal.cultivation.data.TCulLootTables;
 import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
+import cofh.thermal.cultivation.gui.client.MachineHiveExtractorScreen;
 import cofh.thermal.cultivation.init.TCulBlocks;
+import cofh.thermal.cultivation.init.TCulContainers;
 import cofh.thermal.cultivation.init.TCulItems;
+import cofh.thermal.cultivation.init.TCulTileEntities;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.StemBlock;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -39,6 +43,9 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
+
+        TCulTileEntities.register();
+        TCulContainers.register();
     }
 
     // region INITIALIZATION
@@ -82,6 +89,8 @@ public class ThermalCultivation {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+
+        ScreenManager.registerFactory(MACHINE_BEE_EXTRACTOR_CONTAINER, MachineHiveExtractorScreen::new);
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), RenderType.getCutout());

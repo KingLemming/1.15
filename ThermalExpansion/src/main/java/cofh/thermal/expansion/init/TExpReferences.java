@@ -70,6 +70,7 @@ public class TExpReferences {
 
     // endregion
 
+    // region REFERENCES
     @ObjectHolder(ID_MACHINE_FURNACE)
     public static Block MACHINE_FURNACE_BLOCK;
     @ObjectHolder(ID_MACHINE_FURNACE)
@@ -160,5 +161,5 @@ public class TExpReferences {
     public static TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE;
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
     public static ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER;
-
+    // endregion
 }

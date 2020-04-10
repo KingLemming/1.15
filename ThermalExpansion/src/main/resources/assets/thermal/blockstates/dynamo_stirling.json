@@ -26,6 +26,7 @@
       "model": "thermal:block/machine_crafter",
       "x": 180
     },
+
     "facing=north,active=true": {
       "model": "thermal:block/machine_crafter_active",
       "x": 90

@@ -1,8 +1,10 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
+import cofh.thermal.cultivation.tileentity.MachineHiveExtractorTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,9 +26,8 @@ public class TCulBlocks {
 
         registerPlants();
 
-        registerBlock(ID_FROST_MELON, () -> new FrostMelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.SNOW).tickRandomly()), Rarity.UNCOMMON);
-        registerBlockOnly(ID_FROST_MELON_STEM, () -> new StemBlockCoFH(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.WOOD)).crop(BLOCKS.getSup(ID_FROST_MELON)).seed(ITEMS.getSup(seeds(ID_FROST_MELON))));
-        registerBlockOnly(ID_FROST_MELON_STEM_ATTACHED, () -> new StemBlockAttached(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.STEM)).crop(BLOCKS.getSup(ID_FROST_MELON)).seed(ITEMS.getSup(seeds(ID_FROST_MELON))));
+        registerBlock(ID_MACHINE_HIVE_EXTRACTOR, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), MachineHiveExtractorTile::new));
+
     }
 
     private static void registerPlants() {
@@ -50,6 +51,11 @@ public class TCulBlocks {
         // BREWING
         registerPerennial(ID_COFFEE);
         registerPerennial(ID_TEA);
+
+        // STEM
+        registerBlock(ID_FROST_MELON, () -> new FrostMelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.SNOW).tickRandomly()), Rarity.UNCOMMON);
+        registerBlockOnly(ID_FROST_MELON_STEM, () -> new StemBlockCoFH(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.WOOD)).crop(BLOCKS.getSup(ID_FROST_MELON)).seed(ITEMS.getSup(seeds(ID_FROST_MELON))));
+        registerBlockOnly(ID_FROST_MELON_STEM_ATTACHED, () -> new StemBlockAttached(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.STEM)).crop(BLOCKS.getSup(ID_FROST_MELON)).seed(ITEMS.getSup(seeds(ID_FROST_MELON))));
     }
 
     //    public static final Block MELON = register("melon", new MelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.LIME).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));

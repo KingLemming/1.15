@@ -5,7 +5,7 @@ import net.minecraft.data.DataGenerator;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.foundation.init.TFndReferences.*;
 
 public class TFndLootTables extends LootTableProviderCoFH {
 

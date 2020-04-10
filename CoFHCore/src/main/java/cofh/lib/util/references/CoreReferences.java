@@ -65,8 +65,17 @@ public class CoreReferences {
     @ObjectHolder(ID_FLUID_EXPERIENCE)
     public static final FlowingFluid FLUID_EXPERIENCE = null;
 
+    @ObjectHolder(ID_FLUID_HONEY)
+    public static final FlowingFluid FLUID_HONEY = null;
+
+    @ObjectHolder(ID_FLUID_MILK)
+    public static final FlowingFluid FLUID_MILK = null;
+
     @ObjectHolder(ID_FLUID_POTION)
     public static final FlowingFluid FLUID_POTION = null;
+
+    @ObjectHolder(ID_FLUID_STEAM)
+    public static final FlowingFluid FLUID_STEAM = null;
     // endregion
 
     // region TILES

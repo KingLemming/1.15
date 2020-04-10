@@ -5,10 +5,12 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.control.ISecurable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
@@ -57,7 +59,11 @@ public class TileCoFH extends TileEntity implements ITileCallback {
         return 0;
     }
 
-    public void neighborChanged() {
+    public void neighborChanged(Block blockIn, BlockPos fromPos) {
+
+    }
+
+    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 
     }
 

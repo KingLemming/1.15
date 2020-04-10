@@ -7,7 +7,7 @@ import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.locomotion.init.TLocReferences.*;
 
 public class TLocTags {
 

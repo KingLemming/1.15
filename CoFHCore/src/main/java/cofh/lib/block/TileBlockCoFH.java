@@ -90,7 +90,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
 
         TileCoFH tile = (TileCoFH) worldIn.getTileEntity(pos);
         if (tile != null) {
-            tile.neighborChanged();
+            tile.neighborChanged(blockIn, fromPos);
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
     }
@@ -106,6 +106,11 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
             PlayerEntity player = (PlayerEntity) placer;
             ((IPlacementItem) offhand.getItem()).onBlockPlacement(offhand, new ItemUseContext(player, Hand.OFF_HAND, RayTracer.retrace(player)));
         }
+        TileCoFH tile = (TileCoFH) worldIn.getTileEntity(pos);
+        if (tile != null) {
+            tile.onPlacedBy(worldIn, pos, state, placer, stack);
+        }
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
     }
 
     @Override

@@ -35,7 +35,7 @@ import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_INPUT;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_OUTPUT;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileBase extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
+public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
 
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY.copy();
@@ -47,7 +47,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements ITickab
     protected ReconfigControlModule reconfigControl = new ReconfigControlModule(this);
     protected TransferControlModule transferControl = new TransferControlModule(this);
 
-    public MachineTileBase(TileEntityType<?> tileEntityTypeIn) {
+    public MachineTileReconfigurable(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
         reconfigControl.setSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});

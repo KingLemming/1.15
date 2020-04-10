@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.locomotion.init.TLocReferences.*;
 
 public class TLocRecipes extends ThermalRecipeProvider {
 

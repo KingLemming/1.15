@@ -155,31 +155,6 @@ public class Constants {
     public static final String DAMAGE_ARROW = "arrow";
     public static final String DAMAGE_PLAYER = "player";
 
-    public static final String FLUID_ESSENCE = "essence";
-    public static final String FLUID_XPJUICE = "xpjuice";
-
-    public static final String GROUP_DYNAMOS = "dynamos";
-    public static final String GROUP_MACHINES = "machines";
-
-    public static final String GROUP_COINS = "coins";
-    public static final String GROUP_CROPS = "crops";
-    public static final String GROUP_DECO = "deco";
-    public static final String GROUP_DUSTS = "dusts";
-    public static final String GROUP_FOODS = "foods";
-    public static final String GROUP_GEARS = "gears";
-    public static final String GROUP_GEMS = "gems";
-    public static final String GROUP_INGOTS = "ingots";
-    public static final String GROUP_ORES = "ores";
-    public static final String GROUP_NUGGETS = "nuggets";
-    public static final String GROUP_PLATES = "plates";
-    public static final String GROUP_RAILS = "rails";
-    public static final String GROUP_RESOURCES = "resources";
-    public static final String GROUP_RODS = "rods";
-    public static final String GROUP_SEEDS = "seeds";
-    public static final String GROUP_STORAGE = "storage";
-    public static final String GROUP_TOOLS = "tools";
-    public static final String GROUP_UTILS = "utils";
-
     public static final String KEY_MULTIMODE = "cofh.multimode";
 
     public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D95FB972-0426-4BB7-8A01-7416EA211884");

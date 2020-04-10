@@ -16,7 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.locomotion.init.TLocReferences.*;
 
 @Mod(ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {

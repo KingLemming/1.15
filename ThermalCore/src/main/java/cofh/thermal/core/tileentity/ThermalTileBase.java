@@ -15,11 +15,13 @@ import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
 import cofh.thermal.core.util.IThermalInventory;
+import net.minecraft.block.Block;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -102,7 +104,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     }
 
     @Override
-    public void neighborChanged() {
+    public void neighborChanged(Block blockIn, BlockPos fromPos) {
 
         if (world != null) {
             redstoneControl.setPower(world.getRedstonePowerFromNeighbors(pos));

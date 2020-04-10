@@ -48,15 +48,14 @@ public class TCulItems {
         registerCropAndSeed(ID_COFFEE, COFFEE_CHERRY);
         registerCropAndSeed(ID_TEA);
 
-        // MELONS / GOURDS
+        // OTHER
+        ITEMS.register(ID_FROST_MELON_SLICE, () -> new ItemCoFH(new Item.Properties().group(THERMAL_ITEMS).food(FROST_MELON_SLICE)));
         ITEMS.register(seeds(ID_FROST_MELON), () -> new BlockNamedItemCoFH(BLOCKS.get(ID_FROST_MELON_STEM), new Item.Properties().group(THERMAL_ITEMS).rarity(Rarity.UNCOMMON)));
     }
 
     private static void registerFoods() {
 
         ItemGroup group = THERMAL_ITEMS;
-
-        ITEMS.register(ID_FROST_MELON_SLICE, () -> new ItemCoFH(new Item.Properties().group(group).food(FROST_MELON_SLICE)));
 
         //        ITEMS.register("food_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         //        ITEMS.register("food_dough", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));

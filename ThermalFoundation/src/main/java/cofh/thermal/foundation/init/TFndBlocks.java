@@ -4,8 +4,8 @@ import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.storage.MetalStorageBlock;
 import net.minecraft.block.material.MaterialColor;
 
-import static cofh.thermal.core.init.ThermalReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
+import static cofh.thermal.foundation.init.TFndReferences.*;
 
 public class TFndBlocks {
 

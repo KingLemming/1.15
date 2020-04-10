@@ -40,7 +40,7 @@ public class TileBlock4Way extends TileBlockCoFH {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
-        return this.getDefaultState().with(FACING_HORIZONTAL, context.getPlayer().getAdjustedHorizontalFacing().getOpposite()).with(ACTIVE, false);
+        return this.getDefaultState().with(FACING_HORIZONTAL, context.getPlayer().getAdjustedHorizontalFacing().getOpposite());
     }
 
     @Override

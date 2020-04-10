@@ -23,7 +23,7 @@ import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
-public abstract class MachineTileProcess extends MachineTileBase {
+public abstract class MachineTileProcess extends MachineTileReconfigurable {
 
     protected IMachineRecipe curRecipe;
     protected IRecipeCatalyst curCatalyst;
