@@ -65,6 +65,9 @@ public class InsolatorRecipeSerializer<T extends ThermalRecipe> extends ThermalR
         if (json.has(WATER)) {
             water = json.get(WATER).getAsInt();
         }
+        if (json.has(WATER_MOD)) {
+            water *= json.get(WATER_MOD).getAsFloat();
+        }
         if (inputFluids.isEmpty()) {
             inputFluids.add(new FluidStack(Fluids.WATER, water));
         }

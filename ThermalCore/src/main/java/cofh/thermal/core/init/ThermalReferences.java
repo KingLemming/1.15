@@ -45,25 +45,6 @@ public class ThermalReferences {
     public static final String ID_SAPPHIRE_BLOCK = "sapphire_block";
     // endregion
 
-    // region CULTIVATION
-    public static final String ID_BARLEY = "barley";
-    public static final String ID_ONION = "onion";
-    public static final String ID_RADISH = "radish";
-    public static final String ID_RICE = "rice";
-    public static final String ID_SADIROOT = "sadiroot";
-    public static final String ID_SPINACH = "spinach";
-
-    public static final String ID_BELL_PEPPER = "bell_pepper";
-    public static final String ID_EGGPLANT = "eggplant";
-    public static final String ID_GREEN_BEAN = "green_bean";
-    public static final String ID_PEANUT = "peanut";
-    public static final String ID_STRAWBERRY = "strawberry";
-    public static final String ID_TOMATO = "tomato";
-
-    public static final String ID_COFFEE = "coffee";
-    public static final String ID_TEA = "tea";
-    // endregion
-
     // region LOCOMOTION
     public static final String ID_CROSSOVER_RAIL = "crossover_rail";
 

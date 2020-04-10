@@ -42,6 +42,11 @@ public class RegistrationHelper {
         BLOCKS.register(name, sup);
         ITEMS.register(name, (Supplier<Item>) () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)));
     }
+
+    public static void registerBlockOnly(String name, Supplier<Block> sup) {
+
+        BLOCKS.register(name, sup);
+    }
     // endregion
 
     // region ITEMS

@@ -23,7 +23,10 @@ public class CoreReferences {
     public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
 
     public static final String ID_FLUID_EXPERIENCE = ID_COFH_CORE + ":experience";
+    public static final String ID_FLUID_HONEY = ID_COFH_CORE + ":honey";
+    public static final String ID_FLUID_MILK = ID_COFH_CORE + ":milk";
     public static final String ID_FLUID_POTION = ID_COFH_CORE + ":potion";
+    public static final String ID_FLUID_STEAM = ID_COFH_CORE + ":steam";
 
     public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
     public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";

@@ -1,10 +1,14 @@
 package cofh.thermal.expansion;
 
 import cofh.thermal.core.init.ThermalRecipeManager;
-import cofh.thermal.expansion.gui.client.*;
-import cofh.thermal.expansion.init.TExpBlocks;
-import cofh.thermal.expansion.init.TExpItems;
-import cofh.thermal.expansion.init.TExpRecipeTypes;
+import cofh.thermal.expansion.gui.client.dynamo.DynamoLapidaryScreen;
+import cofh.thermal.expansion.gui.client.dynamo.DynamoNumismaticScreen;
+import cofh.thermal.expansion.gui.client.dynamo.DynamoStirlingScreen;
+import cofh.thermal.expansion.gui.client.machine.*;
+import cofh.thermal.expansion.init.*;
+import cofh.thermal.expansion.util.managers.dynamo.LapidaryFuelManager;
+import cofh.thermal.expansion.util.managers.dynamo.NumismaticFuelManager;
+import cofh.thermal.expansion.util.managers.dynamo.StirlingFuelManager;
 import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
@@ -34,6 +38,11 @@ public class ThermalExpansion {
 
         TExpBlocks.register();
         TExpItems.register();
+
+        TExpTileEntities.register();
+        TExpContainers.register();
+
+        TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
 
         ThermalRecipeManager.register(FurnaceRecipeManager.instance());
@@ -46,6 +55,10 @@ public class ThermalExpansion {
         ThermalRecipeManager.register(ChillerRecipeManager.instance());
         ThermalRecipeManager.register(RefineryRecipeManager.instance());
         ThermalRecipeManager.register(BrewerRecipeManager.instance());
+
+        ThermalRecipeManager.register(StirlingFuelManager.instance());
+        ThermalRecipeManager.register(NumismaticFuelManager.instance());
+        ThermalRecipeManager.register(LapidaryFuelManager.instance());
 
         // TODO: TESTING ONLY
         PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
@@ -68,6 +81,10 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_CHILLER_CONTAINER, MachineChillerScreen::new);
         ScreenManager.registerFactory(MACHINE_REFINERY_CONTAINER, MachineRefineryScreen::new);
         ScreenManager.registerFactory(MACHINE_BREWER_CONTAINER, MachineBrewerScreen::new);
+
+        ScreenManager.registerFactory(DYNAMO_STIRLING_CONTAINER, DynamoStirlingScreen::new);
+        ScreenManager.registerFactory(DYNAMO_NUMISMATIC_CONTAINER, DynamoNumismaticScreen::new);
+        ScreenManager.registerFactory(DYNAMO_LAPIDARY_CONTAINER, DynamoLapidaryScreen::new);
     }
     // endregion
 

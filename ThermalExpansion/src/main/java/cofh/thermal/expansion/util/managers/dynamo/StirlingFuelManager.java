@@ -30,6 +30,12 @@ public class StirlingFuelManager extends SingleItemFuelManager {
         super(DEFAULT_ENERGY);
     }
 
+    @Override
+    public boolean validFuel(ItemStack input) {
+
+        return getEnergy(input) > 0;
+    }
+
     public int getEnergy(ItemStack stack) {
 
         IDynamoFuel fuel = getFuel(stack);

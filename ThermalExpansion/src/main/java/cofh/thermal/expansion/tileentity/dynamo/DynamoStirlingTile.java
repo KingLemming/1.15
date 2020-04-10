@@ -2,23 +2,24 @@ package cofh.thermal.expansion.tileentity.dynamo;
 
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
+import cofh.thermal.expansion.inventory.container.dynamo.DynamoStirlingContainer;
 import cofh.thermal.expansion.util.managers.dynamo.StirlingFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INPUT;
+import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_STIRLING_TILE;
 
 public class DynamoStirlingTile extends DynamoTileBase {
 
     protected ItemStorageCoFH fuelSlot = new ItemStorageCoFH(StirlingFuelManager.instance()::validFuel);
 
-    public DynamoStirlingTile(TileEntityType<?> tileEntityTypeIn) {
+    public DynamoStirlingTile() {
 
-        super(tileEntityTypeIn);
+        super(DYNAMO_STIRLING_TILE);
 
         inventory.addSlot(fuelSlot, INPUT);
     }
@@ -38,9 +39,9 @@ public class DynamoStirlingTile extends DynamoTileBase {
 
     @Nullable
     @Override
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
-        return null;
+        return new DynamoStirlingContainer(i, world, pos, inventory, player);
     }
 
 }

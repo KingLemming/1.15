@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "thermal:frost_melon_slice"
+    }
+  },
+  "result": {
+    "item": "thermal:frost_melon"
+  }
+}

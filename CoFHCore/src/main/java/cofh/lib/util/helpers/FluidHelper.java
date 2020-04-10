@@ -300,44 +300,29 @@ public class FluidHelper {
     // endregion
 
     // region PROPERTY HELPERS
-    public static int luminosity(Fluid fluid) {
-
-        return fluid == null ? 0 : fluid.getAttributes().getLuminosity();
-    }
-
     public static int luminosity(FluidStack stack) {
 
-        return stack.isEmpty() ? 0 : luminosity(stack.getFluid());
-    }
-
-    public static int density(Fluid fluid) {
-
-        return fluid == null ? 0 : fluid.getAttributes().getDensity();
+        return !stack.isEmpty() && stack.getFluid() != null ? stack.getFluid().getAttributes().getLuminosity(stack) : 0;
     }
 
     public static int density(FluidStack stack) {
 
-        return stack.isEmpty() ? 0 : density(stack.getFluid());
+        return !stack.isEmpty() && stack.getFluid() != null ? stack.getFluid().getAttributes().getDensity(stack) : 0;
     }
 
-    public static int temperature(Fluid fluid) {
+    public static boolean gaseous(FluidStack stack) {
 
-        return fluid == null ? 0 : fluid.getAttributes().getTemperature();
+        return !stack.isEmpty() && stack.getFluid() != null && stack.getFluid().getAttributes().isGaseous();
     }
 
     public static int temperature(FluidStack stack) {
 
-        return stack.isEmpty() ? 0 : temperature(stack.getFluid());
-    }
-
-    public static int viscosity(Fluid fluid) {
-
-        return fluid == null ? 0 : fluid.getAttributes().getViscosity();
+        return !stack.isEmpty() && stack.getFluid() != null ? stack.getFluid().getAttributes().getTemperature(stack) : 0;
     }
 
     public static int viscosity(FluidStack stack) {
 
-        return stack.isEmpty() ? 0 : viscosity(stack.getFluid());
+        return !stack.isEmpty() && stack.getFluid() != null ? stack.getFluid().getAttributes().getViscosity(stack) : 0;
     }
     // endregion
 

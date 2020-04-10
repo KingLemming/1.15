@@ -71,7 +71,7 @@ public class Constants {
     public static final IntegerProperty AGE_PERENNIAL = IntegerProperty.create("age", 0, 10);
     public static final IntegerProperty AGE_TALL = IntegerProperty.create("age", 0, 11);
     public static final IntegerProperty AGE_TALL_PERENNIAL = IntegerProperty.create("age", 0, 15);
-    public static final DirectionProperty FACING_ALL = DirectionProperty.create("facing");
+    public static final DirectionProperty FACING_ALL = DirectionProperty.create("facing", Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.UP, Direction.DOWN);
     public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Plane.HORIZONTAL);
 
     private static final Predicate<RailShape> PRED_STRAIGHT = dir -> dir != RailShape.NORTH_EAST && dir != RailShape.NORTH_WEST && dir != RailShape.SOUTH_EAST && dir != RailShape.SOUTH_WEST;

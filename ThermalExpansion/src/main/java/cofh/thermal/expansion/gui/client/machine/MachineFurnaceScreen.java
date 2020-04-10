@@ -1,4 +1,4 @@
-package cofh.thermal.expansion.gui.client;
+package cofh.thermal.expansion.gui.client.machine;
 
 import cofh.core.gui.element.ElementScaled;
 import cofh.core.gui.element.ElementScaled.StartDirection;

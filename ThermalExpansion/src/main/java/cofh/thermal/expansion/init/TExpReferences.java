@@ -1,6 +1,12 @@
 package cofh.thermal.expansion.init;
 
+import cofh.thermal.expansion.inventory.container.dynamo.DynamoLapidaryContainer;
+import cofh.thermal.expansion.inventory.container.dynamo.DynamoNumismaticContainer;
+import cofh.thermal.expansion.inventory.container.dynamo.DynamoStirlingContainer;
 import cofh.thermal.expansion.inventory.container.machine.*;
+import cofh.thermal.expansion.tileentity.dynamo.DynamoLapidaryTile;
+import cofh.thermal.expansion.tileentity.dynamo.DynamoNumismaticTile;
+import cofh.thermal.expansion.tileentity.dynamo.DynamoStirlingTile;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
@@ -137,22 +143,22 @@ public class TExpReferences {
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static Block DYNAMO_STIRLING_BLOCK;
     @ObjectHolder(ID_DYNAMO_STIRLING)
-    public static TileEntityType<MachineBrewerTile> DYNAMO_STIRLING_TILE;
+    public static TileEntityType<DynamoStirlingTile> DYNAMO_STIRLING_TILE;
     @ObjectHolder(ID_DYNAMO_STIRLING)
-    public static ContainerType<MachineBrewerContainer> DYNAMO_STIRLING_CONTAINER;
+    public static ContainerType<DynamoStirlingContainer> DYNAMO_STIRLING_CONTAINER;
 
     @ObjectHolder(ID_DYNAMO_NUMISMATIC)
     public static Block DYNAMO_NUMISMATIC_BLOCK;
     @ObjectHolder(ID_DYNAMO_NUMISMATIC)
-    public static TileEntityType<MachineBrewerTile> DYNAMO_NUMISMATIC_TILE;
+    public static TileEntityType<DynamoNumismaticTile> DYNAMO_NUMISMATIC_TILE;
     @ObjectHolder(ID_DYNAMO_NUMISMATIC)
-    public static ContainerType<MachineBrewerContainer> DYNAMO_NUMISMATIC_CONTAINER;
+    public static ContainerType<DynamoNumismaticContainer> DYNAMO_NUMISMATIC_CONTAINER;
 
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
     public static Block DYNAMO_LAPIDARY_BLOCK;
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
-    public static TileEntityType<MachineBrewerTile> DYNAMO_LAPIDARY_TILE;
+    public static TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE;
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
-    public static ContainerType<MachineBrewerContainer> DYNAMO_LAPIDARY_CONTAINER;
+    public static ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER;
 
 }

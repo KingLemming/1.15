@@ -1,6 +1,9 @@
 package cofh.thermal.cultivation.init;
 
 import net.minecraft.item.Food;
+import net.minecraft.potion.EffectInstance;
+
+import static net.minecraft.potion.Effects.FIRE_RESISTANCE;
 
 public class TCulFoods {
 
@@ -21,5 +24,7 @@ public class TCulFoods {
     public static final Food TOMATO = new Food.Builder().hunger(2).saturation(0.3F).build();
 
     public static final Food COFFEE_CHERRY = new Food.Builder().hunger(1).saturation(0.1F).build();
+
+    public static final Food FROST_MELON_SLICE = new Food.Builder().hunger(2).saturation(0.3F).effect(new EffectInstance(FIRE_RESISTANCE, 200, 0), 1.0F).build();
 
 }

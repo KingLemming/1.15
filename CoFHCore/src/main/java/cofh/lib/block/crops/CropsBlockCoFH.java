@@ -34,14 +34,12 @@ import static cofh.lib.util.constants.Constants.CROPS_BY_AGE;
 
 public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
 
-    protected static final Supplier<Item> AIR_SUPPLY = () -> Items.AIR;
-
     protected final PlantType type;
     protected int growLight;
     protected float growMod;
 
-    protected Supplier<Item> crop = AIR_SUPPLY;
-    protected Supplier<Item> seed = AIR_SUPPLY;
+    protected Supplier<Item> crop = () -> Items.AIR;
+    protected Supplier<Item> seed = () -> Items.AIR;
 
     public CropsBlockCoFH(Properties builder, PlantType type, int growLight, float growMod) {
 
@@ -128,6 +126,11 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
         return CROPS_BY_AGE[MathHelper.clamp(state.get(getAgeProperty()), 0, CROPS_BY_AGE.length - 1)];
+    }
+
+    public static float getGrowthChanceProxy(Block blockIn, IBlockReader worldIn, BlockPos pos) {
+
+        return getGrowthChance(blockIn, worldIn, pos);
     }
 
     // region AGE

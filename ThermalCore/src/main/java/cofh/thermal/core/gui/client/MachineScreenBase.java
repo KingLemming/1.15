@@ -38,9 +38,7 @@ public class MachineScreenBase<T extends Container> extends ContainerScreenCoFH<
         if (info != null && !info.isEmpty()) {
             addPanel(new PanelInfo(this, info));
         }
-        //if (SecurityHelper.hasSecurity(tile)) {
         addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
-        //}
         addPanel(new PanelRedstoneControl(this, tile));
         // addPanel(new PanelConfiguration(this, tile, tile));
 

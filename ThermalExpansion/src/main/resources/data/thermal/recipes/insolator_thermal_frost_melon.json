@@ -1,0 +1,18 @@
+{
+  "type": "thermal:insolator",
+  "ingredient": {
+    "item": "thermal:frost_melon_seeds"
+  },
+  "result": [
+    {
+      "item": "thermal:frost_melon",
+      "chance": 1.1
+    },
+    {
+      "item": "thermal:frost_melon_seeds",
+      "chance": 1.1
+    }
+  ],
+  "energy_mod": 3.0,
+  "water_mod": 1.5
+}

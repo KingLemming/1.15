@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "thermal:block/frost_melon_stem_attached"
+    },
+    "facing=east": {
+      "model": "thermal:block/frost_melon_stem_attached",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "thermal:block/frost_melon_stem_attached",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "thermal:block/frost_melon_stem_attached",
+      "y": 270
+    }
+  }
+}

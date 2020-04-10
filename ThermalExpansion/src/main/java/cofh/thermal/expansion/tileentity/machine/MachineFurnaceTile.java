@@ -64,7 +64,7 @@ public class MachineFurnaceTile extends MachineTileProcess {
             return true;
         }
         ItemStack recipeOutput = curRecipe.getOutputItems(this).get(0);
-        return itemsEqualWithTags(output, recipeOutput) && output.getCount() < recipeOutput.getMaxStackSize();
+        return itemsEqualWithTags(output, recipeOutput);
     }
     // endregion
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "thermal:block/machine_top",
+    "down": "thermal:block/machine_bottom",
+    "up": "thermal:block/machine_crafter_active",
+    "east": "thermal:block/machine_side",
+    "west": "thermal:block/machine_side",
+    "north": "thermal:block/machine_side",
+    "south": "thermal:block/machine_side"
+  }
+}
