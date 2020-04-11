@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/sawdust"
+    "layer0": "thermal:item/niter_dust"
   }
 }

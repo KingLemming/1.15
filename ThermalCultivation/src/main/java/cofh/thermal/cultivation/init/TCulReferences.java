@@ -62,10 +62,8 @@ public class TCulReferences {
     // region REFERENCES
     @ObjectHolder(ID_FROST_MELON)
     public static Block FROST_MELON;
-
     @ObjectHolder(ID_FROST_MELON_STEM)
     public static Block FROST_MELON_STEM;
-
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
     public static Block FROST_MELON_STEM_ATTACHED;
 

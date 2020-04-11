@@ -2,7 +2,7 @@
   "type": "thermal:brewer",
   "ingredient": [
     {
-      "item": "thermal:sawdust"
+      "item": "thermal:wood_dust"
     },
     {
       "fluid": "minecraft:lava"

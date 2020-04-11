@@ -13,7 +13,7 @@
       "amount": 500
     },
     {
-      "item": "thermal:sawdust",
+      "item": "thermal:wood_dust",
       "chance": 0.75
     }
   ],

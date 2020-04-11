@@ -24,6 +24,10 @@ public class TCoreItems {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
+        registerItem("wood_dust", group);
+        registerItem("sulfur_dust", group);
+        registerItem("niter_dust", group);
+
         //        register("dust_coal", group);
         //        register("dust_charcoal", group);
         //        register("dust_obsidian", group);
@@ -35,8 +39,6 @@ public class TCoreItems {
         //        // register("ingot_stone", group);
         //        // register("dust_stone", group);
         //        register("gear_stone", group);
-
-        registerItem("sawdust", group);
 
         registerMetalSet("iron", group, true);
         registerMetalSet("gold", group, true);

@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.storage.MetalStorageBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -22,6 +23,9 @@ public class TCoreBlocks {
     }
 
     public static void register() {
+
+        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1));
+        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1));
 
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
