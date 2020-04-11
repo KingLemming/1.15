@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 
-import static cofh.thermal.core.util.recipes.RecipeJsonUtils.*;
+import static cofh.lib.util.RecipeJsonUtils.*;
 
 public class InsolatorRecipeSerializer<T extends ThermalRecipe> extends ThermalRecipeSerializer<T> {
 

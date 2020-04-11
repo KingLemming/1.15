@@ -25,11 +25,13 @@ public class DynamoNumismaticTile extends DynamoTileBase {
     }
 
     // region PROCESS
+    @Override
     protected boolean canProcessStart() {
 
         return NumismaticFuelManager.instance().getEnergy(fuelSlot.getItemStack()) > 0;
     }
 
+    @Override
     protected void processStart() {
 
         fuel += NumismaticFuelManager.instance().getEnergy(fuelSlot.getItemStack());

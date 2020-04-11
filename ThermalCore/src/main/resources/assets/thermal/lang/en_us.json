@@ -194,6 +194,7 @@
   "block.thermal.dynamo_numismatic": "Numismatic Dynamo",
   "block.thermal.dynamo_stirling": "Stirling Dynamo",
 
+  "block.thermal.machine_bottler": "Fluid Encapsulator",
   "block.thermal.machine_brewer": "Alchemical Imbuer",
   "block.thermal.machine_centrifuge": "Centrifugal Separator",
   "block.thermal.machine_chiller": "Blast Chiller",
@@ -219,6 +220,10 @@
   "info.thermal.dynamo_numismatic.2": "Don't overthink it, just insert coins.",
 
   "info.thermal.dynamo_stirling.0": "Generates Redstone Flux using solid fuels.",
+
+  "info.thermal.machine_bottler.0": "Fills containers with fluids.",
+  "info.thermal.machine_bottler.1": "This is required to consume certain beverages.",
+  "info.thermal.machine_bottler.2": "Refreshing!",
 
   "info.thermal.machine_brewer.0": "Brews potions and imbues fluids.",
   "info.thermal.machine_brewer.1": "You might want a few of these in a row.",

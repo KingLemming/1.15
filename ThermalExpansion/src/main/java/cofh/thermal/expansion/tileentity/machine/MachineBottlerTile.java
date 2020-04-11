@@ -4,8 +4,8 @@ import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
-import cofh.thermal.expansion.inventory.container.machine.MachineChillerContainer;
-import cofh.thermal.expansion.util.managers.machine.ChillerRecipeManager;
+import cofh.thermal.expansion.inventory.container.machine.MachineBottlerContainer;
+import cofh.thermal.expansion.util.managers.machine.BottlerRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -16,18 +16,17 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.thermal.core.init.ThermalTags.Items.MACHINE_MOLDS;
-import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_TILE;
+import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BOTTLER_TILE;
 
-public class MachineChillerTile extends MachineTileProcess {
+public class MachineBottlerTile extends MachineTileProcess {
 
-    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(ChillerRecipeManager.instance()::validItem);
+    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(BottlerRecipeManager.instance()::validItem);
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
-    protected FluidStorageCoFH inputTank = new FluidStorageCoFH(TANK_MEDIUM, ChillerRecipeManager.instance()::validFluid);
+    protected FluidStorageCoFH inputTank = new FluidStorageCoFH(TANK_MEDIUM, BottlerRecipeManager.instance()::validFluid);
 
-    public MachineChillerTile() {
+    public MachineBottlerTile() {
 
-        super(MACHINE_CHILLER_TILE);
+        super(MACHINE_BOTTLER_TILE);
 
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlot(outputSlot, OUTPUT);
@@ -39,7 +38,7 @@ public class MachineChillerTile extends MachineTileProcess {
     @Override
     protected boolean cacheRecipe() {
 
-        curRecipe = ChillerRecipeManager.instance().getRecipe(this);
+        curRecipe = BottlerRecipeManager.instance().getRecipe(this);
         if (curRecipe != null) {
             itemInputCounts = curRecipe.getInputItemCounts(this);
             fluidInputCounts = curRecipe.getInputFluidCounts(this);
@@ -53,29 +52,20 @@ public class MachineChillerTile extends MachineTileProcess {
         if (curRecipe == null) {
             return false;
         }
+        if (inputTank.isEmpty()) {
+            // This should definitely never happen, but who knows.
+            return false;
+        }
         FluidStack prevFluid = renderFluid;
         renderFluid = new FluidStack(inputTank.getFluidStack(), inputTank.isEmpty() ? 0 : FluidAttributes.BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
-    }
-
-    @Override
-    protected void resolveInputs() {
-
-        // Input Items
-        if (!itemInputCounts.isEmpty() && !inputSlot.getItemStack().getItem().isIn(MACHINE_MOLDS)) {
-            inputSlot.modify(-itemInputCounts.get(0));
-        }
-        // Input Fluids
-        for (int i = 0; i < fluidInputCounts.size(); ++i) {
-            inputTanks().get(i).modify(-fluidInputCounts.get(i));
-        }
     }
 
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
-        return new MachineChillerContainer(i, world, pos, inventory, player);
+        return new MachineBottlerContainer(i, world, pos, inventory, player);
     }
 
 }

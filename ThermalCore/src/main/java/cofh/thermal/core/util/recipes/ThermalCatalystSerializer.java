@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-import static cofh.thermal.core.util.recipes.RecipeJsonUtils.*;
+import static cofh.lib.util.RecipeJsonUtils.*;
 
 public class ThermalCatalystSerializer<T extends ThermalCatalyst> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 

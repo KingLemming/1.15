@@ -24,8 +24,8 @@ public class TCoreBlocks {
 
     public static void register() {
 
-        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1));
-        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1));
+        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 

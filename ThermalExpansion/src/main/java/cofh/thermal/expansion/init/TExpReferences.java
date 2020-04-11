@@ -1,12 +1,8 @@
 package cofh.thermal.expansion.init;
 
-import cofh.thermal.expansion.inventory.container.dynamo.DynamoLapidaryContainer;
-import cofh.thermal.expansion.inventory.container.dynamo.DynamoNumismaticContainer;
-import cofh.thermal.expansion.inventory.container.dynamo.DynamoStirlingContainer;
+import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
-import cofh.thermal.expansion.tileentity.dynamo.DynamoLapidaryTile;
-import cofh.thermal.expansion.tileentity.dynamo.DynamoNumismaticTile;
-import cofh.thermal.expansion.tileentity.dynamo.DynamoStirlingTile;
+import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
@@ -32,6 +28,7 @@ public class TExpReferences {
     public static final String ID_MACHINE_CHILLER = ID_THERMAL + ":machine_chiller";
     public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
     public static final String ID_MACHINE_BREWER = ID_THERMAL + ":machine_brewer";
+    public static final String ID_MACHINE_BOTTLER = ID_THERMAL + ":machine_bottler";
     // endregion
 
     // region RECIPES
@@ -45,6 +42,7 @@ public class TExpReferences {
     public static final String ID_RECIPE_CHILLER = ID_THERMAL + ":chiller";
     public static final String ID_RECIPE_REFINERY = ID_THERMAL + ":refinery";
     public static final String ID_RECIPE_BREWER = ID_THERMAL + ":brewer";
+    public static final String ID_RECIPE_BOTTLER = ID_THERMAL + ":bottler";
 
     public static final String ID_CATALYST_PULVERIZER = ID_THERMAL + ":pulverizer_catalyst";
     public static final String ID_CATALYST_INSOLATOR = ID_THERMAL + ":insolator_catalyst";
@@ -141,12 +139,33 @@ public class TExpReferences {
     @ObjectHolder(ID_MACHINE_BREWER)
     public static ContainerType<MachineBrewerContainer> MACHINE_BREWER_CONTAINER;
 
+    @ObjectHolder(ID_MACHINE_BOTTLER)
+    public static Block MACHINE_BOTTLER_BLOCK;
+    @ObjectHolder(ID_MACHINE_BOTTLER)
+    public static TileEntityType<MachineBottlerTile> MACHINE_BOTTLER_TILE;
+    @ObjectHolder(ID_MACHINE_BOTTLER)
+    public static ContainerType<MachineBottlerContainer> MACHINE_BOTTLER_CONTAINER;
+
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static Block DYNAMO_STIRLING_BLOCK;
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static TileEntityType<DynamoStirlingTile> DYNAMO_STIRLING_TILE;
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static ContainerType<DynamoStirlingContainer> DYNAMO_STIRLING_CONTAINER;
+
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static Block DYNAMO_COMPRESSION_BLOCK;
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static TileEntityType<DynamoCompressionTile> DYNAMO_COMPRESSION_TILE;
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static ContainerType<DynamoCompressionContainer> DYNAMO_COMPRESSION_CONTAINER;
+
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static Block DYNAMO_MAGMATIC_BLOCK;
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static TileEntityType<DynamoMagmaticTile> DYNAMO_MAGMATIC_TILE;
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static ContainerType<DynamoMagmaticContainer> DYNAMO_MAGMATIC_CONTAINER;
 
     @ObjectHolder(ID_DYNAMO_NUMISMATIC)
     public static Block DYNAMO_NUMISMATIC_BLOCK;

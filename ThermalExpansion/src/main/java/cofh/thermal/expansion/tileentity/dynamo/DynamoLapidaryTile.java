@@ -25,11 +25,13 @@ public class DynamoLapidaryTile extends DynamoTileBase {
     }
 
     // region PROCESS
+    @Override
     protected boolean canProcessStart() {
 
         return LapidaryFuelManager.instance().getEnergy(fuelSlot.getItemStack()) > 0;
     }
 
+    @Override
     protected void processStart() {
 
         fuel += LapidaryFuelManager.instance().getEnergy(fuelSlot.getItemStack());

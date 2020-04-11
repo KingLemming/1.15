@@ -1,0 +1,16 @@
+{
+  "type": "thermal:bottler",
+  "ingredient": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "fluid": "cofh_core:milk"
+    }
+  ],
+  "result": [
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ]
+}

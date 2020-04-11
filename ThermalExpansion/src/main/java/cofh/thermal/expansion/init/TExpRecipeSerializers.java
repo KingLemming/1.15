@@ -3,13 +3,9 @@ package cofh.thermal.expansion.init;
 import cofh.thermal.core.util.recipes.ThermalCatalystSerializer;
 import cofh.thermal.core.util.recipes.ThermalFuelSerializer;
 import cofh.thermal.core.util.recipes.ThermalRecipeSerializer;
-import cofh.thermal.expansion.util.managers.dynamo.LapidaryFuelManager;
-import cofh.thermal.expansion.util.managers.dynamo.NumismaticFuelManager;
-import cofh.thermal.expansion.util.managers.dynamo.StirlingFuelManager;
+import cofh.thermal.expansion.util.managers.dynamo.*;
 import cofh.thermal.expansion.util.managers.machine.*;
-import cofh.thermal.expansion.util.recipes.dynamo.LapidaryFuel;
-import cofh.thermal.expansion.util.recipes.dynamo.NumismaticFuel;
-import cofh.thermal.expansion.util.recipes.dynamo.StirlingFuel;
+import cofh.thermal.expansion.util.recipes.dynamo.*;
 import cofh.thermal.expansion.util.recipes.machine.*;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
@@ -33,11 +29,14 @@ public class TExpRecipeSerializers {
         RECIPE_SERIALIZERS.register(ID_RECIPE_CHILLER, () -> new ThermalRecipeSerializer<>(ChillerRecipe::new, ChillerRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(ID_RECIPE_REFINERY, () -> new ThermalRecipeSerializer<>(RefineryRecipe::new, RefineryRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(ID_RECIPE_BREWER, () -> new ThermalRecipeSerializer<>(BrewerRecipe::new, BrewerRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_RECIPE_BOTTLER, () -> new ThermalRecipeSerializer<>(BottlerRecipe::new, BottlerRecipeManager.instance().getDefaultEnergy()));
 
         RECIPE_SERIALIZERS.register(ID_CATALYST_PULVERIZER, () -> new ThermalCatalystSerializer<>(PulverizerCatalyst::new));
         RECIPE_SERIALIZERS.register(ID_CATALYST_INSOLATOR, () -> new ThermalCatalystSerializer<>(InsolatorCatalyst::new));
 
         RECIPE_SERIALIZERS.register(ID_DYNAMO_STIRLING, () -> new ThermalFuelSerializer<>(StirlingFuel::new, StirlingFuelManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_DYNAMO_COMPRESSION, () -> new ThermalFuelSerializer<>(CompressionFuel::new, CompressionFuelManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(ID_DYNAMO_MAGMATIC, () -> new ThermalFuelSerializer<>(MagmaticFuel::new, MagmaticFuelManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(ID_DYNAMO_NUMISMATIC, () -> new ThermalFuelSerializer<>(NumismaticFuel::new, NumismaticFuelManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(ID_DYNAMO_LAPIDARY, () -> new ThermalFuelSerializer<>(LapidaryFuel::new, LapidaryFuelManager.instance().getDefaultEnergy()));
     }

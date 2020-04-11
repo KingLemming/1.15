@@ -25,11 +25,13 @@ public class DynamoStirlingTile extends DynamoTileBase {
     }
 
     // region PROCESS
+    @Override
     protected boolean canProcessStart() {
 
         return StirlingFuelManager.instance().getEnergy(fuelSlot.getItemStack()) > 0;
     }
 
+    @Override
     protected void processStart() {
 
         fuel += StirlingFuelManager.instance().getEnergy(fuelSlot.getItemStack());

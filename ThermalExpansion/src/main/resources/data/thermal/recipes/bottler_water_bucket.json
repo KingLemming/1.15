@@ -1,0 +1,16 @@
+{
+  "type": "thermal:bottler",
+  "ingredient": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "fluid": "minecraft:water"
+    }
+  ],
+  "result": [
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ]
+}

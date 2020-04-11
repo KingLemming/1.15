@@ -17,12 +17,12 @@ public class OreBlockCoFH extends Block {
 
     public OreBlockCoFH(int harvestLevel) {
 
-        this(Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE));
+        this(Properties.create(Material.ROCK, MaterialColor.STONE).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(harvestLevel).harvestTool(ToolType.PICKAXE));
     }
 
     public OreBlockCoFH(MaterialColor color, int harvestLevel) {
 
-        this(Properties.create(Material.ROCK, color).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(2).harvestTool(ToolType.PICKAXE));
+        this(Properties.create(Material.ROCK, color).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE).harvestLevel(harvestLevel).harvestTool(ToolType.PICKAXE));
     }
 
     public OreBlockCoFH(Properties properties) {
