@@ -12,10 +12,12 @@ import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
+import cofh.thermal.expansion.util.recipes.machine.internal.BottlerRecipePotion;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
@@ -23,12 +25,16 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
 
+import static cofh.lib.util.constants.Constants.BOTTLE_VOLUME;
+import static cofh.lib.util.references.CoreReferences.FLUID_POTION;
 import static java.util.Arrays.asList;
 
 public class BottlerRecipeManager extends AbstractManager implements IRecipeManager {
 
     private static final BottlerRecipeManager INSTANCE = new BottlerRecipeManager();
     protected static final int DEFAULT_ENERGY = 2000;
+
+    protected static boolean defaultPotionRecipes = true;
 
     protected Map<List<Integer>, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
     protected Set<Fluid> validFluids = new ObjectOpenHashSet<>();
@@ -88,11 +94,11 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         }
         if (inputSlots.isEmpty() || inputSlots.get(0).isEmpty()) {
             FluidStack inputFluid = inputTanks.get(0).getFluidStack();
-            return recipeMap.get(Collections.singletonList(FluidHelper.fluidHashcode(inputFluid)));
+            return recipeMap.get(Collections.singletonList(FluidHelper.fluidHashcodeNoTag(inputFluid)));
         }
         ItemStack inputItem = inputSlots.get(0).getItemStack();
         FluidStack inputFluid = inputTanks.get(0).getFluidStack();
-        return recipeMap.get(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcode(inputFluid)));
+        return recipeMap.get(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcodeNoTag(inputFluid)));
     }
 
     protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
@@ -118,7 +124,23 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         energy = (energy * getDefaultScale()) / 100;
 
         BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
-        recipeMap.put(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcode(inputFluid)), recipe);
+        recipeMap.put(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcodeNoTag(inputFluid)), recipe);
+        return recipe;
+    }
+
+    protected IMachineRecipe addRecipe(IMachineRecipe recipe) {
+
+        ItemStack inputItem = recipe.getInputItems().get(0);
+        if (inputItem.isEmpty()) {
+            return null;
+        }
+        FluidStack inputFluid = recipe.getInputFluids().get(0);
+        if (inputFluid.isEmpty()) {
+            return null;
+        }
+        validItems.add(convert(inputItem));
+        validFluids.add(inputFluid.getFluid());
+        recipeMap.put(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcodeNoTag(inputFluid)), recipe);
         return recipe;
     }
 
@@ -146,6 +168,10 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
     public void refresh(RecipeManager recipeManager) {
 
         clear();
+        if (defaultPotionRecipes) {
+            int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
+            addRecipe(new BottlerRecipePotion(energy, 0.0F, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
+        }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_BOTTLER);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
             addRecipe((ThermalRecipe) entry.getValue());

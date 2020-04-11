@@ -39,7 +39,10 @@ public class PotionFluid extends FluidCoFH {
         stillFluid = FLUIDS.register(key, () -> new ForgeFlowingFluid.Source(properties));
         flowingFluid = FLUIDS.register(flowing(key), () -> new ForgeFlowingFluid.Flowing(properties));
 
-        properties = new ForgeFlowingFluid.Properties(stillFluid, flowingFluid, PotionFluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture)));
+        // This is only used for testing.
+        // bucket = ITEMS.register(bucket(key), () -> new BucketItem(stillFluid, new Item.Properties().containerItem(Items.BUCKET).maxStackSize(1).group(ItemGroup.BREWING)));
+
+        properties = new ForgeFlowingFluid.Properties(stillFluid, flowingFluid, PotionFluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture))).bucket(bucket);
     }
 
     public static int getPotionColor(FluidStack stack) {
