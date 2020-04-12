@@ -1,8 +1,8 @@
 package cofh.thermal.expansion;
 
 import cofh.thermal.core.init.ThermalRecipeManager;
-import cofh.thermal.expansion.gui.client.dynamo.*;
-import cofh.thermal.expansion.gui.client.machine.*;
+import cofh.thermal.expansion.client.gui.dynamo.*;
+import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.init.*;
 import cofh.thermal.expansion.util.managers.dynamo.*;
 import cofh.thermal.expansion.util.managers.machine.*;

@@ -1,11 +1,11 @@
 package cofh.core;
 
+import cofh.core.client.gui.TexturesCoFH;
 import cofh.core.command.CoFHCommand;
 import cofh.core.data.CoreLootTables;
 import cofh.core.data.CoreRecipes;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
-import cofh.core.gui.TexturesCoFH;
 import cofh.core.init.*;
 import cofh.core.network.packet.client.IndexedChatPacket;
 import cofh.core.network.packet.client.TileControlPacket;
@@ -126,6 +126,9 @@ public class CoFHCore {
         CoreClientEvents.register();
 
         AOEClientEvents.register();
+
+        // TODO: Finish
+        // ModelLoaderRegistry.registerLoader();
     }
 
     private void serverStarting(final FMLServerStartingEvent event) {

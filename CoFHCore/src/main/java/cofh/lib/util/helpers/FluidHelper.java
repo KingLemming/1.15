@@ -98,7 +98,7 @@ public class FluidHelper {
     // region BLOCK TRANSFER
     public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
 
-        return tank.getFluidStack() == null ? extractFromAdjacent(tile, tank, tank.getCapacity(), side) : extractFromAdjacent(tile, tank, new FluidStack(tank.getFluidStack(), tank.getSpace()), side);
+        return tank.getFluidStack().isEmpty() ? extractFromAdjacent(tile, tank, tank.getCapacity(), side) : extractFromAdjacent(tile, tank, new FluidStack(tank.getFluidStack(), tank.getSpace()), side);
     }
 
     public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, int amount, Direction side) {
@@ -169,7 +169,7 @@ public class FluidHelper {
 
     public static IFluidHandler getFluidHandlerCap(TileEntity tile, Direction face) {
 
-        return tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, face).orElse(EmptyFluidHandler.INSTANCE);
+        return tile == null ? EmptyFluidHandler.INSTANCE : tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, face).orElse(EmptyFluidHandler.INSTANCE);
     }
     // endregion
 

@@ -1,12 +1,12 @@
 package cofh.archersparadox;
 
+import cofh.archersparadox.client.renderer.entity.*;
 import cofh.archersparadox.data.ModRecipes;
 import cofh.archersparadox.data.ModTags;
 import cofh.archersparadox.init.ModConfig;
 import cofh.archersparadox.init.ModEffects;
 import cofh.archersparadox.init.ModEntities;
 import cofh.archersparadox.init.ModItems;
-import cofh.archersparadox.renderer.entity.projectile.*;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;

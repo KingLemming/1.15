@@ -1,7 +1,7 @@
 package cofh.core.util;
 
-import cofh.core.gui.IGuiAccess;
-import cofh.core.gui.element.*;
+import cofh.core.client.gui.IGuiAccess;
+import cofh.core.client.gui.element.*;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.util.control.IReconfigurable;
@@ -9,8 +9,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.BooleanSupplier;
 
-import static cofh.core.gui.element.ElementBase.TRUE;
-import static cofh.core.gui.element.ElementScaled.StartDirection.LEFT;
+import static cofh.core.client.gui.element.ElementBase.TRUE;
+import static cofh.core.client.gui.element.ElementScaled.StartDirection.LEFT;
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.localize;

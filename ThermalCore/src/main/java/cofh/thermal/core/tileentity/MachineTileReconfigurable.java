@@ -9,12 +9,17 @@ import cofh.lib.util.control.TransferControlModule;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -33,8 +38,8 @@ import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.DIRECTIONS;
 import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_INPUT;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_OUTPUT;
+import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
+import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
 
@@ -51,7 +56,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public MachineTileReconfigurable(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        reconfigControl.setSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
+        reconfigControl.setSideConfig(new SideConfig[]{SIDE_INPUT, SIDE_OUTPUT, SIDE_NONE, SIDE_BOTH, SIDE_OUTPUT, SIDE_INPUT});
     }
 
     @Override
@@ -62,28 +67,53 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     }
 
     @Override
+    public void neighborChanged(Block blockIn, BlockPos fromPos) {
+
+        super.neighborChanged(blockIn, fromPos);
+
+        // TODO: Handle caching of neighbor caps.
+    }
+
+    @Override
+    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+
+        updateSideCache();
+    }
+
+    @Override
     public Direction getFacing() {
 
         if (facing == null) {
-            updateSideCache();
+            facing = getBlockState().get(FACING_HORIZONTAL);
         }
         return facing;
     }
 
     protected void updateSideCache() {
 
-        BlockState state = getBlockState();
-        facing = state.get(FACING_HORIZONTAL);
+        Direction prevFacing = facing;
+        facing = getBlockState().get(FACING_HORIZONTAL);
+        if (prevFacing == null || facing == prevFacing) {
+            return;
+        }
+        int iPrev = prevFacing.ordinal();
+        int iFace = facing.ordinal();
+        SideConfig[] sides = new SideConfig[6];
 
-        // TODO: Fix
-        //        reconfigControl.setSideConfig(new SideConfig[]{
-        //                state.get(RECONFIG_DOWN),
-        //                state.get(RECONFIG_UP),
-        //                state.get(RECONFIG_NORTH),
-        //                state.get(RECONFIG_SOUTH),
-        //                state.get(RECONFIG_WEST),
-        //                state.get(RECONFIG_EAST)
-        //        });
+        if (iPrev == SIDE_RIGHT[iFace]) {
+            for (int i = 0; i < 6; ++i) {
+                sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
+            }
+        } else if (iPrev == SIDE_LEFT[iFace]) {
+            for (int i = 0; i < 6; ++i) {
+                sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
+            }
+        } else if (iPrev == SIDE_OPPOSITE[iFace]) {
+            for (int i = 0; i < 6; ++i) {
+                sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
+            }
+        }
+        reconfigControl.setSideConfig(sides);
     }
 
     public void chargeEnergy() {
@@ -115,6 +145,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         for (int i = inputTracker + 1; i <= inputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isInput()) {
+
+                System.out.println(side);
                 for (ItemStorageCoFH slot : inputSlots()) {
                     if (slot.getSpace() > 0) {
                         InventoryHelper.extractFromAdjacent(this, slot, slot.getSpace(), side);

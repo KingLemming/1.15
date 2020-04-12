@@ -3,7 +3,7 @@ package cofh.thermal.cultivation;
 import cofh.thermal.cultivation.data.TCulLootTables;
 import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
-import cofh.thermal.cultivation.gui.client.MachineHiveExtractorScreen;
+import cofh.thermal.cultivation.client.gui.MachineHiveExtractorScreen;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulContainers;
 import cofh.thermal.cultivation.init.TCulItems;
