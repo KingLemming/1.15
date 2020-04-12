@@ -1,7 +1,5 @@
 package cofh.thermal.expansion.gui.client.machine;
 
-import cofh.core.gui.element.ElementScaled;
-import cofh.core.gui.element.ElementScaled.StartDirection;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.gui.client.MachineScreenBase;
 import cofh.thermal.expansion.inventory.container.machine.MachineSawmillContainer;
@@ -36,8 +34,8 @@ public class MachineSawmillScreen extends MachineScreenBase<MachineSawmillContai
         addElement(createOutputSlot(this, 107, 44, tile));
         addElement(createOutputSlot(this, 125, 44, tile));
 
-        progress = (ElementScaled) addElement(new ElementScaled(this, 72, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16));
-        speed = (ElementScaled) addElement(new ElementScaled(this, 44, 44).setSize(16, SPEED).setTexture(SCALE_SAW, 32, 16));
+        progress = addElement(createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT));
+        speed = addElement(createDefaultSpeed(this, 44, 44, SCALE_SAW));
     }
 
 }

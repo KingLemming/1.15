@@ -1,8 +1,5 @@
 package cofh.thermal.expansion.gui.client.machine;
 
-import cofh.core.gui.element.ElementScaled;
-import cofh.core.gui.element.ElementScaled.StartDirection;
-import cofh.core.gui.element.ElementScaledFluid;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.gui.client.MachineScreenBase;
 import cofh.thermal.expansion.inventory.container.machine.MachineCentrifugeContainer;
@@ -39,9 +36,9 @@ public class MachineCentrifugeScreen extends MachineScreenBase<MachineCentrifuge
 
         addElement(createLargeOutputFluidStorage(this, 151, 8, tile.getTank(0), tile));
 
-        progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 72, 34).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_FLUID_RIGHT, 64, 16).setVisible(() -> !tile.getRenderFluid().isEmpty()));
-        progress = (ElementScaled) addElement(new ElementScaled(this, 72, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16).setVisible(() -> tile.getRenderFluid().isEmpty()));
-        speed = (ElementScaled) addElement(new ElementScaled(this, 44, 44).setSize(16, SPEED).setTexture(SCALE_SPIN, 32, 16));
+        progressOverlay = addElement(createDefaultFluidProgress(this, 72, 34, PROG_ARROW_FLUID_RIGHT, tile.getRenderFluid(), () -> !tile.getRenderFluid().isEmpty()));
+        progress = addElement(createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT, () -> tile.getRenderFluid().isEmpty()));
+        speed = addElement(createDefaultSpeed(this, 44, 44, SCALE_SPIN));
     }
 
 }

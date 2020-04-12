@@ -1,8 +1,5 @@
 package cofh.thermal.expansion.gui.client.machine;
 
-import cofh.core.gui.element.ElementScaled;
-import cofh.core.gui.element.ElementScaled.StartDirection;
-import cofh.core.gui.element.ElementScaledFluid;
 import cofh.core.util.GuiHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.gui.client.MachineScreenBase;
@@ -38,8 +35,8 @@ public class MachineRefineryScreen extends MachineScreenBase<MachineRefineryCont
         addElement(GuiHelper.createMediumOutputFluidStorage(this, 133, 22, tile.getTank(1), tile));
         addElement(GuiHelper.createMediumOutputFluidStorage(this, 151, 22, tile.getTank(2), tile));
 
-        progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 65, 35).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_DROP_RIGHT, 64, 16));
-        speed = (ElementScaled) addElement(new ElementScaled(this, 35, 53).setSize(16, SPEED).setTexture(SCALE_FLAME, 32, 16));
+        progressOverlay = addElement(createDefaultFluidProgress(this, 65, 35, PROG_DROP_RIGHT, tile.getRenderFluid()));
+        speed = addElement(createDefaultSpeed(this, 35, 53, SCALE_FLAME));
     }
 
 }

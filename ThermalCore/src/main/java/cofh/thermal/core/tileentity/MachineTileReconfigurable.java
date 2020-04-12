@@ -74,14 +74,16 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         BlockState state = getBlockState();
         facing = state.get(FACING_HORIZONTAL);
-        reconfigControl.setSideConfig(new SideConfig[]{
-                state.get(RECONFIG_DOWN),
-                state.get(RECONFIG_UP),
-                state.get(RECONFIG_NORTH),
-                state.get(RECONFIG_SOUTH),
-                state.get(RECONFIG_WEST),
-                state.get(RECONFIG_EAST),
-        });
+
+        // TODO: Fix
+        //        reconfigControl.setSideConfig(new SideConfig[]{
+        //                state.get(RECONFIG_DOWN),
+        //                state.get(RECONFIG_UP),
+        //                state.get(RECONFIG_NORTH),
+        //                state.get(RECONFIG_SOUTH),
+        //                state.get(RECONFIG_WEST),
+        //                state.get(RECONFIG_EAST)
+        //        });
     }
 
     public void chargeEnergy() {

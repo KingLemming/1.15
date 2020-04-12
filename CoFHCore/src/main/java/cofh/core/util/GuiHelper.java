@@ -1,15 +1,16 @@
 package cofh.core.util;
 
 import cofh.core.gui.IGuiAccess;
-import cofh.core.gui.element.ElementEnergyStorage;
-import cofh.core.gui.element.ElementFluidStorage;
-import cofh.core.gui.element.ElementSlot;
+import cofh.core.gui.element.*;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.util.control.IReconfigurable;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.BooleanSupplier;
 
+import static cofh.core.gui.element.ElementBase.TRUE;
+import static cofh.core.gui.element.ElementScaled.StartDirection.LEFT;
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.localize;
@@ -28,7 +29,9 @@ public class GuiHelper {
 
     public static ElementEnergyStorage createDefaultEnergyStorage(IGuiAccess gui, int posX, int posY, EnergyStorageCoFH storage, int width, int height, String texture, int texW, int texH) {
 
-        return (ElementEnergyStorage) new ElementEnergyStorage(gui, posX, posY, storage).setSize(width, height).setTexture(texture, texW, texH);
+        return (ElementEnergyStorage) new ElementEnergyStorage(gui, posX, posY, storage)
+                .setSize(width, height)
+                .setTexture(texture, texW, texH);
     }
     // endregion
 
@@ -112,28 +115,81 @@ public class GuiHelper {
 
     public static ElementSlot createDefaultSlot(IGuiAccess gui, int posX, int posY, int width, int height, String texture, int texW, int texH) {
 
-        return (ElementSlot) new ElementSlot(gui, posX, posY).setSize(width, height).setTexture(texture, texW, texH);
+        return (ElementSlot) new ElementSlot(gui, posX, posY)
+                .setSize(width, height)
+                .setTexture(texture, texW, texH);
     }
 
     public static ElementSlot createDefaultSlot(IGuiAccess gui, int posX, int posY, int width, int height, String texture, String overlayTexture, int texW, int texH) {
 
-        return (ElementSlot) new ElementSlot(gui, posX, posY).setOverlayTexture(overlayTexture).setSize(width, height).setTexture(texture, texW, texH);
+        return (ElementSlot) new ElementSlot(gui, posX, posY)
+                .setOverlayTexture(overlayTexture)
+                .setSize(width, height)
+                .setTexture(texture, texW, texH);
     }
 
     public static ElementSlot createDefaultSlot(IGuiAccess gui, int posX, int posY, int width, int height, String texture, String underlayTexture, BooleanSupplier drawUnderlay, int texW, int texH) {
 
-        return (ElementSlot) new ElementSlot(gui, posX, posY).setUnderlayTexture(underlayTexture, drawUnderlay).setSize(width, height).setTexture(texture, texW, texH);
+        return (ElementSlot) new ElementSlot(gui, posX, posY)
+                .setUnderlayTexture(underlayTexture, drawUnderlay)
+                .setSize(width, height)
+                .setTexture(texture, texW, texH);
     }
 
     public static ElementSlot createDefaultSlot(IGuiAccess gui, int posX, int posY, int width, int height, String texture, String underlayTexture, BooleanSupplier drawUnderlay, String overlayTexture, int texW, int texH) {
 
-        return (ElementSlot) new ElementSlot(gui, posX, posY).setUnderlayTexture(underlayTexture, drawUnderlay).setOverlayTexture(overlayTexture).setSize(width, height).setTexture(texture, texW, texH);
+        return (ElementSlot) new ElementSlot(gui, posX, posY)
+                .setUnderlayTexture(underlayTexture, drawUnderlay)
+                .setOverlayTexture(overlayTexture)
+                .setSize(width, height)
+                .setTexture(texture, texW, texH);
     }
     // endregion
 
+    // region COMMON UX
+    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture) {
+
+        return createDefaultProgress(gui, posX, posY, texture, TRUE);
+    }
+
+    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, BooleanSupplier visible) {
+
+        return (ElementScaled) new ElementScaled(gui, posX, posY)
+                .setDirection(LEFT)
+                .setSize(PROGRESS, 16)
+                .setTexture(texture, 64, 16)
+                .setVisible(visible);
+    }
+
+    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, FluidStack fluid) {
+
+        return createDefaultFluidProgress(gui, posX, posY, texture, fluid, TRUE);
+    }
+
+    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, FluidStack fluid, BooleanSupplier visible) {
+
+        return (ElementScaledFluid) new ElementScaledFluid(gui, posX, posY)
+                .setFluid(fluid)
+                .setDirection(LEFT)
+                .setSize(PROGRESS, 16)
+                .setTexture(texture, 64, 16)
+                .setVisible(visible);
+    }
+
+    public static ElementScaled createDefaultSpeed(IGuiAccess gui, int posX, int posY, String texture) {
+
+        return (ElementScaled) new ElementScaled(gui, posX, posY)
+                .setSize(16, SPEED)
+                .setTexture(texture, 32, 16);
+    }
+    // endregion
+
+    // region CONSTANTS
     public static final int DURATION = 16;
     public static final int PROGRESS = 24;
     public static final int SPEED = 16;
+    public static final int HEIGHT = 16;
+    // endregion
 
     // region ELEMENTS
     public static final String PROG_ARROW_LEFT = PATH_ELEMENTS + "progress_arrow_left.png";

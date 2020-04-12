@@ -197,13 +197,14 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         }
     }
 
-    protected ElementBase addElement(ElementBase element) {
+    @SuppressWarnings("unchecked")
+    protected <T> T addElement(ElementBase element) {
 
         elements.add(element);
-        return element;
+        return (T) element;
     }
 
-    protected PanelBase addPanel(PanelBase panel) {
+    protected <T> T addPanel(PanelBase panel) {
 
         int yOffset = 4;
         for (PanelBase panel1 : panels) {
@@ -219,7 +220,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         } else if (PanelTracker.getOpenedRight() != null && panel.getClass().equals(PanelTracker.getOpenedRight())) {
             panel.setFullyOpen();
         }
-        return panel;
+        return (T) panel;
     }
 
     private ElementBase getElementAtPosition(int mouseX, int mouseY) {

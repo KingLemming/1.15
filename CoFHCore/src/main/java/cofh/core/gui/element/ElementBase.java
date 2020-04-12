@@ -10,8 +10,8 @@ import java.util.function.BooleanSupplier;
 
 public abstract class ElementBase {
 
-    protected static final BooleanSupplier TRUE = () -> true;
-    protected static final BooleanSupplier FALSE = () -> false;
+    public static final BooleanSupplier TRUE = () -> true;
+    public static final BooleanSupplier FALSE = () -> false;
 
     protected BooleanSupplier enabled = TRUE;
     protected BooleanSupplier visible = TRUE;
