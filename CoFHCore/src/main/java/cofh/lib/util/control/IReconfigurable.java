@@ -1,6 +1,8 @@
 package cofh.lib.util.control;
 
+import net.minecraft.state.EnumProperty;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IStringSerializable;
 
 public interface IReconfigurable {
 
@@ -26,18 +28,31 @@ public interface IReconfigurable {
         return true;
     }
 
-    // region CONFIGS
-    enum SideConfig {
+    EnumProperty<SideConfig> RECONFIG_NORTH = EnumProperty.create("config_north", SideConfig.class);
+    EnumProperty<SideConfig> RECONFIG_EAST = EnumProperty.create("config_east", SideConfig.class);
+    EnumProperty<SideConfig> RECONFIG_SOUTH = EnumProperty.create("config_south", SideConfig.class);
+    EnumProperty<SideConfig> RECONFIG_WEST = EnumProperty.create("config_west", SideConfig.class);
+    EnumProperty<SideConfig> RECONFIG_DOWN = EnumProperty.create("config_down", SideConfig.class);
+    EnumProperty<SideConfig> RECONFIG_UP = EnumProperty.create("config_up", SideConfig.class);
 
-        SIDE_NONE(false, false), SIDE_INPUT(true, false), SIDE_OUTPUT(false, true), SIDE_BOTH(true, true), SIDE_ACCESSIBLE(false, false);
+    // region CONFIGS
+    enum SideConfig implements IStringSerializable {
+
+        SIDE_NONE("none", false, false),
+        SIDE_INPUT("input", true, false),
+        SIDE_OUTPUT("output", false, true),
+        SIDE_BOTH("both", true, true),
+        SIDE_ACCESSIBLE("accessible", false, false);
 
         public static final SideConfig[] VALUES = values();
 
-        boolean input;
-        boolean output;
+        private final String name;
+        private final boolean input;
+        private final boolean output;
 
-        SideConfig(boolean input, boolean output) {
+        SideConfig(String name, boolean input, boolean output) {
 
+            this.name = name;
             this.input = input;
             this.output = output;
         }
@@ -82,6 +97,18 @@ public interface IReconfigurable {
                 default:
                     return SIDE_NONE;
             }
+        }
+
+        @Override
+        public String toString() {
+
+            return this.getName();
+        }
+
+        @Override
+        public String getName() {
+
+            return this.name;
         }
     }
     // endregion

@@ -25,7 +25,9 @@ public class MachinePressContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 17));
         addSlot(new SlotCoFH(tileInv, 1, 53, 53));
+
         addSlot(new SlotRemoveOnly(tileInv, 2, 116, 35));
+
         addSlot(new SlotCoFH(tileInv, 3, 8, 53));
 
         bindPlayerInventory(inventory);

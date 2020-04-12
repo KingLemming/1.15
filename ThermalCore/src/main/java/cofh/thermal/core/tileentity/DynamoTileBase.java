@@ -1,6 +1,5 @@
 package cofh.thermal.core.tileentity;
 
-import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -16,13 +15,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY.copy();
 
-    protected IDynamoFuel curFuel;
-
     protected int fuel;
     protected int coolant;
-
-    protected float outputMod = 1.0F;
-    protected float energyMod = 1.0F;
 
     protected int energyGen = 40;
 

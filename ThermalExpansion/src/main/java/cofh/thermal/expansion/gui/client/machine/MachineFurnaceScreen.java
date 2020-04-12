@@ -29,6 +29,10 @@ public class MachineFurnaceScreen extends MachineScreenBase<MachineFurnaceContai
 
         super.init();
 
+        addElement(createInputSlot(this, 53, 26, tile));
+
+        addElement(createLargeOutputSlot(this, 116, 35, tile));
+
         progress = (ElementScaled) addElement(new ElementScaled(this, 79, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16));
         speed = (ElementScaled) addElement(new ElementScaled(this, 53, 44).setSize(16, SPEED).setTexture(SCALE_FLAME, 32, 16));
     }

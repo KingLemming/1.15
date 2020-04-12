@@ -31,7 +31,12 @@ public class MachinePressScreen extends MachineScreenBase<MachinePressContainer>
 
         super.init();
 
-        addElement(GuiHelper.createLargeFluidStorage(this, 151, 8, tile.getTank(0)));
+        addElement(createInputSlot(this, 53, 17, tile));
+        addElement(createInputSlot(this, 53, 53, tile));
+
+        addElement(createLargeOutputSlot(this, 116, 35, tile));
+
+        addElement(GuiHelper.createLargeOutputFluidStorage(this, 151, 8, tile.getTank(0), tile));
 
         progressOverlay = (ElementScaledFluid) addElement(new ElementScaledFluid(this, 79, 34).setFluid(tile.getRenderFluid()).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_FLUID_RIGHT, 64, 16).setVisible(() -> !tile.getRenderFluid().isEmpty()));
         progress = (ElementScaled) addElement(new ElementScaled(this, 79, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16).setVisible(() -> tile.getRenderFluid().isEmpty()));

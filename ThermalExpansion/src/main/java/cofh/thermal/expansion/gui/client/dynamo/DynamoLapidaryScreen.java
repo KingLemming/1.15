@@ -28,7 +28,7 @@ public class DynamoLapidaryScreen extends DynamoScreenBase<DynamoLapidaryContain
 
         super.init();
 
-        speed = (ElementScaled) addElement(new ElementScaled(this, 115, 35).setSize(16, SPEED).setTexture(SCALE_FLAME_GREEN, 32, 16));
+        duration = (ElementScaled) addElement(new ElementScaled(this, 115, 35).setSize(16, SPEED).setTexture(SCALE_FLAME_GREEN, 32, 16));
     }
 
 }

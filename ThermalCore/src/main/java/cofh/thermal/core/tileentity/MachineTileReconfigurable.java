@@ -9,6 +9,7 @@ import cofh.lib.util.control.TransferControlModule;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -29,11 +30,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.constants.Constants.*;
+import static cofh.lib.util.constants.Constants.DIRECTIONS;
+import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_INPUT;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_OUTPUT;
-import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
 
@@ -57,75 +58,30 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public void updateContainingBlockInfo() {
 
         super.updateContainingBlockInfo();
-        updateFacing();
+        updateSideCache();
     }
 
     @Override
     public Direction getFacing() {
 
         if (facing == null) {
-            updateFacing();
+            updateSideCache();
         }
         return facing;
     }
 
-    protected boolean allow6WayFacing() {
+    protected void updateSideCache() {
 
-        return false;
-    }
-
-    protected void updateFacing() {
-
-        Direction prevFacing = facing;
-
-        if (allow6WayFacing()) {
-            facing = getBlockState().get(FACING_ALL);
-            if (prevFacing == null || facing == prevFacing) {
-                return;
-            }
-            int iPrev = prevFacing.ordinal();
-            int iFace = facing.ordinal();
-            SideConfig[] sides = new SideConfig[6];
-
-            // TODO: 6-way facing logic.
-            //			if (iPrev == SIDE_RIGHT[iFace]) {
-            //				for (int i = 0; i < 6; ++i) {
-            //					sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
-            //				}
-            //			} else if (iPrev == SIDE_LEFT[iFace]) {
-            //				for (int i = 0; i < 6; ++i) {
-            //					sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
-            //				}
-            //			} else if (iPrev == SIDE_OPPOSITE[iFace]) {
-            //				for (int i = 0; i < 6; ++i) {
-            //					sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
-            //				}
-            //			}
-            reconfigControl.setSideConfig(sides);
-        } else {
-            facing = getBlockState().get(FACING_HORIZONTAL);
-            if (prevFacing == null || facing == prevFacing) {
-                return;
-            }
-            int iPrev = prevFacing.ordinal();
-            int iFace = facing.ordinal();
-            SideConfig[] sides = new SideConfig[6];
-
-            if (iPrev == SIDE_RIGHT[iFace]) {
-                for (int i = 0; i < 6; ++i) {
-                    sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
-                }
-            } else if (iPrev == SIDE_LEFT[iFace]) {
-                for (int i = 0; i < 6; ++i) {
-                    sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
-                }
-            } else if (iPrev == SIDE_OPPOSITE[iFace]) {
-                for (int i = 0; i < 6; ++i) {
-                    sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
-                }
-            }
-            reconfigControl.setSideConfig(sides);
-        }
+        BlockState state = getBlockState();
+        facing = state.get(FACING_HORIZONTAL);
+        reconfigControl.setSideConfig(new SideConfig[]{
+                state.get(RECONFIG_DOWN),
+                state.get(RECONFIG_UP),
+                state.get(RECONFIG_NORTH),
+                state.get(RECONFIG_SOUTH),
+                state.get(RECONFIG_WEST),
+                state.get(RECONFIG_EAST),
+        });
     }
 
     public void chargeEnergy() {
@@ -319,7 +275,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && inventory.hasSlots()) {
             IItemHandler handler;
-            switch (reconfigControl.getSideConfig(facing)) {
+            switch (reconfigControl.getSideConfig(side)) {
                 case SIDE_NONE:
                     handler = EmptyHandler.INSTANCE;
                     break;
@@ -336,7 +292,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         }
         if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && tankInv.hasTanks()) {
             IFluidHandler handler;
-            switch (reconfigControl.getSideConfig(facing)) {
+            switch (reconfigControl.getSideConfig(side)) {
                 case SIDE_NONE:
                     handler = EmptyFluidHandler.INSTANCE;
                     break;

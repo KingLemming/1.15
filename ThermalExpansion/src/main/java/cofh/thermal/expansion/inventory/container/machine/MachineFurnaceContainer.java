@@ -3,11 +3,11 @@ package cofh.thermal.expansion.inventory.container.machine;
 import cofh.lib.inventory.InvWrapper;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
+import cofh.lib.inventory.container.slot.SlotRemoveOnly;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.FurnaceResultSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -24,7 +24,9 @@ public class MachineFurnaceContainer extends TileContainer {
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 26));
-        addSlot(new FurnaceResultSlot(player, tileInv, 1, 116, 35));
+
+        addSlot(new SlotRemoveOnly(tileInv, 1, 116, 35));
+
         addSlot(new SlotCoFH(tileInv, 2, 8, 53));
 
         bindPlayerInventory(inventory);

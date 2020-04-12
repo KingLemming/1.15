@@ -2,6 +2,7 @@ package cofh.thermal.expansion.init;
 
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.TileBlock6Way;
+import cofh.thermal.core.block.TileBlock4WayReconfigurable;
 import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
@@ -19,7 +20,7 @@ public class TExpBlocks {
 
     public static void register() {
 
-        registerBlock(ID_MACHINE_FURNACE, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(14), MachineFurnaceTile::new));
+        registerBlock(ID_MACHINE_FURNACE, () -> new TileBlock4WayReconfigurable(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(14), MachineFurnaceTile::new));
         registerBlock(ID_MACHINE_SAWMILL, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), MachineSawmillTile::new));
         registerBlock(ID_MACHINE_PULVERIZER, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), MachinePulverizerTile::new));
         registerBlock(ID_MACHINE_INSOLATOR, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(15), MachineInsolatorTile::new));

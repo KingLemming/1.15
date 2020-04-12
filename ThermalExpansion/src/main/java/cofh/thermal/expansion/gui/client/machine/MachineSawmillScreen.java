@@ -29,6 +29,13 @@ public class MachineSawmillScreen extends MachineScreenBase<MachineSawmillContai
 
         super.init();
 
+        addElement(createInputSlot(this, 44, 26, tile));
+
+        addElement(createOutputSlot(this, 107, 26, tile));
+        addElement(createOutputSlot(this, 125, 26, tile));
+        addElement(createOutputSlot(this, 107, 44, tile));
+        addElement(createOutputSlot(this, 125, 44, tile));
+
         progress = (ElementScaled) addElement(new ElementScaled(this, 72, 34).setDirection(StartDirection.LEFT).setSize(PROGRESS, 16).setTexture(PROG_ARROW_RIGHT, 64, 16));
         speed = (ElementScaled) addElement(new ElementScaled(this, 44, 44).setSize(16, SPEED).setTexture(SCALE_SAW, 32, 16));
     }

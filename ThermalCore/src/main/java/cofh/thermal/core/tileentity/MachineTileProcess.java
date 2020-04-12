@@ -33,9 +33,6 @@ public abstract class MachineTileProcess extends MachineTileReconfigurable {
     protected int process;
     protected int processMax;
 
-    protected float outputMod = 1.0F;
-    protected float energyMod = 1.0F;
-
     protected int energyUse = 20;
 
     public MachineTileProcess(TileEntityType<?> tileEntityTypeIn) {

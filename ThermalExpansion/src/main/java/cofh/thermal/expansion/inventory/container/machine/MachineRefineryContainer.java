@@ -24,6 +24,7 @@ public class MachineRefineryContainer extends TileContainer {
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
         addSlot(new SlotRemoveOnly(tileInv, 0, 107, 35));
+
         addSlot(new SlotCoFH(tileInv, 1, 8, 53));
 
         bindPlayerInventory(inventory);

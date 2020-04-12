@@ -7,6 +7,8 @@ import cofh.thermal.expansion.init.*;
 import cofh.thermal.expansion.util.managers.dynamo.*;
 import cofh.thermal.expansion.util.managers.machine.*;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionBrewing;
@@ -69,6 +71,8 @@ public class ThermalExpansion {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+
+        RenderTypeLookup.setRenderLayer(MACHINE_FURNACE_BLOCK, RenderType.getCutout());
 
         ScreenManager.registerFactory(MACHINE_FURNACE_CONTAINER, MachineFurnaceScreen::new);
         ScreenManager.registerFactory(MACHINE_SAWMILL_CONTAINER, MachineSawmillScreen::new);

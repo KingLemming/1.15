@@ -10,16 +10,21 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import static cofh.lib.util.helpers.StringHelper.format;
 
 public abstract class ElementResourceStorage extends ElementBase {
 
+    protected ResourceLocation underlayTexture;
     protected ResourceLocation overlayTexture;
 
     protected IResourceStorage storage;
     protected boolean infinite;
     protected int minDisplay;
+
+    protected BooleanSupplier drawUnderlay = TRUE;
+    protected BooleanSupplier drawOverlay = TRUE;
 
     public ElementResourceStorage(IGuiAccess gui, int posX, int posY, IResourceStorage storage) {
 
@@ -27,9 +32,27 @@ public abstract class ElementResourceStorage extends ElementBase {
         this.storage = storage;
     }
 
+    public final ElementResourceStorage setUnderlayTexture(String texture) {
+
+        return setUnderlayTexture(texture, TRUE);
+    }
+
+    public final ElementResourceStorage setUnderlayTexture(String texture, BooleanSupplier draw) {
+
+        this.underlayTexture = new ResourceLocation(texture);
+        this.drawUnderlay = draw;
+        return this;
+    }
+
     public final ElementResourceStorage setOverlayTexture(String texture) {
 
+        return setOverlayTexture(texture, TRUE);
+    }
+
+    public final ElementResourceStorage setOverlayTexture(String texture, BooleanSupplier draw) {
+
         this.overlayTexture = new ResourceLocation(texture);
+        this.drawOverlay = draw;
         return this;
     }
 
@@ -49,8 +72,9 @@ public abstract class ElementResourceStorage extends ElementBase {
     public void drawBackground(int mouseX, int mouseY) {
 
         drawStorage();
+        drawUnderlayTexture();
         drawResource();
-        drawOverlay();
+        drawOverlayTexture();
     }
 
     @Override
@@ -78,11 +102,19 @@ public abstract class ElementResourceStorage extends ElementBase {
         drawTexturedModalRect(posX, posY, 0, 0, width, height);
     }
 
+    protected void drawUnderlayTexture() {
+
+        if (drawUnderlay.getAsBoolean() && underlayTexture != null) {
+            RenderHelper.bindTexture(underlayTexture);
+            drawTexturedModalRect(posX, posY, 0, 0, width, height);
+        }
+    }
+
     protected abstract void drawResource();
 
-    protected void drawOverlay() {
+    protected void drawOverlayTexture() {
 
-        if (overlayTexture != null) {
+        if (drawOverlay.getAsBoolean() && overlayTexture != null) {
             RenderHelper.bindTexture(overlayTexture);
             drawTexturedModalRect(posX, posY, 0, 0, width, height);
         }

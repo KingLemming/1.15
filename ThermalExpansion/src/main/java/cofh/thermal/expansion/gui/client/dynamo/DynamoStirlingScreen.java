@@ -28,7 +28,7 @@ public class DynamoStirlingScreen extends DynamoScreenBase<DynamoStirlingContain
 
         super.init();
 
-        speed = (ElementScaled) addElement(new ElementScaled(this, 115, 35).setSize(16, SPEED).setTexture(SCALE_FLAME, 32, 16));
+        duration = (ElementScaled) addElement(new ElementScaled(this, 115, 35).setSize(16, SPEED).setTexture(SCALE_FLAME, 32, 16));
     }
 
 }

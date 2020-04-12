@@ -1,0 +1,25 @@
+{
+  "textures": {
+    "config": "thermal:block/config/machine_config_input"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        -0.1
+      ],
+      "to": [
+        16,
+        16,
+        -0.1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#config",
+          "cullface": "north"
+        }
+      }
+    }
+  ]
+}

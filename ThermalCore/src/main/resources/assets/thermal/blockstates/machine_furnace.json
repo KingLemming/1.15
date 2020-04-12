@@ -1,34 +1,317 @@
 {
-  "variants": {
-    "facing=north,active=false": {
-      "model": "thermal:block/machine_furnace"
+  "multipart": [
+    {
+      "when": {
+        "facing": "north",
+        "active": "false"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace"
+      }
     },
-    "facing=east,active=false": {
-      "model": "thermal:block/machine_furnace",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "active": "false"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace",
+        "y": 90
+      }
     },
-    "facing=south,active=false": {
-      "model": "thermal:block/machine_furnace",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "active": "false"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace",
+        "y": 180
+      }
     },
-    "facing=west,active=false": {
-      "model": "thermal:block/machine_furnace",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "active": "false"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace",
+        "y": 270
+      }
     },
-    "facing=north,active=true": {
-      "model": "thermal:block/machine_furnace_active"
+
+    {
+      "when": {
+        "facing": "north",
+        "active": "true"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace_active"
+      }
     },
-    "facing=east,active=true": {
-      "model": "thermal:block/machine_furnace_active",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "active": "true"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace_active",
+        "y": 90
+      }
     },
-    "facing=south,active=true": {
-      "model": "thermal:block/machine_furnace_active",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "active": "true"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace_active",
+        "y": 180
+      }
     },
-    "facing=west,active=true": {
-      "model": "thermal:block/machine_furnace_active",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "active": "true"
+      },
+      "apply": {
+        "model": "thermal:block/machine_furnace_active",
+        "y": 270
+      }
+    },
+
+    {
+      "when": {
+        "config_north": "input",
+        "facing": "east|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input"
+      }
+    },
+    {
+      "when": {
+        "config_north": "output",
+        "facing": "east|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output"
+      }
+    },
+    {
+      "when": {
+        "config_north": "both",
+        "facing": "east|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both"
+      }
+    },
+    {
+      "when": {
+        "config_north": "accessible",
+        "facing": "east|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible"
+      }
+    },
+
+    {
+      "when": {
+        "config_east": "input",
+        "facing": "north|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "config_east": "output",
+        "facing": "north|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "config_east": "both",
+        "facing": "north|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "config_east": "accessible",
+        "facing": "north|south|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible",
+        "y": 90
+      }
+    },
+
+    {
+      "when": {
+        "config_south": "input",
+        "facing": "north|east|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "config_south": "output",
+        "facing": "north|east|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "config_south": "both",
+        "facing": "north|east|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "config_south": "accessible",
+        "facing": "north|east|west"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible",
+        "y": 180
+      }
+    },
+
+    {
+      "when": {
+        "config_west": "input",
+        "facing": "north|east|south"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "config_west": "output",
+        "facing": "north|east|south"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "config_west": "both",
+        "facing": "north|east|south"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "config_west": "accessible",
+        "facing": "north|east|south"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible",
+        "y": 270
+      }
+    },
+
+    {
+      "when": {
+        "config_up": "input"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "config_up": "output"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "config_up": "both"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "config_up": "accessible"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible",
+        "x": 270
+      }
+    },
+
+    {
+      "when": {
+        "config_down": "input"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_input",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "config_down": "output"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_output",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "config_down": "both"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_both",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "config_down": "accessible"
+      },
+      "apply": {
+        "model": "thermal:block/machine_config_accessible",
+        "x": 90
+      }
     }
-  }
+  ]
 }

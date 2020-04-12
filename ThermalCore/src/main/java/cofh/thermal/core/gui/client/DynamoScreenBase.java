@@ -7,13 +7,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.core.util.GuiHelper.SPEED;
+import static cofh.core.util.GuiHelper.DURATION;
 
 public class DynamoScreenBase<T extends Container> extends ThermalScreenBase<T> {
 
     protected DynamoTileBase tile;
 
-    protected ElementScaled speed;
+    protected ElementScaled duration;
 
     public DynamoScreenBase(T container, PlayerInventory inv, DynamoTileBase tile, ITextComponent titleIn) {
 
@@ -36,8 +36,8 @@ public class DynamoScreenBase<T extends Container> extends ThermalScreenBase<T> 
 
         super.updateElementInformation();
 
-        if (speed != null) {
-            speed.setQuantity(tile.getScaledSpeed(SPEED));
+        if (duration != null) {
+            duration.setQuantity(tile.getScaledDuration(DURATION));
         }
     }
 
