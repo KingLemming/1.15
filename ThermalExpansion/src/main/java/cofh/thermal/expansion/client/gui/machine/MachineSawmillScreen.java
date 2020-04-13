@@ -20,6 +20,7 @@ public class MachineSawmillScreen extends MachineScreenBase<MachineSawmillContai
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_sawmill"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_sawmill");
+        name = "sawmill";
     }
 
     @Override

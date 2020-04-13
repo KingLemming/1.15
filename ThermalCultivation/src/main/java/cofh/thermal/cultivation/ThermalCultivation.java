@@ -1,9 +1,9 @@
 package cofh.thermal.cultivation;
 
+import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
 import cofh.thermal.cultivation.data.TCulLootTables;
 import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
-import cofh.thermal.cultivation.client.gui.MachineHiveExtractorScreen;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulContainers;
 import cofh.thermal.cultivation.init.TCulItems;
@@ -90,7 +90,7 @@ public class ThermalCultivation {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        ScreenManager.registerFactory(MACHINE_BEE_EXTRACTOR_CONTAINER, MachineHiveExtractorScreen::new);
+        ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), RenderType.getCutout());

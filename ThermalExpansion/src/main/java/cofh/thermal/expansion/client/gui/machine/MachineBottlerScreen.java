@@ -20,6 +20,7 @@ public class MachineBottlerScreen extends MachineScreenBase<MachineBottlerContai
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_bottler"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_bottler");
+        name = "bottler";
     }
 
     @Override

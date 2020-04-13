@@ -8,6 +8,15 @@
   "commands.cofh.zap.success.single": "Zapped %s",
   "commands.cofh.zap.success.multiple": "Zapped %s entities",
 
+  "info.cofh.configuration": "Configuration",
+  "info.cofh.transfer_in_disabled": "Auto-Input Disabled",
+  "info.cofh.transfer_in_enabled": "Auto-Input Enabled",
+  "info.cofh.transfer_in_unavailable": "Auto-Input Unavailable",
+
+  "info.cofh.transfer_out_disabled": "Auto-Output Disabled",
+  "info.cofh.transfer_out_enabled": "Auto-Output Enabled",
+  "info.cofh.transfer_out_unavailable": "Auto-Output Unavailable",
+
   "info.cofh.information": "Information",
 
   "info.cofh.secure_block": "This block now belongs to you.",

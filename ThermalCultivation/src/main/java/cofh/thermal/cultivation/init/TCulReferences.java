@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation.init;
 
-import cofh.thermal.cultivation.inventory.container.MachineHiveExtractorContainer;
-import cofh.thermal.cultivation.tileentity.MachineHiveExtractorTile;
+import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
+import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
@@ -43,8 +43,8 @@ public class TCulReferences {
     // endregion
 
     // region MACHINES
-    public static final String ID_MACHINE_HIVE_EXTRACTOR = ID_THERMAL + ":machine_hive_extractor";
-    public static final String ID_MACHINE_TREE_EXTRACTOR = ID_THERMAL + ":machine_tree_extractor";
+    public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
+    public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
     // endregion
 
     // region RECIPES
@@ -67,11 +67,11 @@ public class TCulReferences {
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
     public static Block FROST_MELON_STEM_ATTACHED;
 
-    @ObjectHolder(ID_MACHINE_HIVE_EXTRACTOR)
-    public static Block MACHINE_BEE_EXTRACTOR_BLOCK;
-    @ObjectHolder(ID_MACHINE_HIVE_EXTRACTOR)
-    public static TileEntityType<MachineHiveExtractorTile> MACHINE_BEE_EXTRACTOR_TILE;
-    @ObjectHolder(ID_MACHINE_HIVE_EXTRACTOR)
-    public static ContainerType<MachineHiveExtractorContainer> MACHINE_BEE_EXTRACTOR_CONTAINER;
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static Block DEVICE_HIVE_EXTRACTOR_BLOCK;
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE;
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER;
     // endregion
 }

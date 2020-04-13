@@ -21,6 +21,7 @@ public class MachineRefineryScreen extends MachineScreenBase<MachineRefineryCont
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_refinery"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_refinery");
+        name = "refinery";
     }
 
     @Override

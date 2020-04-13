@@ -4,7 +4,7 @@ import cofh.core.network.packet.client.TileControlPacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.ThermalTileBase;
-import cofh.thermal.cultivation.inventory.container.MachineHiveExtractorContainer;
+import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,9 +26,9 @@ import static cofh.lib.util.StorageGroup.OUTPUT;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.references.CoreReferences.FLUID_HONEY;
-import static cofh.thermal.cultivation.init.TCulReferences.MACHINE_BEE_EXTRACTOR_TILE;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR_TILE;
 
-public class MachineHiveExtractorTile extends ThermalTileBase {
+public class DeviceHiveExtractorTile extends ThermalTileBase {
 
     private static int COMB_AMOUNT = 2;
     private static int HONEY_AMOUNT = 250;
@@ -36,9 +36,9 @@ public class MachineHiveExtractorTile extends ThermalTileBase {
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_MEDIUM);
 
-    public MachineHiveExtractorTile() {
+    public DeviceHiveExtractorTile() {
 
-        super(MACHINE_BEE_EXTRACTOR_TILE);
+        super(DEVICE_HIVE_EXTRACTOR_TILE);
 
         inventory.addSlot(outputSlot, OUTPUT);
 
@@ -100,7 +100,7 @@ public class MachineHiveExtractorTile extends ThermalTileBase {
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
-        return new MachineHiveExtractorContainer(i, world, pos, inventory, player);
+        return new DeviceHiveExtractorContainer(i, world, pos, inventory, player);
     }
 
     @Override

@@ -28,6 +28,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     protected int mY;
     protected int lastIndex = -1;
 
+    protected String name;
     protected String info;
     protected ResourceLocation texture;
     protected PlayerEntity player;
@@ -203,6 +205,12 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         return (T) element;
     }
 
+    public final void addElements(ElementBase ...c) {
+
+        elements.addAll(Arrays.asList(c));
+    }
+
+    @SuppressWarnings("unchecked")
     protected <T> T addPanel(PanelBase panel) {
 
         int yOffset = 4;
@@ -564,6 +572,12 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         RenderHelper.setBlockTextureSheet();
         RenderHelper.resetColor();
         blit(x, y, this.getBlitOffset(), 16, 16, icon);
+    }
+
+    @Override
+    public void drawIcon(ResourceLocation location, int x, int y) {
+
+        drawIcon(RenderHelper.getTexture(location), x, y);
     }
 
     @Override

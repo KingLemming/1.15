@@ -1,6 +1,6 @@
 package cofh.core;
 
-import cofh.core.client.gui.TexturesCoFH;
+import cofh.core.client.gui.CoreTextures;
 import cofh.core.command.CoFHCommand;
 import cofh.core.data.CoreLootTables;
 import cofh.core.data.CoreRecipes;
@@ -120,8 +120,8 @@ public class CoFHCore {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(TexturesCoFH::preStitch);
-        modEventBus.addListener(TexturesCoFH::postStitch);
+        modEventBus.addListener(CoreTextures::preStitch);
+        modEventBus.addListener(CoreTextures::postStitch);
 
         CoreClientEvents.register();
 

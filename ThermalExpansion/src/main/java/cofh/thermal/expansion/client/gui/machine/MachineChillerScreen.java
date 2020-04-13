@@ -20,6 +20,7 @@ public class MachineChillerScreen extends MachineScreenBase<MachineChillerContai
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_chiller"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_chiller");
+        name = "chiller";
     }
 
     @Override

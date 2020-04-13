@@ -20,6 +20,7 @@ public class MachineInsolatorScreen extends MachineScreenBase<MachineInsolatorCo
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_insolator"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_insolator");
+        name = "insolator";
     }
 
     @Override

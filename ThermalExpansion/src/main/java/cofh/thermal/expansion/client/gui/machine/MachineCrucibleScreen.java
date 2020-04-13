@@ -20,6 +20,7 @@ public class MachineCrucibleScreen extends MachineScreenBase<MachineCrucibleCont
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_crucible"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_crucible");
+        name = "crucible";
     }
 
     @Override

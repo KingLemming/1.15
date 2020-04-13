@@ -5,9 +5,11 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-public class TexturesCoFH {
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 
-    private TexturesCoFH() {
+public class CoreTextures {
+
+    private CoreTextures() {
 
     }
 
@@ -98,7 +100,7 @@ public class TexturesCoFH {
     }
 
     // region ICONS
-    private static final String ICONS_ = "cofh_core:gui/icons/";
+    private static final String ICONS_ = ID_COFH_CORE + ":gui/icons/";
 
     public static TextureAtlasSprite ICON_ACCESS_PUBLIC;
     public static TextureAtlasSprite ICON_ACCESS_PRIVATE;

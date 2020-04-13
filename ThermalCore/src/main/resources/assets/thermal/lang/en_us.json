@@ -278,11 +278,11 @@
   "_comment": "========================================================================================================",
 
   "block.thermal.frost_melon": "Frost Melon",
-  "block.thermal.machine_hive_extractor": "Hive Hopper",
+  "block.thermal.device_hive_extractor": "Hive Hopper",
 
-  "info.thermal.machine_hive_extractor.0": "Carefully extracts products from beehives.",
-  "info.thermal.machine_hive_extractor.1": "Good for the bees and the keepers!",
-  "info.thermal.machine_hive_extractor.2": "Buzz buzz.",
+  "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
+  "info.thermal.device_hive_extractor.1": "Good for the bees and the keepers!",
+  "info.thermal.device_hive_extractor.2": "Buzz buzz.",
 
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",

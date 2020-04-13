@@ -20,6 +20,7 @@ public class MachinePulverizerScreen extends MachineScreenBase<MachinePulverizer
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_pulverizer"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_pulverizer");
+        name = "pulverizer";
     }
 
     @Override

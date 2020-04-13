@@ -20,6 +20,7 @@ public class MachineFurnaceScreen extends MachineScreenBase<MachineFurnaceContai
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_furnace"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_furnace");
+        name = "furnace";
     }
 
     @Override

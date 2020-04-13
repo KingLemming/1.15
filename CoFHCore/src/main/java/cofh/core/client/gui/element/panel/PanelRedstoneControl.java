@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element.panel;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.core.client.gui.TexturesCoFH;
+import cofh.core.client.gui.CoreTextures;
 import cofh.lib.util.control.IRedstoneControllable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;
@@ -12,7 +12,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
 
-import static cofh.core.client.gui.TexturesCoFH.*;
+import static cofh.core.client.gui.CoreTextures.*;
 import static cofh.lib.util.control.IRedstoneControllable.ControlMode.*;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
@@ -51,7 +51,7 @@ public class PanelRedstoneControl extends PanelBase {
     @Override
     protected void drawForeground() {
 
-        drawPanelIcon(TexturesCoFH.ICON_REDSTONE_ON);
+        drawPanelIcon(CoreTextures.ICON_REDSTONE_ON);
         if (!fullyOpen) {
             return;
         }
@@ -65,17 +65,17 @@ public class PanelRedstoneControl extends PanelBase {
 
         switch (myRSControllable.getMode()) {
             case DISABLED:
-                gui.drawIcon(TexturesCoFH.ICON_BUTTON_HIGHLIGHT, 28, 20);
+                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 28, 20);
                 getFontRenderer().drawString(localize("info.cofh.disabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.ignored"), sideOffset() + 14, 78, textColor);
                 break;
             case LOW:
-                gui.drawIcon(TexturesCoFH.ICON_BUTTON_HIGHLIGHT, 48, 20);
+                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 48, 20);
                 getFontRenderer().drawString(localize("info.cofh.enabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.low"), sideOffset() + 14, 78, textColor);
                 break;
             case HIGH:
-                gui.drawIcon(TexturesCoFH.ICON_BUTTON_HIGHLIGHT, 68, 20);
+                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 68, 20);
                 getFontRenderer().drawString(localize("info.cofh.enabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.high"), sideOffset() + 14, 78, textColor);
                 break;

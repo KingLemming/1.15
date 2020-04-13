@@ -20,6 +20,7 @@ public class MachineBrewerScreen extends MachineScreenBase<MachineBrewerContaine
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_brewer"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_brewer");
+        name = "brewer";
     }
 
     @Override

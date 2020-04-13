@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element.panel;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.core.client.gui.TexturesCoFH;
+import cofh.core.client.gui.CoreTextures;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -34,7 +34,7 @@ public class PanelInfo extends PanelScrolledText {
     @Override
     public TextureAtlasSprite getIcon() {
 
-        return TexturesCoFH.ICON_INFORMATION;
+        return CoreTextures.ICON_INFORMATION;
     }
 
     @Override

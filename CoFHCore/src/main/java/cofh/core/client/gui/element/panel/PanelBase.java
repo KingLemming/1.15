@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 
@@ -132,9 +133,11 @@ public abstract class PanelBase extends ElementBase {
 
         drawBackground();
 
-        for (ElementBase element : elements) {
-            if (element.visible()) {
-                element.drawBackground(mouseX, mouseY);
+        if (fullyOpen) {
+            for (ElementBase element : elements) {
+                if (element.visible()) {
+                    element.drawBackground(mouseX, mouseY);
+                }
             }
         }
         RenderSystem.popMatrix();
@@ -151,9 +154,11 @@ public abstract class PanelBase extends ElementBase {
 
         drawForeground();
 
-        for (ElementBase element : elements) {
-            if (element.visible()) {
-                element.drawForeground(mouseX, mouseY);
+        if (fullyOpen) {
+            for (ElementBase element : elements) {
+                if (element.visible()) {
+                    element.drawForeground(mouseX, mouseY);
+                }
             }
         }
         RenderSystem.popMatrix();
@@ -255,10 +260,16 @@ public abstract class PanelBase extends ElementBase {
         return visible() ? new Rectangle(posX() + guiLeft(), posY + guiTop(), width, height) : new Rectangle(posX() + guiLeft(), posY + guiTop(), 0, 0);
     }
 
-    public final ElementBase addElement(ElementBase c) {
+    @SuppressWarnings("unchecked")
+    protected <T> T addElement(ElementBase element) {
 
-        elements.add(c);
-        return c;
+        elements.add(element);
+        return (T) element;
+    }
+
+    public final void addElements(ElementBase ...c) {
+
+        elements.addAll(Arrays.asList(c));
     }
 
     // region HELPERS

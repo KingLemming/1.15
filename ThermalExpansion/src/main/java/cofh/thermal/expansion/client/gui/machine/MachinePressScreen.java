@@ -21,6 +21,7 @@ public class MachinePressScreen extends MachineScreenBase<MachinePressContainer>
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_press"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_press");
+        name = "insolator";
     }
 
     @Override

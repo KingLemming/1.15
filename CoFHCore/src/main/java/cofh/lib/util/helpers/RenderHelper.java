@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -216,6 +217,11 @@ public final class RenderHelper {
     public static TextureAtlasSprite getFluidTexture(FluidStack fluid) {
 
         return getTexture(fluid.getFluid().getAttributes().getStillTexture(fluid));
+    }
+
+    public static boolean textureExists(ResourceLocation location) {
+
+        return !(getTexture(location) instanceof MissingTextureSprite);
     }
     // endregion
 

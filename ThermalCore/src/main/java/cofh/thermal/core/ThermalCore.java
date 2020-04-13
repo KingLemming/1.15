@@ -1,6 +1,7 @@
 package cofh.thermal.core;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.data.TCoreLootTables;
 import cofh.thermal.core.data.TCoreRecipes;
 import cofh.thermal.core.data.TCoreTags;
@@ -83,6 +84,10 @@ public class ThermalCore {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
+        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        modEventBus.addListener(ThermalTextures::preStitch);
+        modEventBus.addListener(ThermalTextures::postStitch);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

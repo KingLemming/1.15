@@ -13,7 +13,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.List;
 import java.util.UUID;
 
-import static cofh.core.client.gui.TexturesCoFH.*;
+import static cofh.core.client.gui.CoreTextures.*;
 import static cofh.lib.util.control.ISecurable.AccessMode.*;
 import static cofh.lib.util.helpers.StringHelper.localize;
 

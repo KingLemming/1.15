@@ -20,6 +20,7 @@ public class MachineCentrifugeScreen extends MachineScreenBase<MachineCentrifuge
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_centrifuge"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_centrifuge");
+        name = "centrifuge";
     }
 
     @Override

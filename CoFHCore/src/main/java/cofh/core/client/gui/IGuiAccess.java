@@ -2,6 +2,7 @@ package cofh.core.client.gui;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.ResourceLocation;
 
 public interface IGuiAccess {
 
@@ -14,6 +15,8 @@ public interface IGuiAccess {
     void handleElementButtonClick(String buttonName, int mouseButton);
 
     void drawIcon(TextureAtlasSprite icon, int x, int y);
+
+    void drawIcon(ResourceLocation loc, int x, int y);
 
     void drawSizedRect(int x1, int y1, int x2, int y2, int color);
 

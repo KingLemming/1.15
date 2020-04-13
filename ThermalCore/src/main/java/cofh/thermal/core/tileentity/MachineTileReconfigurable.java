@@ -145,8 +145,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         for (int i = inputTracker + 1; i <= inputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isInput()) {
-
-                System.out.println(side);
                 for (ItemStorageCoFH slot : inputSlots()) {
                     if (slot.getSpace() > 0) {
                         InventoryHelper.extractFromAdjacent(this, slot, slot.getSpace(), side);

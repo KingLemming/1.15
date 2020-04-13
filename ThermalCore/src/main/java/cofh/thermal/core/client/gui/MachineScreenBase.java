@@ -2,8 +2,10 @@ package cofh.thermal.core.client.gui;
 
 import cofh.core.client.gui.element.ElementScaled;
 import cofh.core.client.gui.element.ElementScaledFluid;
+import cofh.core.client.gui.element.panel.PanelConfiguration;
 import cofh.core.util.GuiHelper;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
+import cofh.thermal.core.util.ThermalGuiHelper;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
@@ -30,7 +32,10 @@ public class MachineScreenBase<T extends Container> extends ThermalScreenBase<T>
 
         super.init();
 
-        // addPanel(new PanelConfiguration(this, tile, tile));
+        System.out.println(tile.getType().toString());
+
+        addPanel(new PanelConfiguration(this, tile, tile, () -> tile.getFacing())
+                .addConditionals(ThermalGuiHelper.createDefaultMachineConfigs(this, name, tile)));
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
             addElement(GuiHelper.createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()));

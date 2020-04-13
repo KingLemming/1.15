@@ -10,15 +10,15 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static cofh.thermal.cultivation.init.TCulReferences.MACHINE_BEE_EXTRACTOR_CONTAINER;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR_CONTAINER;
 
-public class MachineHiveExtractorContainer extends TileContainer {
+public class DeviceHiveExtractorContainer extends TileContainer {
 
     public final ThermalTileBase tile;
 
-    public MachineHiveExtractorContainer(int windowId, World world, BlockPos pos, PlayerInventory inventory, PlayerEntity player) {
+    public DeviceHiveExtractorContainer(int windowId, World world, BlockPos pos, PlayerInventory inventory, PlayerEntity player) {
 
-        super(MACHINE_BEE_EXTRACTOR_CONTAINER, windowId, world, pos, inventory, player);
+        super(DEVICE_HIVE_EXTRACTOR_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (ThermalTileBase) world.getTileEntity(pos);
         IInventory tileInv = new InvWrapper(this.tile.getInventory());
 
