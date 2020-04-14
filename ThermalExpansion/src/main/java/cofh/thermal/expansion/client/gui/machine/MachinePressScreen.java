@@ -21,7 +21,7 @@ public class MachinePressScreen extends MachineScreenBase<MachinePressContainer>
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_press"));
         texture = TEXTURE;
         info = generateTabInfo("info.thermal.machine_press");
-        name = "insolator";
+        name = "press";
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MachinePressScreen extends MachineScreenBase<MachinePressContainer>
 
         addElement(createLargeOutputSlot(this, 116, 35, tile));
 
-        addElement(GuiHelper.createLargeOutputFluidStorage(this, 151, 8, tile.getTank(0), tile));
+        addElement(GuiHelper.createMediumOutputFluidStorage(this, 151, 22, tile.getTank(0), tile));
 
         progressOverlay = addElement(createDefaultFluidProgress(this, 79, 34, PROG_ARROW_FLUID_RIGHT, tile.getRenderFluid(), () -> !tile.getRenderFluid().isEmpty()));
         progress = addElement(createDefaultProgress(this, 79, 34, PROG_ARROW_RIGHT, () -> tile.getRenderFluid().isEmpty()));

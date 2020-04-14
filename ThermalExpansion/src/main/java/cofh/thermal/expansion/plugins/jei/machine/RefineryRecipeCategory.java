@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,9 +20,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
+import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_REFINERY_BLOCK;
-import static net.minecraftforge.fluids.FluidAttributes.BUCKET_VOLUME;
 
 public class RefineryRecipeCategory extends ThermalCategory<RefineryRecipe> {
 
@@ -93,10 +92,10 @@ public class RefineryRecipeCategory extends ThermalCategory<RefineryRecipe> {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
-        guiItemStacks.init(0, true, 96, 23);
-        guiFluidStacks.init(0, true, 29, 6, 16, 32, BUCKET_VOLUME, false, inputOverlay);
-        guiFluidStacks.init(1, false, 126, 12, 16, 40, BUCKET_VOLUME, false, outputOverlayA);
-        guiFluidStacks.init(2, false, 144, 12, 16, 40, BUCKET_VOLUME, false, outputOverlayB);
+        guiItemStacks.init(0, false, 96, 23);
+        guiFluidStacks.init(0, true, 29, 6, 16, 32, TANK_SMALL, false, inputOverlay);
+        guiFluidStacks.init(1, false, 126, 12, 16, 40, TANK_MEDIUM, false, outputOverlayA);
+        guiFluidStacks.init(2, false, 144, 12, 16, 40, TANK_MEDIUM, false, outputOverlayB);
 
         if (!outputItems.isEmpty()) {
             guiItemStacks.set(0, outputItems.get(0));
@@ -106,25 +105,8 @@ public class RefineryRecipeCategory extends ThermalCategory<RefineryRecipe> {
         for (int i = 0; i < outputFluids.size(); ++i) {
             guiFluidStacks.set(i + 1, outputFluids.get(i));
         }
-        guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (!recipe.getOutputItemChances().isEmpty()) {
-                float chance = Math.abs(recipe.getOutputItemChances().get(slotIndex));
-                if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
-                } else {
-                    chance -= (int) chance;
-                    if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
-                    }
-                }
-            }
-        });
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 0);
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override
@@ -132,18 +114,18 @@ public class RefineryRecipeCategory extends ThermalCategory<RefineryRecipe> {
 
         super.draw(recipe, mouseX, mouseY);
 
-        progressBackground.draw(57, 23);
+        progressBackground.draw(57, 22);
         tankInput.draw(28, 5);
         tankOutputA.draw(125, 11);
         tankOutputB.draw(143, 11);
         speedBackground.draw(29, 40);
 
         if (!recipe.getInputFluids().isEmpty()) {
-            RenderHelper.drawFluid(57, 23, recipe.getInputFluids().get(0), 24, 16);
-            progressFluidBackground.draw(57, 23);
-            progressFluid.draw(57, 23);
+            RenderHelper.drawFluid(57, 22, recipe.getInputFluids().get(0), 24, 16);
+            progressFluidBackground.draw(57, 22);
+            progressFluid.draw(57, 22);
         } else {
-            progress.draw(57, 23);
+            progress.draw(57, 22);
         }
         speed.draw(29, 40);
     }

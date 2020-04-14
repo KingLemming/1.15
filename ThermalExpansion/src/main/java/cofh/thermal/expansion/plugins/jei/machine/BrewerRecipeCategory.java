@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.TANK_LARGE;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_BLOCK;
 
@@ -37,8 +35,8 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
 
         super(guiHelper, uid);
 
-        background = guiHelper.drawableBuilder(MachineBrewerScreen.TEXTURE, 26, 11, 72, 62)
-                .addPadding(0, 0, 16, 76)
+        background = guiHelper.drawableBuilder(MachineBrewerScreen.TEXTURE, 26, 11, 124, 62)
+                .addPadding(0, 0, 16, 24)
                 .build();
         localizedName = StringHelper.localize(MACHINE_BREWER_BLOCK.getTranslationKey());
 
@@ -47,10 +45,10 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
         speedBackground = Drawables.getDrawables(guiHelper).getScale(Drawables.SCALE_ALCHEMY);
 
         tankInput = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_MEDIUM);
-        tankOutput = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_LARGE);
+        tankOutput = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_MEDIUM);
 
         inputOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_MEDIUM);
-        outputOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_LARGE);
+        outputOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_MEDIUM);
 
         progress = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_DROP), 200, IDrawableAnimated.StartDirection.LEFT, false);
         progressFluid = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_DROP), 200, IDrawableAnimated.StartDirection.LEFT, true);
@@ -81,20 +79,15 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
-        guiItemStacks.init(0, true, 69, 22);
+        guiItemStacks.init(0, true, 51, 14);
         guiFluidStacks.init(0, true, 25, 11, 16, 40, TANK_MEDIUM, false, inputOverlay);
-        guiFluidStacks.init(1, false, 134, 1, 16, 60, TANK_LARGE, false, outputOverlay);
+        guiFluidStacks.init(1, false, 116, 11, 16, 40, TANK_MEDIUM, false, outputOverlay);
 
         guiItemStacks.set(0, inputItems.get(0));
         guiFluidStacks.set(0, inputFluids.get(0));
         guiFluidStacks.set(1, outputs.get(0));
 
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override
@@ -102,19 +95,19 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
 
         super.draw(recipe, mouseX, mouseY);
 
-        progressBackground.draw(98, 23);
+        progressBackground.draw(78, 23);
         tankInput.draw(24, 10);
-        tankOutput.draw(133, 0);
-        speedBackground.draw(47, 23);
+        tankOutput.draw(115, 10);
+        speedBackground.draw(52, 34);
 
         if (!recipe.getInputFluids().isEmpty()) {
-            RenderHelper.drawFluid(98, 23, recipe.getInputFluids().get(0), 24, 16);
-            progressFluidBackground.draw(98, 23);
-            progressFluid.draw(98, 23);
+            RenderHelper.drawFluid(78, 23, recipe.getInputFluids().get(0), 24, 16);
+            progressFluidBackground.draw(78, 23);
+            progressFluid.draw(78, 23);
         } else {
-            progress.draw(98, 23);
+            progress.draw(78, 23);
         }
-        speed.draw(47, 23);
+        speed.draw(52, 34);
     }
 
 }

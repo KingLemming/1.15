@@ -16,7 +16,6 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_BLOCK;
 
 public class PulverizerRecipeCategory extends ThermalCategory<PulverizerRecipe> {
@@ -77,19 +76,7 @@ public class PulverizerRecipeCategory extends ThermalCategory<PulverizerRecipe> 
         for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 1, outputs.get(i));
         }
-        guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (!recipe.getOutputItemChances().isEmpty() && slotIndex >= 1 && slotIndex <= 4) {
-                float chance = Math.abs(recipe.getOutputItemChances().get(slotIndex - 1));
-                if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
-                } else {
-                    chance -= (int) chance;
-                    if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
-                    }
-                }
-            }
-        });
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
     }
 
     @Override

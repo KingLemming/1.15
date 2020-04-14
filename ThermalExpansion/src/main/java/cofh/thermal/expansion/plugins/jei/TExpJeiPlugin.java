@@ -2,8 +2,8 @@ package cofh.thermal.expansion.plugins.jei;
 
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
+import cofh.thermal.expansion.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
-import cofh.thermal.expansion.util.recipes.machine.FurnaceRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -12,16 +12,9 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.expansion.init.TExpRecipeTypes.*;
@@ -49,17 +42,21 @@ public class TExpJeiPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 
-        registration.addRecipeClickArea(MachineFurnaceScreen.class, 79, 34, 24, 16, ID_RECIPE_FURNACE);
-        registration.addRecipeClickArea(MachineSawmillScreen.class, 79, 34, 24, 16, ID_RECIPE_SAWMILL);
-        registration.addRecipeClickArea(MachinePulverizerScreen.class, 72, 34, 24, 16, ID_RECIPE_PULVERIZER);
-        registration.addRecipeClickArea(MachineInsolatorScreen.class, 85, 34, 24, 16, ID_RECIPE_INSOLATOR);
-        registration.addRecipeClickArea(MachineCentrifugeScreen.class, 72, 34, 24, 16, ID_RECIPE_CENTRIFUGE);
-        registration.addRecipeClickArea(MachinePressScreen.class, 79, 34, 24, 16, ID_RECIPE_PRESS);
-        registration.addRecipeClickArea(MachineCrucibleScreen.class, 103, 34, 24, 16, ID_RECIPE_CRUCIBLE);
-        registration.addRecipeClickArea(MachineChillerScreen.class, 88, 34, 24, 16, ID_RECIPE_CHILLER);
-        registration.addRecipeClickArea(MachineRefineryScreen.class, 65, 35, 24, 16, ID_RECIPE_REFINERY);
-        registration.addRecipeClickArea(MachineBrewerScreen.class, 112, 34, 24, 16, ID_RECIPE_BREWER);
-        registration.addRecipeClickArea(MachineBottlerScreen.class, 88, 34, 24, 16, ID_RECIPE_BOTTLER);
+        int progressY = 34;
+        int progressW = 24;
+        int progressH = 16;
+
+        registration.addRecipeClickArea(MachineFurnaceScreen.class, 79, progressY, progressW, progressH, ID_RECIPE_FURNACE);
+        registration.addRecipeClickArea(MachineSawmillScreen.class, 79, progressY, progressW, progressH, ID_RECIPE_SAWMILL);
+        registration.addRecipeClickArea(MachinePulverizerScreen.class, 72, progressY, progressW, progressH, ID_RECIPE_PULVERIZER);
+        registration.addRecipeClickArea(MachineInsolatorScreen.class, 85, progressY, progressW, progressH, ID_RECIPE_INSOLATOR);
+        registration.addRecipeClickArea(MachineCentrifugeScreen.class, 72, progressY, progressW, progressH, ID_RECIPE_CENTRIFUGE);
+        registration.addRecipeClickArea(MachinePressScreen.class, 79, progressY, progressW, progressH, ID_RECIPE_PRESS);
+        registration.addRecipeClickArea(MachineCrucibleScreen.class, 84, progressY, progressW, progressH, ID_RECIPE_CRUCIBLE);
+        registration.addRecipeClickArea(MachineChillerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_CHILLER);
+        registration.addRecipeClickArea(MachineRefineryScreen.class, 65, progressY, progressW, progressH, ID_RECIPE_REFINERY);
+        registration.addRecipeClickArea(MachineBrewerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BREWER);
+        registration.addRecipeClickArea(MachineBottlerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BOTTLER);
     }
 
     @Override
@@ -70,8 +67,8 @@ public class TExpJeiPlugin implements IModPlugin {
             // TODO: Log an error.
             return;
         }
-        registration.addRecipes(convertFurnaceRecipes(recipeManager), ID_RECIPE_FURNACE);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_FURNACE).values(), ID_RECIPE_FURNACE);
+        registration.addRecipes(FurnaceRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_FURNACE);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ID_RECIPE_SAWMILL);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ID_RECIPE_PULVERIZER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_INSOLATOR).values(), ID_RECIPE_INSOLATOR);
@@ -81,6 +78,7 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipes(recipeManager.getRecipes(RECIPE_CHILLER).values(), ID_RECIPE_CHILLER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_REFINERY).values(), ID_RECIPE_REFINERY);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ID_RECIPE_BREWER);
+        registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BREWER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ID_RECIPE_BOTTLER);
     }
 
@@ -115,19 +113,6 @@ public class TExpJeiPlugin implements IModPlugin {
             recipeManager = world.getRecipeManager();
         }
         return recipeManager;
-    }
-
-    private List<FurnaceRecipe> convertFurnaceRecipes(RecipeManager recipeManager) {
-
-        ArrayList<FurnaceRecipe> convertedRecipes = new ArrayList<>();
-
-        for (IRecipe<IInventory> recipe : recipeManager.getRecipes(IRecipeType.SMELTING).values()) {
-            FurnaceRecipe converted = FurnaceRecipeManager.instance().convert((AbstractCookingRecipe) recipe);
-            if (converted != null) {
-                convertedRecipes.add(converted);
-            }
-        }
-        return convertedRecipes;
     }
     // endregion
 }

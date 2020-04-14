@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_BLOCK;
 
@@ -77,7 +75,7 @@ public class ChillerRecipeCategory extends ThermalCategory<ChillerRecipe> {
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 51, 14);
-        guiItemStacks.init(1, true, 114, 23);
+        guiItemStacks.init(1, false, 114, 23);
         guiFluidStacks.init(0, true, 25, 11, 16, 40, TANK_MEDIUM, false, tankOverlay);
 
         if (!inputItems.isEmpty()) {
@@ -88,25 +86,8 @@ public class ChillerRecipeCategory extends ThermalCategory<ChillerRecipe> {
         if (!inputFluids.isEmpty()) {
             guiFluidStacks.set(0, inputFluids.get(0));
         }
-        guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (!recipe.getOutputItemChances().isEmpty()) {
-                float chance = Math.abs(recipe.getOutputItemChances().get(0));
-                if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
-                } else {
-                    chance -= (int) chance;
-                    if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
-                    }
-                }
-            }
-        });
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override

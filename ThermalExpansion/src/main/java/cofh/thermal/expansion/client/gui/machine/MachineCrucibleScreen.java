@@ -30,9 +30,9 @@ public class MachineCrucibleScreen extends MachineScreenBase<MachineCrucibleCont
 
         addElement(createInputSlot(this, 53, 26, tile));
 
-        addElement(createLargeOutputFluidStorage(this, 151, 8, tile.getTank(0), tile));
+        addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(0), tile));
 
-        progressOverlay = addElement(createDefaultFluidProgress(this, 103, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
+        progressOverlay = addElement(createDefaultFluidProgress(this, 84, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
         speed = addElement(createDefaultSpeed(this, 53, 44, SCALE_FLAME));
     }
 

@@ -35,7 +35,7 @@ public class MachineCentrifugeScreen extends MachineScreenBase<MachineCentrifuge
         addElement(createOutputSlot(this, 107, 44, tile));
         addElement(createOutputSlot(this, 125, 44, tile));
 
-        addElement(createLargeOutputFluidStorage(this, 151, 8, tile.getTank(0), tile));
+        addElement(createMediumOutputFluidStorage(this, 151, 22, tile.getTank(0), tile));
 
         progressOverlay = addElement(createDefaultFluidProgress(this, 72, 34, PROG_ARROW_FLUID_RIGHT, tile.getRenderFluid(), () -> !tile.getRenderFluid().isEmpty()));
         progress = addElement(createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT, () -> tile.getRenderFluid().isEmpty()));

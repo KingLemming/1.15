@@ -8,10 +8,14 @@ import cofh.thermal.expansion.init.TExpRecipeTypes;
 import cofh.thermal.expansion.util.recipes.machine.FurnaceRecipe;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.util.NonNullList;
+import net.minecraft.item.crafting.AbstractCookingRecipe;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -32,6 +36,12 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
     private FurnaceRecipeManager() {
 
         super(DEFAULT_ENERGY, 1, 0);
+    }
+
+    protected void clear() {
+
+        recipeMap.clear();
+        convertedRecipes.clear();
     }
 
     // region IManager
@@ -66,23 +76,9 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
         clear();
         if (defaultFurnaceRecipes) {
             ThermalCore.LOG.debug("Adding default Furnace recipes to the Redstone Furnace...");
-            Map<ResourceLocation, IRecipe<IInventory>> smeltingRecipes = recipeManager.getRecipes(IRecipeType.SMELTING);
-            for (Map.Entry<ResourceLocation, IRecipe<IInventory>> entry : smeltingRecipes.entrySet()) {
-                AbstractCookingRecipe smeltingRecipe = (AbstractCookingRecipe) entry.getValue();
-                ItemStack recipeOutput = smeltingRecipe.getRecipeOutput();
-                float experience = smeltingRecipe.getExperience();
-                if (!smeltingRecipe.isDynamic() && !recipeOutput.isEmpty()) {
-                    int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
-                    NonNullList<Ingredient> ingredients = smeltingRecipe.getIngredients();
-                    if (ingredients.isEmpty()) {
-                        ThermalCore.LOG.debug("A Minecraft Furnace recipe had an empty ingredient! That's not good - you should check your datapack:" + smeltingRecipe.toString());
-                        continue;
-                    }
-                    for (ItemStack recipeInput : ingredients.get(0).getMatchingStacks()) {
-                        addRecipe(energy, experience, recipeInput, recipeOutput);
-                        // ThermalCore.LOG.debug("Furnace - Added: " + recipeInput.toString() + " -> " + recipeOutput.toString() + " for " + energy + " RF");
-                    }
-                }
+            createConvertedRecipes(recipeManager);
+            for (ThermalRecipe recipe : getConvertedRecipes()) {
+                addRecipe(recipe);
             }
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_FURNACE);
@@ -92,15 +88,36 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
     }
     // endregion
 
-    public FurnaceRecipe convert(AbstractCookingRecipe recipe) {
+    // region CONVERSION
+    protected List<FurnaceRecipe> convertedRecipes = new ArrayList<>();
+
+    public List<FurnaceRecipe> getConvertedRecipes() {
+
+        return convertedRecipes;
+    }
+
+    protected void createConvertedRecipes(RecipeManager recipeManager) {
+
+        for (IRecipe<IInventory> recipe : recipeManager.getRecipes(IRecipeType.SMELTING).values()) {
+            createConvertedRecipe((AbstractCookingRecipe) recipe);
+        }
+    }
+
+    protected boolean createConvertedRecipe(AbstractCookingRecipe recipe) {
+
+        if (recipe.isDynamic() || recipe.getRecipeOutput().isEmpty()) {
+            return false;
+        }
+        convertedRecipes.add(convert(recipe));
+        return true;
+    }
+
+    protected FurnaceRecipe convert(AbstractCookingRecipe recipe) {
 
         ItemStack recipeOutput = recipe.getRecipeOutput();
         float experience = recipe.getExperience();
-        if (!recipe.isDynamic() && !recipeOutput.isEmpty()) {
-            int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
-            return new FurnaceRecipe(new ResourceLocation(ID_THERMAL, "internal_furnace_" + recipe.getId().getPath()), energy, experience, recipe);
-        }
-        return null;
+        int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
+        return new FurnaceRecipe(new ResourceLocation(ID_THERMAL, "furnace_" + recipe.getIngredients().get(0).hashCode()), energy, experience, recipe);
     }
-
+    // endregion
 }

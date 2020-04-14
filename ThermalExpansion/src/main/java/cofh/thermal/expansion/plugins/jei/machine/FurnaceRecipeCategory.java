@@ -55,14 +55,6 @@ public class FurnaceRecipeCategory extends ThermalCategory<FurnaceRecipe> {
         List<List<ItemStack>> inputs = ingredients.getInputs(VanillaTypes.ITEM);
         List<List<ItemStack>> outputs = ingredients.getOutputs(VanillaTypes.ITEM);
 
-        for (int i = 0; i < outputs.size(); ++i) {
-            float chance = recipe.getOutputItemChances().get(i);
-            if (chance > 1.0F) {
-                for (ItemStack stack : outputs.get(i)) {
-                    stack.setCount((int) chance);
-                }
-            }
-        }
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
 
         guiItemStacks.init(0, true, 42, 14);
@@ -70,6 +62,8 @@ public class FurnaceRecipeCategory extends ThermalCategory<FurnaceRecipe> {
 
         guiItemStacks.set(0, inputs.get(0));
         guiItemStacks.set(1, outputs.get(0));
+
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
     }
 
     @Override

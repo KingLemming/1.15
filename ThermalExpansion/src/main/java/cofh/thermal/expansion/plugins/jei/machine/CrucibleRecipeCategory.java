@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,7 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.TANK_LARGE;
+import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_BLOCK;
 
 public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
@@ -42,8 +41,8 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
         progressFluidBackground = Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_DROP);
         speedBackground = Drawables.getDrawables(guiHelper).getScale(Drawables.SCALE_FLAME);
 
-        tankBackground = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_LARGE);
-        tankOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_LARGE);
+        tankBackground = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_MEDIUM);
+        tankOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_MEDIUM);
 
         progress = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_DROP), 200, IDrawableAnimated.StartDirection.LEFT, false);
         progressFluid = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_DROP), 200, IDrawableAnimated.StartDirection.LEFT, true);
@@ -73,17 +72,12 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 42, 14);
-        guiFluidStacks.init(0, false, 113, 1, 16, 60, TANK_LARGE, false, tankOverlay);
+        guiFluidStacks.init(0, false, 116, 11, 16, 40, TANK_MEDIUM, false, tankOverlay);
 
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, outputFluids.get(0));
 
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override
@@ -92,7 +86,7 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
         super.draw(recipe, mouseX, mouseY);
 
         progressBackground.draw(74, 23);
-        tankBackground.draw(112, 0);
+        tankBackground.draw(115, 10);
         speedBackground.draw(43, 33);
 
         if (!recipe.getOutputFluids().isEmpty()) {

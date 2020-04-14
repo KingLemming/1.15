@@ -1,0 +1,13 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "tag": "forge:ores/diamond"
+  },
+  "result": [
+    {
+      "item": "minecraft:diamond",
+      "chance": 2.5
+    }
+  ],
+  "experience": 0.5
+}

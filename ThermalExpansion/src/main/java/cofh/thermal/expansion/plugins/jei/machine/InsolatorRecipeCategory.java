@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_BLOCK;
 
@@ -97,25 +95,8 @@ public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
         for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 1, outputs.get(i));
         }
-        guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (!recipe.getOutputItemChances().isEmpty() && slotIndex >= 1 && slotIndex <= 4) {
-                float chance = Math.abs(recipe.getOutputItemChances().get(slotIndex - 1));
-                if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
-                } else {
-                    chance -= (int) chance;
-                    if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
-                    }
-                }
-            }
-        });
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override

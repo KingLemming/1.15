@@ -1,0 +1,16 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "item": "minecraft:blaze_rod"
+  },
+  "result": [
+    {
+      "item": "minecraft:blaze_powder",
+      "chance": 2.5
+    },
+    {
+      "item": "thermal:sulfur_dust",
+      "chance": 0.25
+    }
+  ]
+}

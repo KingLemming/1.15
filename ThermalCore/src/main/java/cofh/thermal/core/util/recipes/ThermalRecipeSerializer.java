@@ -143,7 +143,6 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
     public interface IFactory<T extends ThermalRecipe> {
 
         T create(ResourceLocation recipeId, int energy, float experience, List<Ingredient> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids);
-
     }
 
 }

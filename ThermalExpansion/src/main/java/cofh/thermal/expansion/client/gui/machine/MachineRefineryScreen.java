@@ -36,7 +36,7 @@ public class MachineRefineryScreen extends MachineScreenBase<MachineRefineryCont
         addElement(GuiHelper.createMediumOutputFluidStorage(this, 133, 22, tile.getTank(1), tile));
         addElement(GuiHelper.createMediumOutputFluidStorage(this, 151, 22, tile.getTank(2), tile));
 
-        progressOverlay = addElement(createDefaultFluidProgress(this, 65, 35, PROG_DROP_RIGHT, tile.getRenderFluid()));
+        progressOverlay = addElement(createDefaultFluidProgress(this, 65, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
         speed = addElement(createDefaultSpeed(this, 35, 53, SCALE_FLAME));
     }
 

@@ -28,14 +28,14 @@ public class MachineBrewerScreen extends MachineScreenBase<MachineBrewerContaine
 
         super.init();
 
-        addElement(createInputSlot(this, 80, 34, tile));
+        addElement(createInputSlot(this, 62, 26, tile));
 
         addElement(createMediumInputFluidStorage(this, 34, 22, tile.getTank(0), tile));
 
-        addElement(createLargeOutputFluidStorage(this, 151, 8, tile.getTank(1), tile));
+        addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(1), tile));
 
-        progressOverlay = addElement(createDefaultFluidProgress(this, 112, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
-        speed = addElement(createDefaultSpeed(this, 57, 34, SCALE_ALCHEMY));
+        progressOverlay = addElement(createDefaultFluidProgress(this, 88, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
+        speed = addElement(createDefaultSpeed(this, 62, 44, SCALE_ALCHEMY));
     }
 
 }

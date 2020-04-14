@@ -594,8 +594,17 @@ public class Utils {
             if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
                 if (!worldIn.isRemote) {
                     if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
-                        growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
-                        ++grow;
+                        // TODO: Remove try/catch when Mojang fixes base issue.
+                        try {
+                            growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                            ++grow;
+                        } catch (Exception e) {
+                            // Vanilla issue causes bamboo to crash if grown close to world height
+                            if (!(growable instanceof BambooBlock))
+                                throw e;
+                        }
+                        // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                        // ++grow;
                     }
                 }
             }
@@ -612,8 +621,17 @@ public class Utils {
                     if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
                         if (!worldIn.isRemote) {
                             if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
-                                growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
-                                ++grow;
+                                // TODO: Remove try/catch when Mojang fixes base issue.
+                                try {
+                                    growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                                    ++grow;
+                                } catch (Exception e) {
+                                    // Vanilla issue causes bamboo to crash if grown close to world height
+                                    if (!(growable instanceof BambooBlock))
+                                        throw e;
+                                }
+                                // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                                // ++grow;
                             }
                         }
                     }

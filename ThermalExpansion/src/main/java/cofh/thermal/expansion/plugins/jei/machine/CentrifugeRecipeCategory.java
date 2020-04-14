@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
@@ -21,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CENTRIFUGE_BLOCK;
 
@@ -43,8 +41,8 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         progressFluidBackground = Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_ARROW_FLUID);
         speedBackground = Drawables.getDrawables(guiHelper).getScale(Drawables.SCALE_SPIN);
 
-        tankBackground = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_LARGE);
-        tankOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_LARGE);
+        tankBackground = Drawables.getDrawables(guiHelper).getTank(Drawables.TANK_MEDIUM);
+        tankOverlay = Drawables.getDrawables(guiHelper).getTankOverlay(Drawables.TANK_MEDIUM);
 
         progress = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_ARROW), 200, IDrawableAnimated.StartDirection.LEFT, false);
         progressFluid = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_ARROW_FLUID), 200, IDrawableAnimated.StartDirection.LEFT, true);
@@ -89,7 +87,7 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         guiItemStacks.init(3, false, 96, 32);
         guiItemStacks.init(4, false, 114, 32);
 
-        guiFluidStacks.init(0, false, 141, 1, 16, 60, TANK_SMALL, false, tankOverlay);
+        guiFluidStacks.init(0, false, 141, 11, 16, 40, TANK_SMALL, false, tankOverlay);
 
         guiItemStacks.set(0, inputs.get(0));
         for (int i = 0; i < outputs.size(); ++i) {
@@ -98,25 +96,8 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         if (!outputFluids.isEmpty()) {
             guiFluidStacks.set(0, outputFluids.get(0));
         }
-        guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (!recipe.getOutputItemChances().isEmpty() && slotIndex >= 1 && slotIndex <= 4) {
-                float chance = Math.abs(recipe.getOutputItemChances().get(slotIndex - 1));
-                if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
-                } else {
-                    chance -= (int) chance;
-                    if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
-                    }
-                }
-            }
-        });
-        guiFluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
-            }
-        });
+        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
+        addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 
     @Override
@@ -125,7 +106,7 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         super.draw(recipe, mouseX, mouseY);
 
         progressBackground.draw(62, 23);
-        tankBackground.draw(140, 0);
+        tankBackground.draw(140, 10);
         speedBackground.draw(34, 33);
 
         if (!recipe.getOutputFluids().isEmpty()) {

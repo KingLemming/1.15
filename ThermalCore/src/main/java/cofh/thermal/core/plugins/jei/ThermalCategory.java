@@ -1,16 +1,21 @@
 package cofh.thermal.core.plugins.jei;
 
+import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
+import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 
 public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecipeCategory<T> {
 
@@ -39,6 +44,32 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
 
         energyBackground = Drawables.getDrawables(guiHelper).getEnergyEmpty();
         energy = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getEnergyFill(), 400, IDrawableAnimated.StartDirection.TOP, true);
+    }
+
+    protected void addDefaultItemTooltipCallback(IGuiItemStackGroup group, List<Float> chances, int indexOffset) {
+
+        group.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+            if (!chances.isEmpty() && slotIndex >= indexOffset && slotIndex < indexOffset + chances.size()) {
+                float chance = Math.abs(chances.get(slotIndex - indexOffset));
+                if (chance < BASE_CHANCE) {
+                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
+                } else {
+                    chance -= (int) chance;
+                    if (chance > 0) {
+                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
+                    }
+                }
+            }
+        });
+    }
+
+    protected void addDefaultFluidTooltipCallback(IGuiFluidStackGroup group) {
+
+        group.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+            if (FluidHelper.hasPotionTag(ingredient)) {
+                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
+            }
+        });
     }
 
     // region IRecipeCategory
@@ -77,6 +108,7 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
         }
     }
 
+    @Override
     public List<String> getTooltipStrings(T recipe, double mouseX, double mouseY) {
 
         List<String> tooltip = new ArrayList<>();

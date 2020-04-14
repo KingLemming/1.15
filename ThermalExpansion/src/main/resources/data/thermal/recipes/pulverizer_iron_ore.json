@@ -12,5 +12,6 @@
       "item": "thermal:nickel_dust",
       "chance": 0.1
     }
-  ]
+  ],
+  "experience": 0.2
 }
