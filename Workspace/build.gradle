@@ -13,7 +13,16 @@ apply plugin: 'maven-publish'
 apply plugin: 'net.minecraftforge.gradle'
 
 repositories {
-
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
 }
 
 version = '1.0'
@@ -208,7 +217,7 @@ minecraft {
 
 dependencies {
 
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     compile project(':CoFHCore')
     //compile project(':CoFHWorld')
@@ -227,6 +236,9 @@ dependencies {
 
     compile project(':CoFHPotions')
     compile project(':CoFHTools')
+
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 jar {

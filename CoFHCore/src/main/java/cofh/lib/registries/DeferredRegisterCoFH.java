@@ -23,6 +23,8 @@ import static cofh.lib.util.helpers.StringHelper.decompose;
  * @param <T> The base registry type, must be a concrete base class, do not use subclasses or wild cards.
  * @author King Lemming
  */
+
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
 
     private final IForgeRegistry<T> type;

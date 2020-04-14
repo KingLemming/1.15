@@ -32,8 +32,6 @@ public class MachineScreenBase<T extends Container> extends ThermalScreenBase<T>
 
         super.init();
 
-        System.out.println(tile.getType().toString());
-
         addPanel(new PanelConfiguration(this, tile, tile, () -> tile.getFacing())
                 .addConditionals(ThermalGuiHelper.createDefaultMachineConfigs(this, name, tile)));
 

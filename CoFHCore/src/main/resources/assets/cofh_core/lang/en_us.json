@@ -8,6 +8,10 @@
   "commands.cofh.zap.success.single": "Zapped %s",
   "commands.cofh.zap.success.multiple": "Zapped %s entities",
 
+  "info.cofh.chance": "Chance",
+  "info.cofh.chance_additional": "Additional Chance",
+  "info.cofh.energy": "Energy",
+
   "info.cofh.configuration": "Configuration",
   "info.cofh.transfer_in_disabled": "Auto-Input Disabled",
   "info.cofh.transfer_in_enabled": "Auto-Input Enabled",

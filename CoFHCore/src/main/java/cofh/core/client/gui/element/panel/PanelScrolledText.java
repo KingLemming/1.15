@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element.panel;
 
-import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.CoreTextures;
+import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element.panel;
 
-import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.CoreTextures;
+import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.control.IRedstoneControllable;
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.SoundHelper;

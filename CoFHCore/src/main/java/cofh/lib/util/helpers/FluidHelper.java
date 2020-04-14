@@ -29,6 +29,7 @@ import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -242,6 +243,15 @@ public class FluidHelper {
     public static boolean hasPotionTag(FluidStack stack) {
 
         return !stack.isEmpty() && stack.getTag() != null && stack.getTag().contains(TAG_POTION);
+    }
+
+    public static void addPotionTooltipStrings(FluidStack stack, List<String> list) {
+
+        ArrayList<ITextComponent> lores = new ArrayList<>();
+        addPotionTooltip(stack, lores, 1.0F);
+        for (ITextComponent text : lores) {
+            list.add(text.getFormattedText());
+        }
     }
 
     public static void addPotionTooltip(FluidStack stack, List<ITextComponent> list) {

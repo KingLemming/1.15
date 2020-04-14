@@ -10,10 +10,6 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 
-/**
- * This class really just serves as a way to ride on Mojang's automated recipe syncing and datapack functionality.
- * Nothing in Thermal actually uses any of this for logic whatsoever. It's part of a shim layer, nothing more.
- */
 public abstract class ThermalRecipe extends ThermalRecipeBase {
 
     protected final List<Ingredient> inputItems = new ArrayList<>();

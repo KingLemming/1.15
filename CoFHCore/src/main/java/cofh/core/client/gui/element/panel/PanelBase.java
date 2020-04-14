@@ -4,10 +4,10 @@ import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.ElementBase;
 import cofh.lib.util.helpers.RenderHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -255,9 +255,9 @@ public abstract class PanelBase extends ElementBase {
         }
     }
 
-    public final Rectangle getBoundsOnScreen() {
+    public final Rectangle2d getBoundsOnScreen() {
 
-        return visible() ? new Rectangle(posX() + guiLeft(), posY + guiTop(), width, height) : new Rectangle(posX() + guiLeft(), posY + guiTop(), 0, 0);
+        return new Rectangle2d(posX() + guiLeft(), posY + guiTop(), visible() ? width : 0, visible() ? height : 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -267,7 +267,7 @@ public abstract class PanelBase extends ElementBase {
         return (T) element;
     }
 
-    public final void addElements(ElementBase ...c) {
+    public final void addElements(ElementBase... c) {
 
         elements.addAll(Arrays.asList(c));
     }

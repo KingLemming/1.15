@@ -10,10 +10,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Matrix4f;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -205,7 +201,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         return (T) element;
     }
 
-    public final void addElements(ElementBase ...c) {
+    public final void addElements(ElementBase... c) {
 
         elements.addAll(Arrays.asList(c));
     }
@@ -302,9 +298,9 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
 
     }
 
-    public List<Rectangle> getPanelBounds() {
+    public List<Rectangle2d> getPanelBounds() {
 
-        List<Rectangle> panelBounds = new ArrayList<>();
+        List<Rectangle2d> panelBounds = new ArrayList<>();
 
         for (PanelBase c : panels) {
             panelBounds.add(c.getBoundsOnScreen());
