@@ -92,7 +92,7 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         guiFluidStacks.init(0, false, 141, 1, 16, 60, TANK_SMALL, false, tankOverlay);
 
         guiItemStacks.set(0, inputs.get(0));
-        for (int i = 0; i < outputs.size(); i++) {
+        for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 1, outputs.get(i));
         }
         if (!outputFluids.isEmpty()) {

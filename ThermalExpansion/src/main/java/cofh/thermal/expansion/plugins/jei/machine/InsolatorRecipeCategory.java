@@ -94,7 +94,7 @@ public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, inputFluids.get(0));
 
-        for (int i = 0; i < outputs.size(); i++) {
+        for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 1, outputs.get(i));
         }
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {

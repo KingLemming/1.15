@@ -90,10 +90,10 @@ public class PressRecipeCategory extends ThermalCategory<PressRecipe> {
 
         guiFluidStacks.init(0, false, 141, 1, 16, 60, TANK_SMALL, false, tankOverlay);
 
-        for (int i = 0; i < inputs.size(); i++) {
+        for (int i = 0; i < inputs.size(); ++i) {
             guiItemStacks.set(i, inputs.get(i));
         }
-        for (int i = 0; i < outputs.size(); i++) {
+        for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 2, outputs.get(i));
         }
         if (!outputFluids.isEmpty()) {

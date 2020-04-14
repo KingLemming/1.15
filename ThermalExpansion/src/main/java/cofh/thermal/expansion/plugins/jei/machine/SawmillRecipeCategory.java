@@ -74,7 +74,7 @@ public class SawmillRecipeCategory extends ThermalCategory<SawmillRecipe> {
 
         guiItemStacks.set(0, inputs.get(0));
 
-        for (int i = 0; i < outputs.size(); i++) {
+        for (int i = 0; i < outputs.size(); ++i) {
             guiItemStacks.set(i + 1, outputs.get(i));
         }
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {

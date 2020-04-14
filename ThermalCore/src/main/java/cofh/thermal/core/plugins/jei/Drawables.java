@@ -74,7 +74,7 @@ public class Drawables {
         slot[SLOT_OUTPUT] = guiHelper.createDrawable(JEI_TEXTURE, 32, 0, 26, 26);
         slot[SLOT_DOUBLE] = guiHelper.createDrawable(JEI_TEXTURE, 64, 0, 44, 26);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             tank[i] = guiHelper.createDrawable(JEI_TEXTURE, 64 * i, 192, 18, 62);
             tankOverlay[i] = guiHelper.createDrawable(JEI_TEXTURE, 32 + 64 * i, 193, 16, 60);
 
@@ -84,7 +84,7 @@ public class Drawables {
             progressRight[i] = guiHelper.createDrawable(JEI_TEXTURE, 176, 16 + 32 * i, 24, 16);
             progressRightFill[i] = guiHelper.createDrawable(JEI_TEXTURE, 200, 16 + 32 * i, 24, 16);
         }
-        for (int i = 0; i < scale.length; i++) {
+        for (int i = 0; i < scale.length; ++i) {
             scale[i] = guiHelper.createDrawable(JEI_TEXTURE, 224, i * 16, 16, 16);
             scaleFill[i] = guiHelper.createDrawable(JEI_TEXTURE, 240, i * 16, 16, 16);
         }

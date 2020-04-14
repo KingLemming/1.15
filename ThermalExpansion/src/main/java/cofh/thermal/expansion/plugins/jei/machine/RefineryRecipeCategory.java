@@ -103,7 +103,7 @@ public class RefineryRecipeCategory extends ThermalCategory<RefineryRecipe> {
         }
         guiFluidStacks.set(0, inputFluids.get(0));
 
-        for (int i = 0; i < outputFluids.size(); i++) {
+        for (int i = 0; i < outputFluids.size(); ++i) {
             guiFluidStacks.set(i + 1, outputFluids.get(i));
         }
         guiItemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {

@@ -2,6 +2,8 @@ package cofh.thermal.expansion.plugins.jei;
 
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
+import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
+import cofh.thermal.expansion.util.recipes.machine.FurnaceRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -10,9 +12,16 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.AbstractCookingRecipe;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.expansion.init.TExpRecipeTypes.*;
@@ -24,6 +33,7 @@ public class TExpJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
 
+        registration.addRecipeCategories(new FurnaceRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_FURNACE));
         registration.addRecipeCategories(new SawmillRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_SAWMILL));
         registration.addRecipeCategories(new PulverizerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_PULVERIZER));
         registration.addRecipeCategories(new InsolatorRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_INSOLATOR));
@@ -39,7 +49,8 @@ public class TExpJeiPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 
-        registration.addRecipeClickArea(MachineSawmillScreen.class, 72, 34, 24, 16, ID_RECIPE_SAWMILL);
+        registration.addRecipeClickArea(MachineFurnaceScreen.class, 79, 34, 24, 16, ID_RECIPE_FURNACE);
+        registration.addRecipeClickArea(MachineSawmillScreen.class, 79, 34, 24, 16, ID_RECIPE_SAWMILL);
         registration.addRecipeClickArea(MachinePulverizerScreen.class, 72, 34, 24, 16, ID_RECIPE_PULVERIZER);
         registration.addRecipeClickArea(MachineInsolatorScreen.class, 85, 34, 24, 16, ID_RECIPE_INSOLATOR);
         registration.addRecipeClickArea(MachineCentrifugeScreen.class, 72, 34, 24, 16, ID_RECIPE_CENTRIFUGE);
@@ -59,6 +70,8 @@ public class TExpJeiPlugin implements IModPlugin {
             // TODO: Log an error.
             return;
         }
+        registration.addRecipes(convertFurnaceRecipes(recipeManager), ID_RECIPE_FURNACE);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_FURNACE).values(), ID_RECIPE_FURNACE);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ID_RECIPE_SAWMILL);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ID_RECIPE_PULVERIZER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_INSOLATOR).values(), ID_RECIPE_INSOLATOR);
@@ -74,6 +87,7 @@ public class TExpJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 
+        registration.addRecipeCatalyst(new ItemStack(MACHINE_FURNACE_BLOCK), ID_RECIPE_FURNACE);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_SAWMILL_BLOCK), ID_RECIPE_SAWMILL);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_PULVERIZER_BLOCK), ID_RECIPE_PULVERIZER);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_INSOLATOR_BLOCK), ID_RECIPE_INSOLATOR);
@@ -92,6 +106,7 @@ public class TExpJeiPlugin implements IModPlugin {
         return new ResourceLocation(ID_THERMAL_EXPANSION, "machines");
     }
 
+    // region HELPERS
     private RecipeManager getRecipeManager() {
 
         RecipeManager recipeManager = null;
@@ -102,4 +117,17 @@ public class TExpJeiPlugin implements IModPlugin {
         return recipeManager;
     }
 
+    private List<FurnaceRecipe> convertFurnaceRecipes(RecipeManager recipeManager) {
+
+        ArrayList<FurnaceRecipe> convertedRecipes = new ArrayList<>();
+
+        for (IRecipe<IInventory> recipe : recipeManager.getRecipes(IRecipeType.SMELTING).values()) {
+            FurnaceRecipe converted = FurnaceRecipeManager.instance().convert((AbstractCookingRecipe) recipe);
+            if (converted != null) {
+                convertedRecipes.add(converted);
+            }
+        }
+        return convertedRecipes;
+    }
+    // endregion
 }

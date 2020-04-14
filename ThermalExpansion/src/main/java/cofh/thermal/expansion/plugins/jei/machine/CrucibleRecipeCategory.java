@@ -73,7 +73,7 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 42, 14);
-        guiFluidStacks.init(0, false, 141, 1, 16, 60, TANK_LARGE, false, tankOverlay);
+        guiFluidStacks.init(0, false, 113, 1, 16, 60, TANK_LARGE, false, tankOverlay);
 
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, outputFluids.get(0));
@@ -91,16 +91,16 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
 
         super.draw(recipe, mouseX, mouseY);
 
-        progressBackground.draw(88, 23);
-        tankBackground.draw(140, 0);
+        progressBackground.draw(74, 23);
+        tankBackground.draw(112, 0);
         speedBackground.draw(43, 33);
 
         if (!recipe.getOutputFluids().isEmpty()) {
-            RenderHelper.drawFluid(88, 23, recipe.getOutputFluids().get(0), 24, 16);
-            progressFluidBackground.draw(88, 23);
-            progressFluid.draw(88, 23);
+            RenderHelper.drawFluid(74, 23, recipe.getOutputFluids().get(0), 24, 16);
+            progressFluidBackground.draw(74, 23);
+            progressFluid.draw(74, 23);
         } else {
-            progress.draw(88, 23);
+            progress.draw(74, 23);
         }
         speed.draw(43, 33);
     }

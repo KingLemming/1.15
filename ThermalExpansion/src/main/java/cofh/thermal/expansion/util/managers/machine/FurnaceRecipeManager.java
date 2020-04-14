@@ -5,6 +5,7 @@ import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
+import cofh.thermal.expansion.util.recipes.machine.FurnaceRecipe;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -12,6 +13,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Map;
+
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class FurnaceRecipeManager extends SingleItemRecipeManager {
 
@@ -88,4 +91,16 @@ public class FurnaceRecipeManager extends SingleItemRecipeManager {
         }
     }
     // endregion
+
+    public FurnaceRecipe convert(AbstractCookingRecipe recipe) {
+
+        ItemStack recipeOutput = recipe.getRecipeOutput();
+        float experience = recipe.getExperience();
+        if (!recipe.isDynamic() && !recipeOutput.isEmpty()) {
+            int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
+            return new FurnaceRecipe(new ResourceLocation(ID_THERMAL, "internal_furnace_" + recipe.getId().getPath()), energy, experience, recipe);
+        }
+        return null;
+    }
+
 }
