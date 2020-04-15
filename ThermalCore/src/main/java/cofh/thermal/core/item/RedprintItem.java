@@ -44,7 +44,7 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
         if (player == null || Utils.isClientWorld(world)) {
             return false;
         }
-        if (player.isDiscrete()) {
+        if (player.isShiftKeyDown()) {
             if (stack.getTag() != null) {
                 player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.5F, 0.3F);
                 stack.setTag(null);
@@ -103,7 +103,7 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
         ItemStack stack = player.getHeldItem(hand);
-        if (player.isDiscrete()) {
+        if (player.isShiftKeyDown()) {
             if (stack.getTag() != null) {
                 player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5F, 0.3F);
             }

@@ -484,7 +484,7 @@ public class CommonEvents {
         // EXCAVATING
         int encExcavating = getHeldEnchantmentLevel(player, EXCAVATING);
         if (encExcavating > 0) {
-            if (!player.isDiscrete()) {
+            if (!player.isShiftKeyDown()) {
                 event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
             }
             int encEfficiency = getHeldEnchantmentLevel(player, EFFICIENCY);

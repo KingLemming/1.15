@@ -72,7 +72,7 @@ public class ThermalExpansion {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(MACHINE_FURNACE_BLOCK, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DYNAMO_STIRLING_BLOCK, RenderType.getCutout());
 
         ScreenManager.registerFactory(MACHINE_FURNACE_CONTAINER, MachineFurnaceScreen::new);
         ScreenManager.registerFactory(MACHINE_SAWMILL_CONTAINER, MachineSawmillScreen::new);

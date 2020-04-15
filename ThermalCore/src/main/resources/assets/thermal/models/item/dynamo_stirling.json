@@ -1,3 +1,9 @@
 {
-  "parent": "thermal:block/machine_crafter"
+  "parent": "thermal:block/dynamo_inventory",
+  "textures": {
+    "top": "thermal:block/dynamo_stirling",
+    "side": "thermal:block/dynamo_stirling_side",
+    "bottom": "thermal:block/dynamo_stirling",
+    "coil": "thermal:block/dynamo_coil_rf"
+  }
 }
