@@ -5,7 +5,6 @@ import cofh.lib.item.IPlacementItem;
 import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +22,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;

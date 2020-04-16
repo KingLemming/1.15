@@ -4,18 +4,20 @@ import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.helpers.RenderHelper;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.function.Supplier;
+
 public class ElementScaledFluid extends ElementScaled {
 
-    protected FluidStack fluid;
+    protected Supplier<FluidStack> fluidSup;
 
     public ElementScaledFluid(IGuiAccess gui, int posX, int posY) {
 
         super(gui, posX, posY);
     }
 
-    public ElementScaledFluid setFluid(FluidStack fluid) {
+    public ElementScaledFluid setFluid(Supplier<FluidStack> sup) {
 
-        this.fluid = fluid;
+        this.fluidSup = sup;
         return this;
     }
 
@@ -23,6 +25,8 @@ public class ElementScaledFluid extends ElementScaled {
     public void drawBackground(int mouseX, int mouseY) {
 
         RenderHelper.bindTexture(texture);
+        int quantity = quantitySup.getAsInt();
+        FluidStack fluid = fluidSup.get();
 
         if (drawBackground) {
             drawTexturedModalRect(posX, posY, 0, 0, width, height);

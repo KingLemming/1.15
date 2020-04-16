@@ -3,9 +3,11 @@ package cofh.core.client.gui.element;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.helpers.RenderHelper;
 
+import java.util.function.IntSupplier;
+
 public class ElementScaled extends ElementBase {
 
-    protected int quantity;
+    protected IntSupplier quantitySup;
     protected boolean drawBackground = true;
     protected StartDirection direction = StartDirection.BOTTOM;
 
@@ -26,9 +28,9 @@ public class ElementScaled extends ElementBase {
         return this;
     }
 
-    public ElementScaled setQuantity(int quantity) {
+    public ElementScaled setQuantity(IntSupplier sup) {
 
-        this.quantity = quantity;
+        this.quantitySup = sup;
         return this;
     }
 
@@ -36,6 +38,7 @@ public class ElementScaled extends ElementBase {
     public void drawBackground(int mouseX, int mouseY) {
 
         RenderHelper.bindTexture(texture);
+        int quantity = quantitySup.getAsInt();
 
         if (drawBackground) {
             drawTexturedModalRect(posX, posY, 0, 0, width, height);

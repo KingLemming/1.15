@@ -1,7 +1,8 @@
 package cofh.thermal.expansion.client.gui.machine;
 
 import cofh.lib.util.helpers.StringHelper;
-import cofh.thermal.core.client.gui.MachineScreenBase;
+import cofh.thermal.core.client.gui.MachineScreenReconfigurable;
+import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.expansion.inventory.container.machine.MachineCrucibleContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class MachineCrucibleScreen extends MachineScreenBase<MachineCrucibleContainer> {
+public class MachineCrucibleScreen extends MachineScreenReconfigurable<MachineCrucibleContainer> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/crucible.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
@@ -32,8 +33,9 @@ public class MachineCrucibleScreen extends MachineScreenBase<MachineCrucibleCont
 
         addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(0), tile));
 
-        progressOverlay = addElement(createDefaultFluidProgress(this, 84, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
-        speed = addElement(createDefaultSpeed(this, 53, 44, SCALE_FLAME));
+        addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 84, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultProgress(this, 84, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultSpeed(this, 53, 44, SCALE_FLAME, tile));
     }
 
 }

@@ -5,10 +5,7 @@ import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.data.TCoreLootTables;
 import cofh.thermal.core.data.TCoreRecipes;
 import cofh.thermal.core.data.TCoreTags;
-import cofh.thermal.core.init.TCoreBlocks;
-import cofh.thermal.core.init.TCoreFluids;
-import cofh.thermal.core.init.TCoreItems;
-import cofh.thermal.core.init.ThermalRecipeManager;
+import cofh.thermal.core.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.data.DataGenerator;
@@ -51,6 +48,10 @@ public class ThermalCore {
         TCoreBlocks.register();
         TCoreFluids.register();
         TCoreItems.register();
+
+        ThermalRecipeManagers.register();
+        ThermalRecipeSerializers.register();
+        ThermalRecipeTypes.register();
     }
 
     public ThermalCore() {
@@ -100,7 +101,7 @@ public class ThermalCore {
 
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
 
-        ThermalRecipeManager.instance().setServerRecipeManager(event.getServer().getRecipeManager());
+        ThermalRecipeManagers.instance().setServerRecipeManager(event.getServer().getRecipeManager());
 
         event.getServer().getResourceManager().addReloadListener(
                 new ReloadListener<Void>() {
@@ -114,7 +115,7 @@ public class ThermalCore {
                     @Override
                     protected void apply(Void nothing, IResourceManager resourceManagerIn, IProfiler profilerIn) {
 
-                        ThermalRecipeManager.instance().refreshServer();
+                        ThermalRecipeManagers.instance().refreshServer();
                     }
                 }
         );
@@ -130,12 +131,12 @@ public class ThermalCore {
 
     private void serverStopped(FMLServerStoppedEvent event) {
 
-        ThermalRecipeManager.instance().setServerRecipeManager(null);
+        ThermalRecipeManagers.instance().setServerRecipeManager(null);
     }
 
     private void recipesUpdated(RecipesUpdatedEvent event) {
 
-        ThermalRecipeManager.instance().refreshClient(event.getRecipeManager());
+        ThermalRecipeManagers.instance().refreshClient(event.getRecipeManager());
     }
     // endregion
 

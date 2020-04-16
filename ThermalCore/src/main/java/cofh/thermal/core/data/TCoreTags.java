@@ -1,6 +1,5 @@
 package cofh.thermal.core.data;
 
-import cofh.thermal.core.init.ThermalTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
@@ -8,8 +7,8 @@ import net.minecraft.data.ItemTagsProvider;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.data.ThermalTags.Items.*;
 import static cofh.thermal.core.init.ThermalReferences.*;
-import static cofh.thermal.core.init.ThermalTags.Items.*;
 
 public class TCoreTags {
 

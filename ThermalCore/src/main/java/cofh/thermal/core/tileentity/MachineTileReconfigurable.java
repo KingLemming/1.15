@@ -15,7 +15,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -41,10 +40,10 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITickableTileEntity, ITransferControllableTile, IReconfigurableTile {
+public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITransferControllableTile, IReconfigurableTile {
 
     protected Direction facing;
-    protected FluidStack renderFluid = FluidStack.EMPTY.copy();
+    protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
     protected int inputTracker;
@@ -89,6 +88,12 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         return facing;
     }
 
+    @Override
+    public FluidStack getRenderFluid() {
+
+        return renderFluid;
+    }
+
     protected void updateSideCache() {
 
         Direction prevFacing = facing;
@@ -127,11 +132,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     protected boolean cacheRenderFluid() {
 
         return false;
-    }
-
-    public FluidStack getRenderFluid() {
-
-        return renderFluid;
     }
 
     protected void transferInput() {
@@ -279,7 +279,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         nbt.putInt(TAG_TRACK_IN, inputTracker);
         nbt.putInt(TAG_TRACK_OUT, outputTracker);
 
-        if (renderFluid != null) {
+        if (!renderFluid.isEmpty()) {
             nbt.put(TAG_RENDER_FLUID, renderFluid.writeToNBT(new CompoundNBT()));
         }
         return nbt;

@@ -28,6 +28,12 @@ public class ReconfigControlModule implements IReconfigurable {
         this.enabled = enabled;
     }
 
+    public ReconfigControlModule setEnabled(IReconfigurableTile tile, boolean enabled) {
+
+        this.enabled = enabled;
+        return this;
+    }
+
     public SideConfig[] getSideConfig() {
 
         return sides;

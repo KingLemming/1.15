@@ -1,6 +1,6 @@
 package cofh.thermal.foundation.data;
 
-import cofh.thermal.core.init.ThermalTags;
+import cofh.thermal.core.data.ThermalTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;

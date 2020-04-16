@@ -73,6 +73,9 @@ minecraft {
                 ThermalDynamics {
                     source project(':ThermalDynamics').sourceSets.main
                 }
+                ThermalEssentials {
+                    source project(':ThermalEssentials').sourceSets.main
+                }
                 ThermalExpansion {
                     source project(':ThermalExpansion').sourceSets.main
                 }
@@ -130,6 +133,9 @@ minecraft {
                 }
                 ThermalDynamics {
                     source project(':ThermalDynamics').sourceSets.main
+                }
+                ThermalEssentials {
+                    source project(':ThermalEssentials').sourceSets.main
                 }
                 ThermalExpansion {
                     source project(':ThermalExpansion').sourceSets.main
@@ -191,6 +197,9 @@ minecraft {
                 ThermalDynamics {
                     source project(':ThermalDynamics').sourceSets.main
                 }
+                ThermalEssentials {
+                    source project(':ThermalEssentials').sourceSets.main
+                }
                 ThermalExpansion {
                     source project(':ThermalExpansion').sourceSets.main
                 }
@@ -229,6 +238,7 @@ dependencies {
     compile project(':ThermalCore')
     compile project(':ThermalCultivation')
     compile project(':ThermalDynamics')
+    compile project(':ThermalEssentials')
     compile project(':ThermalExpansion')
     compile project(':ThermalFoundation')
     compile project(':ThermalInnovation')

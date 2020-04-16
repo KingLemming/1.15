@@ -6,7 +6,7 @@ public class TFndReferences {
 
     }
 
-    // region RESOURCES
+    // region ORES
     public static final String ID_COPPER_ORE = "copper_ore";
     public static final String ID_TIN_ORE = "tin_ore";
     public static final String ID_SILVER_ORE = "silver_ore";
@@ -16,7 +16,9 @@ public class TFndReferences {
 
     public static final String ID_RUBY_ORE = "ruby_ore";
     public static final String ID_SAPPHIRE_ORE = "sapphire_ore";
+    // endregion
 
+    // region STORAGE
     public static final String ID_COPPER_BLOCK = "copper_block";
     public static final String ID_TIN_BLOCK = "tin_block";
     public static final String ID_SILVER_BLOCK = "silver_block";

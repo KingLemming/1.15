@@ -1,18 +1,13 @@
 package cofh.thermal.expansion;
 
-import cofh.thermal.core.init.ThermalRecipeManager;
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
-import cofh.thermal.expansion.init.*;
-import cofh.thermal.expansion.util.managers.dynamo.*;
-import cofh.thermal.expansion.util.managers.machine.*;
+import cofh.thermal.expansion.init.TExpBlocks;
+import cofh.thermal.expansion.init.TExpContainers;
+import cofh.thermal.expansion.init.TExpItems;
+import cofh.thermal.expansion.init.TExpTileEntities;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionBrewing;
-import net.minecraft.potion.Potions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -39,30 +34,6 @@ public class ThermalExpansion {
 
         TExpTileEntities.register();
         TExpContainers.register();
-
-        TExpRecipeSerializers.register();
-        TExpRecipeTypes.register();
-
-        ThermalRecipeManager.register(FurnaceRecipeManager.instance());
-        ThermalRecipeManager.register(SawmillRecipeManager.instance());
-        ThermalRecipeManager.register(PulverizerRecipeManager.instance());
-        ThermalRecipeManager.register(InsolatorRecipeManager.instance());
-        ThermalRecipeManager.register(CentrifugeRecipeManager.instance());
-        ThermalRecipeManager.register(PressRecipeManager.instance());
-        ThermalRecipeManager.register(CrucibleRecipeManager.instance());
-        ThermalRecipeManager.register(ChillerRecipeManager.instance());
-        ThermalRecipeManager.register(RefineryRecipeManager.instance());
-        ThermalRecipeManager.register(BrewerRecipeManager.instance());
-        ThermalRecipeManager.register(BottlerRecipeManager.instance());
-
-        ThermalRecipeManager.register(StirlingFuelManager.instance());
-        ThermalRecipeManager.register(CompressionFuelManager.instance());
-        ThermalRecipeManager.register(MagmaticFuelManager.instance());
-        ThermalRecipeManager.register(NumismaticFuelManager.instance());
-        ThermalRecipeManager.register(LapidaryFuelManager.instance());
-
-        // TODO: TESTING ONLY
-        PotionBrewing.addMix(Potions.WATER, Items.APPLE, Potions.LEAPING);
     }
 
     // region INITIALIZATION
@@ -71,8 +42,6 @@ public class ThermalExpansion {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
-        RenderTypeLookup.setRenderLayer(DYNAMO_STIRLING_BLOCK, RenderType.getCutout());
 
         ScreenManager.registerFactory(MACHINE_FURNACE_CONTAINER, MachineFurnaceScreen::new);
         ScreenManager.registerFactory(MACHINE_SAWMILL_CONTAINER, MachineSawmillScreen::new);

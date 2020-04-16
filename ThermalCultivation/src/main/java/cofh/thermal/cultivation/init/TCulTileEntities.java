@@ -4,8 +4,8 @@ import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.tileentity.TileEntityType;
 
 import static cofh.thermal.core.ThermalCore.TILE_ENTITIES;
-import static cofh.thermal.cultivation.init.TCulReferences.ID_DEVICE_HIVE_EXTRACTOR;
 import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR_BLOCK;
+import static cofh.thermal.cultivation.init.TCulReferences.ID_DEVICE_HIVE_EXTRACTOR;
 
 public class TCulTileEntities {
 

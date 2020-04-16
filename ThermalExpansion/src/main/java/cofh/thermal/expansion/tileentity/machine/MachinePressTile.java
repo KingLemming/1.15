@@ -3,9 +3,9 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.tileentity.MachineTileProcess;
+import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.util.managers.machine.PressRecipeManager;
 import cofh.thermal.expansion.inventory.container.machine.MachinePressContainer;
-import cofh.thermal.expansion.util.managers.machine.PressRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -17,10 +17,10 @@ import java.util.List;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
-import static cofh.thermal.core.init.ThermalTags.Items.MACHINE_DIES;
+import static cofh.thermal.core.data.ThermalTags.Items.MACHINE_DIES;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PRESS_TILE;
 
-public class MachinePressTile extends MachineTileProcess {
+public class MachinePressTile extends MachineTileReconfigurableProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(PressRecipeManager.instance()::validInput);
     protected ItemStorageCoFH dieSlot = new ItemStorageCoFH(PressRecipeManager.instance()::validDie);

@@ -27,6 +27,12 @@ public class RedstoneControlModule implements IRedstoneControllable {
         this.enabled = enabled;
     }
 
+    public RedstoneControlModule setEnabled(boolean enabled) {
+
+        this.enabled = enabled;
+        return this;
+    }
+
     // region NETWORK
     public void readFromBuffer(PacketBuffer buffer) {
 
@@ -55,10 +61,11 @@ public class RedstoneControlModule implements IRedstoneControllable {
 
     public CompoundNBT write(CompoundNBT nbt) {
 
-        nbt.putByte(TAG_RS_POWER, (byte) power);
-        nbt.putByte(TAG_RS_THRESHOLD, (byte) threshold);
-        nbt.putByte(TAG_RS_MODE, (byte) mode.ordinal());
-
+        if (enabled) {
+            nbt.putByte(TAG_RS_POWER, (byte) power);
+            nbt.putByte(TAG_RS_THRESHOLD, (byte) threshold);
+            nbt.putByte(TAG_RS_MODE, (byte) mode.ordinal());
+        }
         return nbt;
     }
     // endregion

@@ -1,7 +1,8 @@
 package cofh.thermal.expansion.client.gui.machine;
 
 import cofh.lib.util.helpers.StringHelper;
-import cofh.thermal.core.client.gui.MachineScreenBase;
+import cofh.thermal.core.client.gui.MachineScreenReconfigurable;
+import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.expansion.inventory.container.machine.MachineBrewerContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class MachineBrewerScreen extends MachineScreenBase<MachineBrewerContainer> {
+public class MachineBrewerScreen extends MachineScreenReconfigurable<MachineBrewerContainer> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/brewer.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
@@ -34,8 +35,9 @@ public class MachineBrewerScreen extends MachineScreenBase<MachineBrewerContaine
 
         addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(1), tile));
 
-        progressOverlay = addElement(createDefaultFluidProgress(this, 88, 34, PROG_DROP_RIGHT, tile.getRenderFluid()));
-        speed = addElement(createDefaultSpeed(this, 62, 44, SCALE_ALCHEMY));
+        addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 88, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultProgress(this, 88, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultSpeed(this, 62, 44, SCALE_ALCHEMY, tile));
     }
 
 }

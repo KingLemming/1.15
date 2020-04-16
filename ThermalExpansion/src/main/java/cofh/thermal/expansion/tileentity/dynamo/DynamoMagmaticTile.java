@@ -2,8 +2,8 @@ package cofh.thermal.expansion.tileentity.dynamo;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
+import cofh.thermal.core.util.managers.dynamo.MagmaticFuelManager;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoMagmaticContainer;
-import cofh.thermal.expansion.util.managers.dynamo.MagmaticFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

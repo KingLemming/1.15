@@ -2,8 +2,10 @@ package cofh.lib.util.helpers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.energy.CapabilityEnergy;
 
+import static cofh.lib.util.constants.Constants.RF_PER_FURNACE_UNIT;
 import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 
 /**
@@ -15,6 +17,16 @@ public class EnergyHelper {
 
     private EnergyHelper() {
 
+    }
+
+    public static boolean validFurnaceFuel(ItemStack input) {
+
+        return getEnergyFurnaceFuel(input) > 0;
+    }
+
+    public static int getEnergyFurnaceFuel(ItemStack stack) {
+
+        return ForgeHooks.getBurnTime(stack) * RF_PER_FURNACE_UNIT;
     }
 
     public static boolean hasEnergyHandlerCap(ItemStack item) {

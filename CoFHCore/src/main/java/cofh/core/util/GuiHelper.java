@@ -8,6 +8,8 @@ import cofh.lib.util.control.IReconfigurable;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.BooleanSupplier;
+import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 import static cofh.core.client.gui.element.ElementBase.TRUE;
 import static cofh.core.client.gui.element.ElementScaled.StartDirection.LEFT;
@@ -147,38 +149,41 @@ public class GuiHelper {
     // endregion
 
     // region COMMON UX
-    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture) {
+    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup) {
 
-        return createDefaultProgress(gui, posX, posY, texture, TRUE);
+        return createDefaultProgress(gui, posX, posY, texture, quantitySup, TRUE);
     }
 
-    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, BooleanSupplier visible) {
+    public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, BooleanSupplier visible) {
 
         return (ElementScaled) new ElementScaled(gui, posX, posY)
+                .setQuantity(quantitySup)
                 .setDirection(LEFT)
                 .setSize(PROGRESS, 16)
                 .setTexture(texture, 64, 16)
                 .setVisible(visible);
     }
 
-    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, FluidStack fluid) {
+    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup) {
 
-        return createDefaultFluidProgress(gui, posX, posY, texture, fluid, TRUE);
+        return createDefaultFluidProgress(gui, posX, posY, texture, quantitySup, fluidSup, TRUE);
     }
 
-    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, FluidStack fluid, BooleanSupplier visible) {
+    public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup, BooleanSupplier visible) {
 
         return (ElementScaledFluid) new ElementScaledFluid(gui, posX, posY)
-                .setFluid(fluid)
+                .setFluid(fluidSup)
+                .setQuantity(quantitySup)
                 .setDirection(LEFT)
                 .setSize(PROGRESS, 16)
                 .setTexture(texture, 64, 16)
                 .setVisible(visible);
     }
 
-    public static ElementScaled createDefaultSpeed(IGuiAccess gui, int posX, int posY, String texture) {
+    public static ElementScaled createDefaultSpeed(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup) {
 
         return (ElementScaled) new ElementScaled(gui, posX, posY)
+                .setQuantity(quantitySup)
                 .setSize(16, SPEED)
                 .setTexture(texture, 32, 16);
     }

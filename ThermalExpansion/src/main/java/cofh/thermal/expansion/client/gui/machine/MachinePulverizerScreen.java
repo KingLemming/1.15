@@ -1,7 +1,8 @@
 package cofh.thermal.expansion.client.gui.machine;
 
 import cofh.lib.util.helpers.StringHelper;
-import cofh.thermal.core.client.gui.MachineScreenBase;
+import cofh.thermal.core.client.gui.MachineScreenReconfigurable;
+import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.expansion.inventory.container.machine.MachinePulverizerContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class MachinePulverizerScreen extends MachineScreenBase<MachinePulverizerContainer> {
+public class MachinePulverizerScreen extends MachineScreenReconfigurable<MachinePulverizerContainer> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/pulverizer.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
@@ -36,8 +37,8 @@ public class MachinePulverizerScreen extends MachineScreenBase<MachinePulverizer
         addElement(createOutputSlot(this, 107, 44, tile));
         addElement(createOutputSlot(this, 125, 44, tile));
 
-        progress = addElement(createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT));
-        speed = addElement(createDefaultSpeed(this, 44, 35, SCALE_CRUSH));
+        addElement(ThermalGuiHelper.createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultSpeed(this, 44, 35, SCALE_CRUSH, tile));
     }
 
 }

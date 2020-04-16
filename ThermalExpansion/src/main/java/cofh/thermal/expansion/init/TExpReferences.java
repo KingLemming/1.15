@@ -9,7 +9,6 @@ import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -19,11 +18,6 @@ public class TExpReferences {
     private TExpReferences() {
 
     }
-
-    // region DEVICES
-    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
-    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
-    // endregion
 
     // region MACHINES
     public static final String ID_MACHINE_FURNACE = ID_THERMAL + ":machine_furnace";
@@ -37,46 +31,7 @@ public class TExpReferences {
     public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
     public static final String ID_MACHINE_BREWER = ID_THERMAL + ":machine_brewer";
     public static final String ID_MACHINE_BOTTLER = ID_THERMAL + ":machine_bottler";
-    // endregion
 
-    // region RECIPES
-    public static final ResourceLocation ID_RECIPE_FURNACE = new ResourceLocation(ID_THERMAL, "furnace");
-    public static final ResourceLocation ID_RECIPE_SAWMILL = new ResourceLocation(ID_THERMAL, "sawmill");
-    public static final ResourceLocation ID_RECIPE_PULVERIZER = new ResourceLocation(ID_THERMAL, "pulverizer");
-    public static final ResourceLocation ID_RECIPE_INSOLATOR = new ResourceLocation(ID_THERMAL, "insolator");
-    public static final ResourceLocation ID_RECIPE_CENTRIFUGE = new ResourceLocation(ID_THERMAL, "centrifuge");
-    public static final ResourceLocation ID_RECIPE_PRESS = new ResourceLocation(ID_THERMAL, "press");
-    public static final ResourceLocation ID_RECIPE_CRUCIBLE = new ResourceLocation(ID_THERMAL, "crucible");
-    public static final ResourceLocation ID_RECIPE_CHILLER = new ResourceLocation(ID_THERMAL, "chiller");
-    public static final ResourceLocation ID_RECIPE_REFINERY = new ResourceLocation(ID_THERMAL, "refinery");
-    public static final ResourceLocation ID_RECIPE_BREWER = new ResourceLocation(ID_THERMAL, "brewer");
-    public static final ResourceLocation ID_RECIPE_BOTTLER = new ResourceLocation(ID_THERMAL, "bottler");
-
-    public static final ResourceLocation ID_CATALYST_PULVERIZER = new ResourceLocation(ID_THERMAL, "pulverizer_catalyst");
-    public static final ResourceLocation ID_CATALYST_INSOLATOR = new ResourceLocation(ID_THERMAL, "insolator_catalyst");
-    // endregion
-
-    // region DYNAMOS
-    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
-    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
-    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
-    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
-    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
-    // endregion
-
-    // region FUELS
-    public static final ResourceLocation ID_FUEL_STIRLING = new ResourceLocation(ID_THERMAL, "stirling_fuel");
-    public static final ResourceLocation ID_FUEL_COMPRESSION = new ResourceLocation(ID_THERMAL, "compression_fuel");
-    public static final ResourceLocation ID_FUEL_MAGMATIC = new ResourceLocation(ID_THERMAL, "magmatic_fuel");
-    public static final ResourceLocation ID_FUEL_NUMISMATIC = new ResourceLocation(ID_THERMAL, "numismatic_fuel");
-    public static final ResourceLocation ID_FUEL_LAPIDARY = new ResourceLocation(ID_THERMAL, "lapidary_fuel");
-    // endregion
-
-    // region FUELS
-
-    // endregion
-
-    // region REFERENCES
     @ObjectHolder(ID_MACHINE_FURNACE)
     public static Block MACHINE_FURNACE_BLOCK;
     @ObjectHolder(ID_MACHINE_FURNACE)
@@ -153,6 +108,29 @@ public class TExpReferences {
     public static TileEntityType<MachineBottlerTile> MACHINE_BOTTLER_TILE;
     @ObjectHolder(ID_MACHINE_BOTTLER)
     public static ContainerType<MachineBottlerContainer> MACHINE_BOTTLER_CONTAINER;
+    // endregion
+
+    // region DEVICES
+    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
+    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
+
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static Block DEVICE_ROCK_GEN_BLOCK;
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE;
+
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static Block DEVICE_WATER_GEN_BLOCK;
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE;
+    // endregion
+
+    // region DYNAMOS
+    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
+    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
+    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
+    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
+    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
 
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static Block DYNAMO_STIRLING_BLOCK;
@@ -188,15 +166,5 @@ public class TExpReferences {
     public static TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE;
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
     public static ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER;
-
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static Block DEVICE_ROCK_GEN_BLOCK;
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE;
-
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static Block DEVICE_WATER_GEN_BLOCK;
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE;
     // endregion
 }

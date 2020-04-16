@@ -2,9 +2,9 @@ package cofh.thermal.expansion.tileentity.machine;
 
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.core.tileentity.MachineTileProcess;
+import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.util.managers.machine.PulverizerRecipeManager;
 import cofh.thermal.expansion.inventory.container.machine.MachinePulverizerContainer;
-import cofh.thermal.expansion.util.managers.machine.PulverizerRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_TILE;
 
-public class MachinePulverizerTile extends MachineTileProcess {
+public class MachinePulverizerTile extends MachineTileReconfigurableProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(PulverizerRecipeManager.instance()::validRecipe);
     protected ItemStorageCoFH catalystSlot = new ItemStorageCoFH(PulverizerRecipeManager.instance()::validCatalyst);

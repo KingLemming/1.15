@@ -27,6 +27,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
@@ -34,6 +35,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.constants.Constants.ACTIVE;
 import static cofh.lib.util.constants.NBTTags.*;
 
@@ -106,7 +108,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public void neighborChanged(Block blockIn, BlockPos fromPos) {
 
-        if (world != null) {
+        if (world != null && redstoneControl.isControllable()) {
             redstoneControl.setPower(world.getRedstonePowerFromNeighbors(pos));
         }
     }
@@ -128,14 +130,34 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         return energyStorage;
     }
 
+    public FluidStack getRenderFluid() {
+
+        return FluidStack.EMPTY;
+    }
+
+    public int getScaledDuration() {
+
+        return getScaledDuration(DURATION);
+    }
+
     public int getScaledDuration(int scale) {
 
         return isActive ? scale : 0;
     }
 
+    public int getScaledProgress() {
+
+        return getScaledProgress(PROGRESS);
+    }
+
     public int getScaledProgress(int scale) {
 
         return isActive ? scale : 0;
+    }
+
+    public int getScaledSpeed() {
+
+        return getScaledSpeed(SPEED);
     }
 
     public int getScaledSpeed(int scale) {

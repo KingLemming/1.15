@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.thermal.core.data.ThermalRecipeProvider;
-import cofh.thermal.core.init.ThermalTags;
+import cofh.thermal.core.data.ThermalTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

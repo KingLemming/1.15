@@ -30,6 +30,12 @@ public class SecurityControlModule implements ISecurable {
         this.enabled = enabled;
     }
 
+    public SecurityControlModule setEnabled(boolean enabled) {
+
+        this.enabled = enabled;
+        return this;
+    }
+
     // region NETWORK
     public void readFromBuffer(PacketBuffer buffer) {
 
@@ -63,10 +69,11 @@ public class SecurityControlModule implements ISecurable {
 
     public CompoundNBT write(CompoundNBT nbt) {
 
-        nbt.putString(TAG_OWNER_UUID, owner.getId().toString());
-        nbt.putString(TAG_OWNER_NAME, owner.getName());
-        nbt.putByte(TAG_ACCESS, (byte) access.ordinal());
-
+        if (enabled) {
+            nbt.putString(TAG_OWNER_UUID, owner.getId().toString());
+            nbt.putString(TAG_OWNER_NAME, owner.getName());
+            nbt.putByte(TAG_ACCESS, (byte) access.ordinal());
+        }
         return nbt;
     }
     // endregion

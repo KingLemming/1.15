@@ -36,36 +36,20 @@ public class TCulReferences {
     public static final String ID_FROST_MELON = ID_THERMAL + ":frost_melon";
     public static final String ID_FROST_MELON_STEM = ID_THERMAL + ":frost_melon_stem";
     public static final String ID_FROST_MELON_STEM_ATTACHED = ID_THERMAL + ":frost_melon_stem_attached";
-    // endregion
 
-    // region FOOD
     public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
-    // endregion
 
-    // region DEVICES
-    public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
-    public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
-    // endregion
-
-    // region RECIPES
-
-    // endregion
-
-    // region DYNAMOS
-
-    // endregion
-
-    // region FUELS
-
-    // endregion
-
-    // region REFERENCES
     @ObjectHolder(ID_FROST_MELON)
     public static Block FROST_MELON;
     @ObjectHolder(ID_FROST_MELON_STEM)
     public static Block FROST_MELON_STEM;
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
     public static Block FROST_MELON_STEM_ATTACHED;
+    // endregion
+
+    // region DEVICES
+    public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
+    public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
 
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
     public static Block DEVICE_HIVE_EXTRACTOR_BLOCK;
@@ -73,5 +57,9 @@ public class TCulReferences {
     public static TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE;
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
     public static ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER;
+    // endregion
+
+    // region DYNAMOS
+
     // endregion
 }

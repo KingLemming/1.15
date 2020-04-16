@@ -3,9 +3,9 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.tileentity.MachineTileProcess;
+import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.util.managers.machine.CrucibleRecipeManager;
 import cofh.thermal.expansion.inventory.container.machine.MachineCrucibleContainer;
-import cofh.thermal.expansion.util.managers.machine.CrucibleRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -18,7 +18,7 @@ import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_TILE;
 
-public class MachineCrucibleTile extends MachineTileProcess {
+public class MachineCrucibleTile extends MachineTileReconfigurableProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(CrucibleRecipeManager.instance()::validRecipe);
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_MEDIUM);
