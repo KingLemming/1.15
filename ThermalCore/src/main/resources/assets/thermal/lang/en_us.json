@@ -188,6 +188,9 @@
   "_comment": "Thermal Expansion",
   "_comment": "========================================================================================================",
 
+  "block.thermal.device_rock_gen": "Igneous Extruder",
+  "block.thermal.device_water_gen": "Aqueous Accumulator",
+
   "block.thermal.dynamo_compression": "Compression Dynamo",
   "block.thermal.dynamo_lapidary": "Lapidary Dynamo",
   "block.thermal.dynamo_magmatic": "Magmatic Dynamo",

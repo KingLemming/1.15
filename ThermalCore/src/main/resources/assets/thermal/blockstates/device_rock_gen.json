@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "thermal:block/device_rock_gen"
+    },
+    "active=true": {
+      "model": "thermal:block/device_rock_gen_active"
+    }
+  }
+}

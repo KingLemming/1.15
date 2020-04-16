@@ -16,7 +16,6 @@ public class ManagedItemInv extends SimpleItemInv {
     protected List<ItemStorageCoFH> inputSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> catalystSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> outputSlots = new ArrayList<>();
-    protected List<ItemStorageCoFH> accessibleSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> internalSlots = new ArrayList<>();
 
     public ManagedItemInv(ITileCallback tile) {
@@ -48,17 +47,11 @@ public class ManagedItemInv extends SimpleItemInv {
             case CATALYST:
                 catalystSlots.add(slot);
                 inputSlots.add(slot);
-                accessibleSlots.add(slot);
             case INPUT:
                 inputSlots.add(slot);
-                accessibleSlots.add(slot);
                 break;
             case OUTPUT:
                 outputSlots.add(slot);
-                accessibleSlots.add(slot);
-                break;
-            case ACCESSIBLE:
-                accessibleSlots.add(slot);
                 break;
             case INTERNAL:
                 internalSlots.add(slot);
@@ -80,11 +73,6 @@ public class ManagedItemInv extends SimpleItemInv {
     public List<ItemStorageCoFH> getOutputSlots() {
 
         return outputSlots;
-    }
-
-    public List<ItemStorageCoFH> getAccessibleSlots() {
-
-        return accessibleSlots;
     }
 
     public List<ItemStorageCoFH> getInternalSlots() {

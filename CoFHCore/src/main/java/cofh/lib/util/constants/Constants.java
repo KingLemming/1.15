@@ -100,7 +100,7 @@ public class Constants {
 
     public static final int TANK_SMALL = FluidAttributes.BUCKET_VOLUME * 4;
     public static final int TANK_MEDIUM = FluidAttributes.BUCKET_VOLUME * 8;
-    public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 10;
+    public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 16;
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     public static final Direction[] DIRECTIONS = Direction.values();

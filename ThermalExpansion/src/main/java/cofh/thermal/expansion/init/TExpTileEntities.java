@@ -1,5 +1,7 @@
 package cofh.thermal.expansion.init;
 
+import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
+import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -32,6 +34,9 @@ public class TExpTileEntities {
         TILE_ENTITIES.register(ID_DYNAMO_MAGMATIC, () -> TileEntityType.Builder.create(DynamoMagmaticTile::new, DYNAMO_MAGMATIC_BLOCK).build(null));
         TILE_ENTITIES.register(ID_DYNAMO_NUMISMATIC, () -> TileEntityType.Builder.create(DynamoNumismaticTile::new, DYNAMO_NUMISMATIC_BLOCK).build(null));
         TILE_ENTITIES.register(ID_DYNAMO_LAPIDARY, () -> TileEntityType.Builder.create(DynamoLapidaryTile::new, DYNAMO_LAPIDARY_BLOCK).build(null));
+
+        TILE_ENTITIES.register(ID_DEVICE_ROCK_GEN, () -> TileEntityType.Builder.create(DeviceRockGenTile::new, DEVICE_ROCK_GEN_BLOCK).build(null));
+        TILE_ENTITIES.register(ID_DEVICE_WATER_GEN, () -> TileEntityType.Builder.create(DeviceWaterGenTile::new, DEVICE_WATER_GEN_BLOCK).build(null));
     }
 
 }

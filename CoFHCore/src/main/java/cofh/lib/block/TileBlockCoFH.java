@@ -69,7 +69,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
         if (onBlockActivatedDelegate(worldIn, pos, state, player, handIn, hit)) {
             return ActionResultType.SUCCESS;
         }
-        if (tile instanceof INamedContainerProvider) {
+        if (((TileCoFH) tile).hasGui()) {
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, tile.getPos());
             return ActionResultType.SUCCESS;
         }
@@ -82,7 +82,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
         if (tile == null || !tile.canPlayerChange(player)) {
             return false;
         }
-        return tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).map(handler -> FluidHelper.interactWithHandler(player.getHeldItem(hand), handler, player, hand)).orElse(false);
+        return tile.onActivatedDelegate(world, pos, state, player, hand, result);
     }
 
     @Override

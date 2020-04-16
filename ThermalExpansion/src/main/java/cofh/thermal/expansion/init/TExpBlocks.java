@@ -2,7 +2,10 @@ package cofh.thermal.expansion.init;
 
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.TileBlock6Way;
+import cofh.lib.block.TileBlockActive;
 import cofh.thermal.core.block.TileBlockDynamo;
+import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
+import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
@@ -37,6 +40,9 @@ public class TExpBlocks {
         registerBlock(ID_DYNAMO_MAGMATIC, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoMagmaticTile::new));
         registerBlock(ID_DYNAMO_NUMISMATIC, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoNumismaticTile::new));
         registerBlock(ID_DYNAMO_LAPIDARY, () -> new TileBlock6Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoLapidaryTile::new));
+
+        registerBlock(ID_DEVICE_ROCK_GEN, () -> new TileBlockActive(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), DeviceRockGenTile::new));
+        registerBlock(ID_DEVICE_WATER_GEN, () -> new TileBlockActive(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), DeviceWaterGenTile::new));
     }
 
 }

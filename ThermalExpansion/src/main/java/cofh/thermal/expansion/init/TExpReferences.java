@@ -2,6 +2,8 @@ package cofh.thermal.expansion.init;
 
 import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
+import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
+import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
@@ -17,6 +19,11 @@ public class TExpReferences {
     private TExpReferences() {
 
     }
+
+    // region DEVICES
+    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
+    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
+    // endregion
 
     // region MACHINES
     public static final String ID_MACHINE_FURNACE = ID_THERMAL + ":machine_furnace";
@@ -181,5 +188,15 @@ public class TExpReferences {
     public static TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE;
     @ObjectHolder(ID_DYNAMO_LAPIDARY)
     public static ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER;
+
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static Block DEVICE_ROCK_GEN_BLOCK;
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE;
+
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static Block DEVICE_WATER_GEN_BLOCK;
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE;
     // endregion
 }

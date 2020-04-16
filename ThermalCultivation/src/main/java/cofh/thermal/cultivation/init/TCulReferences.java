@@ -42,7 +42,7 @@ public class TCulReferences {
     public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
     // endregion
 
-    // region MACHINES
+    // region DEVICES
     public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
     public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
     // endregion
