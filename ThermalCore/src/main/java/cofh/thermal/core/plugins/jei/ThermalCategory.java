@@ -40,10 +40,17 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
 
     public ThermalCategory(IGuiHelper guiHelper, ResourceLocation uid) {
 
+        this(guiHelper, uid, true);
+    }
+
+    public ThermalCategory(IGuiHelper guiHelper, ResourceLocation uid, boolean drawEnergy) {
+
         this.uid = uid;
 
-        energyBackground = Drawables.getDrawables(guiHelper).getEnergyEmpty();
-        energy = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getEnergyFill(), 400, IDrawableAnimated.StartDirection.TOP, true);
+        if (drawEnergy) {
+            energyBackground = Drawables.getDrawables(guiHelper).getEnergyEmpty();
+            energy = guiHelper.createAnimatedDrawable(Drawables.getDrawables(guiHelper).getEnergyFill(), 400, IDrawableAnimated.StartDirection.TOP, true);
+        }
     }
 
     protected void addDefaultItemTooltipCallback(IGuiItemStackGroup group, List<Float> chances, int indexOffset) {

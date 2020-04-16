@@ -1,7 +1,5 @@
 package cofh.thermal.core.client.gui;
 
-import cofh.core.client.gui.element.ElementScaled;
-import cofh.core.client.gui.element.ElementScaledFluid;
 import cofh.core.client.gui.element.panel.PanelConfiguration;
 import cofh.core.util.GuiHelper;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
