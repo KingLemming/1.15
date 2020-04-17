@@ -29,8 +29,10 @@ public class BasicSawmillScreen extends MachineScreenBasic<BasicSawmillContainer
 
         super.init();
 
+        addElement(createMediumFluidStorage(this, 7, 8, tile.getTank(0)));
+
         addElement(ThermalGuiHelper.createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT, tile));
-        addElement(ThermalGuiHelper.createDefaultSpeed(this, 44, 44, SCALE_SAW, tile));
+        addElement(ThermalGuiHelper.createDefaultDuration(this, 44, 44, SCALE_FLAME, tile));
     }
 
 }

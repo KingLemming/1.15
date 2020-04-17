@@ -123,5 +123,10 @@ public class ThermalGuiHelper {
 
         return GuiHelper.createDefaultSpeed(gui, posX, posY, texture, tile::getScaledSpeed);
     }
+
+    public static ElementScaled createDefaultDuration(IGuiAccess gui, int posX, int posY, String texture, ThermalTileBase tile) {
+
+        return GuiHelper.createDefaultDuration(gui, posX, posY, texture, tile::getScaledDuration);
+    }
     // endregion
 }

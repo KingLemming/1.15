@@ -33,8 +33,12 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
     protected int processMax;
     protected int fuel;
     protected int fuelMax;
+    protected int fuelTicks;
 
     protected static final int ENERGY_USE = 10;
+
+    public static int ticksPerDrain = 64;
+    public static int drainAmount = 10;
 
     public MachineTileBasicProcess(TileEntityType<?> tileEntityTypeIn) {
 
@@ -55,7 +59,7 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
                 } else {
                     processStart();
                 }
-            } else if (!hasFuel()) {
+            } else if (!hasFuel() && !reFuel()) {
                 processOff();
             }
         } else {
@@ -136,7 +140,9 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
 
     protected void consumeFuel() {
 
-        fuel -= ENERGY_USE;
+        if (fuel >= 0) {
+            fuel -= ENERGY_USE;
+        }
     }
     // endregion
 
@@ -320,14 +326,16 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
     // endregion
 
     // region GUI
-    public int getScaledFuel(int scale) {
+    @Override
+    public int getScaledDuration(int scale) {
 
         if (fuelMax <= 0 || fuel <= 0) {
             return 0;
         }
-        return scale * (fuelMax - fuel) / fuelMax;
+        return scale * fuel / fuelMax;
     }
 
+    @Override
     public int getScaledProgress(int scale) {
 
         if (!isActive || processMax <= 0 || process <= 0) {
@@ -336,6 +344,7 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
         return scale * (processMax - process) / processMax;
     }
 
+    @Override
     public int getScaledSpeed(int scale) {
 
         if (!isActive || fuelMax <= 0 || fuel <= 0) {

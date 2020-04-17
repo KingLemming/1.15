@@ -28,15 +28,5 @@ public class DynamoScreenBase<T extends Container> extends ThermalScreenBase<T> 
             addElement(GuiHelper.createDefaultEnergyStorage(this, 80, 18, tile.getEnergyStorage()));
         }
     }
-    //
-    //    @Override
-    //    protected void updateElementInformation() {
-    //
-    //        super.updateElementInformation();
-    //
-    //        if (duration != null) {
-    //            duration.setQuantity(tile.getScaledDuration(DURATION));
-    //        }
-    //    }
 
 }

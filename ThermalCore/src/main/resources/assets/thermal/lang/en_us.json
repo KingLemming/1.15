@@ -185,6 +185,21 @@
   "item.thermal.tin_plate": "Tin Plate",
 
   "_comment": "========================================================================================================",
+  "_comment": "Thermal Essentials",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.basic_pulverizer": "Hammer Mill",
+  "block.thermal.basic_sawmill": "Basic Sawmill",
+
+  "info.thermal.basic_pulverizer.0": "Smashes things into more broken things.",
+  "info.thermal.basic_pulverizer.1": "Useful for processing ores or converting items.",
+  "info.thermal.basic_pulverizer.2": "Steam-powered - requires fuel and water.",
+
+  "info.thermal.basic_sawmill.0": "Cuts logs into planks and reprocesses wooden objects.",
+  "info.thermal.basic_sawmill.1": "Very useful for making the most out of a tree.",
+  "info.thermal.basic_sawmill.2": "Steam-powered - requires fuel and water.",
+  
+  "_comment": "========================================================================================================",
   "_comment": "Thermal Expansion",
   "_comment": "========================================================================================================",
 

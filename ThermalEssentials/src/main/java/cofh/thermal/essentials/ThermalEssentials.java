@@ -1,8 +1,11 @@
 package cofh.thermal.essentials;
 
+import cofh.thermal.essentials.client.gui.BasicPulverizerScreen;
+import cofh.thermal.essentials.client.gui.BasicSawmillScreen;
 import cofh.thermal.essentials.init.TEssBlocks;
 import cofh.thermal.essentials.init.TEssContainers;
 import cofh.thermal.essentials.init.TEssTileEntities;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_ESSENTIALS;
+import static cofh.thermal.essentials.init.TEssReferences.BASIC_PULVERIZER_CONTAINER;
+import static cofh.thermal.essentials.init.TEssReferences.BASIC_SAWMILL_CONTAINER;
 
 @Mod(ID_THERMAL_ESSENTIALS)
 public class ThermalEssentials {
@@ -37,6 +42,8 @@ public class ThermalEssentials {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
+        ScreenManager.registerFactory(BASIC_SAWMILL_CONTAINER, BasicSawmillScreen::new);
+        ScreenManager.registerFactory(BASIC_PULVERIZER_CONTAINER, BasicPulverizerScreen::new);
     }
     // endregion
 

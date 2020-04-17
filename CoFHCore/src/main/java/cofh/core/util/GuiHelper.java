@@ -11,8 +11,6 @@ import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
-import static cofh.core.client.gui.element.ElementBase.TRUE;
-import static cofh.core.client.gui.element.ElementScaled.StartDirection.LEFT;
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.localize;
@@ -151,14 +149,14 @@ public class GuiHelper {
     // region COMMON UX
     public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup) {
 
-        return createDefaultProgress(gui, posX, posY, texture, quantitySup, TRUE);
+        return createDefaultProgress(gui, posX, posY, texture, quantitySup, ElementBase.TRUE);
     }
 
     public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, BooleanSupplier visible) {
 
         return (ElementScaled) new ElementScaled(gui, posX, posY)
                 .setQuantity(quantitySup)
-                .setDirection(LEFT)
+                .setDirection(ElementScaled.StartDirection.LEFT)
                 .setSize(PROGRESS, 16)
                 .setTexture(texture, 64, 16)
                 .setVisible(visible);
@@ -166,7 +164,7 @@ public class GuiHelper {
 
     public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup) {
 
-        return createDefaultFluidProgress(gui, posX, posY, texture, quantitySup, fluidSup, TRUE);
+        return createDefaultFluidProgress(gui, posX, posY, texture, quantitySup, fluidSup, ElementBase.TRUE);
     }
 
     public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup, BooleanSupplier visible) {
@@ -174,7 +172,7 @@ public class GuiHelper {
         return (ElementScaledFluid) new ElementScaledFluid(gui, posX, posY)
                 .setFluid(fluidSup)
                 .setQuantity(quantitySup)
-                .setDirection(LEFT)
+                .setDirection(ElementScaled.StartDirection.LEFT)
                 .setSize(PROGRESS, 16)
                 .setTexture(texture, 64, 16)
                 .setVisible(visible);
@@ -185,6 +183,14 @@ public class GuiHelper {
         return (ElementScaled) new ElementScaled(gui, posX, posY)
                 .setQuantity(quantitySup)
                 .setSize(16, SPEED)
+                .setTexture(texture, 32, 16);
+    }
+
+    public static ElementScaled createDefaultDuration(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup) {
+
+        return (ElementScaled) new ElementScaled(gui, posX, posY)
+                .setQuantity(quantitySup)
+                .setSize(16, DURATION)
                 .setTexture(texture, 32, 16);
     }
     // endregion

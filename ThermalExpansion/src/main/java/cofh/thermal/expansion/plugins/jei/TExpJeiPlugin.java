@@ -48,7 +48,7 @@ public class TExpJeiPlugin implements IModPlugin {
         int progressH = 16;
 
         registration.addRecipeClickArea(MachineFurnaceScreen.class, 79, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_FURNACE);
-        registration.addRecipeClickArea(MachineSawmillScreen.class, 79, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_SAWMILL);
+        registration.addRecipeClickArea(MachineSawmillScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_SAWMILL);
         registration.addRecipeClickArea(MachinePulverizerScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_PULVERIZER);
         registration.addRecipeClickArea(MachineInsolatorScreen.class, 85, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_INSOLATOR);
         registration.addRecipeClickArea(MachineCentrifugeScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_CENTRIFUGE);

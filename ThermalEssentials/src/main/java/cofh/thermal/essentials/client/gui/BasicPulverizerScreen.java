@@ -29,8 +29,10 @@ public class BasicPulverizerScreen extends MachineScreenBasic<BasicPulverizerCon
 
         super.init();
 
+        addElement(createMediumFluidStorage(this, 7, 8, tile.getTank(0)));
+
         addElement(ThermalGuiHelper.createDefaultProgress(this, 72, 34, PROG_ARROW_RIGHT, tile));
-        addElement(ThermalGuiHelper.createDefaultSpeed(this, 44, 35, SCALE_CRUSH, tile));
+        addElement(ThermalGuiHelper.createDefaultDuration(this, 44, 44, SCALE_FLAME, tile));
     }
 
 }
