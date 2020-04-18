@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes.machine;
 
-import cofh.thermal.core.init.ThermalRecipeTypes;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.init.ThermalReferences.ID_RECIPE_SAWMILL;
+import static cofh.thermal.core.common.ThermalReferences.ID_RECIPE_SAWMILL;
 
 public class SawmillRecipe extends ThermalRecipe {
 

@@ -1,23 +1,19 @@
 package cofh.thermal.essentials.plugins.jei;
 
-import cofh.thermal.core.init.ThermalReferences;
+import cofh.thermal.core.common.ThermalReferences;
 import cofh.thermal.essentials.client.gui.BasicPulverizerScreen;
 import cofh.thermal.essentials.client.gui.BasicSawmillScreen;
+import cofh.thermal.essentials.plugins.jei.machine.PulverizerRecipeCategory;
+import cofh.thermal.essentials.plugins.jei.machine.SawmillRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_ESSENTIALS;
-import static cofh.thermal.core.init.ThermalRecipeTypes.RECIPE_PULVERIZER;
-import static cofh.thermal.core.init.ThermalRecipeTypes.RECIPE_SAWMILL;
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.essentials.init.TEssReferences.BASIC_PULVERIZER_BLOCK;
 import static cofh.thermal.essentials.init.TEssReferences.BASIC_SAWMILL_BLOCK;
 
@@ -27,8 +23,8 @@ public class TEssJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
 
-        //        registration.addRecipeCategories(new SawmillRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ThermalReferences.ID_RECIPE_SAWMILL));
-        //        registration.addRecipeCategories(new PulverizerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ThermalReferences.ID_RECIPE_PULVERIZER));
+        registration.addRecipeCategories(new SawmillRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ThermalReferences.ID_RECIPE_BASIC_SAWMILL));
+        registration.addRecipeCategories(new PulverizerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ThermalReferences.ID_RECIPE_BASIC_PULVERIZER));
     }
 
     @Override
@@ -38,20 +34,8 @@ public class TEssJeiPlugin implements IModPlugin {
         int progressW = 24;
         int progressH = 16;
 
-        registration.addRecipeClickArea(BasicSawmillScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_SAWMILL);
-        registration.addRecipeClickArea(BasicPulverizerScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_PULVERIZER);
-    }
-
-    @Override
-    public void registerRecipes(IRecipeRegistration registration) {
-
-        RecipeManager recipeManager = getRecipeManager();
-        if (recipeManager == null) {
-            // TODO: Log an error.
-            return;
-        }
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ThermalReferences.ID_RECIPE_SAWMILL);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ThermalReferences.ID_RECIPE_PULVERIZER);
+        registration.addRecipeClickArea(BasicSawmillScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_BASIC_SAWMILL);
+        registration.addRecipeClickArea(BasicPulverizerScreen.class, 72, progressY, progressW, progressH, ThermalReferences.ID_RECIPE_BASIC_PULVERIZER);
     }
 
     @Override
@@ -64,18 +48,7 @@ public class TEssJeiPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
 
-        return new ResourceLocation(ID_THERMAL_ESSENTIALS, "machines");
+        return new ResourceLocation(ID_THERMAL, "essentials");
     }
 
-    // region HELPERS
-    private RecipeManager getRecipeManager() {
-
-        RecipeManager recipeManager = null;
-        ClientWorld world = Minecraft.getInstance().world;
-        if (world != null) {
-            recipeManager = world.getRecipeManager();
-        }
-        return recipeManager;
-    }
-    // endregion
 }

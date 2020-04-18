@@ -7,8 +7,8 @@ import net.minecraft.data.ItemTagsProvider;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.data.ThermalTags.Items.*;
-import static cofh.thermal.core.init.ThermalReferences.*;
 
 public class TCoreTags {
 

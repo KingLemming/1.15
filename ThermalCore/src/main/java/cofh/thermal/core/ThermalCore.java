@@ -2,10 +2,15 @@ package cofh.thermal.core;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.ThermalTextures;
+import cofh.thermal.core.common.ThermalRecipeManagers;
+import cofh.thermal.core.common.ThermalRecipeSerializers;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.data.TCoreLootTables;
 import cofh.thermal.core.data.TCoreRecipes;
 import cofh.thermal.core.data.TCoreTags;
-import cofh.thermal.core.init.*;
+import cofh.thermal.core.init.TCoreBlocks;
+import cofh.thermal.core.init.TCoreFluids;
+import cofh.thermal.core.init.TCoreItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.data.DataGenerator;

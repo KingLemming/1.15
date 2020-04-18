@@ -53,6 +53,20 @@ public abstract class RecipeJsonUtils {
         JsonElement subElement = element.isJsonArray() ? element.getAsJsonArray() : element.getAsJsonObject();
         try {
             ingredient = Ingredient.deserialize(subElement);
+            if (subElement.isJsonObject()) {
+                JsonObject object = subElement.getAsJsonObject();
+                int count = 1;
+                if (object.has(COUNT)) {
+                    count = object.get(COUNT).getAsInt();
+                } else if (object.has(AMOUNT)) {
+                    count = object.get(AMOUNT).getAsInt();
+                }
+                if (count > 1) {
+                    for (ItemStack stack : ingredient.getMatchingStacks()) {
+                        stack.setCount(count);
+                    }
+                }
+            }
         } catch (Throwable t) {
             ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
         }

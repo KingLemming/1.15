@@ -2,6 +2,9 @@ package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
+import cofh.thermal.expansion.data.TExpLootTables;
+import cofh.thermal.expansion.data.TExpRecipes;
+import cofh.thermal.expansion.data.TExpTags;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpContainers;
 import cofh.thermal.expansion.init.TExpItems;
@@ -76,12 +79,12 @@ public class ThermalExpansion {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        //        generator.addProvider(new TCulTags.Block(generator));
-        //        generator.addProvider(new TCulTags.Item(generator));
-        //        generator.addProvider(new TCulTags.Fluid(generator));
-        //
-        //        generator.addProvider(new TCulLootTables(generator));
-        //        generator.addProvider(new TCulRecipes(generator));
+        generator.addProvider(new TExpTags.Block(generator));
+        generator.addProvider(new TExpTags.Item(generator));
+        generator.addProvider(new TExpTags.Fluid(generator));
+
+        generator.addProvider(new TExpLootTables(generator));
+        generator.addProvider(new TExpRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

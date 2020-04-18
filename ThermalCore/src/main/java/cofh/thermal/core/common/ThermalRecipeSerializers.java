@@ -1,4 +1,4 @@
-package cofh.thermal.core.init;
+package cofh.thermal.core.common;
 
 import cofh.thermal.core.util.managers.dynamo.*;
 import cofh.thermal.core.util.managers.machine.*;
@@ -9,7 +9,7 @@ import cofh.thermal.core.util.recipes.dynamo.*;
 import cofh.thermal.core.util.recipes.machine.*;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.core.common.ThermalReferences.*;
 
 public class ThermalRecipeSerializers {
 

@@ -1,4 +1,4 @@
-package cofh.thermal.core.init;
+package cofh.thermal.core.common;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -37,8 +37,11 @@ public class ThermalReferences {
     public static final ResourceLocation ID_RECIPE_CHILLER = new ResourceLocation(ID_THERMAL, "chiller");
     public static final ResourceLocation ID_RECIPE_REFINERY = new ResourceLocation(ID_THERMAL, "refinery");
     public static final ResourceLocation ID_RECIPE_BREWER = new ResourceLocation(ID_THERMAL, "brewer");
-
     public static final ResourceLocation ID_RECIPE_BOTTLER = new ResourceLocation(ID_THERMAL, "bottler");
+
+    public static final ResourceLocation ID_RECIPE_BASIC_SAWMILL = new ResourceLocation(ID_THERMAL, "basic_sawmill");
+    public static final ResourceLocation ID_RECIPE_BASIC_PULVERIZER = new ResourceLocation(ID_THERMAL, "basic_pulverizer");
+
     public static final ResourceLocation ID_CATALYST_PULVERIZER = new ResourceLocation(ID_THERMAL, "pulverizer_catalyst");
     public static final ResourceLocation ID_CATALYST_INSOLATOR = new ResourceLocation(ID_THERMAL, "insolator_catalyst");
     // endregion

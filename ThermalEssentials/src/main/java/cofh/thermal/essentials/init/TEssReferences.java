@@ -1,7 +1,9 @@
 package cofh.thermal.essentials.init;
 
+import cofh.thermal.essentials.inventory.container.BasicCrucibleContainer;
 import cofh.thermal.essentials.inventory.container.BasicPulverizerContainer;
 import cofh.thermal.essentials.inventory.container.BasicSawmillContainer;
+import cofh.thermal.essentials.tileentity.BasicCrucibleTile;
 import cofh.thermal.essentials.tileentity.BasicPulverizerTile;
 import cofh.thermal.essentials.tileentity.BasicSawmillTile;
 import net.minecraft.block.Block;
@@ -20,7 +22,7 @@ public class TEssReferences {
     // region MACHINES
     public static final String ID_BASIC_SAWMILL = ID_THERMAL + ":basic_sawmill";
     public static final String ID_BASIC_PULVERIZER = ID_THERMAL + ":basic_pulverizer";
-    //    public static final String ID_BASIC_CRUCIBLE = ID_THERMAL + ":basic_crucible";
+    public static final String ID_BASIC_CRUCIBLE = ID_THERMAL + ":basic_crucible";
     //    public static final String ID_BASIC_REFINERY = ID_THERMAL + ":basic_refinery";
 
     @ObjectHolder(ID_BASIC_SAWMILL)
@@ -36,13 +38,13 @@ public class TEssReferences {
     public static TileEntityType<BasicPulverizerTile> BASIC_PULVERIZER_TILE;
     @ObjectHolder(ID_BASIC_PULVERIZER)
     public static ContainerType<BasicPulverizerContainer> BASIC_PULVERIZER_CONTAINER;
-    //
-    //    @ObjectHolder(ID_BASIC_CRUCIBLE)
-    //    public static Block BASIC_CRUCIBLE_BLOCK;
-    //    @ObjectHolder(ID_BASIC_CRUCIBLE)
-    //    public static TileEntityType<MachineCrucibleTile> BASIC_CRUCIBLE_TILE;
-    //    @ObjectHolder(ID_BASIC_CRUCIBLE)
-    //    public static ContainerType<MachineCrucibleContainer> BASIC_CRUCIBLE_CONTAINER;
+
+    @ObjectHolder(ID_BASIC_CRUCIBLE)
+    public static Block BASIC_CRUCIBLE_BLOCK;
+    @ObjectHolder(ID_BASIC_CRUCIBLE)
+    public static TileEntityType<BasicCrucibleTile> BASIC_CRUCIBLE_TILE;
+    @ObjectHolder(ID_BASIC_CRUCIBLE)
+    public static ContainerType<BasicCrucibleContainer> BASIC_CRUCIBLE_CONTAINER;
     //
     //    @ObjectHolder(ID_BASIC_REFINERY)
     //    public static Block BASIC_REFINERY_BLOCK;

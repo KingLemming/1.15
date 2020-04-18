@@ -1,5 +1,7 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.util.helpers.EnergyHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntityType;
@@ -12,6 +14,7 @@ public abstract class MachineTileBasic extends ThermalTileBase {
 
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY;
+    protected ItemStorageCoFH fuelSlot = new ItemStorageCoFH(EnergyHelper::validFurnaceFuel);
 
     public MachineTileBasic(TileEntityType<?> tileEntityTypeIn) {
 

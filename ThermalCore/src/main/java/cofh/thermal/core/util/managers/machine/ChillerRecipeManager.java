@@ -5,7 +5,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.init.ThermalRecipeTypes;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;

@@ -4,7 +4,7 @@ import cofh.lib.fluid.IFluidStackAccess;
 import cofh.lib.inventory.FalseIInventory;
 import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.util.ComparableItemStack;
-import cofh.thermal.core.init.ThermalRecipeTypes;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
@@ -21,10 +21,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
 
+import static java.util.Arrays.asList;
+
 public class PressRecipeManager extends AbstractManager implements IRecipeManager {
 
     private static final PressRecipeManager INSTANCE = new PressRecipeManager();
-    protected static final int DEFAULT_ENERGY = 4000;
+    protected static final int DEFAULT_ENERGY = 2400;
 
     protected Map<List<ComparableItemStack>, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
     protected Set<ComparableItemStack> validInputs = new ObjectOpenHashSet<>();
@@ -47,8 +49,17 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
 
     public void addRecipe(ThermalRecipe recipe) {
 
-        for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-            addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+        if (recipe.getInputItems().size() == 1) {
+            for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
+                addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+            }
+        } else {
+            // The die should never have multiple variations but eh, who knows?
+            for (ItemStack dieInput : recipe.getInputItems().get(1).getMatchingStacks()) {
+                for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
+                    addRecipe(recipe.getEnergy(), recipe.getExperience(), asList(recipeInput, dieInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                }
+            }
         }
     }
 
@@ -121,6 +132,7 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
 
         BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
         validInputs.add(convert(inputItems.get(0)));
+
         if (inputItems.size() > 1 && !inputItems.get(1).isEmpty()) {
             validDies.add(convert(inputItems.get(1)));
         }

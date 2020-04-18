@@ -1,4 +1,4 @@
-package cofh.thermal.core.init;
+package cofh.thermal.core.common;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package cofh.thermal.core.util.managers.dynamo;
 
 import cofh.lib.inventory.FalseIInventory;
-import cofh.thermal.core.init.ThermalRecipeTypes;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.util.managers.SingleItemFuelManager;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;

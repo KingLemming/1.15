@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
-import static cofh.thermal.core.init.ThermalReferences.*;
+import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
 

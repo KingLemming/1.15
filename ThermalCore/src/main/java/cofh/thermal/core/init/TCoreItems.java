@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.core.item.LockItem;
 import cofh.thermal.core.item.WrenchItem;
 import net.minecraft.item.Item;

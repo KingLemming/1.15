@@ -1,4 +1,4 @@
-package cofh.thermal.core.init;
+package cofh.thermal.core.common;
 
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.IManager;

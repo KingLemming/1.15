@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.ThermalReferences.ID_WRENCH;
+import static cofh.thermal.core.common.ThermalReferences.ID_WRENCH;
 
 public class TCoreRecipes extends ThermalRecipeProvider {
 

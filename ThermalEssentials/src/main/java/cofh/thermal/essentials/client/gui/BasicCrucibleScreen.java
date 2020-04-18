@@ -1,0 +1,39 @@
+package cofh.thermal.essentials.client.gui;
+
+import cofh.lib.util.helpers.StringHelper;
+import cofh.thermal.core.client.gui.MachineScreenBasic;
+import cofh.thermal.core.client.gui.ThermalGuiHelper;
+import cofh.thermal.essentials.inventory.container.BasicCrucibleContainer;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+
+import static cofh.core.util.GuiHelper.*;
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
+
+public class BasicCrucibleScreen extends MachineScreenBasic<BasicCrucibleContainer> {
+
+    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/basic_crucible.png";
+    public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
+
+    public BasicCrucibleScreen(BasicCrucibleContainer container, PlayerInventory inv, ITextComponent titleIn) {
+
+        super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.basic_crucible"));
+        texture = TEXTURE;
+        info = generateTabInfo("info.thermal.basic_crucible");
+        name = "crucible";
+    }
+
+    @Override
+    public void init() {
+
+        super.init();
+
+        addElement(createMediumFluidStorage(this, 125, 22, tile.getTank(0)));
+
+        addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 84, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultProgress(this, 84, 34, PROG_DROP_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultSpeed(this, 53, 44, SCALE_FLAME, tile));
+    }
+
+}

@@ -21,7 +21,6 @@ import static cofh.thermal.essentials.init.TEssReferences.BASIC_PULVERIZER_TILE;
 public class BasicPulverizerTile extends MachineTileBasicProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(PulverizerRecipeManager.instance()::validRecipe);
-    protected ItemStorageCoFH fuelSlot = new ItemStorageCoFH(EnergyHelper::validFurnaceFuel);
     protected FluidStorageCoFH waterTank = new FluidStorageCoFH(TANK_SMALL, FluidHelper.IS_WATER);
 
     public BasicPulverizerTile() {

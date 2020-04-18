@@ -8,7 +8,7 @@ import net.minecraft.item.Rarity;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.ThermalItemGroups.THERMAL_ITEMS;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_ITEMS;
 import static cofh.thermal.core.util.RegistrationHelper.registerCropAndSeed;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulFoods.*;

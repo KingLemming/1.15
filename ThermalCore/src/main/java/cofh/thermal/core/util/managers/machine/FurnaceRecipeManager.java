@@ -2,7 +2,7 @@ package cofh.thermal.core.util.managers.machine;
 
 import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
-import cofh.thermal.core.init.ThermalRecipeTypes;
+import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.machine.FurnaceRecipe;

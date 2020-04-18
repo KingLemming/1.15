@@ -1,8 +1,6 @@
 package cofh.thermal.expansion.plugins.jei;
 
-import cofh.thermal.core.init.ThermalReferences;
-import cofh.thermal.core.util.managers.machine.BrewerRecipeManager;
-import cofh.thermal.core.util.managers.machine.FurnaceRecipeManager;
+import cofh.thermal.core.common.ThermalReferences;
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
 import mezz.jei.api.IModPlugin;
@@ -10,15 +8,10 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
-import static cofh.thermal.core.init.ThermalRecipeTypes.*;
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
 @JeiPlugin
@@ -61,29 +54,6 @@ public class TExpJeiPlugin implements IModPlugin {
     }
 
     @Override
-    public void registerRecipes(IRecipeRegistration registration) {
-
-        RecipeManager recipeManager = getRecipeManager();
-        if (recipeManager == null) {
-            // TODO: Log an error.
-            return;
-        }
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_FURNACE).values(), ThermalReferences.ID_RECIPE_FURNACE);
-        registration.addRecipes(FurnaceRecipeManager.instance().getConvertedRecipes(), ThermalReferences.ID_RECIPE_FURNACE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ThermalReferences.ID_RECIPE_SAWMILL);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ThermalReferences.ID_RECIPE_PULVERIZER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_INSOLATOR).values(), ThermalReferences.ID_RECIPE_INSOLATOR);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CENTRIFUGE).values(), ThermalReferences.ID_RECIPE_CENTRIFUGE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_PRESS).values(), ThermalReferences.ID_RECIPE_PRESS);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CRUCIBLE).values(), ThermalReferences.ID_RECIPE_CRUCIBLE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CHILLER).values(), ThermalReferences.ID_RECIPE_CHILLER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_REFINERY).values(), ThermalReferences.ID_RECIPE_REFINERY);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ThermalReferences.ID_RECIPE_BREWER);
-        registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ThermalReferences.ID_RECIPE_BREWER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ThermalReferences.ID_RECIPE_BOTTLER);
-    }
-
-    @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 
         registration.addRecipeCatalyst(new ItemStack(MACHINE_FURNACE_BLOCK), ThermalReferences.ID_RECIPE_FURNACE);
@@ -102,18 +72,7 @@ public class TExpJeiPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
 
-        return new ResourceLocation(ID_THERMAL_EXPANSION, "machines");
+        return new ResourceLocation(ID_THERMAL, "expansion");
     }
 
-    // region HELPERS
-    private RecipeManager getRecipeManager() {
-
-        RecipeManager recipeManager = null;
-        ClientWorld world = Minecraft.getInstance().world;
-        if (world != null) {
-            recipeManager = world.getRecipeManager();
-        }
-        return recipeManager;
-    }
-    // endregion
 }

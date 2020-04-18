@@ -198,7 +198,7 @@
   "info.thermal.basic_sawmill.0": "Cuts logs into planks and reprocesses wooden objects.",
   "info.thermal.basic_sawmill.1": "Very useful for making the most out of a tree.",
   "info.thermal.basic_sawmill.2": "Steam-powered - requires fuel and water.",
-  
+
   "_comment": "========================================================================================================",
   "_comment": "Thermal Expansion",
   "_comment": "========================================================================================================",
@@ -286,6 +286,9 @@
   "info.thermal.machine_sawmill.0": "Cuts logs into planks and reprocesses wooden objects.",
   "info.thermal.machine_sawmill.1": "Very useful for making the most out of a tree.",
   "info.thermal.machine_sawmill.2": "Watch your hands.",
+
+  "item.thermal.press_coin_die": "Numismatic Die",
+  "item.thermal.press_gear_die": "Gearworking Die",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Dynamics",

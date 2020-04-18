@@ -38,8 +38,6 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         ArrayList<Float> outputItemChances = new ArrayList<>();
         ArrayList<FluidStack> outputFluids = new ArrayList<>();
 
-        // TODO: Ingredient StackSize > 1. Thanks Mojang.
-
         /* INPUT */
         if (json.has(INGREDIENT)) {
             parseInputs(inputItems, inputFluids, json.get(INGREDIENT));

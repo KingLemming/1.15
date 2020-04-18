@@ -4,6 +4,7 @@ import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
+import cofh.lib.util.helpers.EnergyHelper;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import net.minecraft.item.ItemStack;
@@ -135,6 +136,11 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
 
     protected boolean reFuel() {
 
+        ItemStack fuelStack = fuelSlot.getItemStack();
+        if (fuel <= 0 && !fuelStack.isEmpty() && EnergyHelper.validFurnaceFuel(fuelStack)) {
+            fuel = fuelMax = EnergyHelper.getEnergyFurnaceFuel(fuelStack);
+            fuelSlot.consume();
+        }
         return hasFuel();
     }
 

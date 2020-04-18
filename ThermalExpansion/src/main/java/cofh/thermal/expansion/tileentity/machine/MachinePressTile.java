@@ -24,6 +24,7 @@ public class MachinePressTile extends MachineTileReconfigurableProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(PressRecipeManager.instance()::validInput);
     protected ItemStorageCoFH dieSlot = new ItemStorageCoFH(PressRecipeManager.instance()::validDie);
+    protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_SMALL);
 
     public MachinePressTile() {
@@ -32,7 +33,7 @@ public class MachinePressTile extends MachineTileReconfigurableProcess {
 
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlot(dieSlot, INPUT);
-        inventory.addSlots(OUTPUT, 4);
+        inventory.addSlot(outputSlot, OUTPUT);
         inventory.addSlot(chargeSlot, INTERNAL);
 
         tankInv.addTank(outputTank, OUTPUT);
