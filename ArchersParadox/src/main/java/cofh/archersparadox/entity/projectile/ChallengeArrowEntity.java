@@ -17,7 +17,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 
 public class ChallengeArrowEntity extends AbstractArrowEntity {
 

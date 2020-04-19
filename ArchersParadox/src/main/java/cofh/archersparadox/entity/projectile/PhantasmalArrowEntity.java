@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.PHANTASMAL_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.PHANTASMAL_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.PHANTASMAL_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.PHANTASMAL_ARROW_ITEM;
 
 public class PhantasmalArrowEntity extends AbstractArrowEntity {
 

@@ -1,20 +1,19 @@
 package cofh.archersparadox;
 
 import cofh.archersparadox.client.renderer.entity.*;
-import cofh.archersparadox.data.ModItemModels;
-import cofh.archersparadox.data.ModRecipes;
-import cofh.archersparadox.data.ModTags;
-import cofh.archersparadox.init.ModConfig;
-import cofh.archersparadox.init.ModEffects;
-import cofh.archersparadox.init.ModEntities;
-import cofh.archersparadox.init.ModItems;
+import cofh.archersparadox.data.APItemModelProvider;
+import cofh.archersparadox.data.APRecipeProvider;
+import cofh.archersparadox.data.APTagProvider;
+import cofh.archersparadox.init.APConfig;
+import cofh.archersparadox.init.APEffects;
+import cofh.archersparadox.init.APEntities;
+import cofh.archersparadox.init.APItems;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 
 @Mod(ID_ARCHERS_PARADOX)
@@ -41,15 +40,7 @@ public class ArchersParadox {
     public static final DeferredRegisterCoFH<EntityType<?>> ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.ENTITIES, ID_ARCHERS_PARADOX);
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_ARCHERS_PARADOX);
 
-    public static final ItemGroup ARCHERS_PARADOX_GROUP = new ItemGroup(-1, ID_ARCHERS_PARADOX) {
-
-        @Override
-        @OnlyIn(Dist.CLIENT)
-        public ItemStack createIcon() {
-
-            return new ItemStack(Items.BOW);
-        }
-    };
+    public static ItemGroup itemGroup;
 
     public ArchersParadox() {
 
@@ -63,11 +54,11 @@ public class ArchersParadox {
         ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);
 
-        ModConfig.register();
+        APConfig.register();
 
-        ModEffects.register();
-        ModEntities.register();
-        ModItems.register();
+        APEffects.register();
+        APEntities.register();
+        APItems.register();
     }
 
     // region INITIALIZATION
@@ -96,6 +87,20 @@ public class ArchersParadox {
         RenderingRegistry.registerEntityRenderingHandler(SPORE_ARROW_ENTITY, SporeArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TRAINING_ARROW_ENTITY, TrainingArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(VERDANT_ARROW_ENTITY, VerdantArrowRenderer::new);
+
+        if (APConfig.enableCreativeTab.get()) {
+            itemGroup = new ItemGroup(-1, ID_ARCHERS_PARADOX) {
+
+                @Override
+                @OnlyIn(Dist.CLIENT)
+                public ItemStack createIcon() {
+
+                    return new ItemStack(ITEMS.get(ID_BLAZE_ARROW));
+                }
+            };
+        } else {
+            itemGroup = ItemGroup.COMBAT;
+        }
     }
     // endregion
 
@@ -112,13 +117,13 @@ public class ArchersParadox {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new ModRecipes(generator));
-        generator.addProvider(new ModTags.Item(generator));
+        generator.addProvider(new APRecipeProvider(generator));
+        generator.addProvider(new APTagProvider.Item(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
-        generator.addProvider(new ModItemModels(generator, event.getExistingFileHelper()));
+        generator.addProvider(new APItemModelProvider(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

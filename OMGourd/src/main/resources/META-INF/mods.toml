@@ -6,11 +6,13 @@ issueTrackerURL="https://github.com/cofh/feedback"
     modId="omgourd"
     version="0.1.0b"
     displayName="Oh My Gourd!"
+    updateJSONURL="https://raw.github.com/cofh/version/master/omgourd/update.json"
+    displayURL="https://teamcofh.com/"
+    logoFile="logo.png"
     credits="Team CoFH"
     authors="King Lemming, Endergized"
     description='''
-Adds a lot more carvings for Pumpkins and Jack O'Lanterns.
-Enjoy! I had a gourd time making writing this!
+Adds a lot more carvings for Pumpkins and Jack O'Lanterns. Enjoy!
 '''
 [[dependencies.omgourd]]
     modId="minecraft"
@@ -22,7 +24,7 @@ Enjoy! I had a gourd time making writing this!
 [[dependencies.omgourd]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[31.1.0,)"
     ordering="AFTER"
     side="BOTH"
 

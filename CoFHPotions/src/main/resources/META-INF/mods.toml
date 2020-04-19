@@ -21,7 +21,7 @@ CoFH Potions!
 [[dependencies.cofh_potions]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[31.1.0,)"
     ordering="AFTER"
     side="BOTH"
 

@@ -11,6 +11,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.function.Supplier;
 
 public class BlockItemCoFH extends BlockItem {
 
@@ -18,6 +21,8 @@ public class BlockItemCoFH extends BlockItem {
     protected boolean showInItemGroup = true;
     protected boolean creative;
     protected int enchantability;
+
+    protected Supplier<ItemGroup> displayGroup;
 
     public BlockItemCoFH(Block blockIn, Properties builder) {
 
@@ -33,6 +38,12 @@ public class BlockItemCoFH extends BlockItem {
     public BlockItemCoFH setEnchantability(int enchantability) {
 
         this.enchantability = enchantability;
+        return this;
+    }
+
+    public BlockItemCoFH setDisplayGroup(Supplier<ItemGroup> displayGroup) {
+
+        this.displayGroup = displayGroup;
         return this;
     }
 
@@ -78,6 +89,18 @@ public class BlockItemCoFH extends BlockItem {
             ((ItemEntity) location).lifespan = Integer.MAX_VALUE;
         }
         return null;
+    }
+
+    @Override
+    protected boolean isInGroup(ItemGroup group) {
+
+        return getCreativeTabs().stream().anyMatch(tab -> tab == group);
+    }
+
+    @Override
+    public Collection<ItemGroup> getCreativeTabs() {
+
+        return displayGroup != null && displayGroup.get() != null ? Collections.singletonList(displayGroup.get()) : super.getCreativeTabs();
     }
 
 }

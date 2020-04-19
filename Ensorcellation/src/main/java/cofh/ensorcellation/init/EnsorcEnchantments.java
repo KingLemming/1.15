@@ -9,9 +9,9 @@ import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.Enchantment.Rarity.*;
 
-public class ModEnchantments {
+public class EnsorcEnchantments {
 
-    private ModEnchantments() {
+    private EnsorcEnchantments() {
 
     }
 

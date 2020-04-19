@@ -4,9 +4,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 
-public class ModTags {
+public class APTagProvider {
 
     public static class Item extends ItemTagsProvider {
 

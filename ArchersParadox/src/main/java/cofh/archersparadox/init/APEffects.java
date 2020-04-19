@@ -5,11 +5,11 @@ import cofh.core.potion.NeutralEffect;
 import net.minecraft.potion.EffectType;
 
 import static cofh.archersparadox.ArchersParadox.EFFECTS;
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 
-public class ModEffects {
+public class APEffects {
 
-    private ModEffects() {
+    private APEffects() {
 
     }
 

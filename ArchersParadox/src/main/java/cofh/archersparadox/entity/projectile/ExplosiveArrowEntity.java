@@ -12,8 +12,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.EXPLOSIVE_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.EXPLOSIVE_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.EXPLOSIVE_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.EXPLOSIVE_ARROW_ITEM;
 
 public class ExplosiveArrowEntity extends AbstractArrowEntity {
 

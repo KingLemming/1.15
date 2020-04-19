@@ -16,8 +16,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.GLOWSTONE_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.GLOWSTONE_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.GLOWSTONE_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.GLOWSTONE_ARROW_ITEM;
 import static cofh.lib.util.constants.NBTTags.TAG_ARROW_DATA;
 
 public class GlowstoneArrowEntity extends AbstractArrowEntity {

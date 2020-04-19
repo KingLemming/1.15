@@ -8,8 +8,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.QUARTZ_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.QUARTZ_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.QUARTZ_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.QUARTZ_ARROW_ITEM;
 
 public class QuartzArrowEntity extends AbstractArrowEntity {
 

@@ -17,7 +17,7 @@ import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.Enchantments.*;
 
-public class ModConfig {
+public class EnsorcConfig {
 
     private static boolean registered = false;
 
@@ -26,7 +26,7 @@ public class ModConfig {
         if (registered) {
             return;
         }
-        FMLJavaModLoadingContext.get().getModEventBus().register(ModConfig.class);
+        FMLJavaModLoadingContext.get().getModEventBus().register(EnsorcConfig.class);
         registered = true;
 
         genServerConfig();
@@ -36,7 +36,7 @@ public class ModConfig {
         // ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, clientSpec);
     }
 
-    private ModConfig() {
+    private EnsorcConfig() {
 
     }
 

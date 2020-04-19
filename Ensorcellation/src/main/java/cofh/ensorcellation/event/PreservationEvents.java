@@ -1,7 +1,7 @@
 package cofh.ensorcellation.event;
 
 import cofh.ensorcellation.enchantment.override.MendingEnchantmentAlt;
-import cofh.ensorcellation.init.ModConfig;
+import cofh.ensorcellation.init.EnsorcConfig;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,7 +38,7 @@ public class PreservationEvents {
         if (event.isCanceled()) {
             return;
         }
-        if (!ModConfig.enableMendingOverride) {
+        if (!EnsorcConfig.enableMendingOverride) {
             return;
         }
         ItemStack left = event.getItemInput();
@@ -58,7 +58,7 @@ public class PreservationEvents {
         if (event.isCanceled()) {
             return;
         }
-        if (!ModConfig.enableMendingOverride) {
+        if (!EnsorcConfig.enableMendingOverride) {
             return;
         }
         ItemStack left = event.getLeft();
@@ -106,7 +106,7 @@ public class PreservationEvents {
         if (event.isCanceled()) {
             return;
         }
-        if (!ModConfig.enableMendingOverride) {
+        if (!EnsorcConfig.enableMendingOverride) {
             return;
         }
         PlayerEntity player = event.getPlayer();

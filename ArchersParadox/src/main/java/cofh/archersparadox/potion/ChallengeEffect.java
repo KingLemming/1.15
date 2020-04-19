@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 
-import static cofh.archersparadox.init.ModReferences.CHALLENGE_COMPLETE;
+import static cofh.archersparadox.init.APReferences.CHALLENGE_COMPLETE;
 
 public class ChallengeEffect extends EffectCoFH {
 

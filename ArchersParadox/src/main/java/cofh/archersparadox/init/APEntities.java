@@ -5,11 +5,11 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
 import static cofh.archersparadox.ArchersParadox.ENTITIES;
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 
-public class ModEntities {
+public class APEntities {
 
-    private ModEntities() {
+    private APEntities() {
 
     }
 

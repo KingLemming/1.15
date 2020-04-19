@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.archersparadox.init.ModReferences.PRISMARINE_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.PRISMARINE_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.PRISMARINE_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.PRISMARINE_ARROW_ITEM;
 
 public class PrismarineArrowEntity extends AbstractArrowEntity {
 

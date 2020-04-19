@@ -8,9 +8,10 @@ import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class ModConfig {
+public class APConfig {
 
     private static boolean registered = false;
 
@@ -19,17 +20,17 @@ public class ModConfig {
         if (registered) {
             return;
         }
-        FMLJavaModLoadingContext.get().getModEventBus().register(ModConfig.class);
+        FMLJavaModLoadingContext.get().getModEventBus().register(APConfig.class);
         registered = true;
 
         genServerConfig();
-        // genClientConfig();
+        genClientConfig();
 
-        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER, serverSpec);
-        // ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, clientSpec);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, serverSpec);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, clientSpec);
     }
 
-    private ModConfig() {
+    private APConfig() {
 
     }
 
@@ -48,6 +49,10 @@ public class ModConfig {
     }
 
     private static void genClientConfig() {
+
+        String comment;
+        comment = "If TRUE, Archer's Paradox will have its own Item Group (Creative Tab).";
+        enableCreativeTab = CLIENT_CONFIG.comment(comment).define("Enable Item Group", true);
 
         clientSpec = CLIENT_CONFIG.build();
     }
@@ -205,6 +210,8 @@ public class ModConfig {
     // endregion
 
     // region VARIABLES
+    public static BooleanValue enableCreativeTab;
+
     private static IntValue blazeArrowDuration;
     private static IntValue blazeArrowRadius;
 

@@ -22,8 +22,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-import static cofh.archersparadox.init.ModReferences.SHULKER_ARROW_ENTITY;
-import static cofh.archersparadox.init.ModReferences.SHULKER_ARROW_ITEM;
+import static cofh.archersparadox.init.APReferences.SHULKER_ARROW_ENTITY;
+import static cofh.archersparadox.init.APReferences.SHULKER_ARROW_ITEM;
 
 public class ShulkerArrowEntity extends AbstractArrowEntity {
 

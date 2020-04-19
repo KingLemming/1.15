@@ -12,13 +12,13 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
 
-public class ModRecipes extends RecipeProviderCoFH {
+public class APRecipeProvider extends RecipeProviderCoFH {
 
-    public ModRecipes(DataGenerator generatorIn) {
+    public APRecipeProvider(DataGenerator generatorIn) {
 
         super(generatorIn, ID_ARCHERS_PARADOX);
     }

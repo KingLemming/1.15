@@ -5,12 +5,12 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.archersparadox.init.APReferences.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 
-public class ModItemModels extends ItemModelProviderCoFH {
+public class APItemModelProvider extends ItemModelProviderCoFH {
 
-    public ModItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public APItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 
         super(generator, ID_ARCHERS_PARADOX, existingFileHelper);
     }
