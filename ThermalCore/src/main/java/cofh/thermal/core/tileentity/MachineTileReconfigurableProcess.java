@@ -46,7 +46,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     public void tick() {
 
         // TODO: TESTING ONLY
-        energyStorage.modify(100);
+        // energyStorage.modify(100);
 
         boolean curActive = isActive;
 
@@ -98,9 +98,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
 
     protected void processStart() {
 
-        processMax = curRecipe.getEnergy(this);
-        process = processMax;
-
+        process = processMax = curRecipe.getEnergy(this);
         if (cacheRenderFluid()) {
             TileStatePacket.sendToClient(this);
         }

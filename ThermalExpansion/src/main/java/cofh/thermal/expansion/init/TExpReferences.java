@@ -31,6 +31,7 @@ public class TExpReferences {
     public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
     public static final String ID_MACHINE_BREWER = ID_THERMAL + ":machine_brewer";
     public static final String ID_MACHINE_BOTTLER = ID_THERMAL + ":machine_bottler";
+    public static final String ID_MACHINE_CRAFTER = ID_THERMAL + ":machine_crafter";
 
     @ObjectHolder(ID_MACHINE_FURNACE)
     public static Block MACHINE_FURNACE_BLOCK;
@@ -108,6 +109,13 @@ public class TExpReferences {
     public static TileEntityType<MachineBottlerTile> MACHINE_BOTTLER_TILE;
     @ObjectHolder(ID_MACHINE_BOTTLER)
     public static ContainerType<MachineBottlerContainer> MACHINE_BOTTLER_CONTAINER;
+
+    @ObjectHolder(ID_MACHINE_CRAFTER)
+    public static Block MACHINE_CRAFTER_BLOCK;
+    @ObjectHolder(ID_MACHINE_CRAFTER)
+    public static TileEntityType<MachineCrafterTile> MACHINE_CRAFTER_TILE;
+    //    @ObjectHolder(ID_MACHINE_CRAFTER)
+    //    public static ContainerType<MachineCrafterContainer> MACHINE_CRAFTER_CONTAINER;
     // endregion
 
     // region DEVICES

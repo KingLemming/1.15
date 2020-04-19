@@ -1,6 +1,7 @@
 package cofh.archersparadox;
 
 import cofh.archersparadox.client.renderer.entity.*;
+import cofh.archersparadox.data.ModItemModels;
 import cofh.archersparadox.data.ModRecipes;
 import cofh.archersparadox.data.ModTags;
 import cofh.archersparadox.init.ModConfig;
@@ -111,12 +112,13 @@ public class ArchersParadox {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new ModTags.Item(generator));
         generator.addProvider(new ModRecipes(generator));
+        generator.addProvider(new ModTags.Item(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        generator.addProvider(new ModItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

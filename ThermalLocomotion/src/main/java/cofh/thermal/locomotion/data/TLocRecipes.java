@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.thermal.core.data.ThermalRecipeProvider;
-import cofh.thermal.core.data.ThermalTags;
+import cofh.lib.util.references.CoFHTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -93,7 +93,7 @@ public class TLocRecipes extends ThermalRecipeProvider {
                 .build(consumer);
         
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_RAIL), 6)
-                .key('I', ThermalTags.Items.INGOTS_LUMIUM)
+                .key('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .key('X', Blocks.RAIL)
                 .patternLine("XIX")
                 .patternLine("XIX")
@@ -110,7 +110,7 @@ public class TLocRecipes extends ThermalRecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
-                .key('I', ThermalTags.Items.INGOTS_LUMIUM)
+                .key('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .key('X', Blocks.ACTIVATOR_RAIL)
                 .patternLine("XIX")
                 .patternLine("XIX")
@@ -119,7 +119,7 @@ public class TLocRecipes extends ThermalRecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
-                .key('I', ThermalTags.Items.INGOTS_LUMIUM)
+                .key('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .key('X', Blocks.DETECTOR_RAIL)
                 .patternLine("XIX")
                 .patternLine("XIX")
@@ -128,7 +128,7 @@ public class TLocRecipes extends ThermalRecipeProvider {
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
-                .key('I', ThermalTags.Items.INGOTS_LUMIUM)
+                .key('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .key('X', Blocks.POWERED_RAIL)
                 .patternLine("XIX")
                 .patternLine("XIX")

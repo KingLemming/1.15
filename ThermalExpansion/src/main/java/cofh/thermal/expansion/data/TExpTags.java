@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.data;
 
-import cofh.thermal.core.data.ThermalTags;
+import cofh.lib.util.references.CoFHTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
@@ -46,8 +46,8 @@ public class TExpTags {
         @Override
         protected void registerTags() {
 
-            getBuilder(ThermalTags.Items.MACHINE_DIES).add(ITEMS.get("press_coin_die"));
-            getBuilder(ThermalTags.Items.MACHINE_DIES).add(ITEMS.get("press_gear_die"));
+            getBuilder(CoFHTags.Items.MACHINE_DIES).add(ITEMS.get("press_coin_die"));
+            getBuilder(CoFHTags.Items.MACHINE_DIES).add(ITEMS.get("press_gear_die"));
         }
 
     }

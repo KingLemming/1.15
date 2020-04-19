@@ -1,14 +1,15 @@
 package cofh.thermal.core.data;
 
+import cofh.lib.util.references.CoFHTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
 import net.minecraft.data.ItemTagsProvider;
 
+import static cofh.lib.util.references.CoFHTags.Items.*;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalReferences.*;
-import static cofh.thermal.core.data.ThermalTags.Items.*;
 
 public class TCoreTags {
 
@@ -28,9 +29,9 @@ public class TCoreTags {
         @Override
         protected void registerTags() {
 
-            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_SIGNALUM).add(BLOCKS.get(ID_SIGNALUM_BLOCK));
-            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_LUMIUM).add(BLOCKS.get(ID_LUMIUM_BLOCK));
-            getBuilder(ThermalTags.Blocks.STORAGE_BLOCKS_ENDERIUM).add(BLOCKS.get(ID_ENDERIUM_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SIGNALUM).add(BLOCKS.get(ID_SIGNALUM_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_LUMIUM).add(BLOCKS.get(ID_LUMIUM_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_ENDERIUM).add(BLOCKS.get(ID_ENDERIUM_BLOCK));
         }
 
     }
@@ -51,9 +52,9 @@ public class TCoreTags {
         @Override
         protected void registerTags() {
 
-            copy(ThermalTags.Blocks.STORAGE_BLOCKS_SIGNALUM, ThermalTags.Items.STORAGE_BLOCKS_SIGNALUM);
-            copy(ThermalTags.Blocks.STORAGE_BLOCKS_LUMIUM, ThermalTags.Items.STORAGE_BLOCKS_LUMIUM);
-            copy(ThermalTags.Blocks.STORAGE_BLOCKS_ENDERIUM, ThermalTags.Items.STORAGE_BLOCKS_ENDERIUM);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_SIGNALUM, CoFHTags.Items.STORAGE_BLOCKS_SIGNALUM);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_LUMIUM, CoFHTags.Items.STORAGE_BLOCKS_LUMIUM);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_ENDERIUM, CoFHTags.Items.STORAGE_BLOCKS_ENDERIUM);
 
             getBuilder(COINS_SIGNALUM).add(ITEMS.get("signalum_coin"));
             getBuilder(COINS_LUMIUM).add(ITEMS.get("lumium_coin"));
@@ -74,6 +75,8 @@ public class TCoreTags {
             getBuilder(PLATES_SIGNALUM).add(ITEMS.get("signalum_plate"));
             getBuilder(PLATES_LUMIUM).add(ITEMS.get("lumium_plate"));
             getBuilder(PLATES_ENDERIUM).add(ITEMS.get("enderium_plate"));
+
+            getBuilder(TOOLS_WRENCH).add(ITEMS.get("wrench"));
         }
 
     }

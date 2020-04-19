@@ -7,7 +7,6 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -31,8 +30,6 @@ public class ModRecipes extends RecipeProvider {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-
-        ResourceLocation arrow = Items.ARROW.getRegistryName();
 
         // @formatter:off
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_BLAZE_ARROW), 4)

@@ -1,6 +1,6 @@
 package cofh.thermal.core.common;
 
-import cofh.thermal.core.util.recipes.ThermalRecipeType;
+import cofh.lib.util.recipes.SerializableRecipeType;
 import cofh.thermal.core.util.recipes.dynamo.*;
 import cofh.thermal.core.util.recipes.machine.*;
 
@@ -38,25 +38,25 @@ public class ThermalRecipeTypes {
         FUEL_LAPIDARY.register();
     }
 
-    public static final ThermalRecipeType<FurnaceRecipe> RECIPE_FURNACE = new ThermalRecipeType<>(ID_RECIPE_FURNACE);
-    public static final ThermalRecipeType<SawmillRecipe> RECIPE_SAWMILL = new ThermalRecipeType<>(ID_RECIPE_SAWMILL);
-    public static final ThermalRecipeType<PulverizerRecipe> RECIPE_PULVERIZER = new ThermalRecipeType<>(ID_RECIPE_PULVERIZER);
-    public static final ThermalRecipeType<InsolatorRecipe> RECIPE_INSOLATOR = new ThermalRecipeType<>(ID_RECIPE_INSOLATOR);
-    public static final ThermalRecipeType<CentrifugeRecipe> RECIPE_CENTRIFUGE = new ThermalRecipeType<>(ID_RECIPE_CENTRIFUGE);
-    public static final ThermalRecipeType<PressRecipe> RECIPE_PRESS = new ThermalRecipeType<>(ID_RECIPE_PRESS);
-    public static final ThermalRecipeType<CrucibleRecipe> RECIPE_CRUCIBLE = new ThermalRecipeType<>(ID_RECIPE_CRUCIBLE);
-    public static final ThermalRecipeType<ChillerRecipe> RECIPE_CHILLER = new ThermalRecipeType<>(ID_RECIPE_CHILLER);
-    public static final ThermalRecipeType<RefineryRecipe> RECIPE_REFINERY = new ThermalRecipeType<>(ID_RECIPE_REFINERY);
-    public static final ThermalRecipeType<BrewerRecipe> RECIPE_BREWER = new ThermalRecipeType<>(ID_RECIPE_BREWER);
-    public static final ThermalRecipeType<BottlerRecipe> RECIPE_BOTTLER = new ThermalRecipeType<>(ID_RECIPE_BOTTLER);
+    public static final SerializableRecipeType<FurnaceRecipe> RECIPE_FURNACE = new SerializableRecipeType<>(ID_RECIPE_FURNACE);
+    public static final SerializableRecipeType<SawmillRecipe> RECIPE_SAWMILL = new SerializableRecipeType<>(ID_RECIPE_SAWMILL);
+    public static final SerializableRecipeType<PulverizerRecipe> RECIPE_PULVERIZER = new SerializableRecipeType<>(ID_RECIPE_PULVERIZER);
+    public static final SerializableRecipeType<InsolatorRecipe> RECIPE_INSOLATOR = new SerializableRecipeType<>(ID_RECIPE_INSOLATOR);
+    public static final SerializableRecipeType<CentrifugeRecipe> RECIPE_CENTRIFUGE = new SerializableRecipeType<>(ID_RECIPE_CENTRIFUGE);
+    public static final SerializableRecipeType<PressRecipe> RECIPE_PRESS = new SerializableRecipeType<>(ID_RECIPE_PRESS);
+    public static final SerializableRecipeType<CrucibleRecipe> RECIPE_CRUCIBLE = new SerializableRecipeType<>(ID_RECIPE_CRUCIBLE);
+    public static final SerializableRecipeType<ChillerRecipe> RECIPE_CHILLER = new SerializableRecipeType<>(ID_RECIPE_CHILLER);
+    public static final SerializableRecipeType<RefineryRecipe> RECIPE_REFINERY = new SerializableRecipeType<>(ID_RECIPE_REFINERY);
+    public static final SerializableRecipeType<BrewerRecipe> RECIPE_BREWER = new SerializableRecipeType<>(ID_RECIPE_BREWER);
+    public static final SerializableRecipeType<BottlerRecipe> RECIPE_BOTTLER = new SerializableRecipeType<>(ID_RECIPE_BOTTLER);
 
-    public static final ThermalRecipeType<PulverizerCatalyst> CATALYST_PULVERIZER = new ThermalRecipeType<>(ID_CATALYST_PULVERIZER);
-    public static final ThermalRecipeType<InsolatorCatalyst> CATALYST_INSOLATOR = new ThermalRecipeType<>(ID_CATALYST_INSOLATOR);
+    public static final SerializableRecipeType<PulverizerCatalyst> CATALYST_PULVERIZER = new SerializableRecipeType<>(ID_CATALYST_PULVERIZER);
+    public static final SerializableRecipeType<InsolatorCatalyst> CATALYST_INSOLATOR = new SerializableRecipeType<>(ID_CATALYST_INSOLATOR);
 
-    public static final ThermalRecipeType<StirlingFuel> FUEL_STIRLING = new ThermalRecipeType<>(ID_FUEL_STIRLING);
-    public static final ThermalRecipeType<CompressionFuel> FUEL_COMPRESSION = new ThermalRecipeType<>(ID_FUEL_COMPRESSION);
-    public static final ThermalRecipeType<MagmaticFuel> FUEL_MAGMATIC = new ThermalRecipeType<>(ID_FUEL_MAGMATIC);
-    public static final ThermalRecipeType<NumismaticFuel> FUEL_NUMISMATIC = new ThermalRecipeType<>(ID_FUEL_NUMISMATIC);
-    public static final ThermalRecipeType<LapidaryFuel> FUEL_LAPIDARY = new ThermalRecipeType<>(ID_FUEL_LAPIDARY);
+    public static final SerializableRecipeType<StirlingFuel> FUEL_STIRLING = new SerializableRecipeType<>(ID_FUEL_STIRLING);
+    public static final SerializableRecipeType<CompressionFuel> FUEL_COMPRESSION = new SerializableRecipeType<>(ID_FUEL_COMPRESSION);
+    public static final SerializableRecipeType<MagmaticFuel> FUEL_MAGMATIC = new SerializableRecipeType<>(ID_FUEL_MAGMATIC);
+    public static final SerializableRecipeType<NumismaticFuel> FUEL_NUMISMATIC = new SerializableRecipeType<>(ID_FUEL_NUMISMATIC);
+    public static final SerializableRecipeType<LapidaryFuel> FUEL_LAPIDARY = new SerializableRecipeType<>(ID_FUEL_LAPIDARY);
 
 }

@@ -1,14 +1,23 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.lib.util.helpers.EnergyHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
-import static cofh.lib.util.constants.NBTTags.TAG_COOLANT;
-import static cofh.lib.util.constants.NBTTags.TAG_FUEL;
+import javax.annotation.Nullable;
+
+import static cofh.lib.util.constants.Constants.FACING_ALL;
+import static cofh.lib.util.constants.NBTTags.*;
 
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
 
@@ -16,13 +25,49 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected FluidStack renderFluid = FluidStack.EMPTY.copy();
 
     protected int fuel;
+    protected int fuelMax;
     protected int coolant;
+    protected int coolantMax;
 
     protected int energyGen = 40;
 
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
+    }
+
+    @Override
+    public void updateContainingBlockInfo() {
+
+        super.updateContainingBlockInfo();
+        updateFacing();
+    }
+
+    @Override
+    public void neighborChanged(Block blockIn, BlockPos fromPos) {
+
+        super.neighborChanged(blockIn, fromPos);
+
+        // TODO: Handle caching of neighbor caps.
+    }
+
+    @Override
+    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+
+        updateFacing();
+    }
+
+    public Direction getFacing() {
+
+        if (facing == null) {
+            facing = getBlockState().get(FACING_ALL);
+        }
+        return facing;
+    }
+
+    public void updateFacing() {
+
+        facing = getBlockState().get(FACING_ALL);
     }
 
     @Override
@@ -52,14 +97,11 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
     protected void transferEnergy(int energy) {
 
-        // EnergyHelper.insertEnergyIntoAdjacentEnergyHandler(this, getFacing(), energy, false);
+        EnergyHelper.insertIntoAdjacent(this, energy, getFacing());
     }
 
     // region PROCESS
     protected abstract boolean canProcessStart();
-    //    {
-    //        return false;
-    //    }
 
     protected boolean canProcessFinish() {
 
@@ -67,11 +109,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     }
 
     protected abstract void processStart();
-    //    {
-    //        if (cacheRenderFluid()) {
-    //            TileStatePacket.sendToClient(this);
-    //        }
-    //    }
 
     protected void processFinish() {
 
@@ -107,6 +144,17 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     public FluidStack getRenderFluid() {
 
         return renderFluid;
+    }
+    // endregion
+
+    // region GUI
+    @Override
+    public int getScaledDuration(int scale) {
+
+        if (fuelMax <= 0 || fuel <= 0) {
+            return 0;
+        }
+        return scale * fuel / fuelMax;
     }
     // endregion
 
@@ -173,7 +221,9 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         super.read(nbt);
 
         fuel = nbt.getInt(TAG_FUEL);
+        fuelMax = nbt.getInt(TAG_FUEL_MAX);
         coolant = nbt.getInt(TAG_COOLANT);
+        coolantMax = nbt.getInt(TAG_COOLANT_MAX);
     }
 
     @Override

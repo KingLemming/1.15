@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "archers_paradox:item/projectiles/magma_arrow"
-  }
-}

@@ -34,7 +34,7 @@ public class DynamoNumismaticTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
-        fuel += NumismaticFuelManager.instance().getEnergy(fuelSlot.getItemStack());
+        fuel += fuelMax = NumismaticFuelManager.instance().getEnergy(fuelSlot.getItemStack());
         fuelSlot.consume();
     }
     // endregion

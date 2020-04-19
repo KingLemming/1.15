@@ -34,7 +34,7 @@ public class DynamoStirlingTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
-        fuel += StirlingFuelManager.instance().getEnergy(fuelSlot.getItemStack());
+        fuel += fuelMax = StirlingFuelManager.instance().getEnergy(fuelSlot.getItemStack());
         fuelSlot.consume();
     }
     // endregion

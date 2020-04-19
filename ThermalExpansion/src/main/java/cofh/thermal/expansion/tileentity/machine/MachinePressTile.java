@@ -17,7 +17,7 @@ import java.util.List;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
-import static cofh.thermal.core.data.ThermalTags.Items.MACHINE_DIES;
+import static cofh.lib.util.references.CoFHTags.Items.MACHINE_DIES;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PRESS_TILE;
 
 public class MachinePressTile extends MachineTileReconfigurableProcess {

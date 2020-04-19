@@ -35,7 +35,7 @@ public class DynamoCompressionTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
-        fuel += CompressionFuelManager.instance().getEnergy(fuelTank.getFluidStack());
+        fuel += fuelMax = CompressionFuelManager.instance().getEnergy(fuelTank.getFluidStack());
         fuelTank.modify(-FLUID_FUEL_AMOUNT);
     }
     // endregion

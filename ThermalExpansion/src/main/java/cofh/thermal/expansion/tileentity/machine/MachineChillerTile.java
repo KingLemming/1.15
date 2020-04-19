@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.thermal.core.data.ThermalTags.Items.MACHINE_MOLDS;
+import static cofh.lib.util.references.CoFHTags.Items.MACHINE_MOLDS;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_TILE;
 
 public class MachineChillerTile extends MachineTileReconfigurableProcess {

@@ -1,5 +1,6 @@
 package cofh.thermal.core.util.recipes;
 
+import cofh.lib.util.recipes.SerializableRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -7,7 +8,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ThermalFuel extends ThermalRecipeBase {
+public abstract class ThermalFuel extends SerializableRecipe {
 
     protected final List<Ingredient> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();

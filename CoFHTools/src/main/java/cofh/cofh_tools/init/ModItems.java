@@ -14,6 +14,18 @@ public class ModItems {
 
     public static void register() {
 
+        registerStandardToolSet("copper", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("tin", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("silver", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("lead", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("nickel", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("platinum", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+
+        registerStandardToolSet("bronze", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("electrum", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("invar", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+        registerStandardToolSet("constantan", ItemTier.IRON, ItemGroup.TOOLS, ItemGroup.COMBAT);
+
     }
 
     // region HELPERS

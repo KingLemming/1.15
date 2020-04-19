@@ -453,24 +453,24 @@ public class Utils {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         if (requireAir) {
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
-                double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                double distance = iterPos.distanceSq(entity.getPositionVec(), true);
                 if (distance < f2) {
-                    mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                    mutable.setPos(iterPos.getX(), iterPos.getY() + 1, iterPos.getZ());
                     BlockState blockstate1 = worldIn.getBlockState(mutable);
                     if (blockstate1.isAir(worldIn, mutable)) {
-                        if (worldIn.getBlockState(blockpos) == replaceable) {
-                            worldIn.setBlockState(blockpos, replacement);
+                        if (worldIn.getBlockState(iterPos) == replaceable) {
+                            worldIn.setBlockState(iterPos, replacement);
                         }
                     }
                 }
             }
         } else {
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
-                double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                double distance = iterPos.distanceSq(entity.getPositionVec(), true);
                 if (distance < f2) {
-                    if (worldIn.getBlockState(blockpos) == replaceable) {
-                        worldIn.setBlockState(blockpos, replacement);
+                    if (worldIn.getBlockState(iterPos) == replaceable) {
+                        worldIn.setBlockState(iterPos, replacement);
                     }
                 }
             }
@@ -498,10 +498,10 @@ public class Utils {
                 }
             }
         } else {
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
-                if (blockpos.withinDistance(entity.getPositionVec(), f)) {
-                    if (replaceable.contains(worldIn.getBlockState(blockpos))) {
-                        worldIn.setBlockState(blockpos, replacement);
+            for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+                if (iterPos.withinDistance(entity.getPositionVec(), f)) {
+                    if (replaceable.contains(worldIn.getBlockState(iterPos))) {
+                        worldIn.setBlockState(iterPos, replacement);
                     }
                 }
             }
@@ -557,16 +557,16 @@ public class Utils {
                 ++grow;
             }
         }
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+        for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             if (grow >= count) {
                 return;
             }
-            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            double distance = iterPos.distanceSq(entity.getPositionVec(), true);
             if (distance < f2) {
-                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                mutable.setPos(iterPos.getX(), iterPos.getY() + 1, iterPos.getZ());
                 blockstate1 = worldIn.getBlockState(mutable);
                 if (blockstate1.isAir(worldIn, mutable)) {
-                    if (isValidMushroomPosition(worldIn, blockpos, 0.5 - (distance / f2))) {
+                    if (isValidMushroomPosition(worldIn, iterPos, 0.5 - (distance / f2))) {
                         worldIn.setBlockState(mutable, worldIn.rand.nextBoolean() ? BROWN_MUSHROOM.getDefaultState() : RED_MUSHROOM.getDefaultState());
                         ++grow;
                     }
@@ -609,21 +609,21 @@ public class Utils {
                 }
             }
         }
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+        for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
             if (grow >= count) {
                 return;
             }
-            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            double distance = iterPos.distanceSq(entity.getPositionVec(), true);
             if (distance < f2) {
-                state = worldIn.getBlockState(blockpos);
+                state = worldIn.getBlockState(iterPos);
                 if (state.getBlock() instanceof IGrowable) {
                     IGrowable growable = (IGrowable) state.getBlock();
-                    if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
+                    if (growable.canGrow(worldIn, iterPos, state, worldIn.isRemote)) {
                         if (!worldIn.isRemote) {
-                            if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
                                 // TODO: Remove try/catch when Mojang fixes base issue.
                                 try {
-                                    growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                                    growable.grow((ServerWorld) worldIn, worldIn.rand, iterPos, state);
                                     ++grow;
                                 } catch (Exception e) {
                                     // Vanilla issue causes bamboo to crash if grown close to world height

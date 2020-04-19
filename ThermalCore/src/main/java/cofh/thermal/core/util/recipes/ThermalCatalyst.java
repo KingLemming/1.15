@@ -1,5 +1,6 @@
 package cofh.thermal.core.util.recipes;
 
+import cofh.lib.util.recipes.SerializableRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
@@ -7,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
  * This class really just serves as a way to ride on Mojang's automated recipe syncing and datapack functionality.
  * Nothing in Thermal actually uses any of this for logic whatsoever. It's part of a shim layer, nothing more.
  */
-public abstract class ThermalCatalyst extends ThermalRecipeBase {
+public abstract class ThermalCatalyst extends SerializableRecipe {
 
     protected final Ingredient ingredient;
 
