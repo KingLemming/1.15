@@ -20,13 +20,54 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
         super(generator, modid, existingFileHelper);
     }
 
-    protected void standardToolSet(DeferredRegisterCoFH<Item> items, String prefix) {
+    public static final String COINS = "coins";
+    public static final String GEARS = "gears";
+    public static final String GEMS = "gems";
+    public static final String INGOTS = "ingots";
+    public static final String NUGGETS = "nuggets";
+    public static final String PLATES = "plates";
+    public static final String TOOLS = "tools";
 
-        handheld(items.getSup(prefix + "_shovel"), "tools");
-        handheld(items.getSup(prefix + "_pickaxe"), "tools");
-        handheld(items.getSup(prefix + "_axe"), "tools");
-        handheld(items.getSup(prefix + "_hoe"), "tools");
-        handheld(items.getSup(prefix + "_sword"), "tools");
+    protected void standardToolSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+
+        handheld(itemReg.getSup(prefix + "_shovel"), "tools");
+        handheld(itemReg.getSup(prefix + "_pickaxe"), "tools");
+        handheld(itemReg.getSup(prefix + "_axe"), "tools");
+        handheld(itemReg.getSup(prefix + "_hoe"), "tools");
+        handheld(itemReg.getSup(prefix + "_sword"), "tools");
+    }
+
+    protected void metalSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+
+        metalSet(itemReg, prefix, false);
+    }
+
+    protected void metalSet(DeferredRegisterCoFH<Item> itemReg, String prefix, boolean vanilla) {
+
+        if (!vanilla) {
+            generated(itemReg.getSup(prefix + "_ingot"));
+            generated(itemReg.getSup(prefix + "_nugget"));
+        }
+        generated(itemReg.getSup(prefix + "_dust"));
+        generated(itemReg.getSup(prefix + "_gear"));
+        //        generated(itemReg.getSup(prefix + "_plate"));
+        //        generated(itemReg.getSup(prefix + "_coin"));
+    }
+
+    protected void gemSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+
+        gemSet(itemReg, prefix, false);
+    }
+
+    protected void gemSet(DeferredRegisterCoFH<Item> itemReg, String prefix, boolean vanilla) {
+
+        if (!vanilla) {
+            generated(itemReg.getSup(prefix + "_gem"));
+        }
+        generated(itemReg.getSup(prefix + "_nugget"));
+        generated(itemReg.getSup(prefix + "_dust"));
+        generated(itemReg.getSup(prefix + "_gear"));
+        //        generated(itemReg.getSup(prefix + "_plate"));
     }
 
     // region HELPERS
