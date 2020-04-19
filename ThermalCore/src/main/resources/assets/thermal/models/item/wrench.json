@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/wrench"
+    "layer0": "thermal:item/tools/wrench"
   }
 }

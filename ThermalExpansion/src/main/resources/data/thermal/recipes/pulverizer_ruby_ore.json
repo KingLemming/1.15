@@ -1,0 +1,13 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "tag": "forge:ores/ruby"
+  },
+  "result": [
+    {
+      "item": "thermal:ruby_gem",
+      "chance": 2.5
+    }
+  ],
+  "experience": 0.5
+}

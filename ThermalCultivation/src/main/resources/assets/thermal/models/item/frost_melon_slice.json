@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/frost_melon_slice"
+    "layer0": "thermal:item/foods/frost_melon_slice"
   }
 }

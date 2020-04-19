@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/coffee_seeds"
+    "layer0": "thermal:item/seeds/coffee_seeds"
   }
 }

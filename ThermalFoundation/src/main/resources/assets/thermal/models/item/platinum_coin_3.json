@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/platinum_coin_3"
+    "layer0": "thermal:item/coins/platinum_coin_3"
   }
 }

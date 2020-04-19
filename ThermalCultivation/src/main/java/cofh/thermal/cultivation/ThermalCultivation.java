@@ -1,6 +1,7 @@
 package cofh.thermal.cultivation;
 
 import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
+import cofh.thermal.cultivation.data.TCulItemModels;
 import cofh.thermal.cultivation.data.TCulLootTables;
 import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
@@ -153,6 +154,8 @@ public class ThermalCultivation {
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        // generator.addProvider(new TCulBlockStates(generator, event.getExistingFileHelper()));
+        generator.addProvider(new TCulItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

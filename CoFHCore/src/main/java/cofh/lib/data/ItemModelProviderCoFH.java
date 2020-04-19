@@ -21,13 +21,16 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
     }
 
     public static final String COINS = "coins";
+    public static final String CROPS = "crops";
     public static final String DUSTS = "dusts";
+    public static final String FOODS = "foods";
     public static final String GEARS = "gears";
     public static final String GEMS = "gems";
     public static final String INGOTS = "ingots";
     public static final String NUGGETS = "nuggets";
     public static final String PLATES = "plates";
     public static final String PROJECTILES = "projectiles";
+    public static final String SEEDS = "seeds";
     public static final String TOOLS = "tools";
 
     protected void standardToolSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {

@@ -49,6 +49,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         metalSet(itemReg, "signalum");
         metalSet(itemReg, "lumium");
         metalSet(itemReg, "enderium");
+
+        generated(ITEMS.getSup("wrench"), TOOLS);
+        generated(ITEMS.getSup("lock"), TOOLS);
     }
 
 }
