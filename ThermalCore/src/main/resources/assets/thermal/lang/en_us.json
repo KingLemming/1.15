@@ -7,6 +7,10 @@
   "block.thermal.lumium_block": "Block of Lumium",
   "block.thermal.signalum_block": "Block of Signalum",
 
+  "block.thermal.enderium_glass": "Enderium Glass",
+  "block.thermal.lumium_glass": "Lumium Glass",
+  "block.thermal.signalum_glass": "Signalum Glass",
+
   "block.thermal.niter_ore": "Niter Ore",
   "block.thermal.sulfur_ore": "Sulfur Ore",
 
@@ -22,40 +26,6 @@
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.wrench": "Crescent Hammer",
-
-  "item.thermal.redstone_fluid_bucket": "Destabilized Redstone Bucket",
-  "item.thermal.glowstone_fluid_bucket": "Energized Glowstone Bucket",
-  "item.thermal.ender_fluid_bucket": "Resonant Ender Bucket",
-
-  "_comment": "========================================================================================================",
-  "_comment": "Thermal Foundation",
-  "_comment": "========================================================================================================",
-
-  "block.thermal.bronze_block": "Block of Bronze",
-  "block.thermal.constantan_block": "Block of Constantan",
-  "block.thermal.copper_block": "Block of Copper",
-  "block.thermal.electrum_block": "Block of Electrum",
-  "block.thermal.invar_block": "Block of Invar",
-  "block.thermal.lead_block": "Block of Lead",
-  "block.thermal.nickel_block": "Block of Nickel",
-  "block.thermal.platinum_block": "Block of Platinum",
-  "block.thermal.ruby_block": "Block of Ruby",
-  "block.thermal.sapphire_block": "Block of Sapphire",
-  "block.thermal.silver_block": "Block of Silver",
-  "block.thermal.tin_block": "Block of Tin",
-
-  "block.thermal.copper_ore": "Copper Ore",
-  "block.thermal.lead_ore": "Lead Ore",
-  "block.thermal.nickel_ore": "Nickel Ore",
-  "block.thermal.platinum_ore": "Platinum Ore",
-  "block.thermal.ruby_ore": "Ruby Ore",
-  "block.thermal.sapphire_ore": "Sapphire Ore",
-  "block.thermal.silver_ore": "Silver Ore",
-  "block.thermal.tin_ore": "Tin Ore",
-
-  "block.thermal.aluminum_block": "Block of Aluminum",
-  "block.thermal.iridium_block": "Block of Iridium",
-  "block.thermal.steel_block": "Block of Steel",
 
   "item.thermal.iron_coin": "Iron Coin",
   "item.thermal.iron_dust": "Iron Dust",
@@ -101,6 +71,40 @@
   "item.thermal.signalum_ingot": "Signalum Ingot",
   "item.thermal.signalum_nugget": "Signalum Nugget",
   "item.thermal.signalum_plate": "Signalum Plate",
+
+  "item.thermal.redstone_fluid_bucket": "Destabilized Redstone Bucket",
+  "item.thermal.glowstone_fluid_bucket": "Energized Glowstone Bucket",
+  "item.thermal.ender_fluid_bucket": "Resonant Ender Bucket",
+
+  "_comment": "========================================================================================================",
+  "_comment": "Thermal Foundation",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.bronze_block": "Block of Bronze",
+  "block.thermal.constantan_block": "Block of Constantan",
+  "block.thermal.copper_block": "Block of Copper",
+  "block.thermal.electrum_block": "Block of Electrum",
+  "block.thermal.invar_block": "Block of Invar",
+  "block.thermal.lead_block": "Block of Lead",
+  "block.thermal.nickel_block": "Block of Nickel",
+  "block.thermal.platinum_block": "Block of Platinum",
+  "block.thermal.ruby_block": "Block of Ruby",
+  "block.thermal.sapphire_block": "Block of Sapphire",
+  "block.thermal.silver_block": "Block of Silver",
+  "block.thermal.tin_block": "Block of Tin",
+
+  "block.thermal.copper_ore": "Copper Ore",
+  "block.thermal.lead_ore": "Lead Ore",
+  "block.thermal.nickel_ore": "Nickel Ore",
+  "block.thermal.platinum_ore": "Platinum Ore",
+  "block.thermal.ruby_ore": "Ruby Ore",
+  "block.thermal.sapphire_ore": "Sapphire Ore",
+  "block.thermal.silver_ore": "Silver Ore",
+  "block.thermal.tin_ore": "Tin Ore",
+
+  "block.thermal.aluminum_block": "Block of Aluminum",
+  "block.thermal.iridium_block": "Block of Iridium",
+  "block.thermal.steel_block": "Block of Steel",
 
   "item.thermal.bronze_coin": "Bronze Coin",
   "item.thermal.bronze_dust": "Bronze Blend",

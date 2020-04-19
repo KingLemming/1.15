@@ -1,9 +1,9 @@
 package cofh.archersparadox.data;
 
 import cofh.core.CoFHCore;
+import cofh.lib.data.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
@@ -13,13 +13,14 @@ import java.util.function.Consumer;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.ModReferences.*;
+import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
 
-public class ModRecipes extends RecipeProvider {
+public class ModRecipes extends RecipeProviderCoFH {
 
     public ModRecipes(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_ARCHERS_PARADOX);
     }
 
     @Override

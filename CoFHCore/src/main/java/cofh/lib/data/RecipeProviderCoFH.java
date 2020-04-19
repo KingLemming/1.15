@@ -1,5 +1,6 @@
-package cofh.thermal.core.data;
+package cofh.lib.data;
 
+import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
@@ -8,23 +9,23 @@ import net.minecraft.util.IItemProvider;
 
 import java.util.function.Consumer;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.thermal.core.ThermalCore.ITEMS;
+public class RecipeProviderCoFH extends RecipeProvider {
 
-public class ThermalRecipeProvider extends RecipeProvider {
+    private final String modid;
 
-    public ThermalRecipeProvider(DataGenerator generatorIn) {
+    public RecipeProviderCoFH(DataGenerator generatorIn, String modid) {
 
         super(generatorIn);
+        this.modid = modid;
     }
 
     // region HELPERS
-    protected void generateStorageRecipes(Consumer<IFinishedRecipe> consumer, String type) {
+    protected void generateStorageRecipes(DeferredRegisterCoFH<Item> items, Consumer<IFinishedRecipe> consumer, String type) {
 
-        Item block = ITEMS.get(type + "_block");
-        Item ingot = ITEMS.get(type + "_ingot");
-        Item gem = ITEMS.get(type + "_gem");
-        Item nugget = ITEMS.get(type + "_nugget");
+        Item block = items.get(type + "_block");
+        Item ingot = items.get(type + "_ingot");
+        Item gem = items.get(type + "_gem");
+        Item nugget = items.get(type + "_nugget");
 
         // @formatter:off
         if (block != null) {
@@ -45,7 +46,7 @@ public class ThermalRecipeProvider extends RecipeProvider {
                         .addIngredient(block)
                         .addCriterion("has_at_least_9_" + ingotName, hasItem(MinMaxBounds.IntBound.atLeast(9), ingot))
                         .addCriterion("has_" + blockName, hasItem(block))
-                        .build(consumer, ID_THERMAL + ":" + ingotName + "_from_block");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_block");
 
             } else if (gem != null) {
                 String gemName = gem.getRegistryName().getPath();
@@ -62,7 +63,7 @@ public class ThermalRecipeProvider extends RecipeProvider {
                         .addIngredient(block)
                         .addCriterion("has_at_least_9_" + gemName, hasItem(MinMaxBounds.IntBound.atLeast(9), gem))
                         .addCriterion("has_" + blockName, hasItem(block))
-                        .build(consumer, ID_THERMAL + ":" + gemName + "_from_block");
+                        .build(consumer, this.modid + ":" + gemName + "_from_block");
             }
         }
 
@@ -78,13 +79,13 @@ public class ThermalRecipeProvider extends RecipeProvider {
                         .patternLine("###")
                         .patternLine("###")
                         .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-                        .build(consumer, ID_THERMAL + ":" + ingotName + "_from_nuggets");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_nuggets");
 
                 ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
                         .addIngredient(ingot)
                         .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
                         .addCriterion("has_" + ingotName, hasItem(ingot))
-                        .build(consumer, ID_THERMAL + ":" + nuggetName + "_from_ingot");
+                        .build(consumer, this.modid + ":" + nuggetName + "_from_ingot");
             }
 //            else if (gem != null) {
 //                String gemName = gem.getRegistryName().getPath();
@@ -95,25 +96,25 @@ public class ThermalRecipeProvider extends RecipeProvider {
 //                        .patternLine("###")
 //                        .patternLine("###")
 //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-//                        .build(consumer, ID_THERMAL + ":" + gemName + "_from_nuggets");
+//                        .build(consumer, this.modid + ":" + gemName + "_from_nuggets");
 //
 //                ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
 //                        .addIngredient(gem)
 //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
 //                        .addCriterion("has_" + gemName, hasItem(gem))
-//                        .build(consumer, ID_THERMAL + ":" + nuggetName + "_from_gem");
+//                        .build(consumer, this.modid + ":" + nuggetName + "_from_gem");
 //            }
         }
         // @formatter:on
     }
 
-    protected void generateSmeltingAndBlastingRecipes(Consumer<IFinishedRecipe> consumer, String type, float xp) {
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> items, Consumer<IFinishedRecipe> consumer, String type, float xp) {
 
-        Item ore = ITEMS.get(type + "_ore");
-        Item ingot = ITEMS.get(type + "_ingot");
-        Item gem = ITEMS.get(type + "_gem");
-        Item nugget = ITEMS.get(type + "_nugget");
-        Item dust = ITEMS.get(type + "_dust");
+        Item ore = items.get(type + "_ore");
+        Item ingot = items.get(type + "_ingot");
+        Item gem = items.get(type + "_gem");
+        Item nugget = items.get(type + "_nugget");
+        Item dust = items.get(type + "_dust");
 
         // @formatter:off
         if (ingot != null) {
@@ -124,11 +125,11 @@ public class ThermalRecipeProvider extends RecipeProvider {
 
                 CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
                         .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, ID_THERMAL + ":" +ingotName + "_from_dust_smelting");
+                        .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
 
                 CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
                         .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, ID_THERMAL + ":" +ingotName + "_from_dust_blasting");
+                        .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
             }
 
             if (ore != null) {
@@ -136,11 +137,11 @@ public class ThermalRecipeProvider extends RecipeProvider {
 
                 CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ore), ingot, xp, 200)
                         .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, ID_THERMAL + ":" +ingotName + "_from_ore_smelting");
+                        .build(consumer, this.modid + ":" +ingotName + "_from_ore_smelting");
 
                 CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(ore), ingot, xp, 100)
                         .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, ID_THERMAL + ":" +ingotName + "_from_ore_blasting");
+                        .build(consumer, this.modid + ":" +ingotName + "_from_ore_blasting");
             }
         } else if (gem != null) {
             String gemName = gem.getRegistryName().getPath();

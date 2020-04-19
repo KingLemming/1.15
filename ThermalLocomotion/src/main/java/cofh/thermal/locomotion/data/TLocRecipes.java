@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.data;
 
-import cofh.thermal.core.data.ThermalRecipeProvider;
+import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.util.references.CoFHTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -10,15 +10,16 @@ import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
 
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.locomotion.init.TLocReferences.*;
 
-public class TLocRecipes extends ThermalRecipeProvider {
+public class TLocRecipes extends RecipeProviderCoFH {
 
     public TLocRecipes(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_THERMAL);
     }
 
     @Override

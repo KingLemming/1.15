@@ -1,9 +1,9 @@
 package cofh.cofh_tools.data;
 
+import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.util.references.CoFHTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -12,12 +12,13 @@ import net.minecraft.tags.Tag;
 import java.util.function.Consumer;
 
 import static cofh.cofh_tools.CoFHTools.ITEMS;
+import static cofh.lib.util.constants.Constants.ID_COFH_TOOLS;
 
-public class ModRecipes extends RecipeProvider {
+public class ModRecipes extends RecipeProviderCoFH {
 
     public ModRecipes(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_COFH_TOOLS);
     }
 
     @Override

@@ -17,6 +17,10 @@ public class ThermalReferences {
     public static final String ID_LUMIUM_BLOCK = "lumium_block";
     public static final String ID_ENDERIUM_BLOCK = "enderium_block";
 
+    public static final String ID_SIGNALUM_GLASS = "signalum_glass";
+    public static final String ID_LUMIUM_GLASS = "lumium_glass";
+    public static final String ID_ENDERIUM_GLASS = "enderium_glass";
+
     public static final String ID_REDSTONE_FLUID = "fluid_redstone";
     public static final String ID_GLOWSTONE_FLUID = "fluid_glowstone";
     public static final String ID_ENDER_FLUID = "fluid_ender";

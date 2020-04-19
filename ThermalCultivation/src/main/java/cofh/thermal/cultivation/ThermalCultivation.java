@@ -92,25 +92,27 @@ public class ThermalCultivation {
 
         ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RADISH), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RICE), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SADIROOT), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SPINACH), RenderType.getCutout());
+        RenderType cutout = RenderType.getCutout();
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BELL_PEPPER), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_EGGPLANT), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_GREEN_BEAN), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PEANUT), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_STRAWBERRY), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TOMATO), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BARLEY), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ONION), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RADISH), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_RICE), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SADIROOT), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SPINACH), cutout);
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_COFFEE), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TEA), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_BELL_PEPPER), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_EGGPLANT), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_GREEN_BEAN), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_PEANUT), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_STRAWBERRY), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TOMATO), cutout);
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM_ATTACHED), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_COFFEE), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_TEA), cutout);
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM_ATTACHED), cutout);
     }
 
     private void colorSetup(final ColorHandlerEvent.Block event) {

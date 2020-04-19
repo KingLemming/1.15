@@ -1,8 +1,11 @@
 package cofh.thermal.core.data;
 
+import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
@@ -11,11 +14,11 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalReferences.ID_WRENCH;
 
-public class TCoreRecipes extends ThermalRecipeProvider {
+public class TCoreRecipes extends RecipeProviderCoFH {
 
     public TCoreRecipes(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_THERMAL);
     }
 
     @Override
@@ -41,13 +44,15 @@ public class TCoreRecipes extends ThermalRecipeProvider {
                 .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
         // @formatter:on
 
-        generateStorageRecipes(consumer, "signalum");
-        generateStorageRecipes(consumer, "lumium");
-        generateStorageRecipes(consumer, "enderium");
+        DeferredRegisterCoFH<Item> itemReg = ITEMS;
 
-        generateSmeltingAndBlastingRecipes(consumer, "signalum", 0);
-        generateSmeltingAndBlastingRecipes(consumer, "lumium", 0);
-        generateSmeltingAndBlastingRecipes(consumer, "enderium", 0);
+        generateStorageRecipes(itemReg, consumer, "signalum");
+        generateStorageRecipes(itemReg, consumer, "lumium");
+        generateStorageRecipes(itemReg, consumer, "enderium");
+
+        generateSmeltingAndBlastingRecipes(itemReg, consumer, "signalum", 0);
+        generateSmeltingAndBlastingRecipes(itemReg, consumer, "lumium", 0);
+        generateSmeltingAndBlastingRecipes(itemReg, consumer, "enderium", 0);
     }
 
 }

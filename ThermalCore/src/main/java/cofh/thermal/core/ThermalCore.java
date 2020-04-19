@@ -12,6 +12,8 @@ import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.Fluid;
@@ -36,6 +38,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.common.ThermalReferences.*;
 
 @Mod(ID_THERMAL)
 public class ThermalCore {
@@ -94,6 +97,12 @@ public class ThermalCore {
 
         modEventBus.addListener(ThermalTextures::preStitch);
         modEventBus.addListener(ThermalTextures::postStitch);
+
+        RenderType cutout = RenderType.getCutout();
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SIGNALUM_GLASS), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_GLASS), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

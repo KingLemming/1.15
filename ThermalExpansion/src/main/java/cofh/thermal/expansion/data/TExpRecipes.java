@@ -1,16 +1,18 @@
 package cofh.thermal.expansion.data;
 
-import cofh.thermal.core.data.ThermalRecipeProvider;
+import cofh.lib.data.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 
 import java.util.function.Consumer;
 
-public class TExpRecipes extends ThermalRecipeProvider {
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
+
+public class TExpRecipes extends RecipeProviderCoFH {
 
     public TExpRecipes(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_THERMAL);
     }
 
     @Override

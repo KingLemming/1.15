@@ -33,6 +33,10 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(BLOCKS.get(ID_LUMIUM_BLOCK), createSelfDropTable(BLOCKS.get(ID_LUMIUM_BLOCK)));
         lootTables.put(BLOCKS.get(ID_ENDERIUM_BLOCK), createSelfDropTable(BLOCKS.get(ID_ENDERIUM_BLOCK)));
 
+        //        lootTables.put(BLOCKS.get(ID_SIGNALUM_GLASS), createSelfDropTable(BLOCKS.get(ID_SIGNALUM_GLASS)));
+        //        lootTables.put(BLOCKS.get(ID_LUMIUM_GLASS), createSelfDropTable(BLOCKS.get(ID_LUMIUM_GLASS)));
+        //        lootTables.put(BLOCKS.get(ID_ENDERIUM_GLASS), createSelfDropTable(BLOCKS.get(ID_ENDERIUM_GLASS)));
+
         lootTables.put(BLOCKS.get(ID_SULFUR_ORE), BlockLootTables.droppingWithSilkTouch(BLOCKS.get(ID_SULFUR_ORE), BlockLootTables.withExplosionDecay(BLOCKS.get(ID_SULFUR_ORE), ItemLootEntry.builder(ITEMS.get(ID_SULFUR_DUST)).acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 5.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
         lootTables.put(BLOCKS.get(ID_NITER_ORE), BlockLootTables.droppingWithSilkTouch(BLOCKS.get(ID_NITER_ORE), BlockLootTables.withExplosionDecay(BLOCKS.get(ID_NITER_ORE), ItemLootEntry.builder(ITEMS.get(ID_NITER_DUST)).acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 5.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
     }
