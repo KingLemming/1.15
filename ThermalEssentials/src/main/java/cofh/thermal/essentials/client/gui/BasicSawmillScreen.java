@@ -13,7 +13,7 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class BasicSawmillScreen extends MachineScreenBasic<BasicSawmillContainer> {
 
-    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/basic_sawmill.png";
+    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machines/basic_sawmill.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
     public BasicSawmillScreen(BasicSawmillContainer container, PlayerInventory inv, ITextComponent titleIn) {

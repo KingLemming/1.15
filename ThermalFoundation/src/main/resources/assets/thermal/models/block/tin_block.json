@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/tin_block"
+    "all": "thermal:block/storage/tin_block"
   }
 }

@@ -13,7 +13,7 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class DeviceHiveExtractorScreen extends ThermalScreenBase<DeviceHiveExtractorContainer> {
 
-    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/device/hive_extractor.png";
+    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/devices/hive_extractor.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
     public DeviceHiveExtractorScreen(DeviceHiveExtractorContainer container, PlayerInventory inv, ITextComponent titleIn) {

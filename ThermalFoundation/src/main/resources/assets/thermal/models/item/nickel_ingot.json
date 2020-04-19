@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/nickel_ingot"
+    "layer0": "thermal:item/ingots/nickel_ingot"
   }
 }

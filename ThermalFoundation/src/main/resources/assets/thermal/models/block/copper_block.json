@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/copper_block"
+    "all": "thermal:block/storage/copper_block"
   }
 }

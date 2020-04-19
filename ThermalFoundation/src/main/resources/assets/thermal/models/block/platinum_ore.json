@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/platinum_ore"
+    "all": "thermal:block/ores/platinum_ore"
   }
 }

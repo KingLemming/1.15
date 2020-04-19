@@ -5,10 +5,7 @@ import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.common.ThermalRecipeSerializers;
 import cofh.thermal.core.common.ThermalRecipeTypes;
-import cofh.thermal.core.data.TCoreItemModels;
-import cofh.thermal.core.data.TCoreLootTables;
-import cofh.thermal.core.data.TCoreRecipes;
-import cofh.thermal.core.data.TCoreTags;
+import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
@@ -178,6 +175,7 @@ public class ThermalCore {
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        generator.addProvider(new TCoreBlockStates(generator, event.getExistingFileHelper()));
         generator.addProvider(new TCoreItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion

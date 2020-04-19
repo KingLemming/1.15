@@ -2,6 +2,8 @@ package cofh.core;
 
 import cofh.core.client.gui.CoreTextures;
 import cofh.core.command.CoFHCommand;
+import cofh.core.data.CoreBlockStates;
+import cofh.core.data.CoreItemModels;
 import cofh.core.data.CoreLootTables;
 import cofh.core.data.CoreRecipes;
 import cofh.core.event.CoreClientEvents;
@@ -156,6 +158,8 @@ public class CoFHCore {
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        generator.addProvider(new CoreBlockStates(generator, event.getExistingFileHelper()));
+        generator.addProvider(new CoreItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

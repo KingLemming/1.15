@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/niter_ore"
+    "all": "thermal:block/ores/niter_ore"
   }
 }

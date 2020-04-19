@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/platinum_block"
+    "all": "thermal:block/storage/platinum_block"
   }
 }

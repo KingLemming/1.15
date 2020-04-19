@@ -24,27 +24,25 @@ public class ModItemModels extends ItemModelProviderCoFH {
     @Override
     protected void registerModels() {
 
-        String projectiles = "projectiles";
-
-        generated(ITEMS.getSup(ID_BLAZE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_CHALLENGE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_DIAMOND_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_DISPLACEMENT_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_ENDER_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_EXPLOSIVE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_FROST_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_GLOWSTONE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_LIGHTNING_ARROW), projectiles);
-        // generated(ITEMS.getSup(ID_MAGMA_ARROW),projectiles);
-        generated(ITEMS.getSup(ID_PHANTASMAL_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_PRISMARINE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_QUARTZ_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_REDSTONE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_SHULKER_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_SLIME_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_SPORE_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_TRAINING_ARROW), projectiles);
-        generated(ITEMS.getSup(ID_VERDANT_ARROW), projectiles);
+        generated(ITEMS.getSup(ID_BLAZE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_CHALLENGE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_DIAMOND_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_DISPLACEMENT_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_ENDER_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_EXPLOSIVE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_FROST_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_GLOWSTONE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_LIGHTNING_ARROW), PROJECTILES);
+        // generated(ITEMS.getSup(ID_MAGMA_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_PHANTASMAL_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_PRISMARINE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_QUARTZ_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_REDSTONE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_SHULKER_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_SLIME_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_SPORE_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_TRAINING_ARROW), PROJECTILES);
+        generated(ITEMS.getSup(ID_VERDANT_ARROW), PROJECTILES);
     }
 
 }

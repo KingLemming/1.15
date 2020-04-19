@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/electrum_gear"
+    "layer0": "thermal:item/gears/electrum_gear"
   }
 }

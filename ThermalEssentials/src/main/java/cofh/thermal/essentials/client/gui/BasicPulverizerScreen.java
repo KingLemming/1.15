@@ -13,7 +13,7 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class BasicPulverizerScreen extends MachineScreenBasic<BasicPulverizerContainer> {
 
-    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machine/basic_pulverizer.png";
+    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/machines/basic_pulverizer.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
     public BasicPulverizerScreen(BasicPulverizerContainer container, PlayerInventory inv, ITextComponent titleIn) {

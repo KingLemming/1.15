@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/sapphire_dust"
+    "layer0": "thermal:item/dusts/sapphire_dust"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/ruby_nugget"
+    "layer0": "thermal:item/nuggets/ruby_nugget"
   }
 }
