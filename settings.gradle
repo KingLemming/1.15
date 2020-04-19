@@ -3,6 +3,7 @@ include 'CoFHCore'
 //include 'CoFHWorld'
 include 'ArchersParadox'
 include 'Ensorcellation'
+include 'OMGourd'
 //include 'Quartermastery'
 
 include 'ThermalCore'

@@ -1,11 +1,14 @@
 package cofh.lib.item;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.util.math.BlockPos;
 
 public class ShearsItemCoFH extends ShearsItem {
 
-    protected int enchantability = 1;
+    protected int enchantability = 0;
 
     public ShearsItemCoFH(Properties builder) {
 
@@ -28,6 +31,12 @@ public class ShearsItemCoFH extends ShearsItem {
     public int getItemEnchantability() {
 
         return enchantability;
+    }
+
+    @Override
+    public boolean doesSneakBypassUse(ItemStack stack, net.minecraft.world.IWorldReader world, BlockPos pos, PlayerEntity player) {
+
+        return true;
     }
 
 }

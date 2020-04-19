@@ -59,6 +59,7 @@ public class Constants {
 
     public static final String ID_ARCHERS_PARADOX = "archers_paradox";
     public static final String ID_ENSORCELLATION = "ensorcellation";
+    public static final String ID_OMGOURD = "omgourd";
     public static final String ID_ENSTORAGEMENT = "enstoragement";
     public static final String ID_ORBULATION = "orbulation";
     public static final String ID_QUARTERMASTERY = "quartermastery";

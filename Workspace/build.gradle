@@ -60,6 +60,9 @@ minecraft {
                 Ensorcellation {
                     source project(':Ensorcellation').sourceSets.main
                 }
+                OMGourd {
+                    source project(':OMGourd').sourceSets.main
+                }
                 // Quartermastery {
                 //     source project(':Quartermastery').sourceSets.main
                 // }
@@ -120,6 +123,9 @@ minecraft {
                 }
                 Ensorcellation {
                     source project(':Ensorcellation').sourceSets.main
+                }
+                OMGourd {
+                    source project(':OMGourd').sourceSets.main
                 }
                 // Quartermastery {
                 //     source project(':Quartermastery').sourceSets.main
@@ -184,6 +190,9 @@ minecraft {
                 Ensorcellation {
                     source project(':Ensorcellation').sourceSets.main
                 }
+                OMGourd {
+                    source project(':OMGourd').sourceSets.main
+                }
                 // Quartermastery {
                 //     source project(':Quartermastery').sourceSets.main
                 // }
@@ -233,6 +242,7 @@ dependencies {
 
     compile project(':ArchersParadox')
     compile project(':Ensorcellation')
+    compile project(':OMGourd')
     //compile project(':Quartermastery')
 
     compile project(':ThermalCore')

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "omgourd:block/jack_o_lantern_19"
+    },
+    "facing=south": {
+      "model": "omgourd:block/jack_o_lantern_19",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "omgourd:block/jack_o_lantern_19",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "omgourd:block/jack_o_lantern_19",
+      "y": 90
+    }
+  }
+}

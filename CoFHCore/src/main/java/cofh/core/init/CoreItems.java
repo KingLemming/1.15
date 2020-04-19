@@ -1,6 +1,7 @@
 package cofh.core.init;
 
 import cofh.lib.item.ItemCoFH;
+import cofh.lib.item.ShearsItemCoFH;
 import cofh.lib.item.override.DyeableHorseArmorItemCoFH;
 import cofh.lib.item.override.HorseArmorItemCoFH;
 import cofh.lib.item.override.ShieldItemCoFH;
@@ -17,6 +18,7 @@ public class CoreItems {
     }
 
     private static boolean overrideHorseArmor;
+    private static boolean overrideShears;
     private static boolean overrideShield;
 
     public static void register() {
@@ -35,6 +37,16 @@ public class CoreItems {
         ITEMS.register("minecraft:golden_horse_armor", () -> new HorseArmorItemCoFH(7, "gold", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)).setEnchantability(25));
         ITEMS.register("minecraft:diamond_horse_armor", () -> new HorseArmorItemCoFH(11, "diamond", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)).setEnchantability(10));
         ITEMS.register("minecraft:leather_horse_armor", () -> new DyeableHorseArmorItemCoFH(3, "leather", (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC)).setEnchantability(15));
+    }
+
+    public static void registerShearsOverride() {
+
+        if (overrideShears) {
+            return;
+        }
+        overrideShears = true;
+
+        ITEMS.register("minecraft:shears", () -> new ShearsItemCoFH((new Item.Properties()).maxDamage(238).group(ItemGroup.TOOLS)));
     }
 
     public static void registerShieldOverride() {

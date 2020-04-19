@@ -1,0 +1,6 @@
+{
+  "parent": "block/jack_o_lantern",
+  "textures": {
+    "front": "omgourd:block/jack_o_lantern_5"
+  }
+}
