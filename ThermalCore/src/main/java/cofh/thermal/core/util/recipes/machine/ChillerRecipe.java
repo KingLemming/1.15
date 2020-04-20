@@ -37,18 +37,4 @@ public class ChillerRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_CHILLER;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_CHILLER_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_CHILLER_BLOCK);
-    //    }
-
 }

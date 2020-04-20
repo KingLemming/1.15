@@ -33,18 +33,4 @@ public class InsolatorCatalyst extends ThermalCatalyst {
         return ThermalRecipeTypes.CATALYST_INSOLATOR;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_INSOLATOR_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_INSOLATOR_BLOCK);
-    //    }
-
 }

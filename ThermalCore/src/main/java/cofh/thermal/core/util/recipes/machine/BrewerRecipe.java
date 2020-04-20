@@ -37,18 +37,4 @@ public class BrewerRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_BREWER;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_BREWER_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_BREWER_BLOCK);
-    //    }
-
 }

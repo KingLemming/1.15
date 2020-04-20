@@ -37,18 +37,4 @@ public class RefineryRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_REFINERY;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_REFINERY_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_REFINERY_BLOCK);
-    //    }
-
 }

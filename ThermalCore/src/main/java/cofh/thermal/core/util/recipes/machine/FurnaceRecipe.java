@@ -45,18 +45,4 @@ public class FurnaceRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_FURNACE;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_FURNACE_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_FURNACE_BLOCK);
-    //    }
-
 }

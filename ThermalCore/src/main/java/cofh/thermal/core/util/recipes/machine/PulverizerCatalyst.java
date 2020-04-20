@@ -33,18 +33,4 @@ public class PulverizerCatalyst extends ThermalCatalyst {
         return ThermalRecipeTypes.CATALYST_PULVERIZER;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_PULVERIZER_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_PULVERIZER_BLOCK);
-    //    }
-
 }

@@ -37,18 +37,4 @@ public class BottlerRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_BOTTLER;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_BOTTLER_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_BOTTLER_BLOCK);
-    //    }
-
 }

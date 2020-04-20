@@ -37,18 +37,4 @@ public class PressRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_PRESS;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_PRESS_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_PRESS_BLOCK);
-    //    }
-
 }

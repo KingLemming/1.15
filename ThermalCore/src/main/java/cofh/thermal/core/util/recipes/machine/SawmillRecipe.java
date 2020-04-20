@@ -36,18 +36,4 @@ public class SawmillRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_SAWMILL;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_SAWMILL_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_SAWMILL_BLOCK);
-    //    }
-
 }

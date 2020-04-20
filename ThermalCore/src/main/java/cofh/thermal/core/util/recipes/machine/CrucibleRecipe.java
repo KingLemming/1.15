@@ -37,18 +37,4 @@ public class CrucibleRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_CRUCIBLE;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_CRUCIBLE_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_CRUCIBLE_BLOCK);
-    //    }
-
 }

@@ -37,18 +37,4 @@ public class CentrifugeRecipe extends ThermalRecipe {
         return ThermalRecipeTypes.RECIPE_CENTRIFUGE;
     }
 
-    //    @Nonnull
-    //    @Override
-    //    public String getGroup() {
-    //
-    //        return MACHINE_CENTRIFUGE_BLOCK.getTranslationKey();
-    //    }
-    //
-    //    @Nonnull
-    //    @Override
-    //    public ItemStack getIcon() {
-    //
-    //        return new ItemStack(MACHINE_CENTRIFUGE_BLOCK);
-    //    }
-
 }
