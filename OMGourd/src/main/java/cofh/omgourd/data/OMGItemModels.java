@@ -7,9 +7,9 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import static cofh.lib.util.constants.Constants.ID_OMGOURD;
 import static cofh.omgourd.OMGourd.BLOCKS;
 
-public class ModItemModels extends ItemModelProviderCoFH {
+public class OMGItemModels extends ItemModelProviderCoFH {
 
-    public ModItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public OMGItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 
         super(generator, ID_OMGOURD, existingFileHelper);
     }

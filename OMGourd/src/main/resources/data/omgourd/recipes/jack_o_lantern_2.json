@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": {
+      "item": "omgourd:carved_pumpkin_2"
+    },
+    "B": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "omgourd:jack_o_lantern_2"
+  }
+}

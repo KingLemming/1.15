@@ -5,9 +5,9 @@ import net.minecraft.data.DataGenerator;
 
 import static cofh.omgourd.OMGourd.BLOCKS;
 
-public class ModLootTables extends LootTableProviderCoFH {
+public class OMGLootTables extends LootTableProviderCoFH {
 
-    public ModLootTables(DataGenerator dataGeneratorIn) {
+    public OMGLootTables(DataGenerator dataGeneratorIn) {
 
         super(dataGeneratorIn);
     }

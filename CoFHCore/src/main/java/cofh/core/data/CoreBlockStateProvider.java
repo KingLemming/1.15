@@ -6,9 +6,9 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 
-public class CoreBlockStates extends BlockStateProviderCoFH {
+public class CoreBlockStateProvider extends BlockStateProviderCoFH {
 
-    public CoreBlockStates(DataGenerator gen, ExistingFileHelper exFileHelper) {
+    public CoreBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
 
         super(gen, ID_COFH_CORE, exFileHelper);
     }

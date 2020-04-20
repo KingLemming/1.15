@@ -3,8 +3,9 @@ package cofh.omgourd;
 import cofh.core.init.CoreItems;
 import cofh.lib.block.deco.CarvedPumpkinBlockCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
-import cofh.omgourd.data.ModItemModels;
-import cofh.omgourd.data.ModLootTables;
+import cofh.omgourd.data.OMGItemModels;
+import cofh.omgourd.data.OMGLootTables;
+import cofh.omgourd.data.OMGRecipeProvider;
 import cofh.omgourd.init.OMGBlocks;
 import cofh.omgourd.init.OMGConfig;
 import net.minecraft.block.Block;
@@ -92,12 +93,13 @@ public class OMGourd {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new ModLootTables(generator));
+        generator.addProvider(new OMGLootTables(generator));
+        generator.addProvider(new OMGRecipeProvider(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
-        generator.addProvider(new ModItemModels(generator, event.getExistingFileHelper()));
+        generator.addProvider(new OMGItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

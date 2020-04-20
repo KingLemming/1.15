@@ -5,9 +5,9 @@ import net.minecraft.data.DataGenerator;
 
 import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
 
-public class CoreLootTables extends LootTableProviderCoFH {
+public class CoreLootTableProvider extends LootTableProviderCoFH {
 
-    public CoreLootTables(DataGenerator dataGeneratorIn) {
+    public CoreLootTableProvider(DataGenerator dataGeneratorIn) {
 
         super(dataGeneratorIn);
     }

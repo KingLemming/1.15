@@ -4,15 +4,17 @@ issueTrackerURL="https://github.com/cofh/feedback"
 
 [[mods]]
     modId="omgourd"
-    version="0.1.0b"
-    displayName="Oh My Gourd!"
+    version="0.4.0b"
+    displayName="Oh My Gourd"
     updateJSONURL="https://raw.github.com/cofh/version/master/omgourd/update.json"
     displayURL="https://teamcofh.com/"
     logoFile="logo.png"
     credits="Team CoFH"
     authors="King Lemming, Endergized"
     description='''
-Adds a lot more carvings for Pumpkins and Jack O'Lanterns. Enjoy!
+Adds a lot more carvings for Pumpkins and Jack o'Lanterns.
+
+Suitable for both lightly and heavily modded worlds.
 '''
 [[dependencies.omgourd]]
     modId="minecraft"

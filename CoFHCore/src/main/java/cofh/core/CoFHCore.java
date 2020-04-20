@@ -2,10 +2,10 @@ package cofh.core;
 
 import cofh.core.client.gui.CoreTextures;
 import cofh.core.command.CoFHCommand;
-import cofh.core.data.CoreBlockStates;
-import cofh.core.data.CoreItemModels;
-import cofh.core.data.CoreLootTables;
-import cofh.core.data.CoreRecipes;
+import cofh.core.data.CoreBlockStateProvider;
+import cofh.core.data.CoreItemModelProvider;
+import cofh.core.data.CoreLootTableProvider;
+import cofh.core.data.CoreRecipeProvider;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.*;
@@ -152,14 +152,14 @@ public class CoFHCore {
 
     private void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new CoreLootTables(generator));
-        generator.addProvider(new CoreRecipes(generator));
+        generator.addProvider(new CoreLootTableProvider(generator));
+        generator.addProvider(new CoreRecipeProvider(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
-        generator.addProvider(new CoreBlockStates(generator, event.getExistingFileHelper()));
-        generator.addProvider(new CoreItemModels(generator, event.getExistingFileHelper()));
+        generator.addProvider(new CoreBlockStateProvider(generator, event.getExistingFileHelper()));
+        generator.addProvider(new CoreItemModelProvider(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

@@ -1,8 +1,8 @@
 package cofh.core.data;
 
+import cofh.lib.data.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.Tags;
@@ -10,13 +10,14 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 
 import static cofh.core.CoFHCore.ITEMS;
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
 
-public class CoreRecipes extends RecipeProvider {
+public class CoreRecipeProvider extends RecipeProviderCoFH {
 
-    public CoreRecipes(DataGenerator generatorIn) {
+    public CoreRecipeProvider(DataGenerator generatorIn) {
 
-        super(generatorIn);
+        super(generatorIn, ID_COFH_CORE);
     }
 
     @Override

@@ -8,9 +8,9 @@ import static cofh.core.CoFHCore.ITEMS;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
 
-public class CoreItemModels extends ItemModelProviderCoFH {
+public class CoreItemModelProvider extends ItemModelProviderCoFH {
 
-    public CoreItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public CoreItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 
         super(generator, ID_COFH_CORE, existingFileHelper);
     }

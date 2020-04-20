@@ -35,6 +35,6 @@ Suitable for both lightly and heavily modded worlds.
 [[dependencies.ensorcellation]]
     modId="cofh_core"
     mandatory=true
-    versionRange="[0.3,)"
+    versionRange="[0.4,)"
     ordering="AFTER"
     side="BOTH"
