@@ -6,7 +6,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
 import net.minecraft.data.ItemTagsProvider;
 
-import static cofh.lib.util.references.CoFHTags.Items.*;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalReferences.*;
@@ -28,6 +27,14 @@ public class TCoreTags {
 
         @Override
         protected void registerTags() {
+
+            getBuilder(CoFHTags.Blocks.ORES_APATITE).add(BLOCKS.get(ID_APATITE_ORE));
+            getBuilder(CoFHTags.Blocks.ORES_NITER).add(BLOCKS.get(ID_NITER_ORE));
+            getBuilder(CoFHTags.Blocks.ORES_SULFUR).add(BLOCKS.get(ID_SULFUR_ORE));
+
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_APATITE).add(BLOCKS.get(ID_APATITE_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_NITER).add(BLOCKS.get(ID_NITER_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SULFUR).add(BLOCKS.get(ID_SULFUR_BLOCK));
 
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SIGNALUM).add(BLOCKS.get(ID_SIGNALUM_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_LUMIUM).add(BLOCKS.get(ID_LUMIUM_BLOCK));
@@ -52,31 +59,55 @@ public class TCoreTags {
         @Override
         protected void registerTags() {
 
+            copy(CoFHTags.Blocks.ORES_APATITE, CoFHTags.Items.ORES_APATITE);
+            copy(CoFHTags.Blocks.ORES_NITER, CoFHTags.Items.ORES_NITER);
+            copy(CoFHTags.Blocks.ORES_SULFUR, CoFHTags.Items.ORES_SULFUR);
+
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_APATITE, CoFHTags.Items.STORAGE_BLOCKS_APATITE);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_NITER, CoFHTags.Items.STORAGE_BLOCKS_NITER);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_SULFUR, CoFHTags.Items.STORAGE_BLOCKS_SULFUR);
+
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_SIGNALUM, CoFHTags.Items.STORAGE_BLOCKS_SIGNALUM);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_LUMIUM, CoFHTags.Items.STORAGE_BLOCKS_LUMIUM);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_ENDERIUM, CoFHTags.Items.STORAGE_BLOCKS_ENDERIUM);
 
-            getBuilder(COINS_SIGNALUM).add(ITEMS.get("signalum_coin"));
-            getBuilder(COINS_LUMIUM).add(ITEMS.get("lumium_coin"));
-            getBuilder(COINS_ENDERIUM).add(ITEMS.get("enderium_coin"));
+            getBuilder(CoFHTags.Items.COINS_IRON).add(ITEMS.get("iron_coin"));
+            getBuilder(CoFHTags.Items.COINS_GOLD).add(ITEMS.get("gold_coin"));
 
-            getBuilder(GEARS_SIGNALUM).add(ITEMS.get("signalum_gear"));
-            getBuilder(GEARS_LUMIUM).add(ITEMS.get("lumium_gear"));
-            getBuilder(GEARS_ENDERIUM).add(ITEMS.get("enderium_gear"));
+            getBuilder(CoFHTags.Items.DUSTS_IRON).add(ITEMS.get("iron_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_GOLD).add(ITEMS.get("gold_dust"));
 
-            getBuilder(INGOTS_SIGNALUM).add(ITEMS.get("signalum_ingot"));
-            getBuilder(INGOTS_LUMIUM).add(ITEMS.get("lumium_ingot"));
-            getBuilder(INGOTS_ENDERIUM).add(ITEMS.get("enderium_ingot"));
+            getBuilder(CoFHTags.Items.GEARS_IRON).add(ITEMS.get("iron_gear"));
+            getBuilder(CoFHTags.Items.GEARS_GOLD).add(ITEMS.get("gold_gear"));
 
-            getBuilder(NUGGETS_SIGNALUM).add(ITEMS.get("signalum_nugget"));
-            getBuilder(NUGGETS_LUMIUM).add(ITEMS.get("lumium_nugget"));
-            getBuilder(NUGGETS_ENDERIUM).add(ITEMS.get("enderium_nugget"));
+            getBuilder(CoFHTags.Items.PLATES_IRON).add(ITEMS.get("iron_plate"));
+            getBuilder(CoFHTags.Items.PLATES_GOLD).add(ITEMS.get("gold_plate"));
 
-            getBuilder(PLATES_SIGNALUM).add(ITEMS.get("signalum_plate"));
-            getBuilder(PLATES_LUMIUM).add(ITEMS.get("lumium_plate"));
-            getBuilder(PLATES_ENDERIUM).add(ITEMS.get("enderium_plate"));
+            getBuilder(CoFHTags.Items.COINS_SIGNALUM).add(ITEMS.get("signalum_coin"));
+            getBuilder(CoFHTags.Items.COINS_LUMIUM).add(ITEMS.get("lumium_coin"));
+            getBuilder(CoFHTags.Items.COINS_ENDERIUM).add(ITEMS.get("enderium_coin"));
 
-            getBuilder(TOOLS_WRENCH).add(ITEMS.get("wrench"));
+            getBuilder(CoFHTags.Items.DUSTS_SIGNALUM).add(ITEMS.get("signalum_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_LUMIUM).add(ITEMS.get("lumium_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_ENDERIUM).add(ITEMS.get("enderium_dust"));
+
+            getBuilder(CoFHTags.Items.GEARS_SIGNALUM).add(ITEMS.get("signalum_gear"));
+            getBuilder(CoFHTags.Items.GEARS_LUMIUM).add(ITEMS.get("lumium_gear"));
+            getBuilder(CoFHTags.Items.GEARS_ENDERIUM).add(ITEMS.get("enderium_gear"));
+
+            getBuilder(CoFHTags.Items.INGOTS_SIGNALUM).add(ITEMS.get("signalum_ingot"));
+            getBuilder(CoFHTags.Items.INGOTS_LUMIUM).add(ITEMS.get("lumium_ingot"));
+            getBuilder(CoFHTags.Items.INGOTS_ENDERIUM).add(ITEMS.get("enderium_ingot"));
+
+            getBuilder(CoFHTags.Items.NUGGETS_SIGNALUM).add(ITEMS.get("signalum_nugget"));
+            getBuilder(CoFHTags.Items.NUGGETS_LUMIUM).add(ITEMS.get("lumium_nugget"));
+            getBuilder(CoFHTags.Items.NUGGETS_ENDERIUM).add(ITEMS.get("enderium_nugget"));
+
+            getBuilder(CoFHTags.Items.PLATES_SIGNALUM).add(ITEMS.get("signalum_plate"));
+            getBuilder(CoFHTags.Items.PLATES_LUMIUM).add(ITEMS.get("lumium_plate"));
+            getBuilder(CoFHTags.Items.PLATES_ENDERIUM).add(ITEMS.get("enderium_plate"));
+
+            getBuilder(CoFHTags.Items.TOOLS_WRENCH).add(ITEMS.get("wrench"));
         }
 
     }

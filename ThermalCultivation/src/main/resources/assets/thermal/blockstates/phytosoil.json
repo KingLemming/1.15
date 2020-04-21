@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "tilled=false": [
+      {
+        "model": "thermal:block/phytosoil"
+      },
+      {
+        "model": "thermal:block/phytosoil",
+        "y": 90
+      },
+      {
+        "model": "thermal:block/phytosoil",
+        "y": 180
+      },
+      {
+        "model": "thermal:block/phytosoil",
+        "y": 270
+      }
+    ],
+    "tilled=true": {
+      "model": "thermal:block/phytosoil_tilled"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 package cofh.thermal.core.data;
 
 import cofh.lib.data.BlockStateProviderCoFH;
+import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
@@ -24,16 +26,23 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
     @Override
     protected void registerStatesAndModels() {
 
-        oreBlock(BLOCKS.getSup(ID_SULFUR_ORE));
-        oreBlock(BLOCKS.getSup(ID_NITER_ORE));
+        DeferredRegisterCoFH<Block> reg = BLOCKS;
 
-        storageBlock(BLOCKS.getSup(ID_SIGNALUM_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_LUMIUM_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_ENDERIUM_BLOCK));
+        oreBlock(reg.getSup(ID_APATITE_ORE));
+        oreBlock(reg.getSup(ID_NITER_ORE));
+        oreBlock(reg.getSup(ID_SULFUR_ORE));
 
-        //        simpleBlock(BLOCKS.getSup(ID_SIGNALUM_GLASS));
-        //        simpleBlock(BLOCKS.getSup(ID_LUMIUM_GLASS));
-        //        simpleBlock(BLOCKS.getSup(ID_ENDERIUM_GLASS));
+        storageBlock(reg.getSup(ID_APATITE_BLOCK));
+        storageBlock(reg.getSup(ID_NITER_BLOCK));
+        storageBlock(reg.getSup(ID_SULFUR_BLOCK));
+
+        storageBlock(reg.getSup(ID_SIGNALUM_BLOCK));
+        storageBlock(reg.getSup(ID_LUMIUM_BLOCK));
+        storageBlock(reg.getSup(ID_ENDERIUM_BLOCK));
+
+        glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
+        glassBlock(reg.getSup(ID_LUMIUM_GLASS));
+        glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
     }
 
 }

@@ -68,6 +68,7 @@ public class Constants {
 
     // region BLOCKSTATE PROPERTIES
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+    public static final BooleanProperty CHARGED = BooleanProperty.create("charged");
     public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
     public static final IntegerProperty AGE_PERENNIAL = IntegerProperty.create("age", 0, 10);

@@ -600,8 +600,9 @@ public class Utils {
                             ++grow;
                         } catch (Exception e) {
                             // Vanilla issue causes bamboo to crash if grown close to world height
-                            if (!(growable instanceof BambooBlock))
+                            if (!(growable instanceof BambooBlock)) {
                                 throw e;
+                            }
                         }
                         // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
                         // ++grow;
@@ -627,8 +628,9 @@ public class Utils {
                                     ++grow;
                                 } catch (Exception e) {
                                     // Vanilla issue causes bamboo to crash if grown close to world height
-                                    if (!(growable instanceof BambooBlock))
+                                    if (!(growable instanceof BambooBlock)) {
                                         throw e;
+                                    }
                                 }
                                 // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
                                 // ++grow;

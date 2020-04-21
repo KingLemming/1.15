@@ -1,6 +1,8 @@
 package cofh.thermal.foundation.data;
 
 import cofh.lib.data.BlockStateProviderCoFH;
+import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
@@ -24,30 +26,32 @@ public class TFndBlockStates extends BlockStateProviderCoFH {
     @Override
     protected void registerStatesAndModels() {
 
-        oreBlock(BLOCKS.getSup(ID_COPPER_ORE));
-        oreBlock(BLOCKS.getSup(ID_TIN_ORE));
-        oreBlock(BLOCKS.getSup(ID_SILVER_ORE));
-        oreBlock(BLOCKS.getSup(ID_LEAD_ORE));
-        oreBlock(BLOCKS.getSup(ID_NICKEL_ORE));
-        oreBlock(BLOCKS.getSup(ID_PLATINUM_ORE));
+        DeferredRegisterCoFH<Block> reg = BLOCKS;
 
-        oreBlock(BLOCKS.getSup(ID_RUBY_ORE));
-        oreBlock(BLOCKS.getSup(ID_SAPPHIRE_ORE));
+        oreBlock(reg.getSup(ID_COPPER_ORE));
+        oreBlock(reg.getSup(ID_TIN_ORE));
+        oreBlock(reg.getSup(ID_SILVER_ORE));
+        oreBlock(reg.getSup(ID_LEAD_ORE));
+        oreBlock(reg.getSup(ID_NICKEL_ORE));
+        oreBlock(reg.getSup(ID_PLATINUM_ORE));
 
-        storageBlock(BLOCKS.getSup(ID_COPPER_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_TIN_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_SILVER_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_LEAD_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_NICKEL_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_PLATINUM_BLOCK));
+        oreBlock(reg.getSup(ID_RUBY_ORE));
+        oreBlock(reg.getSup(ID_SAPPHIRE_ORE));
 
-        storageBlock(BLOCKS.getSup(ID_BRONZE_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_ELECTRUM_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_INVAR_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_CONSTANTAN_BLOCK));
+        storageBlock(reg.getSup(ID_COPPER_BLOCK));
+        storageBlock(reg.getSup(ID_TIN_BLOCK));
+        storageBlock(reg.getSup(ID_SILVER_BLOCK));
+        storageBlock(reg.getSup(ID_LEAD_BLOCK));
+        storageBlock(reg.getSup(ID_NICKEL_BLOCK));
+        storageBlock(reg.getSup(ID_PLATINUM_BLOCK));
 
-        storageBlock(BLOCKS.getSup(ID_RUBY_BLOCK));
-        storageBlock(BLOCKS.getSup(ID_SAPPHIRE_BLOCK));
+        storageBlock(reg.getSup(ID_BRONZE_BLOCK));
+        storageBlock(reg.getSup(ID_ELECTRUM_BLOCK));
+        storageBlock(reg.getSup(ID_INVAR_BLOCK));
+        storageBlock(reg.getSup(ID_CONSTANTAN_BLOCK));
+
+        storageBlock(reg.getSup(ID_RUBY_BLOCK));
+        storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
     }
 
 }

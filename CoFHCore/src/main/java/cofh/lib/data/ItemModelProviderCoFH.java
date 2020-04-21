@@ -21,6 +21,7 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
     }
 
     public static final String COINS = "coins";
+    public static final String CRAFTING = "crafting";
     public static final String CROPS = "crops";
     public static final String DUSTS = "dusts";
     public static final String FOODS = "foods";
@@ -30,49 +31,50 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
     public static final String NUGGETS = "nuggets";
     public static final String PLATES = "plates";
     public static final String PROJECTILES = "projectiles";
+    public static final String RESOURCES = "resources";
     public static final String SEEDS = "seeds";
     public static final String TOOLS = "tools";
 
-    protected void standardToolSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+    protected void standardToolSet(DeferredRegisterCoFH<Item> reg, String prefix) {
 
-        handheld(itemReg.getSup(prefix + "_shovel"), TOOLS);
-        handheld(itemReg.getSup(prefix + "_pickaxe"), TOOLS);
-        handheld(itemReg.getSup(prefix + "_axe"), TOOLS);
-        handheld(itemReg.getSup(prefix + "_hoe"), TOOLS);
-        handheld(itemReg.getSup(prefix + "_sword"), TOOLS);
+        handheld(reg.getSup(prefix + "_shovel"), TOOLS);
+        handheld(reg.getSup(prefix + "_pickaxe"), TOOLS);
+        handheld(reg.getSup(prefix + "_axe"), TOOLS);
+        handheld(reg.getSup(prefix + "_hoe"), TOOLS);
+        handheld(reg.getSup(prefix + "_sword"), TOOLS);
     }
 
-    protected void metalSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+    protected void metalSet(DeferredRegisterCoFH<Item> reg, String prefix) {
 
-        metalSet(itemReg, prefix, false);
+        metalSet(reg, prefix, false);
     }
 
-    protected void metalSet(DeferredRegisterCoFH<Item> itemReg, String prefix, boolean vanilla) {
+    protected void metalSet(DeferredRegisterCoFH<Item> reg, String prefix, boolean vanilla) {
 
         if (!vanilla) {
-            generated(itemReg.getSup(prefix + "_ingot"), INGOTS);
-            generated(itemReg.getSup(prefix + "_nugget"), NUGGETS);
+            generated(reg.getSup(prefix + "_ingot"), INGOTS);
+            generated(reg.getSup(prefix + "_nugget"), NUGGETS);
         }
-        generated(itemReg.getSup(prefix + "_dust"), DUSTS);
-        generated(itemReg.getSup(prefix + "_gear"), GEARS);
-        //        generated(itemReg.getSup(prefix + "_plate"));
-        //        generated(itemReg.getSup(prefix + "_coin"));
+        generated(reg.getSup(prefix + "_dust"), DUSTS);
+        generated(reg.getSup(prefix + "_gear"), GEARS);
+        //        generated(reg.getSup(prefix + "_plate"));
+        //        generated(reg.getSup(prefix + "_coin"));
     }
 
-    protected void gemSet(DeferredRegisterCoFH<Item> itemReg, String prefix) {
+    protected void gemSet(DeferredRegisterCoFH<Item> reg, String prefix) {
 
-        gemSet(itemReg, prefix, false);
+        gemSet(reg, prefix, false);
     }
 
-    protected void gemSet(DeferredRegisterCoFH<Item> itemReg, String prefix, boolean vanilla) {
+    protected void gemSet(DeferredRegisterCoFH<Item> reg, String prefix, boolean vanilla) {
 
         if (!vanilla) {
-            generated(itemReg.getSup(prefix + "_gem"), GEMS);
+            generated(reg.getSup(prefix + "_gem"), GEMS);
         }
-        generated(itemReg.getSup(prefix + "_nugget"), NUGGETS);
-        generated(itemReg.getSup(prefix + "_dust"), DUSTS);
-        generated(itemReg.getSup(prefix + "_gear"), GEARS);
-        //        generated(itemReg.getSup(prefix + "_plate"));
+        //        generated(reg.getSup(prefix + "_nugget"), NUGGETS);
+        generated(reg.getSup(prefix + "_dust"), DUSTS);
+        generated(reg.getSup(prefix + "_gear"), GEARS);
+        //        generated(reg.getSup(prefix + "_plate"));
     }
 
     // region HELPERS

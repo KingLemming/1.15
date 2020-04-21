@@ -2,6 +2,7 @@ package cofh.thermal.core.data;
 
 import cofh.lib.data.ItemModelProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
@@ -27,31 +28,50 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
     @Override
     protected void registerModels() {
 
-        blockItem(BLOCKS.getSup(ID_SULFUR_ORE));
-        blockItem(BLOCKS.getSup(ID_NITER_ORE));
+        registerBlockItemModels();
 
-        blockItem(BLOCKS.getSup(ID_SIGNALUM_BLOCK));
-        blockItem(BLOCKS.getSup(ID_LUMIUM_BLOCK));
-        blockItem(BLOCKS.getSup(ID_ENDERIUM_BLOCK));
+        DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        blockItem(BLOCKS.getSup(ID_SIGNALUM_GLASS));
-        blockItem(BLOCKS.getSup(ID_LUMIUM_GLASS));
-        blockItem(BLOCKS.getSup(ID_ENDERIUM_GLASS));
+        metalSet(reg, "iron", true);
+        metalSet(reg, "gold", true);
 
-        DeferredRegisterCoFH<Item> itemReg = ITEMS;
+        gemSet(reg, "diamond", true);
+        gemSet(reg, "emerald", true);
 
-        metalSet(itemReg, "iron", true);
-        metalSet(itemReg, "gold", true);
+        metalSet(reg, "signalum");
+        metalSet(reg, "lumium");
+        metalSet(reg, "enderium");
 
-        gemSet(itemReg, "diamond", true);
-        gemSet(itemReg, "emerald", true);
+        generated(reg.getSup("wood_dust"), DUSTS);
 
-        metalSet(itemReg, "signalum");
-        metalSet(itemReg, "lumium");
-        metalSet(itemReg, "enderium");
+        generated(reg.getSup("apatite"), RESOURCES);
+        generated(reg.getSup("niter"), RESOURCES);
+        generated(reg.getSup("sulfur"), RESOURCES);
 
-        generated(ITEMS.getSup("wrench"), TOOLS);
-        generated(ITEMS.getSup("lock"), TOOLS);
+        generated(reg.getSup("wrench"), TOOLS);
+        generated(reg.getSup("lock"), TOOLS);
+        generated(reg.getSup("fertilizer"), TOOLS);
+    }
+
+    private void registerBlockItemModels() {
+
+        DeferredRegisterCoFH<Block> reg = BLOCKS;
+
+        blockItem(reg.getSup(ID_APATITE_ORE));
+        blockItem(reg.getSup(ID_NITER_ORE));
+        blockItem(reg.getSup(ID_SULFUR_ORE));
+
+        blockItem(reg.getSup(ID_APATITE_BLOCK));
+        blockItem(reg.getSup(ID_NITER_BLOCK));
+        blockItem(reg.getSup(ID_SULFUR_BLOCK));
+
+        blockItem(reg.getSup(ID_SIGNALUM_BLOCK));
+        blockItem(reg.getSup(ID_LUMIUM_BLOCK));
+        blockItem(reg.getSup(ID_ENDERIUM_BLOCK));
+
+        blockItem(reg.getSup(ID_SIGNALUM_GLASS));
+        blockItem(reg.getSup(ID_LUMIUM_GLASS));
+        blockItem(reg.getSup(ID_ENDERIUM_GLASS));
     }
 
 }

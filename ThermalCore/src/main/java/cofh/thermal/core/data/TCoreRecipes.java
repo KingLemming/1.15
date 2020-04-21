@@ -44,15 +44,19 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
         // @formatter:on
 
-        DeferredRegisterCoFH<Item> itemReg = ITEMS;
+        DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        generateStorageRecipes(itemReg, consumer, "signalum");
-        generateStorageRecipes(itemReg, consumer, "lumium");
-        generateStorageRecipes(itemReg, consumer, "enderium");
+        generateStorageRecipes(reg, consumer, "apatite");
+        generateStorageRecipes(reg, consumer, "niter");
+        generateStorageRecipes(reg, consumer, "sulfur");
 
-        generateSmeltingAndBlastingRecipes(itemReg, consumer, "signalum", 0);
-        generateSmeltingAndBlastingRecipes(itemReg, consumer, "lumium", 0);
-        generateSmeltingAndBlastingRecipes(itemReg, consumer, "enderium", 0);
+        generateStorageRecipes(reg, consumer, "signalum");
+        generateStorageRecipes(reg, consumer, "lumium");
+        generateStorageRecipes(reg, consumer, "enderium");
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, "signalum", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "lumium", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "enderium", 0);
     }
 
 }

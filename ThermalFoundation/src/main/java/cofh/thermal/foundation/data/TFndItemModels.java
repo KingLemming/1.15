@@ -2,6 +2,7 @@ package cofh.thermal.foundation.data;
 
 import cofh.lib.data.ItemModelProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
@@ -27,47 +28,52 @@ public class TFndItemModels extends ItemModelProviderCoFH {
     @Override
     protected void registerModels() {
 
-        blockItem(BLOCKS.getSup(ID_COPPER_ORE));
-        blockItem(BLOCKS.getSup(ID_TIN_ORE));
-        blockItem(BLOCKS.getSup(ID_SILVER_ORE));
-        blockItem(BLOCKS.getSup(ID_LEAD_ORE));
-        blockItem(BLOCKS.getSup(ID_NICKEL_ORE));
-        blockItem(BLOCKS.getSup(ID_PLATINUM_ORE));
+        DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        blockItem(BLOCKS.getSup(ID_RUBY_ORE));
-        blockItem(BLOCKS.getSup(ID_SAPPHIRE_ORE));
+        metalSet(reg, "copper");
+        metalSet(reg, "tin");
+        metalSet(reg, "silver");
+        metalSet(reg, "lead");
+        metalSet(reg, "nickel");
+        metalSet(reg, "platinum");
 
-        blockItem(BLOCKS.getSup(ID_COPPER_BLOCK));
-        blockItem(BLOCKS.getSup(ID_TIN_BLOCK));
-        blockItem(BLOCKS.getSup(ID_SILVER_BLOCK));
-        blockItem(BLOCKS.getSup(ID_LEAD_BLOCK));
-        blockItem(BLOCKS.getSup(ID_NICKEL_BLOCK));
-        blockItem(BLOCKS.getSup(ID_PLATINUM_BLOCK));
+        metalSet(reg, "bronze");
+        metalSet(reg, "electrum");
+        metalSet(reg, "invar");
+        metalSet(reg, "constantan");
 
-        blockItem(BLOCKS.getSup(ID_BRONZE_BLOCK));
-        blockItem(BLOCKS.getSup(ID_ELECTRUM_BLOCK));
-        blockItem(BLOCKS.getSup(ID_INVAR_BLOCK));
-        blockItem(BLOCKS.getSup(ID_CONSTANTAN_BLOCK));
+        gemSet(reg, "ruby");
+        gemSet(reg, "sapphire");
+    }
 
-        blockItem(BLOCKS.getSup(ID_RUBY_BLOCK));
-        blockItem(BLOCKS.getSup(ID_SAPPHIRE_BLOCK));
+    private void registerBlockItemModels() {
 
-        DeferredRegisterCoFH<Item> itemReg = ITEMS;
+        DeferredRegisterCoFH<Block> reg = BLOCKS;
 
-        metalSet(itemReg, "copper");
-        metalSet(itemReg, "tin");
-        metalSet(itemReg, "silver");
-        metalSet(itemReg, "lead");
-        metalSet(itemReg, "nickel");
-        metalSet(itemReg, "platinum");
+        blockItem(reg.getSup(ID_COPPER_ORE));
+        blockItem(reg.getSup(ID_TIN_ORE));
+        blockItem(reg.getSup(ID_SILVER_ORE));
+        blockItem(reg.getSup(ID_LEAD_ORE));
+        blockItem(reg.getSup(ID_NICKEL_ORE));
+        blockItem(reg.getSup(ID_PLATINUM_ORE));
 
-        metalSet(itemReg, "bronze");
-        metalSet(itemReg, "electrum");
-        metalSet(itemReg, "invar");
-        metalSet(itemReg, "constantan");
+        blockItem(reg.getSup(ID_RUBY_ORE));
+        blockItem(reg.getSup(ID_SAPPHIRE_ORE));
 
-        gemSet(itemReg, "ruby");
-        gemSet(itemReg, "sapphire");
+        blockItem(reg.getSup(ID_COPPER_BLOCK));
+        blockItem(reg.getSup(ID_TIN_BLOCK));
+        blockItem(reg.getSup(ID_SILVER_BLOCK));
+        blockItem(reg.getSup(ID_LEAD_BLOCK));
+        blockItem(reg.getSup(ID_NICKEL_BLOCK));
+        blockItem(reg.getSup(ID_PLATINUM_BLOCK));
+
+        blockItem(reg.getSup(ID_BRONZE_BLOCK));
+        blockItem(reg.getSup(ID_ELECTRUM_BLOCK));
+        blockItem(reg.getSup(ID_INVAR_BLOCK));
+        blockItem(reg.getSup(ID_CONSTANTAN_BLOCK));
+
+        blockItem(reg.getSup(ID_RUBY_BLOCK));
+        blockItem(reg.getSup(ID_SAPPHIRE_BLOCK));
     }
 
 }

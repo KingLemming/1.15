@@ -2,17 +2,12 @@ package cofh.thermal.essentials;
 
 import cofh.thermal.essentials.client.gui.BasicPulverizerScreen;
 import cofh.thermal.essentials.client.gui.BasicSawmillScreen;
-import cofh.thermal.essentials.init.TEssBlocks;
-import cofh.thermal.essentials.init.TEssContainers;
-import cofh.thermal.essentials.init.TEssTileEntities;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_ESSENTIALS;
 import static cofh.thermal.essentials.init.TEssReferences.BASIC_PULVERIZER_CONTAINER;
@@ -23,16 +18,17 @@ public class ThermalEssentials {
 
     public ThermalEssentials() {
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
-
-        TEssBlocks.register();
-
-        TEssTileEntities.register();
-        TEssContainers.register();
+        // TODO: Restore
+        //        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        //
+        //        modEventBus.addListener(this::commonSetup);
+        //        modEventBus.addListener(this::clientSetup);
+        //        modEventBus.addListener(this::gatherData);
+        //
+        //        TEssBlocks.register();
+        //
+        //        TEssTileEntities.register();
+        //        TEssContainers.register();
     }
 
     // region INITIALIZATION

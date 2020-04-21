@@ -16,6 +16,10 @@ public class CoFHTags {
 
     public static class Blocks {
 
+        public static final Tag<Block> ORES_APATITE = forgeTag("ores/apatite");
+        public static final Tag<Block> ORES_NITER = forgeTag("ores/niter");
+        public static final Tag<Block> ORES_SULFUR = forgeTag("ores/sulfur");
+
         public static final Tag<Block> ORES_COPPER = forgeTag("ores/copper");
         public static final Tag<Block> ORES_TIN = forgeTag("ores/tin");
         public static final Tag<Block> ORES_SILVER = forgeTag("ores/silver");
@@ -25,6 +29,10 @@ public class CoFHTags {
 
         public static final Tag<Block> ORES_RUBY = forgeTag("ores/ruby");
         public static final Tag<Block> ORES_SAPPHIRE = forgeTag("ores/sapphire");
+
+        public static final Tag<Block> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
+        public static final Tag<Block> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");
+        public static final Tag<Block> STORAGE_BLOCKS_SULFUR = forgeTag("storage_blocks/sulfur");
 
         public static final Tag<Block> STORAGE_BLOCKS_SIGNALUM = forgeTag("storage_blocks/signalum");
         public static final Tag<Block> STORAGE_BLOCKS_LUMIUM = forgeTag("storage_blocks/lumium");
@@ -60,7 +68,9 @@ public class CoFHTags {
 
     public static class Items {
 
-        public static final Tag<Item> TOOLS_WRENCH = forgeTag("tools/wrench");
+        public static final Tag<Item> ORES_APATITE = forgeTag("ores/apatite");
+        public static final Tag<Item> ORES_NITER = forgeTag("ores/niter");
+        public static final Tag<Item> ORES_SULFUR = forgeTag("ores/sulfur");
 
         public static final Tag<Item> ORES_COPPER = forgeTag("ores/copper");
         public static final Tag<Item> ORES_TIN = forgeTag("ores/tin");
@@ -71,6 +81,10 @@ public class CoFHTags {
 
         public static final Tag<Item> ORES_RUBY = forgeTag("ores/ruby");
         public static final Tag<Item> ORES_SAPPHIRE = forgeTag("ores/sapphire");
+
+        public static final Tag<Item> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
+        public static final Tag<Item> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");
+        public static final Tag<Item> STORAGE_BLOCKS_SULFUR = forgeTag("storage_blocks/sulfur");
 
         public static final Tag<Item> STORAGE_BLOCKS_SIGNALUM = forgeTag("storage_blocks/signalum");
         public static final Tag<Item> STORAGE_BLOCKS_LUMIUM = forgeTag("storage_blocks/lumium");
@@ -91,9 +105,25 @@ public class CoFHTags {
         public static final Tag<Item> STORAGE_BLOCKS_RUBY = forgeTag("storage_blocks/ruby");
         public static final Tag<Item> STORAGE_BLOCKS_SAPPHIRE = forgeTag("storage_blocks/sapphire");
 
+        public static final Tag<Item> COINS_IRON = forgeTag("coins/iron");
+        public static final Tag<Item> COINS_GOLD = forgeTag("coins/gold");
+
+        public static final Tag<Item> DUSTS_IRON = forgeTag("dusts/iron");
+        public static final Tag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
+
+        public static final Tag<Item> GEARS_IRON = forgeTag("gears/iron");
+        public static final Tag<Item> GEARS_GOLD = forgeTag("gears/gold");
+
+        public static final Tag<Item> PLATES_IRON = forgeTag("plates/iron");
+        public static final Tag<Item> PLATES_GOLD = forgeTag("plates/gold");
+
         public static final Tag<Item> COINS_SIGNALUM = forgeTag("coins/signalum");
         public static final Tag<Item> COINS_LUMIUM = forgeTag("coins/lumium");
         public static final Tag<Item> COINS_ENDERIUM = forgeTag("coins/enderium");
+
+        public static final Tag<Item> DUSTS_SIGNALUM = forgeTag("dusts/signalum");
+        public static final Tag<Item> DUSTS_LUMIUM = forgeTag("dusts/lumium");
+        public static final Tag<Item> DUSTS_ENDERIUM = forgeTag("dusts/enderium");
 
         public static final Tag<Item> GEARS_SIGNALUM = forgeTag("gears/signalum");
         public static final Tag<Item> GEARS_LUMIUM = forgeTag("gears/lumium");
@@ -122,6 +152,18 @@ public class CoFHTags {
         public static final Tag<Item> COINS_ELECTRUM = forgeTag("coins/electrum");
         public static final Tag<Item> COINS_INVAR = forgeTag("coins/invar");
         public static final Tag<Item> COINS_CONSTANTAN = forgeTag("coins/constantan");
+
+        public static final Tag<Item> DUSTS_COPPER = forgeTag("dusts/copper");
+        public static final Tag<Item> DUSTS_TIN = forgeTag("dusts/tin");
+        public static final Tag<Item> DUSTS_SILVER = forgeTag("dusts/silver");
+        public static final Tag<Item> DUSTS_LEAD = forgeTag("dusts/lead");
+        public static final Tag<Item> DUSTS_NICKEL = forgeTag("dusts/nickel");
+        public static final Tag<Item> DUSTS_PLATINUM = forgeTag("dusts/platinum");
+
+        public static final Tag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
+        public static final Tag<Item> DUSTS_ELECTRUM = forgeTag("dusts/electrum");
+        public static final Tag<Item> DUSTS_INVAR = forgeTag("dusts/invar");
+        public static final Tag<Item> DUSTS_CONSTANTAN = forgeTag("dusts/constantan");
 
         public static final Tag<Item> GEARS_COPPER = forgeTag("gears/copper");
         public static final Tag<Item> GEARS_TIN = forgeTag("gears/tin");
@@ -171,6 +213,9 @@ public class CoFHTags {
         public static final Tag<Item> PLATES_INVAR = forgeTag("plates/invar");
         public static final Tag<Item> PLATES_CONSTANTAN = forgeTag("plates/constantan");
 
+        public static final Tag<Item> DUSTS_RUBY = forgeTag("dusts/ruby");
+        public static final Tag<Item> DUSTS_SAPPHIRE = forgeTag("dusts/sapphire");
+
         public static final Tag<Item> GEARS_RUBY = forgeTag("gears/ruby");
         public static final Tag<Item> GEARS_SAPPHIRE = forgeTag("gears/sapphire");
 
@@ -185,6 +230,8 @@ public class CoFHTags {
 
         public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
         public static final Tag<Item> MACHINE_MOLDS = thermalTag("crafting/molds");
+
+        public static final Tag<Item> TOOLS_WRENCH = forgeTag("tools/wrench");
 
         // region HELPERS
         private static Tag<Item> thermalTag(String name) {

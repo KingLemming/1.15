@@ -20,12 +20,12 @@ public class RecipeProviderCoFH extends RecipeProvider {
     }
 
     // region HELPERS
-    protected void generateStorageRecipes(DeferredRegisterCoFH<Item> itemReg, Consumer<IFinishedRecipe> consumer, String type) {
+    protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type) {
 
-        Item block = itemReg.get(type + "_block");
-        Item ingot = itemReg.get(type + "_ingot");
-        Item gem = itemReg.get(type + "_gem");
-        Item nugget = itemReg.get(type + "_nugget");
+        Item block = reg.get(type + "_block");
+        Item ingot = reg.get(type + "_ingot");
+        Item gem = reg.get(type + "_gem");
+        Item nugget = reg.get(type + "_nugget");
 
         // @formatter:off
         if (block != null) {
@@ -108,13 +108,13 @@ public class RecipeProviderCoFH extends RecipeProvider {
         // @formatter:on
     }
 
-    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> itemReg, Consumer<IFinishedRecipe> consumer, String type, float xp) {
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type, float xp) {
 
-        Item ore = itemReg.get(type + "_ore");
-        Item ingot = itemReg.get(type + "_ingot");
-        Item gem = itemReg.get(type + "_gem");
-        Item nugget = itemReg.get(type + "_nugget");
-        Item dust = itemReg.get(type + "_dust");
+        Item ore = reg.get(type + "_ore");
+        Item ingot = reg.get(type + "_ingot");
+        Item gem = reg.get(type + "_gem");
+        Item nugget = reg.get(type + "_nugget");
+        Item dust = reg.get(type + "_dust");
 
         // @formatter:off
         if (ingot != null) {

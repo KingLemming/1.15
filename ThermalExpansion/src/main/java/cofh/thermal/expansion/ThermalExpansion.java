@@ -2,9 +2,7 @@ package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
-import cofh.thermal.expansion.data.TExpLootTables;
-import cofh.thermal.expansion.data.TExpRecipes;
-import cofh.thermal.expansion.data.TExpTags;
+import cofh.thermal.expansion.data.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpContainers;
 import cofh.thermal.expansion.init.TExpItems;
@@ -89,6 +87,8 @@ public class ThermalExpansion {
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        generator.addProvider(new TExpBlockStates(generator, event.getExistingFileHelper()));
+        generator.addProvider(new TExpItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

@@ -1,5 +1,6 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.thermal.cultivation.block.PhytoSoilBlock;
 import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
 import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.block.Block;
@@ -45,6 +46,17 @@ public class TCulReferences {
     public static Block FROST_MELON_STEM;
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
     public static Block FROST_MELON_STEM_ATTACHED;
+    // endregion
+
+    // region MISC
+    public static final String ID_PHYTOSOIL = ID_THERMAL + ":phytosoil";
+    public static final String ID_PHYTOSOIL_CHARGED = ID_THERMAL + ":phytosoil_charged";
+
+    @ObjectHolder(ID_PHYTOSOIL)
+    public static PhytoSoilBlock PHYTOSOIL_BLOCK;
+
+    @ObjectHolder(ID_PHYTOSOIL_CHARGED)
+    public static PhytoSoilBlock PHYTOSOIL_CHARGED_BLOCK;
     // endregion
 
     // region DEVICES

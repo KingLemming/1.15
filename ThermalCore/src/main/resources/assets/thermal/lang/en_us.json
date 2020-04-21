@@ -3,6 +3,14 @@
   "_comment": "Thermal Core",
   "_comment": "========================================================================================================",
 
+  "block.thermal.apatite_ore": "Apatite Ore",
+  "block.thermal.niter_ore": "Niter Ore",
+  "block.thermal.sulfur_ore": "Sulfur Ore",
+
+  "block.thermal.apatite_block": "Block of Apatite",
+  "block.thermal.niter_block": "Block of Niter",
+  "block.thermal.sulfur_block": "Block of Sulfur",
+
   "block.thermal.enderium_block": "Block of Enderium",
   "block.thermal.lumium_block": "Block of Lumium",
   "block.thermal.signalum_block": "Block of Signalum",
@@ -11,17 +19,16 @@
   "block.thermal.lumium_glass": "Lumium Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
-  "block.thermal.niter_ore": "Niter Ore",
-  "block.thermal.sulfur_ore": "Sulfur Ore",
-
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.items": "Thermal Series: Items",
   "itemGroup.thermal.tools": "Thermal Series: Tools",
 
-  "item.thermal.niter_dust": "Niter",
-  "item.thermal.sulfur_dust": "Sulfur",
+  "item.thermal.apatite": "Apatite",
+  "item.thermal.niter": "Niter",
+  "item.thermal.sulfur": "Sulfur",
   "item.thermal.wood_dust": "Sawdust",
 
+  "item.thermal.fertilizer": "Phyto-Gro",
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
@@ -30,13 +37,11 @@
   "item.thermal.iron_coin": "Iron Coin",
   "item.thermal.iron_dust": "Iron Dust",
   "item.thermal.iron_gear": "Iron Gear",
-  "item.thermal.iron_nugget": "Iron Nugget",
   "item.thermal.iron_plate": "Iron Plate",
 
   "item.thermal.gold_coin": "Gold Coin",
   "item.thermal.gold_dust": "Gold Dust",
   "item.thermal.gold_gear": "Gold Gear",
-  "item.thermal.gold_nugget": "Gold Nugget",
   "item.thermal.gold_plate": "Gold Plate",
 
   "item.thermal.diamond_coin": "Diamond Coin",
@@ -80,6 +85,15 @@
   "_comment": "Thermal Foundation",
   "_comment": "========================================================================================================",
 
+  "block.thermal.copper_ore": "Copper Ore",
+  "block.thermal.lead_ore": "Lead Ore",
+  "block.thermal.nickel_ore": "Nickel Ore",
+  "block.thermal.platinum_ore": "Platinum Ore",
+  "block.thermal.ruby_ore": "Ruby Ore",
+  "block.thermal.sapphire_ore": "Sapphire Ore",
+  "block.thermal.silver_ore": "Silver Ore",
+  "block.thermal.tin_ore": "Tin Ore",
+
   "block.thermal.bronze_block": "Block of Bronze",
   "block.thermal.constantan_block": "Block of Constantan",
   "block.thermal.copper_block": "Block of Copper",
@@ -92,15 +106,6 @@
   "block.thermal.sapphire_block": "Block of Sapphire",
   "block.thermal.silver_block": "Block of Silver",
   "block.thermal.tin_block": "Block of Tin",
-
-  "block.thermal.copper_ore": "Copper Ore",
-  "block.thermal.lead_ore": "Lead Ore",
-  "block.thermal.nickel_ore": "Nickel Ore",
-  "block.thermal.platinum_ore": "Platinum Ore",
-  "block.thermal.ruby_ore": "Ruby Ore",
-  "block.thermal.sapphire_ore": "Sapphire Ore",
-  "block.thermal.silver_ore": "Silver Ore",
-  "block.thermal.tin_ore": "Tin Ore",
 
   "block.thermal.aluminum_block": "Block of Aluminum",
   "block.thermal.iridium_block": "Block of Iridium",
@@ -302,8 +307,9 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
-  "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.device_hive_extractor": "Hive Hopper",
+  "block.thermal.frost_melon": "Frost Melon",
+  "block.thermal.phytosoil": "Phyto-Soil",
 
   "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
   "info.thermal.device_hive_extractor.1": "Good for the bees and the keepers!",

@@ -25,19 +25,19 @@ public class ModItemModels extends ItemModelProviderCoFH {
     @Override
     protected void registerModels() {
 
-        DeferredRegisterCoFH<Item> itemReg = ITEMS;
+        DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        standardToolSet(itemReg, "copper");
-        standardToolSet(itemReg, "tin");
-        standardToolSet(itemReg, "silver");
-        standardToolSet(itemReg, "lead");
-        standardToolSet(itemReg, "nickel");
-        standardToolSet(itemReg, "platinum");
+        standardToolSet(reg, "copper");
+        standardToolSet(reg, "tin");
+        standardToolSet(reg, "silver");
+        standardToolSet(reg, "lead");
+        standardToolSet(reg, "nickel");
+        standardToolSet(reg, "platinum");
 
-        standardToolSet(itemReg, "bronze");
-        standardToolSet(itemReg, "electrum");
-        standardToolSet(itemReg, "invar");
-        standardToolSet(itemReg, "constantan");
+        standardToolSet(reg, "bronze");
+        standardToolSet(reg, "electrum");
+        standardToolSet(reg, "invar");
+        standardToolSet(reg, "constantan");
     }
 
 }

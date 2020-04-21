@@ -109,6 +109,18 @@ public class TFndTags {
             getBuilder(CoFHTags.Items.COINS_INVAR).add(ITEMS.get("invar_coin"));
             getBuilder(CoFHTags.Items.COINS_CONSTANTAN).add(ITEMS.get("constantan_coin"));
 
+            getBuilder(CoFHTags.Items.DUSTS_COPPER).add(ITEMS.get("copper_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_TIN).add(ITEMS.get("tin_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_SILVER).add(ITEMS.get("silver_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_LEAD).add(ITEMS.get("lead_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_NICKEL).add(ITEMS.get("nickel_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_PLATINUM).add(ITEMS.get("platinum_dust"));
+
+            getBuilder(CoFHTags.Items.DUSTS_BRONZE).add(ITEMS.get("bronze_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_ELECTRUM).add(ITEMS.get("electrum_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_INVAR).add(ITEMS.get("invar_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_CONSTANTAN).add(ITEMS.get("constantan_dust"));
+
             getBuilder(CoFHTags.Items.GEARS_COPPER).add(ITEMS.get("copper_gear"));
             getBuilder(CoFHTags.Items.GEARS_TIN).add(ITEMS.get("tin_gear"));
             getBuilder(CoFHTags.Items.GEARS_SILVER).add(ITEMS.get("silver_gear"));
@@ -157,17 +169,20 @@ public class TFndTags {
             getBuilder(CoFHTags.Items.PLATES_INVAR).add(ITEMS.get("invar_plate"));
             getBuilder(CoFHTags.Items.PLATES_CONSTANTAN).add(ITEMS.get("constantan_plate"));
 
+            getBuilder(CoFHTags.Items.DUSTS_RUBY).add(ITEMS.get("ruby_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_SAPPHIRE).add(ITEMS.get("sapphire_dust"));
+
             getBuilder(CoFHTags.Items.GEARS_RUBY).add(ITEMS.get("ruby_gear"));
             getBuilder(CoFHTags.Items.GEARS_SAPPHIRE).add(ITEMS.get("sapphire_gear"));
 
             getBuilder(CoFHTags.Items.GEMS_RUBY).add(ITEMS.get("ruby_gem"));
             getBuilder(CoFHTags.Items.GEMS_SAPPHIRE).add(ITEMS.get("sapphire_gem"));
 
-            getBuilder(CoFHTags.Items.NUGGETS_RUBY).add(ITEMS.get("ruby_nugget"));
-            getBuilder(CoFHTags.Items.NUGGETS_SAPPHIRE).add(ITEMS.get("sapphire_nugget"));
-
-            getBuilder(CoFHTags.Items.PLATES_RUBY).add(ITEMS.get("ruby_plate"));
-            getBuilder(CoFHTags.Items.PLATES_SAPPHIRE).add(ITEMS.get("sapphire_plate"));
+            //            getBuilder(CoFHTags.Items.NUGGETS_RUBY).add(ITEMS.get("ruby_nugget"));
+            //            getBuilder(CoFHTags.Items.NUGGETS_SAPPHIRE).add(ITEMS.get("sapphire_nugget"));
+            //
+            //            getBuilder(CoFHTags.Items.PLATES_RUBY).add(ITEMS.get("ruby_plate"));
+            //            getBuilder(CoFHTags.Items.PLATES_SAPPHIRE).add(ITEMS.get("sapphire_plate"));
         }
 
     }

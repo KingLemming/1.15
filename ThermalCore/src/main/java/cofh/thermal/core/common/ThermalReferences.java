@@ -10,8 +10,13 @@ public class ThermalReferences {
 
     }
 
-    public static final String ID_SULFUR_ORE = "sulfur_ore";
+    public static final String ID_APATITE_ORE = "apatite_ore";
     public static final String ID_NITER_ORE = "niter_ore";
+    public static final String ID_SULFUR_ORE = "sulfur_ore";
+
+    public static final String ID_APATITE_BLOCK = "apatite_block";
+    public static final String ID_NITER_BLOCK = "niter_block";
+    public static final String ID_SULFUR_BLOCK = "sulfur_block";
 
     public static final String ID_SIGNALUM_BLOCK = "signalum_block";
     public static final String ID_LUMIUM_BLOCK = "lumium_block";
@@ -26,9 +31,6 @@ public class ThermalReferences {
     public static final String ID_ENDER_FLUID = "fluid_ender";
 
     public static final String ID_WRENCH = "wrench";
-
-    public static final String ID_SULFUR_DUST = "sulfur_dust";
-    public static final String ID_NITER_DUST = "niter_dust";
 
     // region RECIPES
     public static final ResourceLocation ID_RECIPE_FURNACE = new ResourceLocation(ID_THERMAL, "furnace");

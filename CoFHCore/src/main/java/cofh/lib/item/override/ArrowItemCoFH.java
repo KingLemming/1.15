@@ -55,7 +55,7 @@ public class ArrowItemCoFH extends ArrowItem {
     @Override
     protected boolean isInGroup(ItemGroup group) {
 
-        return getCreativeTabs().stream().anyMatch(tab -> tab == group);
+        return group == ItemGroup.SEARCH || getCreativeTabs().stream().anyMatch(tab -> tab == group);
     }
 
     @Override
