@@ -30,7 +30,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        // @formatter:off
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)
                 .addIngredient(ITEMS.get(ID_WRENCH))
@@ -42,7 +41,12 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(ITEMS.get(ID_WRENCH))
                 .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
                 .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
-        // @formatter:on
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
+                .addIngredient(Items.QUARTZ_BLOCK)
+                .addIngredient(ITEMS.get(ID_WRENCH))
+                .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
+                .build(consumer, ID_THERMAL + ":split_quartz_block");
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 

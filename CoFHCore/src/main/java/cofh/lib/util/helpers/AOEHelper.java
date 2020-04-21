@@ -16,6 +16,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
@@ -61,14 +63,9 @@ public class AOEHelper {
     // region MINING
     public static ImmutableList<BlockPos> getAOEBlocksMiningRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
-        ArrayList<BlockPos> area = new ArrayList<>();
+        List<BlockPos> area;
         World world = player.getEntityWorld();
         Item tool = stack.getItem();
-
-        BlockPos query;
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
         if (traceResult.getType() == RayTraceResult.Type.MISS || player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || radius <= 0) {
@@ -77,63 +74,34 @@ public class AOEHelper {
         switch (traceResult.getFace()) {
             case DOWN:
             case UP:
-                for (int i = x - radius; i <= x + radius; ++i) {
-                    for (int k = z - radius; k <= z + radius; ++k) {
-                        if (i == x && k == z) {
-                            continue;
-                        }
-                        query = new BlockPos(i, y, k);
-                        if (canToolAffect(tool, stack, world, query)) {
-                            area.add(query);
-                        }
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(-radius, 0, -radius), pos.add(radius, 0, radius))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case NORTH:
             case SOUTH:
-                int posY = y;
-                y += (radius - 1);     // Offset for > 3x3
-                for (int i = x - radius; i <= x + radius; ++i) {
-                    for (int j = y - radius; j <= y + radius; ++j) {
-                        if (i == x && j == posY) {
-                            continue;
-                        }
-                        query = new BlockPos(i, j, z);
-                        if (canToolAffect(tool, stack, world, query)) {
-                            area.add(query);
-                        }
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(-radius, -1, 0), pos.add(radius, (2 * radius) - 1, 0))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             default:
-                posY = y;
-                y += (radius - 1);     // Offset for > 3x3
-                for (int j = y - radius; j <= y + radius; ++j) {
-                    for (int k = z - radius; k <= z + radius; ++k) {
-                        if (j == posY && k == z) {
-                            continue;
-                        }
-                        query = new BlockPos(x, j, k);
-                        if (canToolAffect(tool, stack, world, query)) {
-                            area.add(query);
-                        }
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(0, -1, -radius), pos.add(0, (2 * radius) - 1, radius))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
         }
+        area.remove(pos);
         return ImmutableList.copyOf(area);
     }
 
     public static ImmutableList<BlockPos> getAOEBlocksMiningArea(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int depth) {
 
-        ArrayList<BlockPos> area = new ArrayList<>();
+        List<BlockPos> area;
         World world = player.getEntityWorld();
         Item tool = stack.getItem();
-
-        BlockPos query;
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
 
         int depth_min = depth;
         int depth_max = 0;
@@ -147,61 +115,32 @@ public class AOEHelper {
                 depth_min = 0;
                 depth_max = depth;
             case UP:
-                for (int i = x - radius; i <= x + radius; ++i) {
-                    for (int j = y - depth_min; j <= y + depth_max; ++j) {
-                        for (int k = z - radius; k <= z + radius; ++k) {
-                            if (i == x && j == y && k == z) {
-                                continue;
-                            }
-                            query = new BlockPos(i, y, k);
-                            if (canToolAffect(tool, stack, world, query)) {
-                                area.add(query);
-                            }
-                        }
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(-radius, -depth_min, -radius), pos.add(radius, depth_max, radius))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case NORTH:
                 depth_min = 0;
                 depth_max = depth;
             case SOUTH:
-                int posY = y;
-                y += (radius - 1);     // Offset for > 3x3
-                for (int i = x - radius; i <= x + radius; ++i) {
-                    for (int j = y - radius; j <= y + radius; ++j) {
-                        for (int k = z - depth_min; k <= z + depth_max; ++k) {
-                            if (i == x && j == posY && k == z) {
-                                continue;
-                            }
-                            query = new BlockPos(i, j, z);
-                            if (canToolAffect(tool, stack, world, query)) {
-                                area.add(query);
-                            }
-                        }
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(-radius, -1, -depth_min), pos.add(radius, (2 * radius) - 1, depth_max))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case WEST:
                 depth_min = 0;
                 depth_max = depth;
-            case EAST:
-                posY = y;
-                y += (radius - 1);     // Offset for > 3x3
-                for (int i = x - depth_min; i <= x + depth_max; ++i) {
-                    for (int j = y - radius; j <= y + radius; ++j) {
-                        for (int k = z - radius; k <= z + radius; ++k) {
-                            if (i == x && j == posY && k == z) {
-                                continue;
-                            }
-                            query = new BlockPos(x, j, k);
-                            if (canToolAffect(tool, stack, world, query)) {
-                                area.add(query);
-                            }
-                        }
-                    }
-                }
+            default:
+                area = BlockPos.getAllInBox(pos.add(-depth_min, -1, -radius), pos.add(depth_max, (2 * radius) - 1, radius))
+                        .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
+
         }
+        area.remove(pos);
         return ImmutableList.copyOf(area);
     }
 
@@ -264,81 +203,60 @@ public class AOEHelper {
     // region HOE
     public static ImmutableList<BlockPos> getAOEBlocksHoeRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
-        ArrayList<BlockPos> area = new ArrayList<>();
+        List<BlockPos> area;
         World world = player.getEntityWorld();
         boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
-
-        BlockPos query;
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
         if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isShiftKeyDown() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
             return ImmutableList.of();
         }
-        for (int i = x - radius; i <= x + radius; ++i) {
-            for (int k = z - radius; k <= z + radius; ++k) {
-                if (i == x && k == z) {
-                    continue;
-                }
-                query = new BlockPos(i, y, k);
-                if (canHoeAffect(world, query, weeding)) {
-                    area.add(query);
-                }
-            }
-        }
+        area = BlockPos.getAllInBox(pos.add(-radius, 0, -radius), pos.add(radius, 0, radius))
+                .filter(blockPos -> canHoeAffect(world, blockPos, weeding))
+                .map(BlockPos::toImmutable)
+                .collect(Collectors.toList());
+        area.remove(pos);
         return ImmutableList.copyOf(area);
     }
 
     public static ImmutableList<BlockPos> getAOEBlocksHoeLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
 
-        ArrayList<BlockPos> area = new ArrayList<>();
+        List<BlockPos> area;
         World world = player.getEntityWorld();
         boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
-
-        BlockPos query;
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
 
         if (player.isShiftKeyDown() || !canHoeAffect(world, pos, weeding) || length <= 0) {
             return ImmutableList.of();
         }
         switch (player.getHorizontalFacing()) {
             case SOUTH:
-                for (int k = z + 1; k < z + length + 1; ++k) {
-                    query = new BlockPos(x, y, k);
-                    if (canHoeAffect(world, query, weeding)) {
-                        area.add(query);
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(0, 0, 1), pos.add(0, 0, length + 1))
+                        .filter(blockPos -> canHoeAffect(world, blockPos, weeding))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case WEST:
-                for (int i = x - 1; i > x - length - 1; --i) {
-                    query = new BlockPos(i, y, z);
-                    if (canHoeAffect(world, query, weeding)) {
-                        area.add(query);
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(-1, 0, 0), pos.add(-(length + 1), 0, 0))
+                        .filter(blockPos -> canHoeAffect(world, blockPos, weeding))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case NORTH:
-                for (int k = z - 1; k > z - length - 1; --k) {
-                    query = new BlockPos(x, y, k);
-                    if (canHoeAffect(world, query, weeding)) {
-                        area.add(query);
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(0, 0, -1), pos.add(0, 0, -(length + 1)))
+                        .filter(blockPos -> canHoeAffect(world, blockPos, weeding))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
             case EAST:
-                for (int i = x + 1; i < x + length + 1; ++i) {
-                    query = new BlockPos(i, y, z);
-                    if (canHoeAffect(world, query, weeding)) {
-                        area.add(query);
-                    }
-                }
+                area = BlockPos.getAllInBox(pos.add(1, 0, 0), pos.add(length + 1, 0, 0))
+                        .filter(blockPos -> canHoeAffect(world, blockPos, weeding))
+                        .map(BlockPos::toImmutable)
+                        .collect(Collectors.toList());
                 break;
+            default:
+                area = ImmutableList.of();
         }
+        area.remove(pos);
         return ImmutableList.copyOf(area);
     }
     // endregion
@@ -346,31 +264,18 @@ public class AOEHelper {
     // region SICKLE
     public static ImmutableList<BlockPos> getAOEBlocksSickle(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int height) {
 
-        ArrayList<BlockPos> area = new ArrayList<>();
+        List<BlockPos> area;
         World world = player.getEntityWorld();
         Item tool = stack.getItem();
-
-        BlockPos query;
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
 
         if (player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
             return ImmutableList.of();
         }
-        for (int i = x - radius; i <= x + radius; ++i) {
-            for (int j = y - height; j <= y + height; ++j) {
-                for (int k = z - radius; k <= z + radius; ++k) {
-                    if (i == x && j == y && k == z) {
-                        continue;
-                    }
-                    query = new BlockPos(i, y, k);
-                    if (canToolAffect(tool, stack, world, query)) {
-                        area.add(query);
-                    }
-                }
-            }
-        }
+        area = BlockPos.getAllInBox(pos.add(-radius, -height, -radius), pos.add(radius, height, radius))
+                .filter(blockPos -> canToolAffect(tool, stack, world, blockPos))
+                .map(BlockPos::toImmutable)
+                .collect(Collectors.toList());
+        area.remove(pos);
         return ImmutableList.copyOf(area);
     }
     // endregion
