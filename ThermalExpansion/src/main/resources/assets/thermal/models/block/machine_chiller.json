@@ -1,6 +1,6 @@
 {
   "parent": "thermal:block/machine_base",
   "textures": {
-    "north": "thermal:block/machine_chiller"
+    "north": "thermal:block/machines/machine_chiller"
   }
 }

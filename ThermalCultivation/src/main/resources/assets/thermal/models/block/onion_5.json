@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "thermal:block/onion_5"
+    "crop": "thermal:block/crops/onion_5"
   }
 }

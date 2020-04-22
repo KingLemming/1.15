@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "thermal:block/bell_pepper_10"
+    "cross": "thermal:block/crops/bell_pepper_10"
   }
 }

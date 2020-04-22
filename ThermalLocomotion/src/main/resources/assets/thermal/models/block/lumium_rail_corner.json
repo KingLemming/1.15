@@ -1,6 +1,6 @@
 {
   "parent": "block/rail_curved",
   "textures": {
-    "rail": "thermal:block/lumium_rail_corner"
+    "rail": "thermal:block/rails/lumium_rail_corner"
   }
 }

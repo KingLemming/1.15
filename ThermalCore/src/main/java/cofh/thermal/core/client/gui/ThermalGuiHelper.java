@@ -27,9 +27,9 @@ public class ThermalGuiHelper {
     // region MACHINE CONFIG
     public static ElementConditionalLayered createDefaultMachineConfigTop(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String specificTexture = ID_THERMAL + ":block/machine_" + machine + "_top";
+        String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_top";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machine_top", TRUE)
+                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machines/machine_top", TRUE)
                 .addSprite(MACHINE_CONFIG_INPUT, () -> tile.reconfigControl().getSideConfig(UP) == SIDE_INPUT)
                 .addSprite(MACHINE_CONFIG_OUTPUT, () -> tile.reconfigControl().getSideConfig(UP) == SIDE_OUTPUT)
                 .addSprite(MACHINE_CONFIG_BOTH, () -> tile.reconfigControl().getSideConfig(UP) == SIDE_BOTH)
@@ -39,9 +39,9 @@ public class ThermalGuiHelper {
 
     public static ElementConditionalLayered createDefaultMachineConfigBottom(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String specificTexture = ID_THERMAL + ":block/machine_" + machine + "_bottom";
+        String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_bottom";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machine_bottom", TRUE)
+                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machines/machine_bottom", TRUE)
                 .addSprite(MACHINE_CONFIG_INPUT, () -> tile.reconfigControl().getSideConfig(DOWN) == SIDE_INPUT)
                 .addSprite(MACHINE_CONFIG_OUTPUT, () -> tile.reconfigControl().getSideConfig(DOWN) == SIDE_OUTPUT)
                 .addSprite(MACHINE_CONFIG_BOTH, () -> tile.reconfigControl().getSideConfig(DOWN) == SIDE_BOTH)
@@ -51,9 +51,9 @@ public class ThermalGuiHelper {
 
     public static ElementConditionalLayered createDefaultMachineConfigLeft(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String specificTexture = ID_THERMAL + ":block/machine_" + machine + "_side";
+        String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machine_side", TRUE)
+                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machines/machine_side", TRUE)
                 .addSprite(MACHINE_CONFIG_INPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.left(tile.getFacing())) == SIDE_INPUT)
                 .addSprite(MACHINE_CONFIG_OUTPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.left(tile.getFacing())) == SIDE_OUTPUT)
                 .addSprite(MACHINE_CONFIG_BOTH, () -> tile.reconfigControl().getSideConfig(BlockHelper.left(tile.getFacing())) == SIDE_BOTH)
@@ -63,9 +63,9 @@ public class ThermalGuiHelper {
 
     public static ElementConditionalLayered createDefaultMachineConfigRight(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String specificTexture = ID_THERMAL + ":block/machine_" + machine + "_side";
+        String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machine_side", TRUE)
+                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machines/machine_side", TRUE)
                 .addSprite(MACHINE_CONFIG_INPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.right(tile.getFacing())) == SIDE_INPUT)
                 .addSprite(MACHINE_CONFIG_OUTPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.right(tile.getFacing())) == SIDE_OUTPUT)
                 .addSprite(MACHINE_CONFIG_BOTH, () -> tile.reconfigControl().getSideConfig(BlockHelper.right(tile.getFacing())) == SIDE_BOTH)
@@ -75,19 +75,19 @@ public class ThermalGuiHelper {
 
     public static ElementConditionalLayered createDefaultMachineConfigFace(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String texture = ID_THERMAL + ":block/machine_" + machine;
-        String activeTexture = ID_THERMAL + ":block/machine_" + machine + "_active";
+        String texture = ID_THERMAL + ":block/machines/machine_" + machine;
+        String activeTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_active";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(texture)) ? texture : "thermal:block/machine_side", () -> !tile.isActive)
-                .addSprite(textureExists(new ResourceLocation(activeTexture)) ? activeTexture : "thermal:block/machine_side", () -> tile.isActive)
+                .addSprite(textureExists(new ResourceLocation(texture)) ? texture : "thermal:block/machines/machine_side", () -> !tile.isActive)
+                .addSprite(textureExists(new ResourceLocation(activeTexture)) ? activeTexture : "thermal:block/machines/machine_side", () -> tile.isActive)
                 .setSize(16, 16);
     }
 
     public static ElementConditionalLayered createDefaultMachineConfigBack(IGuiAccess gui, String machine, MachineTileReconfigurable tile) {
 
-        String specificTexture = ID_THERMAL + ":block/machine_" + machine + "_side";
+        String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
-                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machine_side", TRUE)
+                .addSprite(textureExists(new ResourceLocation(specificTexture)) ? specificTexture : "thermal:block/machines/machine_side", TRUE)
                 .addSprite(MACHINE_CONFIG_INPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.opposite(tile.getFacing())) == SIDE_INPUT)
                 .addSprite(MACHINE_CONFIG_OUTPUT, () -> tile.reconfigControl().getSideConfig(BlockHelper.opposite(tile.getFacing())) == SIDE_OUTPUT)
                 .addSprite(MACHINE_CONFIG_BOTH, () -> tile.reconfigControl().getSideConfig(BlockHelper.opposite(tile.getFacing())) == SIDE_BOTH)

@@ -1,6 +1,6 @@
 {
   "parent": "block/stem_growth4",
   "textures": {
-    "stem": "thermal:block/frost_melon_stem"
+    "stem": "thermal:block/crops/frost_melon_stem"
   }
 }

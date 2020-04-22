@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "particle": "thermal:block/device_hive_extractor_side",
-    "down": "thermal:block/device_hive_extractor_bottom",
-    "up": "thermal:block/device_hive_extractor_top",
-    "east": "thermal:block/device_hive_extractor_side",
-    "west": "thermal:block/device_hive_extractor_side",
-    "north": "thermal:block/device_hive_extractor_active",
-    "south": "thermal:block/device_hive_extractor_side"
+    "particle": "thermal:block/devices/device_hive_extractor_side",
+    "down": "thermal:block/devices/device_hive_extractor_bottom",
+    "up": "thermal:block/devices/device_hive_extractor_top",
+    "east": "thermal:block/devices/device_hive_extractor_side",
+    "west": "thermal:block/devices/device_hive_extractor_side",
+    "north": "thermal:block/devices/device_hive_extractor_active",
+    "south": "thermal:block/devices/device_hive_extractor_side"
   }
 }

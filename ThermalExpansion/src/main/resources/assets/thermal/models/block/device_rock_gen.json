@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "particle": "thermal:block/device_rock_gen_side",
-    "down": "thermal:block/device_rock_gen_bottom",
-    "up": "thermal:block/device_rock_gen_top",
-    "east": "thermal:block/device_rock_gen_side",
-    "west": "thermal:block/device_rock_gen_side",
-    "north": "thermal:block/device_rock_gen_side",
-    "south": "thermal:block/device_rock_gen_side"
+    "particle": "thermal:block/devices/device_rock_gen_side",
+    "down": "thermal:block/devices/device_rock_gen_bottom",
+    "up": "thermal:block/devices/device_rock_gen_top",
+    "east": "thermal:block/devices/device_rock_gen_side",
+    "west": "thermal:block/devices/device_rock_gen_side",
+    "north": "thermal:block/devices/device_rock_gen_side",
+    "south": "thermal:block/devices/device_rock_gen_side"
   }
 }

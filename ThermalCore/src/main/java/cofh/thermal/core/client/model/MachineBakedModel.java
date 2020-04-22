@@ -47,10 +47,33 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
             sides = DEFAULT_SIDES;
         }
         TextureAtlasSprite[] textures = getTextures(sides);
-        // Down
-        quads.add(createQuad(v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), textures[0]));
-        // Up
-        quads.add(createQuad(v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), textures[1]));
+
+        Direction facing = extraData.getData(MachineTileReconfigurable.FACING);
+        if (facing == null) {
+            facing = Direction.NORTH;
+        }
+        // Top and Bottom
+        switch (facing) {
+            case EAST:
+                quads.add(createQuad(v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), textures[0]));
+                quads.add(createQuad(v(UPPER, UPPER, LOWER), v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), textures[1]));
+                break;
+            case SOUTH:
+                quads.add(createQuad(v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), v(LOWER, LOWER, LOWER), textures[0]));
+                quads.add(createQuad(v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), textures[1]));
+                break;
+            case WEST:
+                quads.add(createQuad(v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), textures[0]));
+                quads.add(createQuad(v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), v(LOWER, UPPER, LOWER), textures[1]));
+                break;
+            default:
+                quads.add(createQuad(v(LOWER, LOWER, UPPER), v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), textures[0]));
+                quads.add(createQuad(v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), textures[1]));
+        }
+        //        // Bottom
+        //        quads.add(createQuad(v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), textures[0]));
+        //        // Top
+        //        quads.add(createQuad(v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), textures[1]));
         // North
         quads.add(createQuad(v(UPPER, UPPER, LOWER), v(UPPER, LOWER, LOWER), v(LOWER, LOWER, LOWER), v(LOWER, UPPER, LOWER), textures[2]));
         // South

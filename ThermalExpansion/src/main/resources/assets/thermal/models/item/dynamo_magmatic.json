@@ -1,9 +1,9 @@
 {
   "parent": "thermal:block/dynamo_inventory",
   "textures": {
-    "top": "thermal:block/dynamo_magmatic",
-    "side": "thermal:block/dynamo_magmatic_side",
-    "bottom": "thermal:block/dynamo_magmatic",
-    "coil": "thermal:block/dynamo_coil_rf"
+    "top": "thermal:block/dynamos/dynamo_magmatic",
+    "side": "thermal:block/dynamos/dynamo_magmatic_side",
+    "bottom": "thermal:block/dynamos/dynamo_magmatic",
+    "coil": "thermal:block/dynamos/dynamo_coil_rf"
   }
 }

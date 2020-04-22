@@ -1,6 +1,6 @@
 {
   "parent": "block/rail_flat",
   "textures": {
-    "rail": "thermal:block/lumium_detector_rail_on"
+    "rail": "thermal:block/rails/lumium_detector_rail_on"
   }
 }

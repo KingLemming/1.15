@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "thermal:block/tomato_1"
+    "cross": "thermal:block/crops/tomato_1"
   }
 }

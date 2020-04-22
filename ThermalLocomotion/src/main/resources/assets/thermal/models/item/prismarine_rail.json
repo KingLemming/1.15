@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:block/prismarine_rail"
+    "layer0": "thermal:block/rails/prismarine_rail"
   }
 }

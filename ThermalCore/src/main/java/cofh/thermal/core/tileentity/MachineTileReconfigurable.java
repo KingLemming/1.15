@@ -51,6 +51,7 @@ import static cofh.lib.util.helpers.BlockHelper.*;
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITransferControllableTile, IReconfigurableTile {
 
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
+    public static final ModelProperty<Direction> FACING = new ModelProperty<>();
 
     protected Direction facing = Direction.NORTH;
     protected FluidStack renderFluid = FluidStack.EMPTY;
@@ -70,8 +71,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public TileCoFH worldContext(BlockState state, IBlockReader world) {
 
-        System.out.println("TEST " + state.get(FACING_HORIZONTAL));
-
         facing = state.get(FACING_HORIZONTAL);
         reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
         reconfigControl.initSideConfig(facing, SIDE_NONE);
@@ -90,14 +89,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public void neighborChanged(Block blockIn, BlockPos fromPos) {
 
         super.neighborChanged(blockIn, fromPos);
-
-        // TODO: Handle caching of neighbor caps.
-    }
-
-    @Override
-    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-
-        // updateSideCache();
+        // TODO: Handle caching of neighbor caps?
     }
 
     @Override
@@ -155,6 +147,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         return new ModelDataMap.Builder()
                 .withInitial(SIDES, reconfigControl().getSideConfig())
+                .withInitial(FACING, facing)
                 .build();
     }
 

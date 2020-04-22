@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "thermal:block/barley_1"
+    "crop": "thermal:block/crops/barley_1"
   }
 }

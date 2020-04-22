@@ -1,6 +1,6 @@
 {
   "parent": "block/template_rail_raised_ne",
   "textures": {
-    "rail": "thermal:block/lumium_activator_rail"
+    "rail": "thermal:block/rails/lumium_activator_rail"
   }
 }

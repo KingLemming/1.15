@@ -1,6 +1,6 @@
 {
   "parent": "block/rail_curved",
   "textures": {
-    "rail": "thermal:block/prismarine_rail_corner"
+    "rail": "thermal:block/rails/prismarine_rail_corner"
   }
 }

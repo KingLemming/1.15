@@ -1,6 +1,6 @@
 {
   "parent": "thermal:block/machine_base",
   "textures": {
-    "north": "thermal:block/machine_sawmill_active"
+    "north": "thermal:block/machines/machine_sawmill_active"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/rail_flat",
   "textures": {
-    "rail": "thermal:block/lumium_crossover_rail"
+    "rail": "thermal:block/rails/lumium_crossover_rail"
   }
 }

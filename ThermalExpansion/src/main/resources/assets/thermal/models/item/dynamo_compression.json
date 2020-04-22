@@ -1,9 +1,9 @@
 {
   "parent": "thermal:block/dynamo_inventory",
   "textures": {
-    "top": "thermal:block/dynamo_compression",
-    "side": "thermal:block/dynamo_compression_side",
-    "bottom": "thermal:block/dynamo_compression",
-    "coil": "thermal:block/dynamo_coil_rf"
+    "top": "thermal:block/dynamos/dynamo_compression",
+    "side": "thermal:block/dynamos/dynamo_compression_side",
+    "bottom": "thermal:block/dynamos/dynamo_compression",
+    "coil": "thermal:block/dynamos/dynamo_coil_rf"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "thermal:block/frost_melon_top",
-    "side": "thermal:block/frost_melon_side"
+    "end": "thermal:block/crops/frost_melon_top",
+    "side": "thermal:block/crops/frost_melon_side"
   }
 }

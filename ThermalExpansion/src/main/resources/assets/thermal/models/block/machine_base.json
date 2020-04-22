@@ -42,11 +42,11 @@
     }
   ],
   "textures": {
-    "particle": "thermal:block/machine_top",
-    "down": "thermal:block/machine_bottom",
-    "up": "thermal:block/machine_top",
-    "east": "thermal:block/machine_side",
-    "west": "thermal:block/machine_side",
-    "south": "thermal:block/machine_side"
+    "particle": "thermal:block/machines/machine_top",
+    "down": "thermal:block/machines/machine_bottom",
+    "up": "thermal:block/machines/machine_top",
+    "east": "thermal:block/machines/machine_side",
+    "west": "thermal:block/machines/machine_side",
+    "south": "thermal:block/machines/machine_side"
   }
 }

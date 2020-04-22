@@ -1,6 +1,6 @@
 {
   "parent": "thermal:block/dynamo_coil_active",
   "textures": {
-    "coil": "thermal:block/dynamo_coil_rf"
+    "coil": "thermal:block/dynamos/dynamo_coil_rf"
   }
 }

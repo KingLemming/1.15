@@ -1,8 +1,8 @@
 {
   "parent": "thermal:block/dynamo_base",
   "textures": {
-    "top": "thermal:block/dynamo_compression_active",
-    "side": "thermal:block/dynamo_compression_side_active",
-    "bottom": "thermal:block/dynamo_compression_active"
+    "top": "thermal:block/dynamos/dynamo_compression_active",
+    "side": "thermal:block/dynamos/dynamo_compression_side_active",
+    "bottom": "thermal:block/dynamos/dynamo_compression_active"
   }
 }
