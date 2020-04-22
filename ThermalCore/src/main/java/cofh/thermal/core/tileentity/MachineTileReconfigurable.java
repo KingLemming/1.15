@@ -14,11 +14,17 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelDataManager;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
+import net.minecraftforge.client.model.data.ModelProperty;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -42,6 +48,8 @@ import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITransferControllableTile, IReconfigurableTile {
 
+    public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
+
     protected Direction facing;
     protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
@@ -55,7 +63,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public MachineTileReconfigurable(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        reconfigControl.setSideConfig(new SideConfig[]{SIDE_INPUT, SIDE_OUTPUT, SIDE_NONE, SIDE_BOTH, SIDE_OUTPUT, SIDE_INPUT});
+        reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
     }
 
     @Override
@@ -76,6 +84,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 
+        reconfigControl.initSideConfig(getBlockState().get(FACING_HORIZONTAL), SIDE_NONE);
         updateSideCache();
     }
 
@@ -126,6 +135,15 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         if (!chargeSlot.isEmpty()) {
             chargeSlot.getItemStack().getCapability(CapabilityEnergy.ENERGY, null).ifPresent(p -> energyStorage.receiveEnergy(p.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
         }
+    }
+
+    @Nonnull
+    @Override
+    public IModelData getModelData() {
+
+        return new ModelDataMap.Builder()
+                .withInitial(SIDES, reconfigControl().getSideConfig())
+                .build();
     }
 
     // region HELPERS
@@ -193,6 +211,13 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
     // region NETWORK
     @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+
+        super.onDataPacket(net, pkt);
+        ModelDataManager.requestModelDataRefresh(this);
+    }
+
+    @Override
     public PacketBuffer getControlPacket(PacketBuffer buffer) {
 
         super.getControlPacket(buffer);
@@ -234,6 +259,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         transferControl.readFromBuffer(buffer);
 
         renderFluid = buffer.readFluidStack();
+        ModelDataManager.requestModelDataRefresh(this);
     }
 
     @Override
@@ -247,7 +273,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public void handleStatePacket(PacketBuffer buffer) {
 
-        super.handleControlPacket(buffer);
+        super.handleStatePacket(buffer);
 
         renderFluid = buffer.readFluidStack();
     }

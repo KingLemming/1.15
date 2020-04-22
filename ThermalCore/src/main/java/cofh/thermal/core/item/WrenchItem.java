@@ -59,6 +59,7 @@ public class WrenchItem extends ItemCoFH {
             if (rotState != state) {
                 world.setBlockState(pos, rotState);
             }
+            return Utils.isServerWorld(world);
         }
         return true;
     }

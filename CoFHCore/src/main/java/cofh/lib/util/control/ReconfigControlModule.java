@@ -39,9 +39,26 @@ public class ReconfigControlModule implements IReconfigurable {
         return sides;
     }
 
+    public void initSideConfig(Direction side, SideConfig config) {
+
+        if (side == null || config == null) {
+            return;
+        }
+        this.sides[side.ordinal()] = config;
+    }
+
+    public void initSideConfig(SideConfig[] sides) {
+
+        if (sides == null || sides.length != 6) {
+            return;
+        }
+        this.sides = sides;
+    }
+
     public void setSideConfig(SideConfig[] sides) {
 
         this.sides = sides;
+        tile.onControlUpdate();
     }
 
     // region NETWORK

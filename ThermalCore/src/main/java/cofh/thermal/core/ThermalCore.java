@@ -2,6 +2,7 @@ package cofh.thermal.core;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.ThermalTextures;
+import cofh.thermal.core.client.model.MachineModelLoader;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.common.ThermalRecipeSerializers;
 import cofh.thermal.core.common.ThermalRecipeTypes;
@@ -9,6 +10,7 @@ import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
+import cofh.thermal.core.tutorial.FancyModelLoader;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -21,7 +23,9 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -101,6 +105,9 @@ public class ThermalCore {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SIGNALUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
+
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "fancyloader"), new FancyModelLoader());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

@@ -8,6 +8,8 @@ import cofh.thermal.expansion.init.TExpContainers;
 import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.init.TExpTileEntities;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +18,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import java.util.function.Predicate;
+
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
 @Mod(ID_THERMAL_EXPANSION)
@@ -61,6 +66,20 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(DYNAMO_MAGMATIC_CONTAINER, DynamoMagmaticScreen::new);
         ScreenManager.registerFactory(DYNAMO_NUMISMATIC_CONTAINER, DynamoNumismaticScreen::new);
         ScreenManager.registerFactory(DYNAMO_LAPIDARY_CONTAINER, DynamoLapidaryScreen::new);
+
+        Predicate<RenderType> predicate = type -> type == RenderType.getCutout() || type == RenderType.getTranslucent();
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FURNACE), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_SAWMILL), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PULVERIZER), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_INSOLATOR), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CENTRIFUGE), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PRESS), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CRUCIBLE), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CHILLER), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_REFINERY), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), predicate);
     }
     // endregion
 

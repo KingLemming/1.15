@@ -20,10 +20,11 @@ public class ThermalTextures {
         if (!event.getMap().getTextureLocation().toString().equals(BLOCK_ATLAS)) {
             return;
         }
-        event.addSprite(new ResourceLocation(CONFIG_ + "machine_config_input"));
-        event.addSprite(new ResourceLocation(CONFIG_ + "machine_config_output"));
-        event.addSprite(new ResourceLocation(CONFIG_ + "machine_config_both"));
-        event.addSprite(new ResourceLocation(CONFIG_ + "machine_config_accessible"));
+        event.addSprite(MACHINE_CONFIG_NONE_LOC);
+        event.addSprite(MACHINE_CONFIG_INPUT_LOC);
+        event.addSprite(MACHINE_CONFIG_OUTPUT_LOC);
+        event.addSprite(MACHINE_CONFIG_BOTH_LOC);
+        event.addSprite(MACHINE_CONFIG_ACCESSIBLE_LOC);
     }
 
     public static void postStitch(TextureStitchEvent.Post event) {
@@ -33,15 +34,23 @@ public class ThermalTextures {
         }
         AtlasTexture map = event.getMap();
 
-        MACHINE_CONFIG_INPUT = map.getSprite(new ResourceLocation(CONFIG_ + "machine_config_input"));
-        MACHINE_CONFIG_OUTPUT = map.getSprite(new ResourceLocation(CONFIG_ + "machine_config_output"));
-        MACHINE_CONFIG_BOTH = map.getSprite(new ResourceLocation(CONFIG_ + "machine_config_both"));
-        MACHINE_CONFIG_ACCESSIBLE = map.getSprite(new ResourceLocation(CONFIG_ + "machine_config_accessible"));
+        MACHINE_CONFIG_NONE = map.getSprite(MACHINE_CONFIG_NONE_LOC);
+        MACHINE_CONFIG_INPUT = map.getSprite(MACHINE_CONFIG_INPUT_LOC);
+        MACHINE_CONFIG_OUTPUT = map.getSprite(MACHINE_CONFIG_OUTPUT_LOC);
+        MACHINE_CONFIG_BOTH = map.getSprite(MACHINE_CONFIG_BOTH_LOC);
+        MACHINE_CONFIG_ACCESSIBLE = map.getSprite(MACHINE_CONFIG_ACCESSIBLE_LOC);
     }
 
     // region CONFIG
     private static final String CONFIG_ = ID_THERMAL + ":block/config/";
 
+    public static ResourceLocation MACHINE_CONFIG_NONE_LOC = new ResourceLocation(CONFIG_ + "machine_config_none");
+    public static ResourceLocation MACHINE_CONFIG_INPUT_LOC = new ResourceLocation(CONFIG_ + "machine_config_input");
+    public static ResourceLocation MACHINE_CONFIG_OUTPUT_LOC = new ResourceLocation(CONFIG_ + "machine_config_output");
+    public static ResourceLocation MACHINE_CONFIG_BOTH_LOC = new ResourceLocation(CONFIG_ + "machine_config_both");
+    public static ResourceLocation MACHINE_CONFIG_ACCESSIBLE_LOC = new ResourceLocation(CONFIG_ + "machine_config_accessible");
+
+    public static TextureAtlasSprite MACHINE_CONFIG_NONE;
     public static TextureAtlasSprite MACHINE_CONFIG_INPUT;
     public static TextureAtlasSprite MACHINE_CONFIG_OUTPUT;
     public static TextureAtlasSprite MACHINE_CONFIG_BOTH;
