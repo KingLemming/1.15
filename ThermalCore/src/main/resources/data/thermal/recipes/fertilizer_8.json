@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:sand"
+    },
+    {
+      "item": "thermal:apatite"
+    },
+    {
+      "item": "thermal:apatite"
+    },
+    {
+      "item": "thermal:niter"
+    }
+  ],
+  "result": {
+    "item": "thermal:fertilizer",
+    "count": 8
+  }
+}

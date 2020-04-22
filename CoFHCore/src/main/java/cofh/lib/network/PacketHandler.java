@@ -31,10 +31,10 @@ public class PacketHandler {
     public PacketHandler(ResourceLocation channelName) {
 
         this.channelName = channelName;
-        channel = NetworkRegistry.ChannelBuilder.named(channelName)//
-                .networkProtocolVersion(() -> Integer.toString(1))//
-                .clientAcceptedVersions(e -> true)//
-                .serverAcceptedVersions(e -> true)//
+        channel = NetworkRegistry.ChannelBuilder.named(channelName)
+                .networkProtocolVersion(() -> Integer.toString(1))
+                .clientAcceptedVersions(e -> true)
+                .serverAcceptedVersions(e -> true)
                 .eventNetworkChannel();
         if (FMLEnvironment.dist == Dist.CLIENT) {
             channel.registerObject(new ClientHandler());

@@ -51,7 +51,7 @@ public class FertilizerItem extends ItemCoFH {
 
         World world = context.getWorld();
         BlockPos pos = context.getPos();
-        if (growPlants(context.getItem(), world, pos, context.getPlayer(), radius)) {
+        if (growPlants(context.getItem(), world, pos, context, radius)) {
             if (!world.isRemote) {
                 makeAreaOfEffectCloud(world, pos, radius);
             }
@@ -71,17 +71,21 @@ public class FertilizerItem extends ItemCoFH {
         return ActionResultType.PASS;
     }
 
-    private static boolean growPlants(ItemStack stack, World worldIn, BlockPos pos, PlayerEntity player, int radius) {
+    private static boolean growPlants(ItemStack stack, World worldIn, BlockPos pos, ItemUseContext context, int radius) {
 
         BlockState state = worldIn.getBlockState(pos);
-        int hook = ForgeEventFactory.onApplyBonemeal(player, worldIn, pos, state, stack);
-        if (hook != 0) {
-            return hook > 0;
+        PlayerEntity player = context.getPlayer();
+        if (player != null) {
+            int hook = ForgeEventFactory.onApplyBonemeal(player, worldIn, pos, state, stack);
+            if (hook != 0) {
+                return hook > 0;
+            }
         }
         boolean used = false;
         for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-radius, -1, -radius), pos.add(radius, 1, radius))) {
             used |= growPlant(worldIn, iterPos, worldIn.getBlockState(iterPos));
         }
+        used |= growSeagrass(worldIn, pos, context.getFace());
         if (used) {
             stack.shrink(1);
         }
@@ -112,7 +116,18 @@ public class FertilizerItem extends ItemCoFH {
         return false;
     }
 
-    private boolean growSeagrass(ItemStack stack, World worldIn, BlockPos pos, @Nullable Direction side) {
+    // TODO: Revisit.
+    //    private static boolean growCoral(World worldIn, BlockPos pos, BlockState state) {
+    //
+    //        if (state.getBlock().isIn(BlockTags.WALL_CORALS)) {
+    //            for (int i = 0; !state.isValidPosition(worldIn, pos) && i < 4; ++i) {
+    //                state = state.with(DeadCoralWallFanBlock.FACING, Direction.Plane.HORIZONTAL.random(random));
+    //            }
+    //        }
+    //        return false;
+    //    }
+
+    private static boolean growSeagrass(World worldIn, BlockPos pos, @Nullable Direction side) {
 
         if (worldIn.getBlockState(pos).getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {
             if (!(worldIn instanceof ServerWorld)) {
@@ -153,7 +168,6 @@ public class FertilizerItem extends ItemCoFH {
                         }
                     }
                 }
-                stack.shrink(1);
                 return true;
             }
         } else {

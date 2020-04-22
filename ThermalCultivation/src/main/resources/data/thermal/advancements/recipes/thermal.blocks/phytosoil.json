@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:phytosoil"
+    ]
+  },
+  "criteria": {
+    "has_fertilizer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:fertilizer"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:phytosoil"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fertilizer",
+      "has_the_recipe"
+    ]
+  ]
+}

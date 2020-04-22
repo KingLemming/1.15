@@ -7,6 +7,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -29,6 +30,30 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get("fertilizer"), 8)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(ITEMS.get("apatite"))
+                .addIngredient(ITEMS.get("apatite"))
+                .addIngredient(ITEMS.get("niter"))
+                .addCriterion("has_apatite", hasItem(ITEMS.get("apatite")))
+                .build(consumer, ID_THERMAL + ":fertilizer_8");
+
+        ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get("fertilizer"), 4)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(Items.BONE_MEAL)
+                .addIngredient(ITEMS.get("apatite"))
+                .addIngredient(ITEMS.get("niter"))
+                .addCriterion("has_apatite", hasItem(ITEMS.get("apatite")))
+                .build(consumer, ID_THERMAL + ":fertilizer_4");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
+                .addIngredient(Items.CHARCOAL)
+                .addIngredient(ITEMS.get("niter"))
+                .addIngredient(ITEMS.get("niter"))
+                .addIngredient(ITEMS.get("sulfur"))
+                .addCriterion("has_gunpowder", hasItem(Items.GUNPOWDER))
+                .build(consumer, ID_THERMAL + ":gunpowder");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)

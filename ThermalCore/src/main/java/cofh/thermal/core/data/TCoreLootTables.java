@@ -51,10 +51,10 @@ public class TCoreLootTables extends LootTableProviderCoFH {
                 .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
         lootTables.put(regBlocks.get(ID_NITER_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_NITER_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_NITER_ORE), ItemLootEntry.builder(regItems.get("niter"))
-                .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 5.0F)))
+                .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
         lootTables.put(regBlocks.get(ID_SULFUR_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_SULFUR_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_SULFUR_ORE), ItemLootEntry.builder(regItems.get("sulfur"))
-                .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 5.0F)))
+                .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
 
     }

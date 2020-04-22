@@ -310,9 +310,10 @@
   "block.thermal.device_hive_extractor": "Hive Hopper",
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
+  "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
 
   "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
-  "info.thermal.device_hive_extractor.1": "Good for the bees and the keepers!",
+  "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
   "info.thermal.device_hive_extractor.2": "Buzz buzz.",
 
   "item.thermal.barley": "Barley",

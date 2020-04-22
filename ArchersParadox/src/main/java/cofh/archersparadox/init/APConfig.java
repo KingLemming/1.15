@@ -50,109 +50,135 @@ public class APConfig {
 
     private static void genClientConfig() {
 
-        String comment;
-        comment = "If TRUE, Archer's Paradox will have its own Item Group (Creative Tab).";
-        enableCreativeTab = CLIENT_CONFIG.comment(comment).define("Enable Item Group", true);
+        enableCreativeTab = CLIENT_CONFIG
+                .comment("If TRUE, Archer's Paradox will have its own Item Group (Creative Tab).")
+                .define("Enable Item Group", true);
 
         clientSpec = CLIENT_CONFIG.build();
     }
 
     private static void genArrowConfig() {
 
-        String comment;
         SERVER_CONFIG.push("Arrows");
 
         SERVER_CONFIG.push("Blaze");
-        comment = "Adjust this to set the burn duration for the Blaze Arrow (in seconds). Nearby targets will burn for 5 seconds less than a direct target.";
-        blazeArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Burn Duration", BlazeArrowEntity.effectDuration, 5, 30);
-        comment = "Adjust this to set the effect radius for the Blaze Arrow. Set to 0 to disable, but that would be boring.";
-        blazeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", BlazeArrowEntity.effectRadius, 0, 16);
+        blazeArrowDuration = SERVER_CONFIG
+                .comment("Adjust this to set the burn duration for the Blaze Arrow (in seconds). Nearby targets will burn for 5 seconds less than a direct target.")
+                .defineInRange("Burn Duration", BlazeArrowEntity.effectDuration, 5, 30);
+        blazeArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Blaze Arrow. Set to 0 to disable, but that would be boring.")
+                .defineInRange("Radius", BlazeArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Diamond");
-        comment = "Adjust this to set the damage for the Diamond Arrow. Base Arrow value is 2.0.";
-        diamondArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", DiamondArrowEntity.baseDamage, 0.5, 16.0);
-        comment = "Adjust this to set the inherent knockback strength of the Diamond Arrow. Base Arrow value is 0.";
-        diamondArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", DiamondArrowEntity.baseKnockback, 0, 16);
-        comment = "Adjust this to set the inherent pierce of the Diamond Arrow. Base Arrow value is 0.";
-        diamondArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", DiamondArrowEntity.basePierce, 0, 16);
+        diamondArrowDamage = SERVER_CONFIG
+                .comment("Adjust this to set the damage for the Diamond Arrow. Base Arrow value is 2.0.")
+                .defineInRange("Damage", DiamondArrowEntity.baseDamage, 0.5, 16.0);
+        diamondArrowKnockback = SERVER_CONFIG
+                .comment("Adjust this to set the inherent knockback strength of the Diamond Arrow. Base Arrow value is 0.")
+                .defineInRange("Knockback", DiamondArrowEntity.baseKnockback, 0, 16);
+        diamondArrowPierce = SERVER_CONFIG
+                .comment("Adjust this to set the inherent pierce of the Diamond Arrow. Base Arrow value is 0.")
+                .defineInRange("Piercing", DiamondArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Displacement");
-        comment = "Adjust this to set the effect radius for the Displacement Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
-        displacementArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", DisplacementArrowEntity.effectRadius, 0, 16);
+        displacementArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Displacement Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).")
+                .defineInRange("Radius", DisplacementArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Explosive");
-        comment = "Adjust this to set the explosion strength for the Explosive Arrow.";
-        explosiveArrowStrength = SERVER_CONFIG.comment(comment).defineInRange("Strength", ExplosiveArrowEntity.explosionStrength, 0.5D, 16.0D);
-        comment = "If TRUE, explosions break blocks.";
-        explosiveArrowBreakBlocks = SERVER_CONFIG.comment(comment).define("Break Blocks", ExplosiveArrowEntity.explosionsBreakBlocks);
-        comment = "If TRUE, explosions cause fires if the arrow is on fire.";
-        explosiveArrowCauseFire = SERVER_CONFIG.comment(comment).define("Cause Fires", ExplosiveArrowEntity.explosionsCauseFire);
-        comment = "If TRUE, explosion strength is modified by knockback bonuses, such as the Punch Enchantment.";
-        explosiveArrowKnockbackBoost = SERVER_CONFIG.comment(comment).define("Knockback Boost", ExplosiveArrowEntity.knockbackBoost);
+        explosiveArrowStrength = SERVER_CONFIG
+                .comment("Adjust this to set the explosion strength for the Explosive Arrow.")
+                .defineInRange("Strength", ExplosiveArrowEntity.explosionStrength, 0.5D, 16.0D);
+        explosiveArrowBreakBlocks = SERVER_CONFIG
+                .comment("If TRUE, explosions break blocks.")
+                .define("Break Blocks", ExplosiveArrowEntity.explosionsBreakBlocks);
+        explosiveArrowCauseFire = SERVER_CONFIG
+                .comment("If TRUE, explosions cause fires if the arrow is on fire.")
+                .define("Cause Fires", ExplosiveArrowEntity.explosionsCauseFire);
+        explosiveArrowKnockbackBoost = SERVER_CONFIG
+                .comment("If TRUE, explosion strength is modified by knockback bonuses, such as the Punch Enchantment.")
+                .define("Knockback Boost", ExplosiveArrowEntity.knockbackBoost);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Frost");
-        comment = "Adjust this to set the effect radius for the Frost Arrow. Set to 0 to disable, but that would be boring.";
-        frostArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", FrostArrowEntity.effectRadius, 0, 16);
-        comment = "If TRUE, Frost Arrows will convert Lava into Obsidian. If FALSE, Glossed Magma.";
-        frostArrowPermanentLava = SERVER_CONFIG.comment(comment).define("Permanent Lava Freeze", FrostArrowEntity.permanentLava);
-        comment = "If TRUE, Frost Arrows will convert Water into Ice. If FALSE, Frosted Ice.";
-        frostArrowPermanentWater = SERVER_CONFIG.comment(comment).define("Permanent Water Freeze", FrostArrowEntity.permanentWater);
+        frostArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Frost Arrow. Set to 0 to disable, but that would be boring.")
+                .defineInRange("Radius", FrostArrowEntity.effectRadius, 0, 16);
+        frostArrowPermanentLava = SERVER_CONFIG
+                .comment("If TRUE, Frost Arrows will convert Lava into Obsidian. If FALSE, Glossed Magma.")
+                .define("Permanent Lava Freeze", FrostArrowEntity.permanentLava);
+        frostArrowPermanentWater = SERVER_CONFIG
+                .comment("If TRUE, Frost Arrows will convert Water into Ice. If FALSE, Frosted Ice.")
+                .define("Permanent Water Freeze", FrostArrowEntity.permanentWater);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Glowstone");
-        comment = "Adjust this to set the effect radius for the Glowstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
-        glowstoneArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", GlowstoneArrowEntity.effectRadius, 0, 16);
+        glowstoneArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Glowstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).")
+                .defineInRange("Radius", GlowstoneArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Prismarine");
-        comment = "Adjust this to set the damage for the Prismarine Arrow. Base Arrow value is 2.0.";
-        prismarineArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", PrismarineArrowEntity.baseDamage, 0.5, 16.0);
-        comment = "Adjust this to set the inherent knockback strength of the Prismarine Arrow. Base Arrow value is 0.";
-        prismarineArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", PrismarineArrowEntity.baseKnockback, 0, 16);
-        comment = "Adjust this to set the inherent pierce of the Prismarine Arrow. Base Arrow value is 0.";
-        prismarineArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", PrismarineArrowEntity.basePierce, 0, 16);
+        prismarineArrowDamage = SERVER_CONFIG
+                .comment("Adjust this to set the damage for the Prismarine Arrow. Base Arrow value is 2.0.")
+                .defineInRange("Damage", PrismarineArrowEntity.baseDamage, 0.5, 16.0);
+        prismarineArrowKnockback = SERVER_CONFIG
+                .comment("Adjust this to set the inherent knockback strength of the Prismarine Arrow. Base Arrow value is 0.")
+                .defineInRange("Knockback", PrismarineArrowEntity.baseKnockback, 0, 16);
+        prismarineArrowPierce = SERVER_CONFIG
+                .comment("Adjust this to set the inherent pierce of the Prismarine Arrow. Base Arrow value is 0.")
+                .defineInRange("Piercing", PrismarineArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Quartz");
-        comment = "Adjust this to set the damage for the Quartz Arrow. Base Arrow value is 2.0.";
-        quartzArrowDamage = SERVER_CONFIG.comment(comment).defineInRange("Damage", QuartzArrowEntity.baseDamage, 0.5, 16.0);
-        comment = "Adjust this to set the inherent knockback strength of the Quartz Arrow. Base Arrow value is 0.";
-        quartzArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", QuartzArrowEntity.baseKnockback, 0, 16);
-        comment = "Adjust this to set the inherent pierce of the Quartz Arrow. Base Arrow value is 0.";
-        quartzArrowPierce = SERVER_CONFIG.comment(comment).defineInRange("Piercing", QuartzArrowEntity.basePierce, 0, 16);
+        quartzArrowDamage = SERVER_CONFIG
+                .comment("Adjust this to set the damage for the Quartz Arrow. Base Arrow value is 2.0.")
+                .defineInRange("Damage", QuartzArrowEntity.baseDamage, 0.5, 16.0);
+        quartzArrowKnockback = SERVER_CONFIG
+                .comment("Adjust this to set the inherent knockback strength of the Quartz Arrow. Base Arrow value is 0.")
+                .defineInRange("Knockback", QuartzArrowEntity.baseKnockback, 0, 16);
+        quartzArrowPierce = SERVER_CONFIG
+                .comment("Adjust this to set the inherent pierce of the Quartz Arrow. Base Arrow value is 0.")
+                .defineInRange("Piercing", QuartzArrowEntity.basePierce, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Redstone");
-        comment = "Adjust this to set the effect radius for the Redstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
-        redstoneArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", RedstoneArrowEntity.effectRadius, 0, 16);
+        redstoneArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Redstone Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).")
+                .defineInRange("Radius", RedstoneArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Shulker");
-        comment = "Adjust this to set the effect duration (Levitation) for the Shulker Arrow. Set to 0 to disable.";
-        shulkerArrowDuration = SERVER_CONFIG.comment(comment).defineInRange("Effect Duration", ShulkerArrowEntity.effectDuration, 0, 9600);
+        shulkerArrowDuration = SERVER_CONFIG
+                .comment("Adjust this to set the effect duration (Levitation) for the Shulker Arrow. Set to 0 to disable.")
+                .defineInRange("Effect Duration", ShulkerArrowEntity.effectDuration, 0, 9600);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Slime");
-        comment = "Adjust this to set the number of bounces for the Slime Arrow.";
-        slimeArrowBounces = SERVER_CONFIG.comment(comment).defineInRange("Bounces", SlimeArrowEntity.baseBounces, 1, 16);
-        comment = "Adjust this to set the inherent knockback strength of the Slime Arrow. Base Arrow value is 0.";
-        slimeArrowKnockback = SERVER_CONFIG.comment(comment).defineInRange("Knockback", SlimeArrowEntity.baseKnockback, 0, 16);
-        comment = "If TRUE, bounces are modified by knockback bonuses, such as the Punch Enchantment.";
-        slimeArrowKnockbackBoost = SERVER_CONFIG.comment(comment).define("Knockback Boost", SlimeArrowEntity.knockbackBoost);
+        slimeArrowBounces = SERVER_CONFIG
+                .comment("Adjust this to set the number of bounces for the Slime Arrow.")
+                .defineInRange("Bounces", SlimeArrowEntity.baseBounces, 1, 16);
+        slimeArrowKnockback = SERVER_CONFIG
+                .comment("Adjust this to set the inherent knockback strength of the Slime Arrow. Base Arrow value is 0.")
+                .defineInRange("Knockback", SlimeArrowEntity.baseKnockback, 0, 16);
+        slimeArrowKnockbackBoost = SERVER_CONFIG
+                .comment("If TRUE, bounces are modified by knockback bonuses, such as the Punch Enchantment.")
+                .define("Knockback Boost", SlimeArrowEntity.knockbackBoost);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Spore");
-        comment = "Adjust this to set the effect radius for the Spore Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
-        sporeArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", SporeArrowEntity.effectRadius, 0, 16);
+        sporeArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Spore Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).")
+                .defineInRange("Radius", SporeArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Verdant");
-        comment = "Adjust this to set the effect radius for the Verdant Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).";
-        verdantArrowRadius = SERVER_CONFIG.comment(comment).defineInRange("Radius", VerdantArrowEntity.effectRadius, 0, 16);
+        verdantArrowRadius = SERVER_CONFIG
+                .comment("Adjust this to set the effect radius for the Verdant Arrow. Set to 0 to disable, but that would be boring (and make the arrow useless).")
+                .defineInRange("Radius", VerdantArrowEntity.effectRadius, 0, 16);
         SERVER_CONFIG.pop();
     }
 

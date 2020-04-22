@@ -45,9 +45,9 @@ public class OMGConfig {
 
     private static void genClientConfig() {
 
-        String comment;
-        comment = "If TRUE, Oh My Gourd! will have its own Item Group (Creative Tab).";
-        enableCreativeTab = CLIENT_CONFIG.comment(comment).define("Enable Item Group", true);
+        enableCreativeTab = CLIENT_CONFIG
+                .comment("If TRUE, Oh My Gourd will have its own Item Group (Creative Tab).")
+                .define("Enable Item Group", true);
 
         clientSpec = CLIENT_CONFIG.build();
     }
