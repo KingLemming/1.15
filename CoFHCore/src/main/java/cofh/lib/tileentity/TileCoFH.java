@@ -23,6 +23,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -59,6 +60,11 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     }
 
     // region HELPERS
+    public TileCoFH worldContext(BlockState state, IBlockReader world) {
+
+        return this;
+    }
+
     public int getComparatorInputOverride() {
 
         return 0;

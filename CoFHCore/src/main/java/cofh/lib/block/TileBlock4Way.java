@@ -1,5 +1,6 @@
 package cofh.lib.block;
 
+import cofh.lib.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -8,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -17,7 +19,7 @@ import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 
 public class TileBlock4Way extends TileBlockCoFH {
 
-    public TileBlock4Way(Properties builder, Supplier<? extends TileEntity> supplier) {
+    public TileBlock4Way(Properties builder, Supplier<? extends TileCoFH> supplier) {
 
         super(builder, supplier);
         this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));

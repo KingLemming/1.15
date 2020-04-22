@@ -1,9 +1,9 @@
 package cofh.thermal.core.block;
 
 import cofh.lib.block.TileBlock6Way;
+import cofh.lib.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -43,7 +43,7 @@ public class TileBlockDynamo extends TileBlock6Way {
             VoxelShapes.or(BASE_SHAPE[5], COIL_SHAPE[5])
     };
 
-    public TileBlockDynamo(Properties builder, Supplier<? extends TileEntity> supplier) {
+    public TileBlockDynamo(Properties builder, Supplier<? extends TileCoFH> supplier) {
 
         super(builder, supplier);
     }

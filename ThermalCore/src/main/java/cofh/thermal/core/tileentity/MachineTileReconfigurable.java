@@ -2,6 +2,7 @@ package cofh.thermal.core.tileentity;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.control.IReconfigurableTile;
 import cofh.lib.util.control.ITransferControllableTile;
 import cofh.lib.util.control.ReconfigControlModule;
@@ -20,6 +21,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
@@ -50,7 +52,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
 
-    protected Direction facing;
+    protected Direction facing = Direction.NORTH;
     protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
@@ -63,7 +65,18 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public MachineTileReconfigurable(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
+    }
+
+    @Override
+    public TileCoFH worldContext(BlockState state, IBlockReader world) {
+
+        System.out.println("TEST " + state.get(FACING_HORIZONTAL));
+
+        facing = state.get(FACING_HORIZONTAL);
         reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
+        reconfigControl.initSideConfig(facing, SIDE_NONE);
+
+        return this;
     }
 
     @Override
@@ -84,8 +97,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 
-        reconfigControl.initSideConfig(getBlockState().get(FACING_HORIZONTAL), SIDE_NONE);
-        updateSideCache();
+        // updateSideCache();
     }
 
     @Override

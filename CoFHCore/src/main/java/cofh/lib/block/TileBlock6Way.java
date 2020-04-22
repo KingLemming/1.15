@@ -1,5 +1,6 @@
 package cofh.lib.block;
 
+import cofh.lib.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -16,7 +17,7 @@ import static cofh.lib.util.constants.Constants.FACING_ALL;
 
 public class TileBlock6Way extends TileBlockCoFH {
 
-    public TileBlock6Way(Properties builder, Supplier<? extends TileEntity> supplier) {
+    public TileBlock6Way(Properties builder, Supplier<? extends TileCoFH> supplier) {
 
         super(builder, supplier);
         this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));

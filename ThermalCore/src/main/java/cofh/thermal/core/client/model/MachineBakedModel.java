@@ -99,6 +99,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
         putVertex(builder, normal, v2.x, v2.y, v2.z, 0, 16, sprite, 1.0f, 1.0f, 1.0f);
         putVertex(builder, normal, v3.x, v3.y, v3.z, 16, 16, sprite, 1.0f, 1.0f, 1.0f);
         putVertex(builder, normal, v4.x, v4.y, v4.z, 16, 0, sprite, 1.0f, 1.0f, 1.0f);
+        builder.setApplyDiffuseLighting(true);
         return builder.build();
     }
 

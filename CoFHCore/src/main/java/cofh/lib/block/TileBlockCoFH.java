@@ -30,9 +30,9 @@ import java.util.function.Supplier;
 
 public abstract class TileBlockCoFH extends Block implements IDismantleable {
 
-    protected final Supplier<? extends TileEntity> supplier;
+    protected final Supplier<? extends TileCoFH> supplier;
 
-    public TileBlockCoFH(Properties builder, Supplier<? extends TileEntity> supplier) {
+    public TileBlockCoFH(Properties builder, Supplier<? extends TileCoFH> supplier) {
 
         super(builder);
         this.supplier = supplier;
@@ -47,7 +47,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 
-        return supplier.get();
+        return supplier.get().worldContext(state, world);
     }
 
     @Override
