@@ -46,7 +46,7 @@ public class MachineCrafterTile extends MachineTileReconfigurableProcess {
 
     protected void setRecipe() {
 
-        //        for (int i = 0; i < 9; i++) {
+        //        for (int i = 0; i < 9; ++i) {
         //            craftMatrix.setInventorySlotContents(i, inventory.getInternalSlots().get(i).getItemStack());
         //        }
         //        Optional<ICraftingRecipe> possibleRecipe = world.getServer().getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftMatrix, world);

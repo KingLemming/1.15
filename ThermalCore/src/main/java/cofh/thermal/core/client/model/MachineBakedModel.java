@@ -153,7 +153,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
     private void putVertex(BakedQuadBuilder builder, Vec3d normal, double x, double y, double z, float u, float v, TextureAtlasSprite sprite, float r, float g, float b) {
 
         ImmutableList<VertexFormatElement> elements = builder.getVertexFormat().getElements().asList();
-        for (int j = 0; j < elements.size(); j++) {
+        for (int j = 0; j < elements.size(); ++j) {
             VertexFormatElement e = elements.get(j);
             switch (e.getUsage()) {
                 case POSITION:
@@ -170,7 +170,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
                             builder.put(j, iu, iv);
                             break;
                         case 2:
-                            builder.put(j, 0f, 1f);
+                            builder.put(j, 0.0f, 1.0f);
                             break;
                         default:
                             builder.put(j);

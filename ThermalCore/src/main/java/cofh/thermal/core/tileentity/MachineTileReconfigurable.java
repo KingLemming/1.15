@@ -51,7 +51,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public static final ModelProperty<Direction> FACING = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
-    protected Direction facing = Direction.NORTH;
+    protected Direction facing; // DO NOT INITIALIZE
     protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
@@ -95,6 +95,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         if (facing == null) {
             facing = getBlockState().get(FACING_HORIZONTAL);
+            System.out.println("CALLED getFacing");
         }
         return facing;
     }
@@ -145,7 +146,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         return new ModelDataMap.Builder()
                 .withInitial(SIDES, reconfigControl().getSideConfig())
-                .withInitial(FACING, facing)
+                .withInitial(FACING, getFacing())
                 // .withInitial(FLUID, renderFluid)
                 .build();
     }
