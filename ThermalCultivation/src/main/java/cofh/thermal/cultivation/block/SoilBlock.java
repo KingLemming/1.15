@@ -17,20 +17,20 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class PhytoSoilBlock extends Block {
+public class SoilBlock extends Block {
 
     public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
     protected static final VoxelShape SHAPE_TILLED = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
     protected int boost = 2;
 
-    public PhytoSoilBlock(Properties properties) {
+    public SoilBlock(Properties properties) {
 
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TILLED, false));
     }
 
-    public PhytoSoilBlock setBoost(int boost) {
+    public SoilBlock setBoost(int boost) {
 
         this.boost = boost;
         return this;

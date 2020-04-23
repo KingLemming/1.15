@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:fertilizer_4"
+      "thermal:phytogro_4"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:fertilizer_4"
+        "recipe": "thermal:phytogro_4"
       }
     }
   },

@@ -4,7 +4,7 @@ import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
-import cofh.thermal.cultivation.block.PhytoSoilBlock;
+import cofh.thermal.cultivation.block.SoilBlock;
 import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -27,8 +27,8 @@ public class TCulBlocks {
 
         registerPlants();
 
-        registerBlock(ID_PHYTOSOIL, () -> new PhytoSoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
-        registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new PhytoSoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+        registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
+        registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
 
         registerBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new));
     }

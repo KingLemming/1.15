@@ -1,11 +1,14 @@
 package cofh.thermal.cultivation.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
@@ -32,27 +35,30 @@ public class TCulRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PHYTOSOIL))
+        DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
+        DeferredRegisterCoFH<Item> regItems = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_PHYTOSOIL))
                 .key('C', Items.CHARCOAL)
-                .key('F', ITEMS.get("fertilizer"))
+                .key('P', regItems.get("phytogro"))
                 .key('X', Blocks.DIRT)
-                .patternLine("CFC")
-                .patternLine("FXF")
-                .patternLine("CFC")
-                .addCriterion("has_fertilizer", hasItem(ITEMS.get("fertilizer")))
+                .patternLine("CPC")
+                .patternLine("PXP")
+                .patternLine("CPC")
+                .addCriterion("has_phytogro", hasItem(regItems.get("phytogro")))
                 .build(consumer);
 
-        ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get(seeds(ID_FROST_MELON)))
-                .addIngredient(ITEMS.get(ID_FROST_MELON_SLICE))
-                .addCriterion("has_frost_melon", hasItem(ITEMS.get(ID_FROST_MELON_SLICE)))
+        ShapelessRecipeBuilder.shapelessRecipe(regItems.get(seeds(ID_FROST_MELON)))
+                .addIngredient(regItems.get(ID_FROST_MELON_SLICE))
+                .addCriterion("has_frost_melon", hasItem(regItems.get(ID_FROST_MELON_SLICE)))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_FROST_MELON))
-                .key('M', ITEMS.get(ID_FROST_MELON_SLICE))
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_FROST_MELON))
+                .key('M', regItems.get(ID_FROST_MELON_SLICE))
                 .patternLine("MMM")
                 .patternLine("MMM")
                 .patternLine("MMM")
-                .addCriterion("has_frost_melon", hasItem(ITEMS.get(ID_FROST_MELON_SLICE)))
+                .addCriterion("has_frost_melon", hasItem(regItems.get(ID_FROST_MELON_SLICE)))
                 .build(consumer);
     }
 

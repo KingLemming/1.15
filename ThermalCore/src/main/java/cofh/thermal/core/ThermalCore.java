@@ -10,7 +10,6 @@ import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
-import cofh.thermal.core.tutorial.FancyModelLoader;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -107,7 +106,6 @@ public class ThermalCore {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
 
         ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "fancyloader"), new FancyModelLoader());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

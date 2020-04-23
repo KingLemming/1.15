@@ -2,25 +2,17 @@ package cofh.thermal.core.init;
 
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.storage.StorageBlock;
-import cofh.thermal.core.common.ThermalItemGroups;
-import cofh.thermal.core.tutorial.FancyBlock;
-import cofh.thermal.core.tutorial.FancyBlockTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.GlassBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
 
-import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
@@ -84,10 +76,5 @@ public class TCoreBlocks {
         registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
     }
-
-    // TODO Tutorial Remove
-    public static final RegistryObject<FancyBlock> FANCYBLOCK = BLOCKS.register("fancyblock", FancyBlock::new);
-    public static final RegistryObject<Item> FANCYBLOCK_ITEM = ITEMS.register("fancyblock", () -> new BlockItem(FANCYBLOCK.get(), new Item.Properties().group(ThermalItemGroups.THERMAL_ITEMS)));
-    public static final RegistryObject<TileEntityType<FancyBlockTile>> FANCYBLOCK_TILE = TILE_ENTITIES.register("fancyblock", () -> TileEntityType.Builder.create(FancyBlockTile::new, FANCYBLOCK.get()).build(null));
 
 }

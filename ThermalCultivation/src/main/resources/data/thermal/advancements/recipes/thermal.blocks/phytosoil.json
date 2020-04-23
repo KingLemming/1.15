@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_fertilizer": {
+    "has_phytogro": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "thermal:fertilizer"
+            "item": "thermal:phytogro"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_fertilizer",
+      "has_phytogro",
       "has_the_recipe"
     ]
   ]

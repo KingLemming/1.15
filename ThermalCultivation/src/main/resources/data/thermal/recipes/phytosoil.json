@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CFC",
-    "FXF",
-    "CFC"
+    "CPC",
+    "PXP",
+    "CPC"
   ],
   "key": {
     "C": {
       "item": "minecraft:charcoal"
     },
-    "F": {
-      "item": "thermal:fertilizer"
+    "P": {
+      "item": "thermal:phytogro"
     },
     "X": {
       "item": "minecraft:dirt"

@@ -27,31 +27,31 @@ public class TFndRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        DeferredRegisterCoFH<Item> reg = ITEMS;
+        DeferredRegisterCoFH<Item> regItems = ITEMS;
 
-        generateStorageRecipes(reg, consumer, "copper");
-        generateStorageRecipes(reg, consumer, "tin");
-        generateStorageRecipes(reg, consumer, "silver");
-        generateStorageRecipes(reg, consumer, "lead");
-        generateStorageRecipes(reg, consumer, "nickel");
-        generateStorageRecipes(reg, consumer, "platinum");
+        generateStorageRecipes(regItems, consumer, "copper");
+        generateStorageRecipes(regItems, consumer, "tin");
+        generateStorageRecipes(regItems, consumer, "silver");
+        generateStorageRecipes(regItems, consumer, "lead");
+        generateStorageRecipes(regItems, consumer, "nickel");
+        generateStorageRecipes(regItems, consumer, "platinum");
 
-        generateStorageRecipes(reg, consumer, "bronze");
-        generateStorageRecipes(reg, consumer, "electrum");
-        generateStorageRecipes(reg, consumer, "invar");
-        generateStorageRecipes(reg, consumer, "constantan");
+        generateStorageRecipes(regItems, consumer, "bronze");
+        generateStorageRecipes(regItems, consumer, "electrum");
+        generateStorageRecipes(regItems, consumer, "invar");
+        generateStorageRecipes(regItems, consumer, "constantan");
 
-        generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 0.8F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "platinum", 1.0F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "copper", 0.6F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "tin", 0.6F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "silver", 0.8F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "lead", 0.8F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "nickel", 1.0F);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "platinum", 1.0F);
 
-        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "bronze", 0);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "electrum", 0);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "invar", 0);
+        generateSmeltingAndBlastingRecipes(regItems, consumer, "constantan", 0);
     }
 
 }

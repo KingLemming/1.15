@@ -108,7 +108,7 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
                 .acceptFunction(ExplosionDecay.builder()));
     }
 
-    protected LootTable.Builder createSelfDropTable(Block block) {
+    protected LootTable.Builder createSimpleDropTable(Block block) {
 
         LootPool.Builder builder = LootPool.builder()
                 .rolls(ConstantRange.of(1))

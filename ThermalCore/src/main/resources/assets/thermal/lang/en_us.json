@@ -28,10 +28,10 @@
   "item.thermal.sulfur": "Sulfur",
   "item.thermal.wood_dust": "Sawdust",
 
-  "item.thermal.fertilizer": "Phyto-Gro",
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
+  "item.thermal.phytogro": "Phyto-Gro",
   "item.thermal.wrench": "Crescent Hammer",
 
   "item.thermal.iron_coin": "Iron Coin",

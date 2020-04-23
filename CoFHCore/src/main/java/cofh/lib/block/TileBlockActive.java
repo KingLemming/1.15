@@ -4,7 +4,6 @@ import cofh.lib.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
 
 import java.util.function.Supplier;
 

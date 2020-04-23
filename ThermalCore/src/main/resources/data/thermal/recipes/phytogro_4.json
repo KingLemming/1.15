@@ -5,7 +5,7 @@
       "tag": "forge:sand"
     },
     {
-      "item": "thermal:apatite"
+      "item": "minecraft:bone_meal"
     },
     {
       "item": "thermal:apatite"
@@ -15,7 +15,7 @@
     }
   ],
   "result": {
-    "item": "thermal:fertilizer",
-    "count": 8
+    "item": "thermal:phytogro",
+    "count": 4
   }
 }

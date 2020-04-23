@@ -2,6 +2,7 @@ package cofh.thermal.core.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -12,6 +13,7 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalReferences.ID_WRENCH;
 
@@ -31,45 +33,48 @@ public class TCoreRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get("fertilizer"), 8)
+        DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
+        DeferredRegisterCoFH<Item> regItems = ITEMS;
+        
+        ShapelessRecipeBuilder.shapelessRecipe(regItems.get("phytogro"), 8)
                 .addIngredient(Tags.Items.SAND)
-                .addIngredient(ITEMS.get("apatite"))
-                .addIngredient(ITEMS.get("apatite"))
-                .addIngredient(ITEMS.get("niter"))
-                .addCriterion("has_apatite", hasItem(ITEMS.get("apatite")))
-                .build(consumer, ID_THERMAL + ":fertilizer_8");
+                .addIngredient(regItems.get("apatite"))
+                .addIngredient(regItems.get("apatite"))
+                .addIngredient(regItems.get("niter"))
+                .addCriterion("has_apatite", hasItem(regItems.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_8");
 
-        ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get("fertilizer"), 4)
+        ShapelessRecipeBuilder.shapelessRecipe(regItems.get("phytogro"), 4)
                 .addIngredient(Tags.Items.SAND)
                 .addIngredient(Items.BONE_MEAL)
-                .addIngredient(ITEMS.get("apatite"))
-                .addIngredient(ITEMS.get("niter"))
-                .addCriterion("has_apatite", hasItem(ITEMS.get("apatite")))
-                .build(consumer, ID_THERMAL + ":fertilizer_4");
+                .addIngredient(regItems.get("apatite"))
+                .addIngredient(regItems.get("niter"))
+                .addCriterion("has_apatite", hasItem(regItems.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_4");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
                 .addIngredient(Items.CHARCOAL)
-                .addIngredient(ITEMS.get("niter"))
-                .addIngredient(ITEMS.get("niter"))
-                .addIngredient(ITEMS.get("sulfur"))
+                .addIngredient(regItems.get("niter"))
+                .addIngredient(regItems.get("niter"))
+                .addIngredient(regItems.get("sulfur"))
                 .addCriterion("has_gunpowder", hasItem(Items.GUNPOWDER))
                 .build(consumer, ID_THERMAL + ":gunpowder");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)
-                .addIngredient(ITEMS.get(ID_WRENCH))
+                .addIngredient(regItems.get(ID_WRENCH))
                 .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
                 .build(consumer, ID_THERMAL + ":split_prismarine");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
                 .addIngredient(Items.PRISMARINE_BRICKS)
-                .addIngredient(ITEMS.get(ID_WRENCH))
+                .addIngredient(regItems.get(ID_WRENCH))
                 .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
                 .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
                 .addIngredient(Items.QUARTZ_BLOCK)
-                .addIngredient(ITEMS.get(ID_WRENCH))
+                .addIngredient(regItems.get(ID_WRENCH))
                 .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
                 .build(consumer, ID_THERMAL + ":split_quartz_block");
 

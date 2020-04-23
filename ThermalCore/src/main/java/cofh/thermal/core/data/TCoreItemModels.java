@@ -50,7 +50,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         generated(reg.getSup("wrench"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
-        generated(reg.getSup("fertilizer"), TOOLS);
+        generated(reg.getSup("phytogro"), TOOLS);
     }
 
     private void registerBlockItemModels() {

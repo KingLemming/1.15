@@ -35,13 +35,13 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
         DeferredRegisterCoFH<Item> regItems = ITEMS;
 
-        lootTables.put(regBlocks.get(ID_APATITE_BLOCK), createSelfDropTable(regBlocks.get(ID_APATITE_BLOCK)));
-        lootTables.put(regBlocks.get(ID_NITER_BLOCK), createSelfDropTable(regBlocks.get(ID_NITER_BLOCK)));
-        lootTables.put(regBlocks.get(ID_SULFUR_BLOCK), createSelfDropTable(regBlocks.get(ID_SULFUR_BLOCK)));
+        lootTables.put(regBlocks.get(ID_APATITE_BLOCK), createSimpleDropTable(regBlocks.get(ID_APATITE_BLOCK)));
+        lootTables.put(regBlocks.get(ID_NITER_BLOCK), createSimpleDropTable(regBlocks.get(ID_NITER_BLOCK)));
+        lootTables.put(regBlocks.get(ID_SULFUR_BLOCK), createSimpleDropTable(regBlocks.get(ID_SULFUR_BLOCK)));
 
-        lootTables.put(regBlocks.get(ID_SIGNALUM_BLOCK), createSelfDropTable(regBlocks.get(ID_SIGNALUM_BLOCK)));
-        lootTables.put(regBlocks.get(ID_LUMIUM_BLOCK), createSelfDropTable(regBlocks.get(ID_LUMIUM_BLOCK)));
-        lootTables.put(regBlocks.get(ID_ENDERIUM_BLOCK), createSelfDropTable(regBlocks.get(ID_ENDERIUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_SIGNALUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_SIGNALUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_LUMIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_LUMIUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_ENDERIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_ENDERIUM_BLOCK)));
 
         lootTables.put(regBlocks.get(ID_SIGNALUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_SIGNALUM_GLASS)));
         lootTables.put(regBlocks.get(ID_LUMIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_LUMIUM_GLASS)));
