@@ -2,6 +2,9 @@ package cofh.thermal.cultivation.init;
 
 import cofh.lib.item.BlockNamedItemCoFH;
 import cofh.lib.item.ItemCoFH;
+import cofh.thermal.cultivation.item.BeekeeperArmorItem;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
@@ -9,6 +12,7 @@ import net.minecraft.item.Rarity;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_ITEMS;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
 import static cofh.thermal.core.util.RegistrationHelper.registerCropAndSeed;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulFoods.*;
@@ -24,6 +28,7 @@ public class TCulItems {
 
         registerCrops();
         registerFoods();
+        registerTools();
     }
 
     private static void registerCrops() {
@@ -60,6 +65,16 @@ public class TCulItems {
         //        ITEMS.register("food_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         //        ITEMS.register("food_dough", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
         //        ITEMS.register("food_flour", () -> new ItemCoFH(new Item.Properties().group(group)));
+    }
+
+    private static void registerTools() {
+
+        ItemGroup group = THERMAL_TOOLS;
+
+        ITEMS.register("beekeeper_helmet", () -> new BeekeeperArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.HEAD, new Item.Properties().group(group)));
+        ITEMS.register("beekeeper_chestplate", () -> new BeekeeperArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.CHEST, new Item.Properties().group(group)));
+        ITEMS.register("beekeeper_leggings", () -> new BeekeeperArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.LEGS, new Item.Properties().group(group)));
+        ITEMS.register("beekeeper_boots", () -> new BeekeeperArmorItem(ArmorMaterial.LEATHER, EquipmentSlotType.FEET, new Item.Properties().group(group)));
     }
 
 }

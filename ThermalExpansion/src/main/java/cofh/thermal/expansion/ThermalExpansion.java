@@ -67,7 +67,9 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(DYNAMO_NUMISMATIC_CONTAINER, DynamoNumismaticScreen::new);
         ScreenManager.registerFactory(DYNAMO_LAPIDARY_CONTAINER, DynamoLapidaryScreen::new);
 
-        Predicate<RenderType> predicate = type -> type == RenderType.getCutout() || type == RenderType.getTranslucent();
+        // Predicate<RenderType> predicate = type -> type == RenderType.getCutout() || type == RenderType.getTranslucent();
+
+        RenderType predicate = RenderType.getCutout();
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FURNACE), predicate);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_SAWMILL), predicate);

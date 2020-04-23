@@ -75,6 +75,9 @@ public class ThermalCultivation {
             ComposterBlock.CHANCES.put(ITEMS.get(ID_COFFEE), chance);
             ComposterBlock.CHANCES.put(ITEMS.get(ID_TEA), chance);
         }
+        {
+            float chance = 0.5F;
+        }
         // SEEDS
         {
             float chance = 0.3F;

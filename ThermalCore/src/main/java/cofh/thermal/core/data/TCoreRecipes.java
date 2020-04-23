@@ -35,7 +35,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
         DeferredRegisterCoFH<Item> regItems = ITEMS;
-        
+
         ShapelessRecipeBuilder.shapelessRecipe(regItems.get("phytogro"), 8)
                 .addIngredient(Tags.Items.SAND)
                 .addIngredient(regItems.get("apatite"))

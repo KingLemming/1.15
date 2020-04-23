@@ -14,6 +14,7 @@ import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.UUID;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
@@ -107,17 +108,15 @@ public class Constants {
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     public static final Direction[] DIRECTIONS = Direction.values();
+
+    public static final Supplier<Boolean> TRUE = () -> true;
+    public static final Supplier<Boolean> FALSE = () -> false;
     // endregion
 
     // region COMMANDS
     public static final String DURATION = "duration";
     public static final String PLAYER = "player";
     public static final String TARGETS = "targets";
-    // endregion
-
-    // region GUI
-    public static final int GUI_TILE = 0;
-    public static final int GUI_TILE_CONFIG = 1;
     // endregion
 
     // region PACKET
@@ -134,33 +133,13 @@ public class Constants {
     public static final int PACKET_KEY_MULTIMODE = 32;
     // endregion
 
-    // region PREFIXES
-    public static final String PREFIX_BLOCK = "block";
-    public static final String PREFIX_COIN = "coin";
-    public static final String PREFIX_CROP = "crop";
-    public static final String PREFIX_DUST = "dust";
-    public static final String PREFIX_GEAR = "gear";
-    public static final String PREFIX_GEM = "gem";
-    public static final String PREFIX_INGOT = "ingot";
-    public static final String PREFIX_LOG = "log";
-    public static final String PREFIX_NUGGET = "nugget";
-    public static final String PREFIX_ORE = "ore";
-    public static final String PREFIX_PLANK = "plank";
-    public static final String PREFIX_PLATE = "plate";
-    public static final String PREFIX_SEED = "seed";
-    // endregion
-
     // region CONSTANTS
-    public static final int TINT_INDEX_1 = 1;
-    public static final int TINT_INDEX_2 = 2;
-    public static final int TINT_INDEX_3 = 3;
-
     public static final String DAMAGE_ARROW = "arrow";
     public static final String DAMAGE_PLAYER = "player";
 
     public static final String KEY_MULTIMODE = "cofh.multimode";
 
-    public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D95FB972-0426-4BB7-8A01-7416EA211884");
+    public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D1ADBCE5-95CE-470C-BF99-6C59843084A2");
 
     public static final UUID UUID_EFFECT_CHILLED_MOVEMENT_SPEED = UUID.fromString("D99513AE-6F0E-4987-82DE-80DCBAF058BC");
     public static final UUID UUID_EFFECT_CHILLED_ATTACK_DAMAGE = UUID.fromString("DF93E7E2-5056-49FA-B425-0D8C46902105");
@@ -180,7 +159,5 @@ public class Constants {
     public static final String PATH_GFX = ID_COFH_CORE + ":textures/";
     public static final String PATH_GUI = PATH_GFX + "gui/";
     public static final String PATH_ELEMENTS = PATH_GUI + "elements/";
-    public static final String PATH_GUI_STORAGE = PATH_GUI + "storage/";
-    public static final String PATH_GUI_FILTER = PATH_GUI + "filter/";
     // endregion
 }

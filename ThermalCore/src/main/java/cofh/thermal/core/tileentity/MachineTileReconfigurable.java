@@ -48,10 +48,9 @@ import static cofh.lib.util.helpers.BlockHelper.*;
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITransferControllableTile, IReconfigurableTile {
 
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
-    public static final ModelProperty<Direction> FACING = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
-    protected Direction facing; // DO NOT INITIALIZE
+    protected Direction facing = null; // DO NOT CHANGE FROM NULL
     protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
@@ -146,7 +145,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         return new ModelDataMap.Builder()
                 .withInitial(SIDES, reconfigControl().getSideConfig())
-                .withInitial(FACING, getFacing())
                 // .withInitial(FLUID, renderFluid)
                 .build();
     }

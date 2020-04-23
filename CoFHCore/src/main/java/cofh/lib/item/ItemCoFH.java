@@ -13,14 +13,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class ItemCoFH extends Item {
 
-    protected boolean showEnchantEffect = true;
-    protected boolean showInItemGroup = true;
+    protected Supplier<Boolean> showEnchantEffect = TRUE;
+    protected Supplier<Boolean> showInItemGroup = TRUE;
     protected boolean creative;
     protected int enchantability;
 
@@ -49,7 +51,7 @@ public class ItemCoFH extends Item {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup) {
+        if (!showInItemGroup.get()) {
             return;
         }
         super.fillItemGroup(group, items);
@@ -59,7 +61,7 @@ public class ItemCoFH extends Item {
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
 
-        return showEnchantEffect && stack.isEnchanted();
+        return showEnchantEffect.get() && stack.isEnchanted();
     }
 
     @Override

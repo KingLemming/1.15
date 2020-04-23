@@ -1,4 +1,4 @@
-package cofh.lib.item.override;
+package cofh.lib.item;
 
 import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.item.ArrowItem;
@@ -12,10 +12,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Supplier;
 
+import static cofh.lib.util.constants.Constants.TRUE;
+
 public class ArrowItemCoFH extends ArrowItem {
 
-    protected boolean showEnchantEffect = true;
-    protected boolean showInItemGroup = true;
+    protected Supplier<Boolean> showEnchantEffect = TRUE;
+    protected Supplier<Boolean> showInItemGroup = TRUE;
 
     protected Supplier<ItemGroup> displayGroup;
 
@@ -33,7 +35,7 @@ public class ArrowItemCoFH extends ArrowItem {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup) {
+        if (!showInItemGroup.get()) {
             return;
         }
         super.fillItemGroup(group, items);
@@ -43,7 +45,7 @@ public class ArrowItemCoFH extends ArrowItem {
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
 
-        return showEnchantEffect && stack.isEnchanted();
+        return showEnchantEffect.get() && stack.isEnchanted();
     }
 
     @Override

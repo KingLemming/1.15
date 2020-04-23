@@ -175,6 +175,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         super.getGuiPacket(buffer);
 
         buffer.writeFluidStack(renderFluid);
+        buffer.writeInt(fuelMax);
+        buffer.writeInt(fuel);
 
         return buffer;
     }
@@ -203,6 +205,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         super.handleGuiPacket(buffer);
 
         renderFluid = buffer.readFluidStack();
+        fuelMax = buffer.readInt();
+        fuel = buffer.readInt();
     }
 
     @Override
@@ -220,10 +224,10 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.read(nbt);
 
-        fuel = nbt.getInt(TAG_FUEL);
         fuelMax = nbt.getInt(TAG_FUEL_MAX);
-        coolant = nbt.getInt(TAG_COOLANT);
+        fuel = nbt.getInt(TAG_FUEL);
         coolantMax = nbt.getInt(TAG_COOLANT_MAX);
+        coolant = nbt.getInt(TAG_COOLANT);
     }
 
     @Override
@@ -231,7 +235,9 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.write(nbt);
 
+        nbt.putInt(TAG_FUEL_MAX, fuelMax);
         nbt.putInt(TAG_FUEL, fuel);
+        nbt.putInt(TAG_COOLANT_MAX, coolantMax);
         nbt.putInt(TAG_COOLANT, coolant);
 
         return nbt;

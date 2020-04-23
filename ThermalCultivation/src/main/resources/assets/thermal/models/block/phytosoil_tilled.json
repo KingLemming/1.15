@@ -1,8 +1,8 @@
 {
   "parent": "block/template_farmland",
   "textures": {
-    "particle": "thermal:block/phytosoil",
-    "dirt": "thermal:block/phytosoil",
-    "top": "thermal:block/phytosoil_tilled"
+    "particle": "thermal:block/soils/phytosoil",
+    "dirt": "thermal:block/soils/phytosoil",
+    "top": "thermal:block/soils/phytosoil_tilled"
   }
 }

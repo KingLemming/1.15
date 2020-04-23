@@ -6,6 +6,7 @@ import cofh.core.data.CoreBlockStateProvider;
 import cofh.core.data.CoreItemModelProvider;
 import cofh.core.data.CoreLootTableProvider;
 import cofh.core.data.CoreRecipeProvider;
+import cofh.core.event.AttributeEvents;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.*;
@@ -111,6 +112,7 @@ public class CoFHCore {
         CapabilityShield.register();
 
         CoreCommonEvents.register();
+        AttributeEvents.register();
 
         ArcheryEvents.register();
         AOEEvents.register();

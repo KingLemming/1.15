@@ -3,9 +3,11 @@ package cofh.thermal.cultivation.block;
 import net.minecraft.block.AttachedStemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -78,11 +80,18 @@ public class SoilBlock extends Block {
         switch (plantable.getPlantType(world, pos.up())) {
             case Crop:
                 return tilled;
-            case Beach:
             case Cave:
             case Desert:
             case Plains:
                 return !tilled;
+            case Beach:
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
+                    BlockPos qPos = pos.offset(direction);
+                    if (world.getFluidState(qPos).isTagged(FluidTags.WATER) || world.getBlockState(qPos).getBlock() == Blocks.FROSTED_ICE) {
+                        return true;
+                    }
+                }
+                break;
             case Nether:
             case Water:
                 return false;

@@ -316,6 +316,11 @@
   "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
   "info.thermal.device_hive_extractor.2": "Buzz buzz.",
 
+  "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
+  "item.thermal.beekeeper_chestplate": "Beekeeper's Suit",
+  "item.thermal.beekeeper_leggings": "Beekeeper's Leggings",
+  "item.thermal.beekeeper_boots": "Beekeeper's Boots",
+
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",
   "item.thermal.bell_pepper": "Bell Pepper",

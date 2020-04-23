@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "thermal:block/phytosoil_charged"
+    "all": "thermal:block/soils/phytosoil_charged"
   }
 }

@@ -1,7 +1,7 @@
 package cofh.archersparadox.item.projectile;
 
 import cofh.archersparadox.entity.projectile.SlimeArrowEntity;
-import cofh.lib.item.override.ArrowItemCoFH;
+import cofh.lib.item.ArrowItemCoFH;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
