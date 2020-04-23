@@ -85,7 +85,7 @@ public abstract class MachineTileBasic extends ThermalTileBase {
     @Override
     public void handleStatePacket(PacketBuffer buffer) {
 
-        super.handleControlPacket(buffer);
+        super.handleStatePacket(buffer);
 
         renderFluid = buffer.readFluidStack();
     }

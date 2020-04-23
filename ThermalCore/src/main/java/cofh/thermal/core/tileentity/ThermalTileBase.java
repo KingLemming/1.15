@@ -196,7 +196,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
-        super.getControlPacket(buffer);
+        super.getStatePacket(buffer);
 
         buffer.writeBoolean(isActive);
 
@@ -229,7 +229,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public void handleStatePacket(PacketBuffer buffer) {
 
-        super.handleControlPacket(buffer);
+        super.handleStatePacket(buffer);
 
         isActive = buffer.readBoolean();
     }

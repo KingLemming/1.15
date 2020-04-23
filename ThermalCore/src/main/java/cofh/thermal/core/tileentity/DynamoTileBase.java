@@ -182,7 +182,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     @Override
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
-        super.getControlPacket(buffer);
+        super.getStatePacket(buffer);
 
         buffer.writeFluidStack(renderFluid);
 
@@ -208,7 +208,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     @Override
     public void handleStatePacket(PacketBuffer buffer) {
 
-        super.handleControlPacket(buffer);
+        super.handleStatePacket(buffer);
 
         renderFluid = buffer.readFluidStack();
     }

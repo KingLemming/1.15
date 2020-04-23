@@ -49,6 +49,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
     public static final ModelProperty<Direction> FACING = new ModelProperty<>();
+    // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
     protected Direction facing = Direction.NORTH;
     protected FluidStack renderFluid = FluidStack.EMPTY;
@@ -145,6 +146,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         return new ModelDataMap.Builder()
                 .withInitial(SIDES, reconfigControl().getSideConfig())
                 .withInitial(FACING, facing)
+                // .withInitial(FLUID, renderFluid)
                 .build();
     }
 
@@ -245,7 +247,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
-        super.getControlPacket(buffer);
+        super.getStatePacket(buffer);
 
         buffer.writeFluidStack(renderFluid);
 
@@ -278,6 +280,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         super.handleStatePacket(buffer);
 
         renderFluid = buffer.readFluidStack();
+        ModelDataManager.requestModelDataRefresh(this);
     }
     // endregion
 

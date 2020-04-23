@@ -28,8 +28,13 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
 
     IReconfigurable.SideConfig[] DEFAULT_SIDES = new IReconfigurable.SideConfig[]{SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
 
-    private static final double LOWER = -0.004;
-    private static final double UPPER = 1.004;
+    private static final double OFFSET = 0.004D;
+
+    private static final double LOWER_IN = OFFSET;
+    private static final double UPPER_IN = 1 - OFFSET;
+
+    private static final double LOWER = -OFFSET;
+    private static final double UPPER = 1 + OFFSET;
 
     public MachineBakedModel(IBakedModel originalModel) {
 
@@ -70,6 +75,25 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
                 quads.add(createQuad(v(LOWER, LOWER, UPPER), v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), textures[0]));
                 quads.add(createQuad(v(LOWER, UPPER, LOWER), v(LOWER, UPPER, UPPER), v(UPPER, UPPER, UPPER), v(UPPER, UPPER, LOWER), textures[1]));
         }
+        //        FluidStack fluid = extraData.getData(MachineTileReconfigurable.FLUID);
+        //        if (fluid == null) {
+        //            fluid = FluidStack.EMPTY;
+        //        }
+        //        if (!fluid.isEmpty()) {
+        //            TextureAtlasSprite fluidTexture = RenderHelper.getFluidTexture(fluid);
+        //            // Bottom
+        //            quads.add(createQuad(v(LOWER_IN, LOWER_IN, LOWER_IN), v(UPPER_IN, LOWER_IN, LOWER_IN), v(UPPER_IN, LOWER_IN, UPPER_IN), v(LOWER_IN, LOWER_IN, UPPER_IN), fluidTexture));
+        //            // Top
+        //            quads.add(createQuad(v(LOWER_IN, UPPER_IN, LOWER_IN), v(LOWER_IN, UPPER_IN, UPPER_IN), v(UPPER_IN, UPPER_IN, UPPER_IN), v(UPPER_IN, UPPER_IN, LOWER_IN), fluidTexture));
+        //            // North
+        //            quads.add(createQuad(v(UPPER_IN, UPPER_IN, LOWER_IN), v(UPPER_IN, LOWER_IN, LOWER_IN), v(LOWER_IN, LOWER_IN, LOWER_IN), v(LOWER_IN, UPPER_IN, LOWER_IN), fluidTexture));
+        //            // South
+        //            quads.add(createQuad(v(LOWER_IN, UPPER_IN, UPPER_IN), v(LOWER_IN, LOWER_IN, UPPER_IN), v(UPPER_IN, LOWER_IN, UPPER_IN), v(UPPER_IN, UPPER_IN, UPPER_IN), fluidTexture));
+        //            // West
+        //            quads.add(createQuad(v(LOWER_IN, UPPER_IN, LOWER_IN), v(LOWER_IN, LOWER_IN, LOWER_IN), v(LOWER_IN, LOWER_IN, UPPER_IN), v(LOWER_IN, UPPER_IN, UPPER_IN), fluidTexture));
+        //            // East
+        //            quads.add(createQuad(v(UPPER_IN, UPPER_IN, UPPER_IN), v(UPPER_IN, LOWER_IN, UPPER_IN), v(UPPER_IN, LOWER_IN, LOWER_IN), v(UPPER_IN, UPPER_IN, LOWER_IN), fluidTexture));
+        //        }
         //        // Bottom
         //        quads.add(createQuad(v(LOWER, LOWER, LOWER), v(UPPER, LOWER, LOWER), v(UPPER, LOWER, UPPER), v(LOWER, LOWER, UPPER), textures[0]));
         //        // Top
