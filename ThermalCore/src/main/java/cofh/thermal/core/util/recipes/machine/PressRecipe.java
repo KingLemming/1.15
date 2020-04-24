@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.common.ThermalReferences.ID_RECIPE_PRESS;
+import static cofh.thermal.core.common.ThermalRecipeTypes.ID_RECIPE_PRESS;
 
 public class PressRecipe extends ThermalRecipe {
 

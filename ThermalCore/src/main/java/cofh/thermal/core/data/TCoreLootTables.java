@@ -14,7 +14,7 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalReferences.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreLootTables extends LootTableProviderCoFH {
 
@@ -40,6 +40,7 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_SUGAR_CANE_BLOCK), createSimpleDropTable(regBlocks.get(ID_SUGAR_CANE_BLOCK)));
 
         lootTables.put(regBlocks.get(ID_APATITE_BLOCK), createSimpleDropTable(regBlocks.get(ID_APATITE_BLOCK)));
+        lootTables.put(regBlocks.get(ID_CINNABAR_BLOCK), createSimpleDropTable(regBlocks.get(ID_CINNABAR_BLOCK)));
         lootTables.put(regBlocks.get(ID_NITER_BLOCK), createSimpleDropTable(regBlocks.get(ID_NITER_BLOCK)));
         lootTables.put(regBlocks.get(ID_SULFUR_BLOCK), createSimpleDropTable(regBlocks.get(ID_SULFUR_BLOCK)));
 
@@ -54,6 +55,7 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_APATITE_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_APATITE_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_APATITE_ORE), ItemLootEntry.builder(regItems.get("apatite"))
                 .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
+        lootTables.put(regBlocks.get(ID_CINNABAR_ORE), createSilkTouchOreTable(regBlocks.get(ID_CINNABAR_ORE), regItems.get("cinnabar")));
         lootTables.put(regBlocks.get(ID_NITER_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_NITER_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_NITER_ORE), ItemLootEntry.builder(regItems.get("niter"))
                 .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));

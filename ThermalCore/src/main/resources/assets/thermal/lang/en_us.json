@@ -8,10 +8,12 @@
   "block.thermal.sugar_cane_block": "Block of Sugar Cane",
 
   "block.thermal.apatite_ore": "Apatite Ore",
+  "block.thermal.cinnabar_ore": "Cinnabar Ore",
   "block.thermal.niter_ore": "Niter Ore",
   "block.thermal.sulfur_ore": "Sulfur Ore",
 
   "block.thermal.apatite_block": "Block of Apatite",
+  "block.thermal.cinnabar_block": "Block of Cinnabar",
   "block.thermal.niter_block": "Block of Niter",
   "block.thermal.sulfur_block": "Block of Sulfur",
 
@@ -28,6 +30,7 @@
   "itemGroup.thermal.tools": "Thermal Series: Tools",
 
   "item.thermal.apatite": "Apatite",
+  "item.thermal.cinnabar": "Cinnabar",
   "item.thermal.niter": "Niter",
   "item.thermal.sulfur": "Sulfur",
   "item.thermal.wood_dust": "Sawdust",

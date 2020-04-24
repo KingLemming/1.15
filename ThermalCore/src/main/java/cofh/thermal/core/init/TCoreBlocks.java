@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.common.ThermalReferences.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
 
@@ -63,10 +63,12 @@ public class TCoreBlocks {
     private static void registerResources() {
 
         registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
         registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
         registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
+        registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
         registerBlock(ID_NITER_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
         registerBlock(ID_SULFUR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)) {
 

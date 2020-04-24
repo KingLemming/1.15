@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalReferences.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreItemModels extends ItemModelProviderCoFH {
 
@@ -45,6 +45,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("wood_dust"), DUSTS);
 
         generated(reg.getSup("apatite"), RESOURCES);
+        generated(reg.getSup("cinnabar"), RESOURCES);
         generated(reg.getSup("niter"), RESOURCES);
         generated(reg.getSup("sulfur"), RESOURCES);
 
@@ -62,10 +63,12 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_SUGAR_CANE_BLOCK));
 
         blockItem(reg.getSup(ID_APATITE_ORE));
+        blockItem(reg.getSup(ID_CINNABAR_ORE));
         blockItem(reg.getSup(ID_NITER_ORE));
         blockItem(reg.getSup(ID_SULFUR_ORE));
 
         blockItem(reg.getSup(ID_APATITE_BLOCK));
+        blockItem(reg.getSup(ID_CINNABAR_BLOCK));
         blockItem(reg.getSup(ID_NITER_BLOCK));
         blockItem(reg.getSup(ID_SULFUR_BLOCK));
 

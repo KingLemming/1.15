@@ -17,6 +17,7 @@ public class CoFHTags {
     public static class Blocks {
 
         public static final Tag<Block> ORES_APATITE = forgeTag("ores/apatite");
+        public static final Tag<Block> ORES_CINNABAR = forgeTag("ores/cinnabar");
         public static final Tag<Block> ORES_NITER = forgeTag("ores/niter");
         public static final Tag<Block> ORES_SULFUR = forgeTag("ores/sulfur");
 
@@ -35,6 +36,7 @@ public class CoFHTags {
         public static final Tag<Block> STORAGE_BLOCKS_SUGAR_CANE = forgeTag("storage_blocks/sugar_cane");
 
         public static final Tag<Block> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
+        public static final Tag<Block> STORAGE_BLOCKS_CINNABAR = forgeTag("storage_blocks/cinnabar");
         public static final Tag<Block> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");
         public static final Tag<Block> STORAGE_BLOCKS_SULFUR = forgeTag("storage_blocks/sulfur");
 
@@ -73,6 +75,7 @@ public class CoFHTags {
     public static class Items {
 
         public static final Tag<Item> ORES_APATITE = forgeTag("ores/apatite");
+        public static final Tag<Item> ORES_CINNABAR = forgeTag("ores/cinnabar");
         public static final Tag<Item> ORES_NITER = forgeTag("ores/niter");
         public static final Tag<Item> ORES_SULFUR = forgeTag("ores/sulfur");
 
@@ -91,6 +94,7 @@ public class CoFHTags {
         public static final Tag<Item> STORAGE_BLOCKS_SUGAR_CANE = forgeTag("storage_blocks/sugar_cane");
 
         public static final Tag<Item> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
+        public static final Tag<Item> STORAGE_BLOCKS_CINNABAR = forgeTag("storage_blocks/cinnabar");
         public static final Tag<Item> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");
         public static final Tag<Item> STORAGE_BLOCKS_SULFUR = forgeTag("storage_blocks/sulfur");
 

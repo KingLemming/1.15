@@ -18,8 +18,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import java.util.function.Predicate;
-
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.expansion.init.TExpReferences.*;

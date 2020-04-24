@@ -8,7 +8,7 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.common.ThermalReferences.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreBlockStates extends BlockStateProviderCoFH {
 
@@ -33,10 +33,12 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         axisBlock(reg.getSup(ID_SUGAR_CANE_BLOCK), "sugar_cane_block", STORAGE);
 
         oreBlock(reg.getSup(ID_APATITE_ORE));
+        oreBlock(reg.getSup(ID_CINNABAR_ORE));
         oreBlock(reg.getSup(ID_NITER_ORE));
         oreBlock(reg.getSup(ID_SULFUR_ORE));
 
         storageBlock(reg.getSup(ID_APATITE_BLOCK));
+        storageBlock(reg.getSup(ID_CINNABAR_BLOCK));
         storageBlock(reg.getSup(ID_NITER_BLOCK));
         storageBlock(reg.getSup(ID_SULFUR_BLOCK));
 

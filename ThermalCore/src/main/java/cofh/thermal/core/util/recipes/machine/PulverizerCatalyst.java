@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.common.ThermalReferences.ID_CATALYST_PULVERIZER;
+import static cofh.thermal.core.common.ThermalRecipeTypes.ID_CATALYST_PULVERIZER;
 
 public class PulverizerCatalyst extends ThermalCatalyst {
 

@@ -38,9 +38,14 @@ public class TCoreItems {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
+        //        registerItem("cinnabar_dust", group);
+        //        registerItem("niter_dust", group);
+        //        registerItem("sulfur_dust", group);
+        //        registerItem("obsidian_dust", group);
         registerItem("wood_dust", group);
 
         registerItem("apatite", group);
+        registerItem("cinnabar", group);
         registerItem("niter", group);
         registerItem("sulfur", group);
 

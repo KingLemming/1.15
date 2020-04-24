@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.common.ThermalReferences.ID_RECIPE_INSOLATOR;
+import static cofh.thermal.core.common.ThermalRecipeTypes.ID_RECIPE_INSOLATOR;
 
 public class InsolatorRecipe extends ThermalRecipe {
 

@@ -1,6 +1,5 @@
 package cofh.thermal.core.plugins.jei;
 
-import cofh.thermal.core.common.ThermalReferences;
 import cofh.thermal.core.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.core.util.managers.machine.FurnaceRecipeManager;
 import mezz.jei.api.IModPlugin;
@@ -25,19 +24,19 @@ public class ThermalJeiPlugin implements IModPlugin {
             // TODO: Log an error.
             return;
         }
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_FURNACE).values(), ThermalReferences.ID_RECIPE_FURNACE);
-        registration.addRecipes(FurnaceRecipeManager.instance().getConvertedRecipes(), ThermalReferences.ID_RECIPE_FURNACE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ThermalReferences.ID_RECIPE_SAWMILL);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ThermalReferences.ID_RECIPE_PULVERIZER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_INSOLATOR).values(), ThermalReferences.ID_RECIPE_INSOLATOR);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CENTRIFUGE).values(), ThermalReferences.ID_RECIPE_CENTRIFUGE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_PRESS).values(), ThermalReferences.ID_RECIPE_PRESS);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CRUCIBLE).values(), ThermalReferences.ID_RECIPE_CRUCIBLE);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_CHILLER).values(), ThermalReferences.ID_RECIPE_CHILLER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_REFINERY).values(), ThermalReferences.ID_RECIPE_REFINERY);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ThermalReferences.ID_RECIPE_BREWER);
-        registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ThermalReferences.ID_RECIPE_BREWER);
-        registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ThermalReferences.ID_RECIPE_BOTTLER);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_FURNACE).values(), ID_RECIPE_FURNACE);
+        registration.addRecipes(FurnaceRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_FURNACE);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_SAWMILL).values(), ID_RECIPE_SAWMILL);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_PULVERIZER).values(), ID_RECIPE_PULVERIZER);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_INSOLATOR).values(), ID_RECIPE_INSOLATOR);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_CENTRIFUGE).values(), ID_RECIPE_CENTRIFUGE);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_PRESS).values(), ID_RECIPE_PRESS);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_CRUCIBLE).values(), ID_RECIPE_CRUCIBLE);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_CHILLER).values(), ID_RECIPE_CHILLER);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_REFINERY).values(), ID_RECIPE_REFINERY);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ID_RECIPE_BREWER);
+        registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BREWER);
+        registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ID_RECIPE_BOTTLER);
     }
 
     @Override

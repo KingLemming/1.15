@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.core.common.ThermalReferences.ID_RECIPE_BOTTLER;
+import static cofh.thermal.core.common.ThermalRecipeTypes.ID_RECIPE_BOTTLER;
 
 public class BottlerRecipe extends ThermalRecipe {
 
