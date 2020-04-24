@@ -77,7 +77,7 @@ public class ShieldEnchEvents {
             // FROST REBUKE
             int encFrostRebuke = getEnchantmentLevel(FROST_REBUKE, stack);
             if (FrostRebukeEnchantment.shouldHit(encFrostRebuke, entity.getRNG())) {
-                FrostRebukeEnchantment.onHit(entity, attacker, encFireRebuke);
+                FrostRebukeEnchantment.onHit(entity, attacker, encFrostRebuke);
             }
             // BULWARK
             int encBulwark = getEnchantmentLevel(BULWARK, stack);

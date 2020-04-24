@@ -20,6 +20,7 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
         super(generator, modid, existingFileHelper);
     }
 
+    public static final String ARMOR = "armor";
     public static final String COINS = "coins";
     public static final String CRAFTING = "crafting";
     public static final String CROPS = "crops";

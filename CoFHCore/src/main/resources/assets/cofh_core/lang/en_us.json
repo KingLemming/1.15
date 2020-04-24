@@ -1,5 +1,5 @@
 {
-  "attribute.name.cofh.beeStingResistance": "Sting Protection",
+  "attribute.name.cofh.stingResistance": "Sting Resistance",
 
   "commands.cofh.heal.success.single": "Healed %s",
   "commands.cofh.heal.success.multiple": "Healed %s entities",

@@ -32,7 +32,7 @@ public class AttributeEvents {
     public static void handleEntityConstructingEvent(EntityEvent.EntityConstructing event) {
 
         if (event.getEntity() instanceof LivingEntity) {
-            ((LivingEntity) event.getEntity()).getAttributes().registerAttribute(CoreAttributes.BEE_STING_RESISTANCE);
+            ((LivingEntity) event.getEntity()).getAttributes().registerAttribute(CoreAttributes.STING_RESISTANCE);
         }
     }
 
@@ -42,22 +42,12 @@ public class AttributeEvents {
         if (event.isCanceled()) {
             return;
         }
-        // System.out.println("CALLED");
-
         LivingEntity entity = event.getEntityLiving();
         DamageSource source = event.getSource();
         Entity attacker = source.getTrueSource();
 
-        //        System.out.println(entity);
-        //        System.out.println(source);
-        //        System.out.println(attacker);
-
         if (attacker instanceof BeeEntity) {
-            System.out.println("BEEEES");
-
-            double resistance = entity.getAttribute(CoreAttributes.BEE_STING_RESISTANCE).getValue();
-
-            System.out.println(resistance);
+            double resistance = entity.getAttribute(CoreAttributes.STING_RESISTANCE).getValue();
             if (resistance > 0.0D && entity.getRNG().nextDouble() < resistance) {
                 event.setCanceled(true);
             }

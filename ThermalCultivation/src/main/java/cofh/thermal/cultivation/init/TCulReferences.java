@@ -59,6 +59,13 @@ public class TCulReferences {
     public static SoilBlock PHYTOSOIL_CHARGED_BLOCK;
     // endregion
 
+    // region ARMOR & TOOLS
+    public static final String ID_BEEKEEPER_HELMET = ":beekeeper_helmet";
+    public static final String ID_BEEKEEPER_CHESTPLATE = "beekeeper_chestplate";
+    public static final String ID_BEEKEEPER_LEGGINGS = "beekeeper_leggings";
+    public static final String ID_BEEKEEPER_BOOTS = "beekeeper_boots";
+    // endregion
+
     // region DEVICES
     public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
     public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";

@@ -94,7 +94,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         if (facing == null) {
             facing = getBlockState().get(FACING_HORIZONTAL);
-            System.out.println("CALLED getFacing");
         }
         return facing;
     }
