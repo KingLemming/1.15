@@ -90,6 +90,7 @@ public class ThermalCore {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
+        TCoreBlocks.setup();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

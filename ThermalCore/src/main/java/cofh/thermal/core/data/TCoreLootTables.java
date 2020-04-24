@@ -35,6 +35,10 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
         DeferredRegisterCoFH<Item> regItems = ITEMS;
 
+        lootTables.put(regBlocks.get(ID_CHARCOAL_BLOCK), createSimpleDropTable(regBlocks.get(ID_CHARCOAL_BLOCK)));
+        lootTables.put(regBlocks.get(ID_BAMBOO_BLOCK), createSimpleDropTable(regBlocks.get(ID_BAMBOO_BLOCK)));
+        lootTables.put(regBlocks.get(ID_SUGAR_CANE_BLOCK), createSimpleDropTable(regBlocks.get(ID_SUGAR_CANE_BLOCK)));
+
         lootTables.put(regBlocks.get(ID_APATITE_BLOCK), createSimpleDropTable(regBlocks.get(ID_APATITE_BLOCK)));
         lootTables.put(regBlocks.get(ID_NITER_BLOCK), createSimpleDropTable(regBlocks.get(ID_NITER_BLOCK)));
         lootTables.put(regBlocks.get(ID_SULFUR_BLOCK), createSimpleDropTable(regBlocks.get(ID_SULFUR_BLOCK)));

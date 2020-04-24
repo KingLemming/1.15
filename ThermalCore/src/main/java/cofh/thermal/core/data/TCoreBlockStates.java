@@ -28,6 +28,10 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         DeferredRegisterCoFH<Block> reg = BLOCKS;
 
+        storageBlock(reg.getSup(ID_CHARCOAL_BLOCK));
+        axisBlock(reg.getSup(ID_BAMBOO_BLOCK), "bamboo_block", STORAGE);
+        axisBlock(reg.getSup(ID_SUGAR_CANE_BLOCK), "sugar_cane_block", STORAGE);
+
         oreBlock(reg.getSup(ID_APATITE_ORE));
         oreBlock(reg.getSup(ID_NITER_ORE));
         oreBlock(reg.getSup(ID_SULFUR_ORE));

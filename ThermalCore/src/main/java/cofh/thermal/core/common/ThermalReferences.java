@@ -10,6 +10,10 @@ public class ThermalReferences {
 
     }
 
+    public static final String ID_CHARCOAL_BLOCK = "charcoal_block";
+    public static final String ID_BAMBOO_BLOCK = "bamboo_block";
+    public static final String ID_SUGAR_CANE_BLOCK = "sugar_cane_block";
+
     public static final String ID_APATITE_ORE = "apatite_ore";
     public static final String ID_NITER_ORE = "niter_ore";
     public static final String ID_SULFUR_ORE = "sulfur_ore";

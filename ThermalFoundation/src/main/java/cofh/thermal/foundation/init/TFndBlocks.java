@@ -1,7 +1,7 @@
 package cofh.thermal.foundation.init;
 
 import cofh.lib.block.OreBlockCoFH;
-import cofh.lib.block.storage.StorageBlock;
+import cofh.lib.block.storage.MetalStorageBlock;
 import net.minecraft.block.material.MaterialColor;
 
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
@@ -15,12 +15,12 @@ public class TFndBlocks {
 
     public static void register() {
 
-        registerOres();
+        registerResources();
         registerMetals();
         registerGems();
     }
 
-    private static void registerOres() {
+    private static void registerResources() {
 
         registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
         registerBlock(ID_TIN_ORE, () -> new OreBlockCoFH(1));
@@ -35,23 +35,23 @@ public class TFndBlocks {
 
     private static void registerMetals() {
 
-        registerBlock(ID_COPPER_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_TIN_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_SILVER_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_LEAD_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_NICKEL_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_PLATINUM_BLOCK, () -> new StorageBlock(2));
+        registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_PLATINUM_BLOCK, () -> new MetalStorageBlock(2));
 
-        registerBlock(ID_BRONZE_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_ELECTRUM_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_INVAR_BLOCK, () -> new StorageBlock(1));
-        registerBlock(ID_CONSTANTAN_BLOCK, () -> new StorageBlock(1));
+        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));
     }
 
     private static void registerGems() {
 
-        registerBlock(ID_RUBY_BLOCK, () -> new StorageBlock(MaterialColor.RED, 1));
-        registerBlock(ID_SAPPHIRE_BLOCK, () -> new StorageBlock(MaterialColor.BLUE, 1));
+        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
+        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
     }
 
     private static void registerExtraMetals() {

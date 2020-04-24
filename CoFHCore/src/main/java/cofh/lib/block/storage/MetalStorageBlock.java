@@ -9,19 +9,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.common.ToolType;
 
-public class StorageBlock extends Block {
+public class MetalStorageBlock extends Block {
 
-    public StorageBlock(int harvestLevel) {
+    public MetalStorageBlock(int harvestLevel) {
 
         this(Properties.create(Material.IRON, MaterialColor.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE));
     }
 
-    public StorageBlock(MaterialColor color, int harvestLevel) {
+    public MetalStorageBlock(MaterialColor color, int harvestLevel) {
 
         this(Properties.create(Material.IRON, color).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE));
     }
 
-    public StorageBlock(Properties builder) {
+    public MetalStorageBlock(Properties builder) {
 
         super(builder);
     }

@@ -30,6 +30,10 @@ public class CoFHTags {
         public static final Tag<Block> ORES_RUBY = forgeTag("ores/ruby");
         public static final Tag<Block> ORES_SAPPHIRE = forgeTag("ores/sapphire");
 
+        public static final Tag<Block> STORAGE_BLOCKS_CHARCOAL = forgeTag("storage_blocks/charcoal");
+        public static final Tag<Block> STORAGE_BLOCKS_BAMBOO = forgeTag("storage_blocks/bamboo");
+        public static final Tag<Block> STORAGE_BLOCKS_SUGAR_CANE = forgeTag("storage_blocks/sugar_cane");
+
         public static final Tag<Block> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
         public static final Tag<Block> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");
         public static final Tag<Block> STORAGE_BLOCKS_SULFUR = forgeTag("storage_blocks/sulfur");
@@ -81,6 +85,10 @@ public class CoFHTags {
 
         public static final Tag<Item> ORES_RUBY = forgeTag("ores/ruby");
         public static final Tag<Item> ORES_SAPPHIRE = forgeTag("ores/sapphire");
+
+        public static final Tag<Item> STORAGE_BLOCKS_CHARCOAL = forgeTag("storage_blocks/charcoal");
+        public static final Tag<Item> STORAGE_BLOCKS_BAMBOO = forgeTag("storage_blocks/bamboo");
+        public static final Tag<Item> STORAGE_BLOCKS_SUGAR_CANE = forgeTag("storage_blocks/sugar_cane");
 
         public static final Tag<Item> STORAGE_BLOCKS_APATITE = forgeTag("storage_blocks/apatite");
         public static final Tag<Item> STORAGE_BLOCKS_NITER = forgeTag("storage_blocks/niter");

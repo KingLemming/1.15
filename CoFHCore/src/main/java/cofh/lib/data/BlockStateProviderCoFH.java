@@ -59,6 +59,11 @@ public abstract class BlockStateProviderCoFH extends BlockStateProvider {
         return modLoc("block/" + texture);
     }
 
+    protected ResourceLocation modBlockLoc(String texture, String subfolder) {
+
+        return modLoc("block/" + subfolder + "/" + texture);
+    }
+
     protected ModelFile cubeAll(Supplier<? extends Block> block) {
 
         return cubeAll(block.get());
@@ -84,9 +89,14 @@ public abstract class BlockStateProviderCoFH extends BlockStateProvider {
         simpleBlock(block.get(), expander);
     }
 
-    protected void axisBlock(Supplier<? extends RotatedPillarBlock> block, String texture) {
+    protected void axisBlock(Supplier<? extends Block> block, String texture) {
 
-        axisBlock(block.get(), modBlockLoc(texture));
+        axisBlock((RotatedPillarBlock) block.get(), modBlockLoc(texture));
+    }
+
+    protected void axisBlock(Supplier<? extends Block> block, String texture, String subfolder) {
+
+        axisBlock((RotatedPillarBlock) block.get(), modBlockLoc(texture, subfolder));
     }
 
     protected void stairsBlock(Supplier<? extends StairsBlock> block, String name) {

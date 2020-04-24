@@ -57,6 +57,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         DeferredRegisterCoFH<Block> reg = BLOCKS;
 
+        blockItem(reg.getSup(ID_CHARCOAL_BLOCK));
+        blockItem(reg.getSup(ID_BAMBOO_BLOCK));
+        blockItem(reg.getSup(ID_SUGAR_CANE_BLOCK));
+
         blockItem(reg.getSup(ID_APATITE_ORE));
         blockItem(reg.getSup(ID_NITER_ORE));
         blockItem(reg.getSup(ID_SULFUR_ORE));

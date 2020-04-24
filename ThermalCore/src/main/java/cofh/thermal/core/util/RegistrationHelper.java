@@ -37,6 +37,11 @@ public class RegistrationHelper {
         registerBlock(name, sup, THERMAL_BLOCKS, rarity);
     }
 
+    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group) {
+
+        registerBlock(name, sup, group, Rarity.COMMON);
+    }
+
     public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity) {
 
         BLOCKS.register(name, sup);

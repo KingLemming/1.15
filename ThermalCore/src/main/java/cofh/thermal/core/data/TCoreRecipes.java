@@ -2,9 +2,11 @@ package cofh.thermal.core.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -15,7 +17,7 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalReferences.ID_WRENCH;
+import static cofh.thermal.core.common.ThermalReferences.*;
 
 public class TCoreRecipes extends RecipeProviderCoFH {
 
@@ -79,6 +81,31 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .build(consumer, ID_THERMAL + ":split_quartz_block");
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_CHARCOAL_BLOCK))
+                .key('#', Items.CHARCOAL)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .addCriterion("has_at_least_9_charcoal", hasItem(MinMaxBounds.IntBound.atLeast(9), Items.CHARCOAL))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_BAMBOO_BLOCK))
+                .key('#', Items.BAMBOO)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .addCriterion("has_at_least_9_bamboo", hasItem(MinMaxBounds.IntBound.atLeast(9), Items.BAMBOO))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_SUGAR_CANE_BLOCK))
+                .key('#', Items.SUGAR_CANE)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .addCriterion("has_at_least_9_sugar_cane", hasItem(MinMaxBounds.IntBound.atLeast(9), Items.SUGAR_CANE))
+                .build(consumer);
+
 
         generateStorageRecipes(reg, consumer, "apatite");
         generateStorageRecipes(reg, consumer, "niter");
