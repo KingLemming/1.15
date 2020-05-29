@@ -59,6 +59,9 @@
   "enchantment.ensorcellation.hunter": "Hunter's Bounty",
   "enchantment.ensorcellation.hunter.desc": "Provides a chance of additional drops from slain animals.",
 
+  "enchantment.ensorcellation.instigating": "Instigating",
+  "enchantment.ensorcellation.instigating.desc": "Deals additional damage if the target is at full health.",
+
   "enchantment.ensorcellation.leech": "Leech",
   "enchantment.ensorcellation.leech.desc": "Restores health when a mob is killed.",
 

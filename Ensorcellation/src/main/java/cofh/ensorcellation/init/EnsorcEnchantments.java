@@ -42,6 +42,7 @@ public class EnsorcEnchantments {
 
         ENCHANTMENTS.register(ID_CAVALIER, CavalierEnchantment::new);
         ENCHANTMENTS.register(ID_FROST_ASPECT, FrostAspectEnchantment::new);
+        ENCHANTMENTS.register(ID_INSTIGATING, InstigatingEnchantment::new);
         ENCHANTMENTS.register(ID_LEECH, LeechEnchantment::new);
         ENCHANTMENTS.register(ID_MAGIC_EDGE, MagicEdgeEnchantment::new);
         ENCHANTMENTS.register(ID_VORPAL, VorpalEnchantment::new);

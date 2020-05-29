@@ -20,6 +20,27 @@ public class RecipeProviderCoFH extends RecipeProvider {
     }
 
     // region HELPERS
+    protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item storage, Item individual) {
+
+        String storageName = storage.getRegistryName().getPath();
+        String individualName = individual.getRegistryName().getPath();
+
+        ShapedRecipeBuilder.shapedRecipe(storage)
+                .key('#', individual)
+                .patternLine("###")
+                .patternLine("###")
+                .patternLine("###")
+                .addCriterion("has_at_least_9_" + individualName, hasItem(MinMaxBounds.IntBound.atLeast(9), individual))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(individual, 9)
+                .addIngredient(storage)
+                .addCriterion("has_at_least_9_" + individualName, hasItem(MinMaxBounds.IntBound.atLeast(9), individual))
+                .addCriterion("has_" + storageName, hasItem(storage))
+                .build(consumer, this.modid + ":" + individualName + "_from_block");
+
+    }
+
     protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type) {
 
         Item block = reg.get(type + "_block");

@@ -283,10 +283,12 @@ public class CommonEvents {
         if (encDamageVillager > 0 && DamageVillagerEnchantment.validTarget(entity)) {
             event.setAmount(event.getAmount() + DamageVillagerEnchantment.getExtraDamage(encDamageVillager));
         }
+        // CAVALIER
         int encCavalier = getHeldEnchantmentLevel(living, CAVALIER);
         if (encCavalier > 0 && living.getRidingEntity() != null) {
             event.setAmount(event.getAmount() * (1 + CavalierEnchantment.damageMult * MathHelper.nextInt(1, encCavalier)));
         }
+        // FROST ASPECT
         int encFrostAspect = getHeldEnchantmentLevel(living, FROST_ASPECT);
         if (encFrostAspect > 0) {
             FrostAspectEnchantment.onHit(entity, encFrostAspect);
@@ -295,14 +297,21 @@ public class CommonEvents {
                 event.setAmount(event.getAmount() + FrostAspectEnchantment.getExtraDamage(encFrostAspect));
             }
         }
+        // MAGIC EDGE
         int encMagicEdge = getHeldEnchantmentLevel(living, MAGIC_EDGE);
         if (encMagicEdge > 0 && source.isMagicDamage()) {
             MagicEdgeEnchantment.onHit(entity, encMagicEdge);
         }
+        // VORPAL
         int encVorpal = getHeldEnchantmentLevel(living, VORPAL);
         if (encVorpal > 0 && entity.world.rand.nextInt(100) < VorpalEnchantment.critBase + VorpalEnchantment.critLevel * encVorpal) {
             event.setAmount(event.getAmount() * VorpalEnchantment.critDamage);
             VorpalEnchantment.onHit(entity, encVorpal);
+        }
+        // INSTIGATING
+        int encInstigating = getHeldEnchantmentLevel(living, INSTIGATING);
+        if (encInstigating > 0 && entity.getHealth() >= entity.getMaxHealth()) {
+            event.setAmount(event.getAmount() * (1 + encInstigating));
         }
     }
 
@@ -484,7 +493,7 @@ public class CommonEvents {
         // EXCAVATING
         int encExcavating = getHeldEnchantmentLevel(player, EXCAVATING);
         if (encExcavating > 0) {
-            if (!player.isShiftKeyDown()) {
+            if (!player.isSecondaryUseActive()) {
                 event.setNewSpeed(event.getNewSpeed() / 1 + encExcavating);
             }
             int encEfficiency = getHeldEnchantmentLevel(player, EFFICIENCY);

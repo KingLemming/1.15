@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.core.block.GunpowderBlock;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.storage.MetalStorageBlock;
 import net.minecraft.block.*;
@@ -37,6 +38,7 @@ public class TCoreBlocks {
         fire.setFireInfo(BLOCKS.get(ID_CHARCOAL_BLOCK), 5, 5);
         fire.setFireInfo(BLOCKS.get(ID_BAMBOO_BLOCK), 60, 20);
         fire.setFireInfo(BLOCKS.get(ID_SUGAR_CANE_BLOCK), 60, 20);
+        fire.setFireInfo(BLOCKS.get(ID_GUNPOWDER_BLOCK), 15, 100);
     }
 
     private static void registerVanillaSupplemental() {
@@ -58,6 +60,7 @@ public class TCoreBlocks {
                 entityIn.onLivingFall(fallDistance, 0.6F);
             }
         });
+        registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     }
 
     private static void registerResources() {

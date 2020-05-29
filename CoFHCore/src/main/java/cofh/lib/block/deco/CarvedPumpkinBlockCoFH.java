@@ -64,7 +64,7 @@ public class CarvedPumpkinBlockCoFH extends CarvedPumpkinBlock {
                 Direction direction = hit.getFace();
                 Direction direction1 = direction.getAxis() == Direction.Axis.Y ? player.getHorizontalFacing().getOpposite() : direction;
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                worldIn.setBlockState(pos, (player.isShiftKeyDown() ? carvePrev.get() : carveNext.get())
+                worldIn.setBlockState(pos, (player.isSecondaryUseActive() ? carvePrev.get() : carveNext.get())
                         .getDefaultState()
                         .with(CarvedPumpkinBlock.FACING, direction1), 11);
                 //                itemstack.damageItem(1, player, (consumer) -> {

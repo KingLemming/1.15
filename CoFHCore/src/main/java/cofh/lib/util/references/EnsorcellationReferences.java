@@ -54,6 +54,7 @@ public class EnsorcellationReferences {
     public static final String ID_FROST_ASPECT = ID_ENSORCELLATION + ":frost_aspect";
     public static final String ID_LEECH = ID_ENSORCELLATION + ":leech";
     public static final String ID_MAGIC_EDGE = ID_ENSORCELLATION + ":magic_edge";
+    public static final String ID_INSTIGATING = ID_ENSORCELLATION + ":instigating";
     public static final String ID_VORPAL = ID_ENSORCELLATION + ":vorpal";
 
     // TOOLS
@@ -139,6 +140,9 @@ public class EnsorcellationReferences {
 
     @ObjectHolder(ID_LEECH)
     public static final Enchantment LEECH = null;
+
+    @ObjectHolder(ID_INSTIGATING)
+    public static final Enchantment INSTIGATING = null;
 
     @ObjectHolder(ID_MAGIC_EDGE)
     public static final Enchantment MAGIC_EDGE = null;

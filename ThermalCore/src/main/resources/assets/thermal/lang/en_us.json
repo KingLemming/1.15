@@ -3,8 +3,9 @@
   "_comment": "Thermal Core",
   "_comment": "========================================================================================================",
 
-  "block.thermal.charcoal_block": "Block of Charcoal",
   "block.thermal.bamboo_block": "Block of Bamboo",
+  "block.thermal.charcoal_block": "Block of Charcoal",
+  "block.thermal.gunpowder_block": "Block of Gunpowder",
   "block.thermal.sugar_cane_block": "Block of Sugar Cane",
 
   "block.thermal.apatite_ore": "Apatite Ore",

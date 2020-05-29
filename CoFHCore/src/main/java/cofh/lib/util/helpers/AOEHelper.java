@@ -68,7 +68,7 @@ public class AOEHelper {
         Item tool = stack.getItem();
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || radius <= 0) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSecondaryUseActive() || !canToolAffect(tool, stack, world, pos) || radius <= 0) {
             return ImmutableList.of();
         }
         switch (traceResult.getFace()) {
@@ -107,7 +107,7 @@ public class AOEHelper {
         int depth_max = 0;
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && depth <= 0)) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || player.isSecondaryUseActive() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && depth <= 0)) {
             return ImmutableList.of();
         }
         switch (traceResult.getFace()) {
@@ -155,7 +155,7 @@ public class AOEHelper {
         int y = pos.getY();
         int z = pos.getZ();
 
-        if (player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || length <= 0) {
+        if (player.isSecondaryUseActive() || !canToolAffect(tool, stack, world, pos) || length <= 0) {
             return ImmutableList.of();
         }
         switch (player.getHorizontalFacing()) {
@@ -208,7 +208,7 @@ public class AOEHelper {
         boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
 
         BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.NONE);
-        if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isShiftKeyDown() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
+        if (traceResult.getType() == RayTraceResult.Type.MISS || traceResult.getFace() == DOWN || player.isSecondaryUseActive() || !canHoeAffect(world, pos, weeding) || radius <= 0) {
             return ImmutableList.of();
         }
         area = BlockPos.getAllInBox(pos.add(-radius, 0, -radius), pos.add(radius, 0, radius))
@@ -225,7 +225,7 @@ public class AOEHelper {
         World world = player.getEntityWorld();
         boolean weeding = getEnchantmentLevel(WEEDING, stack) > 0;
 
-        if (player.isShiftKeyDown() || !canHoeAffect(world, pos, weeding) || length <= 0) {
+        if (player.isSecondaryUseActive() || !canHoeAffect(world, pos, weeding) || length <= 0) {
             return ImmutableList.of();
         }
         switch (player.getHorizontalFacing()) {
@@ -268,7 +268,7 @@ public class AOEHelper {
         World world = player.getEntityWorld();
         Item tool = stack.getItem();
 
-        if (player.isShiftKeyDown() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
+        if (player.isSecondaryUseActive() || !canToolAffect(tool, stack, world, pos) || (radius <= 0 && height <= 0)) {
             return ImmutableList.of();
         }
         area = BlockPos.getAllInBox(pos.add(-radius, -height, -radius), pos.add(radius, height, radius))

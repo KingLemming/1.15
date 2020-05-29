@@ -61,6 +61,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_CHARCOAL_BLOCK));
         blockItem(reg.getSup(ID_BAMBOO_BLOCK));
         blockItem(reg.getSup(ID_SUGAR_CANE_BLOCK));
+        blockItem(reg.getSup(ID_GUNPOWDER_BLOCK));
 
         blockItem(reg.getSup(ID_APATITE_ORE));
         blockItem(reg.getSup(ID_CINNABAR_ORE));

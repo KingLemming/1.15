@@ -31,6 +31,7 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         storageBlock(reg.getSup(ID_CHARCOAL_BLOCK));
         axisBlock(reg.getSup(ID_BAMBOO_BLOCK), "bamboo_block", STORAGE);
         axisBlock(reg.getSup(ID_SUGAR_CANE_BLOCK), "sugar_cane_block", STORAGE);
+        storageBlock(reg.getSup(ID_GUNPOWDER_BLOCK));
 
         oreBlock(reg.getSup(ID_APATITE_ORE));
         oreBlock(reg.getSup(ID_CINNABAR_ORE));
