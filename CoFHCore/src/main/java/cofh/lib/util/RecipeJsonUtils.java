@@ -23,7 +23,7 @@ import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 
 public abstract class RecipeJsonUtils {
 
-    private static Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     private RecipeJsonUtils() {
 

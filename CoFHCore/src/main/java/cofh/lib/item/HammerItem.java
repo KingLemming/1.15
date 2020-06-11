@@ -14,11 +14,11 @@ import static cofh.lib.util.constants.ToolTypes.HAMMER;
 
 public class HammerItem extends PickaxeItem {
 
-    private static float DEFAULT_ATTACK_DAMAGE = 4.0F;
-    private static float DEFAULT_ATTACK_SPEED = -3.4F;
-    private static int DEFAULT_BASE_AREA = 1;
+    private static final float DEFAULT_ATTACK_DAMAGE = 4.0F;
+    private static final float DEFAULT_ATTACK_SPEED = -3.4F;
+    private static final int DEFAULT_BASE_AREA = 1;
 
-    private int radius;
+    private final int radius;
 
     public HammerItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, Properties builder) {
 

@@ -24,7 +24,7 @@ public class PanelRedstoneControl extends PanelBase {
     public static int defaultTextColor = 0x000000;
     public static int defaultBackgroundColor = 0xd0230a;
 
-    private IRedstoneControllable myRSControllable;
+    private final IRedstoneControllable myRSControllable;
 
     public PanelRedstoneControl(IGuiAccess gui, IRedstoneControllable rsControllable) {
 

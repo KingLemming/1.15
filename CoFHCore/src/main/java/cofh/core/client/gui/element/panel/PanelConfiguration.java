@@ -29,9 +29,9 @@ public class PanelConfiguration extends PanelBase {
     public static int defaultTextColor = 0x000000;
     public static int defaultBackgroundColor = 0x226688;
 
-    private IReconfigurable myReconfig;
-    private ITransferControllable myTransfer;
-    private Supplier<Direction> myFacing;
+    private final IReconfigurable myReconfig;
+    private final ITransferControllable myTransfer;
+    private final Supplier<Direction> myFacing;
 
     public PanelConfiguration(IGuiAccess gui, IReconfigurable reconfig, Supplier<Direction> facingSup) {
 

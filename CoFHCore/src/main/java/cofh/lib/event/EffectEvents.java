@@ -95,6 +95,6 @@ public class EffectEvents {
     }
     // endregion
 
-    private static int clarityMod = 40;
+    private static final int clarityMod = 40;
 
 }

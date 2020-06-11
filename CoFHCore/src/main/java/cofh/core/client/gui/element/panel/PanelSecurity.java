@@ -25,8 +25,8 @@ public class PanelSecurity extends PanelBase {
     public static int defaultTextColor = 0x000000;
     public static int defaultBackgroundColor = 0x888888;
 
-    private ISecurable mySecurable;
-    private UUID myPlayer;
+    private final ISecurable mySecurable;
+    private final UUID myPlayer;
 
     public PanelSecurity(IGuiAccess gui, ISecurable securable, UUID playerID) {
 

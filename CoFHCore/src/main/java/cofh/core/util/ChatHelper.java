@@ -14,7 +14,7 @@ public class ChatHelper {
     public static final int TEMP_INDEX_SERVER = -661464083; // Random Integer
     public static final int TEMP_INDEX_CLIENT = -1245781222; // Random Integer
 
-    private static boolean indexChatMessages = true;
+    private static final boolean indexChatMessages = true;
 
     public static void sendIndexedChatMessageToPlayer(PlayerEntity player, ITextComponent message) {
 

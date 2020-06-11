@@ -18,6 +18,12 @@ public class ManagedItemInv extends SimpleItemInv {
     protected List<ItemStorageCoFH> outputSlots = new ArrayList<>();
     protected List<ItemStorageCoFH> internalSlots = new ArrayList<>();
 
+    protected IItemHandler inputHandler;
+    protected IItemHandler outputHandler;
+    protected IItemHandler accessibleHandler;
+    protected IItemHandler internalHandler;
+    protected IItemHandler allHandler;
+
     public ManagedItemInv(ITileCallback tile) {
 
         super(tile);
@@ -42,6 +48,9 @@ public class ManagedItemInv extends SimpleItemInv {
 
     public void addSlot(ItemStorageCoFH slot, StorageGroup group) {
 
+        if (allHandler != null) {
+            return;
+        }
         slots.add(slot);
         switch (group) {
             case CATALYST:
@@ -58,6 +67,15 @@ public class ManagedItemInv extends SimpleItemInv {
                 break;
             default:
         }
+    }
+
+    public void initHandlers() {
+
+        inputHandler = new ManagedItemHandler(tile, inputSlots, Collections.emptyList());
+        outputHandler = new ManagedItemHandler(tile, Collections.emptyList(), outputSlots);
+        accessibleHandler = new ManagedItemHandler(tile, inputSlots, outputSlots);
+        internalHandler = new SimpleItemHandler(tile, internalSlots);
+        allHandler = new SimpleItemHandler(tile, slots);
     }
 
     public void addSlot(Predicate<ItemStack> validator, StorageGroup group) {
@@ -82,17 +100,20 @@ public class ManagedItemInv extends SimpleItemInv {
 
     public IItemHandler getHandler(StorageGroup group) {
 
+        if (allHandler == null) {
+            initHandlers();
+        }
         switch (group) {
             case INPUT:
-                return new ManagedItemHandler(tile, inputSlots, Collections.emptyList());
+                return inputHandler;
             case OUTPUT:
-                return new ManagedItemHandler(tile, Collections.emptyList(), outputSlots);
+                return outputHandler;
             case ACCESSIBLE:
-                return new ManagedItemHandler(tile, inputSlots, outputSlots);
+                return accessibleHandler;
             case INTERNAL:
-                return new SimpleItemHandler(tile, internalSlots);
+                return internalHandler;
             case ALL:
-                return new SimpleItemHandler(tile, slots);
+                return allHandler;
             default:
         }
         return EmptyHandler.INSTANCE;

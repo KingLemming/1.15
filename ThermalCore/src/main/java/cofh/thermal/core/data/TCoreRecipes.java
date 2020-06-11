@@ -2,11 +2,8 @@ package cofh.thermal.core.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
-import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -15,7 +12,6 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.init.TCoreReferences.*;
 

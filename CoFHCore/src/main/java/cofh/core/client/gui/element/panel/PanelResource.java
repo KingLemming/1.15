@@ -12,8 +12,8 @@ public class PanelResource extends PanelBase {
     public static int defaultBackgroundColorIn = 0x0a76d0;
 
     private boolean isProducer;
-    private boolean displayMax = true;
-    private boolean displayStored = true;
+    private final boolean displayMax = true;
+    private final boolean displayStored = true;
 
     public PanelResource(IGuiAccess gui) {
 

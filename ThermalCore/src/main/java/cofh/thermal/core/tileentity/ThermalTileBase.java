@@ -302,20 +302,48 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // endregion
 
     // region CAPABILITIES
+    protected LazyOptional<?> energyCap = LazyOptional.empty();
+    protected LazyOptional<?> itemCap = LazyOptional.empty();
+    protected LazyOptional<?> fluidCap = LazyOptional.empty();
+
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
         if (cap == CapabilityEnergy.ENERGY && energyStorage.getMaxEnergyStored() > 0) {
-            return LazyOptional.of(() -> energyStorage).cast();
+            return getEnergyCapability(side);
         }
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && inventory.hasSlots()) {
-            return LazyOptional.of(() -> inventory.getHandler(StorageGroup.ACCESSIBLE)).cast();
+            return getItemHandlerCapability(side);
         }
         if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && tankInv.hasTanks()) {
-            return LazyOptional.of(() -> tankInv.getHandler(StorageGroup.ACCESSIBLE)).cast();
+            return getFluidHandlerCapability(side);
         }
         return super.getCapability(cap, side);
+    }
+
+    protected <T> LazyOptional<T> getEnergyCapability(@Nullable Direction side) {
+
+        if (!energyCap.isPresent()) {
+            energyCap = LazyOptional.of(() -> energyStorage);
+        }
+        return energyCap.cast();
+    }
+
+    protected <T> LazyOptional<T> getItemHandlerCapability(@Nullable Direction side) {
+
+        if (!itemCap.isPresent()) {
+            itemCap = LazyOptional.of(() -> inventory.getHandler(StorageGroup.ACCESSIBLE));
+        }
+        return itemCap.cast();
+    }
+
+    protected <T> LazyOptional<T> getFluidHandlerCapability(@Nullable Direction side) {
+
+        if (!fluidCap.isPresent()) {
+            fluidCap = LazyOptional.of(() -> tankInv.getHandler(StorageGroup.ACCESSIBLE));
+        }
+        return fluidCap.cast();
     }
     // endregion
 }

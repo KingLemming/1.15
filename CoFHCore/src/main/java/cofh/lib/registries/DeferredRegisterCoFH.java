@@ -29,8 +29,8 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
 
     private final IForgeRegistry<T> type;
     private final String modid;
-    private List<Supplier<? extends T>> entries = new ArrayList<>();
-    private Map<ResourceLocation, RegistryObject> registryObjects = new HashMap<>();
+    private final List<Supplier<? extends T>> entries = new ArrayList<>();
+    private final Map<ResourceLocation, RegistryObject> registryObjects = new HashMap<>();
 
     public DeferredRegisterCoFH(IForgeRegistry<T> reg, String modid) {
 

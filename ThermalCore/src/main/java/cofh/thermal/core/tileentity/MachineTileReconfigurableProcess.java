@@ -39,7 +39,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     public MachineTileReconfigurableProcess(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        energyStorage = new EnergyStorageCoFH(20000);
+        energyStorage.setCapacity(20000);
     }
 
     @Override

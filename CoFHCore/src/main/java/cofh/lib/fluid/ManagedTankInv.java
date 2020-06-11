@@ -16,6 +16,12 @@ public class ManagedTankInv extends SimpleTankInv {
     protected List<FluidStorageCoFH> accessibleTanks = new ArrayList<>();
     protected List<FluidStorageCoFH> internalTanks = new ArrayList<>();
 
+    protected IFluidHandler inputHandler;
+    protected IFluidHandler outputHandler;
+    protected IFluidHandler accessibleHandler;
+    protected IFluidHandler internalHandler;
+    protected IFluidHandler allHandler;
+
     public ManagedTankInv(ITileCallback tile) {
 
         super(tile);
@@ -28,6 +34,9 @@ public class ManagedTankInv extends SimpleTankInv {
 
     public void addTank(FluidStorageCoFH tank, StorageGroup group) {
 
+        if (allHandler != null) {
+            return;
+        }
         tanks.add(tank);
         switch (group) {
             case INPUT:
@@ -48,6 +57,15 @@ public class ManagedTankInv extends SimpleTankInv {
         }
     }
 
+    public void initHandlers() {
+
+        inputHandler = new ManagedFluidHandler(tile, inputTanks, Collections.emptyList());
+        outputHandler = new ManagedFluidHandler(tile, Collections.emptyList(), outputTanks);
+        accessibleHandler = new ManagedFluidHandler(tile, inputTanks, outputTanks);
+        internalHandler = new SimpleFluidHandler(tile, internalTanks);
+        allHandler = new SimpleFluidHandler(tile, tanks);
+    }
+
     public List<FluidStorageCoFH> getInputTanks() {
 
         return inputTanks;
@@ -65,17 +83,20 @@ public class ManagedTankInv extends SimpleTankInv {
 
     public IFluidHandler getHandler(StorageGroup group) {
 
+        if (allHandler == null) {
+            initHandlers();
+        }
         switch (group) {
             case INPUT:
-                return new ManagedFluidHandler(tile, inputTanks, Collections.emptyList());
+                return inputHandler;
             case OUTPUT:
-                return new ManagedFluidHandler(tile, Collections.emptyList(), outputTanks);
+                return outputHandler;
             case ACCESSIBLE:
-                return new ManagedFluidHandler(tile, inputTanks, outputTanks);
+                return accessibleHandler;
             case INTERNAL:
-                return new SimpleFluidHandler(tile, internalTanks);
+                return internalHandler;
             case ALL:
-                return new SimpleFluidHandler(tile, tanks);
+                return allHandler;
             default:
         }
         return EmptyFluidHandler.INSTANCE;

@@ -13,7 +13,7 @@ public class CoreTextures {
 
     }
 
-    private static String BLOCK_ATLAS = "minecraft:textures/atlas/blocks.png";
+    private static final String BLOCK_ATLAS = "minecraft:textures/atlas/blocks.png";
 
     public static void preStitch(TextureStitchEvent.Pre event) {
 

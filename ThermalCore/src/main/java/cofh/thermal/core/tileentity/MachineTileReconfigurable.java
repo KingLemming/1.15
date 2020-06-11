@@ -1,5 +1,6 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.core.network.packet.client.TileControlPacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.tileentity.TileCoFH;
@@ -24,14 +25,11 @@ import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.client.model.data.ModelProperty;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 
@@ -71,6 +69,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         facing = state.get(FACING_HORIZONTAL);
         reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
         reconfigControl.initSideConfig(facing, SIDE_NONE);
+
+        updateSidedHandlers();
 
         return this;
     }
@@ -129,6 +129,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
             }
         }
         reconfigControl.setSideConfig(sides);
+        updateSidedHandlers();
     }
 
     public void chargeEnergy() {
@@ -288,6 +289,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.read(nbt);
 
+        facing = Direction.byIndex(nbt.getInt(TAG_FACING));
         reconfigControl.read(nbt.getCompound(TAG_SIDE_CONFIG));
         transferControl.read(nbt.getCompound(TAG_TRANSFER));
 
@@ -295,6 +297,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         outputTracker = nbt.getInt(TAG_TRACK_OUT);
 
         renderFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound(TAG_RENDER_FLUID));
+
+        updateSidedHandlers();
     }
 
     @Override
@@ -302,6 +306,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.write(nbt);
 
+        nbt.putInt(TAG_FACING, getFacing().ordinal());
         nbt.put(TAG_SIDE_CONFIG, reconfigControl.write(new CompoundNBT()));
         nbt.put(TAG_TRANSFER, transferControl.write(new CompoundNBT()));
 
@@ -329,14 +334,42 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     }
     // endregion
 
-    // region CAPABILITIES
-    @Nonnull
+    // region ITileCallback
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+    public void onControlUpdate() {
 
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && inventory.hasSlots()) {
+        updateSidedHandlers();
+
+        TileControlPacket.sendToClient(this);
+    }
+    // endregion
+
+    // region CAPABILITIES
+    protected final LazyOptional<?>[] sidedItemCaps = new LazyOptional<?>[]{
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty()
+    };
+    protected final LazyOptional<?>[] sidedFluidCaps = new LazyOptional<?>[]{
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty(),
+            LazyOptional.empty()
+    };
+
+    protected void updateSidedHandlers() {
+
+        // ITEMS
+        for (int i = 0; i < 6; ++i) {
+            sidedItemCaps[i].invalidate();
+
             IItemHandler handler;
-            switch (reconfigControl.getSideConfig(side)) {
+            switch (reconfigControl.getSideConfig(i)) {
                 case SIDE_NONE:
                     handler = EmptyHandler.INSTANCE;
                     break;
@@ -349,11 +382,15 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
                 default:
                     handler = inventory.getHandler(ACCESSIBLE);
             }
-            return LazyOptional.of(() -> handler).cast();
+            sidedItemCaps[i] = LazyOptional.of(() -> handler).cast();
         }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && tankInv.hasTanks()) {
+
+        // FLUID
+        for (int i = 0; i < 6; ++i) {
+            sidedFluidCaps[i].invalidate();
+
             IFluidHandler handler;
-            switch (reconfigControl.getSideConfig(side)) {
+            switch (reconfigControl.getSideConfig(i)) {
                 case SIDE_NONE:
                     handler = EmptyFluidHandler.INSTANCE;
                     break;
@@ -366,9 +403,24 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
                 default:
                     handler = tankInv.getHandler(ACCESSIBLE);
             }
-            return LazyOptional.of(() -> handler).cast();
+            sidedFluidCaps[i] = LazyOptional.of(() -> handler).cast();
         }
-        return super.getCapability(cap, side);
+    }
+
+    protected <T> LazyOptional<T> getItemHandlerCapability(@Nullable Direction side) {
+
+        if (side == null) {
+            return super.getItemHandlerCapability(side);
+        }
+        return sidedItemCaps[side.ordinal()].cast();
+    }
+
+    protected <T> LazyOptional<T> getFluidHandlerCapability(@Nullable Direction side) {
+
+        if (side == null) {
+            return super.getFluidHandlerCapability(side);
+        }
+        return sidedFluidCaps[side.ordinal()].cast();
     }
     // endregion
 }

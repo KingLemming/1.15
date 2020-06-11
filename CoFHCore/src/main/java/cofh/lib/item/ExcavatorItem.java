@@ -13,11 +13,11 @@ import static cofh.lib.util.constants.ToolTypes.EXCAVATOR;
 
 public class ExcavatorItem extends ShovelItem {
 
-    private static float DEFAULT_ATTACK_DAMAGE = 2.0F;
-    private static float DEFAULT_ATTACK_SPEED = -3.2F;
-    private static int DEFAULT_BASE_AREA = 1;
+    private static final float DEFAULT_ATTACK_DAMAGE = 2.0F;
+    private static final float DEFAULT_ATTACK_SPEED = -3.2F;
+    private static final int DEFAULT_BASE_AREA = 1;
 
-    private int radius;
+    private final int radius;
 
     public ExcavatorItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, Properties builder) {
 

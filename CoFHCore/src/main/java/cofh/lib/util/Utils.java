@@ -643,7 +643,7 @@ public class Utils {
     }
     // endregion
 
-    private static int HORZ_MAX = 16;
-    private static int VERT_MAX = 4;
+    private static final int HORZ_MAX = 16;
+    private static final int VERT_MAX = 4;
 
 }

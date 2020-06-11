@@ -22,13 +22,13 @@ public class SickleItem extends ToolItem {
     public static final Set<Block> EFFECTIVE_BLOCKS = ImmutableSet.of();
     public static final Set<Material> EFFECTIVE_MATERIALS = ImmutableSet.of(Material.LEAVES, Material.PLANTS, Material.TALL_PLANTS, Material.WEB);
 
-    private static float DEFAULT_ATTACK_DAMAGE = 2.5F;
-    private static float DEFAULT_ATTACK_SPEED = -2.6F;
-    private static int DEFAULT_BASE_RADIUS = 2;
-    private static int DEFAULT_BASE_HEIGHT = 0;
+    private static final float DEFAULT_ATTACK_DAMAGE = 2.5F;
+    private static final float DEFAULT_ATTACK_SPEED = -2.6F;
+    private static final int DEFAULT_BASE_RADIUS = 2;
+    private static final int DEFAULT_BASE_HEIGHT = 0;
 
-    private int radius;
-    private int height;
+    private final int radius;
+    private final int height;
 
     public SickleItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, int radius, int height, Properties builder) {
 

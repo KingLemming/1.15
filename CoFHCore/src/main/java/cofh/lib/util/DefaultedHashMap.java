@@ -12,8 +12,8 @@ import java.util.function.Predicate;
  */
 public class DefaultedHashMap<K, V> extends HashMap<K, V> {
 
-    private V defaultValue;
-    private Predicate<V> useDefaultPredicate;
+    private final V defaultValue;
+    private final Predicate<V> useDefaultPredicate;
 
     public DefaultedHashMap(V defaultValue) {
 
