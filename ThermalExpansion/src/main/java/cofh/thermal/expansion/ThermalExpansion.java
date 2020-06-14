@@ -7,6 +7,9 @@ import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpContainers;
 import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.init.TExpTileEntities;
+import cofh.thermal.expansion.util.managers.TExpRecipeManagers;
+import cofh.thermal.expansion.util.recipes.TExpRecipeSerializers;
+import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -38,6 +41,10 @@ public class ThermalExpansion {
 
         TExpTileEntities.register();
         TExpContainers.register();
+
+        TExpRecipeManagers.register();
+        TExpRecipeSerializers.register();
+        TExpRecipeTypes.register();
     }
 
     // region INITIALIZATION

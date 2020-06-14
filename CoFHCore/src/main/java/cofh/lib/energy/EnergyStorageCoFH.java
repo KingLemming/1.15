@@ -42,23 +42,38 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
         this.energy = Math.max(0, Math.min(capacity, energy));
     }
 
+    public EnergyStorageCoFH setParams(int capacity, int maxReceive, int maxExtract) {
+
+        this.capacity = capacity;
+        this.maxReceive = maxReceive;
+        this.maxExtract = maxExtract;
+        this.energy = Math.max(0, Math.min(capacity, energy));
+        return this;
+    }
+
     public EnergyStorageCoFH setCapacity(int capacity) {
 
         this.capacity = capacity;
-        if (energy > capacity) {
-            energy = capacity;
-        }
+        this.energy = Math.max(0, Math.min(capacity, energy));
+        return this;
+    }
+
+    public EnergyStorageCoFH setMaxReceive(int maxReceive) {
+
+        this.maxReceive = maxReceive;
+        return this;
+    }
+
+    public EnergyStorageCoFH setMaxExtract(int maxExtract) {
+
+        this.maxExtract = maxExtract;
         return this;
     }
 
     public void setEnergyStored(int amount) {
 
         energy = amount;
-        if (energy > capacity) {
-            energy = capacity;
-        } else if (energy < 0) {
-            energy = 0;
-        }
+        energy = Math.max(0, Math.min(capacity, energy));
     }
 
     public int getMaxReceive() {

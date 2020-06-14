@@ -4,8 +4,6 @@ import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.client.model.MachineModelLoader;
 import cofh.thermal.core.common.ThermalRecipeManagers;
-import cofh.thermal.core.common.ThermalRecipeSerializers;
-import cofh.thermal.core.common.ThermalRecipeTypes;
 import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
@@ -57,10 +55,6 @@ public class ThermalCore {
         TCoreBlocks.register();
         TCoreFluids.register();
         TCoreItems.register();
-
-        ThermalRecipeManagers.register();
-        ThermalRecipeSerializers.register();
-        ThermalRecipeTypes.register();
     }
 
     public ThermalCore() {

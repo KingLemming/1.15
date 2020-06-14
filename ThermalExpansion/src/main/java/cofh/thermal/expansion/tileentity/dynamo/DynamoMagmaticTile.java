@@ -2,8 +2,8 @@ package cofh.thermal.expansion.tileentity.dynamo;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
-import cofh.thermal.core.util.managers.dynamo.MagmaticFuelManager;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoMagmaticContainer;
+import cofh.thermal.expansion.util.managers.dynamo.MagmaticFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -11,12 +11,13 @@ import net.minecraft.inventory.container.Container;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INPUT;
+import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.core.util.managers.SingleFluidFuelManager.FLUID_FUEL_AMOUNT;
 import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_MAGMATIC_TILE;
 
 public class DynamoMagmaticTile extends DynamoTileBase {
 
-    protected FluidStorageCoFH fuelTank = new FluidStorageCoFH(MagmaticFuelManager.instance()::validFuel);
+    protected FluidStorageCoFH fuelTank = new FluidStorageCoFH(TANK_SMALL, MagmaticFuelManager.instance()::validFuel);
 
     public DynamoMagmaticTile() {
 

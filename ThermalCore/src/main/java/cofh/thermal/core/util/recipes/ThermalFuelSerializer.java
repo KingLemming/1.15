@@ -33,8 +33,6 @@ public class ThermalFuelSerializer<T extends ThermalFuel> extends ForgeRegistryE
         ArrayList<Ingredient> inputItems = new ArrayList<>();
         ArrayList<FluidStack> inputFluids = new ArrayList<>();
 
-        // TODO: Ingredient StackSize > 1. Thanks Mojang.
-
         /* INPUT */
         if (json.has(INGREDIENT)) {
             parseInputs(inputItems, inputFluids, json.get(INGREDIENT));

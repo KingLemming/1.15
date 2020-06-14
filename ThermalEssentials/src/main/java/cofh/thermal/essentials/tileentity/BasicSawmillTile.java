@@ -5,7 +5,7 @@ import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.MachineTileBasicProcess;
-import cofh.thermal.core.util.managers.machine.SawmillRecipeManager;
+import cofh.thermal.expansion.util.managers.machine.SawmillRecipeManager;
 import cofh.thermal.essentials.inventory.container.BasicSawmillContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

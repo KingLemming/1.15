@@ -4,7 +4,7 @@
 //import cofh.lib.util.helpers.StringHelper;
 //import cofh.thermal.core.plugins.jei.Drawables;
 //import cofh.thermal.core.plugins.jei.ThermalCategory;
-//import cofh.thermal.core.util.recipes.machine.CrucibleRecipe;
+//import cofh.thermal.expansion.util.recipes.machine.CrucibleRecipe;
 //import cofh.thermal.expansion.client.gui.machine.MachineCrucibleScreen;
 //import mezz.jei.api.constants.VanillaTypes;
 //import mezz.jei.api.gui.IRecipeLayout;
