@@ -1,5 +1,6 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.helpers.EnergyHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,6 +12,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -22,7 +24,7 @@ import static cofh.lib.util.constants.NBTTags.*;
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
 
     protected Direction facing;
-    protected FluidStack renderFluid = FluidStack.EMPTY.copy();
+    protected FluidStack renderFluid = FluidStack.EMPTY;
 
     protected int fuel;
     protected int fuelMax;
@@ -34,6 +36,14 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
+    }
+
+    @Override
+    public TileCoFH worldContext(BlockState state, IBlockReader world) {
+
+        facing = state.get(FACING_ALL);
+
+        return this;
     }
 
     @Override
@@ -51,12 +61,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         // TODO: Handle caching of neighbor caps.
     }
 
-    @Override
-    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-
-        updateFacing();
-    }
-
     public Direction getFacing() {
 
         if (facing == null) {
@@ -65,7 +69,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         return facing;
     }
 
-    public void updateFacing() {
+    protected void updateFacing() {
 
         facing = getBlockState().get(FACING_ALL);
     }

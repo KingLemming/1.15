@@ -2,8 +2,10 @@ package cofh.core.util;
 
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.*;
+import cofh.core.network.packet.server.StorageClearPacket;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.control.IReconfigurable;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -11,6 +13,8 @@ import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
+import static cofh.core.network.packet.server.StorageClearPacket.StorageType.ENERGY;
+import static cofh.core.network.packet.server.StorageClearPacket.StorageType.FLUID;
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.localize;
@@ -32,6 +36,11 @@ public class GuiHelper {
         return (ElementEnergyStorage) new ElementEnergyStorage(gui, posX, posY, storage)
                 .setSize(width, height)
                 .setTexture(texture, texW, texH);
+    }
+
+    public static ElementResourceStorage setClearable(ElementEnergyStorage storage, TileCoFH tile, int coil) {
+
+        return storage.setClearStorage(() -> StorageClearPacket.sendToServer(tile, ENERGY, coil));
     }
     // endregion
 
@@ -89,6 +98,11 @@ public class GuiHelper {
     public static ElementFluidStorage createDefaultFluidStorage(IGuiAccess gui, int posX, int posY, FluidStorageCoFH storage, int width, int height, String texture, String underlayTexture, BooleanSupplier drawUnderlay, String overlayTexture, int texW, int texH) {
 
         return (ElementFluidStorage) new ElementFluidStorage(gui, posX, posY, storage).setUnderlayTexture(underlayTexture, drawUnderlay).setOverlayTexture(overlayTexture).setSize(width, height).setTexture(texture, texW, texH);
+    }
+
+    public static ElementResourceStorage setClearable(ElementFluidStorage storage, TileCoFH tile, int tank) {
+
+        return storage.setClearStorage(() -> StorageClearPacket.sendToServer(tile, FLUID, tank));
     }
     // endregion
 

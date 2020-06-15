@@ -4,6 +4,7 @@ import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.IResourceStorage;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.RenderHelper;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -25,6 +26,8 @@ public abstract class ElementResourceStorage extends ElementBase {
 
     protected BooleanSupplier drawUnderlay = TRUE;
     protected BooleanSupplier drawOverlay = TRUE;
+
+    protected BooleanSupplier clearStorage = FALSE;
 
     public ElementResourceStorage(IGuiAccess gui, int posX, int posY, IResourceStorage storage) {
 
@@ -53,6 +56,12 @@ public abstract class ElementResourceStorage extends ElementBase {
 
         this.overlayTexture = new ResourceLocation(texture);
         this.drawOverlay = draw;
+        return this;
+    }
+
+    public final ElementResourceStorage setClearStorage(BooleanSupplier clearStorage) {
+
+        this.clearStorage = clearStorage;
         return this;
     }
 
@@ -85,6 +94,18 @@ public abstract class ElementResourceStorage extends ElementBase {
         } else {
             tooltipList.add(new StringTextComponent(format(storage.getStored()) + " / " + format(storage.getCapacity()) + " " + storage.getUnit()));
         }
+        //        if (advancedTooltips.getAsBoolean()) {
+        //            tooltipList.add(new TranslationTextComponent("info.cofh.clear_storage"));
+        //        }
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+
+        if (Screen.hasShiftDown() && Screen.hasAltDown()) {
+            return clearStorage.getAsBoolean();
+        }
+        return false;
     }
 
     protected int getScaled(int scale) {

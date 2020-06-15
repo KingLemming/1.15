@@ -31,9 +31,9 @@ public class MachineBrewerScreen extends MachineScreenReconfigurable<MachineBrew
 
         addElement(createInputSlot(this, 62, 26, tile));
 
-        addElement(createMediumInputFluidStorage(this, 34, 22, tile.getTank(0), tile));
+        addElement(setClearable(createMediumInputFluidStorage(this, 34, 22, tile.getTank(0), tile), tile, 0));
 
-        addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(1), tile));
+        addElement(setClearable(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(1), tile), tile, 1));
 
         addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 88, 34, PROG_DROP_RIGHT, tile));
         addElement(ThermalGuiHelper.createDefaultProgress(this, 88, 34, PROG_DROP_RIGHT, tile));

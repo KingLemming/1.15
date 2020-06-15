@@ -407,6 +407,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         }
     }
 
+    @Override
     protected <T> LazyOptional<T> getItemHandlerCapability(@Nullable Direction side) {
 
         if (side == null) {
@@ -415,6 +416,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         return sidedItemCaps[side.ordinal()].cast();
     }
 
+    @Override
     protected <T> LazyOptional<T> getFluidHandlerCapability(@Nullable Direction side) {
 
         if (side == null) {

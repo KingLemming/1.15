@@ -65,17 +65,17 @@ public class PanelRedstoneControl extends PanelBase {
 
         switch (myRSControllable.getMode()) {
             case DISABLED:
-                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 28, 20);
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 28, 20);
                 getFontRenderer().drawString(localize("info.cofh.disabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.ignored"), sideOffset() + 14, 78, textColor);
                 break;
             case LOW:
-                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 48, 20);
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 48, 20);
                 getFontRenderer().drawString(localize("info.cofh.enabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.low"), sideOffset() + 14, 78, textColor);
                 break;
             case HIGH:
-                gui.drawIcon(CoreTextures.ICON_BUTTON_HIGHLIGHT, 68, 20);
+                gui.drawIcon(ICON_BUTTON_HIGHLIGHT, 68, 20);
                 getFontRenderer().drawString(localize("info.cofh.enabled"), sideOffset() + 14, 54, textColor);
                 getFontRenderer().drawString(localize("info.cofh.high"), sideOffset() + 14, 78, textColor);
                 break;

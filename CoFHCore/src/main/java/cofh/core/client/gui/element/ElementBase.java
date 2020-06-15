@@ -13,6 +13,8 @@ public abstract class ElementBase {
     public static final BooleanSupplier TRUE = () -> true;
     public static final BooleanSupplier FALSE = () -> false;
 
+    protected static BooleanSupplier advancedTooltips = TRUE;
+
     protected BooleanSupplier enabled = TRUE;
     protected BooleanSupplier visible = TRUE;
 

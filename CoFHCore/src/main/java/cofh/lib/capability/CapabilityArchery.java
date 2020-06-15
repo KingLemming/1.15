@@ -9,6 +9,8 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
+import javax.annotation.Nullable;
+
 public class CapabilityArchery {
 
     private static boolean registered = false;
@@ -29,35 +31,24 @@ public class CapabilityArchery {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IArcheryBowItem.class, new IStorage<IArcheryBowItem>() {
+        CapabilityManager.INSTANCE.register(IArcheryBowItem.class, new DefaultArcheryHandlerStorage<>(), () -> DEFAULT_BOW_CAPABILITY);
+        CapabilityManager.INSTANCE.register(IArcheryAmmoItem.class, new DefaultArcheryHandlerStorage<>(), () -> DEFAULT_AMMO_CAPABILITY);
+    }
 
-            @Override
-            public INBT writeNBT(Capability<IArcheryBowItem> capability, IArcheryBowItem instance, Direction side) {
+    private static class DefaultArcheryHandlerStorage<T extends IArcheryItem> implements IStorage<T> {
 
-                return null;
-            }
+        @Nullable
+        @Override
+        public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
 
-            @Override
-            public void readNBT(Capability<IArcheryBowItem> capability, IArcheryBowItem instance, Direction side, INBT nbt) {
+            return null;
+        }
 
-            }
+        @Override
+        public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
 
-        }, () -> DEFAULT_BOW_CAPABILITY);
+        }
 
-        CapabilityManager.INSTANCE.register(IArcheryAmmoItem.class, new IStorage<IArcheryAmmoItem>() {
-
-            @Override
-            public INBT writeNBT(Capability<IArcheryAmmoItem> capability, IArcheryAmmoItem instance, Direction side) {
-
-                return null;
-            }
-
-            @Override
-            public void readNBT(Capability<IArcheryAmmoItem> capability, IArcheryAmmoItem instance, Direction side, INBT nbt) {
-
-            }
-
-        }, () -> DEFAULT_AMMO_CAPABILITY);
     }
 
 }

@@ -112,6 +112,21 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
         return false;
     }
+
+    public boolean clearEnergy(int coil) {
+
+        return false;
+    }
+
+    public boolean clearSlot(int slot) {
+
+        return false;
+    }
+
+    public boolean clearTank(int tank) {
+
+        return false;
+    }
     // endregion
 
     // region TIME CHECKS

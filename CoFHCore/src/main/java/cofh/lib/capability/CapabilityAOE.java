@@ -8,6 +8,8 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
+import javax.annotation.Nullable;
+
 public class CapabilityAOE {
 
     private static boolean registered = false;
@@ -24,20 +26,23 @@ public class CapabilityAOE {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IAOEItem.class, new IStorage<IAOEItem>() {
+        CapabilityManager.INSTANCE.register(IAOEItem.class, new DefaultAOEHandlerStorage<>(), () -> DEFAULT_AOE_CAPABILITY);
+    }
 
-            @Override
-            public INBT writeNBT(Capability<IAOEItem> capability, IAOEItem instance, Direction side) {
+    private static class DefaultAOEHandlerStorage<T extends IAOEItem> implements IStorage<T> {
 
-                return null;
-            }
+        @Nullable
+        @Override
+        public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
 
-            @Override
-            public void readNBT(Capability<IAOEItem> capability, IAOEItem instance, Direction side, INBT nbt) {
+            return null;
+        }
 
-            }
+        @Override
+        public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
 
-        }, () -> DEFAULT_AOE_CAPABILITY);
+        }
+
     }
 
 }

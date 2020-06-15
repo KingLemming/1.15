@@ -31,7 +31,7 @@ public class MachineCrucibleScreen extends MachineScreenReconfigurable<MachineCr
 
         addElement(createInputSlot(this, 53, 26, tile));
 
-        addElement(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(0), tile));
+        addElement(setClearable(createMediumOutputFluidStorage(this, 125, 22, tile.getTank(0), tile), tile, 0));
 
         addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 84, 34, PROG_DROP_RIGHT, tile));
         addElement(ThermalGuiHelper.createDefaultProgress(this, 84, 34, PROG_DROP_RIGHT, tile));

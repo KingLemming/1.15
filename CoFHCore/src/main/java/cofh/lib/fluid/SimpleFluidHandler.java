@@ -61,7 +61,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     @Override
     public FluidStack getFluidInTank(int tank) {
 
-        if (tank < 0 || tank > getTanks()) {
+        if (tank < 0 || tank >= getTanks()) {
             return FluidStack.EMPTY;
         }
         return tanks.get(tank).getFluidStack();

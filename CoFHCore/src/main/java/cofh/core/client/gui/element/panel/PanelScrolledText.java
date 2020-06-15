@@ -1,6 +1,5 @@
 package cofh.core.client.gui.element.panel;
 
-import cofh.core.client.gui.CoreTextures;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.RenderHelper;
@@ -8,6 +7,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
+
+import static cofh.core.client.gui.CoreTextures.*;
 
 public abstract class PanelScrolledText extends PanelBase {
 
@@ -43,14 +44,14 @@ public abstract class PanelScrolledText extends PanelBase {
         }
         if (scrollable) {
             if (firstLine > 0) {
-                gui.drawIcon(CoreTextures.ICON_ARROW_UP, sideOffset() + maxWidth - 20, 16);
+                gui.drawIcon(ICON_ARROW_UP, sideOffset() + maxWidth - 20, 16);
             } else {
-                gui.drawIcon(CoreTextures.ICON_ARROW_UP_INACTIVE, sideOffset() + maxWidth - 20, 16);
+                gui.drawIcon(ICON_ARROW_UP_INACTIVE, sideOffset() + maxWidth - 20, 16);
             }
             if (firstLine < maxFirstLine) {
-                gui.drawIcon(CoreTextures.ICON_ARROW_DOWN, sideOffset() + maxWidth - 20, 76);
+                gui.drawIcon(ICON_ARROW_DOWN, sideOffset() + maxWidth - 20, 76);
             } else {
-                gui.drawIcon(CoreTextures.ICON_ARROW_DOWN_INACTIVE, sideOffset() + maxWidth - 20, 76);
+                gui.drawIcon(ICON_ARROW_DOWN_INACTIVE, sideOffset() + maxWidth - 20, 76);
             }
         }
         getFontRenderer().drawStringWithShadow(getTitle().getString(), sideOffset() + 18, 6, headerColor);

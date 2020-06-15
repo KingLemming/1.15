@@ -8,6 +8,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 public class CapabilityEnchantable {
@@ -24,20 +25,23 @@ public class CapabilityEnchantable {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IEnchantableItem.class, new IStorage<IEnchantableItem>() {
+        CapabilityManager.INSTANCE.register(IEnchantableItem.class, new DefaultEnchantableHandlerStorage<>(), () -> new EnchantableItem(new ArrayList<>()));
+    }
 
-            @Override
-            public INBT writeNBT(Capability<IEnchantableItem> capability, IEnchantableItem instance, Direction side) {
+    private static class DefaultEnchantableHandlerStorage<T extends IEnchantableItem> implements IStorage<T> {
 
-                return null;
-            }
+        @Nullable
+        @Override
+        public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
 
-            @Override
-            public void readNBT(Capability<IEnchantableItem> capability, IEnchantableItem instance, Direction side, INBT nbt) {
+            return null;
+        }
 
-            }
+        @Override
+        public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
 
-        }, () -> new EnchantableItem(new ArrayList<>()));
+        }
+
     }
 
 }

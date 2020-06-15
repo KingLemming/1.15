@@ -1,10 +1,12 @@
 package cofh.thermal.core.client.gui;
 
-import cofh.core.util.GuiHelper;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
+
+import static cofh.core.util.GuiHelper.createDefaultEnergyStorage;
+import static cofh.core.util.GuiHelper.setClearable;
 
 public class DynamoScreenBase<T extends Container> extends ThermalScreenBase<T> {
 
@@ -22,7 +24,7 @@ public class DynamoScreenBase<T extends Container> extends ThermalScreenBase<T> 
         super.init();
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
-            addElement(GuiHelper.createDefaultEnergyStorage(this, 80, 18, tile.getEnergyStorage()));
+            addElement(setClearable(createDefaultEnergyStorage(this, 80, 18, tile.getEnergyStorage()), tile, 0));
         }
     }
 

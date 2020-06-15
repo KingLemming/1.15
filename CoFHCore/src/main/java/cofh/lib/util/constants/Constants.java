@@ -130,6 +130,7 @@ public class Constants {
     public static final int PACKET_REDSTONE_CONTROL = 25;
     public static final int PACKET_TRANSFER_CONTROL = 26;
     public static final int PACKET_SIDE_CONFIG = 27;
+    public static final int PACKET_STORAGE_CLEAR = 28;
     public static final int PACKET_KEY_MULTIMODE = 32;
     // endregion
 

@@ -1,11 +1,13 @@
 package cofh.thermal.core.client.gui;
 
 import cofh.core.client.gui.element.panel.PanelConfiguration;
-import cofh.core.util.GuiHelper;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.util.text.ITextComponent;
+
+import static cofh.core.util.GuiHelper.createDefaultEnergyStorage;
+import static cofh.core.util.GuiHelper.setClearable;
 
 public class MachineScreenReconfigurable<T extends Container> extends ThermalScreenBase<T> {
 
@@ -26,7 +28,7 @@ public class MachineScreenReconfigurable<T extends Container> extends ThermalScr
                 .addConditionals(ThermalGuiHelper.createDefaultMachineConfigs(this, name, tile)));
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
-            addElement(GuiHelper.createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()));
+            addElement(setClearable(createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()), tile, 0));
         }
     }
 

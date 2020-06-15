@@ -1,6 +1,5 @@
 package cofh.lib.capability.templates;
 
-import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.IEnchantableItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
@@ -14,6 +13,8 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static cofh.lib.capability.CapabilityEnchantable.ENCHANTABLE_ITEM_CAPABILITY;
 
 public class EnchantableItem implements IEnchantableItem, ICapabilityProvider {
 
@@ -48,7 +49,7 @@ public class EnchantableItem implements IEnchantableItem, ICapabilityProvider {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap, final @Nullable Direction side) {
 
-        return CapabilityEnchantable.ENCHANTABLE_ITEM_CAPABILITY.orEmpty(cap, this.holder);
+        return ENCHANTABLE_ITEM_CAPABILITY.orEmpty(cap, this.holder);
     }
 
 }

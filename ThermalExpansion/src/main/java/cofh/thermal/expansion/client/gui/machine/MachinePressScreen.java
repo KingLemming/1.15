@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.client.gui.machine;
 
-import cofh.core.util.GuiHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.MachineScreenReconfigurable;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
@@ -35,7 +34,7 @@ public class MachinePressScreen extends MachineScreenReconfigurable<MachinePress
 
         addElement(createLargeOutputSlot(this, 116, 35, tile));
 
-        addElement(GuiHelper.createMediumOutputFluidStorage(this, 151, 22, tile.getTank(0), tile));
+        addElement(setClearable(createMediumOutputFluidStorage(this, 151, 22, tile.getTank(0), tile), tile, 0));
 
         addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 79, 34, PROG_ARROW_FLUID_RIGHT, tile));
         addElement(ThermalGuiHelper.createDefaultProgress(this, 79, 34, PROG_ARROW_RIGHT, tile));

@@ -8,6 +8,8 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
+import javax.annotation.Nullable;
+
 public class CapabilityShield {
 
     private static boolean registered = false;
@@ -24,20 +26,23 @@ public class CapabilityShield {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IShieldItem.class, new IStorage<IShieldItem>() {
+        CapabilityManager.INSTANCE.register(IShieldItem.class, new DefaultShieldHandlerStorage<>(), () -> DEFAULT_SHIELD_CAPABILITY);
+    }
 
-            @Override
-            public INBT writeNBT(Capability<IShieldItem> capability, IShieldItem instance, Direction side) {
+    private static class DefaultShieldHandlerStorage<T extends IShieldItem> implements IStorage<T> {
 
-                return null;
-            }
+        @Nullable
+        @Override
+        public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
 
-            @Override
-            public void readNBT(Capability<IShieldItem> capability, IShieldItem instance, Direction side, INBT nbt) {
+            return null;
+        }
 
-            }
+        @Override
+        public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
 
-        }, () -> DEFAULT_SHIELD_CAPABILITY);
+        }
+
     }
 
 }
