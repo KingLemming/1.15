@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.Container;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INPUT;
+import static cofh.thermal.core.common.ThermalConfig.dynamoAugments;
 import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_NUMISMATIC_TILE;
 
 public class DynamoNumismaticTile extends DynamoTileBase {
@@ -22,6 +23,8 @@ public class DynamoNumismaticTile extends DynamoTileBase {
         super(DYNAMO_NUMISMATIC_TILE);
 
         inventory.addSlot(fuelSlot, INPUT);
+
+        addAugmentSlots(dynamoAugments);
     }
 
     // region PROCESS

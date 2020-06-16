@@ -397,6 +397,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
                 }
             }
         }
+        super.onInventoryChange(slot);
     }
     // endregion
 }

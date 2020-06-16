@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BOTTLER_TILE;
 
 public class MachineBottlerTile extends MachineTileReconfigurableProcess {
@@ -33,6 +34,8 @@ public class MachineBottlerTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(chargeSlot, INTERNAL);
 
         tankInv.addTank(inputTank, INPUT);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_TILE;
 
 public class MachineCrucibleTile extends MachineTileReconfigurableProcess {
@@ -31,6 +32,8 @@ public class MachineCrucibleTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(chargeSlot, INTERNAL);
 
         tankInv.addTank(outputTank, OUTPUT);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

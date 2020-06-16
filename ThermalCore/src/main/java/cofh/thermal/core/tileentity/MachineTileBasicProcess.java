@@ -425,6 +425,7 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
                 }
             }
         }
+        super.onInventoryChange(slot);
     }
     // endregion
 }

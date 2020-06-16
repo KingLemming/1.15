@@ -1,9 +1,11 @@
 package cofh.lib.inventory.container;
 
+import cofh.lib.inventory.container.slot.SlotCoFH;
 import cofh.lib.inventory.container.slot.SlotFalseCopy;
 import cofh.lib.util.helpers.InventoryHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
@@ -14,6 +16,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static cofh.lib.util.constants.Constants.FALSE;
+import static cofh.lib.util.constants.Constants.TRUE;
 
 public abstract class ContainerCoFH extends Container {
 
@@ -26,6 +31,14 @@ public abstract class ContainerCoFH extends Container {
     }
 
     // region HELPERS
+    protected void bindAugmentSlots(IInventory inventory, int startIndex, int numSlots) {
+
+        // TODO: Adjust w/ proper Augment slots.
+        for (int i = startIndex; i < startIndex + numSlots; ++i) {
+            addSlot(new SlotCoFH(inventory, i, 8 + 18 * (i - startIndex), -18).setEnabled(FALSE));
+        }
+    }
+
     protected void bindPlayerInventory(PlayerInventory inventory) {
 
         int xOffset = getPlayerInventoryHorizontalOffset();

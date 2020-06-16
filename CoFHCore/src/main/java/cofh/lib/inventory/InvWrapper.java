@@ -53,7 +53,7 @@ public class InvWrapper implements IInventory {
         ItemStack stack = inSlot.split(count);
         if (inSlot.getCount() <= 0) {
             inventory.set(index, ItemStack.EMPTY);
-            inventory.tile.onInventoryChange(index);
+            inventory.onInventoryChange(index);
         }
         return stack;
     }
@@ -63,15 +63,20 @@ public class InvWrapper implements IInventory {
 
         ItemStack stack = inventory.get(index);
         inventory.set(index, ItemStack.EMPTY);
-        inventory.tile.onInventoryChange(index);
+        inventory.onInventoryChange(index);
         return stack;
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
 
+        /* This condition succeeds when the slot is already empty and is being emptied.
+        It happens enough to warrant a check and prevent superfluous logic.*/
+        if (inventory.get(index).equals(stack)) {
+            return;
+        }
         inventory.set(index, stack);
-        inventory.tile.onInventoryChange(index);
+        inventory.onInventoryChange(index);
     }
 
     @Override

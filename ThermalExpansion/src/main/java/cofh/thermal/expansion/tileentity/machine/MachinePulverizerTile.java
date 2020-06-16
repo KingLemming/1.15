@@ -12,6 +12,7 @@ import net.minecraft.inventory.container.Container;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_TILE;
 
 public class MachinePulverizerTile extends MachineTileReconfigurableProcess {
@@ -27,6 +28,8 @@ public class MachinePulverizerTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(catalystSlot, CATALYST);
         inventory.addSlots(OUTPUT, 4);
         inventory.addSlot(chargeSlot, INTERNAL);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

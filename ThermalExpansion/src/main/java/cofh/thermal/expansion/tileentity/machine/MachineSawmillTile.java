@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.Container;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SAWMILL_TILE;
 
 public class MachineSawmillTile extends MachineTileReconfigurableProcess {
@@ -24,6 +25,8 @@ public class MachineSawmillTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlots(OUTPUT, 4);
         inventory.addSlot(chargeSlot, INTERNAL);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

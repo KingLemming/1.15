@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_TILE;
 
 public class MachineFurnaceTile extends MachineTileReconfigurableProcess {
@@ -27,6 +28,8 @@ public class MachineFurnaceTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(inputSlot, INPUT);
         inventory.addSlot(outputSlot, OUTPUT);
         inventory.addSlot(chargeSlot, INTERNAL);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

@@ -69,7 +69,18 @@ public class ManagedItemInv extends SimpleItemInv {
         }
     }
 
-    public void initHandlers() {
+    protected void optimize() {
+
+        ((ArrayList<ItemStorageCoFH>) slots).trimToSize();
+        ((ArrayList<ItemStorageCoFH>) inputSlots).trimToSize();
+        ((ArrayList<ItemStorageCoFH>) catalystSlots).trimToSize();
+        ((ArrayList<ItemStorageCoFH>) outputSlots).trimToSize();
+        ((ArrayList<ItemStorageCoFH>) internalSlots).trimToSize();
+    }
+
+    protected void initHandlers() {
+
+        optimize();
 
         inputHandler = new ManagedItemHandler(tile, inputSlots, Collections.emptyList());
         outputHandler = new ManagedItemHandler(tile, Collections.emptyList(), outputSlots);

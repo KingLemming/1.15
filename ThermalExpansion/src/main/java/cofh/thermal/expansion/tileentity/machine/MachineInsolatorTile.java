@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_TILE;
 
 public class MachineInsolatorTile extends MachineTileReconfigurableProcess {
@@ -38,6 +39,8 @@ public class MachineInsolatorTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(waterTank, INPUT);
 
         renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override

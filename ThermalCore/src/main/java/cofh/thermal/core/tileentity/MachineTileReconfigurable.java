@@ -340,7 +340,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         updateSidedHandlers();
 
-        TileControlPacket.sendToClient(this);
+        super.onControlUpdate();
     }
     // endregion
 

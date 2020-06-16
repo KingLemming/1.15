@@ -38,12 +38,20 @@ public class ThermalConfig {
 
     private static void genServerConfig() {
 
+        //        SERVER_CONFIG.push("Machines");
+        //
+        //        SERVER_CONFIG.pop();
+
         serverSpec = SERVER_CONFIG.build();
     }
 
     private static void genClientConfig() {
 
         clientSpec = CLIENT_CONFIG.build();
+    }
+
+    private static void genMachineConfig() {
+
     }
 
     private static void refreshServerConfig() {
@@ -53,6 +61,11 @@ public class ThermalConfig {
     private static void refreshClientConfig() {
 
     }
+
+    // region VARIABLES
+    public static int dynamoAugments = 4;
+    public static int machineAugments = 4;
+    // endregion
 
     // region CONFIGURATION
     @SubscribeEvent

@@ -64,7 +64,7 @@ public class EnsorcConfig {
 
         String treasure = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
         String level = "This option adjusts the maximum allowable level for the Enchantment.";
-        
+
         // TODO: Remove/refactor
         String comment;
 
@@ -79,7 +79,7 @@ public class EnsorcConfig {
                 .comment(treasure)
                 .define("Treasure", false);
         levelProtectionMagic = SERVER_CONFIG
-                .comment("This option adjusts the maximum allowable level for the Enchantment.")
+                .comment(level)
                 .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
@@ -91,7 +91,7 @@ public class EnsorcConfig {
                 .comment(treasure)
                 .define("Treasure", false);
         levelDisplacement = SERVER_CONFIG
-                .comment("This option adjusts the maximum allowable level for the Enchantment.")
+                .comment(level)
                 .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         chanceDisplacement = SERVER_CONFIG
                 .comment("Adjust this value to set the chance per level of the Enchantment firing (in percentage).")
@@ -109,7 +109,7 @@ public class EnsorcConfig {
                 .comment(treasure)
                 .define("Treasure", false);
         levelFireRebuke = SERVER_CONFIG
-                .comment("This option adjusts the maximum allowable level for the Enchantment.")
+                .comment(level)
                 .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         chanceFireRebuke = SERVER_CONFIG
                 .comment("Adjust this value to set the chance per level of the Enchantment firing (in percentage).")
@@ -127,7 +127,7 @@ public class EnsorcConfig {
                 .comment(treasure)
                 .define("Treasure", false);
         levelFrostRebuke = SERVER_CONFIG
-                .comment("This option adjusts the maximum allowable level for the Enchantment.")
+                .comment(level)
                 .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         chanceFrostRebuke = SERVER_CONFIG
                 .comment("Adjust this value to set the chance per level of the Enchantment firing (in percentage).")
@@ -139,19 +139,26 @@ public class EnsorcConfig {
 
         // HELMET
         SERVER_CONFIG.push("Air Affinity");
-        enableAirAffinity = SERVER_CONFIG.comment("If TRUE, the Air Affinity Enchantment is available for Helmets.").define("Enable", true);
-        treasureAirAffinity = SERVER_CONFIG.comment(treasure).define("Treasure", false);
+        enableAirAffinity = SERVER_CONFIG
+                .comment("If TRUE, the Air Affinity Enchantment is available for Helmets.")
+                .define("Enable", true);
+        treasureAirAffinity = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Insight");
-        comment = "If TRUE, the Insight Enchantment is available for Helmets.";
-        enableExpBoost = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureExpBoost = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this to change the max experience awarded per level of the Enchantment.";
-        amountExpBoost = SERVER_CONFIG.comment(comment).defineInRange("Experience Amount", 4, 1, 1000);
+        enableExpBoost = SERVER_CONFIG
+                .comment("If TRUE, the Insight Enchantment is available for Helmets.").define("Enable", true);
+        treasureExpBoost = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelExpBoost = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        amountExpBoost = SERVER_CONFIG
+                .comment("Adjust this to change the max experience awarded per level of the Enchantment.")
+                .defineInRange("Experience Amount", 4, 1, 1000);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Gourmand");

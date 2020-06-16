@@ -13,7 +13,6 @@ public class ManagedTankInv extends SimpleTankInv {
 
     protected List<FluidStorageCoFH> inputTanks = new ArrayList<>();
     protected List<FluidStorageCoFH> outputTanks = new ArrayList<>();
-    protected List<FluidStorageCoFH> accessibleTanks = new ArrayList<>();
     protected List<FluidStorageCoFH> internalTanks = new ArrayList<>();
 
     protected IFluidHandler inputHandler;
@@ -41,14 +40,9 @@ public class ManagedTankInv extends SimpleTankInv {
         switch (group) {
             case INPUT:
                 inputTanks.add(tank);
-                accessibleTanks.add(tank);
                 break;
             case OUTPUT:
                 outputTanks.add(tank);
-                accessibleTanks.add(tank);
-                break;
-            case ACCESSIBLE:
-                accessibleTanks.add(tank);
                 break;
             case INTERNAL:
                 internalTanks.add(tank);
@@ -57,7 +51,17 @@ public class ManagedTankInv extends SimpleTankInv {
         }
     }
 
-    public void initHandlers() {
+    protected void optimize() {
+
+        ((ArrayList<FluidStorageCoFH>) tanks).trimToSize();
+        ((ArrayList<FluidStorageCoFH>) inputTanks).trimToSize();
+        ((ArrayList<FluidStorageCoFH>) outputTanks).trimToSize();
+        ((ArrayList<FluidStorageCoFH>) internalTanks).trimToSize();
+    }
+
+    protected void initHandlers() {
+
+        optimize();
 
         inputHandler = new ManagedFluidHandler(tile, inputTanks, Collections.emptyList());
         outputHandler = new ManagedFluidHandler(tile, Collections.emptyList(), outputTanks);

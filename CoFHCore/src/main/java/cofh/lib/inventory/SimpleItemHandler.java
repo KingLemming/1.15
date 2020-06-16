@@ -50,6 +50,14 @@ public class SimpleItemHandler implements IItemHandler {
         return true;
     }
 
+    public void onInventoryChange(int slot) {
+
+        if (tile == null) {
+            return;
+        }
+        tile.onInventoryChange(slot);
+    }
+
     // region IItemHandler
     @Override
     public int getSlots() {
@@ -76,8 +84,8 @@ public class SimpleItemHandler implements IItemHandler {
         }
         ItemStack ret = slots.get(slot).insertItem(slot, stack, simulate);
 
-        if (tile != null && !simulate) {
-            tile.onInventoryChange(slot);
+        if (!simulate) {
+            onInventoryChange(slot);
         }
         return ret;
     }
@@ -91,8 +99,8 @@ public class SimpleItemHandler implements IItemHandler {
         }
         ItemStack ret = slots.get(slot).extractItem(slot, amount, simulate);
 
-        if (tile != null && !simulate) {
-            tile.onInventoryChange(slot);
+        if (!simulate) {
+            onInventoryChange(slot);
         }
         return ret;
     }

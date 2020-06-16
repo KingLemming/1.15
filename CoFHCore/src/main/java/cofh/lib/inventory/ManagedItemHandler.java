@@ -32,8 +32,8 @@ public class ManagedItemHandler extends SimpleItemHandler {
         }
         ItemStack ret = slots.get(slot).insertItem(slot, stack, simulate);
 
-        if (tile != null && !simulate) {
-            tile.onInventoryChange(slot);
+        if (!simulate) {
+            onInventoryChange(slot);
         }
         return ret;
     }

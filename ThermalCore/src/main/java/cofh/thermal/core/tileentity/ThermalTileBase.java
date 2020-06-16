@@ -10,6 +10,7 @@ import cofh.lib.inventory.ManagedItemInv;
 import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.StorageGroup;
 import cofh.lib.util.TimeTracker;
+import cofh.lib.util.Utils;
 import cofh.lib.util.control.IRedstoneControllableTile;
 import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
@@ -33,9 +34,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.core.util.GuiHelper.*;
+import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.ACTIVE;
 import static cofh.lib.util.constants.NBTTags.*;
 
@@ -49,6 +52,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected SecurityControlModule securityControl = new SecurityControlModule(this);
     protected RedstoneControlModule redstoneControl = new RedstoneControlModule(this);
 
+    protected List<ItemStorageCoFH> augments = new ArrayList<>();
+
     public boolean isActive;
     public boolean wasActive;
 
@@ -61,6 +66,11 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     public int invSize() {
 
         return inventory.getSlots();
+    }
+
+    public int augSize() {
+
+        return augments.size();
     }
 
     public ManagedItemInv getInventory() {
@@ -100,9 +110,14 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         return tankInv.getOutputTanks();
     }
 
-    protected List<? extends ItemStorageCoFH> getInternalSlots() {
+    protected List<? extends ItemStorageCoFH> internalSlots() {
 
         return inventory.getInternalSlots();
+    }
+
+    protected List<? extends FluidStorageCoFH> internalTanks() {
+
+        return tankInv.getInternalTanks();
     }
 
     @Override
@@ -308,9 +323,39 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     // region ITileCallback
     @Override
+    public void onInventoryChange(int slot) {
+
+        /* Implicit assumption here that augments always come LAST in slot order.
+        This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
+        if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
+            // TODO: Recalculate Augments
+            System.out.println("AUGMENT TIME");
+        }
+    }
+
+    @Override
     public void onControlUpdate() {
 
         TileControlPacket.sendToClient(this);
+    }
+    // endregion
+
+    // region AUGMENTS
+
+    /**
+     * This should be called AFTER all other slots have been added.
+     * Augment slots are added to the INTERNAL inventory category.
+     *
+     * @param numAugments Number of augment slots to add.
+     */
+    protected void addAugmentSlots(int numAugments) {
+
+        for (int i = 0; i < numAugments; ++i) {
+            ItemStorageCoFH slot = new ItemStorageCoFH();
+            augments.add(slot);
+            inventory.addSlot(slot, INTERNAL);
+        }
+        ((ArrayList<ItemStorageCoFH>) augments).trimToSize();
     }
     // endregion
 

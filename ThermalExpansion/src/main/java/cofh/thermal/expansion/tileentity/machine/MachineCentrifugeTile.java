@@ -17,6 +17,7 @@ import java.util.List;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
+import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CENTRIFUGE_TILE;
 
 public class MachineCentrifugeTile extends MachineTileReconfigurableProcess {
@@ -33,6 +34,8 @@ public class MachineCentrifugeTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(chargeSlot, INTERNAL);
 
         tankInv.addTank(outputTank, OUTPUT);
+
+        addAugmentSlots(machineAugments);
     }
 
     @Override
