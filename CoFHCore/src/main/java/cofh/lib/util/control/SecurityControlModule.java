@@ -8,29 +8,31 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
 import java.util.UUID;
+import java.util.function.BooleanSupplier;
 
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.*;
 
 public class SecurityControlModule implements ISecurable {
 
     protected ISecurableTile tile;
-    protected boolean enabled;
+    protected BooleanSupplier enabled;
 
     protected GameProfile owner = SecurityHelper.DEFAULT_GAME_PROFILE;
     protected AccessMode access = AccessMode.PUBLIC;
 
     public SecurityControlModule(ISecurableTile tile) {
 
-        this(tile, true);
+        this(tile, TRUE);
     }
 
-    public SecurityControlModule(ISecurableTile tile, boolean enabled) {
+    public SecurityControlModule(ISecurableTile tile, BooleanSupplier enabled) {
 
         this.tile = tile;
         this.enabled = enabled;
     }
 
-    public SecurityControlModule setEnabled(boolean enabled) {
+    public SecurityControlModule setEnabled(BooleanSupplier enabled) {
 
         this.enabled = enabled;
         return this;
@@ -69,7 +71,7 @@ public class SecurityControlModule implements ISecurable {
 
     public CompoundNBT write(CompoundNBT nbt) {
 
-        if (enabled) {
+        if (isSecurable()) {
             nbt.putString(TAG_OWNER_UUID, owner.getId().toString());
             nbt.putString(TAG_OWNER_NAME, owner.getName());
             nbt.putByte(TAG_ACCESS, (byte) access.ordinal());
@@ -82,7 +84,7 @@ public class SecurityControlModule implements ISecurable {
     @Override
     public boolean isSecurable() {
 
-        return enabled;
+        return enabled.getAsBoolean();
     }
 
     @Override

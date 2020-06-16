@@ -5,12 +5,15 @@ import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
+import java.util.function.BooleanSupplier;
+
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.*;
 
 public class RedstoneControlModule implements IRedstoneControllable {
 
     protected IRedstoneControllableTile tile;
-    protected boolean enabled;
+    protected BooleanSupplier enabled;
 
     protected int power;
     protected int threshold;
@@ -18,16 +21,16 @@ public class RedstoneControlModule implements IRedstoneControllable {
 
     public RedstoneControlModule(IRedstoneControllableTile tile) {
 
-        this(tile, true);
+        this(tile, TRUE);
     }
 
-    public RedstoneControlModule(IRedstoneControllableTile tile, boolean enabled) {
+    public RedstoneControlModule(IRedstoneControllableTile tile, BooleanSupplier enabled) {
 
         this.tile = tile;
         this.enabled = enabled;
     }
 
-    public RedstoneControlModule setEnabled(boolean enabled) {
+    public RedstoneControlModule setEnabled(BooleanSupplier enabled) {
 
         this.enabled = enabled;
         return this;
@@ -61,7 +64,7 @@ public class RedstoneControlModule implements IRedstoneControllable {
 
     public CompoundNBT write(CompoundNBT nbt) {
 
-        if (enabled) {
+        if (isControllable()) {
             nbt.putByte(TAG_RS_POWER, (byte) power);
             nbt.putByte(TAG_RS_THRESHOLD, (byte) threshold);
             nbt.putByte(TAG_RS_MODE, (byte) mode.ordinal());
@@ -74,7 +77,7 @@ public class RedstoneControlModule implements IRedstoneControllable {
     @Override
     public boolean isControllable() {
 
-        return enabled;
+        return enabled.getAsBoolean();
     }
 
     @Override

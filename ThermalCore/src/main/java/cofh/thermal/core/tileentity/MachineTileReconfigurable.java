@@ -43,7 +43,7 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileReconfigurable extends ThermalTileBase implements ITransferControllableTile, IReconfigurableTile {
+public abstract class MachineTileReconfigurable extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();

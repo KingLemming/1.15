@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 import static cofh.core.network.packet.server.StorageClearPacket.StorageType.ENERGY;
 import static cofh.core.network.packet.server.StorageClearPacket.StorageType.FLUID;
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
@@ -163,7 +164,7 @@ public class GuiHelper {
     // region COMMON UX
     public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup) {
 
-        return createDefaultProgress(gui, posX, posY, texture, quantitySup, ElementBase.TRUE);
+        return createDefaultProgress(gui, posX, posY, texture, quantitySup, TRUE);
     }
 
     public static ElementScaled createDefaultProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, BooleanSupplier visible) {
@@ -178,7 +179,7 @@ public class GuiHelper {
 
     public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup) {
 
-        return createDefaultFluidProgress(gui, posX, posY, texture, quantitySup, fluidSup, ElementBase.TRUE);
+        return createDefaultFluidProgress(gui, posX, posY, texture, quantitySup, fluidSup, TRUE);
     }
 
     public static ElementScaledFluid createDefaultFluidProgress(IGuiAccess gui, int posX, int posY, String texture, IntSupplier quantitySup, Supplier<FluidStack> fluidSup, BooleanSupplier visible) {

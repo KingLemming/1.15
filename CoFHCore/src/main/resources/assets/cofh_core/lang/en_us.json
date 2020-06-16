@@ -15,6 +15,8 @@
   "info.cofh.clear_storage": "Hold Shift + Alt and Click to clear.",
   "info.cofh.energy": "Energy",
 
+  "info.cofh.augmentation": "Augmentation",
+
   "info.cofh.configuration": "Configuration",
   "info.cofh.transfer_in_disabled": "Auto-Input Disabled",
   "info.cofh.transfer_in_enabled": "Auto-Input Enabled",

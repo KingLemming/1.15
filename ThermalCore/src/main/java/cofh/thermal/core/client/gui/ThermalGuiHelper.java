@@ -10,8 +10,8 @@ import cofh.thermal.core.tileentity.MachineTileReconfigurable;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.core.client.gui.element.ElementBase.TRUE;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
 import static cofh.lib.util.helpers.RenderHelper.textureExists;
 import static cofh.thermal.core.client.gui.ThermalTextures.*;

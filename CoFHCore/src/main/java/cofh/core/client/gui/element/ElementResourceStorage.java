@@ -13,6 +13,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
+import static cofh.lib.util.constants.Constants.FALSE;
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.helpers.StringHelper.format;
 
 public abstract class ElementResourceStorage extends ElementBase {

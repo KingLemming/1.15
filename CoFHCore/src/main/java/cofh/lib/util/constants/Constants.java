@@ -13,8 +13,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.UUID;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import static net.minecraft.inventory.EquipmentSlotType.*;
 
@@ -108,9 +108,6 @@ public class Constants {
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     public static final Direction[] DIRECTIONS = Direction.values();
-
-    public static final Supplier<Boolean> TRUE = () -> true;
-    public static final Supplier<Boolean> FALSE = () -> false;
     // endregion
 
     // region COMMANDS
@@ -135,6 +132,9 @@ public class Constants {
     // endregion
 
     // region CONSTANTS
+    public static final BooleanSupplier TRUE = () -> true;
+    public static final BooleanSupplier FALSE = () -> false;
+
     public static final String DAMAGE_ARROW = "arrow";
     public static final String DAMAGE_PLAYER = "player";
 

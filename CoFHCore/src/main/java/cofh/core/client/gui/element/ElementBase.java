@@ -8,10 +8,10 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-public abstract class ElementBase {
+import static cofh.lib.util.constants.Constants.FALSE;
+import static cofh.lib.util.constants.Constants.TRUE;
 
-    public static final BooleanSupplier TRUE = () -> true;
-    public static final BooleanSupplier FALSE = () -> false;
+public abstract class ElementBase {
 
     protected static BooleanSupplier advancedTooltips = TRUE;
 

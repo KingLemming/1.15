@@ -6,6 +6,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
 
+import java.util.function.BooleanSupplier;
+
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_ACCESSIBLE;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
@@ -13,22 +16,22 @@ import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
 public class ReconfigControlModule implements IReconfigurable {
 
     protected IReconfigurableTile tile;
-    protected boolean enabled;
+    protected BooleanSupplier enabled;
 
     protected SideConfig[] sides = {SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
 
     public ReconfigControlModule(IReconfigurableTile tile) {
 
-        this(tile, true);
+        this(tile, TRUE);
     }
 
-    public ReconfigControlModule(IReconfigurableTile tile, boolean enabled) {
+    public ReconfigControlModule(IReconfigurableTile tile, BooleanSupplier enabled) {
 
         this.tile = tile;
         this.enabled = enabled;
     }
 
-    public ReconfigControlModule setEnabled(IReconfigurableTile tile, boolean enabled) {
+    public ReconfigControlModule setEnabled(BooleanSupplier enabled) {
 
         this.enabled = enabled;
         return this;
@@ -115,7 +118,7 @@ public class ReconfigControlModule implements IReconfigurable {
     @Override
     public boolean isReconfigurable() {
 
-        return enabled;
+        return enabled.getAsBoolean();
     }
 
     @Override

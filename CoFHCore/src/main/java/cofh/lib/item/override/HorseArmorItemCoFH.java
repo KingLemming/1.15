@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.function.Supplier;
+import java.util.function.BooleanSupplier;
 
 import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
 import static cofh.lib.util.constants.Constants.TRUE;
@@ -19,8 +19,8 @@ import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class HorseArmorItemCoFH extends HorseArmorItem {
 
-    protected Supplier<Boolean> showEnchantEffect = TRUE;
-    protected Supplier<Boolean> showInItemGroup = TRUE;
+    protected BooleanSupplier showEnchantEffect = TRUE;
+    protected BooleanSupplier showInItemGroup = TRUE;
     protected boolean creative;
     protected int enchantability;
 
@@ -54,7 +54,7 @@ public class HorseArmorItemCoFH extends HorseArmorItem {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.get()) {
+        if (!showInItemGroup.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);
@@ -64,7 +64,7 @@ public class HorseArmorItemCoFH extends HorseArmorItem {
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
 
-        return showEnchantEffect.get() && stack.isEnchanted();
+        return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.fluids.FluidStack;
 
+import static cofh.lib.util.constants.Constants.FALSE;
 import static cofh.lib.util.constants.NBTTags.TAG_RENDER_FLUID;
 
 public abstract class MachineTileBasic extends ThermalTileBase {
@@ -19,8 +20,8 @@ public abstract class MachineTileBasic extends ThermalTileBase {
     public MachineTileBasic(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        securityControl.setEnabled(false);
-        redstoneControl.setEnabled(false);
+        securityControl.setEnabled(FALSE);
+        redstoneControl.setEnabled(FALSE);
     }
 
     // region HELPERS

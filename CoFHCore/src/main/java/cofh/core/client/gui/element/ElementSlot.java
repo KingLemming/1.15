@@ -6,6 +6,8 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.function.BooleanSupplier;
 
+import static cofh.lib.util.constants.Constants.TRUE;
+
 public class ElementSlot extends ElementBase {
 
     protected ResourceLocation underlayTexture;

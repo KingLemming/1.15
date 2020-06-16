@@ -4,8 +4,6 @@ import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.helpers.EnergyHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -13,10 +11,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nullable;
 
 import static cofh.lib.util.constants.Constants.FACING_ALL;
 import static cofh.lib.util.constants.NBTTags.*;

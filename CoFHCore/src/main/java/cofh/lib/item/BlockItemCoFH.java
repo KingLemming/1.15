@@ -15,14 +15,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
 
 public class BlockItemCoFH extends BlockItem {
 
-    protected Supplier<Boolean> showEnchantEffect = TRUE;
-    protected Supplier<Boolean> showInItemGroup = TRUE;
+    protected BooleanSupplier showEnchantEffect = TRUE;
+    protected BooleanSupplier showInItemGroup = TRUE;
     protected boolean creative;
     protected int enchantability;
 
@@ -59,7 +60,7 @@ public class BlockItemCoFH extends BlockItem {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.get()) {
+        if (!showInItemGroup.getAsBoolean()) {
             return;
         }
         if (getBlock() != null) {
@@ -71,7 +72,7 @@ public class BlockItemCoFH extends BlockItem {
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
 
-        return showEnchantEffect.get() && stack.isEnchanted();
+        return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
     }
 
     @Override

@@ -12,14 +12,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
 
 public class ArmorItemCoFH extends ArmorItem {
 
-    protected Supplier<Boolean> showEnchantEffect = TRUE;
-    protected Supplier<Boolean> showInItemGroup = TRUE;
+    protected BooleanSupplier showEnchantEffect = TRUE;
+    protected BooleanSupplier showInItemGroup = TRUE;
 
     protected Supplier<ItemGroup> displayGroup;
 
@@ -37,7 +38,7 @@ public class ArmorItemCoFH extends ArmorItem {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.get()) {
+        if (!showInItemGroup.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);
@@ -47,7 +48,7 @@ public class ArmorItemCoFH extends ArmorItem {
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
 
-        return showEnchantEffect.get() && stack.isEnchanted();
+        return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
     }
 
     @Override
