@@ -335,7 +335,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
         if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
             // TODO: Recalculate Augments
-            System.out.println("AUGMENT TIME");
         }
     }
 

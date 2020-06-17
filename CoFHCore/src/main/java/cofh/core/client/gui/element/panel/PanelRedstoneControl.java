@@ -31,9 +31,9 @@ public class PanelRedstoneControl extends PanelBase {
         this(gui, defaultSide, rsControllable);
     }
 
-    public PanelRedstoneControl(IGuiAccess gui, int side, IRedstoneControllable rsControllable) {
+    protected PanelRedstoneControl(IGuiAccess gui, int sideIn, IRedstoneControllable rsControllable) {
 
-        super(gui, side);
+        super(gui, sideIn);
 
         headerColor = defaultHeaderColor;
         subheaderColor = defaultSubHeaderColor;

@@ -33,9 +33,9 @@ public class PanelSecurity extends PanelBase {
         this(gui, defaultSide, securable, playerID);
     }
 
-    public PanelSecurity(IGuiAccess gui, int side, ISecurable securable, UUID playerID) {
+    protected PanelSecurity(IGuiAccess gui, int sideIn, ISecurable securable, UUID playerID) {
 
-        super(gui, side);
+        super(gui, sideIn);
 
         headerColor = defaultHeaderColor;
         subheaderColor = defaultSubHeaderColor;

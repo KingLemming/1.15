@@ -15,17 +15,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
-
-import static cofh.lib.util.constants.Constants.FALSE;
-import static cofh.lib.util.constants.Constants.TRUE;
 
 public abstract class ContainerCoFH extends Container {
 
     protected boolean falseSlotSupport = true;
     protected boolean hasPlayerInventory;
 
-    protected SlotCoFH[] augmentSlots;
+    protected List<SlotCoFH> augmentSlots = new ArrayList<>();
 
     public ContainerCoFH(@Nullable ContainerType<?> type, int id, PlayerInventory inventory, PlayerEntity player) {
 
@@ -33,12 +31,19 @@ public abstract class ContainerCoFH extends Container {
     }
 
     // region HELPERS
+    public List<SlotCoFH> getAugmentSlots() {
+
+        return augmentSlots;
+    }
+
     protected void bindAugmentSlots(IInventory inventory, int startIndex, int numSlots) {
 
-        // TODO: Adjust w/ proper Augment slots.
-        for (int i = startIndex; i < startIndex + numSlots; ++i) {
-            addSlot(new SlotCoFH(inventory, i, 8 + 18 * (i - startIndex), -18).setEnabled(TRUE));
+        for (int i = 0; i < numSlots; ++i) {
+            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0);
+            augmentSlots.add(slot);
+            addSlot(slot);
         }
+        ((ArrayList<SlotCoFH>) augmentSlots).trimToSize();
     }
 
     protected void bindPlayerInventory(PlayerInventory inventory) {

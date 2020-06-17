@@ -108,6 +108,11 @@ public class GuiHelper {
     // endregion
 
     // region SLOTS
+    public static ElementSlot createSlot(IGuiAccess gui, int posX, int posY) {
+
+        return createDefaultSlot(gui, posX - 1, posY - 1, 18, 18, PATH_ELEMENTS + "slot.png", 32, 32);
+    }
+
     public static ElementSlot createInputSlot(IGuiAccess gui, int posX, int posY, IReconfigurable reconfig) {
 
         return createDefaultSlot(gui, posX - 1, posY - 1, 18, 18, PATH_ELEMENTS + "slot.png", PATH_ELEMENTS + "input_underlay_slot.png", reconfig::hasInputSide, 32, 32);
@@ -116,6 +121,11 @@ public class GuiHelper {
     public static ElementSlot createOutputSlot(IGuiAccess gui, int posX, int posY, IReconfigurable reconfig) {
 
         return createDefaultSlot(gui, posX - 1, posY - 1, 18, 18, PATH_ELEMENTS + "slot.png", PATH_ELEMENTS + "output_underlay_slot.png", reconfig::hasOutputSide, 32, 32);
+    }
+
+    public static ElementSlot createLargeSlot(IGuiAccess gui, int posX, int posY) {
+
+        return createDefaultSlot(gui, posX - 1, posY - 1, 26, 26, PATH_ELEMENTS + "slot_large.png", 32, 32);
     }
 
     public static ElementSlot createLargeInputSlot(IGuiAccess gui, int posX, int posY, IReconfigurable reconfig) {

@@ -24,6 +24,7 @@ public class DynamoStirlingContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 35));
 
+        bindAugmentSlots(tileInv, 1, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

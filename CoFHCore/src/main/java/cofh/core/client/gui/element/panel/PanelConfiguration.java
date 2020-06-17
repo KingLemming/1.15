@@ -14,7 +14,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -43,9 +42,9 @@ public class PanelConfiguration extends PanelBase {
         this(gui, defaultSide, transfer, reconfig, facingSup);
     }
 
-    public PanelConfiguration(IGuiAccess gui, int side, ITransferControllable transfer, IReconfigurable reconfig, Supplier<Direction> facingSup) {
+    protected PanelConfiguration(IGuiAccess gui, int sideIn, ITransferControllable transfer, IReconfigurable reconfig, Supplier<Direction> facingSup) {
 
-        super(gui, side);
+        super(gui, sideIn);
 
         headerColor = defaultHeaderColor;
         subheaderColor = defaultSubHeaderColor;
@@ -53,7 +52,7 @@ public class PanelConfiguration extends PanelBase {
         backgroundColor = defaultBackgroundColor;
 
         maxHeight = 92;
-        maxWidth = 112;
+        maxWidth = transfer == null ? 100 : 112;
         myReconfig = reconfig;
         myTransfer = transfer;
         myFacing = facingSup;
@@ -75,8 +74,10 @@ public class PanelConfiguration extends PanelBase {
         c[4].setPosition(40 + xOffset, 64);
         c[5].setPosition(60 + xOffset, 64);
 
-        elements.addAll(Arrays.asList(c));
-
+        // This is done explicitly to use the addElement method which appends a visibility supplier.
+        for (int i = 0; i < 6; ++i) {
+            addElement(c[i]);
+        }
         return this;
     }
 
@@ -174,7 +175,7 @@ public class PanelConfiguration extends PanelBase {
             return false;
         }
         Direction facing = myFacing.get();
-        if (40 <= x && x < 68 && 24 <= y && y < 40) {
+        if (40 <= x && x < 56 && 24 <= y && y < 40) {
             handleSideChange(BlockHelper.above(facing), mouseButton);
         } else if (20 <= x && x < 36 && 44 <= y && y < 60) {
             handleSideChange(BlockHelper.left(facing), mouseButton);
@@ -219,6 +220,9 @@ public class PanelConfiguration extends PanelBase {
 
     protected void handleTransferChange(boolean input) {
 
+        if (myTransfer == null) { // Should absolutely NEVER happen.
+            return;
+        }
         if (input) {
             if (myTransfer.hasTransferIn()) {
                 myTransfer.setControl(!myTransfer.getTransferIn(), myTransfer.getTransferOut());

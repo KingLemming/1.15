@@ -20,7 +20,7 @@ public class PanelResource extends PanelBase {
         this(gui, defaultSide);
     }
 
-    public PanelResource(IGuiAccess gui, int sideIn) {
+    protected PanelResource(IGuiAccess gui, int sideIn) {
 
         super(gui, sideIn);
 

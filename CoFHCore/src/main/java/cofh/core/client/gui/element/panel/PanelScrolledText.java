@@ -19,9 +19,9 @@ public abstract class PanelScrolledText extends PanelBase {
 
     protected boolean scrollable;
 
-    public PanelScrolledText(IGuiAccess gui, int side, String info) {
+    public PanelScrolledText(IGuiAccess gui, int sideIn, String info) {
 
-        super(gui, side);
+        super(gui, sideIn);
 
         maxHeight = 92;
 

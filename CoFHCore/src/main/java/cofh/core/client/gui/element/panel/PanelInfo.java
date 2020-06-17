@@ -19,9 +19,9 @@ public class PanelInfo extends PanelScrolledText {
         this(gui, defaultSide, info);
     }
 
-    public PanelInfo(IGuiAccess gui, int side, String info) {
+    protected PanelInfo(IGuiAccess gui, int sideIn, String info) {
 
-        super(gui, side, info);
+        super(gui, sideIn, info);
 
         headerColor = defaultHeaderColor;
         subheaderColor = defaultSubHeaderColor;

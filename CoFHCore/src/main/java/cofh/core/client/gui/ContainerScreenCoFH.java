@@ -41,13 +41,13 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     protected ResourceLocation texture;
     protected PlayerEntity player;
 
-    protected ArrayList<PanelBase> panels = new ArrayList<>();
-    protected ArrayList<ElementBase> elements = new ArrayList<>();
-    protected List<ITextComponent> tooltip = new LinkedList<>();
-
     protected boolean drawTitle = true;
     protected boolean drawInventory = true;
     protected boolean showTooltips = true;
+
+    private final ArrayList<PanelBase> panels = new ArrayList<>();
+    private final ArrayList<ElementBase> elements = new ArrayList<>();
+    private final List<ITextComponent> tooltip = new LinkedList<>();
 
     public ContainerScreenCoFH(T container, PlayerInventory inv, ITextComponent titleIn) {
 

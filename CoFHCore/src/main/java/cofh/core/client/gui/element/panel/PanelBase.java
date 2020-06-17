@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 
@@ -47,7 +46,7 @@ public abstract class PanelBase extends ElementBase {
     protected int minHeight = 22;
     protected int maxHeight = 92;
 
-    protected ArrayList<ElementBase> elements = new ArrayList<>();
+    private final ArrayList<ElementBase> elements = new ArrayList<>();
 
     public PanelBase(IGuiAccess gui) {
 
@@ -216,10 +215,6 @@ public abstract class PanelBase extends ElementBase {
         fullyOpen = true;
         width = maxWidth;
         height = maxHeight;
-
-        for (ElementBase element : elements) {
-            element.setVisible(fullyOpen);
-        }
     }
 
     public void toggleOpen() {
@@ -239,9 +234,6 @@ public abstract class PanelBase extends ElementBase {
             } else {
                 PanelTracker.setOpenedRight(this.getClass());
             }
-        }
-        for (ElementBase element : elements) {
-            element.setVisible(fullyOpen);
         }
     }
 
@@ -263,13 +255,8 @@ public abstract class PanelBase extends ElementBase {
     @SuppressWarnings("unchecked")
     protected <T> T addElement(ElementBase element) {
 
-        elements.add(element);
+        elements.add(element.setVisible(() -> fullyOpen));
         return (T) element;
-    }
-
-    public final void addElements(ElementBase... c) {
-
-        elements.addAll(Arrays.asList(c));
     }
 
     // region HELPERS
