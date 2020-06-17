@@ -11,7 +11,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_CONTAINER;
 
 public class MachineFurnaceContainer extends TileContainer {
@@ -30,8 +29,7 @@ public class MachineFurnaceContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 2, 8, 53));
 
-        // TODO: Finish
-        bindAugmentSlots(tileInv, 3, machineAugments);
+        bindAugmentSlots(tileInv, 3, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

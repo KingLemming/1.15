@@ -51,6 +51,17 @@ public abstract class ThermalRecipe extends SerializableRecipe {
         if (outputFluids != null) {
             this.outputFluids.addAll(outputFluids);
         }
+        trim();
+    }
+
+    private void trim() {
+
+        ((ArrayList<Ingredient>) this.inputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.inputFluids).trimToSize();
+
+        ((ArrayList<ItemStack>) this.outputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.outputFluids).trimToSize();
+        ((ArrayList<Float>) this.outputItemChances).trimToSize();
     }
 
     // region GETTERS

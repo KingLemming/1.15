@@ -11,6 +11,7 @@ public class BaseDynamoFuel implements IDynamoFuel {
 
     protected final List<ItemStack> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();
+
     protected final int energy;
 
     public BaseDynamoFuel(int energy) {
@@ -28,6 +29,13 @@ public class BaseDynamoFuel implements IDynamoFuel {
         if (inputFluids != null) {
             this.inputFluids.addAll(inputFluids);
         }
+        trim();
+    }
+
+    private void trim() {
+
+        ((ArrayList<ItemStack>) this.inputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.inputFluids).trimToSize();
     }
 
     // region IDynamoFuel

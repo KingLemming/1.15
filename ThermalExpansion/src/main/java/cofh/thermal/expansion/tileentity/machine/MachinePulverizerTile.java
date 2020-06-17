@@ -30,6 +30,7 @@ public class MachinePulverizerTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(chargeSlot, INTERNAL);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

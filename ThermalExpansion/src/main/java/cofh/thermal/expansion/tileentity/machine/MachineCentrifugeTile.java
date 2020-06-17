@@ -36,6 +36,7 @@ public class MachineCentrifugeTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(outputTank, OUTPUT);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

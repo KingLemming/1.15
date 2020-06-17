@@ -40,6 +40,7 @@ public class MachineBrewerTile extends MachineTileReconfigurableProcess {
         renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

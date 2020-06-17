@@ -40,6 +40,7 @@ public class MachinePressTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(outputTank, OUTPUT);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

@@ -27,6 +27,13 @@ public abstract class ThermalFuel extends SerializableRecipe {
         if (inputFluids != null) {
             this.inputFluids.addAll(inputFluids);
         }
+        trim();
+    }
+
+    private void trim() {
+
+        ((ArrayList<Ingredient>) this.inputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.inputFluids).trimToSize();
     }
 
     // region GETTERS

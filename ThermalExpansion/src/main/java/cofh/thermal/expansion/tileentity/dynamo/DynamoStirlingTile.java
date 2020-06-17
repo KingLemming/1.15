@@ -25,6 +25,7 @@ public class DynamoStirlingTile extends DynamoTileBase {
         inventory.addSlot(fuelSlot, INPUT);
 
         addAugmentSlots(dynamoAugments);
+        initHandlers();
     }
 
     // region PROCESS

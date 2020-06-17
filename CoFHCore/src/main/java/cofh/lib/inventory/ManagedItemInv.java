@@ -78,7 +78,7 @@ public class ManagedItemInv extends SimpleItemInv {
         ((ArrayList<ItemStorageCoFH>) internalSlots).trimToSize();
     }
 
-    protected void initHandlers() {
+    public void initHandlers() {
 
         optimize();
 

@@ -1,7 +1,6 @@
 package cofh.thermal.core.tileentity;
 
 import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.EnergyHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

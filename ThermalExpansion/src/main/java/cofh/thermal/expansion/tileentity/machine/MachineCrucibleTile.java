@@ -34,6 +34,7 @@ public class MachineCrucibleTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(outputTank, OUTPUT);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

@@ -27,6 +27,7 @@ public class MachineSawmillTile extends MachineTileReconfigurableProcess {
         inventory.addSlot(chargeSlot, INTERNAL);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

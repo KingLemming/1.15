@@ -1,6 +1,5 @@
 package cofh.thermal.core.tileentity;
 
-import cofh.core.network.packet.client.TileControlPacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.tileentity.TileCoFH;

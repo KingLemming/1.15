@@ -45,6 +45,7 @@ public class MachineCrafterTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(inputTank, OUTPUT);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     protected void setRecipe() {

@@ -27,6 +27,7 @@ public class DynamoMagmaticTile extends DynamoTileBase {
         tankInv.addTank(fuelTank, INPUT);
 
         addAugmentSlots(dynamoAugments);
+        initHandlers();
     }
 
     // region PROCESS

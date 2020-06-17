@@ -37,6 +37,7 @@ public class MachineChillerTile extends MachineTileReconfigurableProcess {
         tankInv.addTank(inputTank, INPUT);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override

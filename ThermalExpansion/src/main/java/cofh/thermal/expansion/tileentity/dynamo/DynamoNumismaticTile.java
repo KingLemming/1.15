@@ -25,6 +25,7 @@ public class DynamoNumismaticTile extends DynamoTileBase {
         inventory.addSlot(fuelSlot, INPUT);
 
         addAugmentSlots(dynamoAugments);
+        initHandlers();
     }
 
     // region PROCESS

@@ -25,6 +25,8 @@ public abstract class ContainerCoFH extends Container {
     protected boolean falseSlotSupport = true;
     protected boolean hasPlayerInventory;
 
+    protected SlotCoFH[] augmentSlots;
+
     public ContainerCoFH(@Nullable ContainerType<?> type, int id, PlayerInventory inventory, PlayerEntity player) {
 
         super(type, id);
@@ -35,7 +37,7 @@ public abstract class ContainerCoFH extends Container {
 
         // TODO: Adjust w/ proper Augment slots.
         for (int i = startIndex; i < startIndex + numSlots; ++i) {
-            addSlot(new SlotCoFH(inventory, i, 8 + 18 * (i - startIndex), -18).setEnabled(FALSE));
+            addSlot(new SlotCoFH(inventory, i, 8 + 18 * (i - startIndex), -18).setEnabled(TRUE));
         }
     }
 

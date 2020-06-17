@@ -27,6 +27,7 @@ public class DynamoCompressionTile extends DynamoTileBase {
         tankInv.addTank(fuelTank, INPUT);
 
         addAugmentSlots(dynamoAugments);
+        initHandlers();
     }
 
     // region PROCESS

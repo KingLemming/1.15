@@ -78,6 +78,12 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         return inventory;
     }
 
+    protected void initHandlers() {
+
+        inventory.initHandlers();
+        tankInv.initHandlers();
+    }
+
     protected void updateActiveState(boolean curActive) {
 
         // TODO: Config time delay

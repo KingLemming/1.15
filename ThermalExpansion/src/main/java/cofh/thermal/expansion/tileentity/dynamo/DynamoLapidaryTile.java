@@ -25,6 +25,7 @@ public class DynamoLapidaryTile extends DynamoTileBase {
         inventory.addSlot(fuelSlot, INPUT);
 
         addAugmentSlots(dynamoAugments);
+        initHandlers();
     }
 
     // region PROCESS

@@ -15,6 +15,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
 
     protected final List<ItemStack> inputItems = new ArrayList<>();
     protected final List<FluidStack> inputFluids = new ArrayList<>();
+
     protected final List<ItemStack> outputItems = new ArrayList<>();
     protected final List<FluidStack> outputFluids = new ArrayList<>();
     protected final List<Float> outputItemChances = new ArrayList<>();
@@ -53,6 +54,17 @@ public class BaseMachineRecipe implements IMachineRecipe {
         if (outputFluids != null) {
             this.outputFluids.addAll(outputFluids);
         }
+        trim();
+    }
+
+    private void trim() {
+
+        ((ArrayList<ItemStack>) this.inputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.inputFluids).trimToSize();
+
+        ((ArrayList<ItemStack>) this.outputItems).trimToSize();
+        ((ArrayList<FluidStack>) this.outputFluids).trimToSize();
+        ((ArrayList<Float>) this.outputItemChances).trimToSize();
     }
 
     // region IMachineRecipe

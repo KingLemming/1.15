@@ -59,7 +59,7 @@ public class ManagedTankInv extends SimpleTankInv {
         ((ArrayList<FluidStorageCoFH>) internalTanks).trimToSize();
     }
 
-    protected void initHandlers() {
+    public void initHandlers() {
 
         optimize();
 

@@ -41,6 +41,7 @@ public class MachineInsolatorTile extends MachineTileReconfigurableProcess {
         renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
 
         addAugmentSlots(machineAugments);
+        initHandlers();
     }
 
     @Override
