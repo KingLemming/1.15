@@ -41,11 +41,11 @@ public class TCulReferences {
     public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
 
     @ObjectHolder(ID_FROST_MELON)
-    public static Block FROST_MELON;
+    public static final Block FROST_MELON = null;
     @ObjectHolder(ID_FROST_MELON_STEM)
-    public static Block FROST_MELON_STEM;
+    public static final Block FROST_MELON_STEM = null;
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
-    public static Block FROST_MELON_STEM_ATTACHED;
+    public static final Block FROST_MELON_STEM_ATTACHED = null;
     // endregion
 
     // region MISC
@@ -53,17 +53,10 @@ public class TCulReferences {
     public static final String ID_PHYTOSOIL_CHARGED = ID_THERMAL + ":phytosoil_charged";
 
     @ObjectHolder(ID_PHYTOSOIL)
-    public static SoilBlock PHYTOSOIL_BLOCK;
+    public static final SoilBlock PHYTOSOIL_BLOCK = null;
 
     @ObjectHolder(ID_PHYTOSOIL_CHARGED)
-    public static SoilBlock PHYTOSOIL_CHARGED_BLOCK;
-    // endregion
-
-    // region ARMOR & TOOLS
-    public static final String ID_BEEKEEPER_HELMET = ":beekeeper_helmet";
-    public static final String ID_BEEKEEPER_CHESTPLATE = "beekeeper_chestplate";
-    public static final String ID_BEEKEEPER_LEGGINGS = "beekeeper_leggings";
-    public static final String ID_BEEKEEPER_BOOTS = "beekeeper_boots";
+    public static final SoilBlock PHYTOSOIL_CHARGED_BLOCK = null;
     // endregion
 
     // region DEVICES
@@ -71,11 +64,11 @@ public class TCulReferences {
     public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
 
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static Block DEVICE_HIVE_EXTRACTOR_BLOCK;
+    public static final Block DEVICE_HIVE_EXTRACTOR_BLOCK = null;
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE;
+    public static final TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE = null;
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER;
+    public static final ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER = null;
     // endregion
 
     // region DYNAMOS

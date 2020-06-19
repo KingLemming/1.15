@@ -52,6 +52,16 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("wrench"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
+
+        generated(reg.getSup(ID_BEEKEEPER_HELMET), ARMOR);
+        generated(reg.getSup(ID_BEEKEEPER_CHESTPLATE), ARMOR);
+        generated(reg.getSup(ID_BEEKEEPER_LEGGINGS), ARMOR);
+        generated(reg.getSup(ID_BEEKEEPER_BOOTS), ARMOR);
+
+        generated(reg.getSup(ID_HAZMAT_HELMET), ARMOR);
+        generated(reg.getSup(ID_HAZMAT_CHESTPLATE), ARMOR);
+        generated(reg.getSup(ID_HAZMAT_LEGGINGS), ARMOR);
+        generated(reg.getSup(ID_HAZMAT_BOOTS), ARMOR);
     }
 
     private void registerBlockItemModels() {

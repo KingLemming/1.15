@@ -19,6 +19,64 @@ public class TExpReferences {
 
     }
 
+    // region DEVICES
+    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
+    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
+
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static final Block DEVICE_ROCK_GEN_BLOCK = null;
+    @ObjectHolder(ID_DEVICE_ROCK_GEN)
+    public static final TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE = null;
+
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static final Block DEVICE_WATER_GEN_BLOCK = null;
+    @ObjectHolder(ID_DEVICE_WATER_GEN)
+    public static final TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE = null;
+    // endregion
+
+    // region DYNAMOS
+    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
+    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
+    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
+    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
+    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
+
+    @ObjectHolder(ID_DYNAMO_STIRLING)
+    public static final Block DYNAMO_STIRLING_BLOCK = null;
+    @ObjectHolder(ID_DYNAMO_STIRLING)
+    public static final TileEntityType<DynamoStirlingTile> DYNAMO_STIRLING_TILE = null;
+    @ObjectHolder(ID_DYNAMO_STIRLING)
+    public static final ContainerType<DynamoStirlingContainer> DYNAMO_STIRLING_CONTAINER = null;
+
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static final Block DYNAMO_COMPRESSION_BLOCK = null;
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static final TileEntityType<DynamoCompressionTile> DYNAMO_COMPRESSION_TILE = null;
+    @ObjectHolder(ID_DYNAMO_COMPRESSION)
+    public static final ContainerType<DynamoCompressionContainer> DYNAMO_COMPRESSION_CONTAINER = null;
+
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static final Block DYNAMO_MAGMATIC_BLOCK = null;
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static final TileEntityType<DynamoMagmaticTile> DYNAMO_MAGMATIC_TILE = null;
+    @ObjectHolder(ID_DYNAMO_MAGMATIC)
+    public static final ContainerType<DynamoMagmaticContainer> DYNAMO_MAGMATIC_CONTAINER = null;
+
+    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
+    public static final Block DYNAMO_NUMISMATIC_BLOCK = null;
+    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
+    public static final TileEntityType<DynamoNumismaticTile> DYNAMO_NUMISMATIC_TILE = null;
+    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
+    public static final ContainerType<DynamoNumismaticContainer> DYNAMO_NUMISMATIC_CONTAINER = null;
+
+    @ObjectHolder(ID_DYNAMO_LAPIDARY)
+    public static final Block DYNAMO_LAPIDARY_BLOCK = null;
+    @ObjectHolder(ID_DYNAMO_LAPIDARY)
+    public static final TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE = null;
+    @ObjectHolder(ID_DYNAMO_LAPIDARY)
+    public static final ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER = null;
+    // endregion
+
     // region MACHINES
     public static final String ID_MACHINE_FURNACE = ID_THERMAL + ":machine_furnace";
     public static final String ID_MACHINE_SAWMILL = ID_THERMAL + ":machine_sawmill";
@@ -34,145 +92,87 @@ public class TExpReferences {
     public static final String ID_MACHINE_CRAFTER = ID_THERMAL + ":machine_crafter";
 
     @ObjectHolder(ID_MACHINE_FURNACE)
-    public static Block MACHINE_FURNACE_BLOCK;
+    public static final Block MACHINE_FURNACE_BLOCK = null;
     @ObjectHolder(ID_MACHINE_FURNACE)
-    public static TileEntityType<MachineFurnaceTile> MACHINE_FURNACE_TILE;
+    public static final TileEntityType<MachineFurnaceTile> MACHINE_FURNACE_TILE = null;
     @ObjectHolder(ID_MACHINE_FURNACE)
-    public static ContainerType<MachineFurnaceContainer> MACHINE_FURNACE_CONTAINER;
+    public static final ContainerType<MachineFurnaceContainer> MACHINE_FURNACE_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_SAWMILL)
-    public static Block MACHINE_SAWMILL_BLOCK;
+    public static final Block MACHINE_SAWMILL_BLOCK = null;
     @ObjectHolder(ID_MACHINE_SAWMILL)
-    public static TileEntityType<MachineSawmillTile> MACHINE_SAWMILL_TILE;
+    public static final TileEntityType<MachineSawmillTile> MACHINE_SAWMILL_TILE = null;
     @ObjectHolder(ID_MACHINE_SAWMILL)
-    public static ContainerType<MachineSawmillContainer> MACHINE_SAWMILL_CONTAINER;
+    public static final ContainerType<MachineSawmillContainer> MACHINE_SAWMILL_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_PULVERIZER)
-    public static Block MACHINE_PULVERIZER_BLOCK;
+    public static final Block MACHINE_PULVERIZER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_PULVERIZER)
-    public static TileEntityType<MachinePulverizerTile> MACHINE_PULVERIZER_TILE;
+    public static final TileEntityType<MachinePulverizerTile> MACHINE_PULVERIZER_TILE = null;
     @ObjectHolder(ID_MACHINE_PULVERIZER)
-    public static ContainerType<MachinePulverizerContainer> MACHINE_PULVERIZER_CONTAINER;
+    public static final ContainerType<MachinePulverizerContainer> MACHINE_PULVERIZER_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_INSOLATOR)
-    public static Block MACHINE_INSOLATOR_BLOCK;
+    public static final Block MACHINE_INSOLATOR_BLOCK = null;
     @ObjectHolder(ID_MACHINE_INSOLATOR)
-    public static TileEntityType<MachineInsolatorTile> MACHINE_INSOLATOR_TILE;
+    public static final TileEntityType<MachineInsolatorTile> MACHINE_INSOLATOR_TILE = null;
     @ObjectHolder(ID_MACHINE_INSOLATOR)
-    public static ContainerType<MachineInsolatorContainer> MACHINE_INSOLATOR_CONTAINER;
+    public static final ContainerType<MachineInsolatorContainer> MACHINE_INSOLATOR_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_CENTRIFUGE)
-    public static Block MACHINE_CENTRIFUGE_BLOCK;
+    public static final Block MACHINE_CENTRIFUGE_BLOCK = null;
     @ObjectHolder(ID_MACHINE_CENTRIFUGE)
-    public static TileEntityType<MachineCentrifugeTile> MACHINE_CENTRIFUGE_TILE;
+    public static final TileEntityType<MachineCentrifugeTile> MACHINE_CENTRIFUGE_TILE = null;
     @ObjectHolder(ID_MACHINE_CENTRIFUGE)
-    public static ContainerType<MachineCentrifugeContainer> MACHINE_CENTRIFUGE_CONTAINER;
+    public static final ContainerType<MachineCentrifugeContainer> MACHINE_CENTRIFUGE_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_PRESS)
-    public static Block MACHINE_PRESS_BLOCK;
+    public static final Block MACHINE_PRESS_BLOCK = null;
     @ObjectHolder(ID_MACHINE_PRESS)
-    public static TileEntityType<MachinePressTile> MACHINE_PRESS_TILE;
+    public static final TileEntityType<MachinePressTile> MACHINE_PRESS_TILE = null;
     @ObjectHolder(ID_MACHINE_PRESS)
-    public static ContainerType<MachinePressContainer> MACHINE_PRESS_CONTAINER;
+    public static final ContainerType<MachinePressContainer> MACHINE_PRESS_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_CRUCIBLE)
-    public static Block MACHINE_CRUCIBLE_BLOCK;
+    public static final Block MACHINE_CRUCIBLE_BLOCK = null;
     @ObjectHolder(ID_MACHINE_CRUCIBLE)
-    public static TileEntityType<MachineCrucibleTile> MACHINE_CRUCIBLE_TILE;
+    public static final TileEntityType<MachineCrucibleTile> MACHINE_CRUCIBLE_TILE = null;
     @ObjectHolder(ID_MACHINE_CRUCIBLE)
-    public static ContainerType<MachineCrucibleContainer> MACHINE_CRUCIBLE_CONTAINER;
+    public static final ContainerType<MachineCrucibleContainer> MACHINE_CRUCIBLE_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_CHILLER)
-    public static Block MACHINE_CHILLER_BLOCK;
+    public static final Block MACHINE_CHILLER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_CHILLER)
-    public static TileEntityType<MachineChillerTile> MACHINE_CHILLER_TILE;
+    public static final TileEntityType<MachineChillerTile> MACHINE_CHILLER_TILE = null;
     @ObjectHolder(ID_MACHINE_CHILLER)
-    public static ContainerType<MachineChillerContainer> MACHINE_CHILLER_CONTAINER;
+    public static final ContainerType<MachineChillerContainer> MACHINE_CHILLER_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_REFINERY)
-    public static Block MACHINE_REFINERY_BLOCK;
+    public static final Block MACHINE_REFINERY_BLOCK = null;
     @ObjectHolder(ID_MACHINE_REFINERY)
-    public static TileEntityType<MachineRefineryTile> MACHINE_REFINERY_TILE;
+    public static final TileEntityType<MachineRefineryTile> MACHINE_REFINERY_TILE = null;
     @ObjectHolder(ID_MACHINE_REFINERY)
-    public static ContainerType<MachineRefineryContainer> MACHINE_REFINERY_CONTAINER;
+    public static final ContainerType<MachineRefineryContainer> MACHINE_REFINERY_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_BREWER)
-    public static Block MACHINE_BREWER_BLOCK;
+    public static final Block MACHINE_BREWER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_BREWER)
-    public static TileEntityType<MachineBrewerTile> MACHINE_BREWER_TILE;
+    public static final TileEntityType<MachineBrewerTile> MACHINE_BREWER_TILE = null;
     @ObjectHolder(ID_MACHINE_BREWER)
-    public static ContainerType<MachineBrewerContainer> MACHINE_BREWER_CONTAINER;
+    public static final ContainerType<MachineBrewerContainer> MACHINE_BREWER_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_BOTTLER)
-    public static Block MACHINE_BOTTLER_BLOCK;
+    public static final Block MACHINE_BOTTLER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_BOTTLER)
-    public static TileEntityType<MachineBottlerTile> MACHINE_BOTTLER_TILE;
+    public static final TileEntityType<MachineBottlerTile> MACHINE_BOTTLER_TILE = null;
     @ObjectHolder(ID_MACHINE_BOTTLER)
-    public static ContainerType<MachineBottlerContainer> MACHINE_BOTTLER_CONTAINER;
+    public static final ContainerType<MachineBottlerContainer> MACHINE_BOTTLER_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_CRAFTER)
-    public static Block MACHINE_CRAFTER_BLOCK;
+    public static final Block MACHINE_CRAFTER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_CRAFTER)
-    public static TileEntityType<MachineCrafterTile> MACHINE_CRAFTER_TILE;
+    public static final TileEntityType<MachineCrafterTile> MACHINE_CRAFTER_TILE = null;
     //    @ObjectHolder(ID_MACHINE_CRAFTER)
-    //    public static ContainerType<MachineCrafterContainer> MACHINE_CRAFTER_CONTAINER;
-    // endregion
-
-    // region DEVICES
-    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
-    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
-
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static Block DEVICE_ROCK_GEN_BLOCK;
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE;
-
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static Block DEVICE_WATER_GEN_BLOCK;
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE;
-    // endregion
-
-    // region DYNAMOS
-    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
-    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
-    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
-    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
-    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
-
-    @ObjectHolder(ID_DYNAMO_STIRLING)
-    public static Block DYNAMO_STIRLING_BLOCK;
-    @ObjectHolder(ID_DYNAMO_STIRLING)
-    public static TileEntityType<DynamoStirlingTile> DYNAMO_STIRLING_TILE;
-    @ObjectHolder(ID_DYNAMO_STIRLING)
-    public static ContainerType<DynamoStirlingContainer> DYNAMO_STIRLING_CONTAINER;
-
-    @ObjectHolder(ID_DYNAMO_COMPRESSION)
-    public static Block DYNAMO_COMPRESSION_BLOCK;
-    @ObjectHolder(ID_DYNAMO_COMPRESSION)
-    public static TileEntityType<DynamoCompressionTile> DYNAMO_COMPRESSION_TILE;
-    @ObjectHolder(ID_DYNAMO_COMPRESSION)
-    public static ContainerType<DynamoCompressionContainer> DYNAMO_COMPRESSION_CONTAINER;
-
-    @ObjectHolder(ID_DYNAMO_MAGMATIC)
-    public static Block DYNAMO_MAGMATIC_BLOCK;
-    @ObjectHolder(ID_DYNAMO_MAGMATIC)
-    public static TileEntityType<DynamoMagmaticTile> DYNAMO_MAGMATIC_TILE;
-    @ObjectHolder(ID_DYNAMO_MAGMATIC)
-    public static ContainerType<DynamoMagmaticContainer> DYNAMO_MAGMATIC_CONTAINER;
-
-    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
-    public static Block DYNAMO_NUMISMATIC_BLOCK;
-    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
-    public static TileEntityType<DynamoNumismaticTile> DYNAMO_NUMISMATIC_TILE;
-    @ObjectHolder(ID_DYNAMO_NUMISMATIC)
-    public static ContainerType<DynamoNumismaticContainer> DYNAMO_NUMISMATIC_CONTAINER;
-
-    @ObjectHolder(ID_DYNAMO_LAPIDARY)
-    public static Block DYNAMO_LAPIDARY_BLOCK;
-    @ObjectHolder(ID_DYNAMO_LAPIDARY)
-    public static TileEntityType<DynamoLapidaryTile> DYNAMO_LAPIDARY_TILE;
-    @ObjectHolder(ID_DYNAMO_LAPIDARY)
-    public static ContainerType<DynamoLapidaryContainer> DYNAMO_LAPIDARY_CONTAINER;
+    //    public static final ContainerType<MachineCrafterContainer> MACHINE_CRAFTER_CONTAINER=null;
     // endregion
 }

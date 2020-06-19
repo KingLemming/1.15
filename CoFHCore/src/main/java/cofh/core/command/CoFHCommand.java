@@ -23,6 +23,8 @@ public class CoFHCommand {
                 .then(SubCommandEnderChest.register())
                 .then(SubCommandHeal.register())
                 .then(SubCommandIgnite.register())
+                .then(SubCommandInvis.register())
+                .then(SubCommandInvuln.register())
                 .then(SubCommandRepair.register())
                 .then(SubCommandZap.register())
         );

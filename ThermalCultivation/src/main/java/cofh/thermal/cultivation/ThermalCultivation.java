@@ -41,7 +41,6 @@ public class ThermalCultivation {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::colorSetup);
         modEventBus.addListener(this::gatherData);
 
         TCulBlocks.register();
@@ -106,6 +105,9 @@ public class ThermalCultivation {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+
+        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::colorSetup);
 
         ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
 

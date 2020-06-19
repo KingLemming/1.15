@@ -167,12 +167,16 @@ public class PanelAugmentation extends PanelBase {
                 }
                 break;
             case 8:
-                for (int i = 0; i < 6; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i % 3);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * (i / 3);
+                for (int i = 0; i < 3; ++i) {
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset;
                 }
-                for (int i = 6; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + slotSize * (i % 2);
+                for (int i = 3; i < 5; ++i) {
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + slotSize * (i - 3);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize;
+                }
+                for (int i = 5; i < numAugments; ++i) {
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i - 5);
                     augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * 2;
                 }
                 break;

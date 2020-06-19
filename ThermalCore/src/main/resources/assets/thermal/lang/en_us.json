@@ -90,6 +90,21 @@
   "item.thermal.ender_fluid_bucket": "Resonant Ender Bucket",
 
   "_comment": "========================================================================================================",
+  "_comment": "Thermal Core - External",
+  "_comment": "These items 'live' in Thermal Core but are non-default and registered from multiple possible modules.",
+  "_comment": "========================================================================================================",
+
+  "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
+  "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
+  "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
+  "item.thermal.beekeeper_boots": "Beekeeper's Boots",
+
+  "item.thermal.hazmat_helmet": "Hazmat Helmet",
+  "item.thermal.hazmat_chestplate": "Hazmat Suit",
+  "item.thermal.hazmat_leggings": "Hazmat Pants",
+  "item.thermal.hazmat_boots": "Hazmat Boots",
+
+  "_comment": "========================================================================================================",
   "_comment": "Thermal Foundation",
   "_comment": "========================================================================================================",
 
@@ -312,6 +327,10 @@
   "_comment": "========================================================================================================",
 
   "_comment": "========================================================================================================",
+  "_comment": "Thermal Atomics",
+  "_comment": "========================================================================================================",
+
+  "_comment": "========================================================================================================",
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
@@ -323,12 +342,7 @@
   "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
   "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
   "info.thermal.device_hive_extractor.2": "Buzz buzz.",
-
-  "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
-  "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
-  "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
-  "item.thermal.beekeeper_boots": "Beekeeper's Boots",
-
+  
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",
   "item.thermal.bell_pepper": "Bell Pepper",

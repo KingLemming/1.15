@@ -21,14 +21,14 @@ public class ArmorMaterialCoFH implements IArmorMaterial {
     protected final float toughness;
     protected final LazyValue<Ingredient> repairMaterial;
 
-    public ArmorMaterialCoFH(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float p_i48533_8_, Supplier<Ingredient> repairMaterialSupplier) {
+    public ArmorMaterialCoFH(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float toughnessIn, Supplier<Ingredient> repairMaterialSupplier) {
 
         this.name = nameIn;
         this.maxDamageFactor = maxDamageFactorIn;
         this.damageReductionAmountArray = damageReductionAmountsIn;
         this.enchantability = enchantabilityIn;
         this.soundEvent = equipSoundIn;
-        this.toughness = p_i48533_8_;
+        this.toughness = toughnessIn;
         this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
     }
 

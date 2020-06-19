@@ -10,6 +10,7 @@ import com.google.gson.JsonParser;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -22,6 +23,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.EntityPredicates;
@@ -134,6 +138,34 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static boolean addPotionEffectNoEvent(LivingEntity entity, EffectInstance effectInstanceIn) {
+
+        if (!isPotionApplicableNoEvent(entity, effectInstanceIn)) {
+            return false;
+        } else {
+            EffectInstance effectinstance = entity.getActivePotionMap().get(effectInstanceIn.getPotion());
+            if (effectinstance == null) {
+                entity.getActivePotionMap().put(effectInstanceIn.getPotion(), effectInstanceIn);
+                entity.onNewPotionEffect(effectInstanceIn);
+                return true;
+            } else if (effectinstance.combine(effectInstanceIn)) {
+                entity.onChangedPotionEffect(effectinstance, true);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public static boolean isPotionApplicableNoEvent(LivingEntity entity, EffectInstance potioneffectIn) {
+
+        if (entity.getCreatureAttribute() == CreatureAttribute.UNDEAD) {
+            Effect effect = potioneffectIn.getPotion();
+            return effect != Effects.REGENERATION && effect != Effects.POISON;
+        }
+        return true;
     }
 
     public static boolean dropItemStackIntoWorld(ItemStack stack, World world, Vec3d pos) {

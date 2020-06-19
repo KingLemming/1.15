@@ -21,6 +21,11 @@ public interface IResourceStorage {
         return getCapacity() - getStored();
     }
 
+    default double getRatio() {
+
+        return (double) getStored() / getCapacity();
+    }
+
     void modify(int amount);
 
     boolean isEmpty();

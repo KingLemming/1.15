@@ -35,7 +35,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.StorageGroup.INTERNAL;
@@ -53,6 +55,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected RedstoneControlModule redstoneControl = new RedstoneControlModule(this);
 
     protected List<ItemStorageCoFH> augments = new ArrayList<>();
+    protected Set<String> augmentTypes = new HashSet<>();
 
     public boolean isActive;
     public boolean wasActive;
@@ -82,6 +85,10 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         inventory.initHandlers();
         tankInv.initHandlers();
+    }
+
+    protected void updateAugmentState() {
+
     }
 
     protected void updateActiveState(boolean curActive) {
@@ -334,7 +341,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         /* Implicit assumption here that augments always come LAST in slot order.
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
         if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
-            // TODO: Recalculate Augments
+            updateAugmentState();
         }
     }
 

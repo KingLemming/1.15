@@ -112,6 +112,7 @@ public class Constants {
 
     // region COMMANDS
     public static final String DURATION = "duration";
+    public static final String FLAG = "flag";
     public static final String PLAYER = "player";
     public static final String TARGETS = "targets";
     // endregion

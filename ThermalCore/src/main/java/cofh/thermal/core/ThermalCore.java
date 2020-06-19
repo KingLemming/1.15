@@ -1,5 +1,7 @@
 package cofh.thermal.core;
 
+import cofh.core.CoFHCore;
+import cofh.lib.client.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.client.model.MachineModelLoader;
@@ -101,6 +103,12 @@ public class ThermalCore {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
 
         ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
+
+        CoFHCore.proxy.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
+        CoFHCore.proxy.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+
+        CoFHCore.proxy.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
+        CoFHCore.proxy.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

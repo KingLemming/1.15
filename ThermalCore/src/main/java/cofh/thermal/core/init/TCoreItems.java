@@ -1,13 +1,19 @@
 package cofh.thermal.core.init;
 
+import cofh.lib.item.ArmorMaterialCoFH;
 import cofh.thermal.core.common.ThermalItemGroups;
-import cofh.thermal.core.item.FertilizerItem;
-import cofh.thermal.core.item.LockItem;
-import cofh.thermal.core.item.WrenchItem;
+import cofh.thermal.core.item.*;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.SoundEvents;
 
+import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
+import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
 
 public class TCoreItems {
@@ -64,5 +70,41 @@ public class TCoreItems {
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2));
     }
+
+    public static void registerBeekeeperArmor() {
+
+        if (registerBeekeeperArmor) {
+            return;
+        }
+        registerBeekeeperArmor = true;
+
+        ItemGroup group = THERMAL_TOOLS;
+
+        ITEMS.register(ID_BEEKEEPER_HELMET, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.HEAD, new Item.Properties().group(group)));
+        ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)));
+        ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)));
+        ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)));
+    }
+
+    public static void registerHazmatArmor() {
+
+        if (registerHazmatArmor) {
+            return;
+        }
+        registerHazmatArmor = true;
+
+        ItemGroup group = THERMAL_TOOLS;
+
+        ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)));
+        ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)));
+        ITEMS.register(ID_HAZMAT_LEGGINGS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.LEGS, new Item.Properties().group(group)));
+        ITEMS.register(ID_HAZMAT_BOOTS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.FEET, new Item.Properties().group(group)));
+    }
+
+    private static boolean registerBeekeeperArmor;
+    private static boolean registerHazmatArmor;
+
+    public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 1, 1, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(Items.STRING));
+    public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 2, 3, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(Items.STRING));
 
 }

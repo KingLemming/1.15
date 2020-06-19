@@ -33,6 +33,18 @@ public class TCoreReferences {
     public static final String ID_GLOWSTONE_FLUID = "fluid_glowstone";
     public static final String ID_ENDER_FLUID = "fluid_ender";
 
+    // region ARMOR & TOOLS
+    public static final String ID_BEEKEEPER_HELMET = "beekeeper_helmet";
+    public static final String ID_BEEKEEPER_CHESTPLATE = "beekeeper_chestplate";
+    public static final String ID_BEEKEEPER_LEGGINGS = "beekeeper_leggings";
+    public static final String ID_BEEKEEPER_BOOTS = "beekeeper_boots";
+
+    public static final String ID_HAZMAT_HELMET = "hazmat_helmet";
+    public static final String ID_HAZMAT_CHESTPLATE = "hazmat_chestplate";
+    public static final String ID_HAZMAT_LEGGINGS = "hazmat_leggings";
+    public static final String ID_HAZMAT_BOOTS = "hazmat_boots";
+
     public static final String ID_WRENCH = "wrench";
+    // endregion
 
 }

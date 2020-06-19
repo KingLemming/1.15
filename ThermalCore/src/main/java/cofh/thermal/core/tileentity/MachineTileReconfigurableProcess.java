@@ -26,6 +26,10 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileReconfigurableProcess extends MachineTileReconfigurable implements ITickableTileEntity {
 
+    protected static final int BASE_PROCESS_AMOUNT = 20;
+    protected static final int BASE_ENERGY_USE = 20;
+    protected static final int BASE_ENERGY = 20000;
+
     protected IMachineRecipe curRecipe;
     protected IRecipeCatalyst curCatalyst;
     protected List<Integer> itemInputCounts = new ArrayList<>();
@@ -34,19 +38,17 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     protected int process;
     protected int processMax;
 
-    protected int energyUse = 20;
+    protected int processAmount = BASE_PROCESS_AMOUNT;
+    protected int energyUse = BASE_ENERGY_USE;
 
     public MachineTileReconfigurableProcess(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        energyStorage = new EnergyStorageCoFH(20000);
+        energyStorage = new EnergyStorageCoFH(BASE_ENERGY);
     }
 
     @Override
     public void tick() {
-
-        // TODO: TESTING ONLY
-        // energyStorage.modify(100);
 
         boolean curActive = isActive;
 
@@ -61,7 +63,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
                 } else {
                     processStart();
                 }
-            } else if (energyStorage.isEmpty()) {
+            } else if (energyStorage.getEnergyStored() < energyUse) {
                 processOff();
             }
         } else if (redstoneControl.getState()) {
@@ -82,7 +84,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     // region PROCESS
     protected boolean canProcessStart() {
 
-        if (energyStorage.isEmpty()) {
+        if (energyStorage.getEnergyStored() < energyUse) {
             return false;
         }
         if (!validateInputs()) {
@@ -132,10 +134,9 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
         if (process <= 0) {
             return 0;
         }
-        int energy = Math.min(energyStorage.getEnergyStored(), energyUse);
-        energyStorage.modify(-energy);
-        process -= energy;
-        return energy;
+        energyStorage.modify(-energyUse);
+        process -= processAmount;
+        return energyUse;
     }
     // endregion
 

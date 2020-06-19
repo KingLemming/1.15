@@ -6,10 +6,13 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.List;
 
 import static cofh.lib.util.constants.NBTTags.TAG_STORED_ENCHANTMENTS;
 import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
@@ -35,6 +38,10 @@ public class CoreClientEvents {
     @SubscribeEvent
     public static void handleItemTooltipEvent(ItemTooltipEvent event) {
 
+        List<ITextComponent> tooltip = event.getToolTip();
+        if (tooltip.isEmpty()) {
+            return;
+        }
         ItemStack stack = event.getItemStack();
         if (CoreConfig.enableItemDescriptions) {
             String infoKey = stack.getItem().getTranslationKey(stack) + ".desc";

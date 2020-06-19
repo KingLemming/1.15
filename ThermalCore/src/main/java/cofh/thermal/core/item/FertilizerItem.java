@@ -57,17 +57,6 @@ public class FertilizerItem extends ItemCoFH {
             }
             return ActionResultType.SUCCESS;
         }
-        // TODO: Seagrass
-        // BlockPos offsetPos = pos.offset(context.getFace());
-        //        else {
-        //            BlockState state = world.getBlockState(pos);
-        //            if (state.isSolidSide(world, pos, context.getFace()) && growSeagrass(context.getItem(), world, offsetPos, context.getFace())) {
-        //                if (!world.isRemote) {
-        //                    world.playEvent(2005, offsetPos, 0);
-        //                }
-        //                return ActionResultType.SUCCESS;
-        //            }
-        //        }
         return ActionResultType.PASS;
     }
 

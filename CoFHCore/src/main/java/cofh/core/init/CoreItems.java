@@ -17,10 +17,6 @@ public class CoreItems {
 
     }
 
-    private static boolean overrideHorseArmor;
-    private static boolean overrideShears;
-    private static boolean overrideShield;
-
     public static void register() {
 
         ITEMS.register(ID_ECTOPLASM, () -> new ItemCoFH(new Item.Properties().group(ItemGroup.BREWING)));
@@ -58,5 +54,9 @@ public class CoreItems {
 
         ITEMS.register("minecraft:shield", () -> new ShieldItemCoFH((new Item.Properties()).maxDamage(336).group(ItemGroup.COMBAT)).setEnchantability(15));
     }
+
+    private static boolean overrideHorseArmor;
+    private static boolean overrideShears;
+    private static boolean overrideShield;
 
 }

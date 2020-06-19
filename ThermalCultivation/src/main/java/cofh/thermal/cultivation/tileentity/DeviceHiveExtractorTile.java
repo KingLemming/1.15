@@ -30,8 +30,8 @@ import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR
 
 public class DeviceHiveExtractorTile extends ThermalTileBase {
 
-    private static int COMB_AMOUNT = 2;
-    private static int HONEY_AMOUNT = 250;
+    private static final int COMB_AMOUNT = 2;
+    private static final int HONEY_AMOUNT = 250;
 
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_MEDIUM);

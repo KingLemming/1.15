@@ -103,6 +103,16 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         return renderFluid;
     }
 
+    @Override
+    protected void updateAugmentState() {
+
+        // TODO: Finish
+        //        augmentTypes.clear();
+        //        for (ItemStorageCoFH slot : augments) {
+        //            slot.getItemStack()
+        //        }
+    }
+
     protected void updateSideCache() {
 
         Direction prevFacing = facing;
