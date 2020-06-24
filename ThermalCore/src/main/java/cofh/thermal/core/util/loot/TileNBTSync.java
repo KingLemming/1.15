@@ -1,6 +1,7 @@
 package cofh.thermal.core.util.loot;
 
 import cofh.lib.util.control.IReconfigurableTile;
+import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.ITransferControllableTile;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import com.google.gson.JsonDeserializationContext;
@@ -28,36 +29,38 @@ public class TileNBTSync extends LootFunction {
     @Override
     protected ItemStack doApply(ItemStack stack, LootContext context) {
 
-        TileEntity tile = context.get(BLOCK_ENTITY);
-        if (tile instanceof ThermalTileBase) {
-            CompoundNBT tag = new CompoundNBT();
-            if (keepEnergy) {
-                if (((ThermalTileBase) tile).getEnergyStorage().getEnergyStored() > 0) {
-                    ((ThermalTileBase) tile).getEnergyStorage().writeToNBT(tag);
-                }
-            }
-            if (keepItems) {
-                ((ThermalTileBase) tile).getItemInv().writeToNBT(tag);
-            } else if (keepAugments) {
-                //                ((ThermalTileBase) tile).getAugments().writeToNBT(tag);
-            }
-            if (keepFluids) {
-                ((ThermalTileBase) tile).getTankInv().writeToNBT(tag);
-            }
+        return applyToStack(stack, context.get(BLOCK_ENTITY));
+    }
 
-            if (enableSecurity) {
-                tag.put(TAG_SECURITY, ((ThermalTileBase) tile).securityControl().write(new CompoundNBT()));
+    public static ItemStack applyToStack(ItemStack stack, TileEntity tile) {
+
+        if (tile instanceof ThermalTileBase) {
+            ThermalTileBase castedTile = (ThermalTileBase) tile;
+
+            CompoundNBT tag = new CompoundNBT();
+            if (keepEnergy.get()) {
+                castedTile.getEnergyStorage().writeToNBT(tag);
             }
-            if (keepRSControl) {
-                tag.put(TAG_REDSTONE, ((ThermalTileBase) tile).redstoneControl().write(new CompoundNBT()));
+            if (keepItems.get()) {
+                castedTile.getItemInv().writeToNBT(tag);
+            } else if (keepAugments.get() && castedTile.augSize() > 0) {
+                castedTile.getItemInv().writeSlotsToNBT(tag, castedTile.invSize() - castedTile.augSize());
             }
-            if (keepSideConfig && tile instanceof IReconfigurableTile) {
+            if (keepFluids.get()) {
+                castedTile.getTankInv().writeToNBT(tag);
+            }
+            if (keepRSControl.get()) {
+                tag.put(TAG_REDSTONE, castedTile.redstoneControl().write(new CompoundNBT()));
+            }
+            if (keepSideConfig.get() && tile instanceof IReconfigurableTile) {
                 tag.put(TAG_SIDE_CONFIG, ((IReconfigurableTile) tile).reconfigControl().write(new CompoundNBT()));
             }
-            if (keepTransferControl && tile instanceof ITransferControllableTile) {
+            if (keepTransferControl.get() && tile instanceof ITransferControllableTile) {
                 tag.put(TAG_TRANSFER, ((ITransferControllableTile) tile).transferControl().write(new CompoundNBT()));
             }
-
+            if (((ISecurableTile) tile).hasSecurity()) {
+                tag.put(TAG_SECURITY, castedTile.securityControl().write(new CompoundNBT()));
+            }
             if (!tag.isEmpty()) {
                 stack.setTagInfo(TAG_BLOCK_ENTITY, tag);
             }

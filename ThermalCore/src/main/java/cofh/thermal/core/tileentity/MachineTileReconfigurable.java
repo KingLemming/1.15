@@ -39,7 +39,6 @@ import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.DIRECTIONS;
 import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
@@ -47,7 +46,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
-    protected Direction facing = null; // DO NOT CHANGE FROM NULL
     protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
 
@@ -65,13 +63,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public TileCoFH worldContext(BlockState state, IBlockReader world) {
 
-        System.out.println(facing);
-        System.out.println("When this happen?");
-
-        facing = state.get(FACING_HORIZONTAL);
-        reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
-        reconfigControl.initSideConfig(facing, SIDE_NONE);
-
+        reconfigControl.setFacing(state.get(FACING_HORIZONTAL));
         updateSidedHandlers();
 
         return this;
@@ -85,32 +77,23 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     }
 
     // TODO: Does this need to exist?
-    //    @Override
-    //    public void remove() {
-    //
-    //        super.remove();
-    //        for (LazyOptional<?> handler : sidedItemCaps) {
-    //            handler.invalidate();
-    //        }
-    //        for (LazyOptional<?> handler : sidedFluidCaps) {
-    //            handler.invalidate();
-    //        }
-    //    }
+    @Override
+    public void remove() {
+
+        super.remove();
+        for (LazyOptional<?> handler : sidedItemCaps) {
+            handler.invalidate();
+        }
+        for (LazyOptional<?> handler : sidedFluidCaps) {
+            handler.invalidate();
+        }
+    }
 
     @Override
     public void neighborChanged(Block blockIn, BlockPos fromPos) {
 
         super.neighborChanged(blockIn, fromPos);
         // TODO: Handle caching of neighbor caps?
-    }
-
-    @Override
-    public Direction getFacing() {
-
-        if (facing == null) {
-            facing = getBlockState().get(FACING_HORIZONTAL);
-        }
-        return facing;
     }
 
     @Override
@@ -131,29 +114,31 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
     protected void updateSideCache() {
 
-        Direction prevFacing = facing;
-        facing = getBlockState().get(FACING_HORIZONTAL);
-        if (prevFacing == null || facing == prevFacing) {
-            return;
-        }
-        int iPrev = prevFacing.ordinal();
-        int iFace = facing.ordinal();
-        SideConfig[] sides = new SideConfig[6];
+        Direction prevFacing = getFacing();
+        Direction curFacing = getBlockState().get(FACING_HORIZONTAL);
 
-        if (iPrev == SIDE_RIGHT[iFace]) {
-            for (int i = 0; i < 6; ++i) {
-                sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
+        if (prevFacing != curFacing) {
+            reconfigControl.setFacing(curFacing);
+
+            int iPrev = prevFacing.getIndex();
+            int iFace = curFacing.getIndex();
+            SideConfig[] sides = new SideConfig[6];
+
+            if (iPrev == SIDE_RIGHT[iFace]) {
+                for (int i = 0; i < 6; ++i) {
+                    sides[i] = reconfigControl.getSideConfig()[ROTATE_CLOCK_Y[i]];
+                }
+            } else if (iPrev == SIDE_LEFT[iFace]) {
+                for (int i = 0; i < 6; ++i) {
+                    sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
+                }
+            } else if (iPrev == SIDE_OPPOSITE[iFace]) {
+                for (int i = 0; i < 6; ++i) {
+                    sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
+                }
             }
-        } else if (iPrev == SIDE_LEFT[iFace]) {
-            for (int i = 0; i < 6; ++i) {
-                sides[i] = reconfigControl.getSideConfig()[ROTATE_COUNTER_Y[i]];
-            }
-        } else if (iPrev == SIDE_OPPOSITE[iFace]) {
-            for (int i = 0; i < 6; ++i) {
-                sides[i] = reconfigControl.getSideConfig()[INVERT_AROUND_Y[i]];
-            }
+            reconfigControl.setSideConfig(sides);
         }
-        reconfigControl.setSideConfig(sides);
         updateSidedHandlers();
     }
 
@@ -312,11 +297,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public void read(CompoundNBT nbt) {
 
-        System.out.println("NBT READ");
-
         super.read(nbt);
 
-        facing = Direction.byIndex(nbt.getInt(TAG_FACING));
         reconfigControl.read(nbt.getCompound(TAG_SIDE_CONFIG));
         transferControl.read(nbt.getCompound(TAG_TRANSFER));
 
@@ -333,7 +315,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.write(nbt);
 
-        nbt.putInt(TAG_FACING, getFacing().ordinal());
         nbt.put(TAG_SIDE_CONFIG, reconfigControl.write(new CompoundNBT()));
         nbt.put(TAG_TRANSFER, transferControl.write(new CompoundNBT()));
 

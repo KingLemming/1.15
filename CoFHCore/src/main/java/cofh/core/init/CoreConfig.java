@@ -42,41 +42,58 @@ public class CoreConfig {
 
     private static void genServerConfig() {
 
-        String comment;
-
         SERVER_CONFIG.push("Commands");
-        comment = "The required permission level for the '/cofh crafting' command.";
-        permissionCrafting = SERVER_CONFIG.comment(comment).defineInRange("Crafting Permission Level", SubCommandCrafting.permissionLevel, 0, 4);
-        comment = "The required permission level for the '/cofh enderchest' command.";
-        permissionEnderChest = SERVER_CONFIG.comment(comment).defineInRange("EnderChest Permission Level", SubCommandEnderChest.permissionLevel, 0, 4);
-        comment = "The required permission level for the '/cofh heal' command.";
-        permissionHeal = SERVER_CONFIG.comment(comment).defineInRange("Heal Permission Level", SubCommandHeal.permissionLevel, 0, 4);
-        comment = "The required permission level for the '/cofh ignite' command.";
-        permissionIgnite = SERVER_CONFIG.comment(comment).defineInRange("Ignite Permission Level", SubCommandIgnite.permissionLevel, 0, 4);
-        comment = "The required permission level for the '/cofh repair' command.";
-        permissionRepair = SERVER_CONFIG.comment(comment).defineInRange("Repair Permission Level", SubCommandRepair.permissionLevel, 0, 4);
+
+        permissionCrafting = SERVER_CONFIG
+                .comment("The required permission level for the '/cofh crafting' command.")
+                .defineInRange("Crafting Permission Level", SubCommandCrafting.permissionLevel, 0, 4);
+        permissionEnderChest = SERVER_CONFIG
+                .comment("The required permission level for the '/cofh enderchest' command.")
+                .defineInRange("EnderChest Permission Level", SubCommandEnderChest.permissionLevel, 0, 4);
+        permissionHeal = SERVER_CONFIG
+                .comment("The required permission level for the '/cofh heal' command.")
+                .defineInRange("Heal Permission Level", SubCommandHeal.permissionLevel, 0, 4);
+        permissionIgnite = SERVER_CONFIG
+                .comment("The required permission level for the '/cofh ignite' command.")
+                .defineInRange("Ignite Permission Level", SubCommandIgnite.permissionLevel, 0, 4);
+        permissionRepair = SERVER_CONFIG
+                .comment("The required permission level for the '/cofh repair' command.")
+                .defineInRange("Repair Permission Level", SubCommandRepair.permissionLevel, 0, 4);
+
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Enchantments");
-        comment = "If TRUE, Feather Falling will prevent Farmland from being trampled. This option will work with alternative versions (overrides) of Feather Falling.";
-        serverImprovedFeatherFalling = SERVER_CONFIG.comment(comment).define("Improved Feather Falling", improvedFeatherFalling);
 
-        comment = "If TRUE, Mending behavior is altered so that XP orbs always repair items if possible, and the most damaged item is prioritized. This option may not work with alternative versions (overrides) of Mending.";
-        serverImprovedMending = SERVER_CONFIG.comment(comment).define("Improved Mending", improvedMending);
+        serverImprovedFeatherFalling = SERVER_CONFIG
+                .comment("If TRUE, Feather Falling will prevent Farmland from being trampled. This option will work with alternative versions (overrides) of Feather Falling.")
+                .define("Improved Feather Falling", improvedFeatherFalling);
+
+        serverImprovedMending = SERVER_CONFIG
+                .comment("If TRUE, Mending behavior is altered so that XP orbs always repair items if possible, and the most damaged item is prioritized. This option may not work with alternative versions (overrides) of Mending.")
+                .define("Improved Mending", improvedMending);
+
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Fishing");
-        comment = "If TRUE, Fishing will cause exhaustion.";
-        serverEnableFishingExhaustion = SERVER_CONFIG.comment(comment).define("Fishing Exhaustion", enableFishingExhaustion);
-        comment = "This option sets the amount of exhaustion caused by fishing, if enabled.";
-        serverAmountFishingExhaustion = SERVER_CONFIG.comment(comment).defineInRange("Fishing Exhaustion Amount", amountFishingExhaustion, 0.0D, 10.0D);
+
+        serverEnableFishingExhaustion = SERVER_CONFIG
+                .comment("If TRUE, Fishing will cause exhaustion.")
+                .define("Fishing Exhaustion", enableFishingExhaustion);
+        serverAmountFishingExhaustion = SERVER_CONFIG
+                .comment("This option sets the amount of exhaustion caused by fishing, if enabled.")
+                .defineInRange("Fishing Exhaustion Amount", amountFishingExhaustion, 0.0D, 10.0D);
+
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("World");
-        comment = "If TRUE, Sapling growth will be slowed by a configurable factor.";
-        serverEnableSaplingGrowthMod = SERVER_CONFIG.comment(comment).define("Sapling Growth Reduction", enableSaplingGrowthMod);
-        comment = "This option sets the growth factor for saplings - they will only grow 1 in N times.";
-        serverAmountSaplingGrowthMod = SERVER_CONFIG.comment(comment).defineInRange("Sapling Growth Reduction Factor", amountSaplingGrowthMod, 1, Integer.MAX_VALUE);
+
+        serverEnableSaplingGrowthMod = SERVER_CONFIG
+                .comment("If TRUE, Sapling growth will be slowed by a configurable factor.")
+                .define("Sapling Growth Reduction", enableSaplingGrowthMod);
+        serverAmountSaplingGrowthMod = SERVER_CONFIG
+                .comment("This option sets the growth factor for saplings - they will only grow 1 in N times.")
+                .defineInRange("Sapling Growth Reduction Factor", amountSaplingGrowthMod, 1, Integer.MAX_VALUE);
+
         SERVER_CONFIG.pop();
 
         serverSpec = SERVER_CONFIG.build();
@@ -84,14 +101,16 @@ public class CoreConfig {
 
     private static void genClientConfig() {
 
-        String comment;
-
         CLIENT_CONFIG.push("Tooltips");
-        comment = "If TRUE, Enchantment descriptions will be added to the tooltip for Enchanted Books containing only a single enchantment.";
-        clientEnableEnchantmentDescriptions = CLIENT_CONFIG.comment(comment).define("Show Enchantment Descriptions", enableEnchantmentDescriptions);
 
-        comment = "If TRUE, Item descriptions will be added to their tooltips if possible.";
-        clientEnableItemDescriptions = CLIENT_CONFIG.comment(comment).define("Show Item Descriptions", enableItemDescriptions);
+        clientEnableEnchantmentDescriptions = CLIENT_CONFIG
+                .comment("If TRUE, Enchantment descriptions will be added to the tooltip for Enchanted Books containing only a single enchantment.")
+                .define("Show Enchantment Descriptions", enableEnchantmentDescriptions);
+
+        clientEnableItemDescriptions = CLIENT_CONFIG
+                .comment("If TRUE, Item descriptions will be added to their tooltips if possible.")
+                .define("Show Item Descriptions", enableItemDescriptions);
+
         CLIENT_CONFIG.pop();
 
         clientSpec = CLIENT_CONFIG.build();

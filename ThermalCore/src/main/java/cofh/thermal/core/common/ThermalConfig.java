@@ -1,6 +1,7 @@
 package cofh.thermal.core.common;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -42,6 +43,32 @@ public class ThermalConfig {
         //
         //        SERVER_CONFIG.pop();
 
+        SERVER_CONFIG.push("Global Options");
+
+        keepEnergy = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Energy when dropped.")
+                .define("Blocks Retain Energy", true);
+        keepItems = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Inventory Contents when dropped.")
+                .define("Blocks Retain Inventory", false);
+        keepFluids = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Tank Contents when dropped.")
+                .define("Blocks Retain Tanks", false);
+        keepAugments = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Augments when dropped.")
+                .define("Blocks Retain Augments", true);
+        keepRSControl = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Redstone Control configuration when dropped.")
+                .define("Blocks Retain Redstone Control", true);
+        keepSideConfig = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Side configuration when dropped.")
+                .define("Blocks Retain Side Configuration", true);
+        keepTransferControl = SERVER_CONFIG
+                .comment("If TRUE, Thermal Blocks will retain Transfer Control configuration when dropped.")
+                .define("Blocks Retain Transfer Control", true);
+
+        SERVER_CONFIG.pop();
+
         serverSpec = SERVER_CONFIG.build();
     }
 
@@ -66,16 +93,14 @@ public class ThermalConfig {
     public static int dynamoAugments = 4;
     public static int machineAugments = 4;
 
-    public static boolean enableSecurity = true;
+    public static BooleanValue keepEnergy;
+    public static BooleanValue keepItems;
+    public static BooleanValue keepFluids;
 
-    public static boolean keepEnergy = false;
-    public static boolean keepItems = false;
-    public static boolean keepFluids = false;
-    public static boolean keepAugments = true;
-
-    public static boolean keepRSControl = true;
-    public static boolean keepSideConfig = true;
-    public static boolean keepTransferControl = true;
+    public static BooleanValue keepAugments;
+    public static BooleanValue keepRSControl;
+    public static BooleanValue keepSideConfig;
+    public static BooleanValue keepTransferControl;
     // endregion
 
     // region CONFIGURATION

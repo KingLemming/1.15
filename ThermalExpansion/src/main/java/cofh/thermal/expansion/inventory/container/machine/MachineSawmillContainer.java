@@ -32,6 +32,7 @@ public class MachineSawmillContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 5, 8, 53));
 
+        bindAugmentSlots(tileInv, 6, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

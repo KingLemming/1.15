@@ -15,10 +15,13 @@ import cofh.lib.util.control.IRedstoneControllableTile;
 import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
+import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -70,14 +73,14 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     }
 
     // TODO: Does this need to exist?
-    //    @Override
-    //    public void remove() {
-    //
-    //        super.remove();
-    //        energyCap.invalidate();
-    //        itemCap.invalidate();
-    //        fluidCap.invalidate();
-    //    }
+    @Override
+    public void remove() {
+
+        super.remove();
+        energyCap.invalidate();
+        itemCap.invalidate();
+        fluidCap.invalidate();
+    }
 
     // region HELPERS
     @Override
@@ -168,6 +171,9 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super.onPlacedBy(worldIn, pos, state, placer, stack);
 
         System.out.println("BLOCK PLACED - TIME TO INSTALL AUGMENTS");
+
+        updateAugmentState();
+        onControlUpdate();
     }
 
     @Override
@@ -175,7 +181,24 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         System.out.println("REPLACEMENT CALL - DROP INVENTORY");
 
+        if (!isMoving) {
+            if (!ThermalConfig.keepItems.get()) {
+                for (int i = 0; i < invSize() - augSize(); ++i) {
+                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
+                }
+            }
+            if (!ThermalConfig.keepAugments.get()) {
+                for (int i = invSize() - augSize(); i < invSize(); ++i) {
+                    Utils.dropItemStackIntoWorldWithRandomness(inventory.getStackInSlot(i), worldIn, pos);
+                }
+            }
+        }
         super.onReplaced(state, worldIn, pos, newState, isMoving);
+    }
+
+    public ItemStack createItemStackTag(ItemStack stack) {
+
+        return TileNBTSync.applyToStack(stack, this);
     }
     // endregion
 

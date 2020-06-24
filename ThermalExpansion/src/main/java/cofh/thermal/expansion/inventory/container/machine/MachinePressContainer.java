@@ -30,6 +30,7 @@ public class MachinePressContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 3, 8, 53));
 
+        bindAugmentSlots(tileInv, 4, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

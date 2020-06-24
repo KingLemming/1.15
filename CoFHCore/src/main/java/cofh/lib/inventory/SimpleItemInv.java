@@ -116,4 +116,26 @@ public class SimpleItemInv extends SimpleItemHandler {
         return nbt;
     }
     // endregion
+
+    // HELPERS
+    public CompoundNBT writeSlotsToNBT(CompoundNBT nbt, int startIndex) {
+
+        if (slots.size() <= 0 || startIndex >= slots.size()) {
+            return nbt;
+        }
+        ListNBT list = new ListNBT();
+        for (int i = startIndex; i < slots.size(); ++i) {
+            if (!slots.get(i).isEmpty()) {
+                CompoundNBT tag = new CompoundNBT();
+                tag.putByte(TAG_SLOT, (byte) i);
+                slots.get(i).writeToNBT(tag);
+                list.add(tag);
+            }
+        }
+        if (!list.isEmpty()) {
+            nbt.put(tag, list);
+        }
+        return nbt;
+    }
+    // endregion
 }

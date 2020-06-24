@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class TileBlockCoFH extends Block implements IDismantleable {
@@ -130,13 +129,18 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
         return tile instanceof TileCoFH ? ((TileCoFH) tile).getComparatorInputOverride() : super.getComparatorInputOverride(blockState, worldIn, pos);
     }
 
-    // region IDismantleable
     @Override
-    public List<ItemStack> dismantleBlock(World worldIn, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
 
-        return null;
+        ItemStack stack = super.getItem(worldIn, pos, state);
+        TileEntity tile = worldIn.getTileEntity(pos);
+        if (tile instanceof TileCoFH) {
+            ((TileCoFH) tile).createItemStackTag(stack);
+        }
+        return stack;
     }
 
+    // region IDismantleable
     @Override
     public boolean canDismantle(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 

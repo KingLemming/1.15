@@ -5,6 +5,7 @@ import cofh.lib.client.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.client.model.MachineModelLoader;
+import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
@@ -83,6 +84,8 @@ public class ThermalCore {
         TILE_ENTITIES.register(modEventBus);
         CONTAINERS.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
+
+        ThermalConfig.register();
     }
 
     // region INITIALIZATION

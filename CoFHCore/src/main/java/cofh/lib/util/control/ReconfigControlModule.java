@@ -2,6 +2,7 @@ package cofh.lib.util.control;
 
 import cofh.core.network.packet.server.SideConfigPacket;
 import cofh.lib.util.Utils;
+import cofh.lib.util.helpers.BlockHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Direction;
@@ -9,9 +10,9 @@ import net.minecraft.util.Direction;
 import java.util.function.BooleanSupplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
+import static cofh.lib.util.constants.NBTTags.TAG_FACING;
 import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_ACCESSIBLE;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
+import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
 
 public class ReconfigControlModule implements IReconfigurable {
 
@@ -73,6 +74,7 @@ public class ReconfigControlModule implements IReconfigurable {
     // region NETWORK
     public void readFromBuffer(PacketBuffer buffer) {
 
+        facing = Direction.byIndex(buffer.readByte());
         for (int i = 0; i < 6; ++i) {
             sides[i] = SideConfig.VALUES[buffer.readByte()];
         }
@@ -80,6 +82,7 @@ public class ReconfigControlModule implements IReconfigurable {
 
     public void writeToBuffer(PacketBuffer buffer) {
 
+        buffer.writeByte(facing.getIndex());
         for (int i = 0; i < 6; ++i) {
             buffer.writeByte(sides[i].ordinal());
         }
@@ -90,23 +93,31 @@ public class ReconfigControlModule implements IReconfigurable {
     public ReconfigControlModule read(CompoundNBT nbt) {
 
         byte[] bSides = nbt.getByteArray(TAG_SIDES);
+
         if (bSides.length == 6) {
-            for (int i = 0; i < 6; ++i) {
-                if (bSides[i] > SideConfig.VALUES.length) {
-                    bSides[i] = 0;
-                }
-                sides[i] = SideConfig.VALUES[bSides[i]];
-            }
+            sides[facing.getIndex()] = SideConfig.VALUES[bSides[0]];
+            sides[BlockHelper.opposite(facing).getIndex()] = SideConfig.VALUES[bSides[1]];
+            sides[BlockHelper.left(facing).getIndex()] = SideConfig.VALUES[bSides[2]];
+            sides[BlockHelper.right(facing).getIndex()] = SideConfig.VALUES[bSides[3]];
+            sides[BlockHelper.below(facing).getIndex()] = SideConfig.VALUES[bSides[4]];
+            sides[BlockHelper.above(facing).getIndex()] = SideConfig.VALUES[bSides[5]];
         }
         return this;
     }
 
+    // Sides are stored to NBT in this order: Face, Opposite, Left, Right, Bottom, Top.
+    // At runtime, they are the standard 0-6 ordinals! This is an important distinction.
     public CompoundNBT write(CompoundNBT nbt) {
 
         byte[] bSides = new byte[6];
-        for (int i = 0; i < 6; ++i) {
-            bSides[i] = (byte) sides[i].ordinal();
-        }
+
+        bSides[0] = (byte) sides[facing.getIndex()].ordinal();
+        bSides[1] = (byte) sides[BlockHelper.opposite(facing).getIndex()].ordinal();
+        bSides[2] = (byte) sides[BlockHelper.left(facing).getIndex()].ordinal();
+        bSides[3] = (byte) sides[BlockHelper.right(facing).getIndex()].ordinal();
+        bSides[4] = (byte) sides[BlockHelper.below(facing).getIndex()].ordinal();
+        bSides[5] = (byte) sides[BlockHelper.above(facing).getIndex()].ordinal();
+
         nbt.putByteArray(TAG_SIDES, bSides);
         return nbt;
     }

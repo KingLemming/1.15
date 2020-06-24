@@ -87,11 +87,23 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
     }
 
-    public boolean hasClientUpdate() {
+    public boolean onWrench(PlayerEntity player, Direction side) {
 
         return false;
     }
 
+    public ItemStack createItemStackTag(ItemStack stack) {
+
+        return stack;
+    }
+
+    public boolean hasClientUpdate() {
+
+        return false;
+    }
+    // endregion
+
+    // region GUI
     public boolean hasGui() {
 
         return this instanceof INamedContainerProvider;
@@ -105,11 +117,6 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     public boolean playerWithinDistance(PlayerEntity player, double distanceSq) {
 
         return pos.distanceSq(player.getPositionVec(), true) <= distanceSq;
-    }
-
-    public boolean onWrench(PlayerEntity player, Direction side) {
-
-        return false;
     }
 
     public boolean clearEnergy(int coil) {

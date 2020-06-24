@@ -33,6 +33,7 @@ public class MachinePulverizerContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 6, 8, 53));
 
+        bindAugmentSlots(tileInv, 7, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

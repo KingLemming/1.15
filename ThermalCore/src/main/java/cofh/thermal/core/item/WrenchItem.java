@@ -51,7 +51,6 @@ public class WrenchItem extends ItemCoFH {
 
         if (player.isSecondaryUseActive() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(world, pos, state, player)) {
             if (Utils.isServerWorld(world)) {
-                System.out.println("DISMANTLE");
                 ((IDismantleable) block).dismantleBlock(world, pos, state, player, false);
             }
             player.swingArm(context.getHand());

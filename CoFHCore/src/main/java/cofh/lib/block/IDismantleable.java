@@ -5,12 +5,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implemented on Blocks which have some method of being instantly dismantled.
@@ -19,20 +16,21 @@ import java.util.List;
  */
 public interface IDismantleable {
 
+    ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state);
+
     /**
      * Dismantles the block. If returnDrops is true, the drop(s) should be placed into the player's inventory.
      */
-    default List<ItemStack> dismantleBlock(World worldIn, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
+    default void dismantleBlock(World worldIn, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
 
-        ItemStack dropBlock = new ItemStack((IItemProvider) this);
+        ItemStack dropBlock = getItem(worldIn, pos, state);
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 
-        if (!returnDrops) {
+        if (!returnDrops || player == null) {
             Utils.dropDismantleStackIntoWorld(dropBlock, worldIn, pos);
+        } else {
+            player.addItemStackToInventory(dropBlock);
         }
-        ArrayList<ItemStack> ret = new ArrayList<>();
-        ret.add(dropBlock);
-        return ret;
     }
 
     /**

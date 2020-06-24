@@ -4,11 +4,14 @@ import cofh.lib.util.IResourceStorage;
 import cofh.lib.util.helpers.ItemHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.function.Predicate;
 
+import static cofh.lib.util.constants.NBTTags.TAG_SLOT;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 

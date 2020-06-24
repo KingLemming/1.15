@@ -27,6 +27,7 @@ public class MachineRefineryContainer extends TileContainer {
 
         addSlot(new SlotCoFH(tileInv, 1, 8, 53));
 
+        bindAugmentSlots(tileInv, 2, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 
