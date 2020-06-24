@@ -10,9 +10,9 @@ import net.minecraft.util.Direction;
 import java.util.function.BooleanSupplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
-import static cofh.lib.util.constants.NBTTags.TAG_FACING;
 import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
-import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
+import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_ACCESSIBLE;
+import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
 
 public class ReconfigControlModule implements IReconfigurable {
 
@@ -95,28 +95,32 @@ public class ReconfigControlModule implements IReconfigurable {
         byte[] bSides = nbt.getByteArray(TAG_SIDES);
 
         if (bSides.length == 6) {
-            sides[facing.getIndex()] = SideConfig.VALUES[bSides[0]];
-            sides[BlockHelper.opposite(facing).getIndex()] = SideConfig.VALUES[bSides[1]];
-            sides[BlockHelper.left(facing).getIndex()] = SideConfig.VALUES[bSides[2]];
-            sides[BlockHelper.right(facing).getIndex()] = SideConfig.VALUES[bSides[3]];
-            sides[BlockHelper.below(facing).getIndex()] = SideConfig.VALUES[bSides[4]];
-            sides[BlockHelper.above(facing).getIndex()] = SideConfig.VALUES[bSides[5]];
+            sides[BlockHelper.below(facing).getIndex()] = SideConfig.VALUES[bSides[0]];
+            sides[BlockHelper.above(facing).getIndex()] = SideConfig.VALUES[bSides[1]];
+
+            sides[facing.getIndex()] = SideConfig.VALUES[bSides[2]];
+            sides[BlockHelper.opposite(facing).getIndex()] = SideConfig.VALUES[bSides[3]];
+
+            sides[BlockHelper.right(facing).getIndex()] = SideConfig.VALUES[bSides[4]];
+            sides[BlockHelper.left(facing).getIndex()] = SideConfig.VALUES[bSides[5]];
         }
         return this;
     }
 
-    // Sides are stored to NBT in this order: Face, Opposite, Left, Right, Bottom, Top.
-    // At runtime, they are the standard 0-6 ordinals! This is an important distinction.
+    // Sides are stored to NBT in D-U-N-S-W-E order - North assumed to be front!
+    // They are converted to the appropriate rotation using the facing value.
     public CompoundNBT write(CompoundNBT nbt) {
 
         byte[] bSides = new byte[6];
 
-        bSides[0] = (byte) sides[facing.getIndex()].ordinal();
-        bSides[1] = (byte) sides[BlockHelper.opposite(facing).getIndex()].ordinal();
-        bSides[2] = (byte) sides[BlockHelper.left(facing).getIndex()].ordinal();
-        bSides[3] = (byte) sides[BlockHelper.right(facing).getIndex()].ordinal();
-        bSides[4] = (byte) sides[BlockHelper.below(facing).getIndex()].ordinal();
-        bSides[5] = (byte) sides[BlockHelper.above(facing).getIndex()].ordinal();
+        bSides[0] = (byte) sides[BlockHelper.below(facing).getIndex()].ordinal();
+        bSides[1] = (byte) sides[BlockHelper.above(facing).getIndex()].ordinal();
+
+        bSides[2] = (byte) sides[facing.getIndex()].ordinal();
+        bSides[3] = (byte) sides[BlockHelper.opposite(facing).getIndex()].ordinal();
+
+        bSides[4] = (byte) sides[BlockHelper.right(facing).getIndex()].ordinal();
+        bSides[5] = (byte) sides[BlockHelper.left(facing).getIndex()].ordinal();
 
         nbt.putByteArray(TAG_SIDES, bSides);
         return nbt;

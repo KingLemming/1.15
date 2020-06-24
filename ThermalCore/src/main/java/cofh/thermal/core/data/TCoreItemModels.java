@@ -49,7 +49,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("niter"), RESOURCES);
         generated(reg.getSup("sulfur"), RESOURCES);
 
-        generated(reg.getSup("wrench"), TOOLS);
+        handheld(reg.getSup("wrench"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
 
