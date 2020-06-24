@@ -25,7 +25,6 @@ public class MachineModelGeometry implements ISimpleModelGeometry<MachineModelGe
     @Override
     public IBakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, IModelTransform modelTransform, ItemOverrideList overrides, ResourceLocation modelLocation) {
 
-        // return model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation);
         return new MachineBakedModel(model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation));
     }
 

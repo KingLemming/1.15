@@ -44,6 +44,15 @@ public class ReconfigControlModule implements IReconfigurable {
         return sides;
     }
 
+    public byte[] getSideConfigRaw() {
+
+        byte[] raw = new byte[6];
+        for (int i = 0; i < 6; ++i) {
+            raw[i] = (byte) sides[i].ordinal();
+        }
+        return raw;
+    }
+
     public void initSideConfig(Direction side, SideConfig config) {
 
         if (side == null || config == null) {

@@ -1,11 +1,14 @@
 package cofh.thermal.core.common;
 
+import cofh.lib.util.control.IReconfigurable.SideConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
 
 public class ThermalConfig {
 
@@ -88,6 +91,11 @@ public class ThermalConfig {
     private static void refreshClientConfig() {
 
     }
+
+    // region GLOBALS
+    public static final SideConfig[] DEFAULT_MACHINE_SIDES = new SideConfig[]{SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
+    public static final byte[] DEFAULT_MACHINE_SIDES_RAW = new byte[]{0, 0, 0, 0, 0, 0};
+    // endregion
 
     // region VARIABLES
     public static int dynamoAugments = 4;

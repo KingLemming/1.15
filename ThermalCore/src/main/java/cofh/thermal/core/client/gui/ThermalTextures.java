@@ -1,5 +1,6 @@
 package cofh.thermal.core.client.gui;
 
+import cofh.thermal.core.client.model.MachineBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
@@ -32,8 +33,9 @@ public class ThermalTextures {
         if (!event.getMap().getTextureLocation().toString().equals(BLOCK_ATLAS)) {
             return;
         }
-        AtlasTexture map = event.getMap();
+        MachineBakedModel.clearCache();
 
+        AtlasTexture map = event.getMap();
         MACHINE_CONFIG_NONE = map.getSprite(MACHINE_CONFIG_NONE_LOC);
         MACHINE_CONFIG_INPUT = map.getSprite(MACHINE_CONFIG_INPUT_LOC);
         MACHINE_CONFIG_OUTPUT = map.getSprite(MACHINE_CONFIG_OUTPUT_LOC);

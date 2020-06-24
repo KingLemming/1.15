@@ -43,7 +43,7 @@ import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class MachineTileReconfigurable extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 
-    public static final ModelProperty<SideConfig[]> SIDES = new ModelProperty<>();
+    public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
     protected FluidStack renderFluid = FluidStack.EMPTY;
@@ -154,7 +154,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public IModelData getModelData() {
 
         return new ModelDataMap.Builder()
-                .withInitial(SIDES, reconfigControl().getSideConfig())
+                .withInitial(SIDES, reconfigControl().getSideConfigRaw())
                 // .withInitial(FLUID, renderFluid)
                 .build();
     }
