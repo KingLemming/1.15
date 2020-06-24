@@ -68,7 +68,7 @@ public class AttributeEvents {
         }
         double stingRes = entity.getAttribute(CoreAttributes.STING_RESISTANCE).getValue();
         if (stingRes > 0.0D) {
-            if (attacker instanceof BeeEntity || source == DamageSource.CACTUS) {
+            if (attacker instanceof BeeEntity || source == DamageSource.CACTUS || source == DamageSource.SWEET_BERRY_BUSH) {
                 if (entity.getRNG().nextDouble() < stingRes) {
                     event.setCanceled(true);
                 }
@@ -110,6 +110,7 @@ public class AttributeEvents {
         }
     }
 
+    // TODO: Revisit
     //    @SubscribeEvent(priority = EventPriority.HIGH)
     //    public static void handlePotionAddedEvent(PotionEvent.PotionAddedEvent event) {
     //

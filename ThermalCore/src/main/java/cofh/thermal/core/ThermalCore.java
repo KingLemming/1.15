@@ -10,6 +10,7 @@ import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
+import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -23,6 +24,7 @@ import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
@@ -87,6 +89,8 @@ public class ThermalCore {
     private void commonSetup(final FMLCommonSetupEvent event) {
 
         TCoreBlocks.setup();
+
+        LootFunctionManager.registerFunction(new TileNBTSync.Serializer());
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

@@ -9,6 +9,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.RailShape;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Direction.Plane;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidAttributes;
 

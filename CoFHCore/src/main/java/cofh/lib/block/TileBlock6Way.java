@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 
@@ -46,7 +47,7 @@ public class TileBlock6Way extends TileBlockCoFH {
     @Override
     public BlockState rotate(BlockState state, Rotation rot) {
 
-        return state.with(FACING_ALL, rot.rotate(state.get(FACING_ALL)));
+        return state.with(FACING_ALL, Direction.byIndex(state.get(FACING_ALL).getIndex() + 1));
     }
 
     @Override

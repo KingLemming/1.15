@@ -23,6 +23,11 @@ public interface ITileCallback {
         return 0;
     }
 
+    default int augSize() {
+
+        return 0;
+    }
+
     default void callBlockUpdate() {
 
         if (world() == null) {

@@ -7,9 +7,13 @@ public interface IReconfigurableTile extends IReconfigurable, ITileCallback {
 
     ReconfigControlModule reconfigControl();
 
-    Direction getFacing();
-
     // region IReconfigurable
+    @Override
+    default Direction getFacing() {
+
+        return reconfigControl().getFacing();
+    }
+
     @Override
     default SideConfig getSideConfig(Direction side) {
 

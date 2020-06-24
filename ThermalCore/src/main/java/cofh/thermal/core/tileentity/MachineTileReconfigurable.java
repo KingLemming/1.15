@@ -65,6 +65,9 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     public TileCoFH worldContext(BlockState state, IBlockReader world) {
 
+        System.out.println(facing);
+        System.out.println("When this happen?");
+
         facing = state.get(FACING_HORIZONTAL);
         reconfigControl.initSideConfig(new SideConfig[]{SIDE_OUTPUT, SIDE_OUTPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT, SIDE_INPUT});
         reconfigControl.initSideConfig(facing, SIDE_NONE);
@@ -80,6 +83,19 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         super.updateContainingBlockInfo();
         updateSideCache();
     }
+
+    // TODO: Does this need to exist?
+    //    @Override
+    //    public void remove() {
+    //
+    //        super.remove();
+    //        for (LazyOptional<?> handler : sidedItemCaps) {
+    //            handler.invalidate();
+    //        }
+    //        for (LazyOptional<?> handler : sidedFluidCaps) {
+    //            handler.invalidate();
+    //        }
+    //    }
 
     @Override
     public void neighborChanged(Block blockIn, BlockPos fromPos) {
@@ -295,6 +311,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     // region NBT
     @Override
     public void read(CompoundNBT nbt) {
+
+        System.out.println("NBT READ");
 
         super.read(nbt);
 

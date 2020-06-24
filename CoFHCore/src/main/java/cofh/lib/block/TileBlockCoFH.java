@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class TileBlockCoFH extends Block implements IDismantleable {
@@ -112,6 +112,18 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
     }
 
     @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+
+        if (state.getBlock() != newState.getBlock()) {
+            TileEntity tile = worldIn.getTileEntity(pos);
+            if (tile instanceof TileCoFH) {
+                ((TileCoFH) tile).onReplaced(state, worldIn, pos, newState, isMoving);
+            }
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
+    }
+
+    @Override
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
 
         TileEntity tile = worldIn.getTileEntity(pos);
@@ -120,7 +132,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
 
     // region IDismantleable
     @Override
-    public ArrayList<ItemStack> dismantleBlock(World world, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
+    public List<ItemStack> dismantleBlock(World worldIn, BlockPos pos, BlockState state, PlayerEntity player, boolean returnDrops) {
 
         return null;
     }
@@ -128,6 +140,10 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
     @Override
     public boolean canDismantle(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileCoFH) {
+            return ((TileCoFH) tile).canPlayerChange(player);
+        }
         return false;
     }
     // endregion

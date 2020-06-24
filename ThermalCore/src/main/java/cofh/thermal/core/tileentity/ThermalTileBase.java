@@ -17,7 +17,10 @@ import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
 import cofh.thermal.core.util.IThermalInventory;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntityType;
@@ -25,6 +28,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -65,20 +69,37 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super(tileEntityTypeIn);
     }
 
+    // TODO: Does this need to exist?
+    //    @Override
+    //    public void remove() {
+    //
+    //        super.remove();
+    //        energyCap.invalidate();
+    //        itemCap.invalidate();
+    //        fluidCap.invalidate();
+    //    }
+
     // region HELPERS
+    @Override
     public int invSize() {
 
         return inventory.getSlots();
     }
 
+    @Override
     public int augSize() {
 
         return augments.size();
     }
 
-    public ManagedItemInv getInventory() {
+    public ManagedItemInv getItemInv() {
 
         return inventory;
+    }
+
+    public ManagedTankInv getTankInv() {
+
+        return tankInv;
     }
 
     protected void initHandlers() {
@@ -139,6 +160,22 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         if (world != null && redstoneControl.isControllable()) {
             redstoneControl.setPower(world.getRedstonePowerFromNeighbors(pos));
         }
+    }
+
+    @Override
+    public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+
+        super.onPlacedBy(worldIn, pos, state, placer, stack);
+
+        System.out.println("BLOCK PLACED - TIME TO INSTALL AUGMENTS");
+    }
+
+    @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+
+        System.out.println("REPLACEMENT CALL - DROP INVENTORY");
+
+        super.onReplaced(state, worldIn, pos, newState, isMoving);
     }
     // endregion
 
@@ -300,6 +337,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         wasActive = nbt.getBoolean(TAG_ACTIVE_TRACK);
 
         inventory.readFromNBT(nbt);
+        updateAugmentState();
+
         tankInv.readFromNBT(nbt);
         energyStorage.readFromNBT(nbt);
 
@@ -338,7 +377,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public void onInventoryChange(int slot) {
 
-        /* Implicit assumption here that augments always come LAST in slot order.
+        /* Implicit requirement here that augments always come LAST in slot order.
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
         if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
             updateAugmentState();

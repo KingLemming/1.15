@@ -18,6 +18,7 @@ public class ReconfigControlModule implements IReconfigurable {
     protected IReconfigurableTile tile;
     protected BooleanSupplier enabled;
 
+    protected Direction facing = Direction.NORTH;
     protected SideConfig[] sides = {SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
 
     public ReconfigControlModule(IReconfigurableTile tile) {
@@ -56,6 +57,11 @@ public class ReconfigControlModule implements IReconfigurable {
             return;
         }
         this.sides = sides;
+    }
+
+    public void setFacing(Direction facing) {
+
+        this.facing = facing;
     }
 
     public void setSideConfig(SideConfig[] sides) {
@@ -115,6 +121,12 @@ public class ReconfigControlModule implements IReconfigurable {
     }
 
     // region IReconfigurable
+    @Override
+    public Direction getFacing() {
+
+        return facing;
+    }
+
     @Override
     public boolean isReconfigurable() {
 

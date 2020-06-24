@@ -5,6 +5,8 @@ import net.minecraft.util.IStringSerializable;
 
 public interface IReconfigurable {
 
+    Direction getFacing();
+
     SideConfig getSideConfig(Direction side);
 
     boolean prevSideConfig(Direction side);

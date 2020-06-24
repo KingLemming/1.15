@@ -20,7 +20,7 @@ public class MachineCrucibleContainer extends TileContainer {
 
         super(MACHINE_CRUCIBLE_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (MachineTileReconfigurable) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getInventory());
+        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 26));
 

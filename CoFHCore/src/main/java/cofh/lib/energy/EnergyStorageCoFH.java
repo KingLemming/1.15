@@ -116,8 +116,8 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
 
     public CompoundNBT writeToNBT(CompoundNBT nbt) {
 
-        if (energy < 0) {
-            energy = 0;
+        if (this.capacity <= 0 || this.energy <= 0) {
+            return nbt;
         }
         nbt.putInt(TAG_ENERGY, energy);
         return nbt;

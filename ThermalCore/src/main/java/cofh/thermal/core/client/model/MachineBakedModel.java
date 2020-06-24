@@ -49,15 +49,6 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
     }
 
     // region HELPERS
-    private TextureAtlasSprite[] getTextures(IReconfigurable.SideConfig[] config) {
-
-        TextureAtlasSprite[] ret = new TextureAtlasSprite[config.length];
-        for (int i = 0; i < ret.length; ++i) {
-            ret[i] = getTexture(config[i]);
-        }
-        return ret;
-    }
-
     private TextureAtlasSprite getTexture(IReconfigurable.SideConfig[] config, int side) {
 
         return getTexture(config[side]);

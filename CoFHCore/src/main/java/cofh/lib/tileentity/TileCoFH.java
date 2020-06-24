@@ -83,6 +83,10 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
     }
 
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+
+    }
+
     public boolean hasClientUpdate() {
 
         return false;
@@ -101,11 +105,6 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     public boolean playerWithinDistance(PlayerEntity player, double distanceSq) {
 
         return pos.distanceSq(player.getPositionVec(), true) <= distanceSq;
-    }
-
-    public boolean isUsableByPlayer(PlayerEntity player) {
-
-        return playerWithinDistance(player, 64D) && world != null && world.getTileEntity(pos) == this;
     }
 
     public boolean onWrench(PlayerEntity player, Direction side) {

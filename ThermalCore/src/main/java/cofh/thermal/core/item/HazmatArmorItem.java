@@ -39,8 +39,15 @@ public class HazmatArmorItem extends ArmorItemCoFH {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 
-        if (this.slot == EquipmentSlotType.HEAD && !player.areEyesInFluid(FluidTags.WATER)) {
-            Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, 600, 0, false, false, true));
+        if (this.slot == EquipmentSlotType.HEAD) {
+            // TODO: Revisit
+            //            if (player.getAir() < player.getMaxAir()) {
+            //                // Random chance of extra air?
+            //            }
+            // Current method
+            if (!player.areEyesInFluid(FluidTags.WATER)) {
+                Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, 600, 0, false, false, true));
+            }
         }
     }
 

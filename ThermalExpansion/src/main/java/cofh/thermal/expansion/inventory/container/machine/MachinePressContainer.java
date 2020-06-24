@@ -21,7 +21,7 @@ public class MachinePressContainer extends TileContainer {
 
         super(MACHINE_PRESS_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (MachineTileReconfigurable) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getInventory());
+        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 17));
         addSlot(new SlotCoFH(tileInv, 1, 53, 53));

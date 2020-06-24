@@ -65,6 +65,17 @@ public class ThermalConfig {
     // region VARIABLES
     public static int dynamoAugments = 4;
     public static int machineAugments = 4;
+
+    public static boolean enableSecurity = true;
+
+    public static boolean keepEnergy = false;
+    public static boolean keepItems = false;
+    public static boolean keepFluids = false;
+    public static boolean keepAugments = true;
+
+    public static boolean keepRSControl = true;
+    public static boolean keepSideConfig = true;
+    public static boolean keepTransferControl = true;
     // endregion
 
     // region CONFIGURATION

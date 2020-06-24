@@ -105,7 +105,7 @@ public class FertilizerItem extends ItemCoFH {
         return false;
     }
 
-    // TODO: Revisit.
+    // TODO: Revisit
     //    private static boolean growCoral(World worldIn, BlockPos pos, BlockState state) {
     //
     //        if (state.getBlock().isIn(BlockTags.WALL_CORALS)) {

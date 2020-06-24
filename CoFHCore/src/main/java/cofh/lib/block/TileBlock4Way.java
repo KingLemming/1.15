@@ -3,13 +3,22 @@ package cofh.lib.block;
 import cofh.lib.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.ACTIVE;
@@ -21,6 +30,19 @@ public class TileBlock4Way extends TileBlockCoFH {
 
         super(builder, supplier);
         this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));
+    }
+
+    // TODO: TEMP
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        CompoundNBT compoundnbt = stack.getChildTag("BlockEntityTag");
+        if (compoundnbt != null) {
+            System.out.println(compoundnbt);
+        } else if (stack.getTag() != null) {
+            System.out.println(stack.getTag());
+        }
     }
 
     @Override

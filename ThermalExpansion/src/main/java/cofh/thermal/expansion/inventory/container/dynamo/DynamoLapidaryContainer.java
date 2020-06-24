@@ -20,7 +20,7 @@ public class DynamoLapidaryContainer extends TileContainer {
 
         super(DYNAMO_LAPIDARY_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (DynamoTileBase) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getInventory());
+        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 35));
 

@@ -90,6 +90,7 @@ public class DeviceHiveExtractorTile extends ThermalTileBase {
     @Override
     public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 
+        super.onPlacedBy(worldIn, pos, state, placer, stack);
         if (redstoneControl.getState()) {
             extractProducts(pos.up());
         }
