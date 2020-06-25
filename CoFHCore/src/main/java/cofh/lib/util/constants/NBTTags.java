@@ -15,6 +15,7 @@ public class NBTTags {
     public static final String TAG_ARROWS = "Arrows";
     public static final String TAG_AUGMENTS = "Augments";
     public static final String TAG_BLOCK_ENTITY = "BlockEntityTag";
+    public static final String TAG_CART_DATA = "CartData";
     public static final String TAG_COLORS = "Colors";
     public static final String TAG_COOLANT = "Coolant";
     public static final String TAG_COOLANT_MAX = "CoolantMax";

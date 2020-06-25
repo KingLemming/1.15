@@ -1,4 +1,4 @@
-package cofh.thermal.core.client.model;
+package cofh.thermal.core.client.renderer.model;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

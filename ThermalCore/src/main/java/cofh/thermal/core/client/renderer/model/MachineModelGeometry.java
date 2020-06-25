@@ -1,4 +1,4 @@
-package cofh.thermal.core.client.model;
+package cofh.thermal.core.client.renderer.model;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.model.*;

@@ -1,7 +1,7 @@
-package cofh.thermal.core.client.model;
+package cofh.thermal.core.client.renderer.model;
 
-import cofh.lib.client.model.BakedQuadRetextured;
-import cofh.lib.client.model.ModelUtils;
+import cofh.lib.client.renderer.model.BakedQuadRetextured;
+import cofh.lib.client.renderer.model.ModelUtils;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.control.IReconfigurable.SideConfig;
 import cofh.thermal.core.client.gui.ThermalTextures;
@@ -63,7 +63,6 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
         BakedQuad[] cachedQuads = QUAD_CACHE.get(configHash);
 
         if (cachedQuads == null || cachedQuads.length < 6) {
-            System.out.println("new quad config!");
             cachedQuads = new BakedQuad[6];
         }
         int sideIndex = side.getIndex();
@@ -73,7 +72,6 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
             QUAD_CACHE.put(configHash, cachedQuads);
         }
         quads.add(cachedQuads[sideIndex]);
-
         return quads;
     }
 

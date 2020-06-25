@@ -1,4 +1,4 @@
-package cofh.lib.client.model;
+package cofh.lib.client.renderer.model;
 
 import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.Lists;

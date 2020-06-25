@@ -1,4 +1,4 @@
-package cofh.lib.client.model.entity;
+package cofh.lib.client.renderer.model.entity;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.BipedModel;

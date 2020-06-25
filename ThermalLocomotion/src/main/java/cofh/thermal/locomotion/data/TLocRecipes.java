@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -37,6 +38,16 @@ public class TLocRecipes extends RecipeProviderCoFH {
         String poweredRail = Items.POWERED_RAIL.getRegistryName().getPath();
 
         // @formatter:off
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_UNDERWATER_CART))
+                .key('C', Items.MINECART)
+                .key('G', Tags.Items.GLASS_PANES)
+                .key('P', Items.PRISMARINE)
+                .patternLine("GGG")
+                .patternLine("GCG")
+                .patternLine("PPP")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_CROSSOVER_RAIL))
                 .key('I', Items.STICK)
                 .key('X', Blocks.RAIL)

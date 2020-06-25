@@ -1,6 +1,6 @@
 package cofh.thermal.core.client.gui;
 
-import cofh.thermal.core.client.model.MachineBakedModel;
+import cofh.thermal.core.client.renderer.model.MachineBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;

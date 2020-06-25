@@ -1,4 +1,4 @@
-package cofh.lib.client.model;
+package cofh.lib.client.renderer.model;
 
 import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.FaceBakery;
