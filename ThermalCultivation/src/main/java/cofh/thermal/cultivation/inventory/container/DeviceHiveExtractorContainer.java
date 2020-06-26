@@ -1,6 +1,6 @@
 package cofh.thermal.cultivation.inventory.container;
 
-import cofh.lib.inventory.InvWrapper;
+import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotRemoveOnly;
 import cofh.thermal.core.tileentity.ThermalTileBase;
@@ -20,7 +20,7 @@ public class DeviceHiveExtractorContainer extends TileContainer {
 
         super(DEVICE_HIVE_EXTRACTOR_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (ThermalTileBase) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
+        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotRemoveOnly(tileInv, 0, 44, 35));
 

@@ -334,10 +334,12 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
+  "block.thermal.chocolate_strawberry_cake": "Chocolate Cake",
   "block.thermal.device_hive_extractor": "Hive Hopper",
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
   "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
+  "block.thermal.spice_cake": "Spice Cake",
 
   "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
   "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",

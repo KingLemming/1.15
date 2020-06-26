@@ -30,6 +30,7 @@ public class TCoreBlocks {
         registerVanillaSupplemental();
         registerResources();
         registerMetals();
+
     }
 
     public static void setup() {

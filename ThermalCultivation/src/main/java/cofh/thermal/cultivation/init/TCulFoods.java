@@ -25,6 +25,8 @@ public class TCulFoods {
 
     public static final Food COFFEE_CHERRY = new Food.Builder().hunger(1).saturation(0.1F).build();
 
-    public static final Food FROST_MELON_SLICE = new Food.Builder().hunger(2).saturation(0.3F).effect(new EffectInstance(FIRE_RESISTANCE, 200, 0), 1.0F).build();
+    public static final Food FROST_MELON_SLICE = new Food.Builder().hunger(2).saturation(0.3F).effect(() -> new EffectInstance(FIRE_RESISTANCE, 200, 0), 1.0F).build();
+
+    public static final Food SPICE_CAKE = new Food.Builder().hunger(2).saturation(0.2F).build();
 
 }

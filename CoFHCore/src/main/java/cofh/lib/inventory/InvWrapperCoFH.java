@@ -5,20 +5,25 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class InvWrapper implements IInventory {
+public class InvWrapperCoFH implements IInventory {
 
     protected SimpleItemInv inventory;
     protected int stackLimit;
 
-    public InvWrapper(SimpleItemInv inventory) {
+    public InvWrapperCoFH(SimpleItemInv inventory) {
 
         this(inventory, 64);
     }
 
-    public InvWrapper(SimpleItemInv inventory, int stackLimit) {
+    public InvWrapperCoFH(SimpleItemInv inventory, int stackLimit) {
 
         this.inventory = inventory;
         this.stackLimit = MathHelper.clamp(stackLimit, 1, Integer.MAX_VALUE);
+    }
+
+    public int getSlotLimit(int slot) {
+
+        return inventory.getSlotLimit(slot);
     }
 
     // region IInventory

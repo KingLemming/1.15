@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.inventory.container.machine;
 
-import cofh.lib.inventory.InvWrapper;
+import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
 import cofh.lib.inventory.container.slot.SlotRemoveOnly;
@@ -21,7 +21,7 @@ public class MachinePulverizerContainer extends TileContainer {
 
         super(MACHINE_PULVERIZER_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (MachineTileReconfigurable) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
+        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 17));
         addSlot(new SlotCoFH(tileInv, 1, 44, 53));

@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.inventory.container.dynamo;
 
-import cofh.lib.inventory.InvWrapper;
+import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
@@ -20,7 +20,7 @@ public class DynamoStirlingContainer extends TileContainer {
 
         super(DYNAMO_STIRLING_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (DynamoTileBase) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapper(this.tile.getItemInv());
+        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 35));
 

@@ -87,10 +87,10 @@ public class SimpleItemInv extends SimpleItemHandler {
         }
         ListNBT list = nbt.getList(tag, TAG_COMPOUND);
         for (int i = 0; i < list.size(); ++i) {
-            CompoundNBT tag = list.getCompound(i);
-            int slot = tag.getByte(TAG_SLOT);
+            CompoundNBT slotTag = list.getCompound(i);
+            int slot = slotTag.getByte(TAG_SLOT);
             if (slot >= 0 && slot < slots.size()) {
-                slots.get(slot).readFromNBT(tag);
+                slots.get(slot).readFromNBT(slotTag);
             }
         }
         return this;
@@ -104,10 +104,10 @@ public class SimpleItemInv extends SimpleItemHandler {
         ListNBT list = new ListNBT();
         for (int i = 0; i < slots.size(); ++i) {
             if (!slots.get(i).isEmpty()) {
-                CompoundNBT tag = new CompoundNBT();
-                tag.putByte(TAG_SLOT, (byte) i);
-                slots.get(i).writeToNBT(tag);
-                list.add(tag);
+                CompoundNBT slotTag = new CompoundNBT();
+                slotTag.putByte(TAG_SLOT, (byte) i);
+                slots.get(i).writeToNBT(slotTag);
+                list.add(slotTag);
             }
         }
         if (!list.isEmpty()) {
@@ -118,22 +118,80 @@ public class SimpleItemInv extends SimpleItemHandler {
     // endregion
 
     // HELPERS
-    public CompoundNBT writeSlotsToNBT(CompoundNBT nbt, int startIndex) {
+    public CompoundNBT writeSlotsToNBT(CompoundNBT nbt, int startIndex, int endIndex) {
 
-        if (slots.size() <= 0 || startIndex >= slots.size()) {
+        return writeSlotsToNBT(nbt, tag, startIndex, endIndex);
+    }
+
+    public CompoundNBT writeSlotsToNBT(CompoundNBT nbt, String saveTag, int startIndex) {
+
+        return writeSlotsToNBT(nbt, saveTag, startIndex, slots.size());
+    }
+
+    public CompoundNBT writeSlotsToNBT(CompoundNBT nbt, String saveTag, int startIndex, int endIndex) {
+
+        if (startIndex < 0 || startIndex >= endIndex || startIndex >= slots.size()) {
             return nbt;
         }
         ListNBT list = new ListNBT();
-        for (int i = startIndex; i < slots.size(); ++i) {
+        for (int i = startIndex; i < Math.min(endIndex, slots.size()); ++i) {
             if (!slots.get(i).isEmpty()) {
-                CompoundNBT tag = new CompoundNBT();
-                tag.putByte(TAG_SLOT, (byte) i);
-                slots.get(i).writeToNBT(tag);
-                list.add(tag);
+                CompoundNBT slotTag = new CompoundNBT();
+                slotTag.putByte(TAG_SLOT, (byte) i);
+                slots.get(i).writeToNBT(slotTag);
+                list.add(slotTag);
             }
         }
         if (!list.isEmpty()) {
-            nbt.put(tag, list);
+            nbt.put(saveTag, list);
+        }
+        return nbt;
+    }
+    // endregion
+
+    // UNORDERED METHODS
+    public SimpleItemInv readSlotsFromNBTUnordered(ListNBT list, int startIndex) {
+
+        return readSlotsFromNBTUnordered(list, startIndex, slots.size());
+    }
+
+    public SimpleItemInv readSlotsFromNBTUnordered(ListNBT list, int startIndex, int endIndex) {
+
+        if (startIndex < 0 || startIndex >= endIndex || startIndex >= slots.size()) {
+            return this;
+        }
+        for (int i = 0; i < Math.min(Math.min(endIndex, slots.size()) - startIndex, list.size()); ++i) {
+            CompoundNBT slotTag = list.getCompound(i);
+            slots.get(startIndex + i).readFromNBT(slotTag);
+        }
+        return this;
+    }
+
+    public CompoundNBT writeSlotsToNBTUnordered(CompoundNBT nbt, int startIndex, int endIndex) {
+
+        return writeSlotsToNBTUnordered(nbt, tag, startIndex, endIndex);
+    }
+
+    public CompoundNBT writeSlotsToNBTUnordered(CompoundNBT nbt, String saveTag, int startIndex) {
+
+        return writeSlotsToNBTUnordered(nbt, saveTag, startIndex, slots.size());
+    }
+
+    public CompoundNBT writeSlotsToNBTUnordered(CompoundNBT nbt, String saveTag, int startIndex, int endIndex) {
+
+        if (startIndex < 0 || startIndex >= endIndex || startIndex >= slots.size()) {
+            return nbt;
+        }
+        ListNBT list = new ListNBT();
+        for (int i = startIndex; i < Math.min(endIndex, slots.size()); ++i) {
+            if (!slots.get(i).isEmpty()) {
+                CompoundNBT slotTag = new CompoundNBT();
+                slots.get(i).writeToNBT(slotTag);
+                list.add(slotTag);
+            }
+        }
+        if (!list.isEmpty()) {
+            nbt.put(saveTag, list);
         }
         return nbt;
     }

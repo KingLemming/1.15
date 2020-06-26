@@ -40,7 +40,7 @@ public class TLocRecipes extends RecipeProviderCoFH {
         // @formatter:off
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_UNDERWATER_CART))
                 .key('C', Items.MINECART)
-                .key('G', Tags.Items.GLASS_PANES)
+                .key('G', Tags.Items.GLASS)
                 .key('P', Items.PRISMARINE)
                 .patternLine("GGG")
                 .patternLine("GCG")

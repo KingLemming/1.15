@@ -1,5 +1,6 @@
 package cofh.lib.inventory.container.slot;
 
+import cofh.lib.inventory.InvWrapperCoFH;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,12 @@ public class SlotCoFH extends Slot {
 
     protected int slotStackLimit;
     protected BooleanSupplier enabled = TRUE;
+
+    public SlotCoFH(InvWrapperCoFH inventoryIn, int index, int xPosition, int yPosition) {
+
+        super(inventoryIn, index, xPosition, yPosition);
+        slotStackLimit = inventoryIn.getSlotLimit(index);
+    }
 
     public SlotCoFH(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 

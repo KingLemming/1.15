@@ -1,5 +1,16 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
+import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
+import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
+import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
+import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.registries.ObjectHolder;
+
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
+
 public class TCoreReferences {
 
     private TCoreReferences() {
@@ -47,4 +58,22 @@ public class TCoreReferences {
     public static final String ID_WRENCH = "wrench";
     // endregion
 
+    // region CRAFTING STATIONS
+    public static final String ID_PROJECT_BENCH = ID_THERMAL + ":project_bench";
+    public static final String ID_TINKER_BENCH = ID_THERMAL + ":tinker_bench";
+
+    @ObjectHolder(ID_PROJECT_BENCH)
+    public static final Block PROJECT_BENCH_BLOCK = null;
+    @ObjectHolder(ID_PROJECT_BENCH)
+    public static final TileEntityType<ProjectBenchTile> PROJECT_BENCH_TILE = null;
+    @ObjectHolder(ID_PROJECT_BENCH)
+    public static final ContainerType<ProjectBenchContainer> PROJECT_BENCH_CONTAINER = null;
+
+    @ObjectHolder(ID_TINKER_BENCH)
+    public static final Block TINKER_BENCH_BLOCK = null;
+    @ObjectHolder(ID_TINKER_BENCH)
+    public static final TileEntityType<TinkerBenchTile> TINKER_BENCH_TILE = null;
+    @ObjectHolder(ID_TINKER_BENCH)
+    public static final ContainerType<TinkerBenchContainer> TINKER_BENCH_CONTAINER = null;
+    // endregion
 }

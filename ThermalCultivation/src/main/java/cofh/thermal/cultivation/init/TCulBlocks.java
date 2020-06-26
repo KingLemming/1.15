@@ -1,5 +1,6 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
@@ -26,6 +27,7 @@ public class TCulBlocks {
     public static void register() {
 
         registerPlants();
+        registerFoods();
 
         registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
         registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
@@ -67,10 +69,9 @@ public class TCulBlocks {
         registerBlockOnly(ID_FROST_MELON_STEM_ATTACHED, () -> new StemBlockAttached(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.STEM)).crop(BLOCKS.getSup(ID_FROST_MELON)).seed(ITEMS.getSup(seeds(ID_FROST_MELON))));
     }
 
-    //    public static final Block MELON = register("melon", new MelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.LIME).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-    //    public static final Block ATTACHED_PUMPKIN_STEM = register("attached_pumpkin_stem", new AttachedStemBlock((StemGrownBlock)PUMPKIN, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.WOOD)));
-    //    public static final Block ATTACHED_MELON_STEM = register("attached_melon_stem", new AttachedStemBlock((StemGrownBlock)MELON, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.WOOD)));
-    //    public static final Block PUMPKIN_STEM = register("pumpkin_stem", new StemBlock((StemGrownBlock)PUMPKIN, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.STEM)));
-    //    public static final Block MELON_STEM = register("melon_stem", new StemBlock((StemGrownBlock)MELON, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.STEM)));
+    private static void registerFoods() {
+
+        registerBlock(ID_SPICE_CAKE, () -> new CakeBlockCoFH(Block.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH), TCulFoods.SPICE_CAKE));
+    }
 
 }

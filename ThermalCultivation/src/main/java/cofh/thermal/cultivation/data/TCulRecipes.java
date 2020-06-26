@@ -60,6 +60,18 @@ public class TCulRecipes extends RecipeProviderCoFH {
                 .patternLine("MMM")
                 .addCriterion("has_frost_melon", hasItem(regItems.get(ID_FROST_MELON_SLICE)))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_SPICE_CAKE))
+                .key('A', Items.MILK_BUCKET)
+                .key('B', Items.SUGAR)
+                .key('C', Items.WHEAT)
+                .key('D', regItems.get(ID_SADIROOT))
+                .key('E', Items.EGG)
+                .patternLine("ADA")
+                .patternLine("BEB")
+                .patternLine("CCC")
+                .addCriterion("has_sadiroot", hasItem(regItems.get(ID_SADIROOT)))
+                .build(consumer);
     }
 
 }

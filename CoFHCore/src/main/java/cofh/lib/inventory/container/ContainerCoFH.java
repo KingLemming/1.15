@@ -39,7 +39,7 @@ public abstract class ContainerCoFH extends Container {
     protected void bindAugmentSlots(IInventory inventory, int startIndex, int numSlots) {
 
         for (int i = 0; i < numSlots; ++i) {
-            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0);
+            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1);
             augmentSlots.add(slot);
             addSlot(slot);
         }

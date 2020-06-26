@@ -42,9 +42,10 @@ public class TileNBTSync extends LootFunction {
                 castedTile.getEnergyStorage().writeToNBT(tag);
             }
             if (keepItems.get()) {
-                castedTile.getItemInv().writeToNBT(tag);
-            } else if (keepAugments.get() && castedTile.augSize() > 0) {
-                castedTile.getItemInv().writeSlotsToNBT(tag, castedTile.invSize() - castedTile.augSize());
+                castedTile.getItemInv().writeSlotsToNBT(tag, 0, castedTile.invSize() - castedTile.augSize());
+            }
+            if (keepAugments.get() && castedTile.augSize() > 0) {
+                castedTile.getItemInv().writeSlotsToNBTUnordered(tag, TAG_AUGMENTS, castedTile.invSize() - castedTile.augSize());
             }
             if (keepFluids.get()) {
                 castedTile.getTankInv().writeToNBT(tag);

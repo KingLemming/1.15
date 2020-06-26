@@ -50,6 +50,7 @@ import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.ACTIVE;
 import static cofh.lib.util.constants.NBTTags.*;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
 
@@ -360,6 +361,10 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         wasActive = nbt.getBoolean(TAG_ACTIVE_TRACK);
 
         inventory.readFromNBT(nbt);
+
+        if (nbt.contains(TAG_AUGMENTS)) {
+            inventory.readSlotsFromNBTUnordered(nbt.getList(TAG_AUGMENTS, TAG_COMPOUND), invSize() - augSize());
+        }
         updateAugmentState();
 
         tankInv.readFromNBT(nbt);
@@ -425,7 +430,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected void addAugmentSlots(int numAugments) {
 
         for (int i = 0; i < numAugments; ++i) {
-            ItemStorageCoFH slot = new ItemStorageCoFH();
+            ItemStorageCoFH slot = new ItemStorageCoFH(1);
             augments.add(slot);
             inventory.addSlot(slot, INTERNAL);
         }

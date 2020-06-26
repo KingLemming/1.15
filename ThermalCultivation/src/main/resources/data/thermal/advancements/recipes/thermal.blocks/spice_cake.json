@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:spice_cake"
+    ]
+  },
+  "criteria": {
+    "has_sadiroot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:sadiroot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:spice_cake"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sadiroot",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -38,14 +38,16 @@ public class TCulReferences {
     public static final String ID_FROST_MELON_STEM = ID_THERMAL + ":frost_melon_stem";
     public static final String ID_FROST_MELON_STEM_ATTACHED = ID_THERMAL + ":frost_melon_stem_attached";
 
-    public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
-
-    @ObjectHolder(ID_FROST_MELON)
-    public static final Block FROST_MELON = null;
     @ObjectHolder(ID_FROST_MELON_STEM)
     public static final Block FROST_MELON_STEM = null;
     @ObjectHolder(ID_FROST_MELON_STEM_ATTACHED)
     public static final Block FROST_MELON_STEM_ATTACHED = null;
+    // endregion
+
+    // region FOODS
+    public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
+
+    public static final String ID_SPICE_CAKE = ID_THERMAL + ":spice_cake";
     // endregion
 
     // region MISC
