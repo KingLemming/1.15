@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
 
-public class BowItemCoFH extends BowItem implements IArcheryBowItem {
+public class BowItemCoFH extends BowItem implements IArcheryBowItem, ICoFHItem {
 
     protected int enchantability = 1;
     protected float accuracyModifier = 1.0F;

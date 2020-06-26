@@ -105,7 +105,7 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
     }
 
     // region NBT
-    public EnergyStorageCoFH readFromNBT(CompoundNBT nbt) {
+    public EnergyStorageCoFH read(CompoundNBT nbt) {
 
         this.energy = nbt.getInt(TAG_ENERGY);
         if (energy > capacity) {
@@ -114,7 +114,7 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
         return this;
     }
 
-    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
 
         if (this.capacity <= 0 || this.energy <= 0) {
             return nbt;
@@ -126,13 +126,13 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
     @Override
     public CompoundNBT serializeNBT() {
 
-        return writeToNBT(new CompoundNBT());
+        return write(new CompoundNBT());
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
 
-        readFromNBT(nbt);
+        read(nbt);
     }
     // endregion
 

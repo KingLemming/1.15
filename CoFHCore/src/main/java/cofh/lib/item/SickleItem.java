@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static cofh.lib.util.constants.ToolTypes.SICKLE;
 
-public class SickleItem extends ToolItem {
+public class SickleItem extends ToolItem implements ICoFHItem {
 
     public static final Set<Block> EFFECTIVE_BLOCKS = ImmutableSet.of();
     public static final Set<Material> EFFECTIVE_MATERIALS = ImmutableSet.of(Material.LEAVES, Material.PLANTS, Material.TALL_PLANTS, Material.WEB);

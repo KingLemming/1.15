@@ -55,9 +55,11 @@ public class RedstoneControlModule implements IRedstoneControllable {
     // region NBT
     public RedstoneControlModule read(CompoundNBT nbt) {
 
-        power = nbt.getByte(TAG_RS_POWER);
-        threshold = nbt.getByte(TAG_RS_THRESHOLD);
-        mode = !isControllable() ? ControlMode.DISABLED : ControlMode.VALUES[nbt.getByte(TAG_RS_MODE)];
+        CompoundNBT subTag = nbt.getCompound(TAG_RS_CONTROL);
+
+        power = subTag.getByte(TAG_RS_POWER);
+        threshold = subTag.getByte(TAG_RS_THRESHOLD);
+        mode = !isControllable() ? ControlMode.DISABLED : ControlMode.VALUES[subTag.getByte(TAG_RS_MODE)];
 
         return this;
     }
@@ -65,9 +67,13 @@ public class RedstoneControlModule implements IRedstoneControllable {
     public CompoundNBT write(CompoundNBT nbt) {
 
         if (isControllable()) {
-            nbt.putByte(TAG_RS_POWER, (byte) power);
-            nbt.putByte(TAG_RS_THRESHOLD, (byte) threshold);
-            nbt.putByte(TAG_RS_MODE, (byte) mode.ordinal());
+            CompoundNBT subTag = new CompoundNBT();
+
+            subTag.putByte(TAG_RS_POWER, (byte) power);
+            subTag.putByte(TAG_RS_THRESHOLD, (byte) threshold);
+            subTag.putByte(TAG_RS_MODE, (byte) mode.ordinal());
+
+            nbt.put(TAG_RS_CONTROL, subTag);
         }
         return nbt;
     }

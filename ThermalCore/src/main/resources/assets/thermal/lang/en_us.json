@@ -36,6 +36,11 @@
   "item.thermal.sulfur": "Sulfur",
   "item.thermal.wood_dust": "Sawdust",
 
+  "item.thermal.basalz_powder": "Basalz Powder",
+  "item.thermal.basalz_rod": "Basalz Shard",
+  "item.thermal.blizz_powder": "Blizz Powder",
+  "item.thermal.blizz_rod": "Blizz Cube",
+
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",

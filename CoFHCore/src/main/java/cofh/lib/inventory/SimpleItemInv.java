@@ -80,7 +80,7 @@ public class SimpleItemInv extends SimpleItemHandler {
     }
 
     // region NBT
-    public SimpleItemInv readFromNBT(CompoundNBT nbt) {
+    public SimpleItemInv read(CompoundNBT nbt) {
 
         for (ItemStorageCoFH slot : slots) {
             slot.setItemStack(ItemStack.EMPTY);
@@ -96,7 +96,7 @@ public class SimpleItemInv extends SimpleItemHandler {
         return this;
     }
 
-    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
 
         if (slots.size() <= 0) {
             return nbt;
@@ -150,12 +150,12 @@ public class SimpleItemInv extends SimpleItemHandler {
     // endregion
 
     // UNORDERED METHODS
-    public SimpleItemInv readSlotsFromNBTUnordered(ListNBT list, int startIndex) {
+    public SimpleItemInv readSlotsUnordered(ListNBT list, int startIndex) {
 
-        return readSlotsFromNBTUnordered(list, startIndex, slots.size());
+        return readSlotsUnordered(list, startIndex, slots.size());
     }
 
-    public SimpleItemInv readSlotsFromNBTUnordered(ListNBT list, int startIndex, int endIndex) {
+    public SimpleItemInv readSlotsUnordered(ListNBT list, int startIndex, int endIndex) {
 
         if (startIndex < 0 || startIndex >= endIndex || startIndex >= slots.size()) {
             return this;

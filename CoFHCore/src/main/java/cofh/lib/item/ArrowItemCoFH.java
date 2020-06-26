@@ -1,6 +1,5 @@
 package cofh.lib.item;
 
-import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,7 @@ import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
 
-public class ArrowItemCoFH extends ArrowItem {
+public class ArrowItemCoFH extends ArrowItem implements ICoFHItem {
 
     protected BooleanSupplier showEnchantEffect = TRUE;
     protected BooleanSupplier showInItemGroup = TRUE;
@@ -47,12 +46,6 @@ public class ArrowItemCoFH extends ArrowItem {
     public boolean hasEffect(ItemStack stack) {
 
         return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
-    }
-
-    @Override
-    public boolean hasCustomEntity(ItemStack stack) {
-
-        return SecurityHelper.hasSecurity(stack);
     }
 
     @Override

@@ -15,7 +15,8 @@ import net.minecraft.world.storage.loot.LootFunction;
 import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.constants.NBTTags.TAG_AUGMENTS;
+import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
 import static cofh.thermal.core.common.ThermalConfig.*;
 import static net.minecraft.world.storage.loot.LootParameters.BLOCK_ENTITY;
 
@@ -39,7 +40,7 @@ public class TileNBTSync extends LootFunction {
 
             CompoundNBT tag = new CompoundNBT();
             if (keepEnergy.get()) {
-                castedTile.getEnergyStorage().writeToNBT(tag);
+                castedTile.getEnergyStorage().write(tag);
             }
             if (keepItems.get()) {
                 castedTile.getItemInv().writeSlotsToNBT(tag, 0, castedTile.invSize() - castedTile.augSize());
@@ -48,19 +49,19 @@ public class TileNBTSync extends LootFunction {
                 castedTile.getItemInv().writeSlotsToNBTUnordered(tag, TAG_AUGMENTS, castedTile.invSize() - castedTile.augSize());
             }
             if (keepFluids.get()) {
-                castedTile.getTankInv().writeToNBT(tag);
+                castedTile.getTankInv().write(tag);
             }
             if (keepRSControl.get()) {
-                tag.put(TAG_REDSTONE, castedTile.redstoneControl().write(new CompoundNBT()));
+                castedTile.redstoneControl().write(tag);
             }
             if (keepSideConfig.get() && tile instanceof IReconfigurableTile) {
-                tag.put(TAG_SIDE_CONFIG, ((IReconfigurableTile) tile).reconfigControl().write(new CompoundNBT()));
+                ((IReconfigurableTile) tile).reconfigControl().write(tag);
             }
             if (keepTransferControl.get() && tile instanceof ITransferControllableTile) {
-                tag.put(TAG_TRANSFER, ((ITransferControllableTile) tile).transferControl().write(new CompoundNBT()));
+                ((ITransferControllableTile) tile).transferControl().write(tag);
             }
             if (((ISecurableTile) tile).hasSecurity()) {
-                tag.put(TAG_SECURITY, castedTile.securityControl().write(new CompoundNBT()));
+                castedTile.securityControl().write(tag);
             }
             if (!tag.isEmpty()) {
                 stack.setTagInfo(TAG_BLOCK_ENTITY, tag);

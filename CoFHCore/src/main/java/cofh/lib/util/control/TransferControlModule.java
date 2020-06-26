@@ -5,8 +5,7 @@ import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 
-import static cofh.lib.util.constants.NBTTags.TAG_ENABLE_IN;
-import static cofh.lib.util.constants.NBTTags.TAG_ENABLE_OUT;
+import static cofh.lib.util.constants.NBTTags.*;
 
 public class TransferControlModule implements ITransferControllable {
 
@@ -53,17 +52,22 @@ public class TransferControlModule implements ITransferControllable {
     // region NBT
     public TransferControlModule read(CompoundNBT nbt) {
 
-        enableAutoInput = nbt.getBoolean(TAG_ENABLE_IN);
-        enableAutoOutput = nbt.getBoolean(TAG_ENABLE_OUT);
+        CompoundNBT subTag = nbt.getCompound(TAG_XFER);
+
+        enableAutoInput = subTag.getBoolean(TAG_XFER_IN);
+        enableAutoOutput = subTag.getBoolean(TAG_XFER_OUT);
 
         return this;
     }
 
     public CompoundNBT write(CompoundNBT nbt) {
 
-        nbt.putBoolean(TAG_ENABLE_IN, enableAutoInput);
-        nbt.putBoolean(TAG_ENABLE_OUT, enableAutoOutput);
+        CompoundNBT subTag = new CompoundNBT();
 
+        subTag.putBoolean(TAG_XFER_IN, enableAutoInput);
+        subTag.putBoolean(TAG_XFER_OUT, enableAutoOutput);
+
+        nbt.put(TAG_XFER, subTag);
         return nbt;
     }
     // endregion

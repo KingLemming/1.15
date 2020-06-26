@@ -80,7 +80,7 @@ public class SimpleTankInv extends SimpleFluidHandler {
     }
 
     // region NBT
-    public SimpleTankInv readFromNBT(CompoundNBT nbt) {
+    public SimpleTankInv read(CompoundNBT nbt) {
 
         for (FluidStorageCoFH tank : tanks) {
             tank.setFluidStack(FluidStack.EMPTY);
@@ -96,7 +96,7 @@ public class SimpleTankInv extends SimpleFluidHandler {
         return this;
     }
 
-    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+    public CompoundNBT write(CompoundNBT nbt) {
 
         if (tanks.size() <= 0) {
             return nbt;

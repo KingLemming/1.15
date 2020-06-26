@@ -139,6 +139,8 @@ public class BaseMachineRecipe implements IMachineRecipe {
     @Override
     public int getEnergy(IThermalInventory inventory) {
 
+        System.out.println(inventory.getEnergyMod());
+
         return Math.abs(Math.round(energy * inventory.getEnergyMod()));
     }
 

@@ -1,18 +1,13 @@
 package cofh.lib.item;
 
-import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.BooleanSupplier;
@@ -20,7 +15,7 @@ import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
 
-public class BlockItemCoFH extends BlockItem {
+public class BlockItemCoFH extends BlockItem implements ICoFHItem {
 
     protected BooleanSupplier showEnchantEffect = TRUE;
     protected BooleanSupplier showInItemGroup = TRUE;
@@ -76,12 +71,6 @@ public class BlockItemCoFH extends BlockItem {
     }
 
     @Override
-    public boolean hasCustomEntity(ItemStack stack) {
-
-        return SecurityHelper.hasSecurity(stack);
-    }
-
-    @Override
     public boolean isEnchantable(ItemStack stack) {
 
         return enchantability > 0;
@@ -91,16 +80,6 @@ public class BlockItemCoFH extends BlockItem {
     public int getItemEnchantability() {
 
         return enchantability;
-    }
-
-    @Nullable
-    public Entity createEntity(World world, Entity location, ItemStack stack) {
-
-        if (SecurityHelper.hasSecurity(stack)) {
-            location.setInvulnerable(true);
-            ((ItemEntity) location).lifespan = Integer.MAX_VALUE;
-        }
-        return null;
     }
 
     @Override

@@ -55,6 +55,11 @@ public class TCoreItems {
         registerItem("niter", group);
         registerItem("sulfur", group);
 
+        registerItem("basalz_rod", group);
+        registerItem("basalz_powder", group);
+        registerItem("blizz_rod", group);
+        registerItem("blizz_powder", group);
+
         Rarity rarity = Rarity.UNCOMMON;
 
         registerMetalSet("signalum", group, rarity);

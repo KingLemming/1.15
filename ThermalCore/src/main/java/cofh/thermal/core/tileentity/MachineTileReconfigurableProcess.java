@@ -100,7 +100,10 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
 
     protected void processStart() {
 
+        System.out.println("MOD: " + energyMod);
         process = processMax = curRecipe.getEnergy(this);
+
+        System.out.println(processMax);
         if (cacheRenderFluid()) {
             TileStatePacket.sendToClient(this);
         }

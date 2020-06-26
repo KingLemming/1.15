@@ -1,7 +1,7 @@
 package cofh.lib.item.override;
 
+import cofh.lib.item.ICoFHItem;
 import cofh.lib.item.ItemCoFH;
-import cofh.lib.util.helpers.SecurityHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
 import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
-public class ShieldItemCoFH extends ShieldItem {
+public class ShieldItemCoFH extends ShieldItem implements ICoFHItem {
 
     protected BooleanSupplier showEnchantEffect = TRUE;
     protected BooleanSupplier showInItemGroup = TRUE;
@@ -59,12 +59,6 @@ public class ShieldItemCoFH extends ShieldItem {
     public boolean hasEffect(ItemStack stack) {
 
         return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
-    }
-
-    @Override
-    public boolean hasCustomEntity(ItemStack stack) {
-
-        return SecurityHelper.hasSecurity(stack);
     }
 
     @Override

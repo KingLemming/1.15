@@ -103,6 +103,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     @Override
     protected void updateAugmentState() {
 
+        super.updateAugmentState();
+
         // TODO: Finish
         //        augmentTypes.clear();
         //        for (ItemStorageCoFH slot : augments) {
@@ -297,8 +299,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         super.read(nbt);
 
         reconfigControl.setFacing(Direction.byIndex(nbt.getByte(TAG_FACING)));
-        reconfigControl.read(nbt.getCompound(TAG_SIDE_CONFIG));
-        transferControl.read(nbt.getCompound(TAG_TRANSFER));
+        reconfigControl.read(nbt);
+        transferControl.read(nbt);
 
         inputTracker = nbt.getInt(TAG_TRACK_IN);
         outputTracker = nbt.getInt(TAG_TRACK_OUT);
@@ -314,8 +316,8 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         super.write(nbt);
 
         nbt.putByte(TAG_FACING, (byte) reconfigControl.getFacing().getIndex());
-        nbt.put(TAG_SIDE_CONFIG, reconfigControl.write(new CompoundNBT()));
-        nbt.put(TAG_TRANSFER, transferControl.write(new CompoundNBT()));
+        reconfigControl.write(nbt);
+        transferControl.write(nbt);
 
         nbt.putInt(TAG_TRACK_IN, inputTracker);
         nbt.putInt(TAG_TRACK_OUT, outputTracker);

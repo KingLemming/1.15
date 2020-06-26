@@ -27,7 +27,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
+import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
 import static cofh.thermal.core.common.ThermalConfig.DEFAULT_MACHINE_SIDES_RAW;
 import static net.minecraft.util.Direction.*;
 
@@ -133,7 +134,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
         if (tag == null) {
             return DEFAULT_MACHINE_SIDES_RAW;
         }
-        byte[] ret = tag.getCompound(TAG_SIDE_CONFIG).getByteArray(TAG_SIDES);
+        byte[] ret = tag.getByteArray(TAG_SIDES);
         return ret.length == 0 ? DEFAULT_MACHINE_SIDES_RAW : ret;
     }
     // endregion

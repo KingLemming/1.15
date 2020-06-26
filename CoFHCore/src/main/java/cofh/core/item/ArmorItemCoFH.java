@@ -1,7 +1,7 @@
 package cofh.core.item;
 
 import cofh.core.CoFHCore;
-import cofh.lib.util.helpers.SecurityHelper;
+import cofh.lib.item.ICoFHItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.Constants.TRUE;
 
-public class ArmorItemCoFH extends ArmorItem {
+public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
 
     protected static final double[] RESISTANCE_RATIO = new double[]{0.10D, 0.25D, 0.40D, 0.25D};
 
@@ -72,12 +72,6 @@ public class ArmorItemCoFH extends ArmorItem {
     public boolean hasEffect(ItemStack stack) {
 
         return showEnchantEffect.getAsBoolean() && stack.isEnchanted();
-    }
-
-    @Override
-    public boolean hasCustomEntity(ItemStack stack) {
-
-        return SecurityHelper.hasSecurity(stack);
     }
 
     @Override

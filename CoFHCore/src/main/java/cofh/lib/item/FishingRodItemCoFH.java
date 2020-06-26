@@ -10,7 +10,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class FishingRodItemCoFH extends FishingRodItem {
+public class FishingRodItemCoFH extends FishingRodItem implements ICoFHItem {
 
     protected int enchantability = 1;
     protected int luckModifier;

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.util.math.BlockPos;
 
-public class ShearsItemCoFH extends ShearsItem {
+public class ShearsItemCoFH extends ShearsItem implements ICoFHItem {
 
     protected int enchantability = 0;
 

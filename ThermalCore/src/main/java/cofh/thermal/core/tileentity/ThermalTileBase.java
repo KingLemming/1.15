@@ -115,6 +115,9 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void updateAugmentState() {
 
+        System.out.println("UPDATING AUGMENT STATE");
+
+        this.energyMod = 10.0F;
     }
 
     protected void updateActiveState(boolean curActive) {
@@ -362,18 +365,18 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         isActive = nbt.getBoolean(TAG_ACTIVE);
         wasActive = nbt.getBoolean(TAG_ACTIVE_TRACK);
 
-        inventory.readFromNBT(nbt);
+        inventory.read(nbt);
 
         if (nbt.contains(TAG_AUGMENTS)) {
-            inventory.readSlotsFromNBTUnordered(nbt.getList(TAG_AUGMENTS, TAG_COMPOUND), invSize() - augSize());
+            inventory.readSlotsUnordered(nbt.getList(TAG_AUGMENTS, TAG_COMPOUND), invSize() - augSize());
         }
         updateAugmentState();
 
-        tankInv.readFromNBT(nbt);
-        energyStorage.readFromNBT(nbt);
+        tankInv.read(nbt);
+        energyStorage.read(nbt);
 
-        securityControl.read(nbt.getCompound(TAG_SECURITY));
-        redstoneControl.read(nbt.getCompound(TAG_REDSTONE));
+        securityControl.read(nbt);
+        redstoneControl.read(nbt);
     }
 
     @Override
@@ -384,12 +387,12 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         nbt.putBoolean(TAG_ACTIVE, isActive);
         nbt.putBoolean(TAG_ACTIVE_TRACK, wasActive);
 
-        inventory.writeToNBT(nbt);
-        tankInv.writeToNBT(nbt);
-        energyStorage.writeToNBT(nbt);
+        inventory.write(nbt);
+        tankInv.write(nbt);
+        energyStorage.write(nbt);
 
-        nbt.put(TAG_SECURITY, securityControl.write(new CompoundNBT()));
-        nbt.put(TAG_REDSTONE, redstoneControl.write(new CompoundNBT()));
+        securityControl.write(nbt);
+        redstoneControl.write(nbt);
 
         return nbt;
     }
@@ -406,6 +409,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // region ITileCallback
     @Override
     public void onInventoryChange(int slot) {
+
+        System.out.println("INVENTORY CHANGE");
 
         /* Implicit requirement here that augments always come LAST in slot order.
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
