@@ -90,9 +90,7 @@ public abstract class MachineTileBasicProcess extends MachineTileBasic implement
 
     protected void processStart() {
 
-        processMax = curRecipe.getEnergy(this);
-        process = processMax;
-
+        process = processMax = curRecipe.getEnergy(this);
         if (cacheRenderFluid()) {
             TileStatePacket.sendToClient(this);
         }

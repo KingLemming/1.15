@@ -83,7 +83,7 @@ public class TileCoFH extends TileEntity implements ITileCallback {
 
     }
 
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState) {
 
     }
 

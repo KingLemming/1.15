@@ -11,7 +11,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.fluids.FluidStack;
 
 import static cofh.lib.util.constants.Constants.FACING_ALL;
 import static cofh.lib.util.constants.NBTTags.*;
@@ -19,7 +18,6 @@ import static cofh.lib.util.constants.NBTTags.*;
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
 
     protected Direction facing;
-    protected FluidStack renderFluid = FluidStack.EMPTY;
 
     protected int fuel;
     protected int fuelMax;
@@ -131,18 +129,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         fuel -= energy;
         transferEnergy(energy);
         return energy;
-    }
-    // endregion
-
-    // region HELPERS
-    protected boolean cacheRenderFluid() {
-
-        return false;
-    }
-
-    public FluidStack getRenderFluid() {
-
-        return renderFluid;
     }
     // endregion
 

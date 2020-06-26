@@ -17,7 +17,12 @@ public interface IRecipeCatalyst {
         return 1.0F;
     }
 
-    default float getMinChance() {
+    default float getExperienceMod() {
+
+        return 1.0F;
+    }
+
+    default float getMinOutputChance() {
 
         return 0.0F;
     }

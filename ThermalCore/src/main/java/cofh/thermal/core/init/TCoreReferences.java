@@ -1,7 +1,9 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
+import cofh.thermal.core.tileentity.workbench.ChargeBenchTile;
 import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.Block;
@@ -66,9 +68,9 @@ public class TCoreReferences {
     @ObjectHolder(ID_CHARGE_BENCH)
     public static final Block CHARGE_BENCH_BLOCK = null;
     @ObjectHolder(ID_CHARGE_BENCH)
-    public static final TileEntityType<ProjectBenchTile> CHARGE_BENCH_TILE = null;
+    public static final TileEntityType<ChargeBenchTile> CHARGE_BENCH_TILE = null;
     @ObjectHolder(ID_CHARGE_BENCH)
-    public static final ContainerType<ProjectBenchContainer> CHARGE_BENCH_CONTAINER = null;
+    public static final ContainerType<ChargeBenchContainer> CHARGE_BENCH_CONTAINER = null;
 
     @ObjectHolder(ID_PROJECT_BENCH)
     public static final Block PROJECT_BENCH_BLOCK = null;

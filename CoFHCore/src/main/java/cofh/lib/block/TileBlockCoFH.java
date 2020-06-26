@@ -116,7 +116,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof TileCoFH) {
-                ((TileCoFH) tile).onReplaced(state, worldIn, pos, newState, isMoving);
+                ((TileCoFH) tile).onReplaced(state, worldIn, pos, newState);
             }
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }

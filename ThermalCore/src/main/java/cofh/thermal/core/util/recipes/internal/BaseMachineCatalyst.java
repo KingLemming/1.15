@@ -32,7 +32,7 @@ public class BaseMachineCatalyst implements IRecipeCatalyst {
         return energyMod;
     }
 
-    public float getMinChance() {
+    public float getMinOutputChance() {
 
         return minChance;
     }

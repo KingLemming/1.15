@@ -14,7 +14,6 @@ import static cofh.lib.util.constants.NBTTags.TAG_RENDER_FLUID;
 public abstract class MachineTileBasic extends ThermalTileBase {
 
     protected Direction facing;
-    protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH fuelSlot = new ItemStorageCoFH(EnergyHelper::validFurnaceFuel);
 
     public MachineTileBasic(TileEntityType<?> tileEntityTypeIn) {
@@ -23,18 +22,6 @@ public abstract class MachineTileBasic extends ThermalTileBase {
         securityControl.setEnabled(FALSE);
         redstoneControl.setEnabled(FALSE);
     }
-
-    // region HELPERS
-    protected boolean cacheRenderFluid() {
-
-        return false;
-    }
-
-    public FluidStack getRenderFluid() {
-
-        return renderFluid;
-    }
-    // endregion
 
     // region NETWORK
     @Override

@@ -12,22 +12,22 @@ import java.util.List;
 
 public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
 
-    protected int catalystSlot = 1;
+    protected int catalystSlot;
     protected boolean catalyzable = true;
 
-    public CatalyzedMachineRecipe(int energy, float experience, int catalystSlot) {
+    protected CatalyzedMachineRecipe(int catalystSlot, int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-        super(energy, experience);
+        super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        this.catalystSlot = catalystSlot;
+        // If all of the output chances are locked, then the recipe is not catalyzable.
+        for (float f : outputItemChances) {
+            catalyzable &= f >= 0.0F;
+        }
     }
 
     public CatalyzedMachineRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-        super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
-
-        // If all of the output chances are locked, then the recipe is not catalyzable.
-        for (float f : outputItemChances) {
-            catalyzable &= f > 0.0F;
-        }
+        this(1, energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
     }
 
     public abstract IRecipeCatalyst getCatalyst(ItemStack input);
@@ -43,26 +43,20 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
 
         // Catalyst Logic
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
-            ItemStack catalystStack = inventory.inputSlots().get(catalystSlot).getItemStack();
-            IRecipeCatalyst catalyst = getCatalyst(catalystStack);
-            if (catalyst != null) {
-                if (modifiedChances.get(0) >= 0.0F) {
-                    modifiedChances.set(0, Math.max(modifiedChances.get(0) * catalyst.getPrimaryMod(), catalyst.getMinChance()));
-                }
-                for (int i = 1; i < modifiedChances.size(); ++i) {
-                    if (modifiedChances.get(i) >= 0.0F) {
-                        modifiedChances.set(i, Math.max(modifiedChances.get(1) * catalyst.getSecondaryMod(), catalyst.getMinChance()));
-                    }
+            IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());
+            if (catalyst == null) {
+                return super.getOutputItemChances(inventory);
+            }
+            for (int i = 0; i < modifiedChances.size(); ++i) {
+                if (modifiedChances.get(i) < 0.0F) {
+                    modifiedChances.set(i, Math.abs(modifiedChances.get(i)));
+                } else {
+                    modifiedChances.set(i, Math.max(modifiedChances.get(i) * (i == 0 ? catalyst.getPrimaryMod() * inventory.getPrimaryMod() : catalyst.getSecondaryMod() * inventory.getSecondaryMod()), Math.max(catalyst.getMinOutputChance(), inventory.getMinOutputChance())));
                 }
             }
+            return modifiedChances;
         }
-
-        for (int i = 0; i < modifiedChances.size(); ++i) {
-            if (modifiedChances.get(i) < 0.0F) {
-                modifiedChances.set(i, Math.abs(modifiedChances.get(i)));
-            }
-        }
-        return modifiedChances;
+        return super.getOutputItemChances(inventory);
     }
 
     @Override
@@ -71,15 +65,14 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>();
+        ArrayList<Integer> ret = new ArrayList<>(inputItems.size());
         for (ItemStack input : inputItems) {
             ret.add(input.getCount());
         }
         // Catalyst Logic
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
-            ItemStack catalystStack = inventory.inputSlots().get(catalystSlot).getItemStack();
-            IRecipeCatalyst catalyst = getCatalyst(catalystStack);
-            if (catalyst != null && MathHelper.RANDOM.nextFloat() < catalyst.getUseChance()) {
+            IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());
+            if (catalyst != null && MathHelper.RANDOM.nextFloat() < catalyst.getUseChance() * inventory.getUseChance()) {
                 ret.add(1);
             }
         }
@@ -91,18 +84,20 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
 
         // Catalyst Logic
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
-            ItemStack catalystStack = inventory.inputSlots().get(catalystSlot).getItemStack();
-            IRecipeCatalyst catalyst = getCatalyst(catalystStack);
-            return catalyst == null ? energy : (int) (energy * catalyst.getEnergyMod());
+            IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());
+            return catalyst == null ? super.getEnergy(inventory) : Math.abs(Math.round(energy * catalyst.getEnergyMod() * inventory.getEnergyMod()));
         }
-
-        return energy;
+        return super.getEnergy(inventory);
     }
 
     @Override
     public float getExperience(IThermalInventory inventory) {
 
-        return experience;
+        if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
+            IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());
+            return catalyst == null ? super.getExperience(inventory) : Math.round(energy * catalyst.getExperienceMod() * inventory.getExperienceMod());
+        }
+        return super.getExperience(inventory);
     }
     // endregion
 }

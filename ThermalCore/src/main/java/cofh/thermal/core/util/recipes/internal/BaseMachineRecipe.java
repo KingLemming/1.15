@@ -103,6 +103,8 @@ public class BaseMachineRecipe implements IMachineRecipe {
         for (int i = 0; i < modifiedChances.size(); ++i) {
             if (modifiedChances.get(i) < 0.0F) {
                 modifiedChances.set(i, Math.abs(modifiedChances.get(i)));
+            } else {
+                modifiedChances.set(i, Math.max(modifiedChances.get(i) * (i == 0 ? inventory.getPrimaryMod() : inventory.getSecondaryMod()), inventory.getMinOutputChance()));
             }
         }
         return modifiedChances;
@@ -114,7 +116,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>();
+        ArrayList<Integer> ret = new ArrayList<>(inputItems.size());
         for (ItemStack input : inputItems) {
             ret.add(input.getCount());
         }
@@ -127,7 +129,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
         if (inputFluids.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>();
+        ArrayList<Integer> ret = new ArrayList<>(inputFluids.size());
         for (FluidStack input : inputFluids) {
             ret.add(input.getAmount());
         }
@@ -137,13 +139,13 @@ public class BaseMachineRecipe implements IMachineRecipe {
     @Override
     public int getEnergy(IThermalInventory inventory) {
 
-        return energy;
+        return Math.abs(Math.round(energy * inventory.getEnergyMod()));
     }
 
     @Override
     public float getExperience(IThermalInventory inventory) {
 
-        return experience;
+        return experience * inventory.getExperienceMod();
     }
     // endregion
 }

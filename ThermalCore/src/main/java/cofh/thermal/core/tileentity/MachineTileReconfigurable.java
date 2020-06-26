@@ -89,19 +89,17 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         }
     }
 
+    @Nonnull
     @Override
-    public void neighborChanged(Block blockIn, BlockPos fromPos) {
+    public IModelData getModelData() {
 
-        super.neighborChanged(blockIn, fromPos);
-        // TODO: Handle caching of neighbor caps?
+        return new ModelDataMap.Builder()
+                .withInitial(SIDES, reconfigControl().getRawSideConfig())
+                // .withInitial(FLUID, renderFluid)
+                .build();
     }
 
-    @Override
-    public FluidStack getRenderFluid() {
-
-        return renderFluid;
-    }
-
+    // region HELPERS
     @Override
     protected void updateAugmentState() {
 
@@ -142,27 +140,11 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         updateSidedHandlers();
     }
 
-    public void chargeEnergy() {
+    protected void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
             chargeSlot.getItemStack().getCapability(CapabilityEnergy.ENERGY, null).ifPresent(p -> energyStorage.receiveEnergy(p.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
         }
-    }
-
-    @Nonnull
-    @Override
-    public IModelData getModelData() {
-
-        return new ModelDataMap.Builder()
-                .withInitial(SIDES, reconfigControl().getRawSideConfig())
-                // .withInitial(FLUID, renderFluid)
-                .build();
-    }
-
-    // region HELPERS
-    protected boolean cacheRenderFluid() {
-
-        return false;
     }
 
     protected void transferInput() {
@@ -219,6 +201,21 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
             }
         }
         outputTracker = newTracker;
+    }
+
+    @Override
+    public void neighborChanged(Block blockIn, BlockPos fromPos) {
+
+        super.neighborChanged(blockIn, fromPos);
+        // TODO: Handle caching of neighbor caps?
+    }
+    // endregion
+
+    // region GUI
+    @Override
+    public FluidStack getRenderFluid() {
+
+        return renderFluid;
     }
     // endregion
 

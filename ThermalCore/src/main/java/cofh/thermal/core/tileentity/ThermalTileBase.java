@@ -67,6 +67,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     public boolean isActive;
     public boolean wasActive;
+    protected FluidStack renderFluid = FluidStack.EMPTY;
 
     public ThermalTileBase(TileEntityType<?> tileEntityTypeIn) {
 
@@ -126,6 +127,11 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         }
     }
 
+    protected boolean cacheRenderFluid() {
+
+        return false;
+    }
+
     @Override
     public List<? extends ItemStorageCoFH> inputSlots() {
 
@@ -178,23 +184,19 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState) {
 
-        System.out.println("REPLACEMENT CALL - DROP INVENTORY");
-
-        if (!isMoving) {
-            if (!ThermalConfig.keepItems.get()) {
-                for (int i = 0; i < invSize() - augSize(); ++i) {
-                    InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
-                }
-            }
-            if (!ThermalConfig.keepAugments.get()) {
-                for (int i = invSize() - augSize(); i < invSize(); ++i) {
-                    Utils.dropItemStackIntoWorldWithRandomness(inventory.getStackInSlot(i), worldIn, pos);
-                }
+        if (!ThermalConfig.keepItems.get()) {
+            for (int i = 0; i < invSize() - augSize(); ++i) {
+                InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
             }
         }
-        super.onReplaced(state, worldIn, pos, newState, isMoving);
+        if (!ThermalConfig.keepAugments.get()) {
+            for (int i = invSize() - augSize(); i < invSize(); ++i) {
+                Utils.dropItemStackIntoWorldWithRandomness(inventory.getStackInSlot(i), worldIn, pos);
+            }
+        }
+        super.onReplaced(state, worldIn, pos, newState);
     }
 
     public ItemStack createItemStackTag(ItemStack stack) {
@@ -221,7 +223,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     public FluidStack getRenderFluid() {
 
-        return FluidStack.EMPTY;
+        return renderFluid;
     }
 
     public int getScaledDuration() {
@@ -416,6 +418,51 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     public void onControlUpdate() {
 
         TileControlPacket.sendToClient(this);
+    }
+    // endregion
+
+    // region IThermalInventory / IRecipeCatalyst
+    protected float primaryMod = 1.0F;
+    protected float secondaryMod = 1.0F;
+    protected float energyMod = 1.0F;
+    protected float experienceMod = 1.0F;
+    protected float minOutputChance = 0.0F;
+    protected float catalystUseChance = 1.0F;
+
+    @Override
+    public float getPrimaryMod() {
+
+        return primaryMod;
+    }
+
+    @Override
+    public float getSecondaryMod() {
+
+        return secondaryMod;
+    }
+
+    @Override
+    public float getEnergyMod() {
+
+        return energyMod;
+    }
+
+    @Override
+    public float getExperienceMod() {
+
+        return experienceMod;
+    }
+
+    @Override
+    public float getMinOutputChance() {
+
+        return minOutputChance;
+    }
+
+    @Override
+    public float getUseChance() {
+
+        return catalystUseChance;
     }
     // endregion
 
