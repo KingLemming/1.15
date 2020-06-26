@@ -154,7 +154,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     public IModelData getModelData() {
 
         return new ModelDataMap.Builder()
-                .withInitial(SIDES, reconfigControl().getSideConfigRaw())
+                .withInitial(SIDES, reconfigControl().getRawSideConfig())
                 // .withInitial(FLUID, renderFluid)
                 .build();
     }
@@ -299,6 +299,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.read(nbt);
 
+        reconfigControl.setFacing(Direction.byIndex(nbt.getByte(TAG_FACING)));
         reconfigControl.read(nbt.getCompound(TAG_SIDE_CONFIG));
         transferControl.read(nbt.getCompound(TAG_TRANSFER));
 
@@ -315,6 +316,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.write(nbt);
 
+        nbt.putByte(TAG_FACING, (byte) reconfigControl.getFacing().getIndex());
         nbt.put(TAG_SIDE_CONFIG, reconfigControl.write(new CompoundNBT()));
         nbt.put(TAG_TRANSFER, transferControl.write(new CompoundNBT()));
 

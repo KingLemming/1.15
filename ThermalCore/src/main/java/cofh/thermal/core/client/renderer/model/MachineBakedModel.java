@@ -6,6 +6,8 @@ import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.control.IReconfigurable.SideConfig;
 import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.model.BakedQuad;
@@ -31,12 +33,14 @@ import static net.minecraft.util.Direction.*;
 
 public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements IDynamicBakedModel {
 
-    private static final Map<Integer, BakedQuad[]> QUAD_CACHE = new Object2ObjectOpenHashMap<>();
+    private static final Int2ObjectMap<BakedQuad[]> BLOCK_QUAD_CACHE = new Int2ObjectOpenHashMap<>();
+    private static final Int2ObjectMap<BakedQuad[]> ITEM_QUAD_CACHE = new Int2ObjectOpenHashMap<>();
     private static final Map<List<Integer>, IBakedModel> MODEL_CACHE = new Object2ObjectOpenHashMap<>();
 
     public static void clearCache() {
 
-        QUAD_CACHE.clear();
+        BLOCK_QUAD_CACHE.clear();
+        ITEM_QUAD_CACHE.clear();
         MODEL_CACHE.clear();
     }
 
@@ -60,7 +64,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
             // This shouldn't happen, but playing it safe.
             return quads;
         }
-        BakedQuad[] cachedQuads = QUAD_CACHE.get(configHash);
+        BakedQuad[] cachedQuads = BLOCK_QUAD_CACHE.get(configHash);
 
         if (cachedQuads == null || cachedQuads.length < 6) {
             cachedQuads = new BakedQuad[6];
@@ -69,7 +73,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
 
         if (cachedQuads[sideIndex] == null) {
             cachedQuads[sideIndex] = new BakedQuadRetextured(quads.get(0), getTextureRaw(sideConfigRaw[sideIndex]));
-            QUAD_CACHE.put(configHash, cachedQuads);
+            BLOCK_QUAD_CACHE.put(configHash, cachedQuads);
         }
         quads.add(cachedQuads[sideIndex]);
         return quads;
@@ -146,19 +150,19 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
             int configHash = Arrays.hashCode(sideConfigRaw);
 
             IBakedModel ret = MODEL_CACHE.get(Arrays.asList(itemHash, configHash));
-
             if (ret == null) {
                 ModelUtils.WrappedBakedModelBuilder builder = new ModelUtils.WrappedBakedModelBuilder(model);
-                BakedQuad[] cachedQuads = QUAD_CACHE.get(configHash);
+                BakedQuad[] cachedQuads = ITEM_QUAD_CACHE.get(configHash);
                 if (cachedQuads == null || cachedQuads.length < 6) {
                     cachedQuads = new BakedQuad[6];
+
                     cachedQuads[0] = new BakedQuadRetextured(builder.getQuads(DOWN).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[0]));
                     cachedQuads[1] = new BakedQuadRetextured(builder.getQuads(UP).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[1]));
                     cachedQuads[2] = new BakedQuadRetextured(builder.getQuads(NORTH).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[2]));
                     cachedQuads[3] = new BakedQuadRetextured(builder.getQuads(SOUTH).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[3]));
                     cachedQuads[4] = new BakedQuadRetextured(builder.getQuads(WEST).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[4]));
                     cachedQuads[5] = new BakedQuadRetextured(builder.getQuads(EAST).get(0), MachineBakedModel.getTextureRaw(sideConfigRaw[5]));
-                    QUAD_CACHE.put(configHash, cachedQuads);
+                    ITEM_QUAD_CACHE.put(configHash, cachedQuads);
                 }
                 builder.addFaceQuad(DOWN, cachedQuads[0]);
                 builder.addFaceQuad(UP, cachedQuads[1]);

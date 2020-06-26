@@ -59,8 +59,16 @@ public class TCoreReferences {
     // endregion
 
     // region CRAFTING STATIONS
+    public static final String ID_CHARGE_BENCH = ID_THERMAL + ":charge_bench";
     public static final String ID_PROJECT_BENCH = ID_THERMAL + ":project_bench";
     public static final String ID_TINKER_BENCH = ID_THERMAL + ":tinker_bench";
+
+    @ObjectHolder(ID_CHARGE_BENCH)
+    public static final Block CHARGE_BENCH_BLOCK = null;
+    @ObjectHolder(ID_CHARGE_BENCH)
+    public static final TileEntityType<ProjectBenchTile> CHARGE_BENCH_TILE = null;
+    @ObjectHolder(ID_CHARGE_BENCH)
+    public static final ContainerType<ProjectBenchContainer> CHARGE_BENCH_CONTAINER = null;
 
     @ObjectHolder(ID_PROJECT_BENCH)
     public static final Block PROJECT_BENCH_BLOCK = null;
