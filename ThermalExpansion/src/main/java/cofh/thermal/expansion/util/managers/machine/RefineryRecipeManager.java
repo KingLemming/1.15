@@ -9,8 +9,8 @@ import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
@@ -96,7 +96,7 @@ public class RefineryRecipeManager extends AbstractManager implements IRecipeMan
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(FluidHelper.fluidHashcode(input), recipe);
         return recipe;
     }

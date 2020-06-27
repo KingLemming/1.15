@@ -16,6 +16,7 @@ public class TExpRecipeManagers {
         registerManager(FurnaceRecipeManager.instance());
         registerManager(SawmillRecipeManager.instance());
         registerManager(PulverizerRecipeManager.instance());
+        registerManager(SmelterRecipeManager.instance());
         registerManager(InsolatorRecipeManager.instance());
         registerManager(CentrifugeRecipeManager.instance());
         registerManager(PressRecipeManager.instance());

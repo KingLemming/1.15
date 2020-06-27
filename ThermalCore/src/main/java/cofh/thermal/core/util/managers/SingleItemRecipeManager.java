@@ -8,9 +8,9 @@ import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.recipes.ThermalCatalyst;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.BaseMachineCatalyst;
-import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
+import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -23,7 +23,7 @@ import java.util.Map;
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 
 /**
- * Basic recipe manager - single item key'd.
+ * Simple recipe manager - single item key'd. Fluids NOT part of key.
  */
 public abstract class SingleItemRecipeManager extends AbstractManager implements IRecipeManager {
 
@@ -90,7 +90,7 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }

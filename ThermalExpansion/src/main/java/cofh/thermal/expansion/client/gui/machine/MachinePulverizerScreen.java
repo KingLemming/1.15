@@ -30,6 +30,7 @@ public class MachinePulverizerScreen extends MachineScreenReconfigurable<Machine
         super.init();
 
         addElement(createInputSlot(this, 44, 17, tile));
+
         addElement(createInputSlot(this, 44, 53, tile));
 
         addElement(createOutputSlot(this, 107, 26, tile));

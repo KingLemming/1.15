@@ -9,6 +9,10 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static cofh.lib.util.helpers.ItemHelper.itemsEqual;
 
 public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
 
@@ -54,6 +58,8 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
                     modifiedChances.set(i, Math.max(modifiedChances.get(i) * (i == 0 ? catalyst.getPrimaryMod() * inventory.getPrimaryMod() : catalyst.getSecondaryMod() * inventory.getSecondaryMod()), Math.max(catalyst.getMinOutputChance(), inventory.getMinOutputChance())));
                 }
             }
+            System.out.println(modifiedChances);
+
             return modifiedChances;
         }
         return super.getOutputItemChances(inventory);
@@ -65,18 +71,24 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>(inputItems.size());
-        for (ItemStack input : inputItems) {
-            ret.add(input.getCount());
-        }
-        // Catalyst Logic
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
+            int[] ret = new int[inventory.inputSlots().size()];
+            for (ItemStack input : inputItems) {
+                for (int j = 0; j < ret.length; ++j) {
+                    if (itemsEqual(input, inventory.inputSlots().get(j).getItemStack())) {
+                        ret[j] = input.getCount();
+                        break;
+                    }
+                }
+            }
+            // Catalyst Logic
             IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());
             if (catalyst != null && MathHelper.RANDOM.nextFloat() < catalyst.getUseChance() * inventory.getUseChance()) {
-                ret.add(1);
+                ret[catalystSlot] = 1;
             }
+            return IntStream.of(ret).boxed().collect(Collectors.toList());
         }
-        return ret;
+        return super.getInputItemCounts(inventory);
     }
 
     @Override

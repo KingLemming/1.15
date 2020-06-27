@@ -30,6 +30,7 @@ public class MachineInsolatorScreen extends MachineScreenReconfigurable<MachineI
         super.init();
 
         addElement(createInputSlot(this, 62, 17, tile));
+
         addElement(createInputSlot(this, 62, 53, tile));
 
         addElement(createOutputSlot(this, 116, 26, tile));

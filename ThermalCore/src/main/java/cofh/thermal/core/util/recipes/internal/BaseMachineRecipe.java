@@ -8,8 +8,12 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
+import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
+import static cofh.lib.util.helpers.ItemHelper.itemsEqual;
 
 public class BaseMachineRecipe implements IMachineRecipe {
 
@@ -57,7 +61,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
         trim();
     }
 
-    private void trim() {
+    protected void trim() {
 
         ((ArrayList<ItemStack>) this.inputItems).trimToSize();
         ((ArrayList<FluidStack>) this.inputFluids).trimToSize();
@@ -116,11 +120,26 @@ public class BaseMachineRecipe implements IMachineRecipe {
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>(inputItems.size());
+        int[] ret = new int[inventory.inputSlots().size()];
         for (ItemStack input : inputItems) {
-            ret.add(input.getCount());
+            for (int j = 0; j < ret.length; ++j) {
+                if (itemsEqual(input, inventory.inputSlots().get(j).getItemStack())) {
+                    ret[j] = input.getCount();
+                    break;
+                }
+            }
         }
-        return ret;
+        return IntStream.of(ret).boxed().collect(Collectors.toList());
+
+        // Code below is SIMPLE implementation, for reference. Used for TRIVIAL cases where ingredient order is guaranteed.
+        //        if (inputItems.isEmpty()) {
+        //            return Collections.emptyList();
+        //        }
+        //        ArrayList<Integer> ret = new ArrayList<>(inputItems.size());
+        //        for (ItemStack input : inputItems) {
+        //            ret.add(input.getCount());
+        //        }
+        //        return ret;
     }
 
     @Override
@@ -129,17 +148,30 @@ public class BaseMachineRecipe implements IMachineRecipe {
         if (inputFluids.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<Integer> ret = new ArrayList<>(inputFluids.size());
+        int[] ret = new int[inventory.inputTanks().size()];
         for (FluidStack input : inputFluids) {
-            ret.add(input.getAmount());
+            for (int j = 0; j < ret.length; ++j) {
+                if (fluidsEqual(input, inventory.inputTanks().get(j).getFluidStack())) {
+                    ret[j] = input.getAmount();
+                    break;
+                }
+            }
         }
-        return ret;
+        return IntStream.of(ret).boxed().collect(Collectors.toList());
+
+        // Code below is SIMPLE implementation, for reference. Used for TRIVIAL cases where ingredient order is guaranteed.
+        //        if (inputFluids.isEmpty()) {
+        //            return Collections.emptyList();
+        //        }
+        //        ArrayList<Integer> ret = new ArrayList<>(inputFluids.size());
+        //        for (FluidStack input : inputFluids) {
+        //            ret.add(input.getAmount());
+        //        }
+        //        return ret;
     }
 
     @Override
     public int getEnergy(IThermalInventory inventory) {
-
-        System.out.println(inventory.getEnergyMod());
 
         return Math.abs(Math.round(energy * inventory.getEnergyMod()));
     }

@@ -24,6 +24,7 @@ public class MachineInsolatorContainer extends TileContainer {
         IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 62, 17));
+
         addSlot(new SlotCoFH(tileInv, 1, 62, 53));
 
         addSlot(new SlotRemoveOnly(tileInv, 2, 116, 26));

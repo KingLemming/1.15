@@ -33,6 +33,8 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
         super(DEFAULT_ENERGY, 4, 0);
     }
 
+    // region RECIPES
+    @Override
     protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
@@ -58,6 +60,7 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
+    // endregion
 
     // region IManager
     @Override

@@ -24,6 +24,7 @@ public class MachinePulverizerContainer extends TileContainer {
         IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 44, 17));
+
         addSlot(new SlotCoFH(tileInv, 1, 44, 53));
 
         addSlot(new SlotRemoveOnly(tileInv, 2, 107, 26));

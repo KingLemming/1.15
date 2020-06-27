@@ -24,6 +24,7 @@ public class MachinePressContainer extends TileContainer {
         IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 17));
+
         addSlot(new SlotCoFH(tileInv, 1, 53, 53));
 
         addSlot(new SlotRemoveOnly(tileInv, 2, 116, 35));

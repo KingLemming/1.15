@@ -81,6 +81,7 @@ public class TExpReferences {
     public static final String ID_MACHINE_FURNACE = ID_THERMAL + ":machine_furnace";
     public static final String ID_MACHINE_SAWMILL = ID_THERMAL + ":machine_sawmill";
     public static final String ID_MACHINE_PULVERIZER = ID_THERMAL + ":machine_pulverizer";
+    public static final String ID_MACHINE_SMELTER = ID_THERMAL + ":machine_smelter";
     public static final String ID_MACHINE_INSOLATOR = ID_THERMAL + ":machine_insolator";
     public static final String ID_MACHINE_CENTRIFUGE = ID_THERMAL + ":machine_centrifuge";
     public static final String ID_MACHINE_PRESS = ID_THERMAL + ":machine_press";
@@ -111,6 +112,13 @@ public class TExpReferences {
     public static final TileEntityType<MachinePulverizerTile> MACHINE_PULVERIZER_TILE = null;
     @ObjectHolder(ID_MACHINE_PULVERIZER)
     public static final ContainerType<MachinePulverizerContainer> MACHINE_PULVERIZER_CONTAINER = null;
+
+    @ObjectHolder(ID_MACHINE_SMELTER)
+    public static final Block MACHINE_SMELTER_BLOCK = null;
+    @ObjectHolder(ID_MACHINE_SMELTER)
+    public static final TileEntityType<MachineSmelterTile> MACHINE_SMELTER_TILE = null;
+    @ObjectHolder(ID_MACHINE_SMELTER)
+    public static final ContainerType<MachineSmelterContainer> MACHINE_SMELTER_CONTAINER = null;
 
     @ObjectHolder(ID_MACHINE_INSOLATOR)
     public static final Block MACHINE_INSOLATOR_BLOCK = null;

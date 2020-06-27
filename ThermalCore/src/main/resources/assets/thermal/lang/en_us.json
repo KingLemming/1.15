@@ -261,6 +261,7 @@
   "block.thermal.machine_pulverizer": "Pulverizer",
   "block.thermal.machine_refinery": "Fractionating Still",
   "block.thermal.machine_sawmill": "Sawmill",
+  "block.thermal.machine_smelter": "Induction Smelter",
 
   "info.thermal.dynamo_compression.0": "Generates Redstone Flux using combustible fluids.",
 

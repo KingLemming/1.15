@@ -1,0 +1,11 @@
+{
+  "type": "thermal:pulverizer_catalyst",
+  "ingredient": {
+    "item": "minecraft:flint"
+  },
+  "primary_mod": 1.0,
+  "secondary_mod": 1.2,
+  "energy_mod": 1.2,
+  "min_chance": 0.05,
+  "use_chance": 0.25
+}

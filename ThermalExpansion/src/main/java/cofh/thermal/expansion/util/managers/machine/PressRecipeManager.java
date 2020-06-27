@@ -8,8 +8,8 @@ import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -130,7 +130,7 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
         validInputs.add(convert(inputItems.get(0)));
 
         if (inputItems.size() > 1 && !inputItems.get(1).isEmpty()) {

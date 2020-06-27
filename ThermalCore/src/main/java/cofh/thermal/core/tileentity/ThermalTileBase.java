@@ -117,7 +117,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         System.out.println("UPDATING AUGMENT STATE");
 
-        this.energyMod = 10.0F;
+        // this.energyMod = 10.0F;
     }
 
     protected void updateActiveState(boolean curActive) {

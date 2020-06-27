@@ -30,6 +30,7 @@ public class MachinePressScreen extends MachineScreenReconfigurable<MachinePress
         super.init();
 
         addElement(createInputSlot(this, 53, 17, tile));
+
         addElement(createInputSlot(this, 53, 53, tile));
 
         addElement(createLargeOutputSlot(this, 116, 35, tile));

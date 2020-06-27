@@ -1,6 +1,7 @@
 package cofh.thermal.expansion.util.managers.machine;
 
 import cofh.lib.inventory.FalseIInventory;
+import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalCatalyst;
 import cofh.thermal.core.util.recipes.internal.CatalyzedMachineRecipe;
@@ -16,6 +17,8 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +44,8 @@ public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
         return defaultWater;
     }
 
+    // region RECIPES
+    @Override
     protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
@@ -66,6 +71,7 @@ public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
+    // endregion
 
     // region IManager
     @Override
@@ -94,6 +100,20 @@ public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
         public InternalInsolatorRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
             super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        }
+
+        @Override
+        public List<Integer> getInputFluidCounts(IThermalInventory inventory) {
+
+            // Ingredient order is guaranteed.
+            if (inputFluids.isEmpty()) {
+                return Collections.emptyList();
+            }
+            ArrayList<Integer> ret = new ArrayList<>(inputFluids.size());
+            for (FluidStack input : inputFluids) {
+                ret.add(input.getAmount());
+            }
+            return ret;
         }
 
         @Override

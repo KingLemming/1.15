@@ -43,6 +43,7 @@ public class TExpRecipeTypes {
     public static final ResourceLocation ID_RECIPE_FURNACE = new ResourceLocation(ID_THERMAL, "furnace");
     public static final ResourceLocation ID_RECIPE_SAWMILL = new ResourceLocation(ID_THERMAL, "sawmill");
     public static final ResourceLocation ID_RECIPE_PULVERIZER = new ResourceLocation(ID_THERMAL, "pulverizer");
+    public static final ResourceLocation ID_RECIPE_SMELTER = new ResourceLocation(ID_THERMAL, "smelter");
     public static final ResourceLocation ID_RECIPE_INSOLATOR = new ResourceLocation(ID_THERMAL, "insolator");
     public static final ResourceLocation ID_RECIPE_CENTRIFUGE = new ResourceLocation(ID_THERMAL, "centrifuge");
     public static final ResourceLocation ID_RECIPE_PRESS = new ResourceLocation(ID_THERMAL, "press");
@@ -53,11 +54,13 @@ public class TExpRecipeTypes {
     public static final ResourceLocation ID_RECIPE_BOTTLER = new ResourceLocation(ID_THERMAL, "bottler");
 
     public static final ResourceLocation ID_CATALYST_PULVERIZER = new ResourceLocation(ID_THERMAL, "pulverizer_catalyst");
+    public static final ResourceLocation ID_CATALYST_SMELTER = new ResourceLocation(ID_THERMAL, "smelter_catalyst");
     public static final ResourceLocation ID_CATALYST_INSOLATOR = new ResourceLocation(ID_THERMAL, "insolator_catalyst");
 
     public static final SerializableRecipeType<FurnaceRecipe> RECIPE_FURNACE = new SerializableRecipeType<>(ID_RECIPE_FURNACE);
     public static final SerializableRecipeType<SawmillRecipe> RECIPE_SAWMILL = new SerializableRecipeType<>(ID_RECIPE_SAWMILL);
     public static final SerializableRecipeType<PulverizerRecipe> RECIPE_PULVERIZER = new SerializableRecipeType<>(ID_RECIPE_PULVERIZER);
+    public static final SerializableRecipeType<SmelterRecipe> RECIPE_SMELTER = new SerializableRecipeType<>(ID_RECIPE_SMELTER);
     public static final SerializableRecipeType<InsolatorRecipe> RECIPE_INSOLATOR = new SerializableRecipeType<>(ID_RECIPE_INSOLATOR);
     public static final SerializableRecipeType<CentrifugeRecipe> RECIPE_CENTRIFUGE = new SerializableRecipeType<>(ID_RECIPE_CENTRIFUGE);
     public static final SerializableRecipeType<PressRecipe> RECIPE_PRESS = new SerializableRecipeType<>(ID_RECIPE_PRESS);
@@ -68,6 +71,7 @@ public class TExpRecipeTypes {
     public static final SerializableRecipeType<BottlerRecipe> RECIPE_BOTTLER = new SerializableRecipeType<>(ID_RECIPE_BOTTLER);
 
     public static final SerializableRecipeType<PulverizerCatalyst> CATALYST_PULVERIZER = new SerializableRecipeType<>(ID_CATALYST_PULVERIZER);
+    public static final SerializableRecipeType<PulverizerCatalyst> CATALYST_SMELTER = new SerializableRecipeType<>(ID_CATALYST_SMELTER);
     public static final SerializableRecipeType<InsolatorCatalyst> CATALYST_INSOLATOR = new SerializableRecipeType<>(ID_CATALYST_INSOLATOR);
     // endregion
 

@@ -36,13 +36,25 @@ public class ManagedItemInv extends SimpleItemInv {
 
     public void addSlot(StorageGroup group) {
 
-        addSlot(new ItemStorageCoFH(), group);
+        addSlots(group, 1);
+    }
+
+    public void addSlot(StorageGroup group, Predicate<ItemStack> validator) {
+
+        addSlots(group, 1, validator);
     }
 
     public void addSlots(StorageGroup group, int amount) {
 
         for (int i = 0; i < amount; ++i) {
             addSlot(new ItemStorageCoFH(), group);
+        }
+    }
+
+    public void addSlots(StorageGroup group, int amount, Predicate<ItemStack> validator) {
+
+        for (int i = 0; i < amount; ++i) {
+            addSlot(new ItemStorageCoFH(validator), group);
         }
     }
 
@@ -55,7 +67,7 @@ public class ManagedItemInv extends SimpleItemInv {
         switch (group) {
             case CATALYST:
                 catalystSlots.add(slot);
-                inputSlots.add(slot);
+                // DO NOT PUT A BREAK HERE
             case INPUT:
                 inputSlots.add(slot);
                 break;

@@ -9,8 +9,8 @@ import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
+import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -77,6 +77,7 @@ public class ChillerRecipeManager extends AbstractManager implements IRecipeMana
         validItems.clear();
     }
 
+    // region RECIPES
     protected IMachineRecipe getRecipe(List<? extends IItemStackAccess> inputSlots, List<? extends IFluidStackAccess> inputTanks) {
 
         if (inputSlots.isEmpty() && inputTanks.isEmpty() || inputSlots.get(0).isEmpty() && inputTanks.get(0).isEmpty()) {
@@ -135,10 +136,11 @@ public class ChillerRecipeManager extends AbstractManager implements IRecipeMana
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        BaseMachineRecipe recipe = new BaseMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(key, recipe);
         return recipe;
     }
+    // endregion
 
     // region IRecipeManager
     @Override

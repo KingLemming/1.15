@@ -57,6 +57,7 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(MACHINE_FURNACE_CONTAINER, MachineFurnaceScreen::new);
         ScreenManager.registerFactory(MACHINE_SAWMILL_CONTAINER, MachineSawmillScreen::new);
         ScreenManager.registerFactory(MACHINE_PULVERIZER_CONTAINER, MachinePulverizerScreen::new);
+        ScreenManager.registerFactory(MACHINE_SMELTER_CONTAINER, MachineSmelterScreen::new);
         ScreenManager.registerFactory(MACHINE_INSOLATOR_CONTAINER, MachineInsolatorScreen::new);
         ScreenManager.registerFactory(MACHINE_CENTRIFUGE_CONTAINER, MachineCentrifugeScreen::new);
         ScreenManager.registerFactory(MACHINE_PRESS_CONTAINER, MachinePressScreen::new);
@@ -72,21 +73,20 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(DYNAMO_NUMISMATIC_CONTAINER, DynamoNumismaticScreen::new);
         ScreenManager.registerFactory(DYNAMO_LAPIDARY_CONTAINER, DynamoLapidaryScreen::new);
 
-        // Predicate<RenderType> predicate = type -> type == RenderType.getCutout() || type == RenderType.getTranslucent();
+        RenderType cutout = RenderType.getCutout();
 
-        RenderType predicate = RenderType.getCutout();
-
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FURNACE), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_SAWMILL), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PULVERIZER), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_INSOLATOR), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CENTRIFUGE), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PRESS), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CRUCIBLE), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CHILLER), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_REFINERY), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), predicate);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), predicate);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FURNACE), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_SAWMILL), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PULVERIZER), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_SMELTER), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_INSOLATOR), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CENTRIFUGE), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_PRESS), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CRUCIBLE), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_CHILLER), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_REFINERY), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), cutout);
     }
     // endregion
 

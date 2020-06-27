@@ -21,6 +21,7 @@ public class TExpRecipeSerializers {
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_FURNACE, () -> new ThermalRecipeSerializer<>(FurnaceRecipe::new, FurnaceRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_SAWMILL, () -> new ThermalRecipeSerializer<>(SawmillRecipe::new, SawmillRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_PULVERIZER, () -> new ThermalRecipeSerializer<>(PulverizerRecipe::new, PulverizerRecipeManager.instance().getDefaultEnergy()));
+        RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_SMELTER, () -> new ThermalRecipeSerializer<>(SmelterRecipe::new, SmelterRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_INSOLATOR, () -> new InsolatorRecipeSerializer<>(InsolatorRecipe::new, InsolatorRecipeManager.instance().getDefaultEnergy(), InsolatorRecipeManager.instance().getDefaultWater()));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_CENTRIFUGE, () -> new ThermalRecipeSerializer<>(CentrifugeRecipe::new, CentrifugeRecipeManager.instance().getDefaultEnergy()));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_PRESS, () -> new ThermalRecipeSerializer<>(PressRecipe::new, PressRecipeManager.instance().getDefaultEnergy()));
@@ -31,6 +32,7 @@ public class TExpRecipeSerializers {
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_RECIPE_BOTTLER, () -> new ThermalRecipeSerializer<>(BottlerRecipe::new, BottlerRecipeManager.instance().getDefaultEnergy()));
 
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_CATALYST_PULVERIZER, () -> new ThermalCatalystSerializer<>(PulverizerCatalyst::new));
+        RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_CATALYST_SMELTER, () -> new ThermalCatalystSerializer<>(SmelterCatalyst::new));
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_CATALYST_INSOLATOR, () -> new ThermalCatalystSerializer<>(InsolatorCatalyst::new));
 
         RECIPE_SERIALIZERS.register(TExpRecipeTypes.ID_FUEL_STIRLING, () -> new ThermalFuelSerializer<>(StirlingFuel::new, StirlingFuelManager.instance().getDefaultEnergy()));

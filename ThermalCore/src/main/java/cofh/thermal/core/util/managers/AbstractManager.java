@@ -37,12 +37,12 @@ public abstract class AbstractManager implements IManager {
         return this;
     }
 
-    protected ComparableItemStack convert(ItemStack stack) {
+    protected static ComparableItemStack convert(ItemStack stack) {
 
         return new ComparableItemStack(stack);
     }
 
-    protected ComparableItemStack convertNBT(ItemStack stack) {
+    protected static ComparableItemStack convertNBT(ItemStack stack) {
 
         return new ComparableItemStackNBT(stack);
     }
