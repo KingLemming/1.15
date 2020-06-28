@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.thermal.core.common.ThermalConfig.workbenchAugments;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
 
 public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEntity {
@@ -51,7 +52,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
 
         tankInv.addTank(tank, INTERNAL);
 
-        addAugmentSlots(2);
+        addAugmentSlots(workbenchAugments);
         initHandlers();
     }
 

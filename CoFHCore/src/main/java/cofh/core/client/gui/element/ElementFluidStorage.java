@@ -38,9 +38,9 @@ public class ElementFluidStorage extends ElementResourceStorage {
 
         if (fluidTexture != null) {
             RenderHelper.setBlockTextureSheet();
-            RenderHelper.drawTiledTexture(posX + 1, posY + 1 + (invert ? 0 : resourceHeight - amount), fluidTexture, resourceWidth, amount);
+            RenderHelper.drawTiledTexture(posX() + 1, posY() + 1 + (invert ? 0 : resourceHeight - amount), fluidTexture, resourceWidth, amount);
         } else {
-            RenderHelper.drawFluid(posX + 1, posY + 1 + (invert ? 0 : resourceHeight - amount), tank.getFluidStack(), resourceWidth, amount);
+            RenderHelper.drawFluid(posX() + 1, posY() + 1 + (invert ? 0 : resourceHeight - amount), tank.getFluidStack(), resourceWidth, amount);
         }
     }
 

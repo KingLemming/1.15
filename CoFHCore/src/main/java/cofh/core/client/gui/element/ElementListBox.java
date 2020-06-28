@@ -101,12 +101,12 @@ public class ElementListBox extends ElementBase {
 
     public int getContentTop() {
 
-        return posY + _marginTop;
+        return posY() + _marginTop;
     }
 
     public int getContentLeft() {
 
-        return posX + _marginLeft;
+        return posX() + _marginLeft;
     }
 
     public final int getContentBottom() {
@@ -152,8 +152,8 @@ public class ElementListBox extends ElementBase {
     @Override
     public void drawBackground(int mouseX, int mouseY) {
 
-        drawColoredModalRect(posX - 1, posY - 1, posX + width + 1, posY + height + 1, borderColor);
-        drawColoredModalRect(posX, posY, posX + width, posY + height, backgroundColor);
+        drawColoredModalRect(posX() - 1, posY() - 1, posX() + width + 1, posY() + height + 1, borderColor);
+        drawColoredModalRect(posX(), posY(), posX() + width, posY() + height, backgroundColor);
     }
 
     @Override

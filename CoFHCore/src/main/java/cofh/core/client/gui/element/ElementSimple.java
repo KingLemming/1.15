@@ -46,7 +46,7 @@ public class ElementSimple extends ElementBase {
     public void drawBackground(int mouseX, int mouseY) {
 
         RenderHelper.bindTexture(texture);
-        drawTexturedModalRect(posX, posY, texU, texV, width, height);
+        drawTexturedModalRect(posX(), posY(), texU, texV, width, height);
     }
 
     @Override

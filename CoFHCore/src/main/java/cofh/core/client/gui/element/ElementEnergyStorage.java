@@ -14,7 +14,7 @@ public class ElementEnergyStorage extends ElementResourceStorage {
 
         int resourceHeight = height - 2;
         int amount = getScaled(resourceHeight);
-        drawTexturedModalRect(posX, posY + 1 + resourceHeight - amount, width, 1 + resourceHeight - amount, width, amount);
+        drawTexturedModalRect(posX(), posY() + 1 + resourceHeight - amount, width, 1 + resourceHeight - amount, width, amount);
     }
 
 }

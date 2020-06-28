@@ -28,7 +28,7 @@ public class ElementAugmentSlots extends ElementBase {
 
         for (int i = 0; i < augmentSlots.size(); ++i) {
             int slotIndex = i;
-            this.augmentSlots.get(i).setEnabled(() -> slotIndex < this.numSlots.getAsInt());
+            this.augmentSlots.get(i).setEnabled(() -> slotIndex < this.numSlots.getAsInt() && this.visible());
         }
         for (int i = 0; i < MAX_AUGMENTS; ++i) {
             int slotIndex = i;
@@ -63,80 +63,83 @@ public class ElementAugmentSlots extends ElementBase {
 
         int activeSlots = MathHelper.clamp(numSlots.getAsInt(), 0, MAX_AUGMENTS);
 
+        int absX = posX() + offsetX();
+        int absY = posY() + offsetY();
+
         switch (activeSlots) {
             case 1:
-                augmentSlots.get(0).xPos = posX + SLOT_SIZE;
-                augmentSlots.get(0).yPos = posY + SLOT_SIZE;
+                augmentSlots.get(0).xPos = absX + SLOT_SIZE;
+                augmentSlots.get(0).yPos = absY + SLOT_SIZE;
                 break;
             case 2:
                 for (int i = 0; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i % 2);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE;
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i % 2);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE;
                 }
                 break;
             case 3:
                 for (int i = 0; i < 2; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i % 2);
-                    augmentSlots.get(i).yPos = posY + 9;
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i % 2);
+                    augmentSlots.get(i).yPos = absY + 9;
                 }
-                augmentSlots.get(2).xPos = posX + SLOT_SIZE;
-                augmentSlots.get(2).yPos = posY + 9 + SLOT_SIZE;
+                augmentSlots.get(2).xPos = absX + SLOT_SIZE;
+                augmentSlots.get(2).yPos = absY + 9 + SLOT_SIZE;
                 break;
             case 4:
                 for (int i = 0; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i % 2);
-                    augmentSlots.get(i).yPos = posY + 9 + SLOT_SIZE * (i / 2);
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i % 2);
+                    augmentSlots.get(i).yPos = absY + 9 + SLOT_SIZE * (i / 2);
                 }
                 break;
             case 5:
                 for (int i = 0; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * (i % 3) + 9 * (i / 3);
-                    augmentSlots.get(i).yPos = posY + 9 + SLOT_SIZE * (i / 3);
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * (i % 3) + 9 * (i / 3);
+                    augmentSlots.get(i).yPos = absY + 9 + SLOT_SIZE * (i / 3);
                 }
                 break;
             case 6:
                 for (int i = 0; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * (i % 3);
-                    augmentSlots.get(i).yPos = posY + 9 + SLOT_SIZE * (i / 3);
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * (i % 3);
+                    augmentSlots.get(i).yPos = absY + 9 + SLOT_SIZE * (i / 3);
                 }
                 break;
             case 7:
                 for (int i = 0; i < 2; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i);
-                    augmentSlots.get(i).yPos = posY;
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i);
+                    augmentSlots.get(i).yPos = absY;
                 }
                 for (int i = 2; i < 5; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * (i - 2);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE;
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * (i - 2);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE;
                 }
                 for (int i = 5; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i - 5);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE * 2;
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i - 5);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE * 2;
                 }
                 break;
             case 8:
                 for (int i = 0; i < 3; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * i;
-                    augmentSlots.get(i).yPos = posY;
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * i;
+                    augmentSlots.get(i).yPos = absY;
                 }
                 for (int i = 3; i < 5; ++i) {
-                    augmentSlots.get(i).xPos = posX + 9 + SLOT_SIZE * (i - 3);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE;
+                    augmentSlots.get(i).xPos = absX + 9 + SLOT_SIZE * (i - 3);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE;
                 }
                 for (int i = 5; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * (i - 5);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE * 2;
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * (i - 5);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE * 2;
                 }
                 break;
             case 9:
                 for (int i = 0; i < activeSlots; ++i) {
-                    augmentSlots.get(i).xPos = posX + SLOT_SIZE * (i % 3);
-                    augmentSlots.get(i).yPos = posY + SLOT_SIZE * (i / 3);
+                    augmentSlots.get(i).xPos = absX + SLOT_SIZE * (i % 3);
+                    augmentSlots.get(i).yPos = absY + SLOT_SIZE * (i / 3);
                 }
             default:
         }
         for (int i = 0; i < activeSlots; ++i) {
-            slots.get(i).setPosition(augmentSlots.get(i).xPos - 1, augmentSlots.get(i).yPos - 1);
+            slots.get(i).setPosition(augmentSlots.get(i).xPos - 1 - offsetX(), augmentSlots.get(i).yPos - 1 - offsetY());
         }
     }
 

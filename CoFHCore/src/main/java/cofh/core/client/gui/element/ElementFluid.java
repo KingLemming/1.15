@@ -30,7 +30,7 @@ public class ElementFluid extends ElementBase {
     @Override
     public void drawBackground(int mouseX, int mouseY) {
 
-        RenderHelper.drawFluid(posX, posY, fluid, width, height);
+        RenderHelper.drawFluid(posX(), posY(), fluid, width, height);
     }
 
     @Override

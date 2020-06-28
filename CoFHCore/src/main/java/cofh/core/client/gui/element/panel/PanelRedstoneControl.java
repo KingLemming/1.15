@@ -129,7 +129,7 @@ public class PanelRedstoneControl extends PanelBase {
             return;
         }
         int x = mouseX - this.posX();
-        int y = mouseY - this.posY;
+        int y = mouseY - this.posY();
 
         if (28 <= x && x < 44 && 20 <= y && y < 36) {
             tooltipList.add(new TranslationTextComponent("info.cofh.ignored"));
@@ -147,7 +147,7 @@ public class PanelRedstoneControl extends PanelBase {
             return false;
         }
         double x = mouseX - this.posX();
-        double y = mouseY - this.posY;
+        double y = mouseY - this.posY();
 
         if (x < 24 || x >= 88 || y < 16 || y >= 40) {
             return false;

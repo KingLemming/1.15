@@ -85,12 +85,12 @@ public class ElementButton extends ElementButtonBase {
         RenderHelper.bindTexture(texture);
         if (enabled()) {
             if (intersectsWith(mouseX, mouseY)) {
-                drawTexturedModalRect(posX, posY, hoverX, hoverY, width, height);
+                drawTexturedModalRect(posX(), posY(), hoverX, hoverY, width, height);
             } else {
-                drawTexturedModalRect(posX, posY, sheetX, sheetY, width, height);
+                drawTexturedModalRect(posX(), posY(), sheetX, sheetY, width, height);
             }
         } else {
-            drawTexturedModalRect(posX, posY, disabledX, disabledY, width, height);
+            drawTexturedModalRect(posX(), posY(), disabledX, disabledY, width, height);
         }
     }
 

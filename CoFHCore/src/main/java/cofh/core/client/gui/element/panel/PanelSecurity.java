@@ -143,7 +143,7 @@ public class PanelSecurity extends PanelBase {
             return;
         }
         int x = mouseX - this.posX();
-        int y = mouseY - this.posY;
+        int y = mouseY - this.posY();
 
         if (38 <= x && x < 54 && 22 <= y && y < 38) {
             tooltipList.add(new TranslationTextComponent("info.cofh.access_public"));
@@ -166,7 +166,7 @@ public class PanelSecurity extends PanelBase {
             return false;
         }
         double x = mouseX - this.posX();
-        double y = mouseY - this.posY;
+        double y = mouseY - this.posY();
 
         if (x < 34 || x >= 78 || y < 18 || y >= 62) {
             return false;

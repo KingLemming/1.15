@@ -30,6 +30,11 @@ public abstract class ContainerCoFH extends Container {
     }
 
     // region HELPERS
+    public int getNumAugmentSlots() {
+
+        return augmentSlots.size();
+    }
+
     public List<SlotCoFH> getAugmentSlots() {
 
         return augmentSlots;

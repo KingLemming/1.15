@@ -66,8 +66,8 @@ public abstract class ElementSlider extends ElementBase {
     @Override
     public void drawBackground(int mouseX, int mouseY) {
 
-        drawColoredModalRect(posX - 1, posY - 1, posX + width + 1, posY + height + 1, borderColor);
-        drawColoredModalRect(posX, posY, posX + width, posY + height, backgroundColor);
+        drawColoredModalRect(posX() - 1, posY() - 1, posX() + width + 1, posY() + height + 1, borderColor);
+        drawColoredModalRect(posX(), posY(), posX() + width, posY() + height, backgroundColor);
         RenderHelper.resetColor();
     }
 
@@ -95,8 +95,8 @@ public abstract class ElementSlider extends ElementBase {
     @Override
     public void drawForeground(int mouseX, int mouseY) {
 
-        int sliderX = posX + getSliderX();
-        int sliderY = posY + getSliderY();
+        int sliderX = posX() + getSliderX();
+        int sliderY = posY() + getSliderY();
 
         drawSlider(mouseX, mouseY, sliderX, sliderY);
         RenderHelper.resetColor();
@@ -138,7 +138,7 @@ public abstract class ElementSlider extends ElementBase {
     public void update(int mouseX, int mouseY) {
 
         if (_isDragging) {
-            dragSlider(mouseX - posX, mouseY - posY);
+            dragSlider(mouseX - posX(), mouseY - posY());
         }
     }
 

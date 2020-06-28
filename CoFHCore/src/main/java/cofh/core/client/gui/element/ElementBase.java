@@ -7,6 +7,7 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;
+import java.util.function.IntSupplier;
 
 import static cofh.lib.util.constants.Constants.FALSE;
 import static cofh.lib.util.constants.Constants.TRUE;
@@ -22,8 +23,11 @@ public abstract class ElementBase {
     protected ResourceLocation texture;
     protected String name = "";
 
-    protected int posX;
-    protected int posY;
+    private int posX;
+    private int posY;
+
+    private IntSupplier offsetX = () -> 0;
+    private IntSupplier offsetY = () -> 0;
 
     protected int width;
     protected int height;
@@ -105,6 +109,13 @@ public abstract class ElementBase {
         return this;
     }
 
+    public ElementBase setOffsets(IntSupplier offsetX, IntSupplier offsetY) {
+
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        return this;
+    }
+
     public final ElementBase setSize(int width, int height) {
 
         this.width = width;
@@ -144,17 +155,27 @@ public abstract class ElementBase {
     /**
      * This method is relative to the frame of reference - GUI or Panel.
      */
-    public int posX() {
+    protected int posX() {
 
         return posX;
+    }
+
+    protected int offsetX() {
+
+        return offsetX.getAsInt();
     }
 
     /**
      * This method is relative to the frame of reference - GUI or Panel.
      */
-    public int posY() {
+    protected int posY() {
 
         return posY;
+    }
+
+    protected int offsetY() {
+
+        return offsetY.getAsInt();
     }
 
     public int width() {

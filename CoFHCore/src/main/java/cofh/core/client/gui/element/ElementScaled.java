@@ -41,24 +41,24 @@ public class ElementScaled extends ElementBase {
         int quantity = quantitySup.getAsInt();
 
         if (drawBackground) {
-            drawTexturedModalRect(posX, posY, 0, 0, width, height);
+            drawTexturedModalRect(posX(), posY(), 0, 0, width, height);
         }
         switch (direction) {
             case TOP:
                 // vertical top -> bottom
-                drawTexturedModalRect(posX, posY, width, 0, width, quantity);
+                drawTexturedModalRect(posX(), posY(), width, 0, width, quantity);
                 return;
             case BOTTOM:
                 // vertical bottom -> top
-                drawTexturedModalRect(posX, posY + height - quantity, width, height - quantity, width, quantity);
+                drawTexturedModalRect(posX(), posY() + height - quantity, width, height - quantity, width, quantity);
                 return;
             case LEFT:
                 // horizontal left -> right
-                drawTexturedModalRect(posX, posY, width, 0, quantity, height);
+                drawTexturedModalRect(posX(), posY(), width, 0, quantity, height);
                 return;
             case RIGHT:
                 // horizontal right -> left
-                drawTexturedModalRect(posX + width - quantity, posY, width + width - quantity, 0, quantity, height);
+                drawTexturedModalRect(posX() + width - quantity, posY(), width + width - quantity, 0, quantity, height);
         }
     }
 

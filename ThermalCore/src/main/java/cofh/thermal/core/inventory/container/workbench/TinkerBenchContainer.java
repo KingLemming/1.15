@@ -85,7 +85,7 @@ public class TinkerBenchContainer extends TileContainer {
     private void writeAugmentsToItem(ItemStack stack) {
 
         if (!stack.isEmpty()) {
-            AugmentHelper.writeAugmentsToItem(stack, itemInventory.getStacks());
+            AugmentHelper.setAugments(stack, itemInventory.getStacks());
             tile.markDirty();
         }
     }
@@ -124,9 +124,12 @@ public class TinkerBenchContainer extends TileContainer {
     }
 
     @Override
-    protected boolean supportsShiftClick(PlayerEntity player, int index) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int index) {
 
-        return index > 0; // Prevent right clicking out of tinker slot since Mojang seems to short-circuit some logic they should not be.
+        if (index == tinkerSlot.getSlotIndex()) {
+            writeAugmentsToItem(tinkerSlot.getStack());
+        }
+        return super.transferStackInSlot(player, index);
     }
 
 }

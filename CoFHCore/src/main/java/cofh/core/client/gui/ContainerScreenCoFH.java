@@ -301,6 +301,12 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
 
     // region CALLBACKS
     @Override
+    protected boolean hasClickedOutside(double mouseX, double mouseY, int guiLeftIn, int guiTopIn, int mouseButton) {
+
+        return super.hasClickedOutside(mouseX, mouseY, guiLeftIn, guiTopIn, mouseButton) && getPanelAtPosition(mouseX - guiLeftIn, mouseY - guiTopIn) == null;
+    }
+
+    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
         mouseX -= guiLeft;

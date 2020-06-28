@@ -122,14 +122,14 @@ public abstract class ElementResourceStorage extends ElementBase {
     protected void drawStorage() {
 
         RenderHelper.bindTexture(texture);
-        drawTexturedModalRect(posX, posY, 0, 0, width, height);
+        drawTexturedModalRect(posX(), posY(), 0, 0, width, height);
     }
 
     protected void drawUnderlayTexture() {
 
         if (drawUnderlay.getAsBoolean() && underlayTexture != null) {
             RenderHelper.bindTexture(underlayTexture);
-            drawTexturedModalRect(posX, posY, 0, 0, width, height);
+            drawTexturedModalRect(posX(), posY(), 0, 0, width, height);
         }
     }
 
@@ -139,7 +139,7 @@ public abstract class ElementResourceStorage extends ElementBase {
 
         if (drawOverlay.getAsBoolean() && overlayTexture != null) {
             RenderHelper.bindTexture(overlayTexture);
-            drawTexturedModalRect(posX, posY, 0, 0, width, height);
+            drawTexturedModalRect(posX(), posY(), 0, 0, width, height);
         }
     }
 

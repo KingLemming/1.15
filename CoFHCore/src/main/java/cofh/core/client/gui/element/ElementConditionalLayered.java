@@ -45,7 +45,7 @@ public class ElementConditionalLayered extends ElementBase {
 
         for (Pair<TextureAtlasSprite, BooleanSupplier> entry : conditionalTextures) {
             if (entry.getRight().getAsBoolean()) {
-                gui.drawIcon(entry.getLeft(), posX, posY);
+                gui.drawIcon(entry.getLeft(), posX(), posY());
             }
         }
     }

@@ -31,15 +31,13 @@ public interface IAugmentableItem {
     //Check to see if augment *can* be installed. This is the validator check for the augment slot in GUI.
 
     /**
-     * Attempt to install the augment. This may fail for any number of reasons; item has final say.
+     * Writes the augments TO the ItemStack's NBT and performs any extra logic which may be required.
      *
      * @param augmentable Stack representing the Augmentable item.
-     * @param augment     Stack representing the Augment item to be added.
-     * @return TRUE if the augment was successfully installed; FALSE if not.
      */
-    default boolean installAugment(ItemStack augmentable, ItemStack augment) {
+    default void setAugments(ItemStack augmentable, List<ItemStack> augments) {
 
-        return validAugment(augmentable, augment);
+        AugmentHelper.writeAugmentsToItem(augmentable, augments);
     }
 
 }

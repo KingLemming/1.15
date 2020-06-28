@@ -31,9 +31,6 @@ public abstract class PanelBase extends ElementBase {
     protected int textColor = 0x000000;
     protected int backgroundColor = 0xffffff;
 
-    protected int offsetX = 0;
-    protected int offsetY = 0;
-
     protected int shiftX = 0;
     protected int shiftY = 0;
 
@@ -62,30 +59,7 @@ public abstract class PanelBase extends ElementBase {
         texture = side == LEFT ? DEFAULT_TEXTURE_LEFT : DEFAULT_TEXTURE_RIGHT;
     }
 
-    public PanelBase setOffsets(int offsetX, int offsetY) {
-
-        posX -= this.offsetX;
-        posY -= this.offsetY;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-        posX += this.offsetX;
-        posY += this.offsetY;
-
-        return this;
-    }
-
-    @Override
-    public PanelBase setPosition(int posX, int posY) {
-
-        this.posX = posX + offsetX;
-        this.posY = posY + offsetY;
-        return this;
-    }
-
     public boolean intersectsWith(double mouseX, double mouseY, int shiftX, int shiftY) {
-
-        shiftX += offsetX;
-        shiftY += offsetY;
 
         if (side == LEFT) {
             return mouseX <= shiftX && mouseX >= shiftX - width && mouseY >= shiftY && mouseY <= shiftY + height;
@@ -125,10 +99,10 @@ public abstract class PanelBase extends ElementBase {
     public void drawBackground(int mouseX, int mouseY) {
 
         mouseX -= this.posX();
-        mouseY -= this.posY;
+        mouseY -= this.posY();
 
         RenderSystem.pushMatrix();
-        RenderSystem.translatef(this.posX(), this.posY, 0.0F);
+        RenderSystem.translatef(this.posX(), this.posY(), 0.0F);
 
         drawBackground();
 
@@ -146,10 +120,10 @@ public abstract class PanelBase extends ElementBase {
     public void drawForeground(int mouseX, int mouseY) {
 
         mouseX -= this.posX();
-        mouseY -= this.posY;
+        mouseY -= this.posY();
 
         RenderSystem.pushMatrix();
-        RenderSystem.translatef(this.posX(), this.posY, 0.0F);
+        RenderSystem.translatef(this.posX(), this.posY(), 0.0F);
 
         drawForeground();
 
@@ -178,8 +152,8 @@ public abstract class PanelBase extends ElementBase {
 
         updateElements();
 
-        shiftX = x + offsetX;
-        shiftY = y + offsetY;
+        shiftX = x;
+        shiftY = y;
     }
 
     public void updateSize() {
@@ -249,13 +223,13 @@ public abstract class PanelBase extends ElementBase {
 
     public final Rectangle2d getBoundsOnScreen() {
 
-        return new Rectangle2d(posX() + guiLeft(), posY + guiTop(), visible() ? width : 0, visible() ? height : 0);
+        return new Rectangle2d(posX() + guiLeft(), posY() + guiTop(), visible() ? width : 0, visible() ? height : 0);
     }
 
     @SuppressWarnings("unchecked")
     protected <T> T addElement(ElementBase element) {
 
-        elements.add(element.setVisible(() -> fullyOpen));
+        elements.add(element.setVisible(() -> fullyOpen).setOffsets(this::posX, () -> this.posY()));
         return (T) element;
     }
 
@@ -263,17 +237,12 @@ public abstract class PanelBase extends ElementBase {
     @Override
     public int posX() {
 
-        return side == LEFT ? posX - width : posX;
+        return side == LEFT ? super.posX() - width : super.posX();
     }
 
     /**
      * Corrects for shadowing differences in panels to ensure that they always look nice - used in font rendering, typically.
      */
-    protected int posXOffset() {
-
-        return posX() + sideOffset();
-    }
-
     protected int sideOffset() {
 
         return (side == LEFT ? 4 : 2);
@@ -301,7 +270,7 @@ public abstract class PanelBase extends ElementBase {
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
         mouseX -= this.posX();
-        mouseY -= this.posY;
+        mouseY -= this.posY();
 
         boolean shouldStayOpen = false;
 
@@ -322,7 +291,7 @@ public abstract class PanelBase extends ElementBase {
     public void mouseReleased(double mouseX, double mouseY) {
 
         mouseX -= this.posX();
-        mouseY -= this.posY;
+        mouseY -= this.posY();
 
         for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
@@ -337,7 +306,7 @@ public abstract class PanelBase extends ElementBase {
     public boolean mouseWheel(double mouseX, double mouseY, double movement) {
 
         mouseX -= this.posX();
-        mouseY -= this.posY;
+        mouseY -= this.posY();
 
         if (movement != 0) {
             for (int i = elements.size(); i-- > 0; ) {

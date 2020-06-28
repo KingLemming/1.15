@@ -98,9 +98,6 @@ public class InventoryHelper {
         int i = reverseDirection ? endIndex - 1 : startIndex;
         int iterOrder = reverseDirection ? -1 : 1;
 
-        //        Slot slot;
-        //        ItemStack prevStack;
-
         if (stack.isStackable()) {
             while (!stack.isEmpty()) {
                 if (reverseDirection) {

@@ -29,32 +29,32 @@ public class ElementScaledFluid extends ElementScaled {
         FluidStack fluid = fluidSup.get();
 
         if (drawBackground) {
-            drawTexturedModalRect(posX, posY, 0, 0, width, height);
+            drawTexturedModalRect(posX(), posY(), 0, 0, width, height);
         }
         switch (direction) {
             case TOP:
                 // vertical top -> bottom
-                RenderHelper.drawFluid(posX, posY, fluid, width, quantity);
+                RenderHelper.drawFluid(posX(), posY(), fluid, width, quantity);
                 RenderHelper.bindTexture(texture);
-                drawTexturedModalRect(posX, posY, width, 0, width, quantity);
+                drawTexturedModalRect(posX(), posY(), width, 0, width, quantity);
                 return;
             case BOTTOM:
                 // vertical bottom -> top
-                RenderHelper.drawFluid(posX, posY + height - quantity, fluid, width, quantity);
+                RenderHelper.drawFluid(posX(), posY() + height - quantity, fluid, width, quantity);
                 RenderHelper.bindTexture(texture);
-                drawTexturedModalRect(posX, posY + height - quantity, width, height - quantity, width, quantity);
+                drawTexturedModalRect(posX(), posY() + height - quantity, width, height - quantity, width, quantity);
                 return;
             case LEFT:
                 // horizontal left -> right
-                RenderHelper.drawFluid(posX, posY, fluid, quantity, height);
+                RenderHelper.drawFluid(posX(), posY(), fluid, quantity, height);
                 RenderHelper.bindTexture(texture);
-                drawTexturedModalRect(posX, posY, width, 0, quantity, height);
+                drawTexturedModalRect(posX(), posY(), width, 0, quantity, height);
                 return;
             case RIGHT:
                 // horizontal right -> left
-                RenderHelper.drawFluid(posX + width - quantity, posY, fluid, quantity, height);
+                RenderHelper.drawFluid(posX() + width - quantity, posY(), fluid, quantity, height);
                 RenderHelper.bindTexture(texture);
-                drawTexturedModalRect(posX + width - quantity, posY, width + width - quantity, 0, quantity, height);
+                drawTexturedModalRect(posX() + width - quantity, posY(), width + width - quantity, 0, quantity, height);
         }
     }
 

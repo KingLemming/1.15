@@ -32,7 +32,7 @@ public class ThermalScreenBase<T extends ContainerCoFH> extends ContainerScreenC
         addPanel(new PanelSecurity(this, tile, SecurityHelper.getID(player)));
 
         if (container.getAugmentSlots().size() > 0) {
-            addPanel(new PanelAugmentation(this, container.getAugmentSlots()));
+            addPanel(new PanelAugmentation(this, container::getNumAugmentSlots, container.getAugmentSlots()));
         }
         addPanel(new PanelRedstoneControl(this, tile));
     }

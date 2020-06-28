@@ -73,7 +73,7 @@ public abstract class PanelScrolledText extends PanelBase {
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
         double shiftedMouseX = mouseX - this.posX();
-        double shiftedMouseY = mouseY - this.posY;
+        double shiftedMouseY = mouseY - this.posY();
 
         if (!fullyOpen) {
             return false;

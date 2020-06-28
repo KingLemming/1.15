@@ -139,7 +139,7 @@ public class PanelConfiguration extends PanelBase {
             return;
         }
         int x = mouseX - this.posX();
-        int y = mouseY - this.posY;
+        int y = mouseY - this.posY();
 
         if (8 <= x && x < 24 && 34 <= y && y < 50) {
             if (myTransfer.hasTransferIn()) {
@@ -163,7 +163,7 @@ public class PanelConfiguration extends PanelBase {
             return false;
         }
         double x = mouseX - this.posX();
-        double y = mouseY - this.posY;
+        double y = mouseY - this.posY();
 
         return myTransfer != null ? clickTransfer(x, y, mouseButton) : clickNoTransfer(x, y, mouseButton);
     }
