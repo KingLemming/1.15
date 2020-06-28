@@ -1,6 +1,6 @@
 package cofh.lib.inventory;
 
-import cofh.lib.tileentity.ITileCallback;
+import cofh.lib.util.IInventoryCallback;
 import cofh.lib.util.StorageGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -24,12 +24,12 @@ public class ManagedItemInv extends SimpleItemInv {
     protected IItemHandler internalHandler;
     protected IItemHandler allHandler;
 
-    public ManagedItemInv(ITileCallback tile) {
+    public ManagedItemInv(IInventoryCallback tile) {
 
         super(tile);
     }
 
-    public ManagedItemInv(ITileCallback tile, String tag) {
+    public ManagedItemInv(IInventoryCallback tile, String tag) {
 
         super(tile, tag);
     }

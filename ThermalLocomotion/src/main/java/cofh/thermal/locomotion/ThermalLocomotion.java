@@ -1,6 +1,7 @@
 package cofh.thermal.locomotion;
 
 import cofh.thermal.core.client.renderer.entity.UnderwaterMinecartRenderer;
+import cofh.thermal.locomotion.data.TLocItemModels;
 import cofh.thermal.locomotion.data.TLocLootTables;
 import cofh.thermal.locomotion.data.TLocRecipes;
 import cofh.thermal.locomotion.data.TLocTags;
@@ -88,6 +89,7 @@ public class ThermalLocomotion {
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
+        generator.addProvider(new TLocItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

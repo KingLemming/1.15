@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ENCHANTMENTS;
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public abstract class AbstractMinecartEntityCoFH extends AbstractMinecartEntity {
 
@@ -46,7 +47,7 @@ public abstract class AbstractMinecartEntityCoFH extends AbstractMinecartEntity 
 
         super.readAdditional(compound);
 
-        enchantments = compound.getList(TAG_ENCHANTMENTS, 10);
+        enchantments = compound.getList(TAG_ENCHANTMENTS, TAG_COMPOUND);
     }
 
     @Override

@@ -221,6 +221,9 @@ public class GuiHelper {
     // endregion
 
     // region CONSTANTS
+    public static final int SLOT_SIZE = 18;
+    public static final int LARGE_SLOT_SIZE = 26;
+
     public static final int DURATION = 16;
     public static final int PROGRESS = 24;
     public static final int SPEED = 16;

@@ -60,9 +60,9 @@ public class TCulItems {
 
         ItemGroup group = THERMAL_ITEMS;
 
-        //        ITEMS.register("food_coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
-        //        ITEMS.register("food_dough", () -> new ItemCoFH(new Item.Properties().group(group).food(TEMP)));
-        //        ITEMS.register("food_flour", () -> new ItemCoFH(new Item.Properties().group(group)));
+        //        ITEMS.register("coffee", () -> new ItemCoFH(new Item.Properties().group(group).food(COFFEE)));
+        ITEMS.register("dough", () -> new ItemCoFH(new Item.Properties().group(group).food(DOUGH)));
+        ITEMS.register("flour", () -> new ItemCoFH(new Item.Properties().group(group)));
     }
 
     private static void registerTools() {

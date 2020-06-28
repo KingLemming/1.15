@@ -47,7 +47,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
     protected FluidStack renderFluid = FluidStack.EMPTY;
-    protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
+    protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
 
     protected int inputTracker;
     protected int outputTracker;
@@ -145,7 +145,9 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     protected void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
-            chargeSlot.getItemStack().getCapability(CapabilityEnergy.ENERGY, null).ifPresent(p -> energyStorage.receiveEnergy(p.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
+            chargeSlot.getItemStack()
+                    .getCapability(CapabilityEnergy.ENERGY, null)
+                    .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
         }
     }
 

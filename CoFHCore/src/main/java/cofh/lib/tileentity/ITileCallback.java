@@ -1,5 +1,6 @@
 package cofh.lib.tileentity;
 
+import cofh.lib.util.IInventoryCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -8,7 +9,7 @@ import net.minecraft.world.World;
 /**
  * Mostly a sneaky way to reduce some stupid but useful boilerplate. :)
  */
-public interface ITileCallback {
+public interface ITileCallback extends IInventoryCallback {
 
     Block block();
 
@@ -51,10 +52,6 @@ public interface ITileCallback {
             return;
         }
         world().updateComparatorOutputLevel(pos(), block());
-    }
-
-    default void onInventoryChange(int slot) {
-
     }
 
     default void onControlUpdate() {

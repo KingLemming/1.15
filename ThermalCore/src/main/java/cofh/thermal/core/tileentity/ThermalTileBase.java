@@ -115,9 +115,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void updateAugmentState() {
 
-        System.out.println("UPDATING AUGMENT STATE");
-
-        // this.energyMod = 10.0F;
     }
 
     protected void updateActiveState(boolean curActive) {
@@ -179,8 +176,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     public void onPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 
         super.onPlacedBy(worldIn, pos, state, placer, stack);
-
-        System.out.println("BLOCK PLACED - TIME TO INSTALL AUGMENTS");
 
         updateAugmentState();
         onControlUpdate();
@@ -368,6 +363,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         inventory.read(nbt);
 
         if (nbt.contains(TAG_AUGMENTS)) {
+            System.out.println("Yeah this worked");
             inventory.readSlotsUnordered(nbt.getList(TAG_AUGMENTS, TAG_COMPOUND), invSize() - augSize());
         }
         updateAugmentState();
@@ -409,8 +405,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // region ITileCallback
     @Override
     public void onInventoryChange(int slot) {
-
-        System.out.println("INVENTORY CHANGE");
 
         /* Implicit requirement here that augments always come LAST in slot order.
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/

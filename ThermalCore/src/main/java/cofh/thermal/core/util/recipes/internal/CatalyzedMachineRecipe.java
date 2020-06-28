@@ -58,8 +58,6 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
                     modifiedChances.set(i, Math.max(modifiedChances.get(i) * (i == 0 ? catalyst.getPrimaryMod() * inventory.getPrimaryMod() : catalyst.getSecondaryMod() * inventory.getSecondaryMod()), Math.max(catalyst.getMinOutputChance(), inventory.getMinOutputChance())));
                 }
             }
-            System.out.println(modifiedChances);
-
             return modifiedChances;
         }
         return super.getOutputItemChances(inventory);

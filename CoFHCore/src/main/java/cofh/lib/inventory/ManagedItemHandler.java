@@ -1,6 +1,6 @@
 package cofh.lib.inventory;
 
-import cofh.lib.tileentity.ITileCallback;
+import cofh.lib.util.IInventoryCallback;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -12,7 +12,7 @@ public class ManagedItemHandler extends SimpleItemHandler {
     protected List<ItemStorageCoFH> inputSlots;
     protected List<ItemStorageCoFH> outputSlots;
 
-    public ManagedItemHandler(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> inputSlots, @Nonnull List<ItemStorageCoFH> outputSlots) {
+    public ManagedItemHandler(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> inputSlots, @Nonnull List<ItemStorageCoFH> outputSlots) {
 
         super(tile);
 

@@ -6,12 +6,11 @@ import cofh.lib.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Rarity;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 
+import java.util.function.IntSupplier;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
@@ -51,6 +50,29 @@ public class RegistrationHelper {
     public static void registerBlockOnly(String name, Supplier<Block> sup) {
 
         BLOCKS.register(name, sup);
+    }
+    // endregion
+
+    // AUGMENTABLE BLOCKS
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment) {
+
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON);
+    }
+
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, Rarity rarity) {
+
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, rarity);
+    }
+
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group) {
+
+        registerAugBlock(name, sup, numSlots, validAugment, group, Rarity.COMMON);
+    }
+
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, Rarity rarity) {
+
+        BLOCKS.register(name, sup);
+        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemAugmentable(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setNumSlots(numSlots).setValidator(validAugment));
     }
     // endregion
 

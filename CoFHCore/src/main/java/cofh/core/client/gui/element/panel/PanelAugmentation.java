@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static cofh.core.util.GuiHelper.SLOT_SIZE;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelAugmentation extends PanelBase {
@@ -137,53 +138,52 @@ public class PanelAugmentation extends PanelBase {
 
         int numAugments = augmentSlots.size();
         int borderOffset = 4;
-        int slotSize = 18;
 
         switch (numAugments) {
             case 4:
                 for (int i = 0; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i % 2);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * (i / 2);
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * (i % 2);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE * (i / 2);
                 }
                 break;
             case 5:
                 for (int i = 0; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i % 3) + 9 * (i / 3);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * (i / 3);
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * (i % 3) + 9 * (i / 3);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE * (i / 3);
                 }
                 break;
             case 7:
                 for (int i = 0; i < 2; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + slotSize * (i);
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + SLOT_SIZE * (i);
                     augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset;
                 }
                 for (int i = 2; i < 5; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i - 2);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize;
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * (i - 2);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE;
                 }
                 for (int i = 5; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + slotSize * (i - 5);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * 2;
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + SLOT_SIZE * (i - 5);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE * 2;
                 }
                 break;
             case 8:
                 for (int i = 0; i < 3; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i);
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * i;
                     augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset;
                 }
                 for (int i = 3; i < 5; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + slotSize * (i - 3);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize;
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + 9 + SLOT_SIZE * (i - 3);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE;
                 }
                 for (int i = 5; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i - 5);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * 2;
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * (i - 5);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE * 2;
                 }
                 break;
             default:
                 for (int i = 0; i < numAugments; ++i) {
-                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + slotSize * (i % 3);
-                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + slotSize * (i / 3);
+                    augmentSlots.get(i).xPos = posXOffset() + slotsBorderX1 + borderOffset + SLOT_SIZE * (i % 3);
+                    augmentSlots.get(i).yPos = posY + slotsBorderY1 + borderOffset + SLOT_SIZE * (i / 3);
                 }
         }
         for (int i = 0; i < numAugments; ++i) {

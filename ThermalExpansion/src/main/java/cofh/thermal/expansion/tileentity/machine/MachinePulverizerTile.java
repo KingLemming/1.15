@@ -47,8 +47,6 @@ public class MachinePulverizerTile extends MachineTileReconfigurableProcess {
     @Override
     protected void resolveInputs() {
 
-        System.out.println(itemInputCounts);
-
         // Input Items
         inputSlot.modify(-itemInputCounts.get(0));
 

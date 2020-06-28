@@ -6,9 +6,7 @@ import cofh.thermal.cultivation.data.TCulLootTables;
 import cofh.thermal.cultivation.data.TCulRecipes;
 import cofh.thermal.cultivation.data.TCulTags;
 import cofh.thermal.cultivation.init.TCulBlocks;
-import cofh.thermal.cultivation.init.TCulContainers;
 import cofh.thermal.cultivation.init.TCulItems;
-import cofh.thermal.cultivation.init.TCulTileEntities;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.StemBlock;
 import net.minecraft.client.gui.ScreenManager;
@@ -45,9 +43,6 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
-
-        TCulTileEntities.register();
-        TCulContainers.register();
     }
 
     // region INITIALIZATION
@@ -73,9 +68,13 @@ public class ThermalCultivation {
 
             ComposterBlock.CHANCES.put(ITEMS.get(ID_COFFEE), chance);
             ComposterBlock.CHANCES.put(ITEMS.get(ID_TEA), chance);
+
+            ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON), chance);
         }
         {
             float chance = 0.5F;
+
+            ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON_SLICE), chance);
         }
         // SEEDS
         {
@@ -97,6 +96,8 @@ public class ThermalCultivation {
 
             ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_COFFEE)), chance);
             ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TEA)), chance);
+
+            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_FROST_MELON)), chance);
         }
         HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL).getDefaultState().with(TILLED, true));
         HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL_CHARGED), BLOCKS.get(ID_PHYTOSOIL_CHARGED).getDefaultState().with(TILLED, true));

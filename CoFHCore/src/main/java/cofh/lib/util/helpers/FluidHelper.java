@@ -176,6 +176,11 @@ public class FluidHelper {
 
     // region CAPABILITY HELPERS
 
+    public static boolean hasFluidHandlerCap(ItemStack item) {
+
+        return !item.isEmpty() && item.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent();
+    }
+
     /**
      * Attempts to drain the item to an IFluidHandler.
      *

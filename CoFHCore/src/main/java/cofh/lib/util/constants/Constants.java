@@ -93,6 +93,7 @@ public class Constants {
     public static final int ENTITY_TRACKING_DISTANCE = 64;
     public static final int ITEM_ACTIVE_DURATION = 40;
     public static final int MAGMATIC_TEMPERATURE = 1000;
+    public static final int MAX_AUGMENTS = 9;
     public static final int MAX_ENCHANT_LEVEL = 10;
     public static final int MAX_FOOD_LEVEL = 20;
     public static final int MB_PER_XP = 20;

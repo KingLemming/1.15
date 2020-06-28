@@ -121,6 +121,11 @@ public class PanelRedstoneControl extends PanelBase {
                     break;
                 default:
             }
+            if (myRSControllable.getState()) {
+                tooltipList.add(new TranslationTextComponent("info.cofh.state_true"));
+            } else {
+                tooltipList.add(new TranslationTextComponent("info.cofh.state_false"));
+            }
             return;
         }
         int x = mouseX - this.posX();

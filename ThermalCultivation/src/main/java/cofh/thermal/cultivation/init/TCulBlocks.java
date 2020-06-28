@@ -1,20 +1,23 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.core.util.ProxyUtils;
 import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;
+import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
 import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Rarity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 
-import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
 import static cofh.thermal.cultivation.init.TCulReferences.*;
 
@@ -32,7 +35,9 @@ public class TCulBlocks {
         registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
         registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new SoilBlock(Block.Properties.create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
 
-        registerBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new));
+        registerTileBlocks();
+        registerTileContainers();
+        registerTileEntities();
     }
 
     public static void setup() {
@@ -41,6 +46,7 @@ public class TCulBlocks {
         PHYTOSOIL_CHARGED_BLOCK.setBoost(4);
     }
 
+    // region HELPERS
     private static void registerPlants() {
 
         // ANNUAL
@@ -74,4 +80,19 @@ public class TCulBlocks {
         registerBlock(ID_SPICE_CAKE, () -> new CakeBlockCoFH(Block.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH), TCulFoods.SPICE_CAKE));
     }
 
+    private static void registerTileBlocks() {
+
+        registerBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new));
+    }
+
+    private static void registerTileContainers() {
+
+        CONTAINERS.register(ID_DEVICE_HIVE_EXTRACTOR, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceHiveExtractorContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
+    }
+
+    private static void registerTileEntities() {
+
+        TILE_ENTITIES.register(ID_DEVICE_HIVE_EXTRACTOR, () -> TileEntityType.Builder.create(DeviceHiveExtractorTile::new, DEVICE_HIVE_EXTRACTOR_BLOCK).build(null));
+    }
+    // endregion
 }

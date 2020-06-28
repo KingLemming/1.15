@@ -66,11 +66,11 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     @Override
     public void render(int mouseX, int mouseY, float partialTick) {
 
-        updatePanelInformation();
-        updateElementInformation();
-
         mX = mouseX - guiLeft;
         mY = mouseY - guiTop;
+
+        updatePanels();
+        updateElements();
 
         renderBackground();
         super.render(mouseX, mouseY, partialTick);
@@ -79,8 +79,6 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         if (showTooltips && getMinecraft().player.inventory.getItemStack().isEmpty()) {
             drawTooltip();
         }
-        updatePanels();
-        updateElements();
     }
 
     @Override
@@ -288,14 +286,6 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
                 c.update(mX, mY);
             }
         }
-    }
-
-    protected void updateElementInformation() {
-
-    }
-
-    protected void updatePanelInformation() {
-
     }
 
     public List<Rectangle2d> getPanelBounds() {

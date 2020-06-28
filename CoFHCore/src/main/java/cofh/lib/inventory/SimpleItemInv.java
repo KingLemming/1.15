@@ -1,6 +1,6 @@
 package cofh.lib.inventory;
 
-import cofh.lib.tileentity.ITileCallback;
+import cofh.lib.util.IInventoryCallback;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -21,33 +21,33 @@ public class SimpleItemInv extends SimpleItemHandler {
 
     protected String tag;
 
-    public SimpleItemInv(@Nullable ITileCallback tile) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile) {
 
         this(tile, 0, TAG_ITEM_INV);
     }
 
-    public SimpleItemInv(@Nullable ITileCallback tile, int size) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile, int size) {
 
         this(tile, size, TAG_ITEM_INV);
     }
 
-    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
 
         this(tile, slots, TAG_ITEM_INV);
     }
 
-    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull String tag) {
 
         this(tile, 0, tag);
     }
 
-    public SimpleItemInv(@Nullable ITileCallback tile, @Nonnull List<ItemStorageCoFH> slots, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> slots, @Nonnull String tag) {
 
         super(tile, slots);
         this.tag = tag;
     }
 
-    public SimpleItemInv(@Nullable ITileCallback tile, int size, @Nonnull String tag) {
+    public SimpleItemInv(@Nullable IInventoryCallback tile, int size, @Nonnull String tag) {
 
         super(tile, new ArrayList<>(size));
         this.tile = tile;

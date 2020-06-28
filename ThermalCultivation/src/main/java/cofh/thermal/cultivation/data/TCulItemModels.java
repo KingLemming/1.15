@@ -29,44 +29,43 @@ public class TCulItemModels extends ItemModelProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        // CROPS
         generated(reg.getSup(ID_BARLEY), CROPS);
+        generated(reg.getSup(ID_BELL_PEPPER), CROPS);
+        generated(reg.getSup(ID_COFFEE), CROPS);
+        generated(reg.getSup(ID_EGGPLANT), CROPS);
+        generated(reg.getSup(ID_GREEN_BEAN), CROPS);
         generated(reg.getSup(ID_ONION), CROPS);
+        generated(reg.getSup(ID_PEANUT), CROPS);
         generated(reg.getSup(ID_RADISH), CROPS);
         generated(reg.getSup(ID_RICE), CROPS);
         generated(reg.getSup(ID_SADIROOT), CROPS);
         generated(reg.getSup(ID_SPINACH), CROPS);
-
-        generated(reg.getSup(ID_BELL_PEPPER), CROPS);
-        generated(reg.getSup(ID_EGGPLANT), CROPS);
-        generated(reg.getSup(ID_GREEN_BEAN), CROPS);
-        generated(reg.getSup(ID_PEANUT), CROPS);
         generated(reg.getSup(ID_STRAWBERRY), CROPS);
+        generated(reg.getSup(ID_TEA), CROPS);
         generated(reg.getSup(ID_TOMATO), CROPS);
 
-        generated(reg.getSup(ID_COFFEE), CROPS);
-        generated(reg.getSup(ID_TEA), CROPS);
-
+        // SEEDS
         generated(reg.getSup(seeds(ID_BARLEY)), SEEDS);
+        generated(reg.getSup(seeds(ID_BELL_PEPPER)), SEEDS);
+        generated(reg.getSup(seeds(ID_COFFEE)), SEEDS);
+        generated(reg.getSup(seeds(ID_EGGPLANT)), SEEDS);
+        generated(reg.getSup(seeds(ID_FROST_MELON)), SEEDS);
+        generated(reg.getSup(seeds(ID_GREEN_BEAN)), SEEDS);
         generated(reg.getSup(seeds(ID_ONION)), SEEDS);
+        generated(reg.getSup(seeds(ID_PEANUT)), SEEDS);
         generated(reg.getSup(seeds(ID_RADISH)), SEEDS);
         generated(reg.getSup(seeds(ID_RICE)), SEEDS);
         generated(reg.getSup(seeds(ID_SADIROOT)), SEEDS);
         generated(reg.getSup(seeds(ID_SPINACH)), SEEDS);
-
-        generated(reg.getSup(seeds(ID_BELL_PEPPER)), SEEDS);
-        generated(reg.getSup(seeds(ID_EGGPLANT)), SEEDS);
-        generated(reg.getSup(seeds(ID_GREEN_BEAN)), SEEDS);
-        generated(reg.getSup(seeds(ID_PEANUT)), SEEDS);
         generated(reg.getSup(seeds(ID_STRAWBERRY)), SEEDS);
+        generated(reg.getSup(seeds(ID_TEA)), SEEDS);
         generated(reg.getSup(seeds(ID_TOMATO)), SEEDS);
 
-        generated(reg.getSup(seeds(ID_COFFEE)), SEEDS);
-        generated(reg.getSup(seeds(ID_TEA)), SEEDS);
-
-        generated(reg.getSup(seeds(ID_FROST_MELON)), SEEDS);
-
+        // FOODS
+        generated(reg.getSup("dough"), FOODS);
+        generated(reg.getSup("flour"), FOODS);
         generated(reg.getSup(ID_FROST_MELON_SLICE), FOODS);
-
         generated(reg.getSup(ID_SPICE_CAKE), FOODS);
     }
 

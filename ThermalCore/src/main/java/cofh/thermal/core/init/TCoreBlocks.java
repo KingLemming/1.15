@@ -1,20 +1,26 @@
 package cofh.thermal.core.init;
 
 import cofh.core.block.GunpowderBlock;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
+import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
+import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
+import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Rarity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 
-import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
@@ -31,6 +37,9 @@ public class TCoreBlocks {
         registerResources();
         registerMetals();
 
+        registerTileBlocks();
+        registerTileContainers();
+        registerTileEntities();
     }
 
     public static void setup() {
@@ -42,6 +51,7 @@ public class TCoreBlocks {
         fire.setFireInfo(BLOCKS.get(ID_GUNPOWDER_BLOCK), 15, 100);
     }
 
+    // region HELPERS
     private static void registerVanillaSupplemental() {
 
         registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)));
@@ -123,4 +133,19 @@ public class TCoreBlocks {
         registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
     }
 
+    private static void registerTileBlocks() {
+
+        registerBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new));
+    }
+
+    private static void registerTileContainers() {
+
+        CONTAINERS.register(ID_TINKER_BENCH, () -> IForgeContainerType.create((windowId, inv, data) -> new TinkerBenchContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
+    }
+
+    private static void registerTileEntities() {
+
+        TILE_ENTITIES.register(ID_TINKER_BENCH, () -> TileEntityType.Builder.create(TinkerBenchTile::new, TINKER_BENCH_BLOCK).build(null));
+    }
+    // endregion
 }

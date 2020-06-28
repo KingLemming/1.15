@@ -26,6 +26,12 @@
   "block.thermal.lumium_glass": "Lumium Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
+  "block.thermal.tinker_bench": "Tinker's Workbench",
+
+  "info.thermal.tinker_bench.0": "Multipurpose table for augmenting, recharging, and refilling.",
+  "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
+  "info.thermal.tinker_bench.2": "Tinker on!",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.items": "Thermal Series: Items",
   "itemGroup.thermal.tools": "Thermal Series: Tools",
@@ -359,8 +365,10 @@
   "item.thermal.coffee_seeds": "Coffee Beans",
   "item.thermal.corn": "Corn",
   "item.thermal.corn_seeds": "Corn Seeds",
+  "item.thermal.dough": "Dough",
   "item.thermal.eggplant": "Eggplant",
   "item.thermal.eggplant_seeds": "Eggplant Seeds",
+  "item.thermal.flour": "Flour",
   "item.thermal.frost_melon_seeds": "Frost Melon Seeds",
   "item.thermal.frost_melon_slice": "Frost Melon Slice",
   "item.thermal.green_bean": "Green Bean",
@@ -406,5 +414,7 @@
   "block.thermal.prismarine_crossover_rail": "Prismarine Crossover Rail",
   "block.thermal.prismarine_detector_rail": "Prismarine Detector Rail",
   "block.thermal.prismarine_powered_rail": "Powered Prismarine Rail",
-  "block.thermal.prismarine_rail": "Prismarine Rail"
+  "block.thermal.prismarine_rail": "Prismarine Rail",
+
+  "item.thermal.underwater_minecart": "Bathycart"
 }
