@@ -95,34 +95,39 @@ public class InventoryHelper {
     public static boolean mergeItemStack(List<Slot> slots, ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
 
         boolean successful = false;
-        int i = !reverseDirection ? startIndex : endIndex - 1;
-        int iterOrder = !reverseDirection ? 1 : -1;
+        int i = reverseDirection ? endIndex - 1 : startIndex;
+        int iterOrder = reverseDirection ? -1 : 1;
 
-        Slot slot;
-        ItemStack prevStack;
+        //        Slot slot;
+        //        ItemStack prevStack;
 
         if (stack.isStackable()) {
-            while (!stack.isEmpty() && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
-                slot = slots.get(i);
+            while (!stack.isEmpty()) {
+                if (reverseDirection) {
+                    if (i < startIndex) {
+                        break;
+                    }
+                } else if (i >= endIndex) {
+                    break;
+                }
+                Slot slot = slots.get(i);
                 if (slot instanceof SlotFalseCopy) {
                     i += iterOrder;
                     continue;
                 }
-                prevStack = slot.getStack();
-                if (!prevStack.isEmpty() && itemsEqualWithTags(prevStack, stack)) {
-                    int size = prevStack.getCount() + stack.getCount();
+                ItemStack stackInSlot = slot.getStack();
+                if (!stackInSlot.isEmpty() && itemsEqualWithTags(stackInSlot, stack)) {
+                    int size = stackInSlot.getCount() + stack.getCount();
                     int maxSize = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
                     if (size <= maxSize) {
                         stack.setCount(0);
-                        prevStack.setCount(size);
-                        // slot.putStack(prevStack); // TODO: Determine if this is more correct.
-                        slot.onSlotChanged();
+                        stackInSlot.setCount(size);
+                        slot.putStack(stackInSlot);
                         successful = true;
-                    } else if (prevStack.getCount() < maxSize) {
-                        stack.shrink(maxSize - prevStack.getCount());
-                        prevStack.setCount(maxSize);
-                        // slot.putStack(prevStack); // TODO: Determine if this is more correct.
-                        slot.onSlotChanged();
+                    } else if (stackInSlot.getCount() < maxSize) {
+                        stack.shrink(maxSize - stackInSlot.getCount());
+                        stackInSlot.setCount(maxSize);
+                        slot.putStack(stackInSlot);
                         successful = true;
                     }
                 }
@@ -130,19 +135,25 @@ public class InventoryHelper {
             }
         }
         if (!stack.isEmpty()) {
-            i = !reverseDirection ? startIndex : endIndex - 1;
-            while (stack.getCount() > 0 && (!reverseDirection && i < endIndex || reverseDirection && i >= startIndex)) {
-                slot = slots.get(i);
+            i = reverseDirection ? endIndex - 1 : startIndex;
+            while (true) {
+                if (reverseDirection) {
+                    if (i < startIndex) {
+                        break;
+                    }
+                } else if (i >= endIndex) {
+                    break;
+                }
+                Slot slot = slots.get(i);
                 if (slot instanceof SlotFalseCopy) {
                     i += iterOrder;
                     continue;
                 }
-                prevStack = slot.getStack();
-                if (prevStack.isEmpty() && slot.isItemValid(stack)) {
+                ItemStack stackInSlot = slot.getStack();
+                if (stackInSlot.isEmpty() && slot.isItemValid(stack)) {
                     int maxSize = Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit());
                     int splitSize = Math.min(maxSize, stack.getCount());
                     slot.putStack(stack.split(splitSize));
-                    slot.onSlotChanged();
                     successful = true;
                 }
                 i += iterOrder;

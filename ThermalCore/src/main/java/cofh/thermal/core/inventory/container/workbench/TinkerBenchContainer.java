@@ -45,7 +45,7 @@ public class TinkerBenchContainer extends TileContainer {
             @Override
             public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
 
-                AugmentHelper.writeAugmentsToItem(stack, itemInventory.getStacks());
+                writeAugmentsToItem(stack);
                 itemInventory.clear();
                 return super.onTake(thePlayer, stack);
             }
@@ -54,12 +54,12 @@ public class TinkerBenchContainer extends TileContainer {
             public void putStack(ItemStack stack) {
 
                 ItemStack curStack = tinkerSlot.getStack();
-                if (!curStack.isEmpty()) {
-                    AugmentHelper.writeAugmentsToItem(curStack, itemInventory.getStacks());
+                if (!curStack.isEmpty() && !curStack.equals(stack)) {
+                    writeAugmentsToItem(curStack);
                 }
                 super.putStack(stack);
                 if (!stack.isEmpty()) {
-                    itemInventory.setInvContainer(stack, AugmentHelper.getAugments(stack), AugmentHelper.getAugmentSlots(stack));
+                    readAugmentsFromItem(stack);
                 }
             }
         };
@@ -68,16 +68,38 @@ public class TinkerBenchContainer extends TileContainer {
         addSlot(new SlotCoFH(tileInv, 1, 8, 53));
         addSlot(new SlotCoFH(tileInv, 2, 152, 53));
 
-        bindAugmentableSlots(itemInventory, 0, MAX_AUGMENTS);
-
         bindAugmentSlots(tileInv, 3, this.tile.augSize());
+        bindTinkerSlots(itemInventory, 0, MAX_AUGMENTS);
         bindPlayerInventory(inventory);
+
+        readAugmentsFromItem(tinkerSlot.getStack());
     }
 
-    private void bindAugmentableSlots(IInventory inventory, int startIndex, int numSlots) {
+    private void readAugmentsFromItem(ItemStack stack) {
+
+        if (!stack.isEmpty()) {
+            itemInventory.setInvContainer(stack, AugmentHelper.getAugments(stack), AugmentHelper.getAugmentSlots(stack));
+        }
+    }
+
+    private void writeAugmentsToItem(ItemStack stack) {
+
+        if (!stack.isEmpty()) {
+            AugmentHelper.writeAugmentsToItem(stack, itemInventory.getStacks());
+            tile.markDirty();
+        }
+    }
+
+    private void bindTinkerSlots(IInventory inventory, int startIndex, int numSlots) {
 
         for (int i = 0; i < numSlots; ++i) {
-            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1);
+            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1) {
+
+                public void onSlotChanged() {
+
+                    this.inventory.markDirty();
+                }
+            };
             tinkerAugmentSlots.add(slot);
             addSlot(slot);
         }
@@ -92,6 +114,26 @@ public class TinkerBenchContainer extends TileContainer {
     public List<SlotCoFH> getTinkerAugmentSlots() {
 
         return tinkerAugmentSlots;
+    }
+
+    @Override
+    public void onContainerClosed(PlayerEntity playerIn) {
+
+        writeAugmentsToItem(tinkerSlot.getStack());
+        super.onContainerClosed(playerIn);
+    }
+
+    @Override
+    protected boolean supportsShiftClick(PlayerEntity player, int index) {
+
+        return index > 0;
+    }
+
+    @Override
+    protected int getSizeTileInventory() {
+
+        return super.getSizeTileInventory();
+        // return 0; // This basically prevents any right-click shenanigans.
     }
 
 }

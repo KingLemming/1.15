@@ -21,7 +21,6 @@ import java.util.List;
 public abstract class ContainerCoFH extends Container {
 
     protected boolean falseSlotSupport = true;
-    protected boolean hasPlayerInventory;
 
     protected List<SlotCoFH> augmentSlots = new ArrayList<>();
 
@@ -59,7 +58,6 @@ public abstract class ContainerCoFH extends Container {
         for (int i = 0; i < 9; ++i) {
             addSlot(new Slot(inventory, i, xOffset + i * 18, yOffset + 58));
         }
-        hasPlayerInventory = true;
     }
 
     protected int getPlayerInventoryHorizontalOffset() {
@@ -69,54 +67,43 @@ public abstract class ContainerCoFH extends Container {
 
     protected abstract int getPlayerInventoryVerticalOffset();
 
-    protected abstract int getSizeInventory();
+    protected abstract int getSizeTileInventory();
 
-    protected boolean supportsShiftClick(PlayerEntity player, int slotId) {
-
-        return supportsShiftClick(slotId);
-    }
-
-    protected boolean supportsShiftClick(int slotId) {
+    protected boolean supportsShiftClick(PlayerEntity player, int index) {
 
         return true;
     }
 
-    protected boolean performMerge(int slotId, ItemStack stack) {
+    protected boolean performMerge(int index, ItemStack stack) {
 
-        int invBase = getSizeInventory();
+        int invBase = getSizeTileInventory();
         int invFull = inventorySlots.size();
         int invHotbar = invFull - 9;
+        int invPlayer = invHotbar - 27;
 
-        if (slotId < invBase) {
-            return mergeItemStack(stack, invBase, invFull, true);
+        if (index < invPlayer) {
+            return mergeItemStack(stack, invPlayer, invFull, false);
+        } else {
+            return mergeItemStack(stack, 0, invBase, false);
         }
-        boolean res = mergeItemStack(stack, 0, invBase, false);
-        if (!res && hasPlayerInventory) {
-            if (slotId >= invHotbar) {
-                return mergeItemStack(stack, invBase, invHotbar, false);
-            } else {
-                return mergeItemStack(stack, invHotbar, invFull, false);
-            }
-        }
-        return res;
     }
     // endregion
 
     // region OVERRIDES
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity player, int slotId) {
+    public ItemStack transferStackInSlot(PlayerEntity player, int index) {
 
-        if (!supportsShiftClick(player, slotId)) {
+        if (!supportsShiftClick(player, index)) {
             return ItemStack.EMPTY;
         }
         ItemStack stack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(slotId);
+        Slot slot = inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack stackInSlot = slot.getStack();
             stack = stackInSlot.copy();
 
-            if (!performMerge(slotId, stackInSlot)) {
+            if (!performMerge(index, stackInSlot)) {
                 return ItemStack.EMPTY;
             }
             slot.onSlotChange(stackInSlot, stack);
@@ -135,10 +122,10 @@ public abstract class ContainerCoFH extends Container {
     }
 
     @Override
-    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
+    public ItemStack slotClick(int index, int dragType, ClickType clickTypeIn, PlayerEntity player) {
 
         if (falseSlotSupport) {
-            Slot slot = slotId < 0 ? null : inventorySlots.get(slotId);
+            Slot slot = index < 0 ? null : inventorySlots.get(index);
             if (slot instanceof SlotFalseCopy) {
                 if (dragType == 2) {
                     slot.putStack(ItemStack.EMPTY);
@@ -148,7 +135,7 @@ public abstract class ContainerCoFH extends Container {
                 return player.inventory.getItemStack();
             }
         }
-        return super.slotClick(slotId, dragType, clickTypeIn, player);
+        return super.slotClick(index, dragType, clickTypeIn, player);
     }
 
     @Override

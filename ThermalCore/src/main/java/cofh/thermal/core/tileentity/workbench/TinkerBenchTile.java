@@ -24,7 +24,7 @@ import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
 
 public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEntity {
 
-    protected ItemStorageCoFH tinkerSlot = new ItemStorageCoFH(item -> AugmentHelper.isAugmentable(item) || EnergyHelper.hasEnergyHandlerCap(item) || FluidHelper.hasFluidHandlerCap(item));
+    protected ItemStorageCoFH tinkerSlot = new ItemStorageCoFH(1, item -> AugmentHelper.isAugmentable(item) || EnergyHelper.hasEnergyHandlerCap(item) || FluidHelper.hasFluidHandlerCap(item));
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
     protected ItemStorageCoFH tankSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
 
