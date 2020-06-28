@@ -5,7 +5,6 @@ import cofh.lib.inventory.container.TileContainer;
 import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,7 +18,7 @@ public class ProjectBenchContainer extends TileContainer {
 
         super(PROJECT_BENCH_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (ProjectBenchTile) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
+        InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         bindAugmentSlots(tileInv, 3, this.tile.augSize());
         bindPlayerInventory(inventory);

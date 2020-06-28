@@ -7,7 +7,6 @@ import cofh.lib.inventory.container.slot.SlotRemoveOnly;
 import cofh.thermal.core.tileentity.MachineTileReconfigurable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -21,7 +20,7 @@ public class MachineBottlerContainer extends TileContainer {
 
         super(MACHINE_BOTTLER_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (MachineTileReconfigurable) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
+        InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 62, 26));
 

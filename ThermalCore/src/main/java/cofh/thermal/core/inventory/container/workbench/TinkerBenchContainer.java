@@ -38,7 +38,7 @@ public class TinkerBenchContainer extends TileContainer {
 
         super(TINKER_BENCH_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (TinkerBenchTile) world.getTileEntity(pos);
-        IInventory tileInv = new InvWrapperCoFH(this.tile.getItemInv());
+        InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         tinkerSlot = new SlotCoFH(tileInv, 0, 44, 35) {
 
@@ -126,14 +126,7 @@ public class TinkerBenchContainer extends TileContainer {
     @Override
     protected boolean supportsShiftClick(PlayerEntity player, int index) {
 
-        return index > 0;
-    }
-
-    @Override
-    protected int getSizeTileInventory() {
-
-        return super.getSizeTileInventory();
-        // return 0; // This basically prevents any right-click shenanigans.
+        return index > 0; // Prevent right clicking out of tinker slot since Mojang seems to short-circuit some logic they should not be.
     }
 
 }
