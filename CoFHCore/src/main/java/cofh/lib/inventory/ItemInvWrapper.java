@@ -4,24 +4,30 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
 
-import static cofh.lib.util.constants.NBTTags.TAG_SLOT;
+import java.util.List;
 
 public class ItemInvWrapper implements IInventory {
 
     private NonNullList<ItemStack> stackList;
     private ItemStack invContainer = ItemStack.EMPTY;
-    private ListNBT invContents;
 
     public ItemInvWrapper(int size) {
 
         this.stackList = NonNullList.withSize(size, ItemStack.EMPTY);
     }
 
-    public ItemInvWrapper setInvContainer(ItemStack invContainer, ListNBT contents, int size) {
+    // TODO: Variant w/ pre-determined NBT info on ItemStack.
+    //    public ItemInvWrapper setInvContainer(ItemStack invContainer, int size) {
+    //
+    //        this.invContainer = invContainer;
+    //        this.stackList = NonNullList.withSize(size, ItemStack.EMPTY);
+    //        readFromContainerInv(contents);
+    //        return this;
+    //    }
+
+    public ItemInvWrapper setInvContainer(ItemStack invContainer, List<ItemStack> contents, int size) {
 
         this.invContainer = invContainer;
         this.stackList = NonNullList.withSize(size, ItemStack.EMPTY);
@@ -29,33 +35,17 @@ public class ItemInvWrapper implements IInventory {
         return this;
     }
 
-    // region NBT
-    public void readFromContainerInv(ListNBT list) {
+    public List<ItemStack> getStacks() {
 
-        this.stackList.clear();
-        for (int i = 0; i < list.size(); ++i) {
-            CompoundNBT slotTag = list.getCompound(i);
-            // If items are not saved w/ slot numbers, read into first available slots.
-            int slot = slotTag.contains(TAG_SLOT) ? slotTag.getByte(TAG_SLOT) : i;
-            if (slot >= 0 && slot < stackList.size()) {
-                this.stackList.set(slot, ItemStack.read(slotTag));
-            }
-        }
+        return stackList;
     }
 
-    public ListNBT writeToContainerInv() {
+    public void readFromContainerInv(List<ItemStack> contents) {
 
-        ListNBT list = new ListNBT();
-
-        for (int i = 0; i < stackList.size(); ++i) {
-            if (!stackList.get(i).isEmpty()) {
-                CompoundNBT slotTag = new CompoundNBT();
-                slotTag.putByte(TAG_SLOT, (byte) i);
-                this.stackList.get(i).write(slotTag);
-                list.add(slotTag);
-            }
+        this.stackList.clear();
+        for (int i = 0; i < Math.min(contents.size(), getSizeInventory()); ++i) {
+            this.stackList.set(i, contents.get(i));
         }
-        return list;
     }
 
     // region IInventory
@@ -90,18 +80,15 @@ public class ItemInvWrapper implements IInventory {
     @Override
     public ItemStack decrStackSize(int index, int count) {
 
-        ItemStack stack = ItemStackHelper.getAndSplit(this.stackList, index, count);
-        if (!stack.isEmpty()) {
-            // this.eventHandler.onCraftMatrixChanged(this);
-        }
-        return stack;
+        return ItemStackHelper.getAndSplit(this.stackList, index, count);
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
 
-        this.stackList.set(index, stack);
-        // this.eventHandler.onCraftMatrixChanged(this);
+        if (index >= 0 && index < getSizeInventory()) {
+            this.stackList.set(index, stack);
+        }
     }
 
     @Override

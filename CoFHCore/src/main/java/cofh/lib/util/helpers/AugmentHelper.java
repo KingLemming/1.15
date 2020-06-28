@@ -66,6 +66,11 @@ public class AugmentHelper {
         return ret.isEmpty() ? Collections.emptyList() : ret;
     }
 
+    public static void writeAugmentsToItem(ItemStack stack, List<ItemStack> augments) {
+
+        writeAugmentsToItem(stack, convertAugments(augments));
+    }
+
     public static void writeAugmentsToItem(ItemStack stack, ListNBT list) {
 
         CompoundNBT blockTag = stack.getChildTag(TAG_BLOCK_ENTITY);
@@ -80,6 +85,17 @@ public class AugmentHelper {
             return;
         }
         stack.setTagInfo(TAG_AUGMENTS, list);
+    }
+
+    private static ListNBT convertAugments(List<ItemStack> augments) {
+
+        ListNBT list = new ListNBT();
+        for (ItemStack augment : augments) {
+            if (!augment.isEmpty()) {
+                list.add(augment.write(new CompoundNBT()));
+            }
+        }
+        return list;
     }
 
 }

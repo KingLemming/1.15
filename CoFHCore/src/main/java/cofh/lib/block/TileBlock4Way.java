@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
@@ -36,12 +35,12 @@ public class TileBlock4Way extends TileBlockCoFH {
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        CompoundNBT compoundnbt = stack.getChildTag("BlockEntityTag");
-        if (compoundnbt != null) {
-            System.out.println(compoundnbt);
-        } else if (stack.getTag() != null) {
-            System.out.println(stack.getTag());
-        }
+        //        CompoundNBT compoundnbt = stack.getChildTag(TAG_BLOCK_ENTITY);
+        //        if (compoundnbt != null) {
+        //            System.out.println(compoundnbt);
+        //        } else if (stack.getTag() != null) {
+        //            System.out.println(stack.getTag());
+        //        }
     }
 
     @Override

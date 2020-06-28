@@ -3,7 +3,6 @@ package cofh.thermal.core.tileentity.workbench;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentHelper;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
@@ -20,7 +19,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INTERNAL;
-import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
 
@@ -29,7 +27,6 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected ItemStorageCoFH tinkerSlot = new ItemStorageCoFH(item -> AugmentHelper.isAugmentable(item) || EnergyHelper.hasEnergyHandlerCap(item) || FluidHelper.hasFluidHandlerCap(item));
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
     protected ItemStorageCoFH tankSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
-    protected ItemStorageCoFH[] tinkerAugmentSlots = new ItemStorageCoFH[MAX_AUGMENTS];
 
     protected FluidStorageCoFH tank = new FluidStorageCoFH(TANK_MEDIUM);
 
@@ -52,11 +49,6 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         inventory.addSlot(chargeSlot, INTERNAL);
         inventory.addSlot(tankSlot, INTERNAL);
 
-        for (int i = 0; i < MAX_AUGMENTS; ++i) {
-            int slotIndex = i;
-            tinkerAugmentSlots[i] = new ItemStorageCoFH(1, (augment) -> slotIndex < AugmentHelper.getAugmentSlots(tinkerSlot.getItemStack()) && AugmentHelper.validAugment(tinkerSlot.getItemStack(), augment));
-            inventory.addSlot(tinkerAugmentSlots[i], INTERNAL);
-        }
         tankInv.addTank(tank, INTERNAL);
 
         addAugmentSlots(2);
@@ -112,16 +104,5 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
 
         return new TinkerBenchContainer(i, world, pos, inventory, player);
     }
-
-    // region IInventoryCallback
-    @Override
-    public void onInventoryChange(int slot) {
-
-        if (Utils.isServerWorld(world) && slot == 0) {
-            System.out.println("TINKER CHANGED");
-        }
-        super.onInventoryChange(slot);
-    }
-    // endregion
 
 }

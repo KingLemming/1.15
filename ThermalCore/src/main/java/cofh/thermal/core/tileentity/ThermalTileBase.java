@@ -363,7 +363,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         inventory.read(nbt);
 
         if (nbt.contains(TAG_AUGMENTS)) {
-            System.out.println("Yeah this worked");
             inventory.readSlotsUnordered(nbt.getList(TAG_AUGMENTS, TAG_COMPOUND), invSize() - augSize());
         }
         updateAugmentState();

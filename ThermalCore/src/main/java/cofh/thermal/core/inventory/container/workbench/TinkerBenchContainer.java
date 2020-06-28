@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -46,8 +45,7 @@ public class TinkerBenchContainer extends TileContainer {
             @Override
             public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
 
-                System.out.println("TAKEN!");
-                AugmentHelper.writeAugmentsToItem(stack, itemInventory.writeToContainerInv());
+                AugmentHelper.writeAugmentsToItem(stack, itemInventory.getStacks());
                 itemInventory.clear();
                 return super.onTake(thePlayer, stack);
             }
@@ -55,10 +53,13 @@ public class TinkerBenchContainer extends TileContainer {
             @Override
             public void putStack(ItemStack stack) {
 
-                System.out.println("PUT");
+                ItemStack curStack = tinkerSlot.getStack();
+                if (!curStack.isEmpty()) {
+                    AugmentHelper.writeAugmentsToItem(curStack, itemInventory.getStacks());
+                }
                 super.putStack(stack);
                 if (!stack.isEmpty()) {
-                    itemInventory.setInvContainer(stack, AugmentHelper.getAugmentNBT(stack), AugmentHelper.getAugmentSlots(stack));
+                    itemInventory.setInvContainer(stack, AugmentHelper.getAugments(stack), AugmentHelper.getAugmentSlots(stack));
                 }
             }
         };
