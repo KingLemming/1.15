@@ -1,6 +1,7 @@
 package cofh.lib.util.helpers;
 
 import cofh.lib.item.IAugmentableItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -63,6 +64,22 @@ public class AugmentHelper {
             ret.add(ItemStack.read(list.getCompound(i)));
         }
         return ret.isEmpty() ? Collections.emptyList() : ret;
+    }
+
+    public static void writeAugmentsToItem(ItemStack stack, ListNBT list) {
+
+        CompoundNBT blockTag = stack.getChildTag(TAG_BLOCK_ENTITY);
+        if (blockTag != null) {
+            blockTag.put(TAG_AUGMENTS, list);
+            return;
+        }
+        if (stack.getItem() instanceof BlockItem) {
+            blockTag = new CompoundNBT();
+            blockTag.put(TAG_AUGMENTS, list);
+            stack.setTagInfo(TAG_BLOCK_ENTITY, blockTag);
+            return;
+        }
+        stack.setTagInfo(TAG_AUGMENTS, list);
     }
 
 }
