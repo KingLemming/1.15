@@ -2,6 +2,7 @@ package cofh.thermal.core.tileentity;
 
 import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.helpers.EnergyHelper;
+import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
@@ -12,7 +13,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
-import static cofh.lib.util.constants.Constants.FACING_ALL;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
 
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
@@ -240,12 +241,16 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     // endregion
 
     // region AUGMENTS
+    protected float energyMod = 1.0F;
+
     protected float processMod = 1.0F;
 
     @Override
     protected void resetAttributes() {
 
         super.resetAttributes();
+
+        energyMod = 1.0F;
         processMod = 1.0F;
     }
 
@@ -253,6 +258,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
         super.setAttributesFromAugment(augmentData);
+
+        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
     }
 
@@ -260,6 +267,11 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected void finalizeAttributes() {
 
         super.finalizeAttributes();
+
+        float scaleMin = AUG_SCALE_MIN;
+        float scaleMax = AUG_SCALE_MAX;
+
+        energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
         processTick = Math.round(getBaseProcessTick() * processMod);
     }
     // endregion

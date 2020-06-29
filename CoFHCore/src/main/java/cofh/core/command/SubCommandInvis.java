@@ -11,8 +11,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.FLAG;
-import static cofh.lib.util.constants.Constants.TARGETS;
+import static cofh.lib.util.constants.Constants.CMD_FLAG;
+import static cofh.lib.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandInvis {
 
@@ -27,15 +27,15 @@ public class SubCommandInvis {
                 // Self
                 .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), DEFAULT_FLAG))
                 // Flag Specified
-                .then(Commands.argument(FLAG, BoolArgumentType.bool())
-                        .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), BoolArgumentType.getBool(context, FLAG))))
+                .then(Commands.argument(CMD_FLAG, BoolArgumentType.bool())
+                        .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), BoolArgumentType.getBool(context, CMD_FLAG))))
                 // Targets Specified
-                .then(Commands.argument(TARGETS, EntityArgument.players())
-                        .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, TARGETS), DEFAULT_FLAG)))
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.players())
+                        .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS), DEFAULT_FLAG)))
                 // Targets AND duration specified
-                .then(Commands.argument(TARGETS, EntityArgument.entities())
-                        .then(Commands.argument(FLAG, BoolArgumentType.bool())
-                                .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, TARGETS), BoolArgumentType.getBool(context, FLAG)))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.entities())
+                        .then(Commands.argument(CMD_FLAG, BoolArgumentType.bool())
+                                .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS), BoolArgumentType.getBool(context, CMD_FLAG)))));
     }
 
     static ArgumentBuilder<CommandSource, ?> registerAlt() {
@@ -45,15 +45,15 @@ public class SubCommandInvis {
                 // Self
                 .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), DEFAULT_FLAG))
                 // Flag Specified
-                .then(Commands.argument(FLAG, BoolArgumentType.bool())
-                        .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), BoolArgumentType.getBool(context, FLAG))))
+                .then(Commands.argument(CMD_FLAG, BoolArgumentType.bool())
+                        .executes(context -> flagEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer()), BoolArgumentType.getBool(context, CMD_FLAG))))
                 // Targets Specified
-                .then(Commands.argument(TARGETS, EntityArgument.players())
-                        .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, TARGETS), DEFAULT_FLAG)))
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.players())
+                        .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS), DEFAULT_FLAG)))
                 // Targets AND duration specified
-                .then(Commands.argument(TARGETS, EntityArgument.entities())
-                        .then(Commands.argument(FLAG, BoolArgumentType.bool())
-                                .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, TARGETS), BoolArgumentType.getBool(context, FLAG)))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.entities())
+                        .then(Commands.argument(CMD_FLAG, BoolArgumentType.bool())
+                                .executes(context -> flagEntities(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS), BoolArgumentType.getBool(context, CMD_FLAG)))));
     }
 
     private static int flagEntities(CommandSource source, Collection<? extends ServerPlayerEntity> targets, boolean flag) {

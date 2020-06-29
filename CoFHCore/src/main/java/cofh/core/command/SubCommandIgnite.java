@@ -11,8 +11,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.DURATION;
-import static cofh.lib.util.constants.Constants.TARGETS;
+import static cofh.lib.util.constants.Constants.CMD_DURATION;
+import static cofh.lib.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandIgnite {
 
@@ -27,15 +27,15 @@ public class SubCommandIgnite {
                 // Self - default duration
                 .executes(context -> igniteEntities(context.getSource(), ImmutableList.of(context.getSource().assertIsEntity()), DEFAULT_DURATION))
                 // Duration specified
-                .then(Commands.argument(DURATION, IntegerArgumentType.integer())
-                        .executes(context -> igniteEntities(context.getSource(), ImmutableList.of(context.getSource().assertIsEntity()), IntegerArgumentType.getInteger(context, DURATION))))
+                .then(Commands.argument(CMD_DURATION, IntegerArgumentType.integer())
+                        .executes(context -> igniteEntities(context.getSource(), ImmutableList.of(context.getSource().assertIsEntity()), IntegerArgumentType.getInteger(context, CMD_DURATION))))
                 // Targets specified - default duration
-                .then(Commands.argument(TARGETS, EntityArgument.entities())
-                        .executes(context -> igniteEntities(context.getSource(), EntityArgument.getEntities(context, TARGETS), DEFAULT_DURATION)))
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.entities())
+                        .executes(context -> igniteEntities(context.getSource(), EntityArgument.getEntities(context, CMD_TARGETS), DEFAULT_DURATION)))
                 // Targets AND duration specified
-                .then(Commands.argument(TARGETS, EntityArgument.entities())
-                        .then(Commands.argument(DURATION, IntegerArgumentType.integer())
-                                .executes(context -> igniteEntities(context.getSource(), EntityArgument.getEntities(context, TARGETS), IntegerArgumentType.getInteger(context, DURATION)))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.entities())
+                        .then(Commands.argument(CMD_DURATION, IntegerArgumentType.integer())
+                                .executes(context -> igniteEntities(context.getSource(), EntityArgument.getEntities(context, CMD_TARGETS), IntegerArgumentType.getInteger(context, CMD_DURATION)))));
     }
 
     private static int igniteEntities(CommandSource source, Collection<? extends Entity> targets, int duration) {

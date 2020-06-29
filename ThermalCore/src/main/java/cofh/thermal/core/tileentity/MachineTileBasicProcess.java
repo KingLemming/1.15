@@ -5,6 +5,7 @@ import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.EnergyHelper;
+import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
-public abstract class MachineTileBasicProcess extends MachineTileBasic implements ITickableTileEntity {
+public abstract class MachineTileBasicProcess extends MachineTileBasic implements ITickableTileEntity, IMachineInventory {
 
     protected IMachineRecipe curRecipe;
     protected IRecipeCatalyst curCatalyst;

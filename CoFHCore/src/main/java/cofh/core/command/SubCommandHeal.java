@@ -11,8 +11,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
+import static cofh.lib.util.constants.Constants.CMD_TARGETS;
 import static cofh.lib.util.constants.Constants.MAX_FOOD_LEVEL;
-import static cofh.lib.util.constants.Constants.TARGETS;
 
 public class SubCommandHeal {
 
@@ -25,8 +25,8 @@ public class SubCommandHeal {
                 // Self
                 .executes(context -> healEntities(context.getSource(), ImmutableList.of(context.getSource().asPlayer())))
                 // Targets Specified
-                .then(Commands.argument(TARGETS, EntityArgument.players())
-                        .executes(context -> healEntities(context.getSource(), EntityArgument.getPlayers(context, TARGETS))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.players())
+                        .executes(context -> healEntities(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS))));
     }
 
     private static int healEntities(CommandSource source, Collection<? extends ServerPlayerEntity> targets) {

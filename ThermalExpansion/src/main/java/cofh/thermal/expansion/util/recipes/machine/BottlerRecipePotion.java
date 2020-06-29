@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.util.recipes.machine;
 
-import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -23,7 +23,7 @@ public class BottlerRecipePotion extends BaseMachineRecipe {
     }
 
     @Override
-    public List<ItemStack> getOutputItems(IThermalInventory inventory) {
+    public List<ItemStack> getOutputItems(IMachineInventory inventory) {
 
         FluidStack fluidPotion = inventory.inputTanks().get(0).getFluidStack();
         ItemStack itemPotion = outputItems.get(0).copy();

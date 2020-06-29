@@ -11,7 +11,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import static cofh.lib.util.constants.Constants.PLAYER;
+import static cofh.lib.util.constants.Constants.CMD_PLAYER;
 
 public class SubCommandEnderChest {
 
@@ -26,8 +26,8 @@ public class SubCommandEnderChest {
                 // Self
                 .executes(context -> openContainer(context.getSource().asPlayer(), context.getSource().asPlayer()))
                 // Target Specified
-                .then(Commands.argument(PLAYER, EntityArgument.player())
-                        .executes(context -> openContainer(context.getSource().asPlayer(), EntityArgument.getPlayer(context, PLAYER))));
+                .then(Commands.argument(CMD_PLAYER, EntityArgument.player())
+                        .executes(context -> openContainer(context.getSource().asPlayer(), EntityArgument.getPlayer(context, CMD_PLAYER))));
     }
 
     private static int openContainer(PlayerEntity user, PlayerEntity target) {

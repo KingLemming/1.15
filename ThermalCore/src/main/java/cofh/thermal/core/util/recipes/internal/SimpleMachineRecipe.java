@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes.internal;
 
-import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.IMachineInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -21,7 +21,7 @@ public class SimpleMachineRecipe extends BaseMachineRecipe {
 
     // region IMachineRecipe
     @Override
-    public List<Integer> getInputItemCounts(IThermalInventory inventory) {
+    public List<Integer> getInputItemCounts(IMachineInventory inventory) {
 
         // Ingredient order is guaranteed.
         if (inputItems.isEmpty()) {
@@ -35,7 +35,7 @@ public class SimpleMachineRecipe extends BaseMachineRecipe {
     }
 
     @Override
-    public List<Integer> getInputFluidCounts(IThermalInventory inventory) {
+    public List<Integer> getInputFluidCounts(IMachineInventory inventory) {
 
         // Ingredient order is guaranteed.
         if (inputFluids.isEmpty()) {

@@ -5,6 +5,8 @@ import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
+import cofh.lib.util.helpers.MathHelper;
+import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import net.minecraft.item.ItemStack;
@@ -17,13 +19,13 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
-public abstract class MachineTileReconfigurableProcess extends MachineTileReconfigurable implements ITickableTileEntity {
+public abstract class MachineTileReconfigurableProcess extends MachineTileReconfigurable implements ITickableTileEntity, IMachineInventory {
 
     protected static final int BASE_PROCESS_TICK = 20;
     protected static final int BASE_ENERGY = 20000;
@@ -398,12 +400,27 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     // endregion
 
     // region AUGMENTS
+    protected float primaryMod = 1.0F;
+    protected float secondaryMod = 1.0F;
+    protected float energyMod = 1.0F;
+    protected float experienceMod = 1.0F;
+    protected float minOutputChance = 0.0F;
+    protected float catalystMod = 1.0F;
+
     protected float processMod = 1.0F;
 
     @Override
     protected void resetAttributes() {
 
         super.resetAttributes();
+
+        primaryMod = 1.0F;
+        secondaryMod = 1.0F;
+        energyMod = 1.0F;
+        experienceMod = 1.0F;
+        catalystMod = 1.0F;
+        minOutputChance = 0.0F;
+
         processMod = 1.0F;
     }
 
@@ -411,6 +428,14 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
         super.setAttributesFromAugment(augmentData);
+
+        primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
+        secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
+        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
+        experienceMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_EXPERIENCE_MOD, 1.0F);
+        catalystMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_CATALYST_MOD, 1.0F);
+        minOutputChance = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE), minOutputChance);
+
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
     }
 
@@ -418,6 +443,16 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     protected void finalizeAttributes() {
 
         super.finalizeAttributes();
+
+        float scaleMin = AUG_SCALE_MIN;
+        float scaleMax = AUG_SCALE_MAX;
+
+        primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
+        secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
+        energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
+        experienceMod = MathHelper.clamp(experienceMod, scaleMin, scaleMax);
+        catalystMod = MathHelper.clamp(catalystMod, scaleMin, scaleMax);
+
         processTick = Math.round(getBaseProcessTick() * processMod);
     }
     // endregion
@@ -436,6 +471,44 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
             }
         }
         super.onInventoryChange(slot);
+    }
+    // endregion
+
+    // region IMachineInventory
+    @Override
+    public final float getPrimaryMod() {
+
+        return primaryMod;
+    }
+
+    @Override
+    public final float getSecondaryMod() {
+
+        return secondaryMod;
+    }
+
+    @Override
+    public final float getEnergyMod() {
+
+        return energyMod;
+    }
+
+    @Override
+    public final float getExperienceMod() {
+
+        return experienceMod;
+    }
+
+    @Override
+    public final float getMinOutputChance() {
+
+        return minOutputChance;
+    }
+
+    @Override
+    public final float getUseChance() {
+
+        return catalystMod;
     }
     // endregion
 }

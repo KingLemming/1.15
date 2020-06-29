@@ -11,7 +11,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.TARGETS;
+import static cofh.lib.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandRepair {
 
@@ -24,8 +24,8 @@ public class SubCommandRepair {
                 // Self
                 .executes(context -> repairEquipment(context.getSource(), ImmutableList.of(context.getSource().asPlayer())))
                 // Targets Specified
-                .then(Commands.argument(TARGETS, EntityArgument.players())
-                        .executes(context -> repairEquipment(context.getSource(), EntityArgument.getPlayers(context, TARGETS))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.players())
+                        .executes(context -> repairEquipment(context.getSource(), EntityArgument.getPlayers(context, CMD_TARGETS))));
     }
 
     private static int repairEquipment(CommandSource source, Collection<? extends ServerPlayerEntity> targets) {

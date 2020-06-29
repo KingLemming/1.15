@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.util.managers.machine;
 
 import cofh.lib.inventory.FalseIInventory;
-import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalCatalyst;
 import cofh.thermal.core.util.recipes.internal.CatalyzedMachineRecipe;
@@ -103,7 +103,7 @@ public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
         }
 
         @Override
-        public List<Integer> getInputFluidCounts(IThermalInventory inventory) {
+        public List<Integer> getInputFluidCounts(IMachineInventory inventory) {
 
             // Ingredient order is guaranteed.
             if (inputFluids.isEmpty()) {

@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes.internal;
 
-import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.IMachineInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -85,13 +85,13 @@ public class BaseMachineRecipe implements IMachineRecipe {
     }
 
     @Override
-    public List<ItemStack> getOutputItems(IThermalInventory inventory) {
+    public List<ItemStack> getOutputItems(IMachineInventory inventory) {
 
         return outputItems;
     }
 
     @Override
-    public List<FluidStack> getOutputFluids(IThermalInventory inventory) {
+    public List<FluidStack> getOutputFluids(IMachineInventory inventory) {
 
         return outputFluids;
     }
@@ -101,7 +101,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
      * This shouldn't ever cause problems because you're relying on this method call and not hacking around in the recipe, right? ;)
      */
     @Override
-    public List<Float> getOutputItemChances(IThermalInventory inventory) {
+    public List<Float> getOutputItemChances(IMachineInventory inventory) {
 
         ArrayList<Float> modifiedChances = new ArrayList<>(outputItemChances);
         for (int i = 0; i < modifiedChances.size(); ++i) {
@@ -115,7 +115,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
     }
 
     @Override
-    public List<Integer> getInputItemCounts(IThermalInventory inventory) {
+    public List<Integer> getInputItemCounts(IMachineInventory inventory) {
 
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
@@ -143,7 +143,7 @@ public class BaseMachineRecipe implements IMachineRecipe {
     }
 
     @Override
-    public List<Integer> getInputFluidCounts(IThermalInventory inventory) {
+    public List<Integer> getInputFluidCounts(IMachineInventory inventory) {
 
         if (inputFluids.isEmpty()) {
             return Collections.emptyList();
@@ -171,13 +171,13 @@ public class BaseMachineRecipe implements IMachineRecipe {
     }
 
     @Override
-    public int getEnergy(IThermalInventory inventory) {
+    public int getEnergy(IMachineInventory inventory) {
 
         return Math.abs(Math.round(energy * inventory.getEnergyMod()));
     }
 
     @Override
-    public float getExperience(IThermalInventory inventory) {
+    public float getExperience(IMachineInventory inventory) {
 
         return experience * inventory.getExperienceMod();
     }

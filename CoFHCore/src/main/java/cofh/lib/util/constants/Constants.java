@@ -112,10 +112,10 @@ public class Constants {
     // endregion
 
     // region COMMANDS
-    public static final String DURATION = "duration";
-    public static final String FLAG = "flag";
-    public static final String PLAYER = "player";
-    public static final String TARGETS = "targets";
+    public static final String CMD_DURATION = "duration";
+    public static final String CMD_FLAG = "flag";
+    public static final String CMD_PLAYER = "player";
+    public static final String CMD_TARGETS = "targets";
     // endregion
 
     // region PACKET
@@ -156,6 +156,9 @@ public class Constants {
     public static final int RGB_DURABILITY_WATER = 0x4060FF;
     public static final int RGB_DURABILITY_ENDER = 0x14594D;
     public static final int RGB_DURABILITY_EXP = 0x7AAC52;
+
+    public static float AUG_SCALE_MIN = 0.0F;
+    public static float AUG_SCALE_MAX = 100.0F;
     // endregion
 
     // region TEXTURES

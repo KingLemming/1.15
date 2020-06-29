@@ -50,7 +50,7 @@ import java.util.Set;
 
 import static cofh.core.util.GuiHelper.*;
 import static cofh.lib.util.StorageGroup.INTERNAL;
-import static cofh.lib.util.constants.Constants.ACTIVE;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
@@ -417,52 +417,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     }
     // endregion
 
-    // region IThermalInventory / IRecipeCatalyst
-    @Override
-    public final float getPrimaryMod() {
-
-        return primaryMod;
-    }
-
-    @Override
-    public final float getSecondaryMod() {
-
-        return secondaryMod;
-    }
-
-    @Override
-    public final float getEnergyMod() {
-
-        return energyMod;
-    }
-
-    @Override
-    public final float getExperienceMod() {
-
-        return experienceMod;
-    }
-
-    @Override
-    public final float getMinOutputChance() {
-
-        return minOutputChance;
-    }
-
-    @Override
-    public final float getUseChance() {
-
-        return catalystMod;
-    }
-    // endregion
-
     // region AUGMENTS
-    protected float primaryMod = 1.0F;
-    protected float secondaryMod = 1.0F;
-    protected float energyMod = 1.0F;
-    protected float experienceMod = 1.0F;
-    protected float minOutputChance = 0.0F;
-    protected float catalystMod = 1.0F;
-
     protected float energyStorageMod = 1.0F;
     protected float energyXferMod = 1.0F;
     protected float fluidStorageMod = 1.0F;
@@ -498,30 +453,12 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void resetAttributes() {
 
-        primaryMod = 1.0F;
-        secondaryMod = 1.0F;
-
-        energyMod = 1.0F;
-        experienceMod = 1.0F;
-        catalystMod = 1.0F;
-
-        minOutputChance = 0.0F;
-
         energyStorageMod = 1.0F;
         energyXferMod = 1.0F;
         fluidStorageMod = 1.0F;
     }
 
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
-
-        primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
-        secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
-
-        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
-        experienceMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_EXPERIENCE_MOD, 1.0F);
-        catalystMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_CATALYST_MOD, 1.0F);
-
-        minOutputChance = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE), minOutputChance);
 
         energyStorageMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         energyXferMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER);
@@ -530,15 +467,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void finalizeAttributes() {
 
-        float scaleMin = 0.0F;
-        float scaleMax = 100.0F;
-
-        primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
-        secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
-
-        energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
-        experienceMod = MathHelper.clamp(experienceMod, scaleMin, scaleMax);
-        catalystMod = MathHelper.clamp(catalystMod, scaleMin, scaleMax);
+        float scaleMin = AUG_SCALE_MIN;
+        float scaleMax = AUG_SCALE_MAX;
 
         energyStorageMod = MathHelper.clamp(energyStorageMod, scaleMin, scaleMax);
         energyXferMod = MathHelper.clamp(energyXferMod, scaleMin, scaleMax);

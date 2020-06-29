@@ -1,7 +1,7 @@
 package cofh.thermal.core.util.recipes.internal;
 
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.core.util.IThermalInventory;
+import cofh.thermal.core.util.IMachineInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -41,7 +41,7 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
      * This shouldn't ever cause problems because you're relying on this method call and not hacking around in the recipe, right? ;)
      */
     @Override
-    public List<Float> getOutputItemChances(IThermalInventory inventory) {
+    public List<Float> getOutputItemChances(IMachineInventory inventory) {
 
         ArrayList<Float> modifiedChances = new ArrayList<>(outputItemChances);
 
@@ -64,7 +64,7 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
     }
 
     @Override
-    public List<Integer> getInputItemCounts(IThermalInventory inventory) {
+    public List<Integer> getInputItemCounts(IMachineInventory inventory) {
 
         if (inputItems.isEmpty()) {
             return Collections.emptyList();
@@ -90,7 +90,7 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
     }
 
     @Override
-    public int getEnergy(IThermalInventory inventory) {
+    public int getEnergy(IMachineInventory inventory) {
 
         // Catalyst Logic
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
@@ -101,7 +101,7 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
     }
 
     @Override
-    public float getExperience(IThermalInventory inventory) {
+    public float getExperience(IMachineInventory inventory) {
 
         if (catalyzable && inventory.inputSlots().size() > catalystSlot) {
             IRecipeCatalyst catalyst = getCatalyst(inventory.inputSlots().get(catalystSlot).getItemStack());

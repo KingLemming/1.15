@@ -16,7 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.TARGETS;
+import static cofh.lib.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandZap {
 
@@ -29,8 +29,8 @@ public class SubCommandZap {
                 // Self
                 .executes(context -> zapEntities(context.getSource(), ImmutableList.of(context.getSource().assertIsEntity())))
                 // Targets Specified
-                .then(Commands.argument(TARGETS, EntityArgument.entities())
-                        .executes(context -> zapEntities(context.getSource(), EntityArgument.getEntities(context, TARGETS))));
+                .then(Commands.argument(CMD_TARGETS, EntityArgument.entities())
+                        .executes(context -> zapEntities(context.getSource(), EntityArgument.getEntities(context, CMD_TARGETS))));
     }
 
     private static int zapEntities(CommandSource source, Collection<? extends Entity> targets) {

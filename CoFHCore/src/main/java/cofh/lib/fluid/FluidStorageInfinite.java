@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 public class FluidStorageInfinite extends FluidStorageCoFH {
 
-
     public FluidStorageInfinite(int capacity) {
 
         super(capacity);
