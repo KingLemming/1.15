@@ -19,8 +19,8 @@ import java.util.Map;
 
 public abstract class SingleItemFuelManager extends AbstractManager implements IFuelManager {
 
-    public static final int MIN_ENERGY = 3000;
-    public static final int MAX_ENERGY = 200000000;
+    public static final int MIN_ENERGY = 1000;
+    public static final int MAX_ENERGY = 20000000;
 
     protected Map<ComparableItemStack, IDynamoFuel> fuelMap = new Object2ObjectOpenHashMap<>();
 

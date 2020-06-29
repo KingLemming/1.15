@@ -25,8 +25,7 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileReconfigurableProcess extends MachineTileReconfigurable implements ITickableTileEntity {
 
-    protected static final int BASE_PROCESS_AMOUNT = 20;
-    protected static final int BASE_ENERGY_USE = 20;
+    protected static final int BASE_PROCESS_TICK = 20;
     protected static final int BASE_ENERGY = 20000;
 
     protected IMachineRecipe curRecipe;
@@ -37,13 +36,27 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     protected int process;
     protected int processMax;
 
-    protected int processAmount = BASE_PROCESS_AMOUNT;
-    protected int energyUse = BASE_ENERGY_USE;
+    protected int processTick = getBaseProcessTick();
 
     public MachineTileReconfigurableProcess(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        energyStorage = new EnergyStorageCoFH(BASE_ENERGY, BASE_ENERGY_USE * 4);
+        energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
+    }
+
+    protected int getBaseEnergyStorage() {
+
+        return BASE_ENERGY;
+    }
+
+    protected int getBaseEnergyXfer() {
+
+        return BASE_PROCESS_TICK * 4;
+    }
+
+    protected int getBaseProcessTick() {
+
+        return BASE_PROCESS_TICK;
     }
 
     @Override
@@ -62,7 +75,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
                 } else {
                     processStart();
                 }
-            } else if (energyStorage.getEnergyStored() < energyUse) {
+            } else if (energyStorage.getEnergyStored() < processTick) {
                 processOff();
             }
         } else if (redstoneControl.getState()) {
@@ -83,7 +96,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     // region PROCESS
     protected boolean canProcessStart() {
 
-        if (energyStorage.getEnergyStored() < energyUse) {
+        if (energyStorage.getEnergyStored() < processTick) {
             return false;
         }
         if (!validateInputs()) {
@@ -133,9 +146,9 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
         if (process <= 0) {
             return 0;
         }
-        energyStorage.modify(-energyUse);
-        process -= processAmount;
-        return energyUse;
+        energyStorage.modify(-processTick);
+        process -= processTick;
+        return processTick;
     }
     // endregion
 
@@ -385,22 +398,27 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     // endregion
 
     // region AUGMENTS
+    protected float processMod = 1.0F;
+
     @Override
     protected void resetAttributes() {
 
         super.resetAttributes();
-
-        processAmount = BASE_PROCESS_AMOUNT;
-        energyUse = BASE_ENERGY_USE;
+        processMod = 1.0F;
     }
 
     @Override
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
         super.setAttributesFromAugment(augmentData);
+        processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
+    }
 
-        processAmount *= getMultiplicativeModifier(augmentData, TAG_AUGMENT_POWER_MOD);
-        energyUse *= getMultiplicativeModifier(augmentData, TAG_AUGMENT_POWER_MOD);
+    @Override
+    protected void finalizeAttributes() {
+
+        super.finalizeAttributes();
+        processTick = Math.round(getBaseProcessTick() * processMod);
     }
     // endregion
 

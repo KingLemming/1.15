@@ -14,6 +14,10 @@ import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
  */
 public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBTSerializable<CompoundNBT> {
 
+    protected final int baseCapacity;
+    protected final int baseReceive;
+    protected final int baseExtract;
+
     protected int energy;
     protected int capacity;
     protected int maxReceive;
@@ -36,18 +40,21 @@ public class EnergyStorageCoFH implements IEnergyStorage, IResourceStorage, INBT
 
     public EnergyStorageCoFH(int capacity, int maxReceive, int maxExtract, int energy) {
 
+        this.baseCapacity = capacity;
+        this.baseReceive = maxReceive;
+        this.baseExtract = maxExtract;
+
         this.capacity = capacity;
         this.maxReceive = maxReceive;
         this.maxExtract = maxExtract;
         this.energy = Math.max(0, Math.min(capacity, energy));
     }
 
-    public EnergyStorageCoFH setParams(int capacity, int maxReceive, int maxExtract) {
+    public EnergyStorageCoFH applyModifiers(float storageMod, float transferMod) {
 
-        this.capacity = capacity;
-        this.maxReceive = maxReceive;
-        this.maxExtract = maxExtract;
-        this.energy = Math.max(0, Math.min(capacity, energy));
+        setCapacity(Math.round(baseCapacity * storageMod));
+        setMaxReceive(Math.round(baseReceive * transferMod));
+        setMaxExtract(Math.round(baseExtract * transferMod));
         return this;
     }
 

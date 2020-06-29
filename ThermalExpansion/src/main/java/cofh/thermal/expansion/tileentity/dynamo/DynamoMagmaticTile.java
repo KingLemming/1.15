@@ -40,7 +40,7 @@ public class DynamoMagmaticTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
-        fuel += fuelMax = MagmaticFuelManager.instance().getEnergy(fuelTank.getFluidStack());
+        fuel += fuelMax = Math.round(MagmaticFuelManager.instance().getEnergy(fuelTank.getFluidStack()) * energyMod);
         fuelTank.modify(-FLUID_FUEL_AMOUNT);
     }
     // endregion

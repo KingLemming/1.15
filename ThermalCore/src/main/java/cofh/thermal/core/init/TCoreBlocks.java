@@ -5,12 +5,14 @@ import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
+import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -20,8 +22,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 
+import java.util.function.IntSupplier;
+import java.util.function.Predicate;
+
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
 
@@ -135,7 +141,10 @@ public class TCoreBlocks {
 
     private static void registerTileBlocks() {
 
-        registerBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new));
+        IntSupplier workbenchAugs = () -> ThermalConfig.workbenchAugments;
+        Predicate<ItemStack> workbenchValidator = (e) -> true;
+
+        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator);
     }
 
     private static void registerTileContainers() {

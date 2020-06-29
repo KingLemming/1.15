@@ -17,6 +17,8 @@ import static cofh.lib.util.constants.NBTTags.*;
 
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
 
+    protected static final int BASE_PROCESS_TICK = 40;
+
     protected Direction facing;
 
     protected int fuel;
@@ -24,11 +26,16 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected int coolant;
     protected int coolantMax;
 
-    protected int energyGen = 40;
+    protected int processTick = getBaseProcessTick();
 
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
+    }
+
+    protected int getBaseProcessTick() {
+
+        return BASE_PROCESS_TICK;
     }
 
     @Override
@@ -54,19 +61,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         // TODO: Handle caching of neighbor caps.
     }
 
-    public Direction getFacing() {
-
-        if (facing == null) {
-            facing = getBlockState().get(FACING_ALL);
-        }
-        return facing;
-    }
-
-    protected void updateFacing() {
-
-        facing = getBlockState().get(FACING_ALL);
-    }
-
     @Override
     public void tick() {
 
@@ -90,11 +84,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
             }
         }
         updateActiveState(curActive);
-    }
-
-    protected void transferEnergy(int energy) {
-
-        EnergyHelper.insertIntoAdjacent(this, energy, getFacing());
     }
 
     // region PROCESS
@@ -125,11 +114,32 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         if (fuel <= 0) {
             return 0;
         }
-        int energy = Math.min(fuel, energyGen);
+        int energy = Math.min(fuel, processTick);
         fuel -= energy;
         transferEnergy(energy);
         return energy;
     }
+    // endregion
+
+    // region HELPERS
+    protected void transferEnergy(int energy) {
+
+        EnergyHelper.insertIntoAdjacent(this, energy, getFacing());
+    }
+
+    protected Direction getFacing() {
+
+        if (facing == null) {
+            updateFacing();
+        }
+        return facing;
+    }
+
+    protected void updateFacing() {
+
+        facing = getBlockState().get(FACING_ALL);
+    }
+
     // endregion
 
     // region GUI
@@ -226,6 +236,31 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         nbt.putInt(TAG_COOLANT, coolant);
 
         return nbt;
+    }
+    // endregion
+
+    // region AUGMENTS
+    protected float processMod = 1.0F;
+
+    @Override
+    protected void resetAttributes() {
+
+        super.resetAttributes();
+        processMod = 1.0F;
+    }
+
+    @Override
+    protected void setAttributesFromAugment(CompoundNBT augmentData) {
+
+        super.setAttributesFromAugment(augmentData);
+        processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
+    }
+
+    @Override
+    protected void finalizeAttributes() {
+
+        super.finalizeAttributes();
+        processTick = Math.round(getBaseProcessTick() * processMod);
     }
     // endregion
 }

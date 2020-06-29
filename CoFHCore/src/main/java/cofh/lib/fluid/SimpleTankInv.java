@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static cofh.lib.util.constants.NBTTags.TAG_TANK;
@@ -23,38 +23,18 @@ public class SimpleTankInv extends SimpleFluidHandler {
 
     public SimpleTankInv(@Nullable ITileCallback tile) {
 
-        this(tile, 0, TAG_TANK_INV);
-    }
-
-    public SimpleTankInv(@Nullable ITileCallback tile, int size) {
-
-        this(tile, size, TAG_TANK_INV);
-    }
-
-    public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull List<FluidStorageCoFH> tanks) {
-
-        this(tile, tanks, TAG_TANK_INV);
+        this(tile, TAG_TANK_INV);
     }
 
     public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull String tag) {
 
-        this(tile, 0, tag);
+        this(tile, Collections.emptyList(), tag);
     }
 
     public SimpleTankInv(@Nullable ITileCallback tile, @Nonnull List<FluidStorageCoFH> tanks, @Nonnull String tag) {
 
         super(tile, tanks);
         this.tag = tag;
-    }
-
-    public SimpleTankInv(@Nullable ITileCallback tile, int size, @Nonnull String tag) {
-
-        super(tile, new ArrayList<>(size));
-        this.tile = tile;
-        this.tag = tag;
-        for (int i = 0; i < size; ++i) {
-            tanks.add(new FluidStorageCoFH());
-        }
     }
 
     public void clear() {

@@ -2,7 +2,6 @@ package cofh.lib.fluid;
 
 import cofh.lib.util.IResourceStorage;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -17,36 +16,37 @@ import java.util.function.Predicate;
  */
 public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IResourceStorage {
 
+    protected final int baseCapacity;
     protected Predicate<FluidStack> validator;
 
     @Nonnull
     protected FluidStack fluid = FluidStack.EMPTY;
-    protected int capacity = FluidAttributes.BUCKET_VOLUME;
-
-    public FluidStorageCoFH() {
-
-        this(e -> true);
-    }
+    protected int capacity;
 
     public FluidStorageCoFH(int capacity) {
 
         this(capacity, e -> true);
     }
 
-    public FluidStorageCoFH(Predicate<FluidStack> validator) {
+    public FluidStorageCoFH(int capacity, Predicate<FluidStack> validator) {
 
+        this.baseCapacity = capacity;
+        this.capacity = capacity;
         this.validator = validator;
     }
 
-    public FluidStorageCoFH(int capacity, Predicate<FluidStack> validator) {
+    public FluidStorageCoFH applyModifiers(float storageMod) {
 
-        this.capacity = capacity;
-        this.validator = validator;
+        setCapacity(Math.round(baseCapacity * storageMod));
+        return this;
     }
 
     public FluidStorageCoFH setCapacity(int capacity) {
 
         this.capacity = capacity;
+        if (!isEmpty()) {
+            fluid.setAmount(Math.max(0, Math.min(capacity, getAmount())));
+        }
         return this;
     }
 

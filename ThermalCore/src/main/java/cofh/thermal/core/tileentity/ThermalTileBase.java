@@ -16,6 +16,7 @@ import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
 import cofh.lib.util.helpers.AugmentDataHelper;
+import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.loot.TileNBTSync;
@@ -404,7 +405,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         /* Implicit requirement here that augments always come LAST in slot order.
         This isn't a bad assumption/rule though, as it's a solid way to handle it.*/
-        if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
+        if (slot >= invSize() - augSize()) {
             updateAugmentState();
         }
     }
@@ -417,13 +418,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // endregion
 
     // region IThermalInventory / IRecipeCatalyst
-    protected float primaryMod = 1.0F;
-    protected float secondaryMod = 1.0F;
-    protected float energyMod = 1.0F;
-    protected float experienceMod = 1.0F;
-    protected float minOutputChance = 0.0F;
-    protected float catalystUseChance = 1.0F;
-
     @Override
     public final float getPrimaryMod() {
 
@@ -457,11 +451,21 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public final float getUseChance() {
 
-        return catalystUseChance;
+        return catalystMod;
     }
     // endregion
 
     // region AUGMENTS
+    protected float primaryMod = 1.0F;
+    protected float secondaryMod = 1.0F;
+    protected float energyMod = 1.0F;
+    protected float experienceMod = 1.0F;
+    protected float minOutputChance = 0.0F;
+    protected float catalystMod = 1.0F;
+
+    protected float energyStorageMod = 1.0F;
+    protected float energyXferMod = 1.0F;
+    protected float fluidStorageMod = 1.0F;
 
     /**
      * This should be called AFTER all other slots have been added.
@@ -489,36 +493,71 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
             }
             setAttributesFromAugment(augmentData);
         }
+        finalizeAttributes();
     }
 
     protected void resetAttributes() {
 
         primaryMod = 1.0F;
         secondaryMod = 1.0F;
+
         energyMod = 1.0F;
         experienceMod = 1.0F;
+        catalystMod = 1.0F;
+
         minOutputChance = 0.0F;
-        catalystUseChance = 1.0F;
+
+        energyStorageMod = 1.0F;
+        energyXferMod = 1.0F;
+        fluidStorageMod = 1.0F;
     }
 
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
-        primaryMod += getAdditiveModifier(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
-        secondaryMod += getAdditiveModifier(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
-        energyMod += getAdditiveModifier(augmentData, TAG_AUGMENT_ENERGY_MOD);
-        experienceMod += getAdditiveModifier(augmentData, TAG_AUGMENT_EXPERIENCE_MOD);
-        minOutputChance += getAdditiveModifier(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE);
-        catalystUseChance += getAdditiveModifier(augmentData, TAG_AUGMENT_CATALYST_MOD);
+        primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
+        secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
+
+        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
+        experienceMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_EXPERIENCE_MOD, 1.0F);
+        catalystMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_CATALYST_MOD, 1.0F);
+
+        minOutputChance = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE), minOutputChance);
+
+        energyStorageMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE);
+        energyXferMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER);
+        fluidStorageMod += getAttributeMod(augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
 
-    protected float getAdditiveModifier(CompoundNBT augmentData, String key) {
+    protected void finalizeAttributes() {
+
+        float scaleMin = 0.0F;
+        float scaleMax = 100.0F;
+
+        primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
+        secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
+
+        energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
+        experienceMod = MathHelper.clamp(experienceMod, scaleMin, scaleMax);
+        catalystMod = MathHelper.clamp(catalystMod, scaleMin, scaleMax);
+
+        energyStorageMod = MathHelper.clamp(energyStorageMod, scaleMin, scaleMax);
+        energyXferMod = MathHelper.clamp(energyXferMod, scaleMin, scaleMax);
+        fluidStorageMod = MathHelper.clamp(fluidStorageMod, scaleMin, scaleMax);
+
+        energyStorage.applyModifiers(energyStorageMod, energyXferMod);
+        for (int i = 0; i < tankInv.getTanks(); ++i) {
+            tankInv.getTank(i).applyModifiers(fluidStorageMod);
+        }
+    }
+
+    protected float getAttributeMod(CompoundNBT augmentData, String key) {
 
         return augmentData.getFloat(key);
     }
 
-    protected float getMultiplicativeModifier(CompoundNBT augmentData, String key) {
+    protected float getAttributeModWithDefault(CompoundNBT augmentData, String key, float defaultValue) {
 
-        return augmentData.contains(key) ? augmentData.getFloat(key) : 1.0F;
+        return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
     }
     // endregion
 

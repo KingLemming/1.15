@@ -7,19 +7,10 @@ import java.util.function.Predicate;
 
 public class FluidStorageInfinite extends FluidStorageCoFH {
 
-    public FluidStorageInfinite() {
-
-        super();
-    }
 
     public FluidStorageInfinite(int capacity) {
 
         super(capacity);
-    }
-
-    public FluidStorageInfinite(Predicate<FluidStack> validator) {
-
-        super(validator);
     }
 
     public FluidStorageInfinite(int capacity, Predicate<FluidStack> validator) {

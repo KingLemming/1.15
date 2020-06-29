@@ -32,7 +32,7 @@ public class SimpleItemHandler implements IItemHandler {
     public SimpleItemHandler(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
 
         this.tile = tile;
-        this.slots = slots;
+        this.slots = new ArrayList<>(slots);
     }
 
     public boolean hasSlots() {

@@ -18,6 +18,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 
+import static cofh.lib.util.StorageGroup.ACCESSIBLE;
 import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.workbenchAugments;
@@ -31,7 +32,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
 
     protected FluidStorageCoFH tank = new FluidStorageCoFH(TANK_MEDIUM);
 
-    protected static final int BASE_ENERGY = 200000;
+    protected static final int BASE_ENERGY = 20000;
     protected static final int BASE_TRANSFER = 1000;
 
     // TODO: Cap caching. Let's get it working first.
@@ -50,7 +51,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         inventory.addSlot(chargeSlot, INTERNAL);
         inventory.addSlot(tankSlot, INTERNAL);
 
-        tankInv.addTank(tank, INTERNAL);
+        tankInv.addTank(tank, ACCESSIBLE);
 
         addAugmentSlots(workbenchAugments);
         initHandlers();

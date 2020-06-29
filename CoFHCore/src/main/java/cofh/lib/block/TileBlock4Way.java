@@ -30,19 +30,6 @@ public class TileBlock4Way extends TileBlockCoFH {
         this.setDefaultState(this.stateContainer.getBaseState().with(ACTIVE, false));
     }
 
-    // TODO: Revisit
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
-        super.addInformation(stack, worldIn, tooltip, flagIn);
-        //        CompoundNBT compoundnbt = stack.getChildTag(TAG_BLOCK_ENTITY);
-        //        if (compoundnbt != null) {
-        //            System.out.println(compoundnbt);
-        //        } else if (stack.getTag() != null) {
-        //            System.out.println(stack.getTag());
-        //        }
-    }
-
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 

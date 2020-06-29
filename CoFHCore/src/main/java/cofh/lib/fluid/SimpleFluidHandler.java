@@ -32,7 +32,7 @@ public class SimpleFluidHandler implements IFluidHandler {
     public SimpleFluidHandler(@Nullable ITileCallback tile, @Nonnull List<FluidStorageCoFH> tanks) {
 
         this.tile = tile;
-        this.tanks = tanks;
+        this.tanks = new ArrayList<>(tanks);
     }
 
     public boolean hasTanks() {

@@ -7,7 +7,7 @@ import net.minecraft.nbt.ListNBT;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ITEM_INV;
@@ -23,38 +23,18 @@ public class SimpleItemInv extends SimpleItemHandler {
 
     public SimpleItemInv(@Nullable IInventoryCallback tile) {
 
-        this(tile, 0, TAG_ITEM_INV);
-    }
-
-    public SimpleItemInv(@Nullable IInventoryCallback tile, int size) {
-
-        this(tile, size, TAG_ITEM_INV);
-    }
-
-    public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> slots) {
-
-        this(tile, slots, TAG_ITEM_INV);
+        this(tile, TAG_ITEM_INV);
     }
 
     public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull String tag) {
 
-        this(tile, 0, tag);
+        this(tile, Collections.emptyList(), tag);
     }
 
     public SimpleItemInv(@Nullable IInventoryCallback tile, @Nonnull List<ItemStorageCoFH> slots, @Nonnull String tag) {
 
         super(tile, slots);
         this.tag = tag;
-    }
-
-    public SimpleItemInv(@Nullable IInventoryCallback tile, int size, @Nonnull String tag) {
-
-        super(tile, new ArrayList<>(size));
-        this.tile = tile;
-        this.tag = tag;
-        for (int i = 0; i < size; ++i) {
-            slots.add(new ItemStorageCoFH());
-        }
     }
 
     public void clear() {
