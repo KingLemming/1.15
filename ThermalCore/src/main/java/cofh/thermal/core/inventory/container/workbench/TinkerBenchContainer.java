@@ -4,7 +4,7 @@ import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.ItemInvWrapper;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
-import cofh.lib.util.helpers.AugmentHelper;
+import cofh.lib.util.helpers.AugmentableHelper;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -30,7 +30,7 @@ public class TinkerBenchContainer extends TileContainer {
         @Override
         public boolean isItemValidForSlot(int index, ItemStack stack) {
 
-            return tinkerSlot.getHasStack() && index < AugmentHelper.getAugmentSlots(tinkerSlot.getStack()) && AugmentHelper.validAugment(tinkerSlot.getStack(), stack);
+            return tinkerSlot.getHasStack() && index < AugmentableHelper.getAugmentSlots(tinkerSlot.getStack()) && AugmentableHelper.validAugment(tinkerSlot.getStack(), stack);
         }
     };
 
@@ -78,14 +78,14 @@ public class TinkerBenchContainer extends TileContainer {
     private void readAugmentsFromItem(ItemStack stack) {
 
         if (!stack.isEmpty()) {
-            itemInventory.setInvContainer(stack, AugmentHelper.getAugments(stack), AugmentHelper.getAugmentSlots(stack));
+            itemInventory.setInvContainer(stack, AugmentableHelper.getAugments(stack), AugmentableHelper.getAugmentSlots(stack));
         }
     }
 
     private void writeAugmentsToItem(ItemStack stack) {
 
         if (!stack.isEmpty()) {
-            AugmentHelper.setAugments(stack, itemInventory.getStacks());
+            AugmentableHelper.setAugments(stack, itemInventory.getStacks());
             tile.markDirty();
         }
     }
@@ -108,7 +108,7 @@ public class TinkerBenchContainer extends TileContainer {
 
     public int getNumTinkerAugmentSlots() {
 
-        return AugmentHelper.getAugmentSlots(tinkerSlot.getStack());
+        return AugmentableHelper.getAugmentSlots(tinkerSlot.getStack());
     }
 
     public List<SlotCoFH> getTinkerAugmentSlots() {

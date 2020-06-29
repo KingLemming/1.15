@@ -23,10 +23,10 @@ public class PanelAugmentation extends PanelBase {
     public static int defaultTextColor = 0x000000;
     public static int defaultBackgroundColor = 0x089e4c;
 
-    private int slotsBorderX1 = 18;
-    private int slotsBorderX2 = slotsBorderX1 + 60;
-    private int slotsBorderY1 = 20;
-    private int slotsBorderY2 = slotsBorderY1 + 60;
+    private final int slotsBorderX1 = 18;
+    private final int slotsBorderX2 = slotsBorderX1 + 60;
+    private final int slotsBorderY1 = 20;
+    private final int slotsBorderY2 = slotsBorderY1 + 60;
 
     public PanelAugmentation(IGuiAccess gui, @Nonnull IntSupplier numSlots, @Nonnull List<SlotCoFH> augmentSlots) {
 

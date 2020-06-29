@@ -3,7 +3,7 @@ package cofh.thermal.core.tileentity.workbench;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.AugmentHelper;
+import cofh.lib.util.helpers.AugmentableHelper;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
@@ -25,7 +25,7 @@ import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
 
 public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEntity {
 
-    protected ItemStorageCoFH tinkerSlot = new ItemStorageCoFH(1, item -> AugmentHelper.isAugmentable(item) || EnergyHelper.hasEnergyHandlerCap(item) || FluidHelper.hasFluidHandlerCap(item));
+    protected ItemStorageCoFH tinkerSlot = new ItemStorageCoFH(1, item -> AugmentableHelper.isAugmentableItem(item) || EnergyHelper.hasEnergyHandlerCap(item) || FluidHelper.hasFluidHandlerCap(item));
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
     protected ItemStorageCoFH tankSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
 

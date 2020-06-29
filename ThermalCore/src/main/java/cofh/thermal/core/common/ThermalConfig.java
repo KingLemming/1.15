@@ -99,7 +99,7 @@ public class ThermalConfig {
 
     // region VARIABLES
     public static int dynamoAugments = 7;
-    public static int machineAugments = 5;
+    public static int machineAugments = 7;
     public static int workbenchAugments = 2;
 
     public static BooleanValue keepEnergy;

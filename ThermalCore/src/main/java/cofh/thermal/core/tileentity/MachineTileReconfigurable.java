@@ -100,18 +100,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     }
 
     // region HELPERS
-    @Override
-    protected void updateAugmentState() {
-
-        super.updateAugmentState();
-
-        // TODO: Finish
-        //        augmentTypes.clear();
-        //        for (ItemStorageCoFH slot : augments) {
-        //            slot.getItemStack()
-        //        }
-    }
-
     protected void updateSideCache() {
 
         Direction prevFacing = getFacing();

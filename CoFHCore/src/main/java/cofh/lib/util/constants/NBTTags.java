@@ -13,6 +13,7 @@ public class NBTTags {
     public static final String TAG_ARROW_DATA = "ArrowData";
     public static final String TAG_ARROWS = "Arrows";
     public static final String TAG_AUGMENTS = "Augments";
+    public static final String TAG_AUGMENT_DATA = "AugmentData";
     public static final String TAG_BLOCK_ENTITY = "BlockEntityTag";
     public static final String TAG_CART_DATA = "CartData";
     public static final String TAG_COLORS = "Colors";
@@ -59,6 +60,19 @@ public class NBTTags {
     public static final String TAG_XFER = "Xfer";
     public static final String TAG_XFER_IN = "XferIn";
     public static final String TAG_XFER_OUT = "XferOut";
+
+    public static final String TAG_AUGMENT_PRIMARY_OUTPUT_MOD = "PriCh";
+    public static final String TAG_AUGMENT_SECONDARY_OUTPUT_MOD = "SecCh";
+    public static final String TAG_AUGMENT_MIN_OUTPUT_CHANCE = "MinCh";
+
+    public static final String TAG_AUGMENT_POWER_MOD = "PwrMod";
+    public static final String TAG_AUGMENT_ENERGY_MOD = "EnMod";
+    public static final String TAG_AUGMENT_CATALYST_MOD = "CatMod";
+    public static final String TAG_AUGMENT_EXPERIENCE_MOD = "XpMod";
+
+    public static final String TAG_AUGMENT_ENERGY_STORAGE = "EnMax";
+    public static final String TAG_AUGMENT_ENERGY_XFER = "EnXfer";
+    public static final String TAG_AUGMENT_FLUID_STORAGE = "FlMax";
 
     public static final String TAG_DEMAGNETIZE_COMPAT = "AllowMachineRemoteMovement";
     public static final String TAG_CONVEYOR_COMPAT = "PreventRemoteMovement";

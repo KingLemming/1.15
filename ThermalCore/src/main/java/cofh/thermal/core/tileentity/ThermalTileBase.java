@@ -15,6 +15,7 @@ import cofh.lib.util.control.IRedstoneControllableTile;
 import cofh.lib.util.control.ISecurableTile;
 import cofh.lib.util.control.RedstoneControlModule;
 import cofh.lib.util.control.SecurityControlModule;
+import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.loot.TileNBTSync;
@@ -111,10 +112,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         inventory.initHandlers();
         tankInv.initHandlers();
-    }
-
-    protected void updateAugmentState() {
-
     }
 
     protected void updateActiveState(boolean curActive) {
@@ -428,37 +425,37 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected float catalystUseChance = 1.0F;
 
     @Override
-    public float getPrimaryMod() {
+    public final float getPrimaryMod() {
 
         return primaryMod;
     }
 
     @Override
-    public float getSecondaryMod() {
+    public final float getSecondaryMod() {
 
         return secondaryMod;
     }
 
     @Override
-    public float getEnergyMod() {
+    public final float getEnergyMod() {
 
         return energyMod;
     }
 
     @Override
-    public float getExperienceMod() {
+    public final float getExperienceMod() {
 
         return experienceMod;
     }
 
     @Override
-    public float getMinOutputChance() {
+    public final float getMinOutputChance() {
 
         return minOutputChance;
     }
 
     @Override
-    public float getUseChance() {
+    public final float getUseChance() {
 
         return catalystUseChance;
     }
@@ -480,6 +477,48 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
             inventory.addSlot(slot, INTERNAL);
         }
         ((ArrayList<ItemStorageCoFH>) augments).trimToSize();
+    }
+
+    protected void updateAugmentState() {
+
+        resetAttributes();
+        for (ItemStorageCoFH slot : augments) {
+            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(slot.getItemStack());
+            if (augmentData == null) {
+                continue;
+            }
+            setAttributesFromAugment(augmentData);
+        }
+    }
+
+    protected void resetAttributes() {
+
+        primaryMod = 1.0F;
+        secondaryMod = 1.0F;
+        energyMod = 1.0F;
+        experienceMod = 1.0F;
+        minOutputChance = 0.0F;
+        catalystUseChance = 1.0F;
+    }
+
+    protected void setAttributesFromAugment(CompoundNBT augmentData) {
+
+        primaryMod += getAdditiveModifier(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
+        secondaryMod += getAdditiveModifier(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
+        energyMod += getAdditiveModifier(augmentData, TAG_AUGMENT_ENERGY_MOD);
+        experienceMod += getAdditiveModifier(augmentData, TAG_AUGMENT_EXPERIENCE_MOD);
+        minOutputChance += getAdditiveModifier(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE);
+        catalystUseChance += getAdditiveModifier(augmentData, TAG_AUGMENT_CATALYST_MOD);
+    }
+
+    protected float getAdditiveModifier(CompoundNBT augmentData, String key) {
+
+        return augmentData.getFloat(key);
+    }
+
+    protected float getMultiplicativeModifier(CompoundNBT augmentData, String key) {
+
+        return augmentData.contains(key) ? augmentData.getFloat(key) : 1.0F;
     }
     // endregion
 

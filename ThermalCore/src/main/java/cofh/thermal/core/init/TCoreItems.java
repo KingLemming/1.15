@@ -1,6 +1,8 @@
 package cofh.thermal.core.init;
 
 import cofh.lib.item.ArmorMaterialCoFH;
+import cofh.lib.item.AugmentItem;
+import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.core.item.*;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -11,6 +13,7 @@ import net.minecraft.item.Rarity;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
 
+import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
 import static cofh.thermal.core.init.TCoreReferences.*;
@@ -25,8 +28,9 @@ public class TCoreItems {
     public static void register() {
 
         registerVanillaItems();
-        registerThermalItems();
+        registerResources();
         registerTools();
+        registerAugments();
     }
 
     private static void registerVanillaItems() {
@@ -40,7 +44,7 @@ public class TCoreItems {
         registerGemSet("emerald", group, true);
     }
 
-    private static void registerThermalItems() {
+    private static void registerResources() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
@@ -76,6 +80,31 @@ public class TCoreItems {
         registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2));
     }
 
+    private static void registerAugments() {
+
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
+
+        registerItem("machine_speed_aug", () -> new AugmentItem(new Item.Properties().maxStackSize(1).group(group),
+                AugmentDataHelper.builder()
+                        .mod(TAG_AUGMENT_POWER_MOD, 3.0F)
+                        .mod(TAG_AUGMENT_ENERGY_STORAGE, 3.0F)
+                        .mod(TAG_AUGMENT_ENERGY_XFER, 3.0F)
+                        .build()));
+
+        registerItem("machine_output_aug", () -> new AugmentItem(new Item.Properties().maxStackSize(1).group(group),
+                AugmentDataHelper.builder()
+                        .mod(TAG_AUGMENT_PRIMARY_OUTPUT_MOD, 3.0F)
+                        .mod(TAG_AUGMENT_SECONDARY_OUTPUT_MOD, 3.0F)
+                        .mod(TAG_AUGMENT_MIN_OUTPUT_CHANCE, 3.75F)
+                        .build()));
+
+        registerItem("machine_creative_aug", () -> new AugmentItem(new Item.Properties().maxStackSize(1).group(group),
+                AugmentDataHelper.builder()
+                        .mod(TAG_AUGMENT_ENERGY_MOD, 0.0F)
+                        .build()));
+    }
+
+    // region EXTERNAL REGISTRATION
     public static void registerBeekeeperArmor() {
 
         if (registerBeekeeperArmor) {
@@ -111,5 +140,6 @@ public class TCoreItems {
 
     public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 1, 1, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(Items.STRING));
     public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 2, 3, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(Items.STRING));
+    // endregion
 
 }

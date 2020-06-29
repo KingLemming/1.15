@@ -15,43 +15,45 @@ import static cofh.lib.util.constants.NBTTags.TAG_AUGMENTS;
 import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
-public class AugmentHelper {
+public class AugmentableHelper {
 
-    private AugmentHelper() {
+    private AugmentableHelper() {
 
     }
 
-    public static List<ItemStack> getAugments(ItemStack stack) {
+    // region AUGMENTABLE
+    public static List<ItemStack> getAugments(ItemStack augmentable) {
 
-        ListNBT augmentTag = getAugmentNBT(stack);
+        ListNBT augmentTag = getAugmentNBT(augmentable);
         if (augmentTag.isEmpty()) {
             return Collections.emptyList();
         }
         return getAugments(augmentTag);
     }
 
-    public static int getAugmentSlots(ItemStack stack) {
+    public static int getAugmentSlots(ItemStack augmentable) {
 
-        return !isAugmentable(stack) ? 0 : MathHelper.clamp(((IAugmentableItem) stack.getItem()).getAugmentSlots(stack), 0, MAX_AUGMENTS);
+        return !isAugmentableItem(augmentable) ? 0 : MathHelper.clamp(((IAugmentableItem) augmentable.getItem()).getAugmentSlots(augmentable), 0, MAX_AUGMENTS);
     }
 
-    public static boolean validAugment(ItemStack stack, ItemStack augment) {
+    public static boolean validAugment(ItemStack augmentable, ItemStack augment) {
 
-        return isAugmentable(stack) && ((IAugmentableItem) stack.getItem()).validAugment(stack, augment);
+        return isAugmentableItem(augmentable) && ((IAugmentableItem) augmentable.getItem()).validAugment(augmentable, augment);
     }
 
     public static void setAugments(ItemStack stack, List<ItemStack> augments) {
 
-        if (!isAugmentable(stack)) {
+        if (!isAugmentableItem(stack)) {
             return;
         }
         ((IAugmentableItem) stack.getItem()).setAugments(stack, augments);
     }
+    // endregion
 
     // region HELPERS
-    public static boolean isAugmentable(ItemStack item) {
+    public static boolean isAugmentableItem(ItemStack stack) {
 
-        return !item.isEmpty() && item.getItem() instanceof IAugmentableItem;
+        return !stack.isEmpty() && stack.getItem() instanceof IAugmentableItem;
     }
 
     public static void writeAugmentsToItem(ItemStack stack, List<ItemStack> augments) {
