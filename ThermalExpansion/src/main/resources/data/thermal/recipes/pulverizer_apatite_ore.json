@@ -7,6 +7,10 @@
     {
       "item": "thermal:apatite",
       "chance": 12.5
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.2
     }
   ],
   "experience": 0.5

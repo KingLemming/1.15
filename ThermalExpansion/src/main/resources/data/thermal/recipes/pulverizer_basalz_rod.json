@@ -1,0 +1,12 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "item": "thermal:basalz_rod"
+  },
+  "result": [
+    {
+      "item": "thermal:basalz_powder",
+      "chance": 3.0
+    }
+  ]
+}

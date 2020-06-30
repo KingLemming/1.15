@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.FalseCraftingInventory;
 import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
@@ -19,7 +19,7 @@ import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
 
 // TODO: Finish. This one is going to be *completely* different.
-public class MachineCrafterTile extends MachineTileReconfigurableProcess {
+public class MachineCrafterTile extends MachineTileProcess {
 
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();

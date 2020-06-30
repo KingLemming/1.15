@@ -147,7 +147,6 @@ public class ThermalCultivation {
             return r << 16 | g << 8 | b;
         }, BLOCKS.get(ID_FROST_MELON_STEM));
     }
-
     // endregion
 
     // region DATA

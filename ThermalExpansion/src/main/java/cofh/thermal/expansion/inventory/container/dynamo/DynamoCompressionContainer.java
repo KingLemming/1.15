@@ -1,5 +1,6 @@
 package cofh.thermal.expansion.inventory.container.dynamo;
 
+import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +18,9 @@ public class DynamoCompressionContainer extends TileContainer {
 
         super(DYNAMO_COMPRESSION_CONTAINER, windowId, world, pos, inventory, player);
         this.tile = (DynamoTileBase) world.getTileEntity(pos);
+        InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
+        bindAugmentSlots(tileInv, 0, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

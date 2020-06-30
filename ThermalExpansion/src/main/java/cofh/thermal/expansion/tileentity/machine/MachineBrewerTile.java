@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineBrewerContainer;
 import cofh.thermal.expansion.util.managers.machine.BrewerRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +21,7 @@ import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_TILE;
 
-public class MachineBrewerTile extends MachineTileReconfigurableProcess {
+public class MachineBrewerTile extends MachineTileProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(BrewerRecipeManager.instance()::validItem);
     protected FluidStorageCoFH inputTank = new FluidStorageCoFH(TANK_SMALL, BrewerRecipeManager.instance()::validFluid);

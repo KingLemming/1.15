@@ -7,12 +7,21 @@ import javax.annotation.Nullable;
 
 public class AugmentItem extends ItemCoFH implements IAugmentItem {
 
-    private final CompoundNBT augmentData;
+    private CompoundNBT augmentData;
 
     public AugmentItem(Properties builder, CompoundNBT augmentData) {
 
         super(builder);
+        setAugmentData(augmentData);
+    }
+
+    public boolean setAugmentData(CompoundNBT augmentData) {
+
+        if (augmentData == null || augmentData.isEmpty()) {
+            return false;
+        }
         this.augmentData = augmentData;
+        return true;
     }
 
     // region IAugmentItem

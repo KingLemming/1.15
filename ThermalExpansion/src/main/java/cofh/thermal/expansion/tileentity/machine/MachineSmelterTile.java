@@ -2,7 +2,7 @@ package cofh.thermal.expansion.tileentity.machine;
 
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineSmelterContainer;
 import cofh.thermal.expansion.util.managers.machine.SmelterRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqual;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SMELTER_TILE;
 
-public class MachineSmelterTile extends MachineTileReconfigurableProcess {
+public class MachineSmelterTile extends MachineTileProcess {
 
     protected ItemStorageCoFH[] inputSlots = new ItemStorageCoFH[3];
     protected ItemStorageCoFH catalystSlot = new ItemStorageCoFH(SmelterRecipeManager.instance()::validCatalyst);

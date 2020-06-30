@@ -31,7 +31,7 @@ public class TileContainer extends ContainerCoFH {
     @Override
     protected int getSizeTileInventory() {
 
-        return baseTile == null ? 0 : baseTile.invSize() - baseTile.augSize();
+        return baseTile == null ? 0 : baseTile.invSize();
     }
 
     @Override

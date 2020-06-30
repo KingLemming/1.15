@@ -34,10 +34,12 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         super(tileEntityTypeIn);
     }
 
+    // region BASE PARAMETERS
     protected int getBaseProcessTick() {
 
         return BASE_PROCESS_TICK;
     }
+    // endregion
 
     @Override
     public TileCoFH worldContext(BlockState state, IBlockReader world) {
@@ -156,21 +158,10 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
     // region NETWORK
     @Override
-    public PacketBuffer getControlPacket(PacketBuffer buffer) {
-
-        super.getControlPacket(buffer);
-
-        buffer.writeFluidStack(renderFluid);
-
-        return buffer;
-    }
-
-    @Override
     public PacketBuffer getGuiPacket(PacketBuffer buffer) {
 
         super.getGuiPacket(buffer);
 
-        buffer.writeFluidStack(renderFluid);
         buffer.writeInt(fuelMax);
         buffer.writeInt(fuel);
 
@@ -178,39 +169,12 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     }
 
     @Override
-    public PacketBuffer getStatePacket(PacketBuffer buffer) {
-
-        super.getStatePacket(buffer);
-
-        buffer.writeFluidStack(renderFluid);
-
-        return buffer;
-    }
-
-    @Override
-    public void handleControlPacket(PacketBuffer buffer) {
-
-        super.handleControlPacket(buffer);
-
-        renderFluid = buffer.readFluidStack();
-    }
-
-    @Override
     public void handleGuiPacket(PacketBuffer buffer) {
 
         super.handleGuiPacket(buffer);
 
-        renderFluid = buffer.readFluidStack();
         fuelMax = buffer.readInt();
         fuel = buffer.readInt();
-    }
-
-    @Override
-    public void handleStatePacket(PacketBuffer buffer) {
-
-        super.handleStatePacket(buffer);
-
-        renderFluid = buffer.readFluidStack();
     }
     // endregion
 
@@ -241,17 +205,18 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     // endregion
 
     // region AUGMENTS
-    protected float energyMod = 1.0F;
-
+    protected float baseMod = 1.0F;
     protected float processMod = 1.0F;
+    protected float energyMod = 1.0F;
 
     @Override
     protected void resetAttributes() {
 
         super.resetAttributes();
 
-        energyMod = 1.0F;
+        baseMod = 1.0F;
         processMod = 1.0F;
+        energyMod = 1.0F;
     }
 
     @Override
@@ -259,8 +224,9 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.setAttributesFromAugment(augmentData);
 
-        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
-        processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
+        baseMod += getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD);
+        processMod += getAttributeMod(augmentData, TAG_AUGMENT_DYNAMO_PRODUCTION);
+        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_DYNAMO_EFFICIENCY, 1.0F);
     }
 
     @Override
@@ -271,8 +237,20 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         float scaleMin = AUG_SCALE_MIN;
         float scaleMax = AUG_SCALE_MAX;
 
+        processTick = Math.round(getBaseProcessTick() * baseMod * processMod);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
-        processTick = Math.round(getBaseProcessTick() * processMod);
+    }
+
+    @Override
+    protected float getEnergyStorageMod() {
+
+        return energyStorageMod * baseMod;
+    }
+
+    @Override
+    protected float getEnergyXferMod() {
+
+        return energyXferMod * baseMod;
     }
     // endregion
 }

@@ -25,7 +25,7 @@ import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
-public abstract class MachineTileReconfigurableProcess extends MachineTileReconfigurable implements ITickableTileEntity, IMachineInventory {
+public abstract class MachineTileProcess extends MachineTileBase implements ITickableTileEntity, IMachineInventory {
 
     protected static final int BASE_PROCESS_TICK = 20;
     protected static final int BASE_ENERGY = 20000;
@@ -40,12 +40,13 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
 
     protected int processTick = getBaseProcessTick();
 
-    public MachineTileReconfigurableProcess(TileEntityType<?> tileEntityTypeIn) {
+    public MachineTileProcess(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
         energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
     }
 
+    // region BASE PARAMETERS
     protected int getBaseEnergyStorage() {
 
         return BASE_ENERGY;
@@ -60,6 +61,7 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
 
         return BASE_PROCESS_TICK;
     }
+    // endregion
 
     @Override
     public void tick() {
@@ -400,6 +402,9 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     // endregion
 
     // region AUGMENTS
+    protected float baseMod = 1.0F;
+    protected float processMod = 1.0F;
+
     protected float primaryMod = 1.0F;
     protected float secondaryMod = 1.0F;
     protected float energyMod = 1.0F;
@@ -407,12 +412,13 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     protected float minOutputChance = 0.0F;
     protected float catalystMod = 1.0F;
 
-    protected float processMod = 1.0F;
-
     @Override
     protected void resetAttributes() {
 
         super.resetAttributes();
+
+        baseMod = 1.0F;
+        processMod = 1.0F;
 
         primaryMod = 1.0F;
         secondaryMod = 1.0F;
@@ -420,8 +426,6 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
         experienceMod = 1.0F;
         catalystMod = 1.0F;
         minOutputChance = 0.0F;
-
-        processMod = 1.0F;
     }
 
     @Override
@@ -429,14 +433,15 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
 
         super.setAttributesFromAugment(augmentData);
 
-        primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_PRIMARY_OUTPUT_MOD);
-        secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_SECONDARY_OUTPUT_MOD);
-        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_ENERGY_MOD, 1.0F);
-        experienceMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_EXPERIENCE_MOD, 1.0F);
-        catalystMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_CATALYST_MOD, 1.0F);
-        minOutputChance = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_MIN_OUTPUT_CHANCE), minOutputChance);
+        baseMod += getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD);
+        processMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_POWER);
 
-        processMod += getAttributeMod(augmentData, TAG_AUGMENT_POWER_MOD);
+        primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_PRIMARY);
+        secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_SECONDARY);
+        energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_MACHINE_ENERGY, 1.0F);
+        experienceMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_MACHINE_XP, 1.0F);
+        catalystMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_MACHINE_CATALYST, 1.0F);
+        minOutputChance = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_MIN_OUTPUT), minOutputChance);
     }
 
     @Override
@@ -447,13 +452,25 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
         float scaleMin = AUG_SCALE_MIN;
         float scaleMax = AUG_SCALE_MAX;
 
+        processTick = Math.round(getBaseProcessTick() * baseMod * processMod);
+
         primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
         secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
         experienceMod = MathHelper.clamp(experienceMod, scaleMin, scaleMax);
         catalystMod = MathHelper.clamp(catalystMod, scaleMin, scaleMax);
+    }
 
-        processTick = Math.round(getBaseProcessTick() * processMod);
+    @Override
+    protected float getEnergyStorageMod() {
+
+        return energyStorageMod * baseMod;
+    }
+
+    @Override
+    protected float getEnergyXferMod() {
+
+        return energyXferMod * baseMod;
     }
     // endregion
 
@@ -478,13 +495,13 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     @Override
     public final float getPrimaryMod() {
 
-        return primaryMod;
+        return primaryMod * (1.0F + baseMod / 10);
     }
 
     @Override
     public final float getSecondaryMod() {
 
-        return secondaryMod;
+        return secondaryMod * (1.0F + baseMod / 5);
     }
 
     @Override
@@ -502,13 +519,13 @@ public abstract class MachineTileReconfigurableProcess extends MachineTileReconf
     @Override
     public final float getMinOutputChance() {
 
-        return minOutputChance;
+        return minOutputChance * (1.0F + baseMod / 10);
     }
 
     @Override
     public final float getUseChance() {
 
-        return catalystMod;
+        return catalystMod * (1.0F - baseMod / 20);
     }
     // endregion
 }

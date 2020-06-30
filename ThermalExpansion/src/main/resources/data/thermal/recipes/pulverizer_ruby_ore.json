@@ -7,6 +7,10 @@
     {
       "item": "thermal:ruby_gem",
       "chance": 2.5
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.2
     }
   ],
   "experience": 0.5

@@ -11,6 +11,10 @@
     {
       "item": "thermal:gold_dust",
       "chance": 0.1
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.2
     }
   ],
   "experience": 0.2

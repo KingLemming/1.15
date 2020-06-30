@@ -35,7 +35,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected static final int BASE_ENERGY = 20000;
     protected static final int BASE_TRANSFER = 1000;
 
-    // TODO: Cap caching. Let's get it working first.
+    // TODO: Cap caching? Premature optimization possibly; revisit.
     //    protected LazyOptional<?> tinkerEnergyCap = LazyOptional.empty();
     //    protected LazyOptional<?> tinkerFluidCap = LazyOptional.empty();
     //    protected LazyOptional<?> chargeEnergyCap = LazyOptional.empty();

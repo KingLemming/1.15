@@ -61,18 +61,34 @@ public class NBTTags {
     public static final String TAG_XFER_IN = "XferIn";
     public static final String TAG_XFER_OUT = "XferOut";
 
-    public static final String TAG_AUGMENT_PRIMARY_OUTPUT_MOD = "PriCh";
-    public static final String TAG_AUGMENT_SECONDARY_OUTPUT_MOD = "SecCh";
-    public static final String TAG_AUGMENT_MIN_OUTPUT_CHANCE = "MinCh";
+    // Types
+    public static final String TAG_AUGMENT_TYPE_UPGRADE = "UpgAug";
+    public static final String TAG_AUGMENT_TYPE_RF = "RFAug";
+    public static final String TAG_AUGMENT_TYPE_FLUID = "FluidAug";
+    public static final String TAG_AUGMENT_TYPE_MACHINE = "MchAug";
+    public static final String TAG_AUGMENT_TYPE_DYNAMO = "DynAug";
 
-    public static final String TAG_AUGMENT_POWER_MOD = "PwrMod";
-    public static final String TAG_AUGMENT_ENERGY_MOD = "EnMod";
-    public static final String TAG_AUGMENT_CATALYST_MOD = "CatMod";
-    public static final String TAG_AUGMENT_EXPERIENCE_MOD = "XpMod";
-
-    public static final String TAG_AUGMENT_ENERGY_STORAGE = "EnMax";
-    public static final String TAG_AUGMENT_ENERGY_XFER = "EnXfer";
+    // General
+    public static final String TAG_AUGMENT_ENERGY_STORAGE = "RFMax";
+    public static final String TAG_AUGMENT_ENERGY_XFER = "RFXfer";
     public static final String TAG_AUGMENT_FLUID_STORAGE = "FlMax";
+
+    public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
+
+    // Machine-Specific
+    public static final String TAG_AUGMENT_MACHINE_PRIMARY = "MchPri";
+    public static final String TAG_AUGMENT_MACHINE_SECONDARY = "MchSec";
+    public static final String TAG_AUGMENT_MACHINE_MIN_OUTPUT = "MchMin";
+
+    public static final String TAG_AUGMENT_MACHINE_POWER = "MchPwr";
+    public static final String TAG_AUGMENT_MACHINE_ENERGY = "MchEn";
+    public static final String TAG_AUGMENT_MACHINE_CATALYST = "MchCat";
+    public static final String TAG_AUGMENT_MACHINE_XP = "MchXp";
+
+    // Dynamo-Specific
+    public static final String TAG_AUGMENT_DYNAMO_COIL = "DynCoil";
+    public static final String TAG_AUGMENT_DYNAMO_PRODUCTION = "DynProd";
+    public static final String TAG_AUGMENT_DYNAMO_EFFICIENCY = "DynEff";
 
     public static final String TAG_DEMAGNETIZE_COMPAT = "AllowMachineRemoteMovement";
     public static final String TAG_CONVEYOR_COMPAT = "PreventRemoteMovement";

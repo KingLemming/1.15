@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineCentrifugeContainer;
 import cofh.thermal.expansion.util.managers.machine.CentrifugeRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CENTRIFUGE_TILE;
 
-public class MachineCentrifugeTile extends MachineTileReconfigurableProcess {
+public class MachineCentrifugeTile extends MachineTileProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(CentrifugeRecipeManager.instance()::validRecipe);
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_SMALL);

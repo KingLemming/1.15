@@ -58,6 +58,19 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
 
+        for (int i = 1; i <= 4; ++i) {
+            generated(reg.getSup("upgrade_augment_" + i), AUGMENTS);
+            generated(reg.getSup("fluid_tank_augment_" + i), AUGMENTS);
+            generated(reg.getSup("rf_coil_augment_" + i), AUGMENTS);
+            generated(reg.getSup("rf_coil_stor_augment_" + i), AUGMENTS);
+            generated(reg.getSup("rf_coil_xfer_augment_" + i), AUGMENTS);
+        }
+        generated(reg.getSup("machine_speed_augment"), AUGMENTS);
+        generated(reg.getSup("machine_output_augment"), AUGMENTS);
+        generated(reg.getSup("machine_catalyst_augment"), AUGMENTS);
+        generated(reg.getSup("dynamo_output_augment"), AUGMENTS);
+        generated(reg.getSup("dynamo_fuel_augment"), AUGMENTS);
+
         generated(reg.getSup(ID_BEEKEEPER_HELMET), ARMOR);
         generated(reg.getSup(ID_BEEKEEPER_CHESTPLATE), ARMOR);
         generated(reg.getSup(ID_BEEKEEPER_LEGGINGS), ARMOR);

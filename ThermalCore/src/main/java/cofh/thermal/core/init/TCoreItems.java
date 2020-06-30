@@ -33,6 +33,7 @@ public class TCoreItems {
         registerAugments();
     }
 
+    // region HELPERS
     private static void registerVanillaItems() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
@@ -82,78 +83,91 @@ public class TCoreItems {
 
     private static void registerAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
+        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
 
         // Additive
-        final float[] storageMods = new float[]{0.0F, 3.0F, 8.0F, 15.0F, 24.0F, 35.0F};
-        final float[] chanceMods = new float[]{0.0F, 0.05F, 0.15F, 0.30F, 0.50F, 0.75F};
+        final float[] upgradeMods = new float[]{0.0F, 0.5F, 1.5F, 3.0F, 5.0F, 6.5F};
+        final float[] storageMods = new float[]{1.0F, 2.0F, 3.0F, 4.0F, 5.0F, 6.0F};
 
-        // Multiplicative
-        final float[] powerMods = new float[]{0.0F, 1.0F, 3.0F, 6.0F, 10.0F, 15.0F};
-        final float[] energyMods = new float[]{1.0F, 1.05F, 1.15F, 1.30F, 1.50F, 1.75F};
-
+        for (int i = 1; i <= 4; ++i) {
+            int tier = i;
+            registerItem("upgrade_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
+                    AugmentDataHelper.builder()
+                            .type(TAG_AUGMENT_TYPE_UPGRADE)
+                            .mod(TAG_AUGMENT_BASE_MOD, upgradeMods[tier])
+                            .build()));
+        }
         for (int i = 1; i <= 4; ++i) {
             int tier = i;
             registerItem("rf_coil_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
                     AugmentDataHelper.builder()
+                            .type(TAG_AUGMENT_TYPE_RF)
                             .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier])
                             .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier])
                             .build()));
         }
         for (int i = 1; i <= 4; ++i) {
             int tier = i;
-            registerItem("rf_coil_xfer_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier - 1])
-                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier + 1])
-                            .build()));
-        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
             registerItem("rf_coil_stor_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
                     AugmentDataHelper.builder()
+                            .type(TAG_AUGMENT_TYPE_RF)
                             .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier + 1])
                             .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier - 1])
                             .build()));
         }
         for (int i = 1; i <= 4; ++i) {
             int tier = i;
+            registerItem("rf_coil_xfer_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
+                    AugmentDataHelper.builder()
+                            .type(TAG_AUGMENT_TYPE_RF)
+                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier - 1])
+                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier + 1])
+                            .build()));
+        }
+        for (int i = 1; i <= 4; ++i) {
+            int tier = i;
             registerItem("fluid_tank_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
                     AugmentDataHelper.builder()
+                            .type(TAG_AUGMENT_TYPE_FLUID)
                             .mod(TAG_AUGMENT_FLUID_STORAGE, storageMods[tier])
                             .build()));
         }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("machine_power_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .mod(TAG_AUGMENT_POWER_MOD, powerMods[tier])
-                            .mod(TAG_AUGMENT_ENERGY_MOD, energyMods[tier - 1])
-                            .build()));
-        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("machine_output_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .mod(TAG_AUGMENT_SECONDARY_OUTPUT_MOD, chanceMods[tier])
-                            .mod(TAG_AUGMENT_ENERGY_MOD, energyMods[tier + 1])
-                            .build()));
-        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("dynamo_output_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .mod(TAG_AUGMENT_POWER_MOD, powerMods[tier])
-                            .build()));
-        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("dynamo_fuel_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .mod(TAG_AUGMENT_ENERGY_MOD, energyMods[tier])
-                            .build()));
-        }
+
+        registerItem("machine_speed_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_MACHINE)
+                        .mod(TAG_AUGMENT_MACHINE_POWER, 1.0F)
+                        .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.1F)
+                        .build()));
+
+        registerItem("machine_output_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_MACHINE)
+                        .mod(TAG_AUGMENT_MACHINE_SECONDARY, 0.15F)
+                        .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.25F)
+                        .build()));
+
+        registerItem("machine_catalyst_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_MACHINE)
+                        .mod(TAG_AUGMENT_MACHINE_CATALYST, 0.8F)
+                        .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.25F)
+                        .build()));
+
+        registerItem("dynamo_output_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_DYNAMO)
+                        .mod(TAG_AUGMENT_DYNAMO_PRODUCTION, 1.0F)
+                        .mod(TAG_AUGMENT_DYNAMO_EFFICIENCY, 0.9F)
+                        .build()));
+
+        registerItem("dynamo_fuel_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_DYNAMO)
+                        .mod(TAG_AUGMENT_DYNAMO_EFFICIENCY, 1.10F)
+                        .build()));
     }
+    // endregion
 
     // region EXTERNAL REGISTRATION
     public static void registerBeekeeperArmor() {

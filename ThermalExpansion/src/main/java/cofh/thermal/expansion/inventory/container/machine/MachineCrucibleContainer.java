@@ -3,7 +3,7 @@ package cofh.thermal.expansion.inventory.container.machine;
 import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
-import cofh.thermal.core.tileentity.MachineTileReconfigurable;
+import cofh.thermal.core.tileentity.MachineTileBase;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
@@ -13,12 +13,12 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_CONTAI
 
 public class MachineCrucibleContainer extends TileContainer {
 
-    public final MachineTileReconfigurable tile;
+    public final MachineTileBase tile;
 
     public MachineCrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory inventory, PlayerEntity player) {
 
         super(MACHINE_CRUCIBLE_CONTAINER, windowId, world, pos, inventory, player);
-        this.tile = (MachineTileReconfigurable) world.getTileEntity(pos);
+        this.tile = (MachineTileBase) world.getTileEntity(pos);
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotCoFH(tileInv, 0, 53, 26));

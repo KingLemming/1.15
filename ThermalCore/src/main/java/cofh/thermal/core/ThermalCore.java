@@ -9,6 +9,7 @@ import cofh.thermal.core.client.renderer.model.MachineModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.data.*;
+import cofh.thermal.core.event.TCoreClientEvents;
 import cofh.thermal.core.init.TCoreBlocks;
 import cofh.thermal.core.init.TCoreFluids;
 import cofh.thermal.core.init.TCoreItems;
@@ -107,6 +108,8 @@ public class ThermalCore {
 
         modEventBus.addListener(ThermalTextures::preStitch);
         modEventBus.addListener(ThermalTextures::postStitch);
+
+        TCoreClientEvents.register();
 
         ScreenManager.registerFactory(TINKER_BENCH_CONTAINER, TinkerBenchScreen::new);
 

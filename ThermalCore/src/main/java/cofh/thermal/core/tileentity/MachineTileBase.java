@@ -26,7 +26,6 @@ import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.client.model.data.ModelProperty;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.EmptyFluidHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -41,12 +40,11 @@ import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileReconfigurable extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
+public abstract class MachineTileBase extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 
     public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
-    protected FluidStack renderFluid = FluidStack.EMPTY;
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
 
     protected int inputTracker;
@@ -55,7 +53,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     protected ReconfigControlModule reconfigControl = new ReconfigControlModule(this);
     protected TransferControlModule transferControl = new TransferControlModule(this);
 
-    public MachineTileReconfigurable(TileEntityType<?> tileEntityTypeIn) {
+    public MachineTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
     }
@@ -203,19 +201,12 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
     }
     // endregion
 
-    // region GUI
-    @Override
-    public FluidStack getRenderFluid() {
-
-        return renderFluid;
-    }
-    // endregion
-
     // region NETWORK
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 
         super.onDataPacket(net, pkt);
+
         ModelDataManager.requestModelDataRefresh(this);
     }
 
@@ -226,28 +217,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         reconfigControl.writeToBuffer(buffer);
         transferControl.writeToBuffer(buffer);
-
-        buffer.writeFluidStack(renderFluid);
-
-        return buffer;
-    }
-
-    @Override
-    public PacketBuffer getGuiPacket(PacketBuffer buffer) {
-
-        super.getGuiPacket(buffer);
-
-        buffer.writeFluidStack(renderFluid);
-
-        return buffer;
-    }
-
-    @Override
-    public PacketBuffer getStatePacket(PacketBuffer buffer) {
-
-        super.getStatePacket(buffer);
-
-        buffer.writeFluidStack(renderFluid);
 
         return buffer;
     }
@@ -260,16 +229,7 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         reconfigControl.readFromBuffer(buffer);
         transferControl.readFromBuffer(buffer);
 
-        renderFluid = buffer.readFluidStack();
         ModelDataManager.requestModelDataRefresh(this);
-    }
-
-    @Override
-    public void handleGuiPacket(PacketBuffer buffer) {
-
-        super.handleGuiPacket(buffer);
-
-        renderFluid = buffer.readFluidStack();
     }
 
     @Override
@@ -277,7 +237,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
 
         super.handleStatePacket(buffer);
 
-        renderFluid = buffer.readFluidStack();
         ModelDataManager.requestModelDataRefresh(this);
     }
     // endregion
@@ -295,8 +254,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         inputTracker = nbt.getInt(TAG_TRACK_IN);
         outputTracker = nbt.getInt(TAG_TRACK_OUT);
 
-        renderFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound(TAG_RENDER_FLUID));
-
         updateSidedHandlers();
     }
 
@@ -312,9 +269,6 @@ public abstract class MachineTileReconfigurable extends ThermalTileBase implemen
         nbt.putInt(TAG_TRACK_IN, inputTracker);
         nbt.putInt(TAG_TRACK_OUT, outputTracker);
 
-        if (!renderFluid.isEmpty()) {
-            nbt.put(TAG_RENDER_FLUID, renderFluid.writeToNBT(new CompoundNBT()));
-        }
         return nbt;
     }
     // endregion

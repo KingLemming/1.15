@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.thermal.core.tileentity.MachineTileReconfigurableProcess;
+import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineChillerContainer;
 import cofh.thermal.expansion.util.managers.machine.ChillerRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ import static cofh.lib.util.references.CoFHTags.Items.MACHINE_MOLDS;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_TILE;
 
-public class MachineChillerTile extends MachineTileReconfigurableProcess {
+public class MachineChillerTile extends MachineTileProcess {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(ChillerRecipeManager.instance()::validItem);
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();

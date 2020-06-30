@@ -5,7 +5,7 @@ import cofh.lib.client.renderer.model.ModelUtils;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.control.IReconfigurable.SideConfig;
 import cofh.thermal.core.client.gui.ThermalTextures;
-import cofh.thermal.core.tileentity.MachineTileReconfigurable;
+import cofh.thermal.core.tileentity.MachineTileBase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -58,7 +58,7 @@ public class MachineBakedModel extends BakedModelWrapper<IBakedModel> implements
         if (quads.isEmpty()) {
             return quads;
         }
-        byte[] sideConfigRaw = extraData.getData(MachineTileReconfigurable.SIDES);
+        byte[] sideConfigRaw = extraData.getData(MachineTileBase.SIDES);
         int configHash = Arrays.hashCode(sideConfigRaw);
 
         if (sideConfigRaw == null || side == null) {

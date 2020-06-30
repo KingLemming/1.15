@@ -16,13 +16,20 @@ public class AugmentDataHelper {
         return !stack.isEmpty() && stack.getItem() instanceof IAugmentItem;
     }
 
+    public static boolean hasAugmentData(ItemStack stack) {
+
+        return getAugmentData(stack) != null;
+    }
+
     @Nullable
     public static CompoundNBT getAugmentData(ItemStack augment) {
 
-        if (isAugmentItem(augment)) {
+        CompoundNBT augmentData = augment.getChildTag(TAG_AUGMENT_DATA);
+
+        if (augmentData == null && isAugmentItem(augment)) {
             return ((IAugmentItem) augment.getItem()).getAugmentData(augment);
         }
-        return augment.getChildTag(TAG_AUGMENT_DATA);
+        return augmentData;
     }
 
     public static String getAugmentType(ItemStack augment) {

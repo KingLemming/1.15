@@ -289,6 +289,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         securityControl.writeToBuffer(buffer);
         redstoneControl.writeToBuffer(buffer);
 
+        buffer.writeFluidStack(renderFluid);
+
         return buffer;
     }
 
@@ -298,6 +300,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super.getGuiPacket(buffer);
 
         buffer.writeBoolean(isActive);
+        buffer.writeFluidStack(renderFluid);
         buffer.writeInt(energyStorage.getMaxEnergyStored());
         buffer.writeInt(energyStorage.getEnergyStored());
 
@@ -313,6 +316,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super.getStatePacket(buffer);
 
         buffer.writeBoolean(isActive);
+        buffer.writeFluidStack(renderFluid);
 
         return buffer;
     }
@@ -324,6 +328,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         securityControl.readFromBuffer(buffer);
         redstoneControl.readFromBuffer(buffer);
+
+        renderFluid = buffer.readFluidStack();
     }
 
     @Override
@@ -332,6 +338,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super.handleGuiPacket(buffer);
 
         isActive = buffer.readBoolean();
+        renderFluid = buffer.readFluidStack();
         energyStorage.setCapacity(buffer.readInt());
         energyStorage.setEnergyStored(buffer.readInt());
 
@@ -346,6 +353,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         super.handleStatePacket(buffer);
 
         isActive = buffer.readBoolean();
+        renderFluid = buffer.readFluidStack();
     }
     // endregion
 
@@ -370,6 +378,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         securityControl.read(nbt);
         redstoneControl.read(nbt);
+
+        renderFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound(TAG_RENDER_FLUID));
     }
 
     @Override
@@ -387,6 +397,9 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         securityControl.write(nbt);
         redstoneControl.write(nbt);
 
+        if (!renderFluid.isEmpty()) {
+            nbt.put(TAG_RENDER_FLUID, renderFluid.writeToNBT(new CompoundNBT()));
+        }
         return nbt;
     }
     // endregion
@@ -431,7 +444,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected void addAugmentSlots(int numAugments) {
 
         for (int i = 0; i < numAugments; ++i) {
-            ItemStorageCoFH slot = new ItemStorageCoFH(1);
+            ItemStorageCoFH slot = new ItemStorageCoFH(1, AugmentDataHelper::hasAugmentData);
             augments.add(slot);
             inventory.addSlot(slot, INTERNAL);
         }
@@ -442,10 +455,12 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         resetAttributes();
         for (ItemStorageCoFH slot : augments) {
-            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(slot.getItemStack());
+            ItemStack augment = slot.getItemStack();
+            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
             if (augmentData == null) {
                 continue;
             }
+            augmentTypes.add(AugmentDataHelper.getAugmentType(augment));
             setAttributesFromAugment(augmentData);
         }
         finalizeAttributes();
@@ -460,24 +475,39 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
-        energyStorageMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE);
-        energyXferMod += getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER);
-        fluidStorageMod += getAttributeMod(augmentData, TAG_AUGMENT_FLUID_STORAGE);
+        energyStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE), energyStorageMod);
+        energyXferMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER), energyXferMod);
+        fluidStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_FLUID_STORAGE), fluidStorageMod);
     }
 
     protected void finalizeAttributes() {
 
         float scaleMin = AUG_SCALE_MIN;
-        float scaleMax = AUG_SCALE_MAX;
+        float scaleMax = AUG_SCALE_MAX / 10.0F; // Storage augs are squared in the general case; adjusted accordingly.
 
         energyStorageMod = MathHelper.clamp(energyStorageMod, scaleMin, scaleMax);
         energyXferMod = MathHelper.clamp(energyXferMod, scaleMin, scaleMax);
         fluidStorageMod = MathHelper.clamp(fluidStorageMod, scaleMin, scaleMax);
 
-        energyStorage.applyModifiers(energyStorageMod, energyXferMod);
+        energyStorage.applyModifiers(getEnergyStorageMod(), getEnergyXferMod());
         for (int i = 0; i < tankInv.getTanks(); ++i) {
-            tankInv.getTank(i).applyModifiers(fluidStorageMod);
+            tankInv.getTank(i).applyModifiers(getFluidStorageMod());
         }
+    }
+
+    protected float getEnergyStorageMod() {
+
+        return energyStorageMod * energyStorageMod;
+    }
+
+    protected float getEnergyXferMod() {
+
+        return energyXferMod * energyXferMod;
+    }
+
+    protected float getFluidStorageMod() {
+
+        return fluidStorageMod * fluidStorageMod;
     }
 
     protected float getAttributeMod(CompoundNBT augmentData, String key) {

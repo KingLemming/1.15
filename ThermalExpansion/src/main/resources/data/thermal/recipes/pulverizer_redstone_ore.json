@@ -11,6 +11,10 @@
     {
       "item": "thermal:cinnabar",
       "chance": 0.25
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.2
     }
   ],
   "experience": 0.2
