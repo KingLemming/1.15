@@ -62,6 +62,8 @@ public class NBTTags {
     public static final String TAG_XFER_IN = "XferIn";
     public static final String TAG_XFER_OUT = "XferOut";
 
+    public static final String TAG_PROPERTIES = "Properties";
+
     // Types
     public static final String TAG_AUGMENT_TYPE_UPGRADE = "UpgAug";
     public static final String TAG_AUGMENT_TYPE_RF = "RFAug";

@@ -3,6 +3,7 @@ package cofh.lib.inventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
@@ -13,9 +14,12 @@ public class ItemInvWrapper implements IInventory {
     private NonNullList<ItemStack> stackList;
     private ItemStack invContainer = ItemStack.EMPTY;
 
-    public ItemInvWrapper(int size) {
+    private final Container eventHandler;
+
+    public ItemInvWrapper(Container eventHandler, int size) {
 
         this.stackList = NonNullList.withSize(size, ItemStack.EMPTY);
+        this.eventHandler = eventHandler;
     }
 
     // TODO: Variant w/ pre-determined NBT info on ItemStack.
@@ -88,6 +92,7 @@ public class ItemInvWrapper implements IInventory {
 
         if (index >= 0 && index < getSizeInventory()) {
             this.stackList.set(index, stack);
+            this.eventHandler.onCraftMatrixChanged(this);
         }
     }
 

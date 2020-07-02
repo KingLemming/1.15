@@ -25,7 +25,7 @@ public class TinkerBenchContainer extends TileContainer {
 
     protected SlotCoFH tinkerSlot;
     protected List<SlotCoFH> tinkerAugmentSlots = new ArrayList<>(MAX_AUGMENTS);
-    protected ItemInvWrapper itemInventory = new ItemInvWrapper(MAX_AUGMENTS) {
+    protected ItemInvWrapper itemInventory = new ItemInvWrapper(this, MAX_AUGMENTS) {
 
         @Override
         public boolean isItemValidForSlot(int index, ItemStack stack) {
@@ -85,7 +85,9 @@ public class TinkerBenchContainer extends TileContainer {
     private void writeAugmentsToItem(ItemStack stack) {
 
         if (!stack.isEmpty()) {
+            tile.setPause(true);
             AugmentableHelper.setAugments(stack, itemInventory.getStacks());
+            tile.setPause(false);
             tile.markDirty();
         }
     }
@@ -93,13 +95,7 @@ public class TinkerBenchContainer extends TileContainer {
     private void bindTinkerSlots(IInventory inventory, int startIndex, int numSlots) {
 
         for (int i = 0; i < numSlots; ++i) {
-            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1) {
-
-                public void onSlotChanged() {
-
-                    this.inventory.markDirty();
-                }
-            };
+            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1);
             tinkerAugmentSlots.add(slot);
             addSlot(slot);
         }
@@ -121,6 +117,14 @@ public class TinkerBenchContainer extends TileContainer {
 
         writeAugmentsToItem(tinkerSlot.getStack());
         super.onContainerClosed(playerIn);
+    }
+
+    @Override
+    public void onCraftMatrixChanged(IInventory inventoryIn) {
+
+        if (tinkerSlot.getHasStack()) {
+            writeAugmentsToItem(tinkerSlot.getStack());
+        }
     }
 
     @Override

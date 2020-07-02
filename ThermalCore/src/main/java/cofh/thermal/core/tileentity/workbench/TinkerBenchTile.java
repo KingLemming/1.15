@@ -35,6 +35,8 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected static final int BASE_ENERGY = 200000;
     protected static final int BASE_TRANSFER = 1000;
 
+    protected boolean pause;
+
     // TODO: Cap caching? Premature optimization possibly; revisit.
     //    protected LazyOptional<?> tinkerEnergyCap = LazyOptional.empty();
     //    protected LazyOptional<?> tinkerFluidCap = LazyOptional.empty();
@@ -66,6 +68,11 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         }
     }
 
+    public void setPause(boolean pause) {
+
+        this.pause = pause;
+    }
+
     protected void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
@@ -74,7 +81,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
                     .getCapability(CapabilityEnergy.ENERGY, null)
                     .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(maxTransfer, false), false));
         }
-        if (!tinkerSlot.isEmpty()) {
+        if (!tinkerSlot.isEmpty() && !pause) {
             int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityEnergy.ENERGY, null)
@@ -92,7 +99,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
                         tankSlot.setItemStack(c.getContainer());
                     });
         }
-        if (!tinkerSlot.isEmpty()) {
+        if (!tinkerSlot.isEmpty() && !pause) {
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
