@@ -1,14 +1,9 @@
-package cofh.core.item;
+package cofh.lib.item;
 
-import cofh.lib.energy.EnergyEnchantableItemWrapper;
+import cofh.lib.energy.EnergyContainerItemWrapper;
 import cofh.lib.energy.IEnergyContainerItem;
-import cofh.lib.item.IColorableItem;
-import cofh.lib.item.ItemCoFH;
-import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -18,37 +13,29 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_FLUX;
 import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 import static cofh.lib.util.helpers.StringHelper.*;
-import static cofh.lib.util.references.CoreReferences.HOLDING;
 
-public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyContainerItem, IColorableItem {
+public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerItem {
 
     protected int maxEnergy;
-    protected int maxExtract;
-    protected int maxReceive;
+    protected int extract;
+    protected int receive;
 
-    public EnergyContainerItem(Properties builder, int maxEnergy, int maxExtract, int maxReceive) {
+    public EnergyContainerItem(Properties builder, int maxEnergy, int extract, int receive) {
 
         super(builder);
         this.maxEnergy = maxEnergy;
-        this.maxExtract = maxExtract;
-        this.maxReceive = maxReceive;
+        this.extract = extract;
+        this.receive = receive;
     }
 
     public EnergyContainerItem(Properties builder, int maxEnergy, int maxTransfer) {
 
         this(builder, maxEnergy, maxTransfer, maxTransfer);
-    }
-
-    public EnergyContainerItem setEnchantability(int enchantability) {
-
-        this.enchantability = enchantability;
-        return this;
     }
 
     @Override
@@ -81,12 +68,6 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
-
-        return enchantability;
-    }
-
-    @Override
     public int getRGBDurabilityForDisplay(ItemStack stack) {
 
         return RGB_DURABILITY_FLUX;
@@ -96,7 +77,7 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
     public double getDurabilityForDisplay(ItemStack stack) {
 
         if (stack.getTag() == null) {
-            setDefaultTag(stack, 0);
+            return 0;
         }
         return MathHelper.clamp(1.0D - ((double) stack.getTag().getInt(TAG_ENERGY) / (double) getMaxEnergyStored(stack)), 0.0D, 1.0D);
     }
@@ -104,18 +85,26 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        ArrayList<Enchantment> enchants = new ArrayList<>();
-        if (HOLDING != null) {
-            enchants.add(HOLDING);
-        }
-        return new EnergyEnchantableItemWrapper(stack, this, maxExtract > 0, maxReceive > 0, enchants);
+        return new EnergyContainerItemWrapper(stack, this);
     }
 
     // region IEnergyContainerItem
     @Override
+    public int getExtract(ItemStack container) {
+
+        return extract;
+    }
+
+    @Override
+    public int getReceive(ItemStack container) {
+
+        return receive;
+    }
+
+    @Override
     public int getMaxEnergyStored(ItemStack container) {
 
-        return Utils.getEnchantedCapacity(maxEnergy, EnchantmentHelper.getEnchantmentLevel(HOLDING, container));
+        return maxEnergy;
     }
 
     @Override
@@ -124,10 +113,13 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
         if (container.getTag() == null) {
             setDefaultTag(container, 0);
         }
+        if (isCreative()) {
+            return 0;
+        }
         int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int receive = Math.min(this.maxReceive, Math.min(getMaxEnergyStored(container) - stored, maxReceive));
+        int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));
 
-        if (!simulate && !isCreative()) {
+        if (!simulate) {
             stored += receive;
             container.getTag().putInt(TAG_ENERGY, stored);
         }
@@ -144,7 +136,7 @@ public abstract class EnergyContainerItem extends ItemCoFH implements IEnergyCon
             return maxExtract;
         }
         int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int extract = Math.min(this.maxExtract, Math.min(maxExtract, stored));
+        int extract = Math.min(Math.min(maxExtract, getExtract(container)), stored);
 
         if (!simulate) {
             stored -= extract;

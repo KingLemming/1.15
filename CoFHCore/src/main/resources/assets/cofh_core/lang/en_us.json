@@ -53,6 +53,7 @@
 
   "info.cofh.redstone_control": "Redstone Control",
   "info.cofh.control_status": "Control Status",
+  "info.cofh.current_signal": "Signal: %s",
   "info.cofh.disabled": "Disabled",
   "info.cofh.enabled": "Enabled",
   "info.cofh.ignored": "Ignored",

@@ -57,10 +57,11 @@ public class RedstoneControlModule implements IRedstoneControllable {
 
         CompoundNBT subTag = nbt.getCompound(TAG_RS_CONTROL);
 
-        power = subTag.getByte(TAG_RS_POWER);
-        threshold = subTag.getByte(TAG_RS_THRESHOLD);
-        mode = !isControllable() ? ControlMode.DISABLED : ControlMode.VALUES[subTag.getByte(TAG_RS_MODE)];
-
+        if (!subTag.isEmpty()) {
+            power = subTag.getByte(TAG_RS_POWER);
+            threshold = subTag.getByte(TAG_RS_THRESHOLD);
+            mode = !isControllable() ? ControlMode.DISABLED : ControlMode.VALUES[subTag.getByte(TAG_RS_MODE)];
+        }
         return this;
     }
 
@@ -107,11 +108,7 @@ public class RedstoneControlModule implements IRedstoneControllable {
     @Override
     public void setPower(int power) {
 
-        boolean prevState = getState();
         this.power = power;
-        if (prevState != getState() && Utils.isClientWorld(tile.world())) {
-            tile.callBlockUpdate();
-        }
     }
 
     @Override

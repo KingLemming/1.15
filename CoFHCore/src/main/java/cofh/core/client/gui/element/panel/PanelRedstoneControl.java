@@ -109,6 +109,7 @@ public class PanelRedstoneControl extends PanelBase {
 
         if (!fullyOpen) {
             tooltipList.add(new TranslationTextComponent("info.cofh.redstone_control"));
+
             switch (myRSControllable.getMode()) {
                 case DISABLED:
                     tooltipList.add(new TranslationTextComponent("info.cofh.disabled").applyTextStyle(TextFormatting.YELLOW));
@@ -121,11 +122,12 @@ public class PanelRedstoneControl extends PanelBase {
                     break;
                 default:
             }
-            if (myRSControllable.getState()) {
-                tooltipList.add(new TranslationTextComponent("info.cofh.state_true"));
-            } else {
-                tooltipList.add(new TranslationTextComponent("info.cofh.state_false"));
-            }
+            tooltipList.add(new TranslationTextComponent("info.cofh.current_signal", myRSControllable.getPower())
+                    .applyTextStyle(myRSControllable.getMode() == DISABLED
+                            ? TextFormatting.YELLOW
+                            : myRSControllable.getState()
+                            ? TextFormatting.GREEN
+                            : TextFormatting.RED));
             return;
         }
         int x = mouseX - this.posX();

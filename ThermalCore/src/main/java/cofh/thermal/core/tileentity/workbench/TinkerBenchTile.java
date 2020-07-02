@@ -69,14 +69,16 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
+            int maxTransfer = Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace());
             chargeSlot.getItemStack()
                     .getCapability(CapabilityEnergy.ENERGY, null)
-                    .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
+                    .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(maxTransfer, false), false));
         }
         if (!tinkerSlot.isEmpty()) {
+            int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityEnergy.ENERGY, null)
-                    .ifPresent(c -> energyStorage.extractEnergy(c.receiveEnergy(Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored()), false), false));
+                    .ifPresent(c -> energyStorage.extractEnergy(c.receiveEnergy(maxTransfer, false), false));
         }
     }
 

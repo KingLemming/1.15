@@ -121,7 +121,8 @@ public class Constants {
     // region PACKET
     public static final int PACKET_CONTROL = 1;
     public static final int PACKET_GUI = 2;
-    public static final int PACKET_STATE = 3;
+    public static final int PACKET_REDSTONE = 3;
+    public static final int PACKET_STATE = 4;
     public static final int PACKET_CHAT = 12;
     public static final int PACKET_SECURITY = 16;
     public static final int PACKET_FILTER = 17;

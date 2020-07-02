@@ -120,18 +120,20 @@ public class ReconfigControlModule implements IReconfigurable {
     // They are converted to the appropriate rotation using the facing value.
     public CompoundNBT write(CompoundNBT nbt) {
 
-        byte[] bSides = new byte[6];
+        if (isReconfigurable()) {
+            byte[] bSides = new byte[6];
 
-        bSides[0] = (byte) sides[BlockHelper.below(facing).getIndex()].ordinal();
-        bSides[1] = (byte) sides[BlockHelper.above(facing).getIndex()].ordinal();
+            bSides[0] = (byte) sides[BlockHelper.below(facing).getIndex()].ordinal();
+            bSides[1] = (byte) sides[BlockHelper.above(facing).getIndex()].ordinal();
 
-        bSides[2] = (byte) sides[facing.getIndex()].ordinal();
-        bSides[3] = (byte) sides[BlockHelper.opposite(facing).getIndex()].ordinal();
+            bSides[2] = (byte) sides[facing.getIndex()].ordinal();
+            bSides[3] = (byte) sides[BlockHelper.opposite(facing).getIndex()].ordinal();
 
-        bSides[4] = (byte) sides[BlockHelper.right(facing).getIndex()].ordinal();
-        bSides[5] = (byte) sides[BlockHelper.left(facing).getIndex()].ordinal();
+            bSides[4] = (byte) sides[BlockHelper.right(facing).getIndex()].ordinal();
+            bSides[5] = (byte) sides[BlockHelper.left(facing).getIndex()].ordinal();
 
-        nbt.putByteArray(TAG_SIDES, bSides);
+            nbt.putByteArray(TAG_SIDES, bSides);
+        }
         return nbt;
     }
     // endregion

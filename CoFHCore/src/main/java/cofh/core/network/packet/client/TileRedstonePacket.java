@@ -6,23 +6,22 @@ import cofh.lib.network.packet.PacketBase;
 import cofh.lib.tileentity.TileCoFH;
 import cofh.lib.util.Utils;
 import io.netty.buffer.Unpooled;
-import net.minecraft.block.BlockState;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static cofh.lib.util.constants.Constants.NETWORK_UPDATE_DISTANCE;
-import static cofh.lib.util.constants.Constants.PACKET_STATE;
+import static cofh.lib.util.constants.Constants.PACKET_REDSTONE;
 
-public class TileStatePacket extends PacketBase implements IPacketClient {
+public class TileRedstonePacket extends PacketBase implements IPacketClient {
 
     protected BlockPos pos;
     protected PacketBuffer buffer;
 
-    public TileStatePacket() {
+    public TileRedstonePacket() {
 
-        super(PACKET_STATE, CoFHCore.PACKET_HANDLER);
+        super(PACKET_REDSTONE, CoFHCore.PACKET_HANDLER);
     }
 
     @Override
@@ -35,9 +34,7 @@ public class TileStatePacket extends PacketBase implements IPacketClient {
         }
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCoFH) {
-            ((TileCoFH) tile).handleStatePacket(buffer);
-            BlockState state = tile.getWorld().getBlockState(pos);
-            tile.getWorld().notifyBlockUpdate(pos, state, state, 3);
+            ((TileCoFH) tile).handleRedstonePacket(buffer);
         }
     }
 
@@ -60,9 +57,9 @@ public class TileStatePacket extends PacketBase implements IPacketClient {
         if (Utils.isClientWorld(tile.world())) {
             return;
         }
-        TileStatePacket packet = new TileStatePacket();
+        TileRedstonePacket packet = new TileRedstonePacket();
         packet.pos = tile.pos();
-        packet.buffer = tile.getStatePacket(new PacketBuffer(Unpooled.buffer()));
+        packet.buffer = tile.getRedstonePacket(new PacketBuffer(Unpooled.buffer()));
         packet.sendToAllAround(packet.pos, NETWORK_UPDATE_DISTANCE, tile.world().getDimension().getType());
     }
 

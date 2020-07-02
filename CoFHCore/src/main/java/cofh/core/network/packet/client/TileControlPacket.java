@@ -4,6 +4,7 @@ import cofh.core.CoFHCore;
 import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
 import cofh.lib.tileentity.TileCoFH;
+import cofh.lib.util.Utils;
 import io.netty.buffer.Unpooled;
 import net.minecraft.block.BlockState;
 import net.minecraft.network.PacketBuffer;
@@ -56,6 +57,9 @@ public class TileControlPacket extends PacketBase implements IPacketClient {
 
     public static void sendToClient(TileCoFH tile) {
 
+        if (Utils.isClientWorld(tile.world())) {
+            return;
+        }
         TileControlPacket packet = new TileControlPacket();
         packet.pos = tile.pos();
         packet.buffer = tile.getControlPacket(new PacketBuffer(Unpooled.buffer()));

@@ -57,6 +57,7 @@ public class TCoreReferences {
     public static final String ID_HAZMAT_LEGGINGS = "hazmat_leggings";
     public static final String ID_HAZMAT_BOOTS = "hazmat_boots";
 
+    public static final String ID_REDPRINT = "redprint";
     public static final String ID_WRENCH = "wrench";
     // endregion
 

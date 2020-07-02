@@ -10,10 +10,7 @@ import cofh.core.event.AttributeEvents;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.*;
-import cofh.core.network.packet.client.IndexedChatPacket;
-import cofh.core.network.packet.client.TileControlPacket;
-import cofh.core.network.packet.client.TileGuiPacket;
-import cofh.core.network.packet.client.TileStatePacket;
+import cofh.core.network.packet.client.*;
 import cofh.core.network.packet.server.*;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
@@ -93,6 +90,7 @@ public class CoFHCore {
 
         PACKET_HANDLER.registerPacket(PACKET_CONTROL, TileControlPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_GUI, TileGuiPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_REDSTONE, TileRedstonePacket::new);
         PACKET_HANDLER.registerPacket(PACKET_STATE, TileStatePacket::new);
         PACKET_HANDLER.registerPacket(PACKET_CHAT, IndexedChatPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_SECURITY, SecurityPacket::new);

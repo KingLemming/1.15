@@ -1,7 +1,6 @@
 package cofh.lib.util.helpers;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.ForgeHooks;
@@ -50,11 +49,7 @@ public class EnergyHelper {
 
     public static ItemStack setDefaultEnergyTag(ItemStack container, int energy) {
 
-        if (!container.hasTag()) {
-            container.setTag(new CompoundNBT());
-        }
-        container.getTag().putInt(TAG_ENERGY, energy);
-
+        container.getOrCreateTag().putInt(TAG_ENERGY, energy);
         return container;
     }
 

@@ -1,5 +1,6 @@
 package cofh.lib.fluid;
 
+import cofh.lib.item.IContainerItem;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,7 +17,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_FLUID;
  *
  * @author King Lemming
  */
-public interface IFluidContainerItem {
+public interface IFluidContainerItem extends IContainerItem {
 
     default int getSpace(ItemStack container) {
 
@@ -39,13 +40,11 @@ public interface IFluidContainerItem {
      */
     default FluidStack getFluid(ItemStack container) {
 
-        if (container.getTag() == null) {
-            container.setTag(new CompoundNBT());
-        }
-        if (!container.getTag().contains(TAG_FLUID)) {
+        CompoundNBT tag = container.getOrCreateTag();
+        if (!tag.contains(TAG_FLUID)) {
             return FluidStack.EMPTY;
         }
-        return FluidStack.loadFluidStackFromNBT(container.getTag().getCompound(TAG_FLUID));
+        return FluidStack.loadFluidStackFromNBT(tag.getCompound(TAG_FLUID));
     }
 
     /**

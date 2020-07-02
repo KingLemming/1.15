@@ -1,6 +1,6 @@
 package cofh.thermal.cultivation.item;
 
-import cofh.core.item.FluidContainerItem;
+import cofh.lib.item.FluidContainerItem;
 import cofh.core.util.ChatHelper;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;

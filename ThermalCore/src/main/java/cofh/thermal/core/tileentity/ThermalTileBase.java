@@ -1,6 +1,7 @@
 package cofh.thermal.core.tileentity;
 
 import cofh.core.network.packet.client.TileControlPacket;
+import cofh.core.network.packet.client.TileRedstonePacket;
 import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
@@ -23,6 +24,7 @@ import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -167,6 +169,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         if (world != null && redstoneControl.isControllable()) {
             redstoneControl.setPower(world.getRedstonePowerFromNeighbors(pos));
+            TileRedstonePacket.sendToClient(this);
         }
     }
 
@@ -311,6 +314,16 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     }
 
     @Override
+    public PacketBuffer getRedstonePacket(PacketBuffer buffer) {
+
+        super.getRedstonePacket(buffer);
+
+        buffer.writeInt(redstoneControl.getPower());
+
+        return buffer;
+    }
+
+    @Override
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
         super.getStatePacket(buffer);
@@ -345,6 +358,14 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         for (int i = 0; i < tankInv.getTanks(); ++i) {
             tankInv.set(i, buffer.readFluidStack());
         }
+    }
+
+    @Override
+    public void handleRedstonePacket(PacketBuffer buffer) {
+
+        super.handleRedstonePacket(buffer);
+
+        redstoneControl.setPower(buffer.readInt());
     }
 
     @Override
@@ -427,6 +448,22 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     public void onControlUpdate() {
 
         TileControlPacket.sendToClient(this);
+    }
+    // endregion
+
+    // region IConveyableData
+    @Override
+    public void readConveyableData(PlayerEntity player, CompoundNBT tag) {
+
+        redstoneControl.read(tag);
+
+        onControlUpdate();
+    }
+
+    @Override
+    public void writeConveyableData(PlayerEntity player, CompoundNBT tag) {
+
+        redstoneControl.write(tag);
     }
     // endregion
 

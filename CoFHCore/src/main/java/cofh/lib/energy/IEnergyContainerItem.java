@@ -1,5 +1,6 @@
 package cofh.lib.energy;
 
+import cofh.lib.item.IContainerItem;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
  *
  * @author King Lemming
  */
-public interface IEnergyContainerItem {
+public interface IEnergyContainerItem extends IContainerItem {
 
     default ItemStack setDefaultTag(ItemStack stack, int energy) {
 
@@ -36,10 +37,14 @@ public interface IEnergyContainerItem {
     default int getEnergyStored(ItemStack container) {
 
         if (container.getTag() == null) {
-            setDefaultTag(container, 0);
+            return 0;
         }
         return Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
     }
+
+    int getExtract(ItemStack container);
+
+    int getReceive(ItemStack container);
 
     /**
      * Get the max amount of energy that can be stored in the container item.

@@ -12,6 +12,7 @@ import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.InventoryHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
@@ -376,6 +377,26 @@ public abstract class MachineTileBase extends ThermalTileBase implements IReconf
             return super.getFluidHandlerCapability(side);
         }
         return sidedFluidCaps[side.ordinal()].cast();
+    }
+    // endregion
+
+    // region IConveyableData
+    @Override
+    public void readConveyableData(PlayerEntity player, CompoundNBT tag) {
+
+        reconfigControl.read(tag);
+        transferControl.read(tag);
+
+        super.readConveyableData(player, tag);
+    }
+
+    @Override
+    public void writeConveyableData(PlayerEntity player, CompoundNBT tag) {
+
+        reconfigControl.write(tag);
+        transferControl.write(tag);
+
+        super.writeConveyableData(player, tag);
     }
     // endregion
 }

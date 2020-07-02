@@ -66,7 +66,7 @@ public class ItemCoFH extends Item implements ICoFHItem {
     }
 
     @Override
-    public int getItemEnchantability() {
+    public int getItemEnchantability(ItemStack stack) {
 
         return enchantability;
     }

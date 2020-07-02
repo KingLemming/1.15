@@ -1,6 +1,7 @@
 package cofh.lib.tileentity;
 
 import cofh.core.network.packet.client.TileGuiPacket;
+import cofh.lib.util.IConveyableData;
 import cofh.lib.util.Utils;
 import cofh.lib.util.control.ISecurable;
 import cofh.lib.util.helpers.FluidHelper;
@@ -30,7 +31,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nullable;
 
-public class TileCoFH extends TileEntity implements ITileCallback {
+public class TileCoFH extends TileEntity implements ITileCallback, IConveyableData {
 
     public TileCoFH(TileEntityType<?> tileEntityTypeIn) {
 
@@ -192,6 +193,11 @@ public class TileCoFH extends TileEntity implements ITileCallback {
         return buffer;
     }
 
+    public PacketBuffer getRedstonePacket(PacketBuffer buffer) {
+
+        return buffer;
+    }
+
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
         return buffer;
@@ -202,6 +208,10 @@ public class TileCoFH extends TileEntity implements ITileCallback {
     }
 
     public void handleGuiPacket(PacketBuffer buffer) {
+
+    }
+
+    public void handleRedstonePacket(PacketBuffer buffer) {
 
     }
 

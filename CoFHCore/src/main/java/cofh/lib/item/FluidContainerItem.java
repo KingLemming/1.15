@@ -1,6 +1,6 @@
-package cofh.core.item;
+package cofh.lib.item;
 
-import cofh.lib.fluid.FluidEnchantableItemWrapper;
+import cofh.lib.fluid.FluidContainerItemWrapper;
 import cofh.lib.fluid.IFluidContainerItem;
 import cofh.lib.item.IColorableItem;
 import cofh.lib.item.ItemCoFH;
@@ -8,7 +8,6 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,7 +21,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -75,6 +73,12 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     }
 
     @Override
+    public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
+
+        return !(newStack.getItem() == oldStack.getItem()) || !areItemStacksEqualIgnoreTags(oldStack, newStack, TAG_FLUID);
+    }
+
+    @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
         return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || !areItemStacksEqualIgnoreTags(oldStack, newStack, TAG_FLUID));
@@ -87,25 +91,9 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
-
-        return enchantability;
-    }
-
-    @Override
     public double getDurabilityForDisplay(ItemStack stack) {
 
         return MathHelper.clamp(1.0D - ((double) getFluidAmount(stack) / (double) getCapacity(stack)), 0.0D, 1.0D);
-    }
-
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
-
-        ArrayList<Enchantment> enchants = new ArrayList<>();
-        if (HOLDING != null) {
-            enchants.add(HOLDING);
-        }
-        return new FluidEnchantableItemWrapper(stack, this, enchants);
     }
 
     // region IFluidContainerItem
@@ -118,15 +106,13 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     @Override
     public int getCapacity(ItemStack container) {
 
-        return Utils.getEnchantedCapacity(fluidCapacity, EnchantmentHelper.getEnchantmentLevel(HOLDING, container));
+        return fluidCapacity;
     }
 
     @Override
     public int fill(ItemStack container, FluidStack resource, IFluidHandler.FluidAction action) {
 
-        if (container.getTag() == null) {
-            container.setTag(new CompoundNBT());
-        }
+        CompoundNBT containerTag = container.getOrCreateTag();
         if (resource.isEmpty() || !isFluidValid(container, resource)) {
             return 0;
         }
@@ -136,15 +122,15 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
             if (action.execute()) {
                 CompoundNBT fluidTag = resource.writeToNBT(new CompoundNBT());
                 fluidTag.putInt(TAG_AMOUNT, capacity - FluidAttributes.BUCKET_VOLUME);
-                container.getTag().put(TAG_FLUID, fluidTag);
+                containerTag.put(TAG_FLUID, fluidTag);
             }
             return resource.getAmount();
         }
         if (action.simulate()) {
-            if (!container.getTag().contains(TAG_FLUID)) {
+            if (!containerTag.contains(TAG_FLUID)) {
                 return Math.min(capacity, resource.getAmount());
             }
-            FluidStack stack = FluidStack.loadFluidStackFromNBT(container.getTag().getCompound(TAG_FLUID));
+            FluidStack stack = FluidStack.loadFluidStackFromNBT(containerTag.getCompound(TAG_FLUID));
             if (stack.isEmpty()) {
                 return Math.min(capacity, resource.getAmount());
             }
@@ -153,18 +139,18 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
             }
             return Math.min(capacity - stack.getAmount(), resource.getAmount());
         }
-        if (!container.getTag().contains(TAG_FLUID)) {
+        if (!containerTag.contains(TAG_FLUID)) {
             CompoundNBT fluidTag = resource.writeToNBT(new CompoundNBT());
             if (capacity < resource.getAmount()) {
                 fluidTag.putInt(TAG_AMOUNT, capacity);
-                container.getTag().put(TAG_FLUID, fluidTag);
+                containerTag.put(TAG_FLUID, fluidTag);
                 return capacity;
             }
             fluidTag.putInt(TAG_AMOUNT, resource.getAmount());
-            container.getTag().put(TAG_FLUID, fluidTag);
+            containerTag.put(TAG_FLUID, fluidTag);
             return resource.getAmount();
         }
-        CompoundNBT fluidTag = container.getTag().getCompound(TAG_FLUID);
+        CompoundNBT fluidTag = containerTag.getCompound(TAG_FLUID);
         FluidStack stack = FluidStack.loadFluidStackFromNBT(fluidTag);
         if (stack.isEmpty() || !stack.isFluidEqual(resource)) {
             return 0;
@@ -176,32 +162,30 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         } else {
             stack.setAmount(capacity);
         }
-        container.getTag().put(TAG_FLUID, stack.writeToNBT(fluidTag));
+        containerTag.put(TAG_FLUID, stack.writeToNBT(fluidTag));
         return filled;
     }
 
     @Override
     public FluidStack drain(ItemStack container, int maxDrain, IFluidHandler.FluidAction action) {
 
-        if (container.getTag() == null) {
-            container.setTag(new CompoundNBT());
-        }
-        if (!container.getTag().contains(TAG_FLUID) || maxDrain == 0) {
+        CompoundNBT containerTag = container.getOrCreateTag();
+        if (!containerTag.contains(TAG_FLUID) || maxDrain == 0) {
             return FluidStack.EMPTY;
         }
-        FluidStack stack = FluidStack.loadFluidStackFromNBT(container.getTag().getCompound(TAG_FLUID));
+        FluidStack stack = FluidStack.loadFluidStackFromNBT(containerTag.getCompound(TAG_FLUID));
         if (stack.isEmpty()) {
             return FluidStack.EMPTY;
         }
         int drained = isCreative() ? maxDrain : Math.min(stack.getAmount(), maxDrain);
         if (action.execute() && !isCreative()) {
             if (maxDrain >= stack.getAmount()) {
-                container.getTag().remove(TAG_FLUID);
+                containerTag.remove(TAG_FLUID);
                 return stack;
             }
-            CompoundNBT fluidTag = container.getTag().getCompound(TAG_FLUID);
+            CompoundNBT fluidTag = containerTag.getCompound(TAG_FLUID);
             fluidTag.putInt(TAG_AMOUNT, fluidTag.getInt(TAG_AMOUNT) - drained);
-            container.getTag().put(TAG_FLUID, fluidTag);
+            containerTag.put(TAG_FLUID, fluidTag);
         }
         stack.setAmount(drained);
         return stack;

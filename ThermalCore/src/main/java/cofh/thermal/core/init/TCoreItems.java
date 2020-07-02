@@ -77,6 +77,7 @@ public class TCoreItems {
         ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
 
         registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group)));
+        registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2));
     }

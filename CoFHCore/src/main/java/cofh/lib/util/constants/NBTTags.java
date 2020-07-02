@@ -38,6 +38,7 @@ public class NBTTags {
     public static final String TAG_PROCESS_MAX = "ProcMax";
     public static final String TAG_RENDER_FLUID = "RenderFluid";
     public static final String TAG_SECURE = "Secure";
+    public static final String TAG_SETTINGS = "Settings";
     public static final String TAG_SKULL_OWNER = "SkullOwner";
     public static final String TAG_SIDES = "Sides";
     public static final String TAG_SLOT = "Slot";

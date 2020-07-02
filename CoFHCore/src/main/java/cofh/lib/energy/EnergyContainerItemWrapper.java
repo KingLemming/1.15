@@ -22,20 +22,11 @@ public class EnergyContainerItemWrapper implements IEnergyStorage, ICapabilityPr
 
     final ItemStack container;
     final IEnergyContainerItem item;
-    final boolean canExtract;
-    final boolean canReceive;
-
-    public EnergyContainerItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn, boolean extractIn, boolean receiveIn) {
-
-        this.container = containerIn;
-        this.item = itemIn;
-        this.canExtract = extractIn;
-        this.canReceive = receiveIn;
-    }
 
     public EnergyContainerItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
 
-        this(containerIn, itemIn, true, true);
+        this.container = containerIn;
+        this.item = itemIn;
     }
 
     @Override
@@ -71,17 +62,16 @@ public class EnergyContainerItemWrapper implements IEnergyStorage, ICapabilityPr
     @Override
     public boolean canExtract() {
 
-        return canExtract;
+        return item.getExtract(container) > 0;
     }
 
     @Override
     public boolean canReceive() {
 
-        return canReceive;
+        return item.getReceive(container) > 0;
     }
 
     // region ICapabilityProvider
-    @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 

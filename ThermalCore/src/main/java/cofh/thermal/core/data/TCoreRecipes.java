@@ -33,6 +33,14 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("redprint"))
+                .addIngredient(Items.PAPER)
+                .addIngredient(Items.PAPER)
+                .addIngredient(Items.REDSTONE)
+                .addIngredient(Items.REDSTONE)
+                .addCriterion("has_redstone", hasItem(Items.REDSTONE))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 8)
                 .addIngredient(Tags.Items.SAND)
                 .addIngredient(reg.get("apatite"))
