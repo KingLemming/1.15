@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public class BlockItemAugmentable extends BlockItemCoFH implements IAugmentableItem {
 
     protected IntSupplier numSlots = () -> 0;
-    protected Predicate<ItemStack> validator = (e) -> true;
+    protected Predicate<ItemStack> setAugValidator = (e) -> true;
 
     public BlockItemAugmentable(Block blockIn, Properties builder) {
 
@@ -22,9 +22,9 @@ public class BlockItemAugmentable extends BlockItemCoFH implements IAugmentableI
         return this;
     }
 
-    public BlockItemAugmentable setValidator(Predicate<ItemStack> validator) {
+    public BlockItemAugmentable setSetAugValidator(Predicate<ItemStack> setAugValidator) {
 
-        this.validator = validator;
+        this.setAugValidator = setAugValidator;
         return this;
     }
 
@@ -38,7 +38,7 @@ public class BlockItemAugmentable extends BlockItemCoFH implements IAugmentableI
     @Override
     public boolean validAugment(ItemStack augmentable, ItemStack augment) {
 
-        return validator.test(augment);
+        return setAugValidator.test(augment);
     }
     // endregion
 }

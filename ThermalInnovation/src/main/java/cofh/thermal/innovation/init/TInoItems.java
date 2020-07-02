@@ -1,7 +1,7 @@
 package cofh.thermal.innovation.init;
 
 import cofh.thermal.core.init.TCoreItems;
-import cofh.thermal.innovation.item.FluxCapacitorItem;
+import cofh.thermal.innovation.item.RFCapacitorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
@@ -25,7 +25,7 @@ public class TInoItems {
 
         ItemGroup group = THERMAL_TOOLS;
 
-        registerItem("flux_capacitor", () -> new FluxCapacitorItem(new Item.Properties().maxStackSize(1).group(group), 200000, 1000));
+        registerItem("flux_capacitor", () -> new RFCapacitorItem(new Item.Properties().maxStackSize(1).group(group), 200000, 1000));
     }
 
     private static void registerArmor() {

@@ -1,21 +1,15 @@
 package cofh.lib.item;
 
-import cofh.lib.fluid.FluidContainerItemWrapper;
 import cofh.lib.fluid.IFluidContainerItem;
-import cofh.lib.item.IColorableItem;
-import cofh.lib.item.ItemCoFH;
-import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -29,7 +23,6 @@ import static cofh.lib.util.constants.NBTTags.TAG_FLUID;
 import static cofh.lib.util.helpers.FluidHelper.addPotionTooltip;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;
-import static cofh.lib.util.references.CoreReferences.HOLDING;
 
 public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem, IColorableItem {
 

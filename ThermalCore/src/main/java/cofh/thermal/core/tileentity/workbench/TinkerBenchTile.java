@@ -32,7 +32,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
 
     protected FluidStorageCoFH tank = new FluidStorageCoFH(TANK_MEDIUM);
 
-    protected static final int BASE_ENERGY = 20000;
+    protected static final int BASE_ENERGY = 200000;
     protected static final int BASE_TRANSFER = 1000;
 
     // TODO: Cap caching? Premature optimization possibly; revisit.
