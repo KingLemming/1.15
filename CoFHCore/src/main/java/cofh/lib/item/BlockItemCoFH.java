@@ -47,7 +47,7 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
         return this;
     }
 
-    public final boolean isCreative() {
+    public boolean isCreative(ItemStack stack) {
 
         return creative;
     }

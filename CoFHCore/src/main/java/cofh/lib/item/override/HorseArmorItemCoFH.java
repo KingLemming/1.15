@@ -1,7 +1,6 @@
 package cofh.lib.item.override;
 
 import cofh.lib.item.ICoFHItem;
-import cofh.lib.item.ItemCoFH;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemGroup;
@@ -13,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.BooleanSupplier;
 
-import static cofh.lib.util.constants.Constants.ITEM_ACTIVE_DURATION;
+import static cofh.lib.util.constants.Constants.ITEM_TIMER_DURATION;
 import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
@@ -46,7 +45,7 @@ public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
         return this;
     }
 
-    public final boolean isCreative() {
+    public boolean isCreative(ItemStack stack) {
 
         return creative;
     }
@@ -97,7 +96,7 @@ public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
     public static void setActive(ItemStack stack, LivingEntity living) {
 
         if (stack.hasTag()) {
-            stack.getTag().putLong(TAG_ACTIVE, living.world.getGameTime() + ITEM_ACTIVE_DURATION);
+            stack.getTag().putLong(TAG_ACTIVE, living.world.getGameTime() + ITEM_TIMER_DURATION);
         }
     }
 
@@ -106,14 +105,6 @@ public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
         if (stack.hasTag()) {
             stack.getTag().remove(TAG_ACTIVE);
         }
-    }
-
-    public static boolean isCreative(ItemStack stack) {
-
-        if (stack.getItem() instanceof ItemCoFH) {
-            return ((ItemCoFH) stack.getItem()).isCreative();
-        }
-        return false;
     }
     // endregion
 }

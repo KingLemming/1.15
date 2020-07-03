@@ -1,21 +1,19 @@
 package cofh.core.network.packet.server;
 
 import cofh.core.CoFHCore;
-import cofh.lib.item.IMultiModeItem;
 import cofh.lib.network.packet.IPacketServer;
 import cofh.lib.network.packet.PacketBase;
 import cofh.lib.util.helpers.ItemHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 
 import static cofh.lib.util.constants.Constants.PACKET_KEY_MULTIMODE;
 
-public class MultiModeItemPacket extends PacketBase implements IPacketServer {
+public class ModeChangePacket extends PacketBase implements IPacketServer {
 
     protected boolean decr;
 
-    public MultiModeItemPacket() {
+    public ModeChangePacket() {
 
         super(PACKET_KEY_MULTIMODE, CoFHCore.PACKET_HANDLER);
     }
@@ -27,8 +25,7 @@ public class MultiModeItemPacket extends PacketBase implements IPacketServer {
             return;
         }
         if (decr && ItemHelper.decrHeldMultiModeItemState(player) || ItemHelper.incrHeldMultiModeItemState(player)) {
-            ItemStack heldItem = ItemHelper.getHeldMultiModeStack(player);
-            ((IMultiModeItem) heldItem.getItem()).onModeChange(player, heldItem);
+            ItemHelper.onHeldMultiModeItemChange(player);
         }
     }
 
@@ -56,7 +53,7 @@ public class MultiModeItemPacket extends PacketBase implements IPacketServer {
 
     private static void sendToServer(boolean decr) {
 
-        MultiModeItemPacket packet = new MultiModeItemPacket();
+        ModeChangePacket packet = new ModeChangePacket();
         packet.decr = decr;
         packet.sendToServer();
     }

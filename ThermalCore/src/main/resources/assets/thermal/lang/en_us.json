@@ -435,6 +435,13 @@
   "_comment": "Thermal Innovation",
   "_comment": "========================================================================================================",
 
+  "item.thermal.flux_capacitor": "Flux Capacitor",
+  "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
+
+  "info.thermal.capacitor.mode.0": "Mode: Equipment",
+  "info.thermal.capacitor.mode.1": "Mode: Inventory",
+  "info.thermal.capacitor.mode.2": "Mode: All Items",
+
   "_comment": "========================================================================================================",
   "_comment": "Thermal Locomotion",
   "_comment": "========================================================================================================",

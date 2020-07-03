@@ -53,7 +53,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
             //            String color = fluid.getFluid().getAttributes().getRarity(fluid).;
             //            tooltip.add(localize("info.cofh.fluid") + ": " + color + fluid.getFluid().getLocalizedName(fluid) + LIGHT_GRAY);
         }
-        if (isCreative()) {
+        if (isCreative(stack)) {
             tooltip.add(getTextComponent("info.cofh.infinite_source"));
         } else {
             tooltip.add(getTextComponent(localize("info.cofh.level") + ": " + format(fluid.getAmount()) + " / " + format(getCapacity(stack)) + " mB"));
@@ -80,7 +80,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
 
-        return !isCreative() && getFluidAmount(stack) > 0;
+        return !isCreative(stack) && getFluidAmount(stack) > 0;
     }
 
     @Override
@@ -111,7 +111,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         }
         int capacity = getCapacity(container);
 
-        if (isCreative()) {
+        if (isCreative(container)) {
             if (action.execute()) {
                 CompoundNBT fluidTag = resource.writeToNBT(new CompoundNBT());
                 fluidTag.putInt(TAG_AMOUNT, capacity - FluidAttributes.BUCKET_VOLUME);
@@ -170,8 +170,8 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         if (stack.isEmpty()) {
             return FluidStack.EMPTY;
         }
-        int drained = isCreative() ? maxDrain : Math.min(stack.getAmount(), maxDrain);
-        if (action.execute() && !isCreative()) {
+        int drained = isCreative(container) ? maxDrain : Math.min(stack.getAmount(), maxDrain);
+        if (action.execute() && !isCreative(container)) {
             if (maxDrain >= stack.getAmount()) {
                 containerTag.remove(TAG_FLUID);
                 return stack;

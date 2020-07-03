@@ -91,7 +91,7 @@ public class Constants {
     public static final int AOE_BREAK_FACTOR = 8;
     public static final int BOTTLE_VOLUME = 250;
     public static final int ENTITY_TRACKING_DISTANCE = 64;
-    public static final int ITEM_ACTIVE_DURATION = 40;
+    public static final int ITEM_TIMER_DURATION = 40;
     public static final int MAGMATIC_TEMPERATURE = 1000;
     public static final int MAX_AUGMENTS = 9;
     public static final int MAX_ENCHANT_LEVEL = 10;
@@ -141,7 +141,7 @@ public class Constants {
     public static final String DAMAGE_ARROW = "arrow";
     public static final String DAMAGE_PLAYER = "player";
 
-    public static final String KEY_MULTIMODE = "cofh.multimode";
+    public static final String KEY_MODE_CHANGE = "cofh.mode_change";
 
     public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D1ADBCE5-95CE-470C-BF99-6C59843084A2");
 

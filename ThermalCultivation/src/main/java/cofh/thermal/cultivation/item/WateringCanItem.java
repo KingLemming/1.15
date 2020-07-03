@@ -1,13 +1,14 @@
 package cofh.thermal.cultivation.item;
 
-import cofh.lib.item.FluidContainerItem;
 import cofh.core.util.ChatHelper;
+import cofh.lib.item.FluidContainerItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
@@ -30,8 +31,10 @@ import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static cofh.lib.util.constants.Constants.ITEM_TIMER_DURATION;
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_WATER;
 import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
+import static cofh.lib.util.constants.NBTTags.TAG_TIMER;
 import static cofh.lib.util.helpers.FluidHelper.IS_WATER;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
@@ -64,19 +67,19 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
-        if (!isActive(stack)) {
+        if (!hasTimer(stack)) {
             return;
         }
         long activeTime = stack.getTag().getLong(TAG_ACTIVE);
         if (entityIn.world.getGameTime() > activeTime) {
-            clearActive(stack);
+            clearTimer(stack);
         }
     }
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getFluidAmount(oldStack) > 0 != getFluidAmount(newStack) > 0 || getFluidAmount(newStack) > 0 && isActive(oldStack) != isActive(newStack));
+        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getFluidAmount(oldStack) > 0 != getFluidAmount(newStack) > 0 || getFluidAmount(newStack) > 0 && hasTimer(oldStack) != hasTimer(newStack));
     }
 
     @Override
@@ -109,7 +112,7 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         if (getFluidAmount(stack) < MB_PER_USE) {
             return ActionResultType.FAIL;
         }
-        setActive(stack, player);
+        setTimer(stack, player);
 
         int radius = getRadius(stack);
         int x = offsetPos.getX();
@@ -173,6 +176,21 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     }
 
     // region HELPERS
+    protected boolean hasTimer(ItemStack stack) {
+
+        return stack.getOrCreateTag().contains(TAG_TIMER);
+    }
+
+    protected void setTimer(ItemStack stack, LivingEntity living) {
+
+        stack.getOrCreateTag().putLong(TAG_TIMER, living.world.getGameTime() + ITEM_TIMER_DURATION);
+    }
+
+    protected void clearTimer(ItemStack stack) {
+
+        stack.getOrCreateTag().remove(TAG_TIMER);
+    }
+
     protected boolean isWater(BlockState state) {
 
         return state.getBlock() == Blocks.WATER;

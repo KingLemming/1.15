@@ -1,4 +1,8 @@
 {
+  "_comment": "========================================================================================================",
+  "_comment": "CoFH General / Lib",
+  "_comment": "========================================================================================================",
+
   "attribute.name.cofh.fallDistance": "Fall Distance",
   "attribute.name.cofh.hazardResistance": "Hazard Resistance",
   "attribute.name.cofh.stingResistance": "Sting Resistance",
@@ -24,6 +28,11 @@
   "info.cofh.chance_additional": "Additional Chance",
   "info.cofh.clear_storage": "Hold Shift + Alt and Click to clear.",
   "info.cofh.energy": "Energy",
+  "info.cofh.transfer": "Transfer",
+
+  "info.cofh.mode_change": "Press '%s' to change mode.",
+  "info.cofh.use_sneak_activate": "Use while sneaking to activate.",
+  "info.cofh_use_sneak_deactivate": "Use while sneaking to deactivate.",
 
   "info.cofh.augmentation": "Augmentation",
 
@@ -61,6 +70,10 @@
   "info.cofh.low": "Low",
   "info.cofh.signal_required": "Signal Required",
 
+  "_comment": "========================================================================================================",
+  "_comment": "CoFH Core",
+  "_comment": "========================================================================================================",
+
   "block.cofh_core.glossed_magma": "Glossed Magma",
 
   "effect.cofh_core.amplification": "Amplification",
@@ -82,6 +95,13 @@
   "fluid.cofh_core.steam": "Steam",
 
   "item.cofh_core.ectoplasm": "Ectoplasm",
+
+  "key.cofh.mode_change_increment": "Cycle Mode Forward",
+  "key.cofh.mode_change_decrement": "Cycle Mode Reverse",
+
+  "_comment": "========================================================================================================",
+  "_comment": "Minecraft",
+  "_comment": "========================================================================================================",
 
   "enchantment.minecraft.aqua_affinity.desc": "Removes the mining speed penalty when underwater.",
   "enchantment.minecraft.bane_of_arthropods.desc": "Slows and increases damage to Arthropod mobs.",

@@ -203,7 +203,7 @@ public class ItemHelper {
     }
     // endregion
 
-    // region MULTIMODE
+    // region MODE CHANGE
     public static ItemStack getHeldMultiModeStack(PlayerEntity player) {
 
         ItemStack stack = player.getHeldItemMainhand();
@@ -232,17 +232,11 @@ public class ItemHelper {
         if (!isPlayerHoldingSomething(player)) {
             return false;
         }
-        ItemStack heldItem = player.getHeldItemMainhand();
-        Item equipped = heldItem.getItem();
-        if (equipped instanceof IMultiModeItem) {
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.incrMode(heldItem);
-        } else {
-            heldItem = player.getHeldItemOffhand();
-            equipped = heldItem.getItem();
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.incrMode(heldItem);
-        }
+        ItemStack mainHand = player.getHeldItemMainhand();
+        ItemStack offHand = player.getHeldItemOffhand();
+        return mainHand.getItem() instanceof IMultiModeItem
+                ? ((IMultiModeItem) mainHand.getItem()).incrMode(mainHand)
+                : offHand.getItem() instanceof IMultiModeItem && ((IMultiModeItem) offHand.getItem()).incrMode(offHand);
     }
 
     public static boolean decrHeldMultiModeItemState(PlayerEntity player) {
@@ -250,35 +244,17 @@ public class ItemHelper {
         if (!isPlayerHoldingSomething(player)) {
             return false;
         }
-        ItemStack heldItem = player.getHeldItemMainhand();
-        Item equipped = heldItem.getItem();
-        if (equipped instanceof IMultiModeItem) {
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.incrMode(heldItem);
-        } else {
-            heldItem = player.getHeldItemOffhand();
-            equipped = heldItem.getItem();
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.incrMode(heldItem);
-        }
+        ItemStack mainHand = player.getHeldItemMainhand();
+        ItemStack offHand = player.getHeldItemOffhand();
+        return mainHand.getItem() instanceof IMultiModeItem
+                ? ((IMultiModeItem) mainHand.getItem()).decrMode(mainHand)
+                : offHand.getItem() instanceof IMultiModeItem && ((IMultiModeItem) offHand.getItem()).decrMode(offHand);
     }
 
-    public static boolean setHeldMultiModeItemState(PlayerEntity player, int mode) {
+    public static void onHeldMultiModeItemChange(PlayerEntity player) {
 
-        if (!isPlayerHoldingSomething(player)) {
-            return false;
-        }
-        ItemStack heldItem = player.getHeldItemMainhand();
-        Item equipped = heldItem.getItem();
-        if (equipped instanceof IMultiModeItem) {
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.setMode(heldItem, mode);
-        } else {
-            heldItem = player.getHeldItemOffhand();
-            equipped = heldItem.getItem();
-            IMultiModeItem multiModeItem = (IMultiModeItem) equipped;
-            return multiModeItem.setMode(heldItem, mode);
-        }
+        ItemStack heldItem = getHeldMultiModeStack(player);
+        ((IMultiModeItem) heldItem.getItem()).onModeChange(player, heldItem);
     }
     // endregion
 }

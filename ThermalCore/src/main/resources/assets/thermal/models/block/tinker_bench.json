@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "particle": "block/crafting_table_front",
-    "down": "block/oak_planks",
-    "up": "block/crafting_table_top",
-    "north": "block/crafting_table_front",
-    "east": "block/crafting_table_side",
-    "south": "block/crafting_table_side",
-    "west": "block/crafting_table_front"
+    "particle": "thermal:block/workbenches/tinker_bench_top",
+    "down": "thermal:block/workbenches/tinker_bench_bottom",
+    "up": "thermal:block/workbenches/tinker_bench_top",
+    "north": "thermal:block/workbenches/tinker_bench_north",
+    "east": "thermal:block/workbenches/tinker_bench_east",
+    "south": "thermal:block/workbenches/tinker_bench_south",
+    "west": "thermal:block/workbenches/tinker_bench_west"
   }
 }

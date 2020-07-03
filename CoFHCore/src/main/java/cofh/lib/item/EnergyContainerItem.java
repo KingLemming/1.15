@@ -2,8 +2,10 @@ package cofh.lib.item;
 
 import cofh.lib.energy.EnergyContainerItemWrapper;
 import cofh.lib.energy.IEnergyContainerItem;
+import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -18,6 +20,7 @@ import java.util.List;
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_FLUX;
 import static cofh.lib.util.constants.NBTTags.TAG_ENERGY;
 import static cofh.lib.util.helpers.StringHelper.*;
+import static cofh.lib.util.references.CoreReferences.HOLDING;
 
 public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerItem {
 
@@ -42,7 +45,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        if (isCreative()) {
+        if (isCreative(stack)) {
             tooltip.add(getTextComponent("info.cofh.infinite_energy"));
         } else {
             tooltip.add(getTextComponent(localize("info.cofh.charge") + ": " + getScaledNumber(getEnergyStored(stack)) + " / " + getScaledNumber(getMaxEnergyStored(stack)) + " RF"));
@@ -64,7 +67,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
 
-        return !isCreative() && getEnergyStored(stack) > 0;
+        return !isCreative(stack) && getEnergyStored(stack) > 0;
     }
 
     @Override
@@ -104,7 +107,8 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
     @Override
     public int getMaxEnergyStored(ItemStack container) {
 
-        return maxEnergy;
+        int holding = EnchantmentHelper.getEnchantmentLevel(HOLDING, container);
+        return Utils.getEnchantedCapacity(maxEnergy, holding);
     }
 
     @Override
@@ -113,7 +117,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
         if (container.getTag() == null) {
             setDefaultTag(container, 0);
         }
-        if (isCreative()) {
+        if (isCreative(container)) {
             return 0;
         }
         int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
@@ -132,7 +136,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
         if (container.getTag() == null) {
             setDefaultTag(container, 0);
         }
-        if (isCreative()) {
+        if (isCreative(container)) {
             return maxExtract;
         }
         int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));

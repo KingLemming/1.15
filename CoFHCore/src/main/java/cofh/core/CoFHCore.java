@@ -10,6 +10,7 @@ import cofh.core.event.AttributeEvents;
 import cofh.core.event.CoreClientEvents;
 import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.*;
+import cofh.core.key.CoreKeys;
 import cofh.core.network.packet.client.*;
 import cofh.core.network.packet.server.*;
 import cofh.core.util.Proxy;
@@ -99,7 +100,7 @@ public class CoFHCore {
         PACKET_HANDLER.registerPacket(PACKET_TRANSFER_CONTROL, TransferControlPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_SIDE_CONFIG, SideConfigPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_STORAGE_CLEAR, StorageClearPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, MultiModeItemPacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, ModeChangePacket::new);
     }
 
     // region INITIALIZATION
@@ -130,8 +131,7 @@ public class CoFHCore {
 
         AOEClientEvents.register();
 
-        // TODO: Finish
-        // ModelLoaderRegistry.registerLoader();
+        CoreKeys.register();
     }
 
     private void serverStarting(final FMLServerStartingEvent event) {
