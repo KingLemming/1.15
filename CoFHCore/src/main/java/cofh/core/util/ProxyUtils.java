@@ -12,17 +12,17 @@ public class ProxyUtils {
 
     public static PlayerEntity getClientPlayer() {
 
-        return CoFHCore.proxy.getClientPlayer();
+        return CoFHCore.PROXY.getClientPlayer();
     }
 
     public static World getClientWorld() {
 
-        return CoFHCore.proxy.getClientWorld();
+        return CoFHCore.PROXY.getClientWorld();
     }
 
     public static boolean isClient() {
 
-        return CoFHCore.proxy.isClient();
+        return CoFHCore.PROXY.isClient();
     }
 
 }

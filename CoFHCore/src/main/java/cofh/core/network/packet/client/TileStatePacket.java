@@ -28,7 +28,7 @@ public class TileStatePacket extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        World world = CoFHCore.proxy.getClientWorld();
+        World world = CoFHCore.PROXY.getClientWorld();
         if (world == null) {
             CoFHCore.LOG.error("Client world is null! (Is this being called on the server?)");
             return;

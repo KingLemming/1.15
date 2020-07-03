@@ -9,6 +9,7 @@ import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -86,5 +87,18 @@ public class TCoreReferences {
     public static final TileEntityType<TinkerBenchTile> TINKER_BENCH_TILE = null;
     @ObjectHolder(ID_TINKER_BENCH)
     public static final ContainerType<TinkerBenchContainer> TINKER_BENCH_CONTAINER = null;
+    // endregion
+
+    // region ENTITIES
+    public static final String ID_BASALZ = ID_THERMAL + ":basalz";
+    public static final String ID_BLITZ = ID_THERMAL + ":blitz";
+    public static final String ID_BLIZZ = ID_THERMAL + ":blizz";
+    // endregion
+
+    // region SOUND EVENTS
+    public static final String ID_SOUND_TINKER = ID_THERMAL + ":misc.tinker";
+
+    @ObjectHolder(ID_SOUND_TINKER)
+    public static final SoundEvent SOUND_TINKER = null;
     // endregion
 }

@@ -1,5 +1,6 @@
 package cofh.thermal.core.inventory.container.workbench;
 
+import cofh.core.CoFHCore;
 import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.ItemInvWrapper;
 import cofh.lib.inventory.container.TileContainer;
@@ -17,12 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
+import static cofh.thermal.core.init.TCoreReferences.SOUND_TINKER;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_CONTAINER;
 
 public class TinkerBenchContainer extends TileContainer {
 
     public final TinkerBenchTile tile;
 
+    protected boolean tinkerChanges;
     protected SlotCoFH tinkerSlot;
     protected List<SlotCoFH> tinkerAugmentSlots = new ArrayList<>(MAX_AUGMENTS);
     protected ItemInvWrapper itemInventory = new ItemInvWrapper(this, MAX_AUGMENTS) {
@@ -47,6 +50,10 @@ public class TinkerBenchContainer extends TileContainer {
 
                 writeAugmentsToItem(stack);
                 itemInventory.clear();
+                if (tinkerChanges) {
+                    CoFHCore.PROXY.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
+                }
+                tinkerChanges = false;
                 return super.onTake(thePlayer, stack);
             }
 
@@ -123,6 +130,7 @@ public class TinkerBenchContainer extends TileContainer {
     public void onCraftMatrixChanged(IInventory inventoryIn) {
 
         if (tinkerSlot.getHasStack()) {
+            tinkerChanges = true;
             writeAugmentsToItem(tinkerSlot.getStack());
         }
     }

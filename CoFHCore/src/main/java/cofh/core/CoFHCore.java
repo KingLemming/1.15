@@ -50,7 +50,7 @@ public class CoFHCore {
 
     public static final Logger LOG = LogManager.getLogger(ID_COFH_CORE);
     public static final PacketHandler PACKET_HANDLER = new PacketHandler(new ResourceLocation(ID_COFH_CORE, "general"));
-    public static Proxy proxy = DistExecutor.runForDist(() -> ProxyClient::new, () -> Proxy::new);
+    public static final Proxy PROXY = DistExecutor.runForDist(() -> ProxyClient::new, () -> Proxy::new);
 
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_COFH_CORE);
     public static final DeferredRegisterCoFH<Fluid> FLUIDS = new DeferredRegisterCoFH<>(ForgeRegistries.FLUIDS, ID_COFH_CORE);

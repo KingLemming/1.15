@@ -73,8 +73,8 @@ public class MachineInsolatorTile extends MachineTileProcess {
             }
         }
         // Input Fluids
-        for (int i = 0; i < fluidInputCounts.size(); ++i) {
-            inputTanks().get(i).modify(-fluidInputCounts.get(i));
+        if (!fluidInputCounts.isEmpty()) {
+            waterTank.modify(-fluidInputCounts.get(0));
         }
     }
 

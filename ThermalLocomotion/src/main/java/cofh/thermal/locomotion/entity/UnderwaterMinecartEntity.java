@@ -35,9 +35,9 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
 
     protected int respirationFactor = 1;
 
-    public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> entityIn, World worldIn) {
+    public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, World worldIn) {
 
-        super(entityIn, worldIn);
+        super(type, worldIn);
     }
 
     public UnderwaterMinecartEntity(World worldIn, double posX, double posY, double posZ) {

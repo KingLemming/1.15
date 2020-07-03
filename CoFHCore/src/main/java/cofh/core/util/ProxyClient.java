@@ -1,9 +1,11 @@
 package cofh.core.util;
 
+import cofh.lib.util.helpers.SoundHelper;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -22,6 +24,12 @@ public class ProxyClient extends Proxy {
         } else {
             Minecraft.getInstance().ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(chat, index);
         }
+    }
+
+    @Override
+    public void playSimpleSound(SoundEvent sound, float volume, float pitch) {
+
+        SoundHelper.playSimpleSound(sound, volume, pitch);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class IndexedChatPacket extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        CoFHCore.proxy.addIndexedChatMessage(StringHelper.fromJSON(message), index);
+        CoFHCore.PROXY.addIndexedChatMessage(StringHelper.fromJSON(message), index);
     }
 
     @Override

@@ -26,7 +26,6 @@ public class UnderwaterMinecartRenderer<T extends AbstractMinecartEntity> extend
 
     public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/underwater_minecart.png");
     protected final EntityModel<T> modelMinecart = new UnderwaterMinecartModel<>();
-    // protected final EntityModel<T> modelMinecart = new MinecartModel<>();
 
     public UnderwaterMinecartRenderer(EntityRendererManager renderManager) {
 

@@ -90,7 +90,7 @@ public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
     @Nullable
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
 
-        return (A) CoFHCore.proxy.getModel(this.getRegistryName());
+        return (A) CoFHCore.PROXY.getModel(this.getRegistryName());
     }
 
 }

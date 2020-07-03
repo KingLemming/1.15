@@ -3,6 +3,7 @@ package cofh.core.util;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
@@ -13,9 +14,8 @@ public class Proxy {
 
     }
 
-    public int getKeyBind(String key) {
+    public void playSimpleSound(SoundEvent sound, float volume, float pitch) {
 
-        return 0;
     }
 
     public PlayerEntity getClientPlayer() {
@@ -31,11 +31,6 @@ public class Proxy {
     public boolean isClient() {
 
         return false;
-    }
-
-    public Object addModel(String loc, Object model) {
-
-        return addModel(new ResourceLocation(loc), model);
     }
 
     public Object addModel(Item item, Object model) {

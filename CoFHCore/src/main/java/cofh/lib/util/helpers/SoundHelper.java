@@ -5,6 +5,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.SimpleSound;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 /**
@@ -46,12 +47,17 @@ public class SoundHelper {
 
     public static void playClickSound(float pitch) {
 
-        playClickSound(0.3F, pitch);
+        playClickSound(pitch, 0.3F);
     }
 
-    public static void playClickSound(float volume, float pitch) {
+    public static void playClickSound(float pitch, float volume) {
 
-        manager().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, pitch, volume));
+        playSimpleSound(SoundEvents.UI_BUTTON_CLICK, pitch, volume);
+    }
+
+    public static void playSimpleSound(SoundEvent sound, float volume, float pitch) {
+
+        manager().play(SimpleSound.master(sound, pitch, volume));
     }
 
 }

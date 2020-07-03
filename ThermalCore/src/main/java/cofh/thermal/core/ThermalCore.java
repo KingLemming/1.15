@@ -10,9 +10,7 @@ import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.data.*;
 import cofh.thermal.core.event.TCoreClientEvents;
-import cofh.thermal.core.init.TCoreBlocks;
-import cofh.thermal.core.init.TCoreFluids;
-import cofh.thermal.core.init.TCoreItems;
+import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
@@ -29,6 +27,7 @@ import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -56,15 +55,20 @@ public class ThermalCore {
     public static final DeferredRegisterCoFH<Block> BLOCKS = new DeferredRegisterCoFH<>(ForgeRegistries.BLOCKS, ID_THERMAL);
     public static final DeferredRegisterCoFH<Fluid> FLUIDS = new DeferredRegisterCoFH<>(ForgeRegistries.FLUIDS, ID_THERMAL);
     public static final DeferredRegisterCoFH<Item> ITEMS = new DeferredRegisterCoFH<>(ForgeRegistries.ITEMS, ID_THERMAL);
-    public static final DeferredRegisterCoFH<EntityType<?>> ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.ENTITIES, ID_THERMAL);
-    public static final DeferredRegisterCoFH<TileEntityType<?>> TILE_ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL);
+
     public static final DeferredRegisterCoFH<ContainerType<?>> CONTAINERS = new DeferredRegisterCoFH<>(ForgeRegistries.CONTAINERS, ID_THERMAL);
+    public static final DeferredRegisterCoFH<EntityType<?>> ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.ENTITIES, ID_THERMAL);
     public static final DeferredRegisterCoFH<IRecipeSerializer<?>> RECIPE_SERIALIZERS = new DeferredRegisterCoFH<>(ForgeRegistries.RECIPE_SERIALIZERS, ID_THERMAL);
+    public static final DeferredRegisterCoFH<SoundEvent> SOUND_EVENTS = new DeferredRegisterCoFH<>(ForgeRegistries.SOUND_EVENTS, ID_THERMAL);
+    public static final DeferredRegisterCoFH<TileEntityType<?>> TILE_ENTITIES = new DeferredRegisterCoFH<>(ForgeRegistries.TILE_ENTITIES, ID_THERMAL);
 
     static {
         TCoreBlocks.register();
         TCoreFluids.register();
         TCoreItems.register();
+
+        TCoreEntities.register();
+        TCoreSounds.register();
     }
 
     public ThermalCore() {
@@ -88,8 +92,9 @@ public class ThermalCore {
         ENTITIES.register(modEventBus);
         FLUIDS.register(modEventBus);
         ITEMS.register(modEventBus);
-        TILE_ENTITIES.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
+        SOUND_EVENTS.register(modEventBus);
+        TILE_ENTITIES.register(modEventBus);
 
         ThermalConfig.register();
     }
@@ -121,11 +126,11 @@ public class ThermalCore {
 
         ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
 
-        CoFHCore.proxy.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
-        CoFHCore.proxy.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+        CoFHCore.PROXY.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
+        CoFHCore.PROXY.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
 
-        CoFHCore.proxy.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
-        CoFHCore.proxy.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+        CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
+        CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
