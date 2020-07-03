@@ -17,31 +17,23 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
 import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.AOEHelper.validAOEItem;
 import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
 
+@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_COFH_CORE)
 public class AOEClientEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(AOEClientEvents.class);
-        registered = true;
-    }
 
     private AOEClientEvents() {
 

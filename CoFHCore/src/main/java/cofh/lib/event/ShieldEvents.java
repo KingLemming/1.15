@@ -7,25 +7,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.capability.CapabilityShield.SHIELD_ITEM_CAPABILITY;
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 
+@Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class ShieldEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(ShieldEvents.class);
-        registered = true;
-    }
 
     private ShieldEvents() {
 

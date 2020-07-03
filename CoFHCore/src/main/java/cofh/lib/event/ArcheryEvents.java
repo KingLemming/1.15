@@ -9,18 +9,19 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityArchery.DEFAULT_BOW_CAPABILITY;
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
 import static cofh.lib.util.references.EnsorcellationReferences.QUICK_DRAW;
@@ -28,18 +29,8 @@ import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
 
+@Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class ArcheryEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(ArcheryEvents.class);
-        registered = true;
-    }
 
     private ArcheryEvents() {
 

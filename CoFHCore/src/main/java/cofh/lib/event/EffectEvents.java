@@ -5,28 +5,19 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.references.CoreReferences.*;
 
+@Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class EffectEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(EffectEvents.class);
-        registered = true;
-    }
 
     private EffectEvents() {
 

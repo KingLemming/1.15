@@ -6,7 +6,6 @@ import cofh.lib.inventory.container.slot.SlotRemoveOnly;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

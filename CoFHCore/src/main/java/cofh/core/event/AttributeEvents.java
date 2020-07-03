@@ -9,7 +9,6 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -17,21 +16,14 @@ import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 
+import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+
+@Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class AttributeEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(AttributeEvents.class);
-        registered = true;
-    }
 
     private AttributeEvents() {
 

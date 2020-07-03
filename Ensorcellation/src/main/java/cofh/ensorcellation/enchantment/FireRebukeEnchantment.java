@@ -27,7 +27,7 @@ import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
-    private static HashSet<Tuple<Entity, Integer>> AFFLICTED_ENTITIES = new HashSet<>();
+    private static final HashSet<Tuple<Entity, Integer>> AFFLICTED_ENTITIES = new HashSet<>();
 
     public static int chance = 20;
     public static boolean mobsAffectPlayers = false;

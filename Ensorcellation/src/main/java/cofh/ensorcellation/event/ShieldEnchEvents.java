@@ -17,31 +17,20 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.util.constants.Constants.UUID_ENCH_BULWARK_KNOCKBACK_RESISTANCE;
-import static cofh.lib.util.constants.Constants.UUID_ENCH_PHALANX_MOVEMENT_SPEED;
+import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 import static net.minecraft.entity.ai.attributes.AttributeModifier.Operation.ADDITION;
 import static net.minecraft.entity.ai.attributes.AttributeModifier.Operation.MULTIPLY_TOTAL;
 
+@Mod.EventBusSubscriber(modid = ID_ENSORCELLATION)
 public class ShieldEnchEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(ShieldEnchEvents.class);
-        registered = true;
-    }
 
     private ShieldEnchEvents() {
 

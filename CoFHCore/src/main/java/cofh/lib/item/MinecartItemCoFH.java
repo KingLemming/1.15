@@ -25,7 +25,7 @@ public class MinecartItemCoFH extends ItemCoFH {
 
         super(builder);
         this.factory = factory;
-        DispenserBlock.registerDispenseBehavior(this, MINECART_DISPENSER_BEHAVIOR);
+        DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
     }
 
     public ActionResultType onItemUse(ItemUseContext context) {
@@ -69,7 +69,7 @@ public class MinecartItemCoFH extends ItemCoFH {
     // endregion
 
     // region DISPENSER BEHAVIOR
-    private static final IDispenseItemBehavior MINECART_DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
+    private static final IDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
 
         private final DefaultDispenseItemBehavior behaviourDefaultDispenseItem = new DefaultDispenseItemBehavior();
 

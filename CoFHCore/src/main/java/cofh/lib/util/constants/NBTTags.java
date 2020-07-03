@@ -21,6 +21,7 @@ public class NBTTags {
     public static final String TAG_COOLANT_MAX = "CoolantMax";
     public static final String TAG_CREATIVE = "Creative";
     public static final String TAG_ENCHANTMENTS = "Enchantments";
+    public static final String TAG_ENTITY = "EntityTag";
     public static final String TAG_STORED_ENCHANTMENTS = "StoredEnchantments";
     public static final String TAG_ENERGY = "Energy";
     public static final String TAG_EXP = "Experience";

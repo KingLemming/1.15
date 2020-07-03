@@ -1,14 +1,10 @@
 package cofh.core;
 
-import cofh.core.client.gui.CoreTextures;
 import cofh.core.command.CoFHCommand;
 import cofh.core.data.CoreBlockStateProvider;
 import cofh.core.data.CoreItemModelProvider;
 import cofh.core.data.CoreLootTableProvider;
 import cofh.core.data.CoreRecipeProvider;
-import cofh.core.event.AttributeEvents;
-import cofh.core.event.CoreClientEvents;
-import cofh.core.event.CoreCommonEvents;
 import cofh.core.init.*;
 import cofh.core.key.CoreKeys;
 import cofh.core.network.packet.client.*;
@@ -19,7 +15,6 @@ import cofh.lib.capability.CapabilityAOE;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.CapabilityEnchantable;
 import cofh.lib.capability.CapabilityShield;
-import cofh.lib.event.*;
 import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
@@ -110,26 +105,9 @@ public class CoFHCore {
         CapabilityArchery.register();
         CapabilityEnchantable.register();
         CapabilityShield.register();
-
-        CoreCommonEvents.register();
-        AttributeEvents.register();
-
-        ArcheryEvents.register();
-        AOEEvents.register();
-        EffectEvents.register();
-        ShieldEvents.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        modEventBus.addListener(CoreTextures::preStitch);
-        modEventBus.addListener(CoreTextures::postStitch);
-
-        CoreClientEvents.register();
-
-        AOEClientEvents.register();
 
         CoreKeys.register();
     }

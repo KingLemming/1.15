@@ -6,27 +6,18 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
+@Mod.EventBusSubscriber(modid = ID_ENSORCELLATION)
 public class PreservationEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(PreservationEvents.class);
-        registered = true;
-    }
 
     private PreservationEvents() {
 

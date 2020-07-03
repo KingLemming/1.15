@@ -4,10 +4,14 @@ import cofh.thermal.core.client.renderer.model.MachineBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
+@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_THERMAL, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ThermalTextures {
 
     private ThermalTextures() {
@@ -16,6 +20,7 @@ public class ThermalTextures {
 
     private static final String BLOCK_ATLAS = "minecraft:textures/atlas/blocks.png";
 
+    @SubscribeEvent
     public static void preStitch(TextureStitchEvent.Pre event) {
 
         if (!event.getMap().getTextureLocation().toString().equals(BLOCK_ATLAS)) {
@@ -28,6 +33,7 @@ public class ThermalTextures {
         event.addSprite(MACHINE_CONFIG_ACCESSIBLE_LOC);
     }
 
+    @SubscribeEvent
     public static void postStitch(TextureStitchEvent.Post event) {
 
         if (!event.getMap().getTextureLocation().toString().equals(BLOCK_ATLAS)) {

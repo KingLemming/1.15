@@ -44,8 +44,10 @@
 
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
+  "item.thermal.basalz_spawn_egg": "Bazalz Spawn Egg",
   "item.thermal.blizz_powder": "Blizz Powder",
   "item.thermal.blizz_rod": "Blizz Cube",
+  "item.thermal.blizz_spawn_egg": "Blizz Spawn Egg",
 
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",

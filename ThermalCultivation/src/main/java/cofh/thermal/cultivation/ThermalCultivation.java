@@ -8,14 +8,11 @@ import cofh.thermal.cultivation.data.TCulTags;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.block.StemBlock;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.HoeItem;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -107,9 +104,6 @@ public class ThermalCultivation {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::colorSetup);
-
         ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
 
         RenderType cutout = RenderType.getCutout();
@@ -133,19 +127,6 @@ public class ThermalCultivation {
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM_ATTACHED), cutout);
-    }
-
-    private void colorSetup(final ColorHandlerEvent.Block event) {
-
-        BlockColors colors = event.getBlockColors();
-        colors.register((blockState, lightReader, pos, d) -> 0x96DCF8, BLOCKS.get(ID_FROST_MELON_STEM_ATTACHED));
-        colors.register((blockState, lightReader, pos, d) -> {
-            int age = blockState.get(StemBlock.AGE);
-            int r = 80 + age * 10;
-            int g = 255 - age * 5;
-            int b = 80 + age * 24;
-            return r << 16 | g << 8 | b;
-        }, BLOCKS.get(ID_FROST_MELON_STEM));
     }
     // endregion
 

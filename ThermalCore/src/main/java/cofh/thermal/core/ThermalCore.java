@@ -3,13 +3,12 @@ package cofh.thermal.core;
 import cofh.core.CoFHCore;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
-import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
+import cofh.thermal.core.client.renderer.entity.BlizzRenderer;
 import cofh.thermal.core.client.renderer.model.MachineModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.data.*;
-import cofh.thermal.core.event.TCoreClientEvents;
 import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
@@ -33,6 +32,7 @@ import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
@@ -111,11 +111,6 @@ public class ThermalCore {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(ThermalTextures::preStitch);
-        modEventBus.addListener(ThermalTextures::postStitch);
-
-        TCoreClientEvents.register();
-
         ScreenManager.registerFactory(TINKER_BENCH_CONTAINER, TinkerBenchScreen::new);
 
         RenderType cutout = RenderType.getCutout();
@@ -131,6 +126,8 @@ public class ThermalCore {
 
         CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
         CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+
+        RenderingRegistry.registerEntityRenderingHandler(BLIZZ_ENTITY, BlizzRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

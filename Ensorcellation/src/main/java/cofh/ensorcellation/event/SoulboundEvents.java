@@ -5,31 +5,22 @@ import cofh.lib.util.Utils;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Iterator;
 
 import static cofh.lib.util.Utils.*;
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
 import static cofh.lib.util.references.EnsorcellationReferences.SOULBOUND;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.world.GameRules.KEEP_INVENTORY;
 
+@Mod.EventBusSubscriber(modid = ID_ENSORCELLATION)
 public class SoulboundEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(SoulboundEvents.class);
-        registered = true;
-    }
 
     private SoulboundEvents() {
 

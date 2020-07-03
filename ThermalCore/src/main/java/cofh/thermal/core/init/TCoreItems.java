@@ -2,6 +2,7 @@ package cofh.thermal.core.init;
 
 import cofh.lib.item.ArmorMaterialCoFH;
 import cofh.lib.item.AugmentItem;
+import cofh.lib.item.SpawnEggItemCoFH;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.core.item.*;
@@ -31,6 +32,7 @@ public class TCoreItems {
         registerResources();
         registerTools();
         registerAugments();
+        registerSpawnEggs();
     }
 
     // region HELPERS
@@ -167,6 +169,11 @@ public class TCoreItems {
                         .type(TAG_AUGMENT_TYPE_DYNAMO)
                         .mod(TAG_AUGMENT_DYNAMO_EFFICIENCY, 1.10F)
                         .build()));
+    }
+
+    private static void registerSpawnEggs() {
+
+        ITEMS.register("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0xE0FBFF, 0x6BE6FF, new Item.Properties().group(ItemGroup.MISC)));
     }
     // endregion
 

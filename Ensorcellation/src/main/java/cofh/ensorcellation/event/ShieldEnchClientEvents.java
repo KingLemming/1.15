@@ -5,24 +5,16 @@ import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
 import static cofh.lib.util.references.EnsorcellationReferences.PHALANX;
 
+@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_ENSORCELLATION)
 public class ShieldEnchClientEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(ShieldEnchClientEvents.class);
-        registered = true;
-    }
 
     private ShieldEnchClientEvents() {
 

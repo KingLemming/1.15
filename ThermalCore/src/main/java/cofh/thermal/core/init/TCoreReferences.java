@@ -1,5 +1,6 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
@@ -7,6 +8,7 @@ import cofh.thermal.core.tileentity.workbench.ChargeBenchTile;
 import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
@@ -93,6 +95,9 @@ public class TCoreReferences {
     public static final String ID_BASALZ = ID_THERMAL + ":basalz";
     public static final String ID_BLITZ = ID_THERMAL + ":blitz";
     public static final String ID_BLIZZ = ID_THERMAL + ":blizz";
+
+    @ObjectHolder(ID_BLIZZ)
+    public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS

@@ -5,24 +5,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
+
+@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_THERMAL)
 public class TCoreClientEvents {
-
-    private static boolean registered = false;
-
-    public static void register() {
-
-        if (registered) {
-            return;
-        }
-        MinecraftForge.EVENT_BUS.register(TCoreClientEvents.class);
-        registered = true;
-    }
 
     private TCoreClientEvents() {
 

@@ -11,7 +11,7 @@ import net.minecraft.util.DamageSource;
 
 public class ProtectionEnchantmentImp extends EnchantmentOverride {
 
-    private Type protectionType;
+    private final Type protectionType;
 
     public ProtectionEnchantmentImp(Rarity rarityIn, Type protectionTypeIn, EquipmentSlotType[] slots) {
 
