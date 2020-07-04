@@ -8,27 +8,29 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
+
 @OnlyIn(Dist.CLIENT)
 public class BlizzRenderer extends MobRenderer<BlizzEntity, BlizzModel<BlizzEntity>> {
 
-    private static final ResourceLocation BLIZZ_TEXTURES = new ResourceLocation("textures/entity/blaze.png");
+    private static final ResourceLocation CALM_TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/blizz.png");
+    private static final ResourceLocation ANGRY_TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/blizz_angry.png");
 
     public BlizzRenderer(EntityRendererManager renderManagerIn) {
 
         super(renderManagerIn, new BlizzModel<>(), 0.5F);
     }
 
+    @Override
     protected int getBlockLight(BlizzEntity entityIn, float partialTicks) {
 
-        return 15;
+        return entityIn.isAngry() ? 7 : super.getBlockLight(entityIn, partialTicks);
     }
 
-    /**
-     * Returns the location of an entity's texture.
-     */
+    @Override
     public ResourceLocation getEntityTexture(BlizzEntity entity) {
 
-        return BLIZZ_TEXTURES;
+        return entity.isAngry() ? CALM_TEXTURE : CALM_TEXTURE;
     }
 
 }

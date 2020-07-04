@@ -3,5 +3,10 @@
     "sounds": [
       "thermal:misc/tinker"
     ]
+  },
+  "item.magnet": {
+    "sounds": [
+      "minecraft:mob/endermen/portal2"
+    ]
   }
 }

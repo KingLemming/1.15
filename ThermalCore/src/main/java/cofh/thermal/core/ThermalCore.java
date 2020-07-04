@@ -4,6 +4,8 @@ import cofh.core.CoFHCore;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
+import cofh.thermal.core.client.renderer.entity.BasalzRenderer;
+import cofh.thermal.core.client.renderer.entity.BlitzRenderer;
 import cofh.thermal.core.client.renderer.entity.BlizzRenderer;
 import cofh.thermal.core.client.renderer.model.MachineModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
@@ -127,6 +129,8 @@ public class ThermalCore {
         CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
         CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
 
+        RenderingRegistry.registerEntityRenderingHandler(BASALZ_ENTITY, BasalzRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BLITZ_ENTITY, BlitzRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLIZZ_ENTITY, BlizzRenderer::new);
     }
 

@@ -22,19 +22,22 @@ import net.minecraft.world.World;
 
 import java.util.EnumSet;
 
-public class BlizzEntity extends MonsterEntity {
+public class BlitzEntity extends MonsterEntity {
 
     private float heightOffset = 0.5F;
     private int heightOffsetUpdateTime;
-    private static final DataParameter<Byte> ANGRY = EntityDataManager.createKey(BlizzEntity.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> ANGRY = EntityDataManager.createKey(BlitzEntity.class, DataSerializers.BYTE);
 
-    public BlizzEntity(EntityType<? extends BlizzEntity> type, World world) {
+    public BlitzEntity(EntityType<? extends BlitzEntity> type, World world) {
 
         super(type, world);
-        this.setPathPriority(PathNodeType.LAVA, -1.0F);
+        this.setPathPriority(PathNodeType.WATER, -1.0F);
+        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
+        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
         this.experienceValue = 10;
     }
 
+    @Override
     protected void registerGoals() {
 
         this.goalSelector.addGoal(4, new FireballAttackGoal(this));
@@ -45,12 +48,13 @@ public class BlizzEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
+    @Override
     protected void registerAttributes() {
 
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(7.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20F);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
+        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4F);
+        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
     }
 
     @Override
@@ -89,7 +93,7 @@ public class BlizzEntity extends MonsterEntity {
                 this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
             if (this.rand.nextInt(6) == 0) {
-                this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(ParticleTypes.CLOUD, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
             }
         }
         super.livingTick();
@@ -138,12 +142,12 @@ public class BlizzEntity extends MonsterEntity {
 
     static class FireballAttackGoal extends Goal {
 
-        private final BlizzEntity blaze;
+        private final BlitzEntity blaze;
         private int attackStep;
         private int attackTime;
         private int field_223527_d;
 
-        public FireballAttackGoal(BlizzEntity blazeIn) {
+        public FireballAttackGoal(BlitzEntity blazeIn) {
 
             this.blaze = blazeIn;
             this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));

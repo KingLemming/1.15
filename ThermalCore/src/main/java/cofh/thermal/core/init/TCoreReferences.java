@@ -1,5 +1,7 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.entity.monster.BasalzEntity;
+import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
@@ -96,12 +98,22 @@ public class TCoreReferences {
     public static final String ID_BLITZ = ID_THERMAL + ":blitz";
     public static final String ID_BLIZZ = ID_THERMAL + ":blizz";
 
+    @ObjectHolder(ID_BASALZ)
+    public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
+
+    @ObjectHolder(ID_BLITZ)
+    public static final EntityType<BlitzEntity> BLITZ_ENTITY = null;
+
     @ObjectHolder(ID_BLIZZ)
     public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS
+    public static final String ID_SOUND_MAGNET = ID_THERMAL + ":item.magnet";
     public static final String ID_SOUND_TINKER = ID_THERMAL + ":misc.tinker";
+
+    @ObjectHolder(ID_SOUND_MAGNET)
+    public static final SoundEvent SOUND_MAGNET = null;
 
     @ObjectHolder(ID_SOUND_TINKER)
     public static final SoundEvent SOUND_TINKER = null;

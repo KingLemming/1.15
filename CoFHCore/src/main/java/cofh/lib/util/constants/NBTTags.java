@@ -80,6 +80,9 @@ public class NBTTags {
 
     public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
 
+    public static final String TAG_AUGMENT_RADIUS = "Radius";
+    public static final String TAG_AUGMENT_REACH = "Reach";
+
     // Machine-Specific
     public static final String TAG_AUGMENT_MACHINE_PRIMARY = "MchPri";
     public static final String TAG_AUGMENT_MACHINE_SECONDARY = "MchSec";

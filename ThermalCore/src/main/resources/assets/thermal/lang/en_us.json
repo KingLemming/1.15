@@ -45,6 +45,9 @@
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
   "item.thermal.basalz_spawn_egg": "Bazalz Spawn Egg",
+  "item.thermal.blitz_powder": "Blitz Powder",
+  "item.thermal.blitz_rod": "Blitz Mote",
+  "item.thermal.blitz_spawn_egg": "Blitz Spawn Egg",
   "item.thermal.blizz_powder": "Blizz Powder",
   "item.thermal.blizz_rod": "Blizz Cube",
   "item.thermal.blizz_spawn_egg": "Blizz Spawn Egg",
@@ -437,12 +440,17 @@
   "_comment": "Thermal Innovation",
   "_comment": "========================================================================================================",
 
-  "item.thermal.flux_capacitor": "Flux Capacitor",
-  "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
-
   "info.thermal.capacitor.mode.0": "Mode: Equipment",
   "info.thermal.capacitor.mode.1": "Mode: Inventory",
   "info.thermal.capacitor.mode.2": "Mode: All Items",
+
+  "info.thermal.magnet.mode.0": "Attraction Disabled",
+  "info.thermal.magnet.mode.1": "Attaction Enabled",
+
+  "item.thermal.flux_capacitor": "Flux Capacitor",
+  "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
+  "item.thermal.flux_magnet": "FluxoMagnet",
+  "item.thermal.flux_magnet.desc": "<Insert Desc>.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Locomotion",

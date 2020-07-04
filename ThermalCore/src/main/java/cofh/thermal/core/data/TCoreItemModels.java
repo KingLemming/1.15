@@ -51,6 +51,8 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         generated(reg.getSup("basalz_rod"), RESOURCES);
         generated(reg.getSup("basalz_powder"), RESOURCES);
+        generated(reg.getSup("blitz_rod"), RESOURCES);
+        generated(reg.getSup("blitz_powder"), RESOURCES);
         generated(reg.getSup("blizz_rod"), RESOURCES);
         generated(reg.getSup("blizz_powder"), RESOURCES);
 
