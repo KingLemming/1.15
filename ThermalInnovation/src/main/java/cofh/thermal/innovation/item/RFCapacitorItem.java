@@ -6,7 +6,6 @@ import cofh.lib.item.IAugmentableItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.AugmentableHelper;
 import com.google.common.collect.Iterables;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
@@ -63,19 +62,14 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        if (isActive(stack)) {
-            tooltip.add(new TranslationTextComponent("info.cofh_use_sneak_deactivate").applyTextStyle(TextFormatting.AQUA));
-        } else {
-            tooltip.add(new TranslationTextComponent("info.cofh.use_sneak_activate").applyTextStyle(TextFormatting.YELLOW));
-        }
+        tooltip.add(isActive(stack)
+                ? new TranslationTextComponent("info.cofh_use_sneak_deactivate").applyTextStyle(TextFormatting.AQUA)
+                : new TranslationTextComponent("info.cofh.use_sneak_activate").applyTextStyle(TextFormatting.YELLOW));
+
         tooltip.add(getTextComponent("info.thermal.capacitor.mode." + getMode(stack)));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
 
-        if (isCreative(stack)) {
-            tooltip.add(getTextComponent("info.cofh.infinite_energy"));
-        } else {
-            tooltip.add(getTextComponent(localize("info.cofh.energy") + ": " + getScaledNumber(getEnergyStored(stack)) + " / " + getScaledNumber(getMaxEnergyStored(stack)) + " RF"));
-        }
+        super.addInformation(stack, worldIn, tooltip, flagIn);
         tooltip.add(getTextComponent(localize("info.cofh.transfer") + ": " + getScaledNumber(getExtract(stack)) + " RF/t"));
     }
 
@@ -144,29 +138,30 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     }
 
     // region AUGMENTATION
-    protected void updateAugmentState(ItemStack container, List<ItemStack> augments) {
-
-        container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundNBT());
-        for (ItemStack augment : augments) {
-            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
-            if (augmentData == null) {
-                continue;
-            }
-            setAttributesFromAugment(container, augmentData);
-        }
-    }
-
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
         if (subTag == null) {
             return;
         }
-        float energyStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE), getAttributeMod(subTag, TAG_AUGMENT_ENERGY_STORAGE));
-        float energyXferMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER), getAttributeMod(subTag, TAG_AUGMENT_ENERGY_XFER));
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
+    }
 
-        subTag.putFloat(TAG_AUGMENT_ENERGY_STORAGE, energyStorageMod);
-        subTag.putFloat(TAG_AUGMENT_ENERGY_XFER, energyXferMod);
+    protected void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
+
+        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
+    }
+
+    protected void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
+
+        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
     }
 
     protected float getAttributeMod(CompoundNBT augmentData, String key) {
@@ -179,16 +174,10 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
         return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
     }
 
-    protected float getProperty(ItemStack container, String key) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? 1.0F : getAttributeMod(subTag, key);
-    }
-
     protected float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? 1.0F : getAttributeModWithDefault(subTag, key, defaultValue);
+        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
     }
     // endregion
 
@@ -229,10 +218,16 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     }
 
     @Override
-    public void setAugments(ItemStack augmentable, List<ItemStack> augments) {
+    public void updateAugmentState(ItemStack container, List<ItemStack> augments) {
 
-        AugmentableHelper.writeAugmentsToItem(augmentable, augments);
-        updateAugmentState(augmentable, augments);
+        container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundNBT());
+        for (ItemStack augment : augments) {
+            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
+            if (augmentData == null) {
+                continue;
+            }
+            setAttributesFromAugment(container, augmentData);
+        }
     }
     // endregion
 

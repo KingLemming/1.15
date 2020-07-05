@@ -252,5 +252,11 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         return energyXferMod * baseMod;
     }
+
+    @Override
+    protected float getFluidStorageMod() {
+
+        return fluidStorageMod * baseMod;
+    }
     // endregion
 }

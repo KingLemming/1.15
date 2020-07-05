@@ -24,10 +24,15 @@
   "commands.cofh.zap.success.single": "Zapped %s",
   "commands.cofh.zap.success.multiple": "Zapped %s entities",
 
+  "info.cofh.amount": "Amount",
   "info.cofh.chance": "Chance",
   "info.cofh.chance_additional": "Additional Chance",
   "info.cofh.clear_storage": "Hold Shift + Alt and Click to clear.",
+  "info.cofh.effects": "Effects",
+  "info.cofh.empty": "Empty",
   "info.cofh.energy": "Energy",
+  "info.cofh.fluid": "Fluid",
+  "info.cofh.infinite_energy": "Infinite Energy",
   "info.cofh.transfer": "Transfer",
 
   "info.cofh.mode_change": "Press '%s' to change mode.",

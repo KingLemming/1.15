@@ -532,6 +532,8 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         }
     }
 
+    // Defaults here are balanced for "pure" storage solutions; hence the ^2 factor.
+
     protected float getEnergyStorageMod() {
 
         return energyStorageMod * energyStorageMod;

@@ -7,8 +7,9 @@ import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.AugmentableHelper;
 import cofh.thermal.core.common.ThermalConfig;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,14 +23,21 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
+import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.core.init.TCoreReferences.SOUND_MAGNET;
 
 public class RFMagnetItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
@@ -37,8 +45,8 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     public static final int RADIUS = 4;
     public static final int REACH = 64;
 
-    public static final int UPDATE_RATE = 8;
-    public static final int GRACE_TICKS = 32;
+    public static final int TIME_CONSTANT = 8;
+    public static final int PICKUP_DELAY = 32;
 
     public static final int ENERGY_PER_ITEM = 25;
     public static final int ENERGY_PER_USE = 250;
@@ -64,9 +72,22 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        tooltip.add(getTextComponent("info.thermal.magnet.use"));
+        tooltip.add(getTextComponent("info.thermal.magnet.use.sneak"));
+
+        tooltip.add(getTextComponent("info.thermal.magnet.mode." + getMode(stack)));
+        tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
+
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
-        if (worldIn.getGameTime() % UPDATE_RATE != 0) {
+        if (worldIn.getGameTime() % TIME_CONSTANT != 0) {
             return;
         }
         if (Utils.isClientWorld(worldIn) || Utils.isFakePlayer(entityIn) || getMode(stack) <= 0) {
@@ -100,7 +121,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
                 if (item.cannotPickup() || item.getPersistentData().getBoolean(TAG_CONVEYOR_COMPAT)) {
                     continue;
                 }
-                if (item.getThrowerId() == null || !item.getThrowerId().equals(player.getUniqueID()) || item.getAge() >= GRACE_TICKS) {
+                if (item.getThrowerId() == null || !item.getThrowerId().equals(player.getUniqueID()) || item.getAge() >= PICKUP_DELAY) {
                     if (item.getPositionVector().squareDistanceTo(player.getPositionVector()) <= radSq) { // && wrapper.getFilter().matches(item.getItem())) {
                         item.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
                         item.setPickupDelay(0);
@@ -184,29 +205,33 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     }
 
     // region AUGMENTATION
-    protected void updateAugmentState(ItemStack container, List<ItemStack> augments) {
-
-        container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundNBT());
-        for (ItemStack augment : augments) {
-            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
-            if (augmentData == null) {
-                continue;
-            }
-            setAttributesFromAugment(container, augmentData);
-        }
-    }
-
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
         if (subTag == null) {
             return;
         }
-        float energyStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE), getAttributeMod(subTag, TAG_AUGMENT_ENERGY_STORAGE));
-        float energyXferMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER), getAttributeMod(subTag, TAG_AUGMENT_ENERGY_XFER));
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
 
-        subTag.putFloat(TAG_AUGMENT_ENERGY_STORAGE, energyStorageMod);
-        subTag.putFloat(TAG_AUGMENT_ENERGY_XFER, energyXferMod);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
+    }
+
+    protected void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
+
+        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
+    }
+
+    protected void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
+
+        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
     }
 
     protected float getAttributeMod(CompoundNBT augmentData, String key) {
@@ -219,16 +244,10 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
         return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
     }
 
-    protected float getProperty(ItemStack container, String key) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? 1.0F : getAttributeMod(subTag, key);
-    }
-
     protected float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? 1.0F : getAttributeModWithDefault(subTag, key, defaultValue);
+        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
     }
     // endregion
 
@@ -236,22 +255,25 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     @Override
     public int getExtract(ItemStack container) {
 
+        float base = getPropertyWithDefault(container, TAG_AUGMENT_BASE_MOD, 1.0F);
         float mod = getPropertyWithDefault(container, TAG_AUGMENT_ENERGY_XFER, 1.0F);
-        return Math.round(extract * mod);
+        return Math.round(extract * mod * base);
     }
 
     @Override
     public int getReceive(ItemStack container) {
 
+        float base = getPropertyWithDefault(container, TAG_AUGMENT_BASE_MOD, 1.0F);
         float mod = getPropertyWithDefault(container, TAG_AUGMENT_ENERGY_XFER, 1.0F);
-        return Math.round(receive * mod);
+        return Math.round(receive * mod * base);
     }
 
     @Override
     public int getMaxEnergyStored(ItemStack container) {
 
+        float base = getPropertyWithDefault(container, TAG_AUGMENT_BASE_MOD, 1.0F);
         float mod = getPropertyWithDefault(container, TAG_AUGMENT_ENERGY_STORAGE, 1.0F);
-        return Math.round(super.getMaxEnergyStored(container) * mod);
+        return Math.round(super.getMaxEnergyStored(container) * mod * base);
     }
     // endregion
 
@@ -269,10 +291,16 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     }
 
     @Override
-    public void setAugments(ItemStack augmentable, List<ItemStack> augments) {
+    public void updateAugmentState(ItemStack container, List<ItemStack> augments) {
 
-        AugmentableHelper.writeAugmentsToItem(augmentable, augments);
-        updateAugmentState(augmentable, augments);
+        container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundNBT());
+        for (ItemStack augment : augments) {
+            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
+            if (augmentData == null) {
+                continue;
+            }
+            setAttributesFromAugment(container, augmentData);
+        }
     }
     // endregion
 

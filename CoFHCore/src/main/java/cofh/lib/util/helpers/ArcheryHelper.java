@@ -37,6 +37,11 @@ public final class ArcheryHelper {
         return stack.getItem() instanceof ArrowItem;
     }
 
+    public static boolean isSimpleArrow(ItemStack stack) {
+
+        return stack.getItem().equals(Items.ARROW);
+    }
+
     /**
      * Basically the "default" Archery behavior.
      */

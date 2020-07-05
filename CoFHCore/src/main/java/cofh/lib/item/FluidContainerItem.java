@@ -1,9 +1,12 @@
 package cofh.lib.item;
 
 import cofh.lib.fluid.IFluidContainerItem;
+import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
+import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -23,6 +26,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_FLUID;
 import static cofh.lib.util.helpers.FluidHelper.addPotionTooltip;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;
+import static cofh.lib.util.references.CoreReferences.HOLDING;
 
 public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem, IColorableItem {
 
@@ -47,17 +51,13 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
 
         FluidStack fluid = getFluid(stack);
 
-        if (fluid.isEmpty()) {
-            tooltip.add(getTextComponent(localize("info.cofh.fluid") + ": " + localize("info.cofh.empty")));
-        } else {
-            //            String color = fluid.getFluid().getAttributes().getRarity(fluid).;
-            //            tooltip.add(localize("info.cofh.fluid") + ": " + color + fluid.getFluid().getLocalizedName(fluid) + LIGHT_GRAY);
+        if (!fluid.isEmpty()) {
+            tooltip.add(StringHelper.getFluidName(fluid));
         }
-        if (isCreative(stack)) {
-            tooltip.add(getTextComponent("info.cofh.infinite_source"));
-        } else {
-            tooltip.add(getTextComponent(localize("info.cofh.level") + ": " + format(fluid.getAmount()) + " / " + format(getCapacity(stack)) + " mB"));
-        }
+        tooltip.add(isCreative(stack)
+                ? getTextComponent("info.cofh.infinite_source")
+                : getTextComponent(localize("info.cofh.amount") + ": " + format(fluid.getAmount()) + " / " + format(getCapacity(stack)) + " mB"));
+
         if (FluidHelper.hasPotionTag(fluid)) {
             tooltip.add(getEmptyLine());
             tooltip.add(getTextComponent(localize("info.cofh.effects.") + ":"));
@@ -99,7 +99,8 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     @Override
     public int getCapacity(ItemStack container) {
 
-        return fluidCapacity;
+        int holding = EnchantmentHelper.getEnchantmentLevel(HOLDING, container);
+        return Utils.getEnchantedCapacity(fluidCapacity, holding);
     }
 
     @Override

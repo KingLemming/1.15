@@ -34,10 +34,22 @@ public interface IAugmentableItem {
      * Writes the augments TO the ItemStack's NBT and performs any extra logic which may be required.
      *
      * @param augmentable Stack representing the Augmentable item.
+     * @param augments    List of ItemStacks representing the Augments.
      */
     default void setAugments(ItemStack augmentable, List<ItemStack> augments) {
 
         AugmentableHelper.writeAugmentsToItem(augmentable, augments);
+        updateAugmentState(augmentable, augments);
+    }
+
+    /**
+     * Callback for items which may require parsing of the augments into a Properties list or some such. :)
+     *
+     * @param augmentable Stack representing the Augmentable item.
+     * @param augments    List of ItemStacks representing the Augments.
+     */
+    default void updateAugmentState(ItemStack augmentable, List<ItemStack> augments) {
+
     }
 
 }

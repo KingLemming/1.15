@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -17,10 +18,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.EnumSet;
+
+import static cofh.thermal.core.ThermalCore.ITEMS;
 
 public class BlitzEntity extends MonsterEntity {
 
@@ -40,7 +44,7 @@ public class BlitzEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(4, new FireballAttackGoal(this));
+        this.goalSelector.addGoal(4, new BlitzAttackGoal(this));
         this.goalSelector.addGoal(5, new MoveTowardsRestrictionGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -92,7 +96,7 @@ public class BlitzEntity extends MonsterEntity {
             if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
                 this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
-            if (this.rand.nextInt(6) == 0) {
+            if (this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.CLOUD, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
             }
         }
@@ -122,6 +126,12 @@ public class BlitzEntity extends MonsterEntity {
         return false;
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+
+        return new ItemStack(ITEMS.get("blitz_spawn_egg"));
+    }
+
     // region ANGER MANAGEMENT
     public boolean isAngry() {
 
@@ -140,16 +150,16 @@ public class BlitzEntity extends MonsterEntity {
     }
     // endregion
 
-    static class FireballAttackGoal extends Goal {
+    static class BlitzAttackGoal extends Goal {
 
-        private final BlitzEntity blaze;
+        private final BlitzEntity blitz;
         private int attackStep;
         private int attackTime;
-        private int field_223527_d;
+        private int chaseStep;
 
-        public FireballAttackGoal(BlitzEntity blazeIn) {
+        public BlitzAttackGoal(BlitzEntity blitzIn) {
 
-            this.blaze = blazeIn;
+            this.blitz = blitzIn;
             this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         }
 
@@ -159,8 +169,8 @@ public class BlitzEntity extends MonsterEntity {
          */
         public boolean shouldExecute() {
 
-            LivingEntity livingentity = this.blaze.getAttackTarget();
-            return livingentity != null && livingentity.isAlive() && this.blaze.canAttack(livingentity);
+            LivingEntity livingentity = this.blitz.getAttackTarget();
+            return livingentity != null && livingentity.isAlive() && this.blitz.canAttack(livingentity);
         }
 
         /**
@@ -176,8 +186,8 @@ public class BlitzEntity extends MonsterEntity {
          */
         public void resetTask() {
 
-            this.blaze.setAngry(false);
-            this.field_223527_d = 0;
+            this.blitz.setAngry(false);
+            this.chaseStep = 0;
         }
 
         /**
@@ -186,56 +196,54 @@ public class BlitzEntity extends MonsterEntity {
         public void tick() {
 
             --this.attackTime;
-            LivingEntity livingentity = this.blaze.getAttackTarget();
+            LivingEntity livingentity = this.blitz.getAttackTarget();
             if (livingentity != null) {
-                boolean flag = this.blaze.getEntitySenses().canSee(livingentity);
+                boolean flag = this.blitz.getEntitySenses().canSee(livingentity);
                 if (flag) {
-                    this.field_223527_d = 0;
+                    this.chaseStep = 0;
                 } else {
-                    ++this.field_223527_d;
+                    ++this.chaseStep;
                 }
-                double d0 = this.blaze.getDistanceSq(livingentity);
+                double d0 = this.blitz.getDistanceSq(livingentity);
                 if (d0 < 4.0D) {
                     if (!flag) {
                         return;
                     }
                     if (this.attackTime <= 0) {
                         this.attackTime = 20;
-                        this.blaze.attackEntityAsMob(livingentity);
+                        this.blitz.attackEntityAsMob(livingentity);
                     }
-                    this.blaze.getMoveHelper().setMoveTo(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ(), 1.0D);
+                    this.blitz.getMoveHelper().setMoveTo(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ(), 1.0D);
                 } else if (d0 < this.getFollowDistance() * this.getFollowDistance() && flag) {
-                    double d1 = livingentity.getPosX() - this.blaze.getPosX();
-                    double d2 = livingentity.getPosYHeight(0.5D) - this.blaze.getPosYHeight(0.5D);
-                    double d3 = livingentity.getPosZ() - this.blaze.getPosZ();
+                    double d1 = livingentity.getPosX() - this.blitz.getPosX();
+                    double d2 = livingentity.getPosYHeight(0.5D) - this.blitz.getPosYHeight(0.5D);
+                    double d3 = livingentity.getPosZ() - this.blitz.getPosZ();
                     if (this.attackTime <= 0) {
                         ++this.attackStep;
                         if (this.attackStep == 1) {
                             this.attackTime = 60;
-                            this.blaze.setAngry(true);
+                            this.blitz.setAngry(true);
                         } else if (this.attackStep <= 4) {
                             this.attackTime = 6;
                         } else {
                             this.attackTime = 100;
                             this.attackStep = 0;
-                            this.blaze.setAngry(false);
+                            this.blitz.setAngry(false);
                         }
-
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                            this.blaze.world.playEvent(null, 1018, new BlockPos(this.blaze), 0);
+                            this.blitz.world.playEvent(null, 1018, new BlockPos(this.blitz), 0);
 
                             for (int i = 0; i < 1; ++i) {
-                                SmallFireballEntity smallfireballentity = new SmallFireballEntity(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * (double) f, d2, d3 + this.blaze.getRNG().nextGaussian() * (double) f);
-                                smallfireballentity.setPosition(smallfireballentity.getPosX(), this.blaze.getPosYHeight(0.5D) + 0.5D, smallfireballentity.getPosZ());
-                                this.blaze.world.addEntity(smallfireballentity);
+                                SmallFireballEntity smallfireballentity = new SmallFireballEntity(this.blitz.world, this.blitz, d1 + this.blitz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blitz.getRNG().nextGaussian() * (double) f);
+                                smallfireballentity.setPosition(smallfireballentity.getPosX(), this.blitz.getPosYHeight(0.5D) + 0.5D, smallfireballentity.getPosZ());
+                                this.blitz.world.addEntity(smallfireballentity);
                             }
                         }
                     }
-
-                    this.blaze.getLookController().setLookPositionWithEntity(livingentity, 10.0F, 10.0F);
-                } else if (this.field_223527_d < 5) {
-                    this.blaze.getMoveHelper().setMoveTo(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ(), 1.0D);
+                    this.blitz.getLookController().setLookPositionWithEntity(livingentity, 10.0F, 10.0F);
+                } else if (this.chaseStep < 5) {
+                    this.blitz.getMoveHelper().setMoveTo(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ(), 1.0D);
                 }
                 super.tick();
             }
@@ -243,7 +251,7 @@ public class BlitzEntity extends MonsterEntity {
 
         private double getFollowDistance() {
 
-            return this.blaze.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getValue();
+            return this.blitz.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getValue();
         }
 
     }

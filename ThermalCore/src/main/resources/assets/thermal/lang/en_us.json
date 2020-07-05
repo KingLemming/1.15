@@ -444,13 +444,24 @@
   "info.thermal.capacitor.mode.1": "Mode: Inventory",
   "info.thermal.capacitor.mode.2": "Mode: All Items",
 
-  "info.thermal.magnet.mode.0": "Attraction Disabled",
-  "info.thermal.magnet.mode.1": "Attaction Enabled",
+  "info.thermal.magnet.mode.0": "Auto-Attract Disabled",
+  "info.thermal.magnet.mode.1": "Auto-Attract Enabled",
+  "info.thermal.magnet.use": "Use to attract items at the target location.",
+  "info.thermal.magnet.use.sneak": "Use while sneaking to configure.",
+
+  "info.thermal.infuser.mode.0": "Auto-Infuse Disabled",
+  "info.thermal.infuser.mode.1": "Auto-Infuse Enabled",
+  "info.thermal.infuser.use": "Use on a mob to infuse it.",
+  "info.thermal.infuser.use.sneak": "Use while sneaking to infuse yourself.",
 
   "item.thermal.flux_capacitor": "Flux Capacitor",
   "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
+
   "item.thermal.flux_magnet": "FluxoMagnet",
-  "item.thermal.flux_magnet.desc": "<Insert Desc>.",
+  "item.thermal.flux_magnet.desc": "Attracts items.",
+
+  "item.thermal.potion_infuser": "Potion Infuser",
+  "item.thermal.potion_infuser.desc": "Stores and infuse potions.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Locomotion",
@@ -470,5 +481,5 @@
   "block.thermal.prismarine_powered_rail": "Powered Prismarine Rail",
   "block.thermal.prismarine_rail": "Prismarine Rail",
 
-  "item.thermal.underwater_minecart": "Bathycart"
+  "item.thermal.underwater_minecart": "Underwater Minecart"
 }

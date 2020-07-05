@@ -472,6 +472,12 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
 
         return energyXferMod * baseMod;
     }
+
+    @Override
+    protected float getFluidStorageMod() {
+
+        return fluidStorageMod * baseMod;
+    }
     // endregion
 
     // region ITileCallback
