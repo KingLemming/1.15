@@ -5,6 +5,7 @@ import cofh.lib.item.ArrowItemCoFH;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -23,7 +24,7 @@ public class TrainingArrowItem extends ArrowItemCoFH {
     }
 
     @Override
-    public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+    public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
 
         int enchant = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow);
         return enchant > 0;

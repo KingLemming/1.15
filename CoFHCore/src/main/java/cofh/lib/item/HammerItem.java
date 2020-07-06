@@ -1,6 +1,6 @@
 package cofh.lib.item;
 
-import cofh.lib.capability.templates.AOEMiningItem;
+import cofh.lib.capability.templates.AreaEffectMiningItemWrapper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -56,7 +56,7 @@ public class HammerItem extends PickaxeItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new AOEMiningItem(radius, AOEMiningItem.Type.HAMMER);
+        return new AreaEffectMiningItemWrapper(stack, radius, AreaEffectMiningItemWrapper.Type.HAMMER);
     }
 
 }

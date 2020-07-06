@@ -1,6 +1,6 @@
 package cofh.lib.item;
 
-import cofh.lib.capability.templates.AOEMiningItem;
+import cofh.lib.capability.templates.AreaEffectMiningItemWrapper;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
@@ -49,7 +49,7 @@ public class ExcavatorItem extends ShovelItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new AOEMiningItem(radius, AOEMiningItem.Type.EXCAVATOR);
+        return new AreaEffectMiningItemWrapper(stack, radius, AreaEffectMiningItemWrapper.Type.EXCAVATOR);
     }
 
 }

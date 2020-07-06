@@ -1,5 +1,6 @@
 package cofh.lib.event;
 
+import cofh.lib.capability.templates.AreaEffectItemWrapper;
 import cofh.lib.util.RayTracer;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -26,16 +27,15 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
-import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
-import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.helpers.AOEHelper.validAOEItem;
-import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAOEItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAOEMiningItem;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_COFH_CORE)
-public class AOEClientEvents {
+public class AreaEffectClientEvents {
 
-    private AOEClientEvents() {
+    private AreaEffectClientEvents() {
 
     }
 
@@ -54,7 +54,7 @@ public class AOEClientEvents {
             return;
         }
         ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getTarget().getPos(), player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getTarget().getPos(), player);
 
         WorldRenderer worldRender = event.getContext();
         MatrixStack matrix = event.getMatrix();
@@ -95,7 +95,7 @@ public class AOEClientEvents {
         if (traceResult.getType() != RayTraceResult.Type.BLOCK) {
             return;
         }
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, traceResult.getPos(), player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(traceResult.getPos(), player);
         if (controller.isHittingBlock) {
             drawBlockDamageTexture(event.getContext(), event.getMatrixStack(), Minecraft.getInstance().gameRenderer.getActiveRenderInfo(), player.getEntityWorld(), areaBlocks);
         }

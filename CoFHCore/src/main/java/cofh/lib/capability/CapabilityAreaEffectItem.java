@@ -1,6 +1,7 @@
 package cofh.lib.capability;
 
-import cofh.lib.capability.templates.EnchantableItem;
+import cofh.lib.capability.templates.AreaEffectItemWrapper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -9,14 +10,13 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
-public class CapabilityEnchantable {
+public class CapabilityAreaEffectItem {
 
     private static boolean registered = false;
 
-    @CapabilityInject(IEnchantableItem.class)
-    public static Capability<IEnchantableItem> ENCHANTABLE_ITEM_CAPABILITY = null;
+    @CapabilityInject(IAreaEffectItem.class)
+    public static Capability<IAreaEffectItem> AREA_EFFECT_ITEM_CAPABILITY = null;
 
     public static void register() {
 
@@ -25,10 +25,10 @@ public class CapabilityEnchantable {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IEnchantableItem.class, new DefaultEnchantableHandlerStorage<>(), () -> new EnchantableItem(new ArrayList<>()));
+        CapabilityManager.INSTANCE.register(IAreaEffectItem.class, new DefaultAreaEffectItemHandlerStorage<>(), () -> new AreaEffectItemWrapper(ItemStack.EMPTY));
     }
 
-    private static class DefaultEnchantableHandlerStorage<T extends IEnchantableItem> implements IStorage<T> {
+    private static class DefaultAreaEffectItemHandlerStorage<T extends IAreaEffectItem> implements IStorage<T> {
 
         @Nullable
         @Override

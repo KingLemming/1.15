@@ -1,5 +1,6 @@
 package cofh.lib.event;
 
+import cofh.lib.capability.templates.ArcheryBowItemWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
@@ -18,7 +19,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
-import static cofh.lib.capability.CapabilityArchery.DEFAULT_BOW_CAPABILITY;
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
@@ -44,7 +44,7 @@ public class ArcheryEvents {
             return;
         }
         PlayerEntity shooter = event.getPlayer();
-        event.setCanceled(bow.getCapability(BOW_ITEM_CAPABILITY).orElse(DEFAULT_BOW_CAPABILITY).fireArrow(bow, findAmmo(shooter), shooter, event.getCharge(), event.getWorld()));
+        event.setCanceled(bow.getCapability(BOW_ITEM_CAPABILITY).orElse(new ArcheryBowItemWrapper(bow)).fireArrow(findAmmo(shooter), shooter, event.getCharge(), event.getWorld()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

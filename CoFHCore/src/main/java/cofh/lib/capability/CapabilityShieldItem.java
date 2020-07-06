@@ -1,6 +1,8 @@
 package cofh.lib.capability;
 
-import cofh.lib.capability.templates.AOEItem;
+import cofh.lib.capability.templates.ShieldItemWrapper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -10,14 +12,12 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
 
-public class CapabilityAOE {
+public class CapabilityShieldItem {
 
     private static boolean registered = false;
 
-    @CapabilityInject(IAOEItem.class)
-    public static Capability<IAOEItem> AOE_ITEM_CAPABILITY = null;
-
-    public static AOEItem DEFAULT_AOE_CAPABILITY = new AOEItem(false);
+    @CapabilityInject(IShieldItem.class)
+    public static Capability<IShieldItem> SHIELD_ITEM_CAPABILITY = null;
 
     public static void register() {
 
@@ -26,10 +26,10 @@ public class CapabilityAOE {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IAOEItem.class, new DefaultAOEHandlerStorage<>(), () -> DEFAULT_AOE_CAPABILITY);
+        CapabilityManager.INSTANCE.register(IShieldItem.class, new DefaultShieldHandlerStorage<>(), () -> new ShieldItemWrapper(new ItemStack(Items.SHIELD)));
     }
 
-    private static class DefaultAOEHandlerStorage<T extends IAOEItem> implements IStorage<T> {
+    private static class DefaultShieldHandlerStorage<T extends IShieldItem> implements IStorage<T> {
 
         @Nullable
         @Override

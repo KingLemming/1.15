@@ -1,7 +1,9 @@
 package cofh.lib.capability;
 
-import cofh.lib.capability.templates.ArcheryAmmoItem;
-import cofh.lib.capability.templates.ArcheryBowItem;
+import cofh.lib.capability.templates.ArcheryAmmoItemWrapper;
+import cofh.lib.capability.templates.ArcheryBowItemWrapper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,9 +23,6 @@ public class CapabilityArchery {
     @CapabilityInject(IArcheryAmmoItem.class)
     public static Capability<IArcheryAmmoItem> AMMO_ITEM_CAPABILITY = null;
 
-    public static ArcheryBowItem DEFAULT_BOW_CAPABILITY = new ArcheryBowItem();
-    public static ArcheryAmmoItem DEFAULT_AMMO_CAPABILITY = new ArcheryAmmoItem();
-
     public static void register() {
 
         if (registered) {
@@ -31,8 +30,8 @@ public class CapabilityArchery {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IArcheryBowItem.class, new DefaultArcheryHandlerStorage<>(), () -> DEFAULT_BOW_CAPABILITY);
-        CapabilityManager.INSTANCE.register(IArcheryAmmoItem.class, new DefaultArcheryHandlerStorage<>(), () -> DEFAULT_AMMO_CAPABILITY);
+        CapabilityManager.INSTANCE.register(IArcheryBowItem.class, new DefaultArcheryHandlerStorage<>(), () -> new ArcheryBowItemWrapper(new ItemStack(Items.BOW)));
+        CapabilityManager.INSTANCE.register(IArcheryAmmoItem.class, new DefaultArcheryHandlerStorage<>(), () -> new ArcheryAmmoItemWrapper(new ItemStack(Items.ARROW)));
     }
 
     private static class DefaultArcheryHandlerStorage<T extends IArcheryItem> implements IStorage<T> {

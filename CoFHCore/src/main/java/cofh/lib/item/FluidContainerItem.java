@@ -1,5 +1,6 @@
 package cofh.lib.item;
 
+import cofh.lib.fluid.FluidContainerItemWrapper;
 import cofh.lib.fluid.IFluidContainerItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.FluidHelper;
@@ -13,6 +14,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -87,6 +89,12 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     public double getDurabilityForDisplay(ItemStack stack) {
 
         return MathHelper.clamp(1.0D - ((double) getFluidAmount(stack) / (double) getCapacity(stack)), 0.0D, 1.0D);
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+
+        return new FluidContainerItemWrapper(stack, this);
     }
 
     // region IFluidContainerItem

@@ -1,7 +1,6 @@
 package cofh.lib.capability;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
 
 /**
  * Implement this interface as a capability for Items which have explicit enchantment support.
@@ -15,10 +14,9 @@ public interface IEnchantableItem {
     /**
      * Simple boolean to determine if an enchantment applies to an ItemStack.
      *
-     * @param stack ItemStack to be enchanted.
-     * @param ench  Enchantment to be applied.
+     * @param ench Enchantment to be applied.
      * @return TRUE if the enchantment can be applied to the ItemStack (in a meaningful way).
      */
-    boolean supportsEnchantment(ItemStack stack, Enchantment ench);
+    boolean supportsEnchantment(Enchantment ench);
 
 }

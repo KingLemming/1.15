@@ -1,6 +1,6 @@
 package cofh.lib.item;
 
-import cofh.lib.capability.templates.AOEMiningItem;
+import cofh.lib.capability.templates.AreaEffectMiningItemWrapper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -75,7 +75,7 @@ public class SickleItem extends ToolItem implements ICoFHItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
 
-        return new AOEMiningItem(radius, height, AOEMiningItem.Type.SICKLE);
+        return new AreaEffectMiningItemWrapper(stack, radius, height, AreaEffectMiningItemWrapper.Type.SICKLE);
     }
 
 }

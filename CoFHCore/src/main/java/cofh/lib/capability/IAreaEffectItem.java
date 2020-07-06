@@ -1,9 +1,7 @@
 package cofh.lib.capability;
 
-import cofh.lib.util.helpers.AOEHelper;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 /**
@@ -12,16 +10,8 @@ import net.minecraft.util.math.BlockPos;
  *
  * @author King Lemming
  */
-public interface IAOEItem {
+public interface IAreaEffectItem {
 
-    default boolean canMineBlocks() {
-
-        return false;
-    }
-
-    default ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
-
-        return AOEHelper.getAOEBlocks(stack, pos, player);
-    }
+    ImmutableList<BlockPos> getAreaEffectBlocks(BlockPos pos, PlayerEntity player);
 
 }

@@ -1,6 +1,5 @@
 package cofh.lib.capability;
 
-import cofh.lib.util.helpers.ArcheryHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -17,12 +16,10 @@ public interface IArcheryBowItem extends IArcheryItem {
      * Return the total accuracy multiplier for this item - LOWER IS BETTER - 1.0F is default.
      * Note that weapons and ammo can BOTH have this!
      *
-     * @param bow     ItemStack representing the bow.
-     * @param ammo    ItemStack representing the ammo.
      * @param shooter Player holding the bow.
      * @return Total accuracy modifier - 0.5F means arrows will shoot with half as much variance.
      */
-    default float getAccuracyModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+    default float getAccuracyModifier(PlayerEntity shooter) {
 
         return 1.0F;
     }
@@ -31,12 +28,10 @@ public interface IArcheryBowItem extends IArcheryItem {
      * Return the total damage multiplier for this item - 1.0F is default.
      * Note that weapons and ammo can BOTH have this!
      *
-     * @param bow     ItemStack representing the bow.
-     * @param ammo    ItemStack representing the ammo.
      * @param shooter Player holding the bow.
      * @return Total damage modifier - 1.1F would be 10% more.
      */
-    default float getDamageModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+    default float getDamageModifier(PlayerEntity shooter) {
 
         return 1.0F;
     }
@@ -45,12 +40,10 @@ public interface IArcheryBowItem extends IArcheryItem {
      * Return the total arrow speed multiplier for this item - 1.0F is default.
      * Note that weapons and ammo can BOTH have this!
      *
-     * @param bow     ItemStack representing the bow.
-     * @param ammo    ItemStack representing the ammo.
      * @param shooter Player holding the bow.
      * @return Total speed modifier - as an example, 1.1F would be 10% more.
      */
-    default float getVelocityModifier(ItemStack bow, ItemStack ammo, PlayerEntity shooter) {
+    default float getVelocityModifier(PlayerEntity shooter) {
 
         return 1.0F;
     }
@@ -58,16 +51,12 @@ public interface IArcheryBowItem extends IArcheryItem {
     /**
      * This method handles the entire shooting process - these parameters are essentially passed in from the onArrowLoosed event.
      *
-     * @param bow     ItemStack representing the bow.
-     * @param ammo    ItemStack representing the ammo.
+     * @param arrow   ItemStack representing the ammo.
      * @param shooter Player holding the bow.
      * @param charge  Amount of time the bow has been drawn.
      * @param world   World object, used to spawn the arrow.
      * @return TRUE if an arrow was actually fired.
      */
-    default boolean fireArrow(ItemStack bow, ItemStack ammo, PlayerEntity shooter, int charge, World world) {
-
-        return ArcheryHelper.fireArrow(bow, ammo, shooter, charge, world);
-    }
+    boolean fireArrow(ItemStack arrow, PlayerEntity shooter, int charge, World world);
 
 }

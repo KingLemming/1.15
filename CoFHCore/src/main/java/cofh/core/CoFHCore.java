@@ -11,10 +11,10 @@ import cofh.core.network.packet.client.*;
 import cofh.core.network.packet.server.*;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
-import cofh.lib.capability.CapabilityAOE;
 import cofh.lib.capability.CapabilityArchery;
-import cofh.lib.capability.CapabilityEnchantable;
-import cofh.lib.capability.CapabilityShield;
+import cofh.lib.capability.CapabilityAreaEffectItem;
+import cofh.lib.capability.CapabilityEnchantableItem;
+import cofh.lib.capability.CapabilityShieldItem;
 import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
@@ -101,10 +101,10 @@ public class CoFHCore {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        CapabilityAOE.register();
+        CapabilityAreaEffectItem.register();
         CapabilityArchery.register();
-        CapabilityEnchantable.register();
-        CapabilityShield.register();
+        CapabilityEnchantableItem.register();
+        CapabilityShieldItem.register();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

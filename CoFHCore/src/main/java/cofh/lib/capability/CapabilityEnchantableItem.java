@@ -1,6 +1,7 @@
 package cofh.lib.capability;
 
-import cofh.lib.capability.templates.ShieldItem;
+import cofh.lib.capability.templates.EnchantableItemWrapper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -9,15 +10,14 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 
-public class CapabilityShield {
+public class CapabilityEnchantableItem {
 
     private static boolean registered = false;
 
-    @CapabilityInject(IShieldItem.class)
-    public static Capability<IShieldItem> SHIELD_ITEM_CAPABILITY = null;
-
-    public static ShieldItem DEFAULT_SHIELD_CAPABILITY = new ShieldItem();
+    @CapabilityInject(IEnchantableItem.class)
+    public static Capability<IEnchantableItem> ENCHANTABLE_ITEM_CAPABILITY = null;
 
     public static void register() {
 
@@ -26,10 +26,10 @@ public class CapabilityShield {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IShieldItem.class, new DefaultShieldHandlerStorage<>(), () -> DEFAULT_SHIELD_CAPABILITY);
+        CapabilityManager.INSTANCE.register(IEnchantableItem.class, new DefaultEnchantableHandlerStorage<>(), () -> new EnchantableItemWrapper(ItemStack.EMPTY, Collections.emptyList()));
     }
 
-    private static class DefaultShieldHandlerStorage<T extends IShieldItem> implements IStorage<T> {
+    private static class DefaultEnchantableHandlerStorage<T extends IEnchantableItem> implements IStorage<T> {
 
         @Nullable
         @Override

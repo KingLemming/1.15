@@ -5,7 +5,7 @@ import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import static cofh.lib.capability.CapabilityEnchantable.ENCHANTABLE_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityEnchantableItem.ENCHANTABLE_ITEM_CAPABILITY;
 
 public abstract class EnchantmentCoFH extends Enchantment {
 
@@ -45,7 +45,7 @@ public abstract class EnchantmentCoFH extends Enchantment {
 
     protected boolean supportsEnchantment(ItemStack stack) {
 
-        return stack.getCapability(ENCHANTABLE_ITEM_CAPABILITY).filter(cap -> cap.supportsEnchantment(stack, this)).isPresent();
+        return stack.getCapability(ENCHANTABLE_ITEM_CAPABILITY).filter(cap -> cap.supportsEnchantment(this)).isPresent();
     }
 
     @Override

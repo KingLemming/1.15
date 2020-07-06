@@ -12,7 +12,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.capability.CapabilityShield.SHIELD_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityShieldItem.SHIELD_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
@@ -38,7 +38,7 @@ public class ShieldEvents {
             return;
         }
         ItemStack shield = entity.getActiveItemStack();
-        shield.getCapability(SHIELD_ITEM_CAPABILITY).ifPresent(cap -> cap.onBlock(shield, entity, source));
+        shield.getCapability(SHIELD_ITEM_CAPABILITY).ifPresent(cap -> cap.onBlock(entity, source));
     }
 
     // region HELPERS

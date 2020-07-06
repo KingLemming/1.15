@@ -2,6 +2,8 @@ package cofh.lib.util.helpers;
 
 import cofh.lib.capability.IArcheryAmmoItem;
 import cofh.lib.capability.IArcheryBowItem;
+import cofh.lib.capability.templates.ArcheryAmmoItemWrapper;
+import cofh.lib.capability.templates.ArcheryBowItemWrapper;
 import cofh.lib.util.Utils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -15,7 +17,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 
-import static cofh.lib.capability.CapabilityArchery.*;
+import static cofh.lib.capability.CapabilityArchery.AMMO_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
 import static cofh.lib.util.references.EnsorcellationReferences.TRUESHOT;
 import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
@@ -47,10 +50,13 @@ public final class ArcheryHelper {
      */
     public static boolean fireArrow(ItemStack bow, ItemStack ammo, PlayerEntity shooter, int charge, World world) {
 
-        IArcheryBowItem bowObj = bow.getCapability(BOW_ITEM_CAPABILITY).orElse(DEFAULT_BOW_CAPABILITY);
-        IArcheryAmmoItem ammoObj = ammo.getCapability(AMMO_ITEM_CAPABILITY).orElse(DEFAULT_AMMO_CAPABILITY);
+        IArcheryBowItem bowCap = bow.getCapability(BOW_ITEM_CAPABILITY).orElse(new ArcheryBowItemWrapper(bow));
+        IArcheryAmmoItem ammoCap = ammo.getCapability(AMMO_ITEM_CAPABILITY).orElse(new ArcheryAmmoItemWrapper(ammo));
 
-        boolean infinite = shooter.abilities.isCreativeMode || (isArrow(ammo) && ((ArrowItem) ammo.getItem()).isInfinite(ammo, bow, shooter)) || ammo.isEmpty() && getEnchantmentLevel(INFINITY, bow) > 0;
+        boolean infinite = shooter.abilities.isCreativeMode
+                || ammoCap.isInfinite(bow, shooter)
+                || (isArrow(ammo) && ((ArrowItem) ammo.getItem()).isInfinite(ammo, bow, shooter))
+                || ammo.isEmpty() && getEnchantmentLevel(INFINITY, bow) > 0;
 
         if (!ammo.isEmpty() || infinite) {
             if (ammo.isEmpty()) {
@@ -58,9 +64,9 @@ public final class ArcheryHelper {
             }
             float arrowVelocity = BowItem.getArrowVelocity(charge);
 
-            float accuracyMod = bowObj.getAccuracyModifier(bow, ammo, shooter);
-            float damageMod = bowObj.getDamageModifier(bow, ammo, shooter);
-            float velocityMod = bowObj.getVelocityModifier(bow, ammo, shooter);
+            float accuracyMod = bowCap.getAccuracyModifier(shooter);
+            float damageMod = bowCap.getDamageModifier(shooter);
+            float velocityMod = bowCap.getVelocityModifier(shooter);
 
             if (arrowVelocity >= 0.1F) {
                 if (Utils.isServerWorld(world)) {
@@ -109,12 +115,12 @@ public final class ArcheryHelper {
                         }
                         world.addEntity(arrow);
                     }
-                    bowObj.onArrowLoosed(bow, ammo, shooter);
+                    bowCap.onArrowLoosed(shooter);
                 }
                 world.playSound(null, shooter.getPosX(), shooter.getPosY(), shooter.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.rand.nextFloat() * 0.4F + 1.2F) + arrowVelocity * 0.5F);
 
                 if (!infinite && !shooter.abilities.isCreativeMode) {
-                    ammoObj.onArrowLoosed(bow, ammo, shooter);
+                    ammoCap.onArrowLoosed(shooter);
                     if (ammo.isEmpty()) {
                         shooter.inventory.deleteStack(ammo);
                     }
@@ -126,15 +132,15 @@ public final class ArcheryHelper {
         return false;
     }
 
-    public static AbstractArrowEntity createDefaultArrow(World world, ItemStack ammo, PlayerEntity shooter) {
-
-        return isArrow(ammo) ? ((ArrowItem) ammo.getItem()).createArrow(world, ammo, shooter) : ((ArrowItem) Items.ARROW).createArrow(world, ammo, shooter);
-    }
-
     public static AbstractArrowEntity createArrow(World world, ItemStack ammo, PlayerEntity shooter) {
 
         LazyOptional<IArcheryAmmoItem> ammoCap = ammo.getCapability(AMMO_ITEM_CAPABILITY);
-        return ammoCap.map(cap -> cap.createArrowEntity(world, ammo, shooter)).orElse(createDefaultArrow(world, ammo, shooter));
+        return ammoCap.map(cap -> cap.createArrowEntity(world, shooter)).orElse(createDefaultArrow(world, ammo, shooter));
+    }
+
+    public static AbstractArrowEntity createDefaultArrow(World world, ItemStack ammo, PlayerEntity shooter) {
+
+        return isArrow(ammo) ? ((ArrowItem) ammo.getItem()).createArrow(world, ammo, shooter) : ((ArrowItem) Items.ARROW).createArrow(world, ammo, shooter);
     }
 
     public static ItemStack findAmmo(PlayerEntity shooter) {
@@ -142,14 +148,14 @@ public final class ArcheryHelper {
         ItemStack offHand = shooter.getHeldItemOffhand();
         ItemStack mainHand = shooter.getHeldItemMainhand();
 
-        if (offHand.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(offHand, shooter)).orElse(false) || isArrow(offHand)) {
+        if (offHand.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(shooter)).orElse(false) || isArrow(offHand)) {
             return offHand;
         }
-        if (mainHand.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(offHand, shooter)).orElse(false) || isArrow(mainHand)) {
+        if (mainHand.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(shooter)).orElse(false) || isArrow(mainHand)) {
             return mainHand;
         }
         for (ItemStack slot : shooter.inventory.mainInventory) {
-            if (slot.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(slot, shooter)).orElse(false) || isArrow(slot)) {
+            if (slot.getCapability(AMMO_ITEM_CAPABILITY).map(cap -> !cap.isEmpty(shooter)).orElse(false) || isArrow(slot)) {
                 return slot;
             }
         }

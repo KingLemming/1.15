@@ -14,33 +14,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static cofh.lib.capability.CapabilityEnchantable.ENCHANTABLE_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityEnchantableItem.ENCHANTABLE_ITEM_CAPABILITY;
 
-public class EnchantableItem implements IEnchantableItem, ICapabilityProvider {
+public class EnchantableItemWrapper implements IEnchantableItem, ICapabilityProvider {
 
     private final LazyOptional<IEnchantableItem> holder = LazyOptional.of(() -> this);
 
+    final ItemStack enchantableItem;
     final Set<Enchantment> validEnchantments = new HashSet<>();
 
-    public EnchantableItem(List<Enchantment> enchantments) {
+    public EnchantableItemWrapper(ItemStack enchantableItem, List<Enchantment> enchantments) {
 
-        validEnchantments.addAll(enchantments);
-    }
-
-    public EnchantableItem addEnchantment(Enchantment ench) {
-
-        validEnchantments.add(ench);
-        return this;
-    }
-
-    public EnchantableItem removeEnchantment(Enchantment ench) {
-
-        validEnchantments.remove(ench);
-        return this;
+        this.enchantableItem = enchantableItem;
+        this.validEnchantments.addAll(enchantments);
     }
 
     @Override
-    public boolean supportsEnchantment(ItemStack stack, Enchantment ench) {
+    public boolean supportsEnchantment(Enchantment ench) {
 
         return validEnchantments.contains(ench);
     }

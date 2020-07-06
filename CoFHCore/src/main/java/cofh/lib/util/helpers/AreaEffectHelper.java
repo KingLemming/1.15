@@ -19,35 +19,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.util.Direction.DOWN;
 
-public class AOEHelper {
+public class AreaEffectHelper {
 
-    private AOEHelper() {
+    private AreaEffectHelper() {
 
     }
 
     public static boolean validAOEItem(ItemStack stack) {
 
-        return stack.getCapability(AOE_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem || stack.getItem() instanceof HoeItem;
+        return stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem || stack.getItem() instanceof HoeItem;
     }
 
     public static boolean validAOEMiningItem(ItemStack stack) {
 
-        return stack.getCapability(AOE_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem;
+        return stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem;
     }
 
     /**
      * Basically the "default" AOE behavior.
      */
-    public static ImmutableList<BlockPos> getAOEBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocks(ItemStack stack, BlockPos pos, PlayerEntity player) {
 
         int encExcavating = getEnchantmentLevel(EXCAVATING, stack);
         if (encExcavating > 0) {
-            return getAOEBlocksMiningRadius(stack, pos, player, encExcavating);
+            return getAreaEffectBlocksMiningRadius(stack, pos, player, encExcavating);
         }
         int encTilling = getEnchantmentLevel(TILLING, stack);
         if (encTilling > 0) {
@@ -61,7 +61,7 @@ public class AOEHelper {
     }
 
     // region MINING
-    public static ImmutableList<BlockPos> getAOEBlocksMiningRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksMiningRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();

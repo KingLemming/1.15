@@ -1,5 +1,6 @@
 package cofh.lib.event;
 
+import cofh.lib.capability.templates.AreaEffectItemWrapper;
 import cofh.lib.util.Utils;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
@@ -23,21 +24,20 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashSet;
 import java.util.List;
 
-import static cofh.lib.capability.CapabilityAOE.AOE_ITEM_CAPABILITY;
-import static cofh.lib.capability.CapabilityAOE.DEFAULT_AOE_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.helpers.AOEHelper.validAOEMiningItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAOEMiningItem;
 import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.item.HoeItem.HOE_LOOKUP;
 
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
-public class AOEEvents {
+public class AreaEffectEvents {
 
     private static final HashSet<PlayerEntity> HARVESTING_PLAYERS = new HashSet<>();
     private static final HashSet<PlayerEntity> TILLING_PLAYERS = new HashSet<>();
 
-    private AOEEvents() {
+    private AreaEffectEvents() {
 
     }
 
@@ -56,7 +56,7 @@ public class AOEEvents {
         if (!validAOEMiningItem(stack)) {
             return;
         }
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getPos(), player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getPos(), player);
         ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
         // TODO: Revisit if performance issues show. This is the most *proper* way to handle this, but is not particularly friendly.
         for (BlockPos pos : areaBlocks) {
@@ -79,7 +79,7 @@ public class AOEEvents {
         if (!validAOEMiningItem(stack)) {
             return;
         }
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, event.getPos(), player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getPos(), player);
 
         float oldSpeed = event.getOriginalSpeed();
         float newSpeed = event.getNewSpeed();
@@ -120,7 +120,7 @@ public class AOEEvents {
             return;
         }
         TILLING_PLAYERS.add(player);
-        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AOE_ITEM_CAPABILITY).orElse(DEFAULT_AOE_CAPABILITY).getAOEBlocks(stack, target, player);
+        ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(target, player);
         for (BlockPos pos : areaBlocks) {
             if (stack.isEmpty()) {
                 break;
