@@ -20,8 +20,8 @@ public class EnergyContainerItemWrapper implements IEnergyStorage, ICapabilityPr
 
     private final LazyOptional<IEnergyStorage> holder = LazyOptional.of(() -> this);
 
-    final ItemStack container;
-    final IEnergyContainerItem item;
+    protected final ItemStack container;
+    protected final IEnergyContainerItem item;
 
     public EnergyContainerItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
 

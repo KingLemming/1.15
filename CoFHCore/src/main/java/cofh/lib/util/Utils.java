@@ -113,10 +113,6 @@ public class Utils {
     }
     // endregion
 
-    // region CHAT UTILS
-
-    // endregion
-
     // region ENTITY UTILS
     public static boolean addToPlayerInventory(PlayerEntity player, ItemStack stack) {
 

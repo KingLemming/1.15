@@ -9,8 +9,6 @@ public interface IArcheryItem {
      *
      * @param shooter Player holding the weapon.
      */
-    default void onArrowLoosed(PlayerEntity shooter) {
-
-    }
+    void onArrowLoosed(PlayerEntity shooter);
 
 }

@@ -454,6 +454,11 @@
   "info.thermal.infuser.use": "Use on a mob to infuse it.",
   "info.thermal.infuser.use.sneak": "Use while sneaking to infuse yourself.",
 
+  "info.thermal.quiver.mode.0": "Imbuing Disabled",
+  "info.thermal.quiver.mode.1": "Imbuing Enabled",
+  "info.thermal.quiver.use": "Use to place arrows into the quiver.",
+  "info.thermal.quiver.use.sneak": "Use while sneaking to remove arrows.",
+
   "item.thermal.flux_capacitor": "Flux Capacitor",
   "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
 
@@ -462,6 +467,9 @@
 
   "item.thermal.potion_infuser": "Potion Infuser",
   "item.thermal.potion_infuser.desc": "Stores and infuse potions.",
+
+  "item.thermal.potion_quiver": "Alchemical Quiver",
+  "item.thermal.potion_quiver.desc": "Imbues arrows with potion effects.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Locomotion",

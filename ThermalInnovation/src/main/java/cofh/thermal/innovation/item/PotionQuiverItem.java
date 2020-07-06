@@ -1,6 +1,10 @@
 package cofh.thermal.innovation.item;
 
 import cofh.core.util.ChatHelper;
+import cofh.lib.capability.CapabilityArchery;
+import cofh.lib.capability.IArcheryAmmoItem;
+import cofh.lib.fluid.FluidContainerItemWrapper;
+import cofh.lib.fluid.IFluidContainerItem;
 import cofh.lib.item.FluidContainerItem;
 import cofh.lib.item.IAugmentableItem;
 import cofh.lib.item.IMultiModeItem;
@@ -8,42 +12,60 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
+import cofh.thermal.core.common.ThermalConfig;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
+import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.ArcheryHelper.isSimpleArrow;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
+import static cofh.lib.util.helpers.StringHelper.*;
 import static cofh.lib.util.references.CoreReferences.HOLDING;
 
 public class PotionQuiverItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
 
     protected static final int MB_PER_ARROW = 50;
 
-    protected IntSupplier numSlots = () -> 1;
+    protected IntSupplier numSlots = () -> ThermalConfig.toolAugments;
     protected Predicate<ItemStack> augValidator = (e) -> true;
 
     protected int arrowCapacity;
 
-    public PotionQuiverItem(Properties builder, int fluidCapacity) {
+    public PotionQuiverItem(Properties builder, int fluidCapacity, int arrowCapacity) {
 
-        this(builder, fluidCapacity, FluidHelper::hasPotionTag);
+        this(builder, fluidCapacity, arrowCapacity, FluidHelper::hasPotionTag);
     }
 
-    public PotionQuiverItem(Properties builder, int fluidCapacity, Predicate<FluidStack> validator) {
+    public PotionQuiverItem(Properties builder, int fluidCapacity, int arrowCapacity, Predicate<FluidStack> validator) {
 
         super(builder, fluidCapacity, validator);
+        this.arrowCapacity = arrowCapacity;
     }
 
     public PotionQuiverItem setNumSlots(IntSupplier numSlots) {
@@ -59,9 +81,61 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        tooltip.add(getTextComponent("info.thermal.quiver.use"));
+        tooltip.add(getTextComponent("info.thermal.quiver.use.sneak"));
+
+        tooltip.add(getTextComponent("info.thermal.quiver.mode." + getMode(stack)));
+        tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
+
+        tooltip.add(getTextComponent(localize("info.cofh.arrows") + ": " + (isCreative(stack)
+                ? localize("info.cofh.infinite")
+                : getNumArrows(stack) + " / " + format(getMaxArrows(stack)))));
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
         return !oldStack.equals(newStack) && (slotChanged || !areItemStacksEqualIgnoreTags(oldStack, newStack, TAG_ARROWS, TAG_FLUID));
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+
+        ItemStack stack = playerIn.getHeldItem(handIn);
+        return useDelegate(stack, playerIn, handIn) ? ActionResult.resultSuccess(stack) : ActionResult.resultPass(stack);
+    }
+
+    @Override
+    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
+
+        return useDelegate(stack, context.getPlayer(), context.getHand()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+    }
+
+    protected boolean useDelegate(ItemStack stack, PlayerEntity player, Hand hand) {
+
+        if (Utils.isFakePlayer(player)) {
+            return false;
+        }
+        if (player.isSecondaryUseActive()) {
+            ItemStack arrows = findArrows(player);
+            if (!arrows.isEmpty() && arrows.getCount() < arrows.getMaxStackSize()) {
+                arrows.grow(removeArrows(stack, arrows.getMaxStackSize() - arrows.getCount(), false));
+            } else {
+                arrows = new ItemStack(Items.ARROW, Math.min(getNumArrows(stack), 64));
+                if (Utils.addToPlayerInventory(player, arrows)) {
+                    removeArrows(stack, arrows.getCount(), false);
+                }
+            }
+        } else {
+            ItemStack arrows = findArrows(player);
+            arrows.shrink(addArrows(stack, arrows.getCount(), false));
+        }
+        stack.setAnimationsToGo(5);
+        return true;
     }
 
     // region HELPERS
@@ -126,21 +200,6 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         }
         return ItemStack.EMPTY;
     }
-
-    public static boolean addToPlayerInventory(PlayerEntity player, ItemStack stack) {
-
-        if (stack.isEmpty() || player == null) {
-            return false;
-        }
-        PlayerInventory inv = player.inventory;
-        for (int i = 0; i < inv.mainInventory.size(); i++) {
-            if (inv.mainInventory.get(i).isEmpty()) {
-                inv.mainInventory.set(i, stack.copy());
-                return true;
-            }
-        }
-        return false;
-    }
     // endregion
 
     // region AUGMENTATION
@@ -187,6 +246,12 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     }
     // endregion
 
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+
+        return new PotionQuiverItemWrapper(stack, this);
+    }
+
     // region IFluidContainerItem
     @Override
     public int getCapacity(ItemStack container) {
@@ -229,7 +294,77 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
         player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.4F, 0.6F + 0.2F * getMode(stack));
-        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.thermal.infuser.mode." + getMode(stack)));
+        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.thermal.quiver.mode." + getMode(stack)));
+    }
+    // endregion
+
+    // region CAPABILITY WRAPPER
+    protected class PotionQuiverItemWrapper extends FluidContainerItemWrapper implements IArcheryAmmoItem {
+
+        private final LazyOptional<IArcheryAmmoItem> holder = LazyOptional.of(() -> this);
+
+        public PotionQuiverItemWrapper(ItemStack containerIn, IFluidContainerItem itemIn) {
+
+            super(containerIn, itemIn);
+        }
+
+        @Override
+        public void onArrowLoosed(PlayerEntity shooter) {
+
+            System.out.println("called");
+
+            if (shooter != null) {
+                if (!shooter.abilities.isCreativeMode) {
+                    removeArrows(container, 1, false);
+
+                    System.out.println("in here!");
+                    drain(MB_PER_ARROW, getMode(container) == 1 ? FluidAction.EXECUTE : FluidAction.SIMULATE);
+                }
+            }
+        }
+
+        @Override
+        public AbstractArrowEntity createArrowEntity(World world, PlayerEntity shooter) {
+
+            FluidStack fluid = getFluid(container);
+            ItemStack arrowStack;
+
+            System.out.println("create!");
+
+            if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_ARROW) {
+                arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));
+                return ((TippedArrowItem) arrowStack.getItem()).createArrow(world, arrowStack, shooter);
+            }
+            arrowStack = new ItemStack(Items.ARROW);
+            return ((ArrowItem) arrowStack.getItem()).createArrow(world, arrowStack, shooter);
+        }
+
+        @Override
+        public boolean isEmpty(PlayerEntity shooter) {
+
+            if (isCreative(container) || (shooter != null && shooter.abilities.isCreativeMode)) {
+                return false;
+            }
+            return getNumArrows(container) <= 0;
+        }
+
+        @Override
+        public boolean isInfinite(ItemStack bow, PlayerEntity shooter) {
+
+            return shooter != null && shooter.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow) > 0;
+        }
+
+        // region ICapabilityProvider
+        @Override
+        @Nonnull
+        public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+
+            if (cap == CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY) {
+                return super.getCapability(cap, side);
+            }
+            return CapabilityArchery.AMMO_ITEM_CAPABILITY.orEmpty(cap, holder);
+        }
+        // endregion
     }
     // endregion
 }

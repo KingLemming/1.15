@@ -62,7 +62,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
 
         if (FluidHelper.hasPotionTag(fluid)) {
             tooltip.add(getEmptyLine());
-            tooltip.add(getTextComponent(localize("info.cofh.effects.") + ":"));
+            tooltip.add(getTextComponent(localize("info.cofh.effects") + ":"));
             addPotionTooltip(fluid, tooltip);
         }
     }

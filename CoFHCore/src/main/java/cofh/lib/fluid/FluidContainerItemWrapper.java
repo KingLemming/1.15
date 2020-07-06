@@ -21,8 +21,8 @@ public class FluidContainerItemWrapper implements IFluidHandlerItem, ICapability
 
     private final LazyOptional<IFluidHandlerItem> holder = LazyOptional.of(() -> this);
 
-    final ItemStack container;
-    final IFluidContainerItem item;
+    protected final ItemStack container;
+    protected final IFluidContainerItem item;
 
     public FluidContainerItemWrapper(ItemStack containerIn, IFluidContainerItem itemIn) {
 

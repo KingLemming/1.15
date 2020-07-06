@@ -91,7 +91,7 @@ public class TCoreItems {
         ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
 
         // Additive
-        final float[] upgradeMods = new float[]{0.0F, 0.5F, 1.5F, 3.0F, 5.0F, 6.5F};
+        final float[] upgradeMods = new float[]{1.0F, 1.5F, 2.0F, 2.5F, 3.0F, 3.5F};
         final float[] storageMods = new float[]{1.0F, 2.0F, 3.0F, 4.0F, 5.0F, 6.0F};
 
         for (int i = 1; i <= 4; ++i) {

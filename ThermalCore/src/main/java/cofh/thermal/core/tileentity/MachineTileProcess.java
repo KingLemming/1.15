@@ -404,7 +404,6 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
     // region AUGMENTS
     protected float baseMod = 1.0F;
     protected float processMod = 1.0F;
-
     protected float primaryMod = 1.0F;
     protected float secondaryMod = 1.0F;
     protected float energyMod = 1.0F;
@@ -419,7 +418,6 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
 
         baseMod = 1.0F;
         processMod = 1.0F;
-
         primaryMod = 1.0F;
         secondaryMod = 1.0F;
         energyMod = 1.0F;
@@ -433,9 +431,8 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
 
         super.setAttributesFromAugment(augmentData);
 
-        baseMod += getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD);
+        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_POWER);
-
         primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_PRIMARY);
         secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_SECONDARY);
         energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_MACHINE_ENERGY, 1.0F);
@@ -453,7 +450,6 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
         float scaleMax = AUG_SCALE_MAX;
 
         processTick = Math.round(getBaseProcessTick() * baseMod * processMod);
-
         primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
         secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);

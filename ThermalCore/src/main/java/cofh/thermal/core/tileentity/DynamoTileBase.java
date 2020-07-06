@@ -224,7 +224,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.setAttributesFromAugment(augmentData);
 
-        baseMod += getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD);
+        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_DYNAMO_PRODUCTION);
         energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_DYNAMO_EFFICIENCY, 1.0F);
     }
