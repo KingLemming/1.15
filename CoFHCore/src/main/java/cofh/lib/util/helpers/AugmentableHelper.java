@@ -11,8 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
-import static cofh.lib.util.constants.NBTTags.TAG_AUGMENTS;
-import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
+import static cofh.lib.util.constants.NBTTags.*;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public class AugmentableHelper {
@@ -21,14 +20,29 @@ public class AugmentableHelper {
 
     }
 
-    // region AUGMENTABLE
-    public static List<ItemStack> getAugments(ItemStack augmentable) {
+    public static boolean isAugmentableItem(ItemStack stack) {
 
-        ListNBT augmentTag = getAugmentNBT(augmentable);
+        return !stack.isEmpty() && stack.getItem() instanceof IAugmentableItem;
+    }
+
+    public static List<ItemStack> readAugmentsFromItem(ItemStack stack) {
+
+        ListNBT augmentTag = getAugmentNBT(stack);
         if (augmentTag.isEmpty()) {
             return Collections.emptyList();
         }
         return getAugments(augmentTag);
+    }
+
+    public static void writeAugmentsToItem(ItemStack stack, List<ItemStack> augments) {
+
+        writeAugmentsToItem(stack, convertAugments(augments));
+    }
+
+    // region AUGMENTABLE REDIRECTS
+    public static List<ItemStack> getAugments(ItemStack augmentable) {
+
+        return !isAugmentableItem(augmentable) ? Collections.emptyList() : ((IAugmentableItem) augmentable.getItem()).getAugments(augmentable);
     }
 
     public static int getAugmentSlots(ItemStack augmentable) {
@@ -50,19 +64,41 @@ public class AugmentableHelper {
     }
     // endregion
 
-    // region HELPERS
-    public static boolean isAugmentableItem(ItemStack stack) {
+    // region ATTRIBUTES
+    public static void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
 
-        return !stack.isEmpty() && stack.getItem() instanceof IAugmentableItem;
+        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
     }
 
-    public static void writeAugmentsToItem(ItemStack stack, List<ItemStack> augments) {
+    public static void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
 
-        writeAugmentsToItem(stack, convertAugments(augments));
+        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
+        if (mod > 0.0F) {
+            subTag.putFloat(attribute, mod);
+        }
+    }
+
+    public static float getAttributeMod(CompoundNBT augmentData, String key) {
+
+        return augmentData.getFloat(key);
+    }
+
+    public static float getAttributeModWithDefault(CompoundNBT augmentData, String key, float defaultValue) {
+
+        return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
+    }
+
+    public static float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
+
+        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
+        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
     }
     // endregion
 
-    // region NBT MANIPULATION
+    // region INTERNAL HELPERS
     private static void writeAugmentsToItem(ItemStack stack, ListNBT list) {
 
         CompoundNBT blockTag = stack.getChildTag(TAG_BLOCK_ENTITY);

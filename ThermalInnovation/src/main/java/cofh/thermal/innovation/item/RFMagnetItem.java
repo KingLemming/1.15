@@ -37,19 +37,20 @@ import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.helpers.AugmentableHelper.*;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.core.init.TCoreReferences.SOUND_MAGNET;
 
 public class RFMagnetItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
 
-    public static final int RADIUS = 4;
-    public static final int REACH = 64;
+    protected static final int RADIUS = 4;
+    protected static final int REACH = 64;
 
-    public static final int TIME_CONSTANT = 8;
-    public static final int PICKUP_DELAY = 32;
+    protected static final int TIME_CONSTANT = 8;
+    protected static final int PICKUP_DELAY = 32;
 
-    public static final int ENERGY_PER_ITEM = 25;
-    public static final int ENERGY_PER_USE = 250;
+    protected static final int ENERGY_PER_ITEM = 25;
+    protected static final int ENERGY_PER_USE = 250;
 
     protected IntSupplier numSlots = () -> ThermalConfig.toolAugments;
     protected Predicate<ItemStack> augValidator = (e) -> true;
@@ -204,7 +205,6 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
         return Math.round(RADIUS + mod);
     }
 
-    // region AUGMENTATION
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
@@ -217,39 +217,6 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
     }
-
-    protected void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected float getAttributeMod(CompoundNBT augmentData, String key) {
-
-        return augmentData.getFloat(key);
-    }
-
-    protected float getAttributeModWithDefault(CompoundNBT augmentData, String key, float defaultValue) {
-
-        return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
-    }
-
-    protected float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
-    }
-    // endregion
 
     // region IEnergyContainerItem
     @Override
@@ -300,6 +267,10 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
                 continue;
             }
             setAttributesFromAugment(container, augmentData);
+        }
+        int energyExcess = getEnergyStored(container) - getMaxEnergyStored(container);
+        if (energyExcess > 0) {
+            extractEnergy(container, energyExcess, false);
         }
     }
     // endregion

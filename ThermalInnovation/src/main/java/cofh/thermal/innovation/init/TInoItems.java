@@ -1,10 +1,7 @@
 package cofh.thermal.innovation.init;
 
 import cofh.thermal.core.init.TCoreItems;
-import cofh.thermal.innovation.item.PotionInfuserItem;
-import cofh.thermal.innovation.item.PotionQuiverItem;
-import cofh.thermal.innovation.item.RFCapacitorItem;
-import cofh.thermal.innovation.item.RFMagnetItem;
+import cofh.thermal.innovation.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
@@ -28,6 +25,7 @@ public class TInoItems {
 
         ItemGroup group = THERMAL_TOOLS;
 
+        registerItem("flux_drill", () -> new RFDrillItem(new Item.Properties().maxStackSize(1).group(group), 20000, 1000));
         registerItem("flux_capacitor", () -> new RFCapacitorItem(new Item.Properties().maxStackSize(1).group(group), 200000, 1000));
         registerItem("flux_magnet", () -> new RFMagnetItem(new Item.Properties().maxStackSize(1).group(group), 20000, 1000));
         registerItem("potion_infuser", () -> new PotionInfuserItem(new Item.Properties().maxStackSize(1).group(group), 4000));

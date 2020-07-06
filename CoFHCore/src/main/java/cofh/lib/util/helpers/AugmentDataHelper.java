@@ -11,6 +11,10 @@ import static cofh.lib.util.constants.NBTTags.TAG_TYPE;
 
 public class AugmentDataHelper {
 
+    private AugmentDataHelper() {
+
+    }
+
     public static boolean isAugmentItem(ItemStack stack) {
 
         return !stack.isEmpty() && stack.getItem() instanceof IAugmentItem;

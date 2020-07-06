@@ -12,7 +12,7 @@ public interface IAugmentableItem {
 
     default List<ItemStack> getAugments(ItemStack augmentable) {
 
-        return AugmentableHelper.getAugments(augmentable);
+        return AugmentableHelper.readAugmentsFromItem(augmentable);
     }
 
     /**

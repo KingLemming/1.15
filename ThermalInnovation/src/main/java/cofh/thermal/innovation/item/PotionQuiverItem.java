@@ -11,7 +11,6 @@ import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.lib.util.helpers.FluidHelper;
-import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
@@ -34,6 +33,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -43,7 +43,9 @@ import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.ArcheryHelper.isSimpleArrow;
+import static cofh.lib.util.helpers.ArcheryHelper.findArrows;
+import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
+import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;
 import static cofh.lib.util.references.CoreReferences.HOLDING;
@@ -92,7 +94,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
 
         tooltip.add(getTextComponent(localize("info.cofh.arrows") + ": " + (isCreative(stack)
                 ? localize("info.cofh.infinite")
-                : getNumArrows(stack) + " / " + format(getMaxArrows(stack)))));
+                : getStoredArrows(stack) + " / " + format(getMaxArrows(stack)))));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -125,7 +127,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             if (!arrows.isEmpty() && arrows.getCount() < arrows.getMaxStackSize()) {
                 arrows.grow(removeArrows(stack, arrows.getMaxStackSize() - arrows.getCount(), false));
             } else {
-                arrows = new ItemStack(Items.ARROW, Math.min(getNumArrows(stack), 64));
+                arrows = new ItemStack(Items.ARROW, Math.min(getStoredArrows(stack), 64));
                 if (Utils.addToPlayerInventory(player, arrows)) {
                     removeArrows(stack, arrows.getCount(), false);
                 }
@@ -138,27 +140,21 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return true;
     }
 
-    // region HELPERS
-    public int getNumArrows(ItemStack stack) {
+    protected int getStoredArrows(ItemStack stack) {
 
         return isCreative(stack) ? getMaxArrows(stack) : stack.getOrCreateTag().getInt(TAG_ARROWS);
     }
 
-    public int getMaxArrows(ItemStack stack) {
+    protected int getMaxArrows(ItemStack stack) {
 
-        float mod = getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
+        float base = getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
         int holding = EnchantmentHelper.getEnchantmentLevel(HOLDING, stack);
-        return Math.round(Utils.getEnchantedCapacity(arrowCapacity, holding) * mod);
+        return Math.round(Utils.getEnchantedCapacity(arrowCapacity, holding) * base);
     }
 
-    public int getScaledArrowsStored(ItemStack stack, int scale) {
+    protected int addArrows(ItemStack stack, int maxArrows, boolean simulate) {
 
-        return MathHelper.round((double) getNumArrows(stack) * scale / getMaxArrows(stack));
-    }
-
-    public int addArrows(ItemStack stack, int maxArrows, boolean simulate) {
-
-        int stored = getNumArrows(stack);
+        int stored = getStoredArrows(stack);
         int toAdd = Math.min(maxArrows, getMaxArrows(stack) - stored);
 
         if (!simulate && !isCreative(stack)) {
@@ -168,7 +164,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return toAdd;
     }
 
-    public int removeArrows(ItemStack stack, int maxArrows, boolean simulate) {
+    protected int removeArrows(ItemStack stack, int maxArrows, boolean simulate) {
 
         if (isCreative(stack)) {
             return maxArrows;
@@ -182,27 +178,6 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return toRemove;
     }
 
-    public static ItemStack findArrows(PlayerEntity player) {
-
-        ItemStack offHand = player.getHeldItemOffhand();
-        ItemStack mainHand = player.getHeldItemMainhand();
-
-        if (isSimpleArrow(offHand)) {
-            return offHand;
-        } else if (isSimpleArrow(mainHand)) {
-            return mainHand;
-        }
-        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-            ItemStack stack = player.inventory.getStackInSlot(i);
-            if (isSimpleArrow(stack)) {
-                return stack;
-            }
-        }
-        return ItemStack.EMPTY;
-    }
-    // endregion
-
-    // region AUGMENTATION
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
@@ -212,39 +187,6 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
-
-    protected void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected float getAttributeMod(CompoundNBT augmentData, String key) {
-
-        return augmentData.getFloat(key);
-    }
-
-    protected float getAttributeModWithDefault(CompoundNBT augmentData, String key, float defaultValue) {
-
-        return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
-    }
-
-    protected float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
-    }
-    // endregion
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
@@ -286,6 +228,14 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             }
             setAttributesFromAugment(container, augmentData);
         }
+        int fluidExcess = getFluidAmount(container) - getCapacity(container);
+        if (fluidExcess > 0) {
+            drain(container, fluidExcess, IFluidHandler.FluidAction.EXECUTE);
+        }
+        int arrowExcess = getStoredArrows(container) - getMaxArrows(container);
+        if (arrowExcess > 0) {
+            removeArrows(container, arrowExcess, false);
+        }
     }
     // endregion
 
@@ -311,13 +261,9 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         @Override
         public void onArrowLoosed(PlayerEntity shooter) {
 
-            System.out.println("called");
-
             if (shooter != null) {
                 if (!shooter.abilities.isCreativeMode) {
                     removeArrows(container, 1, false);
-
-                    System.out.println("in here!");
                     drain(MB_PER_ARROW, getMode(container) == 1 ? FluidAction.EXECUTE : FluidAction.SIMULATE);
                 }
             }
@@ -328,8 +274,6 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
 
             FluidStack fluid = getFluid(container);
             ItemStack arrowStack;
-
-            System.out.println("create!");
 
             if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_ARROW) {
                 arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));
@@ -345,7 +289,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             if (isCreative(container) || (shooter != null && shooter.abilities.isCreativeMode)) {
                 return false;
             }
-            return getNumArrows(container) <= 0;
+            return getStoredArrows(container) <= 0;
         }
 
         @Override

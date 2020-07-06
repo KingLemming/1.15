@@ -8,6 +8,7 @@ public class ToolTypes {
 
     }
 
+    public static final ToolType DRILL = ToolType.get("drill");
     public static final ToolType EXCAVATOR = ToolType.get("excavator");
     public static final ToolType HAMMER = ToolType.get("hammer");
     public static final ToolType SICKLE = ToolType.get("sickle");

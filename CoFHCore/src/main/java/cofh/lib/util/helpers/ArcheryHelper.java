@@ -162,4 +162,26 @@ public final class ArcheryHelper {
         return ItemStack.EMPTY;
     }
 
+    /**
+     * Called specifically when looking for ARROWS in inventory.
+     */
+    public static ItemStack findArrows(PlayerEntity shooter) {
+
+        ItemStack offHand = shooter.getHeldItemOffhand();
+        ItemStack mainHand = shooter.getHeldItemMainhand();
+
+        if (isSimpleArrow(offHand)) {
+            return offHand;
+        } else if (isSimpleArrow(mainHand)) {
+            return mainHand;
+        }
+        for (int i = 0; i < shooter.inventory.getSizeInventory(); i++) {
+            ItemStack stack = shooter.inventory.getStackInSlot(i);
+            if (isSimpleArrow(stack)) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
 }

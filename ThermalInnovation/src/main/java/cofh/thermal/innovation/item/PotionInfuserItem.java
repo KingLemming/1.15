@@ -35,6 +35,8 @@ import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
+import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 
 public class PotionInfuserItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
@@ -180,7 +182,6 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         return true;
     }
 
-    // region AUGMENTATION
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
@@ -190,39 +191,6 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
-
-    protected void getAttributeFromAugmentMax(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = Math.max(getAttributeMod(augmentData, attribute), getAttributeMod(subTag, attribute));
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
-
-        float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
-    }
-
-    protected float getAttributeMod(CompoundNBT augmentData, String key) {
-
-        return augmentData.getFloat(key);
-    }
-
-    protected float getAttributeModWithDefault(CompoundNBT augmentData, String key, float defaultValue) {
-
-        return augmentData.contains(key) ? augmentData.getFloat(key) : defaultValue;
-    }
-
-    protected float getPropertyWithDefault(ItemStack container, String key, float defaultValue) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        return subTag == null ? defaultValue : getAttributeModWithDefault(subTag, key, defaultValue);
-    }
-    // endregion
 
     // region IFluidContainerItem
     @Override
@@ -257,6 +225,10 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
                 continue;
             }
             setAttributesFromAugment(container, augmentData);
+        }
+        int fluidExcess = getFluidAmount(container) - getCapacity(container);
+        if (fluidExcess > 0) {
+            drain(container, fluidExcess, IFluidHandler.FluidAction.EXECUTE);
         }
     }
     // endregion

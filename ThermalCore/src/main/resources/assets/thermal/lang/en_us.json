@@ -462,14 +462,17 @@
   "item.thermal.flux_capacitor": "Flux Capacitor",
   "item.thermal.flux_capacitor.desc": "Stores Redstone Flux and recharges other items.",
 
+  "item.thermal.flux_drill": "Fluxbore",
+  "item.thermal.flux_drill.desc": "Mines blocks using Redstone Flux.",
+
   "item.thermal.flux_magnet": "FluxoMagnet",
-  "item.thermal.flux_magnet.desc": "Attracts items.",
+  "item.thermal.flux_magnet.desc": "Attracts items using Redstone Flux.",
 
   "item.thermal.potion_infuser": "Potion Infuser",
-  "item.thermal.potion_infuser.desc": "Stores and infuse potions.",
+  "item.thermal.potion_infuser.desc": "Stores and infuses potions.",
 
   "item.thermal.potion_quiver": "Alchemical Quiver",
-  "item.thermal.potion_quiver.desc": "Imbues arrows with potion effects.",
+  "item.thermal.potion_quiver.desc": "Imbues arrows with potions.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Locomotion",

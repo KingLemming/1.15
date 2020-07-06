@@ -102,7 +102,7 @@ public class ThermalConfig {
     public static int machineAugments = 4;
     public static int workbenchAugments = 2;
 
-    public static int toolAugments = 3;
+    public static int toolAugments = 4;
 
     public static BooleanValue keepEnergy;
     public static BooleanValue keepItems;
