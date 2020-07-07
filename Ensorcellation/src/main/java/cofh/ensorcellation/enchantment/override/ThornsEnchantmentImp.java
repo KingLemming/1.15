@@ -62,10 +62,10 @@ public class ThornsEnchantmentImp extends EnchantmentOverride {
                 attacker.attackEntityFrom(DamageSource.causeThornsDamage(user), (float) ThornsEnchantment.getDamage(level, rand));
             }
             if (stack != null) {
-                (stack.getValue()).damageItem(3, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+                (stack.getValue()).damageItem(3, user, (entity) -> entity.sendBreakAnimation(stack.getKey()));
             }
         } else if (stack != null) {
-            (stack.getValue()).damageItem(1, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+            (stack.getValue()).damageItem(1, user, (entity) -> entity.sendBreakAnimation(stack.getKey()));
         }
 
     }

@@ -67,8 +67,8 @@ public class CarvedPumpkinBlockCoFH extends CarvedPumpkinBlock {
                 worldIn.setBlockState(pos, (player.isSecondaryUseActive() ? carvePrev.get() : carveNext.get())
                         .getDefaultState()
                         .with(CarvedPumpkinBlock.FACING, direction1), 11);
-                //                itemstack.damageItem(1, player, (consumer) -> {
-                //                    consumer.sendBreakAnimation(handIn);
+                //                itemstack.damageItem(1, player, (entity) -> {
+                //                    entity.sendBreakAnimation(handIn);
                 //                });
             }
             return ActionResultType.SUCCESS;

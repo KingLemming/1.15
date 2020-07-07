@@ -71,7 +71,7 @@ public class DisplacementEnchantment extends EnchantmentCoFH {
         if (shouldHit(level, user.getRNG())) {
             onHit(user, attacker, level);
             if (stack != null) {
-                (stack.getValue()).damageItem(2, user, (consumer) -> consumer.sendBreakAnimation(stack.getKey()));
+                (stack.getValue()).damageItem(2, user, (entity) -> entity.sendBreakAnimation(stack.getKey()));
             }
         }
     }

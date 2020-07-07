@@ -61,7 +61,7 @@ public class ArcheryBowItemWrapper implements IArcheryBowItem, ICapabilityProvid
     @Override
     public void onArrowLoosed(PlayerEntity shooter) {
 
-        bowItem.damageItem(1, shooter, (consumer) -> consumer.sendBreakAnimation(shooter.getActiveHand()));
+        bowItem.damageItem(1, shooter, (entity) -> entity.sendBreakAnimation(shooter.getActiveHand()));
     }
 
     @Override

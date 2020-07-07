@@ -1,0 +1,44 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "thermal:item/tools/flux_capacitor"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "state": 0.0
+      },
+      "model": "thermal:item/flux_capacitor_0"
+    },
+    {
+      "predicate": {
+        "state": 0.15
+      },
+      "model": "thermal:item/flux_capacitor_1"
+    },
+    {
+      "predicate": {
+        "state": 0.30
+      },
+      "model": "thermal:item/flux_capacitor_2"
+    },
+    {
+      "predicate": {
+        "state": 0.50
+      },
+      "model": "thermal:item/flux_capacitor_0_active"
+    },
+    {
+      "predicate": {
+        "state": 0.65
+      },
+      "model": "thermal:item/flux_capacitor_1_active"
+    },
+    {
+      "predicate": {
+        "state": 0.80
+      },
+      "model": "thermal:item/flux_capacitor_2_active"
+    }
+  ]
+}

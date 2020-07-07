@@ -1,0 +1,6 @@
+{
+  "parent": "thermal:item/flux_magnet",
+  "textures": {
+    "layer1": "thermal:item/tools/flux_magnet_active"
+  }
+}

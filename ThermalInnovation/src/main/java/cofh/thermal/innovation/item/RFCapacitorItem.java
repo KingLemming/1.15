@@ -46,6 +46,8 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     public RFCapacitorItem(Properties builder, int maxEnergy, int maxTransfer) {
 
         super(builder, maxEnergy, maxTransfer);
+
+        this.addPropertyOverride(new ResourceLocation("state"), (stack, world, entity) -> getMode(stack) / 6.0F + (isActive(stack) ? 0.5F : 0));
     }
 
     public RFCapacitorItem setNumSlots(IntSupplier numSlots) {

@@ -55,8 +55,8 @@ public class GunpowderBlock extends FallingBlock {
             worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
-                    stack.damageItem(1, player, (consumer) -> {
-                        consumer.sendBreakAnimation(handIn);
+                    stack.damageItem(1, player, (entity) -> {
+                        entity.sendBreakAnimation(handIn);
                     });
                 } else {
                     stack.shrink(1);

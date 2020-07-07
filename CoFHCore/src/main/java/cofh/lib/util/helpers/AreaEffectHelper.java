@@ -30,12 +30,12 @@ public class AreaEffectHelper {
 
     }
 
-    public static boolean validAOEItem(ItemStack stack) {
+    public static boolean validAreaEffectItem(ItemStack stack) {
 
         return stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem || stack.getItem() instanceof HoeItem;
     }
 
-    public static boolean validAOEMiningItem(ItemStack stack) {
+    public static boolean validAreaEffectMiningItem(ItemStack stack) {
 
         return stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).isPresent() || stack.getItem() instanceof ToolItem;
     }
@@ -51,11 +51,11 @@ public class AreaEffectHelper {
         }
         int encTilling = getEnchantmentLevel(TILLING, stack);
         if (encTilling > 0) {
-            return getAOEBlocksHoeRadius(stack, pos, player, encTilling);
+            return getAreaEffectBlocksHoeRadius(stack, pos, player, encTilling);
         }
         int encFurrowing = getEnchantmentLevel(FURROWING, stack);
         if (encFurrowing > 0) {
-            return getAOEBlocksHoeLine(stack, pos, player, encFurrowing * 2);
+            return getAreaEffectBlocksHoeLine(stack, pos, player, encFurrowing * 2);
         }
         return ImmutableList.of();
     }
@@ -201,7 +201,7 @@ public class AreaEffectHelper {
     // endregion
 
     // region HOE
-    public static ImmutableList<BlockPos> getAOEBlocksHoeRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksHoeRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();
@@ -219,7 +219,7 @@ public class AreaEffectHelper {
         return ImmutableList.copyOf(area);
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksHoeLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksHoeLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();
@@ -262,7 +262,7 @@ public class AreaEffectHelper {
     // endregion
 
     // region SICKLE
-    public static ImmutableList<BlockPos> getAOEBlocksSickle(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int height) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksSickle(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int height) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();

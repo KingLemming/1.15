@@ -26,7 +26,7 @@ import java.util.List;
 
 import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.helpers.AreaEffectHelper.validAOEMiningItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;
 import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.item.HoeItem.HOE_LOOKUP;
@@ -53,7 +53,7 @@ public class AreaEffectEvents {
         }
         HARVESTING_PLAYERS.add(player);
         ItemStack stack = player.getHeldItemMainhand();
-        if (!validAOEMiningItem(stack)) {
+        if (!validAreaEffectMiningItem(stack)) {
             return;
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getPos(), player);
@@ -74,9 +74,8 @@ public class AreaEffectEvents {
             return;
         }
         PlayerEntity player = event.getPlayer();
-
         ItemStack stack = player.getHeldItemMainhand();
-        if (!validAOEMiningItem(stack)) {
+        if (!validAreaEffectMiningItem(stack)) {
             return;
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getPos(), player);
@@ -134,8 +133,8 @@ public class AreaEffectEvents {
                         world.destroyBlock(up, !player.abilities.isCreativeMode);
                     }
                 }
-                stack.damageItem(1, player, (consumer) -> {
-                    consumer.sendBreakAnimation(event.getContext().getHand());
+                stack.damageItem(1, player, (entity) -> {
+                    entity.sendBreakAnimation(event.getContext().getHand());
                 });
             }
         }

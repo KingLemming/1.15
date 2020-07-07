@@ -50,8 +50,8 @@ public class FishingRodItemCoFH extends FishingRodItem implements ICoFHItem {
         if (playerIn.fishingBobber != null) {
             if (!worldIn.isRemote) {
                 int i = playerIn.fishingBobber.handleHookRetraction(stack);
-                stack.damageItem(i, playerIn, (consumer) -> {
-                    consumer.sendBreakAnimation(handIn);
+                stack.damageItem(i, playerIn, (entity) -> {
+                    entity.sendBreakAnimation(handIn);
                 });
             }
             playerIn.swingArm(handIn);

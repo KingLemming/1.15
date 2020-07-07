@@ -1,0 +1,6 @@
+{
+  "parent": "thermal:item/flux_capacitor",
+  "textures": {
+    "layer1": "thermal:item/tools/flux_capacitor_2_active"
+  }
+}

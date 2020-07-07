@@ -29,8 +29,8 @@ import java.util.List;
 
 import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.helpers.AreaEffectHelper.validAOEItem;
-import static cofh.lib.util.helpers.AreaEffectHelper.validAOEMiningItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectItem;
+import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_COFH_CORE)
 public class AreaEffectClientEvents {
@@ -50,7 +50,7 @@ public class AreaEffectClientEvents {
             return;
         }
         ItemStack stack = player.getHeldItemMainhand();
-        if (!validAOEItem(stack)) {
+        if (!validAreaEffectItem(stack)) {
             return;
         }
         ActiveRenderInfo renderInfo = Minecraft.getInstance().gameRenderer.getActiveRenderInfo();
@@ -67,11 +67,13 @@ public class AreaEffectClientEvents {
         double d1 = vec3d.getY();
         double d2 = vec3d.getZ();
 
+        matrix.push();
         for (BlockPos pos : areaBlocks) {
             if (world.getWorldBorder().contains(pos)) {
                 worldRender.drawSelectionBox(matrix, vertexBuilder, viewEntity, d0, d1, d2, pos, world.getBlockState(pos));
             }
         }
+        matrix.pop();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
@@ -82,9 +84,12 @@ public class AreaEffectClientEvents {
             return;
         }
         PlayerEntity player = Minecraft.getInstance().player;
+        if (player == null) {
+            return;
+        }
         ItemStack stack = player.getHeldItemMainhand();
 
-        if (!validAOEMiningItem(stack)) {
+        if (!validAreaEffectMiningItem(stack)) {
             return;
         }
         Entity renderEntity = Minecraft.getInstance().getRenderViewEntity();

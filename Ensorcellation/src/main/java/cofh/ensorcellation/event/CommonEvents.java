@@ -518,14 +518,14 @@ public class CommonEvents {
                 ItemStack smashed = SmashingEnchantment.getItemStack(player.world, result);
                 if (!smashed.isEmpty()) {
                     result = smashed;
-                    tool.damageItem(1, player, (consumer) -> consumer.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                    tool.damageItem(1, player, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 }
             }
             if (encSmelting > 0) {
                 ItemStack smelted = SmeltingEnchantment.getItemStack(player.world, result);
                 if (!smelted.isEmpty()) {
                     result = smelted;
-                    tool.damageItem(1, player, (consumer) -> consumer.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                    tool.damageItem(1, player, (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 }
             }
             return result;

@@ -37,7 +37,7 @@ public class AreaEffectMiningItemWrapper extends AreaEffectItemWrapper {
     public ImmutableList<BlockPos> getAreaEffectBlocks(BlockPos pos, PlayerEntity player) {
 
         if (type == Type.SICKLE) {
-            return AreaEffectHelper.getAOEBlocksSickle(areaEffectItem, pos, player, radius, depth);
+            return AreaEffectHelper.getAreaEffectBlocksSickle(areaEffectItem, pos, player, radius, depth);
         }
         return AreaEffectHelper.getAreaEffectBlocksMiningRadius(areaEffectItem, pos, player, radius + getEnchantmentLevel(EXCAVATING, areaEffectItem));
     }

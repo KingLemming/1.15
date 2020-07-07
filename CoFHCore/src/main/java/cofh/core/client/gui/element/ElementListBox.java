@@ -174,7 +174,7 @@ public class ElementListBox extends ElementBase {
         int e = _elements.size();
         while (nextElement < e && heightDrawn <= getContentHeight()) {
             heightDrawn += drawElement(nextElement, getContentLeft(), getContentTop() + heightDrawn);
-            nextElement++;
+            ++nextElement;
         }
         glPopMatrix();
         glDisable(GL_STENCIL_TEST);
@@ -240,10 +240,10 @@ public class ElementListBox extends ElementBase {
                 break;
             }
             heightDisplayed += _elements.get(i).getHeight();
-            elementsDisplayed++;
+            ++elementsDisplayed;
         }
         if (_firstIndexDisplayed + elementsDisplayed < _elements.size()) {
-            _firstIndexDisplayed++;
+            ++_firstIndexDisplayed;
         }
         onScrollV(_firstIndexDisplayed);
     }
@@ -251,7 +251,7 @@ public class ElementListBox extends ElementBase {
     public void scrollUp() {
 
         if (_firstIndexDisplayed > 0) {
-            _firstIndexDisplayed--;
+            --_firstIndexDisplayed;
         }
         onScrollV(_firstIndexDisplayed);
     }

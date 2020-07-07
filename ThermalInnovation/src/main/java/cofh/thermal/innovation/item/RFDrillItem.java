@@ -11,6 +11,7 @@ import cofh.thermal.core.common.ThermalConfig;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -59,6 +61,9 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     public RFDrillItem(Properties builder, int maxEnergy, int maxTransfer) {
 
         super(builder, maxEnergy, maxTransfer);
+
+        this.addPropertyOverride(new ResourceLocation("charged"), (stack, world, entity) -> getEnergyStored(stack) > 0 ? 1F : 0F);
+        this.addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getEnergyStored(stack) > 0 && hasActiveTag(stack) ? 1F : 0F);
     }
 
     public RFDrillItem setNumSlots(IntSupplier numSlots) {
@@ -106,7 +111,6 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", getAttackDamage(stack), AttributeModifier.Operation.ADDITION));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", getAttackSpeed(stack), AttributeModifier.Operation.ADDITION));
         }
-
         return multimap;
     }
 
@@ -128,6 +132,41 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+
+        setActive(stack, entity);
+        return true;
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+
+        if (!hasActiveTag(stack)) {
+            return;
+        }
+        long activeTime = stack.getOrCreateTag().getLong(TAG_ACTIVE);
+
+        if (entityIn.world.getGameTime() > activeTime) {
+            stack.getOrCreateTag().remove(TAG_ACTIVE);
+        }
+    }
+
+    protected boolean hasActiveTag(ItemStack stack) {
+
+        return stack.getOrCreateTag().contains(TAG_ACTIVE);
+    }
+
+    protected boolean isActive(ItemStack stack, World world) {
+
+        return world != null && world.getGameTime() < stack.getOrCreateTag().getLong(TAG_ACTIVE);
+    }
+
+    protected void setActive(ItemStack stack, LivingEntity entity) {
+
+        stack.getOrCreateTag().putLong(TAG_ACTIVE, entity.world.getGameTime() + 20);
     }
 
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {

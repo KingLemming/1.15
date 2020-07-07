@@ -50,7 +50,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     protected static final int PICKUP_DELAY = 32;
 
     protected static final int ENERGY_PER_ITEM = 25;
-    protected static final int ENERGY_PER_USE = 250;
+    protected static final int ENERGY_PER_USE = 200;
 
     protected IntSupplier numSlots = () -> ThermalConfig.toolAugments;
     protected Predicate<ItemStack> augValidator = (e) -> true;
@@ -58,6 +58,9 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     public RFMagnetItem(Properties builder, int maxEnergy, int maxTransfer) {
 
         super(builder, maxEnergy, maxTransfer);
+
+        this.addPropertyOverride(new ResourceLocation("charged"), (stack, world, entity) -> getEnergyStored(stack) > 0 ? 1F : 0F);
+        this.addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getEnergyStored(stack) > 0 && getMode(stack) > 0 ? 1F : 0F);
     }
 
     public RFMagnetItem setNumSlots(IntSupplier numSlots) {
@@ -185,10 +188,10 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
                     if (item.getPositionVector().squareDistanceTo(traceResult.getHitVec()) <= radSq) { // && wrapper.getFilter().matches(item.getItem())) {
                         item.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
                         item.setPickupDelay(0);
-                        itemCount++;
+                        ++itemCount;
                     }
                 }
-                if (!player.abilities.isCreativeMode) {
+                if (!player.abilities.isCreativeMode && itemCount > 0) {
                     extractEnergy(stack, ENERGY_PER_USE + ENERGY_PER_ITEM * itemCount, false);
                 }
             }

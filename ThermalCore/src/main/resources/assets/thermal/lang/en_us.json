@@ -468,6 +468,9 @@
   "item.thermal.flux_magnet": "FluxoMagnet",
   "item.thermal.flux_magnet.desc": "Attracts items using Redstone Flux.",
 
+  "item.thermal.flux_saw": "Fluxsaw",
+  "item.thermal.flux_saw.desc": "Cuts blocks using Redstone Flux.",
+
   "item.thermal.potion_infuser": "Potion Infuser",
   "item.thermal.potion_infuser.desc": "Stores and infuses potions.",
 

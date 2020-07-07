@@ -68,7 +68,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
                         if (e.getAir() < e.getMaxAir()) {
                             e.setAir(e.getAir() + 1);
                             if (rand.nextInt(respirationFactor) <= 0) {
-                                airSupply--;
+                                --airSupply;
                             }
                         }
                     });

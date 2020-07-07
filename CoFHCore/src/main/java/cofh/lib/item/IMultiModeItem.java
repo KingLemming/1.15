@@ -56,7 +56,7 @@ public interface IMultiModeItem {
             stack.setTag(new CompoundNBT());
         }
         int curMode = getMode(stack);
-        curMode++;
+        ++curMode;
         if (curMode >= getNumModes(stack)) {
             curMode = 0;
         }
@@ -76,7 +76,7 @@ public interface IMultiModeItem {
             stack.setTag(new CompoundNBT());
         }
         int curMode = getMode(stack);
-        curMode--;
+        --curMode;
         if (curMode <= 0) {
             curMode = getNumModes(stack) - 1;
         }

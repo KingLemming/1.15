@@ -3,6 +3,7 @@ package cofh.thermal.core.init;
 import cofh.lib.item.ArmorMaterialCoFH;
 import cofh.lib.item.AugmentItem;
 import cofh.lib.item.SpawnEggItemCoFH;
+import cofh.lib.util.constants.ToolTypes;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.core.item.*;
@@ -80,7 +81,7 @@ public class TCoreItems {
 
         ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
 
-        registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group)));
+        registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group).addToolType(ToolTypes.WRENCH, 1)));
         registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2));
