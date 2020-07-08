@@ -1,6 +1,6 @@
 package cofh.thermal.core.inventory.container.workbench;
 
-import cofh.core.util.ProxyUtils;
+import cofh.core.network.packet.server.ContainerPacket;
 import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.ItemInvWrapper;
 import cofh.lib.inventory.container.TileContainer;
@@ -11,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -18,14 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
-import static cofh.thermal.core.init.TCoreReferences.SOUND_TINKER;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_CONTAINER;
 
 public class TinkerBenchContainer extends TileContainer {
 
     public final TinkerBenchTile tile;
 
-    protected boolean tinkerChanges;
     protected SlotCoFH tinkerSlot;
     protected List<SlotCoFH> tinkerAugmentSlots = new ArrayList<>(MAX_AUGMENTS);
     protected ItemInvWrapper itemInventory = new ItemInvWrapper(this, MAX_AUGMENTS) {
@@ -33,7 +32,7 @@ public class TinkerBenchContainer extends TileContainer {
         @Override
         public boolean isItemValidForSlot(int index, ItemStack stack) {
 
-            return tinkerSlot.getHasStack() && index < AugmentableHelper.getAugmentSlots(tinkerSlot.getStack()) && AugmentableHelper.validAugment(tinkerSlot.getStack(), stack);
+            return tile.allowAugmentation() && tinkerSlot.getHasStack() && index < AugmentableHelper.getAugmentSlots(tinkerSlot.getStack()) && AugmentableHelper.validAugment(tinkerSlot.getStack(), stack);
         }
     };
 
@@ -43,23 +42,27 @@ public class TinkerBenchContainer extends TileContainer {
         this.tile = (TinkerBenchTile) world.getTileEntity(pos);
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
-        tinkerSlot = new SlotCoFH(tileInv, 0, 44, 35) {
+        tinkerSlot = new SlotCoFH(tileInv, 0, 44, 26) {
 
             @Override
             public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
 
                 writeAugmentsToItem(stack);
                 itemInventory.clear();
-                if (tinkerChanges) {
-                    ProxyUtils.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
-                }
-                tinkerChanges = false;
+                // TODO: Revisit sound.
+                //                if (AugmentableHelper.isAugmentableItem(stack)) {
+                //                    ProxyUtils.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
+                //                }
                 return super.onTake(thePlayer, stack);
             }
 
             @Override
             public void putStack(ItemStack stack) {
 
+                if (syncing) {
+                    super.putStack(stack);
+                    return;
+                }
                 ItemStack curStack = tinkerSlot.getStack();
                 if (!curStack.isEmpty() && !curStack.equals(stack)) {
                     writeAugmentsToItem(curStack);
@@ -95,18 +98,29 @@ public class TinkerBenchContainer extends TileContainer {
             tile.setPause(true);
             AugmentableHelper.setAugments(stack, itemInventory.getStacks());
             tile.setPause(false);
-            tile.markDirty();
         }
     }
 
     private void bindTinkerSlots(IInventory inventory, int startIndex, int numSlots) {
 
         for (int i = 0; i < numSlots; ++i) {
-            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1);
+            SlotCoFH slot = new SlotCoFH(inventory, i + startIndex, 0, 0, 1) {
+
+                @Override
+                public boolean canTakeStack(PlayerEntity player) {
+
+                    return tile.allowAugmentation();
+                }
+            };
             tinkerAugmentSlots.add(slot);
             addSlot(slot);
         }
         ((ArrayList<SlotCoFH>) tinkerAugmentSlots).trimToSize();
+    }
+
+    public void onModeChange() {
+
+        ContainerPacket.sendToServer(this);
     }
 
     public int getNumTinkerAugmentSlots() {
@@ -134,5 +148,20 @@ public class TinkerBenchContainer extends TileContainer {
         }
         return super.transferStackInSlot(player, index);
     }
+
+    // region NETWORK
+    @Override
+    public PacketBuffer getContainerPacket(PacketBuffer buffer) {
+
+        return buffer;
+    }
+
+    @Override
+    public void handleContainerPacket(PacketBuffer buffer) {
+
+        writeAugmentsToItem(tinkerSlot.getStack());
+        tile.toggleTinkerSlotMode();
+    }
+    // endregion
 
 }

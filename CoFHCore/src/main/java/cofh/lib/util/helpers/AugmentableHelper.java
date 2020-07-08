@@ -140,9 +140,9 @@ public class AugmentableHelper {
 
         ListNBT list = new ListNBT();
         for (ItemStack augment : augments) {
-            if (!augment.isEmpty()) {
-                list.add(augment.write(new CompoundNBT()));
-            }
+            //if (!augment.isEmpty()) {
+            list.add(augment.write(new CompoundNBT()));
+            //}
         }
         return list;
     }

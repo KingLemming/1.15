@@ -3,10 +3,15 @@ package cofh.core.client.gui.element;
 import cofh.core.client.gui.GuiColor;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.helpers.RenderHelper;
+import net.minecraft.util.ResourceLocation;
 
-import static cofh.core.client.gui.element.ElementButtonBase.*;
+import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
 
 public abstract class ElementSlider extends ElementBase {
+
+    public static final ResourceLocation HOVER = new ResourceLocation(PATH_ELEMENTS + "button_hover.png");
+    public static final ResourceLocation ENABLED = new ResourceLocation(PATH_ELEMENTS + "button_enabled.png");
+    public static final ResourceLocation DISABLED = new ResourceLocation(PATH_ELEMENTS + "button_disabled.png");
 
     protected int _value;
     protected int _valueMin;

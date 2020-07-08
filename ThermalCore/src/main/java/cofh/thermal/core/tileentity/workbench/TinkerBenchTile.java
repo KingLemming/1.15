@@ -1,6 +1,5 @@
 package cofh.thermal.core.tileentity.workbench;
 
-import cofh.core.network.packet.bidirectional.TileMiscPacket;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
@@ -40,7 +39,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected static final int BASE_TRANSFER = 1000;
 
     protected static final byte REPLENISH = 0;
-    protected static final byte TINKER = 1;
+    protected static final byte AUGMENT = 1;
 
     protected byte mode;
     protected boolean pause;
@@ -81,13 +80,15 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         this.pause = pause;
     }
 
-    public void toggleMode() {
+    public boolean allowAugmentation() {
+
+        return mode == AUGMENT;
+    }
+
+    public void toggleTinkerSlotMode() {
 
         ++mode;
         mode %= 2;
-        TileMiscPacket.sendToServer(this);
-        ++mode;
-
     }
 
     protected void chargeEnergy() {
@@ -138,27 +139,9 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     }
 
     @Override
-    public PacketBuffer getMiscPacket(PacketBuffer buffer) {
-
-        super.getMiscPacket(buffer);
-
-        buffer.writeByte(mode);
-
-        return buffer;
-    }
-
-    @Override
     public void handleGuiPacket(PacketBuffer buffer) {
 
         super.handleGuiPacket(buffer);
-
-        mode = buffer.readByte();
-    }
-
-    @Override
-    public void handleMiscPacket(PacketBuffer buffer) {
-
-        super.handleMiscPacket(buffer);
 
         mode = buffer.readByte();
     }

@@ -295,7 +295,7 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
             extractEnergy(container, energyExcess, false);
         }
         if (getMode(container) >= getNumModes(container)) {
-            setMode(container, getNumModes(container));
+            setMode(container, getNumModes(container) - 1);
         }
     }
     // endregion

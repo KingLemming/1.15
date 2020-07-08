@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public abstract class ContainerCoFH extends Container {
 
     protected boolean falseSlotSupport = true;
+    protected boolean syncing = false;
 
     protected List<SlotCoFH> augmentSlots = new ArrayList<>();
 
@@ -94,6 +96,17 @@ public abstract class ContainerCoFH extends Container {
     }
     // endregion
 
+    // region NETWORK
+    public PacketBuffer getContainerPacket(PacketBuffer buffer) {
+
+        return buffer;
+    }
+
+    public void handleContainerPacket(PacketBuffer buffer) {
+
+    }
+    // endregion
+
     // region OVERRIDES
     @Override
     public ItemStack transferStackInSlot(PlayerEntity player, int index) {
@@ -147,9 +160,11 @@ public abstract class ContainerCoFH extends Container {
     @OnlyIn(Dist.CLIENT)
     public void setAll(List<ItemStack> stacks) {
 
+        syncing = true;
         for (int i = 0; i < stacks.size(); ++i) {
             putStackInSlot(i, stacks.get(i));
         }
+        syncing = false;
     }
 
     @Override
