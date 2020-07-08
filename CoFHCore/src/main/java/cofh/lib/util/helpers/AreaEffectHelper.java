@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.references.EnsorcellationReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.util.Direction.DOWN;
@@ -47,7 +47,7 @@ public class AreaEffectHelper {
 
         int encExcavating = getEnchantmentLevel(EXCAVATING, stack);
         if (encExcavating > 0) {
-            return getAreaEffectBlocksMiningRadius(stack, pos, player, encExcavating);
+            return getAreaEffectBlocksRadius(stack, pos, player, encExcavating);
         }
         int encTilling = getEnchantmentLevel(TILLING, stack);
         if (encTilling > 0) {
@@ -61,7 +61,7 @@ public class AreaEffectHelper {
     }
 
     // region MINING
-    public static ImmutableList<BlockPos> getAreaEffectBlocksMiningRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksRadius(ItemStack stack, BlockPos pos, PlayerEntity player, int radius) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();
@@ -97,7 +97,7 @@ public class AreaEffectHelper {
         return ImmutableList.copyOf(area);
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksMiningArea(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int depth) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksDepth(ItemStack stack, BlockPos pos, PlayerEntity player, int radius, int depth) {
 
         List<BlockPos> area;
         World world = player.getEntityWorld();
@@ -144,7 +144,7 @@ public class AreaEffectHelper {
         return ImmutableList.copyOf(area);
     }
 
-    public static ImmutableList<BlockPos> getAOEBlocksMiningLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
+    public static ImmutableList<BlockPos> getAreaEffectBlocksLine(ItemStack stack, BlockPos pos, PlayerEntity player, int length) {
 
         ArrayList<BlockPos> area = new ArrayList<>();
         World world = player.getEntityWorld();

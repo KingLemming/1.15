@@ -1,6 +1,7 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
 import cofh.lib.util.helpers.StringHelper;
@@ -23,7 +24,7 @@ public class IndexedChatPacket extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        CoFHCore.PROXY.addIndexedChatMessage(StringHelper.fromJSON(message), index);
+        ProxyUtils.addIndexedChatMessage(StringHelper.fromJSON(message), index);
     }
 
     @Override

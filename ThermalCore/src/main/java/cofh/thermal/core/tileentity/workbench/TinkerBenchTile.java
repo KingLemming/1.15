@@ -1,5 +1,6 @@
 package cofh.thermal.core.tileentity.workbench;
 
+import cofh.core.network.packet.bidirectional.TileMiscPacket;
 import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
@@ -11,6 +12,8 @@ import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -21,6 +24,7 @@ import javax.annotation.Nullable;
 import static cofh.lib.util.StorageGroup.INPUT;
 import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.constants.NBTTags.TAG_MODE;
 import static cofh.thermal.core.common.ThermalConfig.workbenchAugments;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
 
@@ -35,6 +39,10 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
     protected static final int BASE_ENERGY = 200000;
     protected static final int BASE_TRANSFER = 1000;
 
+    protected static final byte REPLENISH = 0;
+    protected static final byte TINKER = 1;
+
+    protected byte mode;
     protected boolean pause;
 
     // TODO: Cap caching? Premature optimization possibly; revisit.
@@ -73,6 +81,15 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         this.pause = pause;
     }
 
+    public void toggleMode() {
+
+        ++mode;
+        mode %= 2;
+        TileMiscPacket.sendToServer(this);
+        ++mode;
+
+    }
+
     protected void chargeEnergy() {
 
         if (!chargeSlot.isEmpty()) {
@@ -81,7 +98,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
                     .getCapability(CapabilityEnergy.ENERGY, null)
                     .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(maxTransfer, false), false));
         }
-        if (!tinkerSlot.isEmpty() && !pause) {
+        if (!tinkerSlot.isEmpty() && mode == REPLENISH && !pause) {
             int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityEnergy.ENERGY, null)
@@ -99,7 +116,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
                         tankSlot.setItemStack(c.getContainer());
                     });
         }
-        if (!tinkerSlot.isEmpty() && !pause) {
+        if (!tinkerSlot.isEmpty() && mode == REPLENISH && !pause) {
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
@@ -108,6 +125,64 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
                     });
         }
     }
+
+    // region NETWORK
+    @Override
+    public PacketBuffer getGuiPacket(PacketBuffer buffer) {
+
+        super.getGuiPacket(buffer);
+
+        buffer.writeByte(mode);
+
+        return buffer;
+    }
+
+    @Override
+    public PacketBuffer getMiscPacket(PacketBuffer buffer) {
+
+        super.getMiscPacket(buffer);
+
+        buffer.writeByte(mode);
+
+        return buffer;
+    }
+
+    @Override
+    public void handleGuiPacket(PacketBuffer buffer) {
+
+        super.handleGuiPacket(buffer);
+
+        mode = buffer.readByte();
+    }
+
+    @Override
+    public void handleMiscPacket(PacketBuffer buffer) {
+
+        super.handleMiscPacket(buffer);
+
+        mode = buffer.readByte();
+    }
+    // endregion
+
+    // region NBT
+    @Override
+    public void read(CompoundNBT nbt) {
+
+        super.read(nbt);
+
+        mode = nbt.getByte(TAG_MODE);
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT nbt) {
+
+        super.write(nbt);
+
+        nbt.putByte(TAG_MODE, mode);
+
+        return nbt;
+    }
+    // endregion
 
     @Nullable
     @Override

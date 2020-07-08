@@ -1,6 +1,6 @@
 package cofh.core.item;
 
-import cofh.core.CoFHCore;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.item.ICoFHItem;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
@@ -90,7 +90,7 @@ public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
     @Nullable
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
 
-        return (A) CoFHCore.PROXY.getModel(this.getRegistryName());
+        return (A) ProxyUtils.getModel(this.getRegistryName());
     }
 
 }

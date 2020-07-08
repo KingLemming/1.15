@@ -1,6 +1,6 @@
 package cofh.thermal.core;
 
-import cofh.core.CoFHCore;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
@@ -123,11 +123,11 @@ public class ThermalCore {
 
         ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
 
-        CoFHCore.PROXY.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
-        CoFHCore.PROXY.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+        ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
+        ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
 
-        CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
-        CoFHCore.PROXY.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+        ProxyUtils.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
+        ProxyUtils.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
 
         RenderingRegistry.registerEntityRenderingHandler(BASALZ_ENTITY, BasalzRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLITZ_ENTITY, BlitzRenderer::new);

@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashSet;
 import java.util.List;
 
-import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;
 import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;

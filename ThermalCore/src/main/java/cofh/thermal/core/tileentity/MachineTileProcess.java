@@ -497,13 +497,13 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
     @Override
     public final float getPrimaryMod() {
 
-        return primaryMod * (1.0F + baseMod / 10);
+        return primaryMod * (0.9F + baseMod / 10);
     }
 
     @Override
     public final float getSecondaryMod() {
 
-        return secondaryMod * (1.0F + baseMod / 5);
+        return secondaryMod * (0.8F + baseMod / 5);
     }
 
     @Override
@@ -521,13 +521,13 @@ public abstract class MachineTileProcess extends MachineTileBase implements ITic
     @Override
     public final float getMinOutputChance() {
 
-        return minOutputChance * (1.0F + baseMod / 10);
+        return minOutputChance * (0.9F + baseMod / 10);
     }
 
     @Override
     public final float getUseChance() {
 
-        return catalystMod * (1.0F - baseMod / 20);
+        return catalystMod * (1.05F - baseMod / 20);
     }
     // endregion
 }

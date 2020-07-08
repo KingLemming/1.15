@@ -1,13 +1,19 @@
 package cofh.thermal.innovation.item;
 
 import cofh.core.util.ChatHelper;
+import cofh.lib.capability.CapabilityAreaEffect;
+import cofh.lib.capability.IAreaEffect;
+import cofh.lib.energy.EnergyContainerItemWrapper;
+import cofh.lib.energy.IEnergyContainerItem;
 import cofh.lib.item.EnergyContainerItem;
 import cofh.lib.item.IAugmentableItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.constants.ToolTypes;
+import cofh.lib.util.helpers.AreaEffectHelper;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -19,6 +25,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -26,7 +33,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
@@ -35,8 +46,7 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
-import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
+import static cofh.lib.util.helpers.AugmentableHelper.*;
 
 public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
 
@@ -154,6 +164,7 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         }
     }
 
+    // region HELPERS
     protected boolean hasActiveTag(ItemStack stack) {
 
         return stack.getOrCreateTag().contains(TAG_ACTIVE);
@@ -178,6 +189,8 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
+
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
     }
 
     protected float getAttackDamage(ItemStack stack) {
@@ -208,6 +221,23 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     protected float getBaseMod(ItemStack stack) {
 
         return getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
+    }
+
+    protected int getDepth(ItemStack stack) {
+
+        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_DEPTH, 0.0F);
+    }
+
+    protected int getRadius(ItemStack stack) {
+
+        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_RADIUS, 0.0F);
+    }
+    // endregion
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+
+        return new RFDrillItemWrapper(stack, this);
     }
 
     // region IEnergyContainerItem
@@ -264,15 +294,54 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         if (energyExcess > 0) {
             extractEnergy(container, energyExcess, false);
         }
+        if (getMode(container) >= getNumModes(container)) {
+            setMode(container, getNumModes(container));
+        }
     }
     // endregion
 
     // region IMultiModeItem
     @Override
+    public int getNumModes(ItemStack stack) {
+
+        return 1 + getRadius(stack);
+    }
+
+    @Override
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
         player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, 1.0F - 0.1F * getMode(stack));
         ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.thermal.drill.mode." + getMode(stack)));
+    }
+    // endregion
+
+    // region CAPABILITY WRAPPER
+    protected class RFDrillItemWrapper extends EnergyContainerItemWrapper implements IAreaEffect {
+
+        private final LazyOptional<IAreaEffect> holder = LazyOptional.of(() -> this);
+
+        public RFDrillItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
+
+            super(containerIn, itemIn);
+        }
+
+        @Override
+        public ImmutableList<BlockPos> getAreaEffectBlocks(BlockPos pos, PlayerEntity player) {
+
+            return AreaEffectHelper.getAreaEffectBlocksRadius(container, pos, player, getMode(container));
+        }
+
+        // region ICapabilityProvider
+        @Override
+        @Nonnull
+        public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+
+            if (cap == CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY) {
+                return CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY.orEmpty(cap, holder);
+            }
+            return super.getCapability(cap, side);
+        }
+        // endregion
     }
     // endregion
 }

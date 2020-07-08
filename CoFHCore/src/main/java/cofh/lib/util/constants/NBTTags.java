@@ -69,9 +69,10 @@ public class NBTTags {
     // Types
     public static final String TAG_AUGMENT_TYPE_UPGRADE = "UpgAug";
     public static final String TAG_AUGMENT_TYPE_RF = "RFAug";
-    public static final String TAG_AUGMENT_TYPE_FLUID = "FluidAug";
+    public static final String TAG_AUGMENT_TYPE_FLUID = "FlAug";
     public static final String TAG_AUGMENT_TYPE_MACHINE = "MchAug";
     public static final String TAG_AUGMENT_TYPE_DYNAMO = "DynAug";
+    public static final String TAG_AUGMENT_TYPE_AREA_EFFECT = "AEAug";
 
     // General
     public static final String TAG_AUGMENT_ENERGY_STORAGE = "RFMax";
@@ -80,6 +81,7 @@ public class NBTTags {
 
     public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
 
+    public static final String TAG_AUGMENT_DEPTH = "Depth";
     public static final String TAG_AUGMENT_RADIUS = "Radius";
     public static final String TAG_AUGMENT_REACH = "Reach";
 

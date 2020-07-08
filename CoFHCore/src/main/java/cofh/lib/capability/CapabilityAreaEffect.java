@@ -11,12 +11,12 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
 
-public class CapabilityAreaEffectItem {
+public class CapabilityAreaEffect {
 
     private static boolean registered = false;
 
-    @CapabilityInject(IAreaEffectItem.class)
-    public static Capability<IAreaEffectItem> AREA_EFFECT_ITEM_CAPABILITY = null;
+    @CapabilityInject(IAreaEffect.class)
+    public static Capability<IAreaEffect> AREA_EFFECT_ITEM_CAPABILITY = null;
 
     public static void register() {
 
@@ -25,10 +25,10 @@ public class CapabilityAreaEffectItem {
         }
         registered = true;
 
-        CapabilityManager.INSTANCE.register(IAreaEffectItem.class, new DefaultAreaEffectItemHandlerStorage<>(), () -> new AreaEffectItemWrapper(ItemStack.EMPTY));
+        CapabilityManager.INSTANCE.register(IAreaEffect.class, new DefaultAreaEffectItemHandlerStorage<>(), () -> new AreaEffectItemWrapper(ItemStack.EMPTY));
     }
 
-    private static class DefaultAreaEffectItemHandlerStorage<T extends IAreaEffectItem> implements IStorage<T> {
+    private static class DefaultAreaEffectItemHandlerStorage<T extends IAreaEffect> implements IStorage<T> {
 
         @Nullable
         @Override

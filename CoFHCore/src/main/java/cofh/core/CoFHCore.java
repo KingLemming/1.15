@@ -12,7 +12,7 @@ import cofh.core.network.packet.server.*;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityArchery;
-import cofh.lib.capability.CapabilityAreaEffectItem;
+import cofh.lib.capability.CapabilityAreaEffect;
 import cofh.lib.capability.CapabilityEnchantableItem;
 import cofh.lib.capability.CapabilityShieldItem;
 import cofh.lib.network.PacketHandler;
@@ -95,13 +95,13 @@ public class CoFHCore {
         PACKET_HANDLER.registerPacket(PACKET_TRANSFER_CONTROL, TransferControlPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_SIDE_CONFIG, SideConfigPacket::new);
         PACKET_HANDLER.registerPacket(PACKET_STORAGE_CLEAR, StorageClearPacket::new);
-        PACKET_HANDLER.registerPacket(PACKET_KEY_MULTIMODE, ModeChangePacket::new);
+        PACKET_HANDLER.registerPacket(PACKET_ITEM_MODE_CHANGE, ItemModeChangePacket::new);
     }
 
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        CapabilityAreaEffectItem.register();
+        CapabilityAreaEffect.register();
         CapabilityArchery.register();
         CapabilityEnchantableItem.register();
         CapabilityShieldItem.register();

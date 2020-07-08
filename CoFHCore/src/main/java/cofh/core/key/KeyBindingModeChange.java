@@ -1,6 +1,6 @@
 package cofh.core.key;
 
-import cofh.core.network.packet.server.ModeChangePacket;
+import cofh.core.network.packet.server.ItemModeChangePacket;
 import net.minecraft.client.settings.KeyBinding;
 
 public class KeyBindingModeChange extends KeyBinding {
@@ -23,7 +23,7 @@ public class KeyBindingModeChange extends KeyBinding {
             super.setPressed(valueIn);
 
             if (isPressed()) {
-                ModeChangePacket.incrMode();
+                ItemModeChangePacket.incrMode();
             }
         }
 
@@ -42,7 +42,7 @@ public class KeyBindingModeChange extends KeyBinding {
             super.setPressed(valueIn);
 
             if (isPressed()) {
-                ModeChangePacket.decrMode();
+                ItemModeChangePacket.decrMode();
             }
         }
 

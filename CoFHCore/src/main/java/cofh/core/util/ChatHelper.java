@@ -1,6 +1,5 @@
 package cofh.core.util;
 
-import cofh.core.CoFHCore;
 import cofh.core.network.packet.client.IndexedChatPacket;
 import cofh.lib.util.Utils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +26,7 @@ public class ChatHelper {
                     IndexedChatPacket.sendToClient(message, TEMP_INDEX_SERVER, (ServerPlayerEntity) player);
                 }
             } else {
-                CoFHCore.PROXY.addIndexedChatMessage(message, TEMP_INDEX_CLIENT);
+                ProxyUtils.addIndexedChatMessage(message, TEMP_INDEX_CLIENT);
             }
         } else {
             player.sendMessage(message);
@@ -46,7 +45,7 @@ public class ChatHelper {
                         IndexedChatPacket.sendToClient(messages.get(i), TEMP_INDEX_SERVER + i, (ServerPlayerEntity) player);
                     }
                 } else {
-                    CoFHCore.PROXY.addIndexedChatMessage(messages.get(i), TEMP_INDEX_CLIENT + i);
+                    ProxyUtils.addIndexedChatMessage(messages.get(i), TEMP_INDEX_CLIENT + i);
                 }
             }
         } else {

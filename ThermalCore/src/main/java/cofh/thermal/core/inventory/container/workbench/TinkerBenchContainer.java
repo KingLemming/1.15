@@ -1,6 +1,6 @@
 package cofh.thermal.core.inventory.container.workbench;
 
-import cofh.core.CoFHCore;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.ItemInvWrapper;
 import cofh.lib.inventory.container.TileContainer;
@@ -51,7 +51,7 @@ public class TinkerBenchContainer extends TileContainer {
                 writeAugmentsToItem(stack);
                 itemInventory.clear();
                 if (tinkerChanges) {
-                    CoFHCore.PROXY.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
+                    ProxyUtils.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
                 }
                 tinkerChanges = false;
                 return super.onTake(thePlayer, stack);
@@ -124,15 +124,6 @@ public class TinkerBenchContainer extends TileContainer {
 
         writeAugmentsToItem(tinkerSlot.getStack());
         super.onContainerClosed(playerIn);
-    }
-
-    @Override
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
-
-        if (tinkerSlot.getHasStack()) {
-            tinkerChanges = true;
-            writeAugmentsToItem(tinkerSlot.getStack());
-        }
     }
 
     @Override

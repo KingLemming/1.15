@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
  *
  * @author King Lemming
  */
-public interface IAreaEffectItem {
+public interface IAreaEffect {
 
     ImmutableList<BlockPos> getAreaEffectBlocks(BlockPos pos, PlayerEntity player);
 

@@ -1,5 +1,6 @@
 package cofh.lib.tileentity;
 
+import cofh.core.network.packet.bidirectional.TileMiscPacket;
 import cofh.core.network.packet.client.TileGuiPacket;
 import cofh.lib.util.IConveyableData;
 import cofh.lib.util.Utils;
@@ -193,6 +194,11 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
         return buffer;
     }
 
+    public PacketBuffer getMiscPacket(PacketBuffer buffer) {
+
+        return buffer;
+    }
+
     public PacketBuffer getRedstonePacket(PacketBuffer buffer) {
 
         return buffer;
@@ -209,6 +215,11 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
 
     public void handleGuiPacket(PacketBuffer buffer) {
 
+    }
+
+    public void handleMiscPacket(PacketBuffer buffer) {
+
+        TileMiscPacket.sendToClient(this);
     }
 
     public void handleRedstonePacket(PacketBuffer buffer) {

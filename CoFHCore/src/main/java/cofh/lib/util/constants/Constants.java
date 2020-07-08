@@ -123,15 +123,20 @@ public class Constants {
     public static final int PACKET_GUI = 2;
     public static final int PACKET_REDSTONE = 3;
     public static final int PACKET_STATE = 4;
-    public static final int PACKET_CHAT = 12;
-    public static final int PACKET_SECURITY = 16;
-    public static final int PACKET_FILTER = 17;
-    public static final int PACKET_SECURITY_CONTROL = 24;
-    public static final int PACKET_REDSTONE_CONTROL = 25;
-    public static final int PACKET_TRANSFER_CONTROL = 26;
-    public static final int PACKET_SIDE_CONFIG = 27;
-    public static final int PACKET_STORAGE_CLEAR = 28;
-    public static final int PACKET_KEY_MULTIMODE = 32;
+
+    public static final int PACKET_CHAT = 16;
+
+    public static final int PACKET_MISC = 24;
+
+    public static final int PACKET_SECURITY = 32;
+    public static final int PACKET_FILTER = 33;
+    public static final int PACKET_SECURITY_CONTROL = 34;
+    public static final int PACKET_REDSTONE_CONTROL = 35;
+    public static final int PACKET_TRANSFER_CONTROL = 36;
+    public static final int PACKET_SIDE_CONFIG = 37;
+    public static final int PACKET_STORAGE_CLEAR = 38;
+
+    public static final int PACKET_ITEM_MODE_CHANGE = 64;
     // endregion
 
     // region CONSTANTS
@@ -140,8 +145,6 @@ public class Constants {
 
     public static final String DAMAGE_ARROW = "arrow";
     public static final String DAMAGE_PLAYER = "player";
-
-    public static final String KEY_MODE_CHANGE = "cofh.mode_change";
 
     public static final UUID UUID_ARMOR_TOUGHNESS = UUID.fromString("D1ADBCE5-95CE-470C-BF99-6C59843084A2");
 

@@ -30,7 +30,7 @@ public class TInoItems {
         int fluid = 4000;
         int arrows = 80;
 
-        registerItem("flux_drill", () -> new RFDrillItem(new Item.Properties().maxStackSize(1).group(group), energy, xfer));
+        registerItem("flux_drill", () -> new RFDrillItem(new Item.Properties().maxStackSize(1).group(group), energy * 100, xfer / 10));
         registerItem("flux_saw", () -> new RFSawItem(new Item.Properties().maxStackSize(1).group(group), energy, xfer));
         registerItem("flux_capacitor", () -> new RFCapacitorItem(new Item.Properties().maxStackSize(1).group(group), energy * 10, xfer));
         registerItem("flux_magnet", () -> new RFMagnetItem(new Item.Properties().maxStackSize(1).group(group), energy, xfer));

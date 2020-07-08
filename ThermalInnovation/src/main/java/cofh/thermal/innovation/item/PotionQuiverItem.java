@@ -32,7 +32,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
@@ -117,6 +116,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return useDelegate(stack, context.getPlayer(), context.getHand()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
     }
 
+    // region HELPERS
     protected boolean useDelegate(ItemStack stack, PlayerEntity player, Hand hand) {
 
         if (Utils.isFakePlayer(player)) {
@@ -187,6 +187,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
+    // endregion
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
@@ -303,10 +304,10 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         @Nonnull
         public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
-            if (cap == CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY) {
-                return super.getCapability(cap, side);
+            if (cap == CapabilityArchery.AMMO_ITEM_CAPABILITY) {
+                return CapabilityArchery.AMMO_ITEM_CAPABILITY.orEmpty(cap, holder);
             }
-            return CapabilityArchery.AMMO_ITEM_CAPABILITY.orEmpty(cap, holder);
+            return super.getCapability(cap, side);
         }
         // endregion
     }

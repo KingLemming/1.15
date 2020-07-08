@@ -139,6 +139,12 @@ public class TCoreItems {
                             .build()));
         }
 
+        registerItem("area_radius_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_AREA_EFFECT)
+                        .mod(TAG_AUGMENT_RADIUS, 1.0F)
+                        .build()));
+
         registerItem("machine_speed_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
                         .type(TAG_AUGMENT_TYPE_MACHINE)

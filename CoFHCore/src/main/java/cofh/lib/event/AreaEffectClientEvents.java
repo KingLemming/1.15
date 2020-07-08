@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
-import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectItem;
 import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;

@@ -1,6 +1,6 @@
 package cofh.lib.capability.templates;
 
-import cofh.lib.capability.IAreaEffectItem;
+import cofh.lib.capability.IAreaEffect;
 import cofh.lib.util.helpers.AreaEffectHelper;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,11 +14,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cofh.lib.capability.CapabilityAreaEffectItem.AREA_EFFECT_ITEM_CAPABILITY;
+import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 
-public class AreaEffectItemWrapper implements IAreaEffectItem, ICapabilityProvider {
+public class AreaEffectItemWrapper implements IAreaEffect, ICapabilityProvider {
 
-    private final LazyOptional<IAreaEffectItem> holder = LazyOptional.of(() -> this);
+    private final LazyOptional<IAreaEffect> holder = LazyOptional.of(() -> this);
 
     final ItemStack areaEffectItem;
 

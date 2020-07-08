@@ -1,6 +1,7 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.network.packet.IPacketClient;
 import cofh.lib.network.packet.PacketBase;
 import cofh.lib.tileentity.TileCoFH;
@@ -28,7 +29,7 @@ public class TileStatePacket extends PacketBase implements IPacketClient {
     @Override
     public void handleClient() {
 
-        World world = CoFHCore.PROXY.getClientWorld();
+        World world = ProxyUtils.getClientWorld();
         if (world == null) {
             CoFHCore.LOG.error("Client world is null! (Is this being called on the server?)");
             return;

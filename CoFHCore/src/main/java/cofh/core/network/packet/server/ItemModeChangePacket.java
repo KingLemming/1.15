@@ -7,15 +7,15 @@ import cofh.lib.util.helpers.ItemHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 
-import static cofh.lib.util.constants.Constants.PACKET_KEY_MULTIMODE;
+import static cofh.lib.util.constants.Constants.PACKET_ITEM_MODE_CHANGE;
 
-public class ModeChangePacket extends PacketBase implements IPacketServer {
+public class ItemModeChangePacket extends PacketBase implements IPacketServer {
 
     protected boolean decr;
 
-    public ModeChangePacket() {
+    public ItemModeChangePacket() {
 
-        super(PACKET_KEY_MULTIMODE, CoFHCore.PACKET_HANDLER);
+        super(PACKET_ITEM_MODE_CHANGE, CoFHCore.PACKET_HANDLER);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ModeChangePacket extends PacketBase implements IPacketServer {
 
     private static void sendToServer(boolean decr) {
 
-        ModeChangePacket packet = new ModeChangePacket();
+        ItemModeChangePacket packet = new ItemModeChangePacket();
         packet.decr = decr;
         packet.sendToServer();
     }

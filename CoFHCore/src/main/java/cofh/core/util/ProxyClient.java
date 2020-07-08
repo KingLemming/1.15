@@ -51,7 +51,7 @@ public class ProxyClient extends Proxy {
     }
 
     @Override
-    public Object addModel(ResourceLocation loc, Object model) {
+    protected Object addModel(ResourceLocation loc, Object model) {
 
         return modelMap.put(loc, model);
     }

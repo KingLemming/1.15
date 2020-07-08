@@ -38,7 +38,7 @@ public class Proxy {
         return item == null ? null : addModel(item.getRegistryName(), model);
     }
 
-    public Object addModel(ResourceLocation loc, Object model) {
+    protected Object addModel(ResourceLocation loc, Object model) {
 
         return null;
     }
