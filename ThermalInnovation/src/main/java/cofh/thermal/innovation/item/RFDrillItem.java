@@ -165,16 +165,6 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     }
 
     // region HELPERS
-    protected boolean hasActiveTag(ItemStack stack) {
-
-        return stack.getOrCreateTag().contains(TAG_ACTIVE);
-    }
-
-    protected boolean isActive(ItemStack stack, World world) {
-
-        return world != null && world.getGameTime() < stack.getOrCreateTag().getLong(TAG_ACTIVE);
-    }
-
     protected void setActive(ItemStack stack, LivingEntity entity) {
 
         stack.getOrCreateTag().putLong(TAG_ACTIVE, entity.world.getGameTime() + 20);
@@ -193,6 +183,11 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
     }
 
+    protected boolean hasActiveTag(ItemStack stack) {
+
+        return stack.getOrCreateTag().contains(TAG_ACTIVE);
+    }
+
     protected float getAttackDamage(ItemStack stack) {
 
         return 2.0F + getBaseMod(stack);
@@ -201,6 +196,11 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     protected float getAttackSpeed(ItemStack stack) {
 
         return -2.4F + getBaseMod(stack) / 10;
+    }
+
+    protected float getBaseMod(ItemStack stack) {
+
+        return getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
     }
 
     protected float getEfficiency(ItemStack stack) {
@@ -216,16 +216,6 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     protected int getHarvestLevel(ItemStack stack) {
 
         return getEnergyStored(stack) < getEnergyPerUse(stack) ? -1 : 2;
-    }
-
-    protected float getBaseMod(ItemStack stack) {
-
-        return getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
-    }
-
-    protected int getDepth(ItemStack stack) {
-
-        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_DEPTH, 0.0F);
     }
 
     protected int getRadius(ItemStack stack) {

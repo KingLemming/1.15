@@ -34,6 +34,7 @@
   "info.cofh.energy": "Energy",
   "info.cofh.fluid": "Fluid",
   "info.cofh.infinite_energy": "Infinite Energy",
+  "info.cofh.single_block": "Single Block",
   "info.cofh.transfer": "Transfer",
 
   "info.cofh.mode_change": "Press '%s' to change mode.",

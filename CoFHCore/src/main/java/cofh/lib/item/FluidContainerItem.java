@@ -88,7 +88,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
 
-        return MathHelper.clamp(1.0D - ((double) getFluidAmount(stack) / (double) getCapacity(stack)), 0.0D, 1.0D);
+        return MathHelper.clamp(1.0D - getFluidAmount(stack) / (double) getCapacity(stack), 0.0D, 1.0D);
     }
 
     @Override

@@ -20,13 +20,13 @@ import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class SecurityHelper {
 
-    public static final GameProfile DEFAULT_GAME_PROFILE = new GameProfile(UUID.fromString("1ef1a6f0-87bc-4e78-0a0b-c6824eb787ea"), "[None]");
-
-    private static UUID cachedId;
-
     private SecurityHelper() {
 
     }
+
+    public static final GameProfile DEFAULT_GAME_PROFILE = new GameProfile(UUID.fromString("1ef1a6f0-87bc-4e78-0a0b-c6824eb787ea"), "[None]");
+
+    private static UUID cachedId;
 
     public static boolean isDefaultUUID(UUID uuid) {
 

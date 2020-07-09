@@ -22,15 +22,15 @@ import org.lwjgl.opengl.GL11;
  */
 public final class RenderHelper {
 
+    private RenderHelper() {
+
+    }
+
     public static final double RENDER_OFFSET = 1.0D / 512.0D;
     public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
     public static final ResourceLocation MC_FONT_DEFAULT = new ResourceLocation("textures/font/ascii.png");
     public static final ResourceLocation MC_FONT_SGA = new ResourceLocation("textures/font/ascii_sga.png");
     public static final ResourceLocation MC_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-
-    private RenderHelper() {
-
-    }
 
     // region ACCESSORS
     public static TextureManager engine() {

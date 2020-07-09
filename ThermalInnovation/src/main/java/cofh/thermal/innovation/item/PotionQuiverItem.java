@@ -32,7 +32,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -48,6 +47,8 @@ import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;
 import static cofh.lib.util.references.CoreReferences.HOLDING;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
 
 public class PotionQuiverItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
 
@@ -117,6 +118,16 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     }
 
     // region HELPERS
+    protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
+
+        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
+        if (subTag == null) {
+            return;
+        }
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
+    }
+
     protected boolean useDelegate(ItemStack stack, PlayerEntity player, Hand hand) {
 
         if (Utils.isFakePlayer(player)) {
@@ -134,7 +145,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             }
         } else {
             ItemStack arrows = findArrows(player);
-            arrows.shrink(addArrows(stack, arrows.getCount(), false));
+            arrows.shrink(putArrows(stack, arrows.getCount(), false));
         }
         stack.setAnimationsToGo(5);
         return true;
@@ -152,7 +163,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return Math.round(Utils.getEnchantedCapacity(arrowCapacity, holding) * base);
     }
 
-    protected int addArrows(ItemStack stack, int maxArrows, boolean simulate) {
+    protected int putArrows(ItemStack stack, int maxArrows, boolean simulate) {
 
         int stored = getStoredArrows(stack);
         int toAdd = Math.min(maxArrows, getMaxArrows(stack) - stored);
@@ -176,16 +187,6 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             stack.getOrCreateTag().putInt(TAG_ARROWS, stored);
         }
         return toRemove;
-    }
-
-    protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
-
-        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
-        if (subTag == null) {
-            return;
-        }
-        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
-        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
     // endregion
 
@@ -231,7 +232,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         }
         int fluidExcess = getFluidAmount(container) - getCapacity(container);
         if (fluidExcess > 0) {
-            drain(container, fluidExcess, IFluidHandler.FluidAction.EXECUTE);
+            drain(container, fluidExcess, EXECUTE);
         }
         int arrowExcess = getStoredArrows(container) - getMaxArrows(container);
         if (arrowExcess > 0) {
@@ -265,7 +266,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             if (shooter != null) {
                 if (!shooter.abilities.isCreativeMode) {
                     removeArrows(container, 1, false);
-                    drain(MB_PER_ARROW, getMode(container) == 1 ? FluidAction.EXECUTE : FluidAction.SIMULATE);
+                    drain(MB_PER_ARROW, getMode(container) == 1 ? EXECUTE : SIMULATE);
                 }
             }
         }

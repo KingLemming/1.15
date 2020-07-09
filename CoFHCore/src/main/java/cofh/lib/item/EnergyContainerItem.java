@@ -80,7 +80,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
         if (stack.getTag() == null) {
             return 0;
         }
-        return MathHelper.clamp(1.0D - ((double) stack.getTag().getInt(TAG_ENERGY) / (double) getMaxEnergyStored(stack)), 0.0D, 1.0D);
+        return MathHelper.clamp(1.0D - getEnergyStored(stack) / (double) getMaxEnergyStored(stack), 0.0D, 1.0D);
     }
 
     @Override

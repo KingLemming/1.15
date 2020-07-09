@@ -12,6 +12,10 @@ import java.awt.*;
 @OnlyIn(Dist.CLIENT)
 public class ColorHelper {
 
+    private ColorHelper() {
+
+    }
+
     public static int getColorFrom(ResourceLocation location) {
 
         AtlasTexture textureMap = Minecraft.getInstance().getModelManager().getAtlasTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);

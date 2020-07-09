@@ -140,6 +140,7 @@ public class AugmentableHelper {
 
         ListNBT list = new ListNBT();
         for (ItemStack augment : augments) {
+            // Empty slots are intentionally written.
             //if (!augment.isEmpty()) {
             list.add(augment.write(new CompoundNBT()));
             //}

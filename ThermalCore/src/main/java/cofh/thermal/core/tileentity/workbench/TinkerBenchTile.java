@@ -16,7 +16,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 
@@ -26,6 +25,7 @@ import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.constants.NBTTags.TAG_MODE;
 import static cofh.thermal.core.common.ThermalConfig.workbenchAugments;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_TILE;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
 public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEntity {
 
@@ -113,7 +113,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
             tankSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
-                        c.drain(tank.fill(c.getFluidInTank(0), IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        c.drain(tank.fill(c.getFluidInTank(0), EXECUTE), EXECUTE);
                         tankSlot.setItemStack(c.getContainer());
                     });
         }
@@ -121,7 +121,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
-                        tank.drain(c.fill(tank.getFluidStack(), IFluidHandler.FluidAction.EXECUTE), IFluidHandler.FluidAction.EXECUTE);
+                        tank.drain(c.fill(tank.getFluidStack(), EXECUTE), EXECUTE);
                         tinkerSlot.setItemStack(c.getContainer());
                     });
         }

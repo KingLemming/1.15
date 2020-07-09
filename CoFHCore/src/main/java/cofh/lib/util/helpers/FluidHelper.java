@@ -2,6 +2,8 @@ package cofh.lib.util.helpers;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import com.google.common.collect.Lists;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,8 +38,13 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import static cofh.lib.util.constants.NBTTags.TAG_POTION;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
 public class FluidHelper {
+
+    private FluidHelper() {
+
+    }
 
     public static final Predicate<FluidStack> IS_WATER = e -> e.getFluid().equals(Fluids.WATER);
     public static final Predicate<FluidStack> IS_LAVA = e -> e.getFluid().equals(Fluids.LAVA);
@@ -96,6 +103,13 @@ public class FluidHelper {
     }
     // endregion
 
+    // region BLOCK HELPERS
+    public static boolean isWater(BlockState state) {
+
+        return state.getBlock() == Blocks.WATER;
+    }
+    // endregion
+
     // region BLOCK TRANSFER
     public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
 
@@ -112,9 +126,9 @@ public class FluidHelper {
             return false;
         }
         FluidStack drainStack = handler.drain(amount, IFluidHandler.FluidAction.SIMULATE);
-        int drainAmount = tank.fill(drainStack, IFluidHandler.FluidAction.EXECUTE);
+        int drainAmount = tank.fill(drainStack, EXECUTE);
         if (drainAmount > 0) {
-            handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
+            handler.drain(drainAmount, EXECUTE);
             return true;
         }
         return false;
@@ -130,9 +144,9 @@ public class FluidHelper {
             return false;
         }
         FluidStack drainStack = handler.drain(resource, IFluidHandler.FluidAction.SIMULATE);
-        int drainAmount = tank.fill(drainStack, IFluidHandler.FluidAction.EXECUTE);
+        int drainAmount = tank.fill(drainStack, EXECUTE);
         if (drainAmount > 0) {
-            handler.drain(new FluidStack(resource, drainAmount), IFluidHandler.FluidAction.EXECUTE);
+            handler.drain(new FluidStack(resource, drainAmount), EXECUTE);
             return true;
         }
         return false;
@@ -155,9 +169,9 @@ public class FluidHelper {
         if (handler == EmptyFluidHandler.INSTANCE) {
             return false;
         }
-        int fillAmount = handler.fill(new FluidStack(tank.getFluidStack(), amount), IFluidHandler.FluidAction.EXECUTE);
+        int fillAmount = handler.fill(new FluidStack(tank.getFluidStack(), amount), EXECUTE);
         if (fillAmount > 0) {
-            tank.drain(fillAmount, IFluidHandler.FluidAction.EXECUTE);
+            tank.drain(fillAmount, EXECUTE);
             return true;
         }
         return false;

@@ -26,7 +26,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -38,6 +37,7 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
 import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
 public class PotionInfuserItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
 
@@ -116,7 +116,7 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
                 used = true;
             }
             if (used) {
-                drain(stack, MB_PER_CYCLE, IFluidHandler.FluidAction.EXECUTE);
+                drain(stack, MB_PER_CYCLE, EXECUTE);
             }
         }
     }
@@ -136,7 +136,7 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
                         entity.addPotionEffect(potion);
                     }
                 }
-                drain(stack, MB_PER_USE, IFluidHandler.FluidAction.EXECUTE);
+                drain(stack, MB_PER_USE, EXECUTE);
             }
             player.swingArm(hand);
             return true;
@@ -157,31 +157,7 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         return useDelegate(stack, context.getPlayer(), context.getHand()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
     }
 
-    protected boolean useDelegate(ItemStack stack, PlayerEntity player, Hand hand) {
-
-        if (Utils.isFakePlayer(player) || !player.isSecondaryUseActive()) {
-            return false;
-        }
-        if (Utils.isServerWorld(player.world)) {
-            FluidStack fluid = getFluid(stack);
-            if (fluid != null && fluid.getAmount() >= MB_PER_USE) {
-                for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
-                    if (effect.getPotion().isInstant()) {
-                        effect.getPotion().affectEntity(null, null, player, effect.getAmplifier(), 1.0D);
-                    } else {
-                        // TODO: Augment effects :)
-                        EffectInstance potion = new EffectInstance(effect.getPotion(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), false);
-                        player.addPotionEffect(potion);
-                    }
-                }
-                drain(stack, MB_PER_USE, IFluidHandler.FluidAction.EXECUTE);
-            }
-        }
-        player.swingArm(hand);
-        stack.setAnimationsToGo(5);
-        return true;
-    }
-
+    // region HELPERS
     protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
         CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
@@ -191,6 +167,34 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
+
+    protected boolean useDelegate(ItemStack stack, PlayerEntity player, Hand hand) {
+
+        if (Utils.isFakePlayer(player) || !player.isSecondaryUseActive()) {
+            return false;
+        }
+        if (Utils.isServerWorld(player.world)) {
+            FluidStack fluid = getFluid(stack);
+            if (fluid != null && (fluid.getAmount() >= MB_PER_USE || player.abilities.isCreativeMode)) {
+                for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
+                    if (effect.getPotion().isInstant()) {
+                        effect.getPotion().affectEntity(null, null, player, effect.getAmplifier(), 1.0D);
+                    } else {
+                        // TODO: Augment effects :)
+                        EffectInstance potion = new EffectInstance(effect.getPotion(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), false);
+                        player.addPotionEffect(potion);
+                    }
+                }
+                if (!player.abilities.isCreativeMode) {
+                    drain(stack, MB_PER_USE, EXECUTE);
+                }
+            }
+        }
+        player.swingArm(hand);
+        stack.setAnimationsToGo(5);
+        return true;
+    }
+    // endregion
 
     // region IFluidContainerItem
     @Override
@@ -228,7 +232,7 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         }
         int fluidExcess = getFluidAmount(container) - getCapacity(container);
         if (fluidExcess > 0) {
-            drain(container, fluidExcess, IFluidHandler.FluidAction.EXECUTE);
+            drain(container, fluidExcess, EXECUTE);
         }
     }
     // endregion

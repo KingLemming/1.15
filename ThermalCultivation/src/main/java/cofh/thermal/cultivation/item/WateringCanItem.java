@@ -2,9 +2,12 @@ package cofh.thermal.cultivation.item;
 
 import cofh.core.util.ChatHelper;
 import cofh.lib.item.FluidContainerItem;
+import cofh.lib.item.IAugmentableItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.RayTracer;
 import cofh.lib.util.Utils;
+import cofh.lib.util.helpers.AugmentDataHelper;
+import cofh.thermal.core.common.ThermalConfig;
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -13,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -30,32 +34,41 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.IntSupplier;
+import java.util.function.Predicate;
 
-import static cofh.lib.util.constants.Constants.ITEM_TIMER_DURATION;
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_WATER;
-import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
-import static cofh.lib.util.constants.NBTTags.TAG_TIMER;
+import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.lib.util.helpers.AugmentableHelper.*;
 import static cofh.lib.util.helpers.FluidHelper.IS_WATER;
+import static cofh.lib.util.helpers.FluidHelper.isWater;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
-public class WateringCanItem extends FluidContainerItem implements IMultiModeItem {
+public class WateringCanItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
 
     protected static final int MB_PER_USE = 50;
+
+    protected IntSupplier numSlots = () -> ThermalConfig.toolAugments;
+    protected Predicate<ItemStack> augValidator = (e) -> true;
 
     protected static boolean allowFakePlayers = false;
     protected static boolean removeSourceBlocks = true;
 
-    protected int radius;
-    protected int effectiveness;
-
-    public WateringCanItem(Properties builder, int fluidCapacity, int radius, int effectiveness) {
+    public WateringCanItem(Properties builder, int fluidCapacity) {
 
         super(builder, fluidCapacity, IS_WATER);
-        this.radius = radius;
-        this.effectiveness = effectiveness;
+    }
 
-        // TODO: Figure this out
-        // this.addPropertyOverride(new ResourceLocation("water"), ((stack, world, entity) -> this.getFluidAmount(stack) > 0 ? isActive(stack) ? 1.0F : 0.5F : 0.0F));
+    public WateringCanItem setNumSlots(IntSupplier numSlots) {
+
+        this.numSlots = numSlots;
+        return this;
+    }
+
+    public WateringCanItem setAugValidator(Predicate<ItemStack> augValidator) {
+
+        this.augValidator = augValidator;
+        return this;
     }
 
     @Override
@@ -67,19 +80,20 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 
-        if (!hasTimer(stack)) {
+        if (!hasActiveTag(stack)) {
             return;
         }
-        long activeTime = stack.getTag().getLong(TAG_ACTIVE);
+        long activeTime = stack.getOrCreateTag().getLong(TAG_ACTIVE);
+
         if (entityIn.world.getGameTime() > activeTime) {
-            clearTimer(stack);
+            stack.getOrCreateTag().remove(TAG_ACTIVE);
         }
     }
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getFluidAmount(oldStack) > 0 != getFluidAmount(newStack) > 0 || getFluidAmount(newStack) > 0 && hasTimer(oldStack) != hasTimer(newStack));
+        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getFluidAmount(oldStack) > 0 != getFluidAmount(newStack) > 0 || getFluidAmount(newStack) > 0 && hasActiveTag(oldStack) != hasActiveTag(newStack));
     }
 
     @Override
@@ -109,12 +123,12 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         ItemStack stack = player.getHeldItem(context.getHand());
         BlockPos offsetPos = world.getBlockState(pos).isSolid() ? pos.offset(context.getFace()) : pos;
 
-        if (getFluidAmount(stack) < MB_PER_USE) {
+        if (getFluidAmount(stack) < getWaterPerUse(stack)) {
             return ActionResultType.FAIL;
         }
-        setTimer(stack, player);
+        setActive(stack, player);
 
-        int radius = getRadius(stack);
+        int radius = getMode(stack);
         int x = offsetPos.getX();
         int y = offsetPos.getY();
         int z = offsetPos.getZ();
@@ -128,14 +142,13 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
         for (BlockPos scan : area) {
             BlockState state = world.getBlockState(scan);
             if (state.getBlock() instanceof FarmlandBlock) {
-                int moisture = state.get(FarmlandBlock.MOISTURE);
-                if (moisture < 7) {
+                if (state.get(FarmlandBlock.MOISTURE) < 7) {
                     world.setBlockState(scan, state.with(FarmlandBlock.MOISTURE, 7));
                 }
             }
         }
         if (Utils.isServerWorld(world)) {
-            if (world.rand.nextInt(100) < Math.max(effectiveness - 5 * getMode(stack), 1)) {
+            if (world.rand.nextFloat() < Math.max(getEffectiveness(stack), 0.05)) {
                 for (BlockPos scan : area) {
                     Block plant = world.getBlockState(scan).getBlock();
                     if (plant instanceof IGrowable || plant instanceof IPlantable || plant == Blocks.MYCELIUM || plant == Blocks.CHORUS_FLOWER) {
@@ -144,7 +157,7 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
                 }
             }
             if (!player.abilities.isCreativeMode) {
-                drain(stack, MB_PER_USE * getRadius(stack) * 2, EXECUTE);
+                drain(stack, getWaterPerUse(stack) * (getMode(stack) + 1) * 2, EXECUTE);
             }
         }
         return ActionResultType.FAIL;
@@ -176,29 +189,90 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     }
 
     // region HELPERS
-    protected boolean hasTimer(ItemStack stack) {
+    protected void setActive(ItemStack stack, LivingEntity entity) {
 
-        return stack.getOrCreateTag().contains(TAG_TIMER);
+        stack.getOrCreateTag().putLong(TAG_ACTIVE, entity.world.getGameTime() + 20);
     }
 
-    protected void setTimer(ItemStack stack, LivingEntity living) {
+    protected void setAttributesFromAugment(ItemStack container, CompoundNBT augmentData) {
 
-        stack.getOrCreateTag().putLong(TAG_TIMER, living.world.getGameTime() + ITEM_TIMER_DURATION);
+        CompoundNBT subTag = container.getChildTag(TAG_PROPERTIES);
+        if (subTag == null) {
+            return;
+        }
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
+        getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
+
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
     }
 
-    protected void clearTimer(ItemStack stack) {
+    protected boolean hasActiveTag(ItemStack stack) {
 
-        stack.getOrCreateTag().remove(TAG_TIMER);
+        return stack.getOrCreateTag().contains(TAG_ACTIVE);
     }
 
-    protected boolean isWater(BlockState state) {
+    protected float getEffectiveness(ItemStack stack) {
 
-        return state.getBlock() == Blocks.WATER;
+        return 0.25F * getBaseMod(stack) - 0.05F * getMode(stack);
+    }
+
+    protected float getBaseMod(ItemStack stack) {
+
+        return getPropertyWithDefault(stack, TAG_AUGMENT_BASE_MOD, 1.0F);
     }
 
     protected int getRadius(ItemStack stack) {
 
-        return 1 + getMode(stack);
+        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_RADIUS, 0.0F) + 1;
+    }
+
+    protected int getWaterPerUse(ItemStack stack) {
+
+        return MB_PER_USE;
+    }
+    // endregion
+
+    // region IFluidContainerItem
+    @Override
+    public int getCapacity(ItemStack container) {
+
+        float base = getPropertyWithDefault(container, TAG_AUGMENT_BASE_MOD, 1.0F);
+        float mod = getPropertyWithDefault(container, TAG_AUGMENT_FLUID_STORAGE, 1.0F);
+        return Math.round(super.getCapacity(container) * mod * base);
+    }
+    // endregion
+
+    // region IAugmentableItem
+    @Override
+    public int getAugmentSlots(ItemStack augmentable) {
+
+        return numSlots.getAsInt();
+    }
+
+    @Override
+    public boolean validAugment(ItemStack augmentable, ItemStack augment) {
+
+        return augValidator.test(augment);
+    }
+
+    @Override
+    public void updateAugmentState(ItemStack container, List<ItemStack> augments) {
+
+        container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundNBT());
+        for (ItemStack augment : augments) {
+            CompoundNBT augmentData = AugmentDataHelper.getAugmentData(augment);
+            if (augmentData == null) {
+                continue;
+            }
+            setAttributesFromAugment(container, augmentData);
+        }
+        int fluidExcess = getFluidAmount(container) - getCapacity(container);
+        if (fluidExcess > 0) {
+            drain(container, fluidExcess, EXECUTE);
+        }
+        if (getMode(container) >= getNumModes(container)) {
+            setMode(container, getNumModes(container) - 1);
+        }
     }
     // endregion
 
@@ -206,15 +280,20 @@ public class WateringCanItem extends FluidContainerItem implements IMultiModeIte
     @Override
     public int getNumModes(ItemStack stack) {
 
-        return radius;
+        return 1 + getRadius(stack);
     }
 
     @Override
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
         player.world.playSound(null, player.getPosition(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 0.6F, 1.0F - 0.1F * getMode(stack));
-        int radius = getRadius(stack) * 2 + 1;
-        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius));
+        int radius = getMode(stack) * 2 + 1;
+
+        if (radius <= 1) {
+            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.single_block"));
+        } else {
+            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius));
+        }
     }
     // endregion
 }

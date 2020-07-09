@@ -1,0 +1,6 @@
+{
+  "parent": "thermal:item/watering_can",
+  "textures": {
+    "layer1": "thermal:item/tools/watering_can_filled"
+  }
+}
