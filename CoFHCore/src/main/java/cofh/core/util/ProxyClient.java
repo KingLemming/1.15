@@ -1,9 +1,11 @@
 package cofh.core.util;
 
+import cofh.core.event.CoreClientSetupEvents;
 import cofh.lib.util.helpers.SoundHelper;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
@@ -60,6 +62,12 @@ public class ProxyClient extends Proxy {
     public Object getModel(ResourceLocation loc) {
 
         return modelMap.get(loc);
+    }
+
+    @Override
+    public void addColorable(Item colorable) {
+
+        CoreClientSetupEvents.addColorable(colorable);
     }
     // endregion
 }

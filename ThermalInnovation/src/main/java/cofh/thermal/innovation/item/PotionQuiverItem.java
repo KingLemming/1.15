@@ -1,6 +1,7 @@
 package cofh.thermal.innovation.item;
 
 import cofh.core.util.ChatHelper;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.capability.CapabilityArchery;
 import cofh.lib.capability.IArcheryAmmoItem;
 import cofh.lib.fluid.FluidContainerItemWrapper;
@@ -52,7 +53,7 @@ import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIM
 
 public class PotionQuiverItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {
 
-    protected static final int MB_PER_ARROW = 50;
+    protected static final int MB_PER_USE = 50;
 
     protected IntSupplier numSlots = () -> ThermalConfig.toolAugments;
     protected Predicate<ItemStack> augValidator = (e) -> true;
@@ -62,6 +63,12 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     public PotionQuiverItem(Properties builder, int fluidCapacity, int arrowCapacity) {
 
         this(builder, fluidCapacity, arrowCapacity, FluidHelper::hasPotionTag);
+
+        this.addPropertyOverride(new ResourceLocation("arrows"), (stack, world, entity) -> getStoredArrows(stack) / (float) getMaxArrows(stack));
+        this.addPropertyOverride(new ResourceLocation("filled"), (stack, world, entity) -> getFluidAmount(stack) > 0 ? 1F : 0F);
+        this.addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getFluidAmount(stack) > 0 && getMode(stack) > 0 ? 1F : 0F);
+
+        ProxyUtils.registerColorable(this);
     }
 
     public PotionQuiverItem(Properties builder, int fluidCapacity, int arrowCapacity, Predicate<FluidStack> validator) {
@@ -102,6 +109,15 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
         return !oldStack.equals(newStack) && (slotChanged || !areItemStacksEqualIgnoreTags(oldStack, newStack, TAG_ARROWS, TAG_FLUID));
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+
+        if (getFluidAmount(stack) <= 0) {
+            return super.getRGBDurabilityForDisplay(stack);
+        }
+        return getFluid(stack).getFluid().getAttributes().getColor(getFluid(stack));
     }
 
     @Override
@@ -266,7 +282,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             if (shooter != null) {
                 if (!shooter.abilities.isCreativeMode) {
                     removeArrows(container, 1, false);
-                    drain(MB_PER_ARROW, getMode(container) == 1 ? EXECUTE : SIMULATE);
+                    drain(MB_PER_USE, getMode(container) == 1 ? EXECUTE : SIMULATE);
                 }
             }
         }
@@ -277,7 +293,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             FluidStack fluid = getFluid(container);
             ItemStack arrowStack;
 
-            if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_ARROW) {
+            if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_USE) {
                 arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));
                 return ((TippedArrowItem) arrowStack.getItem()).createArrow(world, arrowStack, shooter);
             }

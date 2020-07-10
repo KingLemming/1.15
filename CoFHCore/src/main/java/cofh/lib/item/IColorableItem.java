@@ -36,4 +36,6 @@ public interface IColorableItem extends INBTCopyIngredient {
         }
     }
 
+    int getColor(ItemStack stack, int tintIndex);
+
 }

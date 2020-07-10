@@ -1,6 +1,6 @@
 package cofh.lib.item;
 
-import com.google.common.collect.Iterables;
+import cofh.core.util.ProxyUtils;
 import net.minecraft.block.*;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
@@ -27,17 +27,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
 import static cofh.lib.util.constants.NBTTags.TAG_ENTITY;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
-public class SpawnEggItemCoFH extends ItemCoFH {
-
-    private static final List<SpawnEggItemCoFH> EGGS = new ArrayList<>();
+public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
 
     private final int primaryColor;
     private final int secondaryColor;
@@ -46,10 +42,12 @@ public class SpawnEggItemCoFH extends ItemCoFH {
     public SpawnEggItemCoFH(Supplier<EntityType<?>> typeSupIn, int primaryColorIn, int secondaryColorIn, Properties builder) {
 
         super(builder);
+
         this.typeSup = typeSupIn;
         this.primaryColor = primaryColorIn;
         this.secondaryColor = secondaryColorIn;
-        EGGS.add(this);
+
+        ProxyUtils.registerColorable(this);
         DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
     }
 
@@ -134,14 +132,9 @@ public class SpawnEggItemCoFH extends ItemCoFH {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getColor(int tintIndex) {
+    public int getColor(ItemStack stack, int tintIndex) {
 
         return tintIndex == 0 ? this.primaryColor : this.secondaryColor;
-    }
-
-    public static Iterable<SpawnEggItemCoFH> getEggs() {
-
-        return Iterables.unmodifiableIterable(EGGS);
     }
 
     public EntityType<?> getType(@Nullable CompoundNBT tag) {

@@ -49,4 +49,9 @@ public class ProxyUtils {
         return CoFHCore.PROXY.getModel(loc);
     }
 
+    public static void registerColorable(Item colorable) {
+
+        CoFHCore.PROXY.addColorable(colorable);
+    }
+
 }

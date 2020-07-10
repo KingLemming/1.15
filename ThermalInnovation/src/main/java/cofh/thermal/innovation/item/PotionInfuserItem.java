@@ -1,8 +1,10 @@
 package cofh.thermal.innovation.item;
 
 import cofh.core.util.ChatHelper;
+import cofh.core.util.ProxyUtils;
 import cofh.lib.item.FluidContainerItem;
 import cofh.lib.item.IAugmentableItem;
+import cofh.lib.item.IColorableItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
@@ -52,6 +54,11 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
     public PotionInfuserItem(Properties builder, int fluidCapacity) {
 
         this(builder, fluidCapacity, FluidHelper::hasPotionTag);
+
+        this.addPropertyOverride(new ResourceLocation("filled"), (stack, world, entity) -> getFluidAmount(stack) > 0 ? 1F : 0F);
+        this.addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getFluidAmount(stack) > 0 && getMode(stack) > 0 ? 1F : 0F);
+
+        ProxyUtils.registerColorable(this);
     }
 
     public PotionInfuserItem(Properties builder, int fluidCapacity, Predicate<FluidStack> validator) {
@@ -142,6 +149,15 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+
+        if (getFluidAmount(stack) <= 0) {
+            return super.getRGBDurabilityForDisplay(stack);
+        }
+        return getFluid(stack).getFluid().getAttributes().getColor(getFluid(stack));
     }
 
     @Override

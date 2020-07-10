@@ -1,7 +1,6 @@
 package cofh.core.event;
 
 import cofh.core.init.CoreConfig;
-import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ListNBT;
@@ -17,6 +16,7 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.constants.NBTTags.TAG_STORED_ENCHANTMENTS;
+import static cofh.lib.util.helpers.StringHelper.canLocalize;
 import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
@@ -37,7 +37,7 @@ public class CoreClientEvents {
         ItemStack stack = event.getItemStack();
         if (CoreConfig.enableItemDescriptions) {
             String infoKey = stack.getItem().getTranslationKey(stack) + ".desc";
-            if (StringHelper.canLocalize(infoKey)) {
+            if (canLocalize(infoKey)) {
                 event.getToolTip().add(getInfoTextComponent(infoKey));
             }
         }
@@ -50,7 +50,7 @@ public class CoreClientEvents {
                 Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryCreate(list.getCompound(0).getString("id")));
                 if (ench != null && ench.getRegistryName() != null) {
                     String enchKey = ench.getName() + ".desc";
-                    if (StringHelper.canLocalize(enchKey)) {
+                    if (canLocalize(enchKey)) {
                         event.getToolTip().add(getInfoTextComponent(enchKey));
                     }
                 }

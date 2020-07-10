@@ -47,5 +47,9 @@ public class Proxy {
 
         return null;
     }
+
+    public void addColorable(Item colorable) {
+
+    }
     // endregion
 }

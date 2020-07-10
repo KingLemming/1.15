@@ -46,7 +46,7 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(isCreative(stack)
-                ? getTextComponent("info.cofh.infinite_energy")
+                ? getTextComponent("info.cofh.infinite_source")
                 : getTextComponent(localize("info.cofh.energy") + ": " + getScaledNumber(getEnergyStored(stack)) + " / " + getScaledNumber(getMaxEnergyStored(stack)) + " RF"));
     }
 

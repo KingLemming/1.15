@@ -1,0 +1,152 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "thermal:item/tools/potion_quiver"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        -35
+      ],
+      "translation": [
+        0,
+        -1.0,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        35
+      ],
+      "translation": [
+        0,
+        -1.0,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        -55
+      ],
+      "translation": [
+        1.13,
+        1.2,
+        1.13
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        55
+      ],
+      "translation": [
+        1.13,
+        1.2,
+        1.13
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        1.0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "filled": 1
+      },
+      "model": "thermal:item/potion_quiver_filled_0"
+    },
+    {
+      "predicate": {
+        "arrows": 0.0001,
+        "filled": 1
+      },
+      "model": "thermal:item/potion_quiver_filled_1"
+    },
+    {
+      "predicate": {
+        "arrows": 0.25,
+        "filled": 1
+      },
+      "model": "thermal:item/potion_quiver_filled_2"
+    },
+    {
+      "predicate": {
+        "arrows": 0.50,
+        "filled": 1
+      },
+      "model": "thermal:item/potion_quiver_filled_3"
+    },
+    {
+      "predicate": {
+        "arrows": 0.75,
+        "filled": 1
+      },
+      "model": "thermal:item/potion_quiver_filled_4"
+    },
+    {
+      "predicate": {
+        "arrows": 0.0001,
+        "active": 1
+      },
+      "model": "thermal:item/potion_quiver_active_1"
+    },
+    {
+      "predicate": {
+        "arrows": 0.25,
+        "active": 1
+      },
+      "model": "thermal:item/potion_quiver_active_2"
+    },
+    {
+      "predicate": {
+        "arrows": 0.50,
+        "active": 1
+      },
+      "model": "thermal:item/potion_quiver_active_3"
+    },
+    {
+      "predicate": {
+        "arrows": 0.75,
+        "active": 1
+      },
+      "model": "thermal:item/potion_quiver_active_4"
+    }
+  ]
+}

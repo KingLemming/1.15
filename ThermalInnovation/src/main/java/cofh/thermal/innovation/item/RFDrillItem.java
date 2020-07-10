@@ -301,7 +301,12 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
         player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, 1.0F - 0.1F * getMode(stack));
-        ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.thermal.drill.mode." + getMode(stack)));
+        int radius = getMode(stack) * 2 + 1;
+        if (radius <= 1) {
+            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.single_block"));
+        } else {
+            ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius));
+        }
     }
     // endregion
 

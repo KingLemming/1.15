@@ -25,6 +25,7 @@
   "commands.cofh.zap.success.multiple": "Zapped %s entities",
 
   "info.cofh.amount": "Amount",
+  "info.cofh.area": "Area",
   "info.cofh.arrows": "Arrows",
   "info.cofh.chance": "Chance",
   "info.cofh.chance_additional": "Additional Chance",
@@ -33,7 +34,7 @@
   "info.cofh.empty": "Empty",
   "info.cofh.energy": "Energy",
   "info.cofh.fluid": "Fluid",
-  "info.cofh.infinite_energy": "Infinite Energy",
+  "info.cofh.infinite_source": "Infinite Source",
   "info.cofh.single_block": "Single Block",
   "info.cofh.transfer": "Transfer",
 

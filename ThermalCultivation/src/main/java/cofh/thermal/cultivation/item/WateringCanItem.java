@@ -57,6 +57,9 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
     public WateringCanItem(Properties builder, int fluidCapacity) {
 
         super(builder, fluidCapacity, IS_WATER);
+
+        this.addPropertyOverride(new ResourceLocation("filled"), (stack, world, entity) -> getFluidAmount(stack) > 0 ? 1F : 0F);
+        this.addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getFluidAmount(stack) > 0 && hasActiveTag(stack) ? 1F : 0F);
     }
 
     public WateringCanItem setNumSlots(IntSupplier numSlots) {
@@ -288,7 +291,6 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
 
         player.world.playSound(null, player.getPosition(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 0.6F, 1.0F - 0.1F * getMode(stack));
         int radius = getMode(stack) * 2 + 1;
-
         if (radius <= 1) {
             ChatHelper.sendIndexedChatMessageToPlayer(player, new TranslationTextComponent("info.cofh.single_block"));
         } else {
