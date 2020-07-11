@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:bell_pepper_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_bell_pepper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:bell_pepper",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_bell_pepper_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:bell_pepper_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:bell_pepper_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_bell_pepper",
+      "has_bell_pepper_block",
+      "has_the_recipe"
+    ]
+  ]
+}

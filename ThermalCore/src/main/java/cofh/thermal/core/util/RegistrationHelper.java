@@ -217,6 +217,11 @@ public class RegistrationHelper {
         ITEMS.register(seeds(id), () -> new BlockNamedItemCoFH(BLOCKS.get(id), new Item.Properties().group(group)));
     }
 
+    public static String block(String id) {
+
+        return id + "_block";
+    }
+
     public static String seeds(String id) {
 
         return id + "_seeds";

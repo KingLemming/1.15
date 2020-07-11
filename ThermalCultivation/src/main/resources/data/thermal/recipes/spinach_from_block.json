@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:spinach_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:spinach",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:onion_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:onion",
+    "count": 9
+  }
+}

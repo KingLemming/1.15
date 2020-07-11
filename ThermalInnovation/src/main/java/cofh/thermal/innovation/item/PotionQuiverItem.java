@@ -13,6 +13,7 @@ import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.common.ThermalConfig;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -21,6 +22,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
@@ -36,6 +38,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
@@ -43,8 +46,7 @@ import java.util.function.Predicate;
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.ArcheryHelper.findArrows;
-import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
-import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
+import static cofh.lib.util.helpers.AugmentableHelper.*;
 import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
 import static cofh.lib.util.helpers.StringHelper.*;
 import static cofh.lib.util.references.CoreReferences.HOLDING;
@@ -93,16 +95,25 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(getTextComponent("info.thermal.quiver.use"));
-        tooltip.add(getTextComponent("info.thermal.quiver.use.sneak"));
+        if (Screen.hasShiftDown()) {
+            return;
+        }
+        tooltip.add(getTextComponent("info.thermal.quiver.use").applyTextStyle(TextFormatting.GRAY));
+        tooltip.add(getTextComponent("info.thermal.quiver.use.sneak").applyTextStyle(TextFormatting.DARK_GRAY));
 
-        tooltip.add(getTextComponent("info.thermal.quiver.mode." + getMode(stack)));
+        tooltip.add(getTextComponent("info.thermal.quiver.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
 
         tooltip.add(getTextComponent(localize("info.cofh.arrows") + ": " + (isCreative(stack)
                 ? localize("info.cofh.infinite")
                 : getStoredArrows(stack) + " / " + format(getMaxArrows(stack)))));
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+
+        FluidStack fluid = getFluid(stack);
+        List<EffectInstance> effects = new ArrayList<>();
+        for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
+            effects.add(new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack)), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), effect.doesShowParticles()));
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn, effects, 0.125F);
     }
 
     @Override
@@ -140,6 +151,9 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         if (subTag == null) {
             return;
         }
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_POTION_AMPLIFIER);
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_POTION_DURATION);
+
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
@@ -203,6 +217,16 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             stack.getOrCreateTag().putInt(TAG_ARROWS, stored);
         }
         return toRemove;
+    }
+
+    protected float getAmplifierMod(ItemStack stack) {
+
+        return getPropertyWithDefault(stack, TAG_AUGMENT_POTION_AMPLIFIER, 0.0F);
+    }
+
+    protected float getDurationMod(ItemStack stack) {
+
+        return 1.0F + getPropertyWithDefault(stack, TAG_AUGMENT_POTION_DURATION, 0.0F);
     }
     // endregion
 
@@ -294,7 +318,12 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             ItemStack arrowStack;
 
             if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_USE) {
-                arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));
+                List<EffectInstance> effects = new ArrayList<>();
+                for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
+                    effects.add(new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(container)), Math.round(effect.getAmplifier() + getAmplifierMod(container)), effect.isAmbient(), effect.doesShowParticles()));
+                }
+                arrowStack = PotionUtils.appendEffects(new ItemStack(Items.TIPPED_ARROW), effects);
+                // arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));
                 return ((TippedArrowItem) arrowStack.getItem()).createArrow(world, arrowStack, shooter);
             }
             arrowStack = new ItemStack(Items.ARROW);

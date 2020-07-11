@@ -67,10 +67,10 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(isActive(stack)
-                ? new TranslationTextComponent("info.cofh_use_sneak_deactivate").applyTextStyle(TextFormatting.AQUA)
-                : new TranslationTextComponent("info.cofh.use_sneak_activate").applyTextStyle(TextFormatting.YELLOW));
+                ? new TranslationTextComponent("info.cofh_use_sneak_deactivate").applyTextStyle(TextFormatting.DARK_GRAY)
+                : new TranslationTextComponent("info.cofh.use_sneak_activate").applyTextStyle(TextFormatting.DARK_GRAY));
 
-        tooltip.add(getTextComponent("info.thermal.capacitor.mode." + getMode(stack)));
+        tooltip.add(getTextComponent("info.thermal.capacitor.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
 
         super.addInformation(stack, worldIn, tooltip, flagIn);

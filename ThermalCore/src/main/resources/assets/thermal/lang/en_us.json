@@ -122,6 +122,9 @@
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
   "item.thermal.machine_speed_augment": "Flux Linkage Amplifier",
 
+  "item.thermal.potion_amplifier_augment": "Potion Amplifier",
+  "item.thermal.potion_duration_augment": "Potion Extension",
+
   "item.thermal.rf_coil_augment_1": "Hardened RF Coil",
   "item.thermal.rf_coil_augment_2": "Reinforced RF Coil",
   "item.thermal.rf_coil_augment_3": "Precision RF Coil",
@@ -388,12 +391,30 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
-  "block.thermal.chocolate_strawberry_cake": "Chocolate Cake",
   "block.thermal.device_hive_extractor": "Hive Hopper",
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
   "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
+
+  "block.thermal.chocolate_cake": "Chocolate Cake",
   "block.thermal.spice_cake": "Spice Cake",
+
+  "block.thermal.barley_block": "Barley Bale",
+  "block.thermal.bell_pepper_block": "Crate of Bell Peppers",
+  "block.thermal.coffee_block": "Sack of Coffee",
+  "block.thermal.corn_block": "Crate of Corn",
+  "block.thermal.eggplant_block": "Crate of Eggplants",
+  "block.thermal.green_bean_block": "Crate of Green Beans",
+  "block.thermal.hops_block": "Sack of Hops",
+  "block.thermal.onion_block": "Crate of Onions",
+  "block.thermal.peanut_block": "Sack of Peanuts",
+  "block.thermal.radish_block": "Crate of Radishes",
+  "block.thermal.rice_block": "Sack of Rice",
+  "block.thermal.sadiroot_block": "Crate of Sadiroot",
+  "block.thermal.spinach_block": "Crate of Spinach",
+  "block.thermal.strawberry_block": "Crate of Strawberry",
+  "block.thermal.tea_block": "Sack of Tea",
+  "block.thermal.tomato_block": "Crate of Tomatoes",
 
   "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
   "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",

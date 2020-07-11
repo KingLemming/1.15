@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:peanut_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:peanut",
+    "count": 9
+  }
+}

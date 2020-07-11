@@ -145,6 +145,19 @@ public class TCoreItems {
                         .mod(TAG_AUGMENT_RADIUS, 1.0F)
                         .build()));
 
+        registerItem("potion_amplifier_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_POTION)
+                        .mod(TAG_AUGMENT_POTION_AMPLIFIER, 1.0F)
+                        .mod(TAG_AUGMENT_POTION_DURATION, -0.25F)
+                        .build()));
+
+        registerItem("potion_duration_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_POTION)
+                        .mod(TAG_AUGMENT_POTION_DURATION, 1.0F)
+                        .build()));
+
         registerItem("machine_speed_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
                         .type(TAG_AUGMENT_TYPE_MACHINE)

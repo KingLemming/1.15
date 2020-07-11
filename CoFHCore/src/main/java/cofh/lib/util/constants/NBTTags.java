@@ -73,6 +73,7 @@ public class NBTTags {
     public static final String TAG_AUGMENT_TYPE_MACHINE = "MchAug";
     public static final String TAG_AUGMENT_TYPE_DYNAMO = "DynAug";
     public static final String TAG_AUGMENT_TYPE_AREA_EFFECT = "AEAug";
+    public static final String TAG_AUGMENT_TYPE_POTION = "Potion";
 
     // General
     public static final String TAG_AUGMENT_ENERGY_STORAGE = "RFMax";
@@ -84,6 +85,9 @@ public class NBTTags {
     public static final String TAG_AUGMENT_DEPTH = "Depth";
     public static final String TAG_AUGMENT_RADIUS = "Radius";
     public static final String TAG_AUGMENT_REACH = "Reach";
+
+    public static final String TAG_AUGMENT_POTION_AMPLIFIER = "PotAmp";
+    public static final String TAG_AUGMENT_POTION_DURATION = "PotDur";
 
     // Machine-Specific
     public static final String TAG_AUGMENT_MACHINE_PRIMARY = "MchPri";

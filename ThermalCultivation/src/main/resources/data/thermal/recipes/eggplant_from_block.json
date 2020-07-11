@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:eggplant_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:eggplant",
+    "count": 9
+  }
+}

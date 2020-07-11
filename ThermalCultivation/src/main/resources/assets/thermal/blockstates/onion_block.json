@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "thermal:block/onion_block"
+    }
+  }
+}

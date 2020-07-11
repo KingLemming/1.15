@@ -76,9 +76,7 @@ public class AugmentableHelper {
     public static void getAttributeFromAugmentAdd(CompoundNBT subTag, CompoundNBT augmentData, String attribute) {
 
         float mod = getAttributeMod(augmentData, attribute) + getAttributeMod(subTag, attribute);
-        if (mod > 0.0F) {
-            subTag.putFloat(attribute, mod);
-        }
+        subTag.putFloat(attribute, mod);
     }
 
     public static float getAttributeMod(CompoundNBT augmentData, String key) {

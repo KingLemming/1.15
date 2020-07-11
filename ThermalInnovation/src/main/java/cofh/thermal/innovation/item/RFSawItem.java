@@ -19,6 +19,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -31,8 +33,12 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -46,6 +52,7 @@ import java.util.Set;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
+import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
 import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
@@ -88,6 +95,22 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
 
         this.augValidator = augValidator;
         return this;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+
+        int radius = getMode(stack) * 2 + 1;
+        if (radius <= 1) {
+            tooltip.add(new TranslationTextComponent("info.cofh.single_block").applyTextStyle(TextFormatting.ITALIC));
+        } else {
+            tooltip.add(new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius).applyTextStyle(TextFormatting.ITALIC));
+        }
+        if (getNumModes(stack) > 1) {
+            tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
@@ -320,6 +343,9 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
     @Override
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 
+        if (getNumModes(stack) <= 1) {
+            return;
+        }
         player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, 1.0F - 0.1F * getMode(stack));
         int radius = getMode(stack) * 2 + 1;
         if (radius <= 1) {

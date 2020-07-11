@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:coffee_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_coffee": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:coffee",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:coffee_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_coffee",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -32,7 +32,7 @@ public interface IMultiModeItem {
     default boolean setMode(ItemStack stack, int mode) {
 
         if (getNumModes(stack) <= 1) {
-            return false;
+            mode = 0;
         }
         if (!stack.hasTag()) {
             stack.setTag(new CompoundNBT());

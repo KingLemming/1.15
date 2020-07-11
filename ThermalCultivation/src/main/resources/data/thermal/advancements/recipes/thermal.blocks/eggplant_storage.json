@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:eggplant_storage"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_eggplant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:eggplant",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:eggplant_storage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_eggplant",
+      "has_the_recipe"
+    ]
+  ]
+}

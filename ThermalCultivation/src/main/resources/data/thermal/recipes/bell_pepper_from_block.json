@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:bell_pepper_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:bell_pepper",
+    "count": 9
+  }
+}

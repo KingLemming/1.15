@@ -2,12 +2,15 @@ package cofh.thermal.cultivation.data;
 
 import cofh.lib.data.ItemModelProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.util.RegistrationHelper.block;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulReferences.*;
 
@@ -26,6 +29,8 @@ public class TCulItemModels extends ItemModelProviderCoFH {
 
     @Override
     protected void registerModels() {
+
+        registerBlockItemModels();
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
@@ -66,7 +71,28 @@ public class TCulItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("dough"), FOODS);
         generated(reg.getSup("flour"), FOODS);
         generated(reg.getSup(ID_FROST_MELON_SLICE), FOODS);
+        generated(reg.getSup(ID_CHOCOLATE_CAKE), FOODS);
         generated(reg.getSup(ID_SPICE_CAKE), FOODS);
+    }
+
+    private void registerBlockItemModels() {
+
+        DeferredRegisterCoFH<Block> reg = BLOCKS;
+
+        blockItem(reg.getSup(block(ID_BARLEY)));
+        blockItem(reg.getSup(block(ID_BELL_PEPPER)));
+        blockItem(reg.getSup(block(ID_COFFEE)));
+        blockItem(reg.getSup(block(ID_EGGPLANT)));
+        blockItem(reg.getSup(block(ID_GREEN_BEAN)));
+        blockItem(reg.getSup(block(ID_ONION)));
+        blockItem(reg.getSup(block(ID_PEANUT)));
+        blockItem(reg.getSup(block(ID_RADISH)));
+        blockItem(reg.getSup(block(ID_RICE)));
+        blockItem(reg.getSup(block(ID_SADIROOT)));
+        blockItem(reg.getSup(block(ID_SPINACH)));
+        blockItem(reg.getSup(block(ID_STRAWBERRY)));
+        blockItem(reg.getSup(block(ID_TEA)));
+        blockItem(reg.getSup(block(ID_TOMATO)));
     }
 
 }

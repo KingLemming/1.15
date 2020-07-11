@@ -135,7 +135,7 @@ public class DeviceRockGenTile extends ThermalTileBase {
 
     @Nullable
     @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
+    public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
         return null;
     }

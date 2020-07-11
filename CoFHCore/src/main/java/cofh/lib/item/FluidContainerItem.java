@@ -10,6 +10,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -52,7 +53,6 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         FluidStack fluid = getFluid(stack);
-
         if (!fluid.isEmpty()) {
             tooltip.add(StringHelper.getFluidName(fluid));
         }
@@ -64,6 +64,28 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
             tooltip.add(getEmptyLine());
             tooltip.add(getTextComponent(localize("info.cofh.effects") + ":"));
             addPotionTooltip(fluid, tooltip);
+        }
+    }
+
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn, List<EffectInstance> effects) {
+
+        addInformation(stack, worldIn, tooltip, flagIn, effects, 1.0F);
+    }
+
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn, List<EffectInstance> effects, float durationFactor) {
+
+        FluidStack fluid = getFluid(stack);
+        if (!fluid.isEmpty()) {
+            tooltip.add(StringHelper.getFluidName(fluid));
+        }
+        tooltip.add(isCreative(stack)
+                ? getTextComponent("info.cofh.infinite_source")
+                : getTextComponent(localize("info.cofh.amount") + ": " + format(fluid.getAmount()) + " / " + format(getCapacity(stack)) + " mB"));
+
+        if (FluidHelper.hasPotionTag(fluid)) {
+            tooltip.add(getEmptyLine());
+            tooltip.add(getTextComponent(localize("info.cofh.effects") + ":"));
+            addPotionTooltip(effects, tooltip, durationFactor);
         }
     }
 

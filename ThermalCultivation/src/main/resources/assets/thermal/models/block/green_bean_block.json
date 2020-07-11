@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "thermal:block/storage/green_bean_block_top",
+    "bottom": "thermal:block/storage/green_bean_block_bottom",
+    "side": "thermal:block/storage/green_bean_block_side"
+  }
+}

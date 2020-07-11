@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:barley_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_barley": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:barley",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:barley_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_barley",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,22 +1,44 @@
 {
-    "textures": {
-        "particle": "thermal:block/foods/spice_cake_side",
-        "bottom": "thermal:block/foods/spice_cake_bottom",
-        "top": "thermal:block/foods/spice_cake_top",
-        "side": "thermal:block/foods/spice_cake_side",
-        "inside": "thermal:block/foods/spice_cake_inner"
-    },
-    "elements": [
-        {   "from": [ 9, 0, 1 ],
-            "to": [ 15, 8, 15 ],
-            "faces": {
-                "down":  { "texture": "#bottom", "cullface": "down" },
-                "up":    { "texture": "#top" },
-                "north": { "texture": "#side" },
-                "south": { "texture": "#side" },
-                "west":  { "texture": "#inside" },
-                "east":  { "texture": "#side" }
-            }
+  "textures": {
+    "particle": "thermal:block/foods/spice_cake_side",
+    "bottom": "thermal:block/foods/spice_cake_bottom",
+    "top": "thermal:block/foods/spice_cake_top",
+    "side": "thermal:block/foods/spice_cake_side",
+    "inside": "thermal:block/foods/spice_cake_inner"
+  },
+  "elements": [
+    {
+      "from": [
+        9,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        8,
+        15
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bottom",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#inside"
+        },
+        "east": {
+          "texture": "#side"
         }
-    ]
+      }
+    }
+  ]
 }

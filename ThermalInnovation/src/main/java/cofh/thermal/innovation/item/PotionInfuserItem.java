@@ -4,7 +4,6 @@ import cofh.core.util.ChatHelper;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.item.FluidContainerItem;
 import cofh.lib.item.IAugmentableItem;
-import cofh.lib.item.IColorableItem;
 import cofh.lib.item.IMultiModeItem;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.AugmentDataHelper;
@@ -30,14 +29,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
-import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
+import static cofh.lib.util.helpers.AugmentableHelper.*;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
@@ -82,13 +81,19 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(getTextComponent("info.thermal.infuser.use"));
-        tooltip.add(getTextComponent("info.thermal.infuser.use.sneak"));
 
-        tooltip.add(getTextComponent("info.thermal.infuser.mode." + getMode(stack)));
+        tooltip.add(getTextComponent("info.thermal.infuser.use").applyTextStyle(TextFormatting.GRAY));
+        tooltip.add(getTextComponent("info.thermal.infuser.use.sneak").applyTextStyle(TextFormatting.DARK_GRAY));
+
+        tooltip.add(getTextComponent("info.thermal.infuser.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
 
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        FluidStack fluid = getFluid(stack);
+        List<EffectInstance> effects = new ArrayList<>();
+        for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
+            effects.add(new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack)), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), effect.doesShowParticles()));
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn, effects);
     }
 
     @Override
@@ -116,11 +121,13 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
                 if (effect.getPotion().isInstant()) {
                     effect.getPotion().affectEntity(null, null, (LivingEntity) entityIn, effect.getAmplifier(), 0.5D);
                 } else {
-                    // TODO: Augment effects :)
-                    EffectInstance potion = new EffectInstance(effect.getPotion(), effect.getDuration() / 4, effect.getAmplifier(), effect.isAmbient(), false);
+                    EffectInstance potion = new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack) / 4), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), false);
                     living.addPotionEffect(potion);
                 }
                 used = true;
+            }
+            if (entityIn instanceof PlayerEntity && ((PlayerEntity) entityIn).abilities.isCreativeMode) {
+                return;
             }
             if (used) {
                 drain(stack, MB_PER_CYCLE, EXECUTE);
@@ -138,12 +145,13 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
                     if (effect.getPotion().isInstant()) {
                         effect.getPotion().affectEntity(player, player, entity, effect.getAmplifier(), 0.5D);
                     } else {
-                        // TODO: Augment effects :)
-                        EffectInstance potion = new EffectInstance(effect.getPotion(), effect.getDuration() / 2, effect.getAmplifier(), effect.isAmbient(), true);
+                        EffectInstance potion = new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack) / 2), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), true);
                         entity.addPotionEffect(potion);
                     }
                 }
-                drain(stack, MB_PER_USE, EXECUTE);
+                if (!player.abilities.isCreativeMode) {
+                    drain(stack, MB_PER_USE, EXECUTE);
+                }
             }
             player.swingArm(hand);
             return true;
@@ -180,6 +188,9 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         if (subTag == null) {
             return;
         }
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_POTION_AMPLIFIER);
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_POTION_DURATION);
+
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_FLUID_STORAGE);
     }
@@ -194,10 +205,9 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
             if (fluid != null && (fluid.getAmount() >= MB_PER_USE || player.abilities.isCreativeMode)) {
                 for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
                     if (effect.getPotion().isInstant()) {
-                        effect.getPotion().affectEntity(null, null, player, effect.getAmplifier(), 1.0D);
+                        effect.getPotion().affectEntity(null, null, player, Math.round(effect.getAmplifier() + getAmplifierMod(stack)), 1.0D);
                     } else {
-                        // TODO: Augment effects :)
-                        EffectInstance potion = new EffectInstance(effect.getPotion(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), false);
+                        EffectInstance potion = new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack)), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), false);
                         player.addPotionEffect(potion);
                     }
                 }
@@ -209,6 +219,16 @@ public class PotionInfuserItem extends FluidContainerItem implements IAugmentabl
         player.swingArm(hand);
         stack.setAnimationsToGo(5);
         return true;
+    }
+
+    protected float getAmplifierMod(ItemStack stack) {
+
+        return getPropertyWithDefault(stack, TAG_AUGMENT_POTION_AMPLIFIER, 0.0F);
+    }
+
+    protected float getDurationMod(ItemStack stack) {
+
+        return 1.0F + getPropertyWithDefault(stack, TAG_AUGMENT_POTION_DURATION, 0.0F);
     }
     // endregion
 

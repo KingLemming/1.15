@@ -47,6 +47,7 @@ public class TCulReferences {
     // region FOODS
     public static final String ID_FROST_MELON_SLICE = ID_THERMAL + ":frost_melon_slice";
 
+    public static final String ID_CHOCOLATE_CAKE = ID_THERMAL + ":chocolate_cake";
     public static final String ID_SPICE_CAKE = ID_THERMAL + ":spice_cake";
     // endregion
 

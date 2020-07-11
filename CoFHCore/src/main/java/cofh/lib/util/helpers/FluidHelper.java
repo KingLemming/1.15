@@ -283,13 +283,17 @@ public class FluidHelper {
         if (stack.isEmpty()) {
             return;
         }
-        List<EffectInstance> list = PotionUtils.getEffectsFromTag(stack.getTag());
+        addPotionTooltip(PotionUtils.getEffectsFromTag(stack.getTag()), lores, durationFactor);
+    }
+
+    public static void addPotionTooltip(List<EffectInstance> effects, List<ITextComponent> lores, float durationFactor) {
+
         List<Tuple<String, AttributeModifier>> list1 = Lists.newArrayList();
 
-        if (list.isEmpty()) {
+        if (effects.isEmpty()) {
             lores.add((new TranslationTextComponent("effect.none")).applyTextStyle(TextFormatting.GRAY));
         } else {
-            for (EffectInstance effectinstance : list) {
+            for (EffectInstance effectinstance : effects) {
                 ITextComponent itextcomponent = new TranslationTextComponent(effectinstance.getEffectName());
                 Effect effect = effectinstance.getPotion();
                 Map<IAttribute, AttributeModifier> map = effect.getAttributeModifierMap();

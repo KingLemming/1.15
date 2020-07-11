@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:strawberry_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_strawberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:strawberry",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_strawberry_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:strawberry_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:strawberry_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_strawberry",
+      "has_strawberry_block",
+      "has_the_recipe"
+    ]
+  ]
+}

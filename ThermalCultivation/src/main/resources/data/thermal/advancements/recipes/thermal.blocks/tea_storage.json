@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:tea_storage"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:tea",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:tea_storage"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_tea",
+      "has_the_recipe"
+    ]
+  ]
+}

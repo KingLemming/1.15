@@ -79,10 +79,10 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(getTextComponent("info.thermal.magnet.use"));
-        tooltip.add(getTextComponent("info.thermal.magnet.use.sneak"));
+        tooltip.add(getTextComponent("info.thermal.magnet.use").applyTextStyle(TextFormatting.GRAY));
+        tooltip.add(getTextComponent("info.thermal.magnet.use.sneak").applyTextStyle(TextFormatting.DARK_GRAY));
 
-        tooltip.add(getTextComponent("info.thermal.magnet.mode." + getMode(stack)));
+        tooltip.add(getTextComponent("info.thermal.magnet.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
 
         super.addInformation(stack, worldIn, tooltip, flagIn);

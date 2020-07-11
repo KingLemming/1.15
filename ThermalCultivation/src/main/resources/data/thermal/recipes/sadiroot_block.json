@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:sadiroot"
+    }
+  },
+  "result": {
+    "item": "thermal:sadiroot_block"
+  }
+}

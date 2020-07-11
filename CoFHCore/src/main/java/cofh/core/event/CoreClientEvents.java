@@ -38,7 +38,7 @@ public class CoreClientEvents {
         if (CoreConfig.enableItemDescriptions) {
             String infoKey = stack.getItem().getTranslationKey(stack) + ".desc";
             if (canLocalize(infoKey)) {
-                event.getToolTip().add(getInfoTextComponent(infoKey));
+                event.getToolTip().add(1, getInfoTextComponent(infoKey));
             }
         }
         if (CoreConfig.enableEnchantmentDescriptions) {
