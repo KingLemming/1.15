@@ -27,6 +27,7 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileProcess extends ReconfigurableTileBase implements ITickableTileEntity, IMachineInventory {
 
+    protected static final int MIN_PROCESS_TICK = 5;
     protected static final int BASE_PROCESS_TICK = 20;
     protected static final int BASE_ENERGY = 20000;
 
@@ -38,7 +39,8 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
     protected int process;
     protected int processMax;
 
-    protected int processTick = getBaseProcessTick();
+    protected int baseProcessTick = getBaseProcessTick();
+    protected int processTick = baseProcessTick;
 
     public MachineTileProcess(TileEntityType<?> tileEntityTypeIn) {
 
@@ -60,6 +62,11 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
     protected int getBaseProcessTick() {
 
         return BASE_PROCESS_TICK;
+    }
+
+    protected int getMinProcessTick() {
+
+        return MIN_PROCESS_TICK;
     }
     // endregion
 
@@ -116,7 +123,15 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
     protected void processStart() {
 
-        process = processMax = curRecipe.getEnergy(this);
+        processTick = baseProcessTick;
+        int energy = curRecipe.getEnergy(this);
+
+        int minTicks = curRecipe.getMinTicks();
+        if (minTicks > 0) {
+            processTick = Math.min(processTick, Math.max(getMinProcessTick(), energy / minTicks));
+            energy = Math.max(energy, getMinProcessTick() * minTicks);
+        }
+        process = processMax = energy;
         if (cacheRenderFluid()) {
             TileStatePacket.sendToClient(this);
         }
@@ -346,14 +361,10 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
     public int getScaledSpeed(int scale) {
 
-        // TODO: Fix
         if (!isActive) {
             return 0;
         }
-        return scale;
-        //		double power = energyStorage.getEnergyStored() / energyConfig.energyRamp;
-        //		power = MathHelper.clip(power, energyConfig.minPower, energyConfig.maxPower);
-        //		return MathHelper.round(scale * power / energyConfig.maxPower);
+        return Math.max(1, scale * processTick / baseProcessTick);
     }
     // endregion
 
@@ -363,8 +374,9 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
         super.getGuiPacket(buffer);
 
-        buffer.writeInt(processMax);
         buffer.writeInt(process);
+        buffer.writeInt(processMax);
+        buffer.writeInt(processTick);
 
         return buffer;
     }
@@ -374,8 +386,9 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
         super.handleGuiPacket(buffer);
 
-        processMax = buffer.readInt();
         process = buffer.readInt();
+        processMax = buffer.readInt();
+        processTick = buffer.readInt();
     }
     // endregion
 
@@ -385,8 +398,9 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
         super.read(nbt);
 
-        processMax = nbt.getInt(TAG_PROCESS_MAX);
         process = nbt.getInt(TAG_PROCESS);
+        processMax = nbt.getInt(TAG_PROCESS_MAX);
+        processTick = nbt.getInt(TAG_PROCESS_TICK);
     }
 
     @Override
@@ -394,8 +408,9 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
 
         super.write(nbt);
 
-        nbt.putInt(TAG_PROCESS_MAX, processMax);
         nbt.putInt(TAG_PROCESS, process);
+        nbt.putInt(TAG_PROCESS_MAX, processMax);
+        nbt.putInt(TAG_PROCESS_TICK, processTick);
 
         return nbt;
     }
@@ -449,7 +464,7 @@ public abstract class MachineTileProcess extends ReconfigurableTileBase implemen
         float scaleMin = AUG_SCALE_MIN;
         float scaleMax = AUG_SCALE_MAX;
 
-        processTick = Math.round(getBaseProcessTick() * baseMod * processMod);
+        baseProcessTick = Math.round(getBaseProcessTick() * baseMod * processMod);
         primaryMod = MathHelper.clamp(primaryMod, scaleMin, scaleMax);
         secondaryMod = MathHelper.clamp(secondaryMod, scaleMin, scaleMax);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);

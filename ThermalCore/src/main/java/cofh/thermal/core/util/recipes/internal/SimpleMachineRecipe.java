@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class SimpleMachineRecipe extends BaseMachineRecipe {
 
-    public SimpleMachineRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+    public SimpleMachineRecipe(int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-        super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        super(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
     }
 
     // region IMachineRecipe

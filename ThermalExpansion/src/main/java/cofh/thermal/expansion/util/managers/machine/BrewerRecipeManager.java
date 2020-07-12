@@ -66,7 +66,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
     public void addRecipe(ThermalRecipe recipe) {
 
         for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-            addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+            addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
         }
     }
 
@@ -99,7 +99,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
         return recipeMap.get(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcode(inputFluid)));
     }
 
-    protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
+    protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || inputFluids.isEmpty() || outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -119,7 +119,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcode(inputFluid)), recipe);
         validItems.add(convert(inputItem));
         validFluids.add(inputFluid.getFluid());
@@ -249,7 +249,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
 
     protected BrewerRecipe convert(Potion inputPotion, Ingredient reagent, Potion outputPotion) {
 
-        return new BrewerRecipe(new ResourceLocation(ID_THERMAL, "brewer_" + inputPotion.hashCode()), defaultEnergy, 0.0F, Collections.singletonList(reagent), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, inputPotion)), Collections.emptyList(), Collections.emptyList(), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, outputPotion)));
+        return new BrewerRecipe(new ResourceLocation(ID_THERMAL, "brewer_" + inputPotion.hashCode()), defaultEnergy, 0.0F, -1, Collections.singletonList(reagent), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, inputPotion)), Collections.emptyList(), Collections.emptyList(), Collections.singletonList(PotionFluid.getPotionAsFluid(defaultPotion, outputPotion)));
     }
     // endregion
 }

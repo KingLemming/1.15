@@ -19,9 +19,9 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
     protected int catalystSlot;
     protected boolean catalyzable = true;
 
-    protected CatalyzedMachineRecipe(int catalystSlot, int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+    protected CatalyzedMachineRecipe(int catalystSlot, int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-        super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        super(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         this.catalystSlot = catalystSlot;
         // If all of the output chances are locked, then the recipe is not catalyzable.
         for (float f : outputItemChances) {
@@ -29,9 +29,9 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
         }
     }
 
-    public CatalyzedMachineRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+    public CatalyzedMachineRecipe(int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-        this(1, energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        this(1, energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
     }
 
     public abstract IRecipeCatalyst getCatalyst(ItemStack input);

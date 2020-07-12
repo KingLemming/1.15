@@ -60,13 +60,13 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
         switch (recipe.getInputItems().size()) {
             case 1:
                 for (ItemStack firstInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-                    addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.singletonList(firstInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                    addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.singletonList(firstInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
                 }
                 return;
             case 2:
                 for (ItemStack firstInput : recipe.getInputItems().get(0).getMatchingStacks()) {
                     for (ItemStack secondInput : recipe.getInputItems().get(1).getMatchingStacks()) {
-                        addRecipe(recipe.getEnergy(), recipe.getExperience(), asList(firstInput, secondInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                        addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), asList(firstInput, secondInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
                     }
                 }
                 return;
@@ -74,7 +74,7 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
                 for (ItemStack firstInput : recipe.getInputItems().get(0).getMatchingStacks()) {
                     for (ItemStack secondInput : recipe.getInputItems().get(1).getMatchingStacks()) {
                         for (ItemStack thirdInput : recipe.getInputItems().get(2).getMatchingStacks()) {
-                            addRecipe(recipe.getEnergy(), recipe.getExperience(), asList(firstInput, secondInput, thirdInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                            addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), asList(firstInput, secondInput, thirdInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
                         }
                     }
                 }
@@ -108,7 +108,7 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
         return recipeMap.get(recipeKey);
     }
 
-    protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
+    protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -136,7 +136,7 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
             recipeKey += compStack.hashCode();
             validItems.add(compStack);
         }
-        InternalSmelterRecipe recipe = new InternalSmelterRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        InternalSmelterRecipe recipe = new InternalSmelterRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(recipeKey, recipe);
         return recipe;
     }
@@ -220,9 +220,9 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
 
     protected static class InternalSmelterRecipe extends CatalyzedMachineRecipe {
 
-        public InternalSmelterRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+        public InternalSmelterRecipe(int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-            super(3, energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+            super(3, energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         }
 
         @Override

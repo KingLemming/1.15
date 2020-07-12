@@ -51,13 +51,13 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
 
         if (recipe.getInputItems().size() == 1) {
             for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-                addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
             }
         } else {
             // The die should never have multiple variations but eh, who knows?
             for (ItemStack dieInput : recipe.getInputItems().get(1).getMatchingStacks()) {
                 for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-                    addRecipe(recipe.getEnergy(), recipe.getExperience(), asList(recipeInput, dieInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                    addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), asList(recipeInput, dieInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
                 }
             }
         }
@@ -110,7 +110,7 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
         return recipeMap.get(getKeyFromSlots(inputSlots));
     }
 
-    protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
+    protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -130,7 +130,7 @@ public class PressRecipeManager extends AbstractManager implements IRecipeManage
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         validInputs.add(convert(inputItems.get(0)));
 
         if (inputItems.size() > 1 && !inputItems.get(1).isEmpty()) {

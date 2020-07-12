@@ -21,14 +21,14 @@ import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.ID_RECIPE_FURN
 
 public class FurnaceRecipe extends ThermalRecipe {
 
-    public FurnaceRecipe(ResourceLocation recipeId, int energy, float experience, @Nullable List<Ingredient> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> outputItemChances, @Nullable List<FluidStack> outputFluids) {
+    public FurnaceRecipe(ResourceLocation recipeId, int energy, float experience, int minTicks, @Nullable List<Ingredient> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> outputItemChances, @Nullable List<FluidStack> outputFluids) {
 
-        super(recipeId, energy, experience, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
+        super(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
     }
 
     public FurnaceRecipe(ResourceLocation recipeId, int energy, float experience, AbstractCookingRecipe recipe) {
 
-        this(recipeId, energy, experience, recipe.getIngredients(), Collections.emptyList(), Collections.singletonList(recipe.getRecipeOutput()), Collections.singletonList(BASE_CHANCE_LOCKED), Collections.emptyList());
+        this(recipeId, energy, experience, -1, recipe.getIngredients(), Collections.emptyList(), Collections.singletonList(recipe.getRecipeOutput()), Collections.singletonList(BASE_CHANCE_LOCKED), Collections.emptyList());
     }
 
     @Nonnull

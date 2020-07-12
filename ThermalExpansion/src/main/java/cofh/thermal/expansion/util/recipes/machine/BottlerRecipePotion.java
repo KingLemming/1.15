@@ -13,9 +13,9 @@ import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 
 public class BottlerRecipePotion extends BaseMachineRecipe {
 
-    public BottlerRecipePotion(int energy, float experience, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
+    public BottlerRecipePotion(int energy, float experience, int minTicks, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
 
-        super(energy, experience);
+        super(energy, experience, minTicks);
         this.inputItems.add(inputItem);
         this.inputFluids.add(inputFluid);
         this.outputItems.add(outputItem);

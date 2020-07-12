@@ -48,7 +48,7 @@ public class RefineryRecipeManager extends AbstractManager implements IRecipeMan
 
     public void addRecipe(ThermalRecipe recipe) {
 
-        addRecipe(recipe.getEnergy(), recipe.getExperience(), Collections.emptyList(), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+        addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.emptyList(), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
     }
 
     public boolean validRecipe(FluidStack input) {
@@ -75,7 +75,7 @@ public class RefineryRecipeManager extends AbstractManager implements IRecipeMan
         return recipeMap.get(FluidHelper.fluidHashcode(inputFluid));
     }
 
-    protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
+    protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputFluids.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -96,7 +96,7 @@ public class RefineryRecipeManager extends AbstractManager implements IRecipeMan
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(FluidHelper.fluidHashcode(input), recipe);
         return recipe;
     }

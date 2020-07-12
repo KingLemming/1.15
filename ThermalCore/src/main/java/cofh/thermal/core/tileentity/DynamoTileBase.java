@@ -27,7 +27,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected int coolant;
     protected int coolantMax;
 
-    protected int processTick = getBaseProcessTick();
+    protected int baseProcessTick = getBaseProcessTick();
+    protected int processTick = baseProcessTick;
 
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
@@ -188,6 +189,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         fuel = nbt.getInt(TAG_FUEL);
         coolantMax = nbt.getInt(TAG_COOLANT_MAX);
         coolant = nbt.getInt(TAG_COOLANT);
+        processTick = nbt.getInt(TAG_PROCESS_TICK);
     }
 
     @Override
@@ -199,6 +201,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         nbt.putInt(TAG_FUEL, fuel);
         nbt.putInt(TAG_COOLANT_MAX, coolantMax);
         nbt.putInt(TAG_COOLANT, coolant);
+        nbt.putInt(TAG_PROCESS_TICK, processTick);
 
         return nbt;
     }
@@ -237,7 +240,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         float scaleMin = AUG_SCALE_MIN;
         float scaleMax = AUG_SCALE_MAX;
 
-        processTick = Math.round(getBaseProcessTick() * baseMod * processMod);
+        baseProcessTick = Math.round(getBaseProcessTick() * baseMod * processMod);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
     }
 

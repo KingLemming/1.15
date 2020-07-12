@@ -35,7 +35,7 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
 
     // region RECIPES
     @Override
-    protected IMachineRecipe addRecipe(int energy, float experience, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
+    protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
 
         if (inputItems.isEmpty() || outputItems.isEmpty() && outputFluids.isEmpty() || outputItems.size() > maxOutputItems || outputFluids.size() > maxOutputFluids || energy <= 0) {
             return null;
@@ -56,7 +56,7 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        InternalPulverizerRecipe recipe = new InternalPulverizerRecipe(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+        InternalPulverizerRecipe recipe = new InternalPulverizerRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(convert(input), recipe);
         return recipe;
     }
@@ -86,9 +86,9 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
     // region CATALYZED RECIPE
     protected static class InternalPulverizerRecipe extends CatalyzedMachineRecipe {
 
-        public InternalPulverizerRecipe(int energy, float experience, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
+        public InternalPulverizerRecipe(int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
-            super(energy, experience, inputItems, inputFluids, outputItems, chance, outputFluids);
+            super(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         }
 
         @Override
