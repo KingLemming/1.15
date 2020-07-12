@@ -15,7 +15,8 @@ import java.util.function.Supplier;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalItemGroups.*;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_BLOCKS;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_ITEMS;
 import static net.minecraft.block.Block.Properties.create;
 
 public class RegistrationHelper {
@@ -25,11 +26,6 @@ public class RegistrationHelper {
     }
 
     // region BLOCKS
-    public static void registerResource(String name, Supplier<Block> sup) {
-
-        registerBlock(name, sup, THERMAL_RESOURCES, Rarity.COMMON);
-    }
-
     public static void registerBlock(String name, Supplier<Block> sup) {
 
         registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON);

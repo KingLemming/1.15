@@ -14,16 +14,6 @@ public class ThermalItemGroups {
 
     }
 
-    public static final ItemGroup THERMAL_RESOURCES = new ItemGroup(-1, ID_THERMAL + ".resources") {
-
-        @Override
-        @OnlyIn(Dist.CLIENT)
-        public ItemStack createIcon() {
-
-            return new ItemStack(ITEMS.get("apatite_ore"));
-        }
-    };
-
     public static final ItemGroup THERMAL_BLOCKS = new ItemGroup(-1, ID_THERMAL + ".blocks") {
 
         @Override

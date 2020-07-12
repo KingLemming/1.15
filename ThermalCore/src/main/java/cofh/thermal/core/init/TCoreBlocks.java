@@ -27,7 +27,8 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
-import static cofh.thermal.core.util.RegistrationHelper.*;
+import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
+import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCoreBlocks {
@@ -87,18 +88,18 @@ public class TCoreBlocks {
 
     private static void registerResources() {
 
-        registerResource(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerResource(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerResource(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerResource(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
-        registerResource(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
-        registerResource(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
-        registerResource(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
-        registerResource(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
+        registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
 
-        registerResource(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
-        registerResource(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
+        registerBlock(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
+        registerBlock(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
     }
 
     private static void registerStorage() {
