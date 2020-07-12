@@ -29,7 +29,7 @@ public class TCoreItems {
 
     public static void register() {
 
-        registerVanillaItems();
+        registerVanilla();
         registerResources();
         registerTools();
         registerAugments();
@@ -37,7 +37,7 @@ public class TCoreItems {
     }
 
     // region HELPERS
-    private static void registerVanillaItems() {
+    private static void registerVanilla() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
@@ -72,9 +72,35 @@ public class TCoreItems {
 
         Rarity rarity = Rarity.UNCOMMON;
 
+        registerMetalSet("copper");
+        registerMetalSet("tin");
+        registerMetalSet("silver");
+        registerMetalSet("lead");
+        registerMetalSet("nickel");
+        registerMetalSet("platinum");
+
+        registerMetalSet("bronze");
+        registerMetalSet("electrum");
+        registerMetalSet("invar");
+        registerMetalSet("constantan");
+
         registerMetalSet("signalum", group, rarity);
         registerMetalSet("lumium", group, rarity);
         registerMetalSet("enderium", group, rarity);
+
+        registerGemSet("ruby");
+        registerGemSet("sapphire");
+    }
+
+    private static void registerExtraResources() {
+
+        registerMetalSet("aluminum");
+        registerMetalSet("zinc");
+        registerMetalSet("titanium");
+        registerMetalSet("osmium");
+        registerMetalSet("iridium");
+
+        registerMetalSet("steel");
     }
 
     private static void registerTools() {
@@ -238,5 +264,4 @@ public class TCoreItems {
     public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 1, 1, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(Items.STRING));
     public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 2, 3, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(Items.STRING));
     // endregion
-
 }

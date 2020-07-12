@@ -97,6 +97,30 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
         generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 
+        generateStorageRecipes(reg, consumer, "copper");
+        generateStorageRecipes(reg, consumer, "tin");
+        generateStorageRecipes(reg, consumer, "silver");
+        generateStorageRecipes(reg, consumer, "lead");
+        generateStorageRecipes(reg, consumer, "nickel");
+        generateStorageRecipes(reg, consumer, "platinum");
+
+        generateStorageRecipes(reg, consumer, "bronze");
+        generateStorageRecipes(reg, consumer, "electrum");
+        generateStorageRecipes(reg, consumer, "invar");
+        generateStorageRecipes(reg, consumer, "constantan");
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 0.8F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "platinum", 1.0F);
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
+
         generateStorageRecipes(reg, consumer, "signalum");
         generateStorageRecipes(reg, consumer, "lumium");
         generateStorageRecipes(reg, consumer, "enderium");

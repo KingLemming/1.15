@@ -38,7 +38,9 @@
   "info.thermal.tinker_bench.2": "Tinker on!",
 
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
+  "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",
+  "itemGroup.thermal.resources": "Thermal Series: Resources",
   "itemGroup.thermal.tools": "Thermal Series: Tools",
 
   "item.thermal.apatite": "Apatite",

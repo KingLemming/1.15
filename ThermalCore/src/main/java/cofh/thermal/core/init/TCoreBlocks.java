@@ -27,8 +27,7 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
-import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
-import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
+import static cofh.thermal.core.util.RegistrationHelper.*;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCoreBlocks {
@@ -39,9 +38,10 @@ public class TCoreBlocks {
 
     public static void register() {
 
-        registerVanillaSupplemental();
+        registerVanilla();
         registerResources();
-        registerMetals();
+        registerStorage();
+        registerBuildingBlocks();
 
         registerTileBlocks();
         registerTileContainers();
@@ -58,7 +58,7 @@ public class TCoreBlocks {
     }
 
     // region HELPERS
-    private static void registerVanillaSupplemental() {
+    private static void registerVanilla() {
 
         registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)));
         registerBlock(ID_BAMBOO_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)) {
@@ -87,10 +87,23 @@ public class TCoreBlocks {
 
     private static void registerResources() {
 
-        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerResource(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerResource(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerResource(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerResource(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+
+        registerResource(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
+        registerResource(ID_TIN_ORE, () -> new OreBlockCoFH(1));
+        registerResource(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
+        registerResource(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
+        registerResource(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
+        registerResource(ID_PLATINUM_ORE, () -> new OreBlockCoFH(3));
+
+        registerResource(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
+        registerResource(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
+    }
+
+    private static void registerStorage() {
 
         registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
         registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
@@ -103,9 +116,20 @@ public class TCoreBlocks {
                 return side == Direction.UP;
             }
         });
-    }
+        registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_PLATINUM_BLOCK, () -> new MetalStorageBlock(2));
 
-    private static void registerMetals() {
+        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
+        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
+
+        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));
 
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
@@ -124,6 +148,9 @@ public class TCoreBlocks {
 
         registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
+    }
+
+    private static void registerBuildingBlocks() {
 
         registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 

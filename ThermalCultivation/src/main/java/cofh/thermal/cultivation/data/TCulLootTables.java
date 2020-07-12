@@ -16,6 +16,7 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.util.RegistrationHelper.block;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulReferences.*;
 
@@ -73,6 +74,21 @@ public class TCulLootTables extends LootTableProviderCoFH {
 
         lootTables.put(regBlocks.get(ID_PHYTOSOIL), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
         lootTables.put(regBlocks.get(ID_PHYTOSOIL_CHARGED), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
+
+        lootTables.put(regBlocks.get(block(ID_BARLEY)), createSimpleDropTable(regBlocks.get(block(ID_BARLEY))));
+        lootTables.put(regBlocks.get(block(ID_BELL_PEPPER)), createSimpleDropTable(regBlocks.get(block(ID_BELL_PEPPER))));
+        lootTables.put(regBlocks.get(block(ID_COFFEE)), createSimpleDropTable(regBlocks.get(block(ID_COFFEE))));
+        lootTables.put(regBlocks.get(block(ID_EGGPLANT)), createSimpleDropTable(regBlocks.get(block(ID_EGGPLANT))));
+        lootTables.put(regBlocks.get(block(ID_GREEN_BEAN)), createSimpleDropTable(regBlocks.get(block(ID_GREEN_BEAN))));
+        lootTables.put(regBlocks.get(block(ID_ONION)), createSimpleDropTable(regBlocks.get(block(ID_ONION))));
+        lootTables.put(regBlocks.get(block(ID_PEANUT)), createSimpleDropTable(regBlocks.get(block(ID_PEANUT))));
+        lootTables.put(regBlocks.get(block(ID_RADISH)), createSimpleDropTable(regBlocks.get(block(ID_RADISH))));
+        lootTables.put(regBlocks.get(block(ID_RICE)), createSimpleDropTable(regBlocks.get(block(ID_RICE))));
+        lootTables.put(regBlocks.get(block(ID_SADIROOT)), createSimpleDropTable(regBlocks.get(block(ID_SADIROOT))));
+        lootTables.put(regBlocks.get(block(ID_SPINACH)), createSimpleDropTable(regBlocks.get(block(ID_SPINACH))));
+        lootTables.put(regBlocks.get(block(ID_STRAWBERRY)), createSimpleDropTable(regBlocks.get(block(ID_STRAWBERRY))));
+        lootTables.put(regBlocks.get(block(ID_TEA)), createSimpleDropTable(regBlocks.get(block(ID_TEA))));
+        lootTables.put(regBlocks.get(block(ID_TOMATO)), createSimpleDropTable(regBlocks.get(block(ID_TOMATO))));
     }
 
     protected void registerDefaultCropTable(String id) {
