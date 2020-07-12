@@ -67,19 +67,19 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)
-                .addIngredient(reg.get(ID_WRENCH))
+                .addIngredient(reg.get("wrench"))
                 .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
                 .build(consumer, ID_THERMAL + ":split_prismarine");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
                 .addIngredient(Items.PRISMARINE_BRICKS)
-                .addIngredient(reg.get(ID_WRENCH))
+                .addIngredient(reg.get("wrench"))
                 .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
                 .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
                 .addIngredient(Items.QUARTZ_BLOCK)
-                .addIngredient(reg.get(ID_WRENCH))
+                .addIngredient(reg.get("wrench"))
                 .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
                 .build(consumer, ID_THERMAL + ":split_quartz_block");
 
@@ -98,25 +98,19 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 
         generateStorageRecipes(reg, consumer, "copper");
-        generateStorageRecipes(reg, consumer, "tin");
         generateStorageRecipes(reg, consumer, "silver");
         generateStorageRecipes(reg, consumer, "lead");
         generateStorageRecipes(reg, consumer, "nickel");
-        generateStorageRecipes(reg, consumer, "platinum");
 
-        generateStorageRecipes(reg, consumer, "bronze");
         generateStorageRecipes(reg, consumer, "electrum");
         generateStorageRecipes(reg, consumer, "invar");
         generateStorageRecipes(reg, consumer, "constantan");
 
         generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
         generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 0.8F);
         generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
         generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "platinum", 1.0F);
 
-        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);

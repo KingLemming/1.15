@@ -4,7 +4,6 @@ include 'CoFHCore'
 include 'ArchersParadox'
 include 'Ensorcellation'
 include 'OMGourd'
-//include 'Quartermastery'
 
 include 'ThermalCore'
 include 'ThermalCultivation'
@@ -14,8 +13,5 @@ include 'ThermalExpansion'
 include 'ThermalFoundation'
 include 'ThermalInnovation'
 include 'ThermalLocomotion'
-
-include 'CoFHPotions'
-include 'CoFHTools'
 
 include 'Workspace'

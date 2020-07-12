@@ -93,11 +93,9 @@ public class TCoreBlocks {
         registerResource(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerResource(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
-        registerResource(ID_TIN_ORE, () -> new OreBlockCoFH(1));
         registerResource(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
         registerResource(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
         registerResource(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
-        registerResource(ID_PLATINUM_ORE, () -> new OreBlockCoFH(3));
 
         registerResource(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
         registerResource(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
@@ -117,16 +115,13 @@ public class TCoreBlocks {
             }
         });
         registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_PLATINUM_BLOCK, () -> new MetalStorageBlock(2));
 
         registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
         registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
 
-        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));

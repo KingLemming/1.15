@@ -4,14 +4,13 @@ import cofh.core.client.gui.element.panel.PanelConfiguration;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
-import cofh.thermal.core.tileentity.ReconfigurableTileBase;
 import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
 import cofh.thermal.expansion.tileentity.device.DeviceItemBufferTile;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.core.util.GuiHelper.*;
+import static cofh.core.util.GuiHelper.generateTabInfo;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferContainer> {

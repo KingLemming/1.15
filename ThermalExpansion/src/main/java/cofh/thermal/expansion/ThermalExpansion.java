@@ -1,6 +1,5 @@
 package cofh.thermal.expansion;
 
-import cofh.thermal.expansion.client.gui.device.DeviceItemBufferScreen;
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.data.*;

@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "cofh_tools:item/tools/constantan_pickaxe"
-  }
-}

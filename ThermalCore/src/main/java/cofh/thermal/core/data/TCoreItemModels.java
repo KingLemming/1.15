@@ -39,13 +39,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         gemSet(reg, "emerald", true);
 
         metalSet(reg, "copper");
-        metalSet(reg, "tin");
         metalSet(reg, "silver");
         metalSet(reg, "lead");
         metalSet(reg, "nickel");
-        metalSet(reg, "platinum");
 
-        metalSet(reg, "bronze");
         metalSet(reg, "electrum");
         metalSet(reg, "invar");
         metalSet(reg, "constantan");
@@ -124,11 +121,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_SULFUR_ORE));
 
         blockItem(reg.getSup(ID_COPPER_ORE));
-        blockItem(reg.getSup(ID_TIN_ORE));
         blockItem(reg.getSup(ID_SILVER_ORE));
         blockItem(reg.getSup(ID_LEAD_ORE));
         blockItem(reg.getSup(ID_NICKEL_ORE));
-        blockItem(reg.getSup(ID_PLATINUM_ORE));
 
         blockItem(reg.getSup(ID_RUBY_ORE));
         blockItem(reg.getSup(ID_SAPPHIRE_ORE));
@@ -139,13 +134,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_SULFUR_BLOCK));
 
         blockItem(reg.getSup(ID_COPPER_BLOCK));
-        blockItem(reg.getSup(ID_TIN_BLOCK));
         blockItem(reg.getSup(ID_SILVER_BLOCK));
         blockItem(reg.getSup(ID_LEAD_BLOCK));
         blockItem(reg.getSup(ID_NICKEL_BLOCK));
-        blockItem(reg.getSup(ID_PLATINUM_BLOCK));
 
-        blockItem(reg.getSup(ID_BRONZE_BLOCK));
         blockItem(reg.getSup(ID_ELECTRUM_BLOCK));
         blockItem(reg.getSup(ID_INVAR_BLOCK));
         blockItem(reg.getSup(ID_CONSTANTAN_BLOCK));

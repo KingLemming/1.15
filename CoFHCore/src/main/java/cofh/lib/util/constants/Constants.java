@@ -44,9 +44,6 @@ public class Constants {
 
     public static final String ID_COFH_CORE = "cofh_core";
 
-    public static final String ID_COFH_POTIONS = "cofh_potions";
-    public static final String ID_COFH_TOOLS = "cofh_tools";
-
     public static final String ID_THERMAL = "thermal";
 
     public static final String ID_THERMAL_ATOMICS = "thermal_atomics";
@@ -63,7 +60,6 @@ public class Constants {
     public static final String ID_OMGOURD = "omgourd";
     public static final String ID_ENSTORAGEMENT = "enstoragement";
     public static final String ID_ORBULATION = "orbulation";
-    public static final String ID_QUARTERMASTERY = "quartermastery";
     public static final String ID_REDSTONE_ARSENAL = "redstonearsenal";
     // endregion
 

@@ -63,9 +63,6 @@ minecraft {
                 OMGourd {
                     source project(':OMGourd').sourceSets.main
                 }
-//                Quartermastery {
-//                    source project(':Quartermastery').sourceSets.main
-//                }
 
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
@@ -90,13 +87,6 @@ minecraft {
                 }
                 ThermalLocomotion {
                     source project(':ThermalLocomotion').sourceSets.main
-                }
-
-                CoFHPotions {
-                    source project(':CoFHPotions').sourceSets.main
-                }
-                CoFHTools {
-                    source project(':CoFHTools').sourceSets.main
                 }
             }
         }
@@ -127,9 +117,6 @@ minecraft {
                 OMGourd {
                     source project(':OMGourd').sourceSets.main
                 }
-//                Quartermastery {
-//                    source project(':Quartermastery').sourceSets.main
-//                }
 
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
@@ -154,13 +141,6 @@ minecraft {
                 }
                 ThermalLocomotion {
                     source project(':ThermalLocomotion').sourceSets.main
-                }
-
-                CoFHPotions {
-                    source project(':CoFHPotions').sourceSets.main
-                }
-                CoFHTools {
-                    source project(':CoFHTools').sourceSets.main
                 }
             }
         }
@@ -193,9 +173,6 @@ minecraft {
                 OMGourd {
                     source project(':OMGourd').sourceSets.main
                 }
-                // Quartermastery {
-                //     source project(':Quartermastery').sourceSets.main
-                // }
 
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
@@ -221,13 +198,6 @@ minecraft {
                 ThermalLocomotion {
                     source project(':ThermalLocomotion').sourceSets.main
                 }
-
-                CoFHPotions {
-                    source project(':CoFHPotions').sourceSets.main
-                }
-                CoFHTools {
-                    source project(':CoFHTools').sourceSets.main
-                }
             }
         }
     }
@@ -243,7 +213,6 @@ dependencies {
     compile project(':ArchersParadox')
     compile project(':Ensorcellation')
     compile project(':OMGourd')
-    //compile project(':Quartermastery')
 
     compile project(':ThermalCore')
     compile project(':ThermalCultivation')
@@ -253,9 +222,6 @@ dependencies {
     compile project(':ThermalFoundation')
     compile project(':ThermalInnovation')
     compile project(':ThermalLocomotion')
-
-    compile project(':CoFHPotions')
-    compile project(':CoFHTools')
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
