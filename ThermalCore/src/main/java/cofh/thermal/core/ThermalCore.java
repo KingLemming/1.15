@@ -7,7 +7,7 @@ import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.BasalzRenderer;
 import cofh.thermal.core.client.renderer.entity.BlitzRenderer;
 import cofh.thermal.core.client.renderer.entity.BlizzRenderer;
-import cofh.thermal.core.client.renderer.model.MachineModelLoader;
+import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.data.*;
@@ -121,7 +121,7 @@ public class ThermalCore {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
 
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "machine"), new MachineModelLoader());
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new ReconfigurableModelLoader());
 
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);

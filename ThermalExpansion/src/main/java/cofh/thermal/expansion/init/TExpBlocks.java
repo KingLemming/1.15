@@ -5,8 +5,10 @@ import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.TileBlockActive;
 import cofh.thermal.core.block.TileBlockDynamo;
 import cofh.thermal.core.common.ThermalConfig;
+import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
 import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
+import cofh.thermal.expansion.tileentity.device.DeviceItemBufferTile;
 import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
 import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
@@ -72,6 +74,9 @@ public class TExpBlocks {
         registerAugBlock(ID_DYNAMO_NUMISMATIC, () -> new TileBlockDynamo(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoNumismaticTile::new), dynamoAugs, dynamoValidator);
         registerAugBlock(ID_DYNAMO_LAPIDARY, () -> new TileBlockDynamo(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(7), DynamoLapidaryTile::new), dynamoAugs, dynamoValidator);
 
+        // Unaugmented
+
+        //registerBlock(ID_DEVICE_ITEM_BUFFER, () -> new TileBlock4Way(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), DeviceItemBufferTile::new));
         registerBlock(ID_DEVICE_ROCK_GEN, () -> new TileBlockActive(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), DeviceRockGenTile::new));
         registerBlock(ID_DEVICE_WATER_GEN, () -> new TileBlockActive(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0), DeviceWaterGenTile::new));
     }
@@ -97,6 +102,7 @@ public class TExpBlocks {
         CONTAINERS.register(ID_DYNAMO_NUMISMATIC, () -> IForgeContainerType.create((windowId, inv, data) -> new DynamoNumismaticContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
         CONTAINERS.register(ID_DYNAMO_LAPIDARY, () -> IForgeContainerType.create((windowId, inv, data) -> new DynamoLapidaryContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
 
+        //CONTAINERS.register(ID_DEVICE_ITEM_BUFFER, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceItemBufferContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
     }
 
     private static void registerTileEntities() {
@@ -120,9 +126,9 @@ public class TExpBlocks {
         TILE_ENTITIES.register(ID_DYNAMO_NUMISMATIC, () -> TileEntityType.Builder.create(DynamoNumismaticTile::new, DYNAMO_NUMISMATIC_BLOCK).build(null));
         TILE_ENTITIES.register(ID_DYNAMO_LAPIDARY, () -> TileEntityType.Builder.create(DynamoLapidaryTile::new, DYNAMO_LAPIDARY_BLOCK).build(null));
 
+        //TILE_ENTITIES.register(ID_DEVICE_ITEM_BUFFER, () -> TileEntityType.Builder.create(DeviceItemBufferTile::new, DEVICE_ITEM_BUFFER_BLOCK).build(null));
         TILE_ENTITIES.register(ID_DEVICE_ROCK_GEN, () -> TileEntityType.Builder.create(DeviceRockGenTile::new, DEVICE_ROCK_GEN_BLOCK).build(null));
         TILE_ENTITIES.register(ID_DEVICE_WATER_GEN, () -> TileEntityType.Builder.create(DeviceWaterGenTile::new, DEVICE_WATER_GEN_BLOCK).build(null));
-
     }
     // endregion
 }

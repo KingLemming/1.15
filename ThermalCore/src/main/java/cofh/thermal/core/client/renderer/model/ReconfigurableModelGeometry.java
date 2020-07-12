@@ -13,11 +13,11 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.function.Function;
 
-public class MachineModelGeometry implements ISimpleModelGeometry<MachineModelGeometry> {
+public class ReconfigurableModelGeometry implements ISimpleModelGeometry<ReconfigurableModelGeometry> {
 
     private final ModelLoaderRegistry.VanillaProxy model;
 
-    public MachineModelGeometry(ModelLoaderRegistry.VanillaProxy model) {
+    public ReconfigurableModelGeometry(ModelLoaderRegistry.VanillaProxy model) {
 
         this.model = model;
     }
@@ -25,7 +25,7 @@ public class MachineModelGeometry implements ISimpleModelGeometry<MachineModelGe
     @Override
     public IBakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, IModelTransform modelTransform, ItemOverrideList overrides, ResourceLocation modelLocation) {
 
-        return new MachineBakedModel(model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation));
+        return new ReconfigurableBakedModel(model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation));
     }
 
     @Override

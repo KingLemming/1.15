@@ -1,7 +1,9 @@
 package cofh.thermal.expansion.init;
 
+import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
 import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
+import cofh.thermal.expansion.tileentity.device.DeviceItemBufferTile;
 import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
 import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
@@ -23,6 +25,8 @@ public class TExpReferences {
     public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
     public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
 
+    public static final String ID_DEVICE_ITEM_BUFFER = ID_THERMAL + ":device_item_buffer";
+
     @ObjectHolder(ID_DEVICE_ROCK_GEN)
     public static final Block DEVICE_ROCK_GEN_BLOCK = null;
     @ObjectHolder(ID_DEVICE_ROCK_GEN)
@@ -32,6 +36,13 @@ public class TExpReferences {
     public static final Block DEVICE_WATER_GEN_BLOCK = null;
     @ObjectHolder(ID_DEVICE_WATER_GEN)
     public static final TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE = null;
+
+    @ObjectHolder(ID_DEVICE_ITEM_BUFFER)
+    public static final Block DEVICE_ITEM_BUFFER_BLOCK = null;
+    @ObjectHolder(ID_DEVICE_ITEM_BUFFER)
+    public static final TileEntityType<DeviceItemBufferTile> DEVICE_ITEM_BUFFER_TILE = null;
+    @ObjectHolder(ID_DEVICE_ITEM_BUFFER)
+    public static final ContainerType<DeviceItemBufferContainer> DEVICE_ITEM_BUFFER_CONTAINER = null;
     // endregion
 
     // region DYNAMOS

@@ -1,5 +1,5 @@
 {
-  "loader": "thermal:machine",
+  "loader": "thermal:reconfigurable",
   "parent": "block/block",
   "elements": [
     {

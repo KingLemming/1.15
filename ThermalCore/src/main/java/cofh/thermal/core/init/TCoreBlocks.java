@@ -78,6 +78,11 @@ public class TCoreBlocks {
             }
         });
         registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
+
+        registerBlock(ID_APPLE_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(ID_BEETROOT_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(ID_CARROT_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(ID_POTATO_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     }
 
     private static void registerResources() {

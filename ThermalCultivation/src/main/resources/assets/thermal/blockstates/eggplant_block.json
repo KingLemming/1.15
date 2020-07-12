@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "thermal:block/eggplant_block"
-    }
+    "": [
+      {
+        "model": "thermal:block/eggplant_block"
+      },
+      {
+        "model": "thermal:block/eggplant_block",
+        "y": 90
+      },
+      {
+        "model": "thermal:block/eggplant_block",
+        "y": 180
+      },
+      {
+        "model": "thermal:block/eggplant_block",
+        "y": 270
+      }
+    ]
   }
 }

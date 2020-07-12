@@ -41,7 +41,7 @@ import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class MachineTileBase extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
+public abstract class ReconfigurableTileBase extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 
     public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
@@ -54,7 +54,7 @@ public abstract class MachineTileBase extends ThermalTileBase implements IReconf
     protected ReconfigControlModule reconfigControl = new ReconfigControlModule(this);
     protected TransferControlModule transferControl = new TransferControlModule(this);
 
-    public MachineTileBase(TileEntityType<?> tileEntityTypeIn) {
+    public ReconfigurableTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
     }
@@ -151,12 +151,12 @@ public abstract class MachineTileBase extends ThermalTileBase implements IReconf
             if (reconfigControl.getSideConfig(side).isInput()) {
                 for (ItemStorageCoFH slot : inputSlots()) {
                     if (slot.getSpace() > 0) {
-                        InventoryHelper.extractFromAdjacent(this, slot, slot.getSpace(), side);
+                        InventoryHelper.extractFromAdjacent(this, slot, Math.min(getInputItemAmount(), slot.getSpace()), side);
                     }
                 }
                 for (FluidStorageCoFH tank : inputTanks()) {
                     if (tank.getSpace() > 0) {
-                        FluidHelper.extractFromAdjacent(this, tank, side);
+                        FluidHelper.extractFromAdjacent(this, tank, Math.min(getInputFluidAmount(), tank.getSpace()), side);
                     }
                 }
                 if (!updateTracker) {
@@ -180,10 +180,10 @@ public abstract class MachineTileBase extends ThermalTileBase implements IReconf
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isOutput()) {
                 for (ItemStorageCoFH slot : outputSlots()) {
-                    InventoryHelper.insertIntoAdjacent(this, slot, 64, side);
+                    InventoryHelper.insertIntoAdjacent(this, slot, getOutputItemAmount(), side);
                 }
                 for (FluidStorageCoFH tank : outputTanks()) {
-                    FluidHelper.insertIntoAdjacent(this, tank, side);
+                    FluidHelper.insertIntoAdjacent(this, tank, getOutputFluidAmount(), side);
                 }
                 if (!updateTracker) {
                     newTracker = side.ordinal();
@@ -192,6 +192,26 @@ public abstract class MachineTileBase extends ThermalTileBase implements IReconf
             }
         }
         outputTracker = newTracker;
+    }
+
+    protected int getInputItemAmount() {
+
+        return 64;
+    }
+
+    protected int getOutputItemAmount() {
+
+        return 64;
+    }
+
+    protected int getInputFluidAmount() {
+
+        return 1000;
+    }
+
+    protected int getOutputFluidAmount() {
+
+        return 1000;
     }
 
     @Override

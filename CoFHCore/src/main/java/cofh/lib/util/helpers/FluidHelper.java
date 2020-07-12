@@ -111,13 +111,12 @@ public class FluidHelper {
     // endregion
 
     // region BLOCK TRANSFER
-    public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
-
-        return tank.getFluidStack().isEmpty() ? extractFromAdjacent(tile, tank, tank.getCapacity(), side) : extractFromAdjacent(tile, tank, new FluidStack(tank.getFluidStack(), tank.getSpace()), side);
-    }
-
     public static boolean extractFromAdjacent(TileEntity tile, FluidStorageCoFH tank, int amount, Direction side) {
 
+        amount = Math.min(amount, tank.getSpace());
+        if (!tank.getFluidStack().isEmpty()) {
+            return extractFromAdjacent(tile, tank, new FluidStack(tank.getFluidStack(), amount), side);
+        }
         TileEntity adjTile = BlockHelper.getAdjacentTileEntity(tile, side);
         Direction opposite = side.getOpposite();
 
@@ -152,16 +151,13 @@ public class FluidHelper {
         return false;
     }
 
-    public static boolean insertIntoAdjacent(TileEntity tile, FluidStorageCoFH tank, Direction side) {
-
-        return insertIntoAdjacent(tile, tank, tank.getAmount(), side);
-    }
-
     public static boolean insertIntoAdjacent(TileEntity tile, FluidStorageCoFH tank, int amount, Direction side) {
 
         if (tank.isEmpty()) {
             return false;
         }
+        amount = Math.min(amount, tank.getAmount());
+
         TileEntity adjTile = BlockHelper.getAdjacentTileEntity(tile, side);
         Direction opposite = side.getOpposite();
 

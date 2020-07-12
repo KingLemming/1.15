@@ -1,6 +1,7 @@
 package cofh.thermal.cultivation.init;
 
 import cofh.core.util.ProxyUtils;
+import cofh.lib.block.Block4Way;
 import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
@@ -61,15 +62,13 @@ public class TCulBlocks {
 
         // PERENNIAL
         registerPerennial(ID_BELL_PEPPER);
+        registerPerennial(ID_COFFEE);
         registerPerennial(ID_EGGPLANT);
         registerPerennial(ID_GREEN_BEAN);
         registerPerennial(ID_PEANUT);
         registerPerennial(ID_STRAWBERRY);
-        registerPerennial(ID_TOMATO);
-
-        // BREWING
-        registerPerennial(ID_COFFEE);
         registerPerennial(ID_TEA);
+        registerPerennial(ID_TOMATO);
 
         // STEM
         registerBlock(ID_FROST_MELON, () -> new FrostMelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.SNOW).tickRandomly()), Rarity.UNCOMMON);
@@ -86,21 +85,22 @@ public class TCulBlocks {
     private static void registerStorage() {
 
         registerBlock(block(ID_BARLEY), () -> new HayBlock(Block.Properties.create(Material.ORGANIC, MaterialColor.GOLD).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
-
-        registerBlock(block(ID_BELL_PEPPER), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-        registerBlock(block(ID_EGGPLANT), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.PURPLE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-        registerBlock(block(ID_GREEN_BEAN), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_ONION), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_RADISH), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_SADIROOT), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_SPINACH), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+
+        registerBlock(block(ID_BELL_PEPPER), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(block(ID_EGGPLANT), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.PURPLE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(block(ID_GREEN_BEAN), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_STRAWBERRY), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_TOMATO), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
 
-        registerBlock(block(ID_COFFEE), () -> new Block(Block.Properties.create(Material.WOOL, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
-        registerBlock(block(ID_PEANUT), () -> new Block(Block.Properties.create(Material.WOOL, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
-        registerBlock(block(ID_RICE), () -> new Block(Block.Properties.create(Material.WOOL, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
-        registerBlock(block(ID_TEA), () -> new Block(Block.Properties.create(Material.WOOL, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
+        registerBlock(block(ID_RICE), () -> new Block4Way(Block.Properties.create(Material.WOOL, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
+
+        registerBlock(block(ID_COFFEE), () -> new Block4Way(Block.Properties.create(Material.WOOL, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
+        registerBlock(block(ID_PEANUT), () -> new Block4Way(Block.Properties.create(Material.WOOL, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
+        registerBlock(block(ID_TEA), () -> new Block4Way(Block.Properties.create(Material.WOOL, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     }
 
     private static void registerTileBlocks() {

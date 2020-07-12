@@ -129,12 +129,13 @@ public class Constants {
     public static final int PACKET_CONTAINER = 24;
     public static final int PACKET_SECURITY = 25;
     public static final int PACKET_FILTER = 26;
-    public static final int PACKET_STORAGE_CLEAR = 27;
 
-    public static final int PACKET_SECURITY_CONTROL = 32;
-    public static final int PACKET_REDSTONE_CONTROL = 33;
-    public static final int PACKET_TRANSFER_CONTROL = 34;
-    public static final int PACKET_SIDE_CONFIG = 35;
+    public static final int PACKET_CONFIG = 32;
+    public static final int PACKET_SECURITY_CONTROL = 33;
+    public static final int PACKET_REDSTONE_CONTROL = 34;
+    public static final int PACKET_TRANSFER_CONTROL = 35;
+    public static final int PACKET_SIDE_CONFIG = 36;
+    public static final int PACKET_STORAGE_CLEAR = 37;
 
     public static final int PACKET_ITEM_MODE_CHANGE = 64;
     // endregion

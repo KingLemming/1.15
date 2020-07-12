@@ -77,6 +77,9 @@ public class ManagedItemInv extends SimpleItemInv {
             case INTERNAL:
                 internalSlots.add(slot);
                 break;
+            case ACCESSIBLE:
+                inputSlots.add(slot);
+                outputSlots.add(slot);
             default:
         }
     }

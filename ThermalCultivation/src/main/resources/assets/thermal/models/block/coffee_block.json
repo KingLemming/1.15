@@ -1,8 +1,12 @@
 {
-  "parent": "block/cube_bottom_top",
+  "parent": "block/cube",
   "textures": {
-    "top": "thermal:block/storage/coffee_block_top",
-    "bottom": "thermal:block/storage/coffee_block_bottom",
-    "side": "thermal:block/storage/coffee_block_side"
+    "particle": "thermal:block/storage/coffee_block_top",
+    "down": "thermal:block/storage/coffee_block_bottom",
+    "up": "thermal:block/storage/coffee_block_top",
+    "north": "thermal:block/storage/coffee_block_side_1",
+    "east": "thermal:block/storage/coffee_block_side_2",
+    "south": "thermal:block/storage/coffee_block_side_2",
+    "west": "thermal:block/storage/coffee_block_side_2"
   }
 }

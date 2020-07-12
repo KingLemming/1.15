@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "thermal:block/sadiroot_block"
-    }
+    "": [
+      {
+        "model": "thermal:block/sadiroot_block"
+      },
+      {
+        "model": "thermal:block/sadiroot_block",
+        "y": 90
+      },
+      {
+        "model": "thermal:block/sadiroot_block",
+        "y": 180
+      },
+      {
+        "model": "thermal:block/sadiroot_block",
+        "y": 270
+      }
+    ]
   }
 }

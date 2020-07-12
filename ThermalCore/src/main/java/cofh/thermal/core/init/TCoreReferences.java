@@ -29,6 +29,11 @@ public class TCoreReferences {
     public static final String ID_SUGAR_CANE_BLOCK = "sugar_cane_block";
     public static final String ID_GUNPOWDER_BLOCK = "gunpowder_block";
 
+    public static final String ID_APPLE_BLOCK = "apple_block";
+    public static final String ID_BEETROOT_BLOCK = "beetroot_block";
+    public static final String ID_CARROT_BLOCK = "carrot_block";
+    public static final String ID_POTATO_BLOCK = "potato_block";
+
     public static final String ID_APATITE_ORE = "apatite_ore";
     public static final String ID_CINNABAR_ORE = "cinnabar_ore";
     public static final String ID_NITER_ORE = "niter_ore";

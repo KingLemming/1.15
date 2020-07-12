@@ -1,9 +1,6 @@
 package cofh.thermal.cultivation.block;
 
-import net.minecraft.block.AttachedStemBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -14,7 +11,11 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
@@ -43,6 +44,15 @@ public class SoilBlock extends Block {
 
         super.fillStateContainer(builder);
         builder.add(TILLED);
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+
+        if (!state.isValidPosition(worldIn, pos)) {
+            worldIn.setBlockState(pos, state.with(TILLED, false), 2);
+        }
+        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
     }
 
     @Override
@@ -109,6 +119,19 @@ public class SoilBlock extends Block {
     public boolean isTransparent(BlockState state) {
 
         return state.get(TILLED);
+    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+
+        BlockState blockstate = worldIn.getBlockState(pos.up());
+        return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public boolean isViewBlocking(BlockState state, IBlockReader worldIn, BlockPos pos) {
+
+        return true;
     }
 
 }

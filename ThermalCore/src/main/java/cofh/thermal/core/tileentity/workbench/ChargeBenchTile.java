@@ -12,7 +12,6 @@ import net.minecraft.tileentity.ITickableTileEntity;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.ACCESSIBLE;
 import static cofh.lib.util.StorageGroup.INTERNAL;
 import static cofh.thermal.core.init.TCoreReferences.CHARGE_BENCH_TILE;
 
@@ -31,7 +30,7 @@ public class ChargeBenchTile extends ThermalTileBase implements ITickableTileEnt
 
         for (int i = 0; i < benchSlots.length; ++i) {
             benchSlots[i] = new ItemStorageCoFH(EnergyHelper::hasEnergyHandlerCap);
-            inventory.addSlot(benchSlots[i], ACCESSIBLE);
+            inventory.addSlot(benchSlots[i], INTERNAL);
         }
         inventory.addSlot(chargeSlot, INTERNAL);
 

@@ -1,5 +1,6 @@
 package cofh.lib.util.control;
 
+import cofh.core.util.SocialUtils;
 import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
@@ -60,12 +61,12 @@ public interface ISecurable {
                 case PUBLIC:
                     return true;
                 case PRIVATE:
-                    // return ownerID.equals(otherID);
-                case FRIENDS:
-                    // TODO: Fix
-                    // return ownerID.equals(otherID) || FriendRegistry.playerHasAccess(owner, player);
-                case TEAM:
                     return ownerID.equals(otherID);
+                case FRIENDS:
+                    return ownerID.equals(otherID) || SocialUtils.isFriendOrSelf(owner, player.getGameProfile().getName());
+                case TEAM:
+                    // TODO: Fix
+                    return ownerID.equals(otherID); // || TeamRegistry.playerHasAccess(owner, player);
                 default:
                     return true;
             }

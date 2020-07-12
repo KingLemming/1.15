@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "thermal:block/tea_block"
+    },
+    "facing=south": {
+      "model": "thermal:block/tea_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "thermal:block/tea_block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "thermal:block/tea_block",
+      "y": 90
     }
   }
 }
+

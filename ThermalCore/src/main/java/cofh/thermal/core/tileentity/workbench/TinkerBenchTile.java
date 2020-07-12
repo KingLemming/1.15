@@ -15,6 +15,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nullable;
@@ -113,7 +115,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
             tankSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
-                        c.drain(tank.fill(c.getFluidInTank(0), EXECUTE), EXECUTE);
+                        c.drain(tank.fill(new FluidStack(c.getFluidInTank(0), FluidAttributes.BUCKET_VOLUME), EXECUTE), EXECUTE);
                         tankSlot.setItemStack(c.getContainer());
                     });
         }
@@ -121,7 +123,7 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
             tinkerSlot.getItemStack()
                     .getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)
                     .ifPresent(c -> {
-                        tank.drain(c.fill(tank.getFluidStack(), EXECUTE), EXECUTE);
+                        tank.drain(c.fill(new FluidStack(tank.getFluidStack(), FluidAttributes.BUCKET_VOLUME), EXECUTE), EXECUTE);
                         tinkerSlot.setItemStack(c.getContainer());
                     });
         }

@@ -25,7 +25,7 @@ import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
-public abstract class MachineTileProcess extends MachineTileBase implements ITickableTileEntity, IMachineInventory {
+public abstract class MachineTileProcess extends ReconfigurableTileBase implements ITickableTileEntity, IMachineInventory {
 
     protected static final int BASE_PROCESS_TICK = 20;
     protected static final int BASE_ENERGY = 20000;

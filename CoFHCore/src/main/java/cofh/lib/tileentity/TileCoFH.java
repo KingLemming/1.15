@@ -183,6 +183,11 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
         return this.write(new CompoundNBT());
     }
 
+    public PacketBuffer getConfigPacket(PacketBuffer buffer) {
+
+        return buffer;
+    }
+
     public PacketBuffer getControlPacket(PacketBuffer buffer) {
 
         return buffer;
@@ -201,6 +206,10 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
     public PacketBuffer getStatePacket(PacketBuffer buffer) {
 
         return buffer;
+    }
+
+    public void handleConfigPacket(PacketBuffer buffer) {
+
     }
 
     public void handleControlPacket(PacketBuffer buffer) {

@@ -106,8 +106,6 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         } else {
             tooltip.add(new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius).applyTextStyle(TextFormatting.ITALIC));
         }
-        tooltip.add(new StringTextComponent("" + getMode(stack)));
-
         if (getNumModes(stack) > 1) {
             tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
         }

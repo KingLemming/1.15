@@ -25,6 +25,7 @@ public class TCulReferences {
     public static final String ID_SPINACH = "spinach";
 
     public static final String ID_BELL_PEPPER = "bell_pepper";
+    public static final String ID_CORN = "corn";
     public static final String ID_EGGPLANT = "eggplant";
     public static final String ID_GREEN_BEAN = "green_bean";
     public static final String ID_PEANUT = "peanut";
@@ -32,6 +33,7 @@ public class TCulReferences {
     public static final String ID_TOMATO = "tomato";
 
     public static final String ID_COFFEE = "coffee";
+    public static final String ID_HOPS = "hops";
     public static final String ID_TEA = "tea";
 
     public static final String ID_FROST_MELON = ID_THERMAL + ":frost_melon";

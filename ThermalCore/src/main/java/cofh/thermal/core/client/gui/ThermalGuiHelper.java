@@ -6,7 +6,7 @@ import cofh.core.client.gui.element.ElementScaled;
 import cofh.core.client.gui.element.ElementScaledFluid;
 import cofh.core.util.GuiHelper;
 import cofh.lib.util.helpers.BlockHelper;
-import cofh.thermal.core.tileentity.MachineTileBase;
+import cofh.thermal.core.tileentity.ReconfigurableTileBase;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.util.ResourceLocation;
 
@@ -25,7 +25,7 @@ public class ThermalGuiHelper {
     }
 
     // region MACHINE CONFIG
-    public static ElementConditionalLayered createDefaultMachineConfigTop(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigTop(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_top";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
@@ -37,7 +37,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered createDefaultMachineConfigBottom(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigBottom(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_bottom";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
@@ -49,7 +49,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered createDefaultMachineConfigLeft(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigLeft(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
@@ -61,7 +61,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered createDefaultMachineConfigRight(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigRight(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
@@ -73,7 +73,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered createDefaultMachineConfigFace(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigFace(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String texture = ID_THERMAL + ":block/machines/machine_" + machine;
         String activeTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_active";
@@ -83,7 +83,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered createDefaultMachineConfigBack(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered createDefaultMachineConfigBack(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         String specificTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_side";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
@@ -95,7 +95,7 @@ public class ThermalGuiHelper {
                 .setSize(16, 16);
     }
 
-    public static ElementConditionalLayered[] createDefaultMachineConfigs(IGuiAccess gui, String machine, MachineTileBase tile) {
+    public static ElementConditionalLayered[] createDefaultMachineConfigs(IGuiAccess gui, String machine, ReconfigurableTileBase tile) {
 
         return new ElementConditionalLayered[]{
                 createDefaultMachineConfigTop(gui, machine, tile),

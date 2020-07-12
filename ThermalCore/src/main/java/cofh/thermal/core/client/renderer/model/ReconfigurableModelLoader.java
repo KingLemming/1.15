@@ -6,7 +6,7 @@ import net.minecraft.resources.IResourceManager;
 import net.minecraftforge.client.model.IModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 
-public class MachineModelLoader implements IModelLoader<MachineModelGeometry> {
+public class ReconfigurableModelLoader implements IModelLoader<ReconfigurableModelGeometry> {
 
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager) {
@@ -14,9 +14,9 @@ public class MachineModelLoader implements IModelLoader<MachineModelGeometry> {
     }
 
     @Override
-    public MachineModelGeometry read(JsonDeserializationContext deserializationContext, JsonObject modelContents) {
+    public ReconfigurableModelGeometry read(JsonDeserializationContext deserializationContext, JsonObject modelContents) {
 
-        return new MachineModelGeometry(ModelLoaderRegistry.VanillaProxy.Loader.INSTANCE.read(deserializationContext, modelContents));
+        return new ReconfigurableModelGeometry(ModelLoaderRegistry.VanillaProxy.Loader.INSTANCE.read(deserializationContext, modelContents));
     }
 
 }
