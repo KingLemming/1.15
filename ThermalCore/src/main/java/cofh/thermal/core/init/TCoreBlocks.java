@@ -52,8 +52,8 @@ public class TCoreBlocks {
     public static void setup() {
 
         FireBlock fire = (FireBlock) Blocks.FIRE;
-        fire.setFireInfo(BLOCKS.get(ID_CHARCOAL_BLOCK), 5, 5);
         fire.setFireInfo(BLOCKS.get(ID_BAMBOO_BLOCK), 60, 20);
+        fire.setFireInfo(BLOCKS.get(ID_CHARCOAL_BLOCK), 5, 5);
         fire.setFireInfo(BLOCKS.get(ID_SUGAR_CANE_BLOCK), 60, 20);
         fire.setFireInfo(BLOCKS.get(ID_GUNPOWDER_BLOCK), 15, 100);
     }
@@ -62,14 +62,7 @@ public class TCoreBlocks {
     private static void registerVanilla() {
 
         registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)));
-        registerBlock(ID_BAMBOO_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)) {
-
-            @Override
-            public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-
-                entityIn.onLivingFall(fallDistance, 0.8F);
-            }
-        });
+        registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
         registerBlock(ID_SUGAR_CANE_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.CROP)) {
 
             @Override
@@ -78,12 +71,18 @@ public class TCoreBlocks {
                 entityIn.onLivingFall(fallDistance, 0.6F);
             }
         });
-        registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
+        registerBlock(ID_BAMBOO_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)) {
 
+            @Override
+            public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+
+                entityIn.onLivingFall(fallDistance, 0.8F);
+            }
+        });
         registerBlock(ID_APPLE_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
-        registerBlock(ID_BEETROOT_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(ID_CARROT_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(ID_POTATO_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(ID_BEETROOT_BLOCK, () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
     }
 
     private static void registerResources() {
@@ -94,9 +93,9 @@ public class TCoreBlocks {
         registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
-        registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
         registerBlock(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
         registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
 
         registerBlock(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
         registerBlock(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
@@ -116,9 +115,9 @@ public class TCoreBlocks {
             }
         });
         registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
 
         registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
         registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
@@ -127,6 +126,8 @@ public class TCoreBlocks {
         registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));
 
+        registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
             @Override
@@ -141,13 +142,12 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-
-        registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
-        registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
     }
 
     private static void registerBuildingBlocks() {
 
+        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
@@ -162,9 +162,6 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
-        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
     }
 
     private static void registerTileBlocks() {

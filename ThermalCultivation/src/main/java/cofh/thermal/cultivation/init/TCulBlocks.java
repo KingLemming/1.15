@@ -62,13 +62,16 @@ public class TCulBlocks {
 
         // PERENNIAL
         registerPerennial(ID_BELL_PEPPER);
-        registerPerennial(ID_COFFEE);
+        // registerPerennial(ID_CORN);
         registerPerennial(ID_EGGPLANT);
         registerPerennial(ID_GREEN_BEAN);
         registerPerennial(ID_PEANUT);
         registerPerennial(ID_STRAWBERRY);
-        registerPerennial(ID_TEA);
         registerPerennial(ID_TOMATO);
+
+        registerPerennial(ID_COFFEE);
+        // registerPerennial(ID_HOPS);
+        registerPerennial(ID_TEA);
 
         // STEM
         registerBlock(ID_FROST_MELON, () -> new FrostMelonBlock(Block.Properties.create(Material.GOURD, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.SNOW).tickRandomly()), Rarity.UNCOMMON);
@@ -91,8 +94,10 @@ public class TCulBlocks {
         registerBlock(block(ID_SPINACH), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
 
         registerBlock(block(ID_BELL_PEPPER), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(block(ID_CORN), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.YELLOW).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_EGGPLANT), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.PURPLE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_GREEN_BEAN), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+        registerBlock(block(ID_HOPS), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.GREEN).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_STRAWBERRY), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(block(ID_TOMATO), () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
 

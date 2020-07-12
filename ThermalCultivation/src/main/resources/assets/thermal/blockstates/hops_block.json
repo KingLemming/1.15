@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "thermal:block/hops_block"
+      },
+      {
+        "model": "thermal:block/hops_block",
+        "y": 90
+      },
+      {
+        "model": "thermal:block/hops_block",
+        "y": 180
+      },
+      {
+        "model": "thermal:block/hops_block",
+        "y": 270
+      }
+    ]
+  }
+}

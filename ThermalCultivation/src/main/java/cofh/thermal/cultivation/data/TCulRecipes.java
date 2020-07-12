@@ -89,8 +89,10 @@ public class TCulRecipes extends RecipeProviderCoFH {
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_BARLEY)), regItems.get(ID_BARLEY));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_BELL_PEPPER)), regItems.get(ID_BELL_PEPPER));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_COFFEE)), regItems.get(ID_COFFEE));
+        generateStorageRecipes(regItems, consumer, regItems.get(block(ID_CORN)), regItems.get(ID_CORN));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_EGGPLANT)), regItems.get(ID_EGGPLANT));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_GREEN_BEAN)), regItems.get(ID_GREEN_BEAN));
+        generateStorageRecipes(regItems, consumer, regItems.get(block(ID_HOPS)), regItems.get(ID_HOPS));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_ONION)), regItems.get(ID_ONION));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_PEANUT)), regItems.get(ID_PEANUT));
         generateStorageRecipes(regItems, consumer, regItems.get(block(ID_RADISH)), regItems.get(ID_RADISH));

@@ -73,20 +73,20 @@ public class TCoreItems {
         Rarity rarity = Rarity.UNCOMMON;
 
         registerMetalSet("copper");
-        registerMetalSet("silver");
         registerMetalSet("lead");
         registerMetalSet("nickel");
-
-        registerMetalSet("electrum");
-        registerMetalSet("invar");
-        registerMetalSet("constantan");
-
-        registerMetalSet("signalum", group, rarity);
-        registerMetalSet("lumium", group, rarity);
-        registerMetalSet("enderium", group, rarity);
+        registerMetalSet("silver");
 
         registerGemSet("ruby");
         registerGemSet("sapphire");
+
+        registerMetalSet("constantan");
+        registerMetalSet("electrum");
+        registerMetalSet("invar");
+
+        registerMetalSet("enderium", group, rarity);
+        registerMetalSet("lumium", group, rarity);
+        registerMetalSet("signalum", group, rarity);
     }
 
     private static void registerTools() {
