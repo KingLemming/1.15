@@ -80,6 +80,7 @@ public class ManagedItemInv extends SimpleItemInv {
             case ACCESSIBLE:
                 inputSlots.add(slot);
                 outputSlots.add(slot);
+                break;
             default:
         }
     }

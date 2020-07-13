@@ -1,10 +1,10 @@
 package cofh.thermal.expansion.tileentity.device;
 
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.InventoryHelper;
+import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.tileentity.ReconfigurableTileBase;
-import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
+import cofh.thermal.expansion.inventory.container.device.DeviceFluidBufferContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -12,27 +12,31 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
+import net.minecraftforge.fluids.FluidAttributes;
 
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.ACCESSIBLE;
 import static cofh.lib.util.constants.Constants.DIRECTIONS;
+import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_IN;
 import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_OUT;
-import static cofh.thermal.expansion.init.TExpReferences.DEVICE_ITEM_BUFFER_TILE;
+import static cofh.thermal.expansion.init.TExpReferences.DEVICE_FLUID_BUFFER_TILE;
 
-public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITickableTileEntity {
+public class DeviceFluidBufferTile extends ReconfigurableTileBase implements ITickableTileEntity {
 
-    public static int XFER_MAX = 64;
+    public static int XFER_MAX = TANK_MEDIUM;
 
-    public int amountInput = 4;
-    public int amountOutput = 4;
+    public int amountInput = FluidAttributes.BUCKET_VOLUME;
+    public int amountOutput = FluidAttributes.BUCKET_VOLUME;
 
-    public DeviceItemBufferTile() {
+    public DeviceFluidBufferTile() {
 
-        super(DEVICE_ITEM_BUFFER_TILE);
+        super(DEVICE_FLUID_BUFFER_TILE);
 
-        inventory.addSlots(ACCESSIBLE, 9);
+        tankInv.addTank(new FluidStorageCoFH(TANK_MEDIUM), ACCESSIBLE);
+        tankInv.addTank(new FluidStorageCoFH(TANK_MEDIUM), ACCESSIBLE);
+        tankInv.addTank(new FluidStorageCoFH(TANK_MEDIUM), ACCESSIBLE);
 
         initHandlers();
     }
@@ -60,7 +64,7 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
-        return new DeviceItemBufferContainer(i, world, pos, inventory, player);
+        return new DeviceFluidBufferContainer(i, world, pos, inventory, player);
     }
 
     @Override
@@ -75,9 +79,9 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
         for (int i = inputTracker + 1; i <= inputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isInput()) {
-                for (ItemStorageCoFH slot : inputSlots()) {
-                    if (slot.getSpace() > 0) {
-                        if (InventoryHelper.extractFromAdjacent(this, slot, Math.min(getInputItemAmount(), slot.getSpace()), side)) {
+                for (FluidStorageCoFH tank : inputTanks()) {
+                    if (tank.getSpace() > 0) {
+                        if (FluidHelper.extractFromAdjacent(this, tank, Math.min(getInputFluidAmount(), tank.getSpace()), side)) {
                             break;
                         }
                     }
@@ -103,8 +107,8 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
         for (int i = outputTracker + 1; i <= outputTracker + 6; ++i) {
             Direction side = DIRECTIONS[i % 6];
             if (reconfigControl.getSideConfig(side).isOutput()) {
-                for (int j = outputSlots().size(); j-- > 0; ) {
-                    if (InventoryHelper.insertIntoAdjacent(this, outputSlots().get(j), getOutputItemAmount(), side)) {
+                for (int j = outputTanks().size(); j-- > 0; ) {
+                    if (FluidHelper.insertIntoAdjacent(this, outputTanks().get(j), getOutputFluidAmount(), side)) {
                         break;
                     }
                 }
@@ -118,15 +122,24 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
     }
 
     @Override
-    protected int getInputItemAmount() {
+    protected int getInputFluidAmount() {
 
         return amountInput;
     }
 
     @Override
-    protected int getOutputItemAmount() {
+    protected int getOutputFluidAmount() {
 
         return amountOutput;
+    }
+
+    @Override
+    public boolean clearTank(int tank) {
+
+        if (tank >= tankInv.getTanks()) {
+            return false;
+        }
+        return tankInv.getTank(tank).clear();
     }
 
     // region NETWORK
@@ -135,8 +148,8 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
 
         super.getConfigPacket(buffer);
 
-        buffer.writeByte(amountInput);
-        buffer.writeByte(amountOutput);
+        buffer.writeInt(amountInput);
+        buffer.writeInt(amountOutput);
 
         return buffer;
     }
@@ -146,8 +159,8 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
 
         super.getGuiPacket(buffer);
 
-        buffer.writeByte(amountInput);
-        buffer.writeByte(amountOutput);
+        buffer.writeInt(amountInput);
+        buffer.writeInt(amountOutput);
 
         return buffer;
     }
@@ -157,8 +170,8 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
 
         super.handleConfigPacket(buffer);
 
-        amountInput = MathHelper.clamp(buffer.readByte(), 0, XFER_MAX);
-        amountOutput = MathHelper.clamp(buffer.readByte(), 0, XFER_MAX);
+        amountInput = MathHelper.clamp(buffer.readInt(), 0, XFER_MAX);
+        amountOutput = MathHelper.clamp(buffer.readInt(), 0, XFER_MAX);
     }
 
     @Override
@@ -166,8 +179,8 @@ public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITic
 
         super.handleGuiPacket(buffer);
 
-        amountInput = buffer.readByte();
-        amountOutput = buffer.readByte();
+        amountInput = buffer.readInt();
+        amountOutput = buffer.readInt();
     }
     // endregion
 

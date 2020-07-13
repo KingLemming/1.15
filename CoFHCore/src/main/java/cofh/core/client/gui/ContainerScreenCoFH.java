@@ -554,8 +554,9 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     }
 
     @Override
-    public void handleElementButtonClick(String buttonName, int mouseButton) {
+    public boolean handleElementButtonClick(String buttonName, int mouseButton) {
 
+        return false;
     }
 
     @Override

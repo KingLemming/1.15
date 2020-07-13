@@ -4,7 +4,6 @@ import cofh.core.client.gui.CoreTextures;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.control.IRedstoneControllable;
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.SoundHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -14,6 +13,7 @@ import java.util.List;
 
 import static cofh.core.client.gui.CoreTextures.*;
 import static cofh.lib.util.control.IRedstoneControllable.ControlMode.*;
+import static cofh.lib.util.helpers.SoundHelper.playClickSound;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelRedstoneControl extends PanelBase {
@@ -157,17 +157,17 @@ public class PanelRedstoneControl extends PanelBase {
         if (28 <= x && x < 44 && 20 <= y && y < 36) {
             if (myRSControllable.getMode() != DISABLED) {
                 myRSControllable.setControl(0, DISABLED);
-                SoundHelper.playClickSound(0.4F);
+                playClickSound(0.4F);
             }
         } else if (48 <= x && x < 64 && 20 <= y && y < 36) {
             if (myRSControllable.getMode() != LOW) {
                 myRSControllable.setControl(0, LOW);
-                SoundHelper.playClickSound(0.6F);
+                playClickSound(0.6F);
             }
         } else if (68 <= x && x < 84 && 20 <= y && y < 36) {
             if (myRSControllable.getMode() != HIGH) {
                 myRSControllable.setControl(0, HIGH);
-                SoundHelper.playClickSound(0.8F);
+                playClickSound(0.8F);
             }
         }
         return true;

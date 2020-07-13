@@ -231,6 +231,9 @@ public class GuiHelper {
     // endregion
 
     // region ELEMENTS
+    public static final String INFO_INPUT = PATH_ELEMENTS + "info_input.png";
+    public static final String INFO_OUTPUT = PATH_ELEMENTS + "info_output.png";
+
     public static final String PROG_ARROW_LEFT = PATH_ELEMENTS + "progress_arrow_left.png";
     public static final String PROG_ARROW_RIGHT = PATH_ELEMENTS + "progress_arrow_right.png";
     public static final String PROG_ARROW_FLUID_LEFT = PATH_ELEMENTS + "progress_arrow_fluid_left.png";

@@ -12,7 +12,7 @@ public interface IGuiAccess {
 
     FontRenderer getFontRenderer();
 
-    void handleElementButtonClick(String buttonName, int mouseButton);
+    boolean handleElementButtonClick(String buttonName, int mouseButton);
 
     void drawIcon(TextureAtlasSprite icon, int x, int y);
 

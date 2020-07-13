@@ -30,7 +30,7 @@ public class ElementButton extends ElementBase {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
-        return true;
+        return enabled() && gui.handleElementButtonClick(name(), mouseButton);
     }
 
 }

@@ -8,8 +8,8 @@ import cofh.core.network.packet.server.TileConfigPacket;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
-import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
-import cofh.thermal.expansion.tileentity.device.DeviceItemBufferTile;
+import cofh.thermal.expansion.inventory.container.device.DeviceFluidBufferContainer;
+import cofh.thermal.expansion.tileentity.device.DeviceFluidBufferTile;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -24,22 +24,22 @@ import static cofh.lib.util.helpers.SoundHelper.playClickSound;
 import static cofh.lib.util.helpers.StringHelper.format;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
-public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferContainer> {
+public class DeviceFluidBufferScreen extends ThermalScreenBase<DeviceFluidBufferContainer> {
 
-    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/devices/item_buffer.png";
+    public static final String TEX_PATH = ID_THERMAL + ":textures/gui/devices/fluid_buffer.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
     public static final String TEX_INCREMENT = ID_COFH_CORE + ":textures/gui/elements/button_increment.png";
     public static final String TEX_DECREMENT = ID_COFH_CORE + ":textures/gui/elements/button_decrement.png";
 
-    protected DeviceItemBufferTile tile;
+    protected DeviceFluidBufferTile tile;
 
-    public DeviceItemBufferScreen(DeviceItemBufferContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public DeviceFluidBufferScreen(DeviceFluidBufferContainer container, PlayerInventory inv, ITextComponent titleIn) {
 
-        super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_item_buffer"));
+        super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_fluid_buffer"));
         tile = container.tile;
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.device_item_buffer");
+        info = generateTabInfo("info.thermal.device_fluid_buffer");
     }
 
     @Override
@@ -56,6 +56,10 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
         addElement(new ElementTexture(this, 132, 16)
                 .setSize(20, 20)
                 .setTexture(INFO_OUTPUT, 20, 20));
+
+        addElement(setClearable(createMediumFluidStorage(this, 62, 19, tile.getTank(0)), tile, 0));
+        addElement(setClearable(createMediumFluidStorage(this, 80, 19, tile.getTank(1)), tile, 1));
+        addElement(setClearable(createMediumFluidStorage(this, 98, 19, tile.getTank(2)), tile, 2));
 
         addButtons();
     }
@@ -80,24 +84,27 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
         float pitch;
 
         if (hasShiftDown()) {
-            change = 64;
+            change = 1000;
             pitch = 0.9F;
             if (mouseButton == 1) {
-                change = 32;
+                change = 100;
                 pitch = 0.8F;
             }
+            if (hasControlDown()) {
+                change *= 10;
+            }
         } else if (hasControlDown()) {
-            change = 4;
+            change = 5;
             pitch = 0.5F;
             if (mouseButton == 1) {
                 change = 1;
                 pitch = 0.4F;
             }
         } else {
-            change = 16;
+            change = 50;
             pitch = 0.7F;
             if (mouseButton == 1) {
-                change = 8;
+                change = 10;
                 pitch = 0.6F;
             }
         }
@@ -136,13 +143,17 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
                 .setTooltipFactory((element, mouseX, mouseY) -> {
 
                     if (element.enabled()) {
-                        int change = 16;
-                        int change2 = 8;
+                        int change = 50;
+                        int change2 = 10;
                         if (hasShiftDown()) {
-                            change = 64;
-                            change2 = 32;
+                            change = 1000;
+                            change2 = 100;
+                            if (hasControlDown()) {
+                                change *= 10;
+                                change2 *= 10;
+                            }
                         } else if (hasControlDown()) {
-                            change = 4;
+                            change = 5;
                             change2 = 1;
                         }
                         return Collections.singletonList(new StringTextComponent(
@@ -161,13 +172,17 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
                 .setTooltipFactory((element, mouseX, mouseY) -> {
 
                     if (element.enabled()) {
-                        int change = 16;
-                        int change2 = 8;
+                        int change = 50;
+                        int change2 = 10;
                         if (hasShiftDown()) {
-                            change = 64;
-                            change2 = 32;
+                            change = 1000;
+                            change2 = 100;
+                            if (hasControlDown()) {
+                                change *= 10;
+                                change2 *= 10;
+                            }
                         } else if (hasControlDown()) {
-                            change = 4;
+                            change = 5;
                             change2 = 1;
                         }
                         return Collections.singletonList(new StringTextComponent(
@@ -180,19 +195,23 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
                 .setName("IncInput")
                 .setSize(14, 14)
                 .setTexture(TEX_INCREMENT, 42, 14)
-                .setEnabled(() -> tile.amountInput < DeviceItemBufferTile.XFER_MAX);
+                .setEnabled(() -> tile.amountInput < DeviceFluidBufferTile.XFER_MAX);
 
         ElementBase decOutput = new ElementButton(this, 127, 56)
                 .setTooltipFactory((element, mouseX, mouseY) -> {
 
                     if (element.enabled()) {
-                        int change = 16;
-                        int change2 = 8;
+                        int change = 50;
+                        int change2 = 10;
                         if (hasShiftDown()) {
-                            change = 64;
-                            change2 = 32;
+                            change = 1000;
+                            change2 = 100;
+                            if (hasControlDown()) {
+                                change *= 10;
+                                change2 *= 10;
+                            }
                         } else if (hasControlDown()) {
-                            change = 4;
+                            change = 5;
                             change2 = 1;
                         }
                         return Collections.singletonList(new StringTextComponent(
@@ -211,13 +230,17 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
                 .setTooltipFactory((element, mouseX, mouseY) -> {
 
                     if (element.enabled()) {
-                        int change = 16;
-                        int change2 = 8;
+                        int change = 50;
+                        int change2 = 10;
                         if (hasShiftDown()) {
-                            change = 64;
-                            change2 = 32;
+                            change = 1000;
+                            change2 = 100;
+                            if (hasControlDown()) {
+                                change *= 10;
+                                change2 *= 10;
+                            }
                         } else if (hasControlDown()) {
-                            change = 4;
+                            change = 5;
                             change2 = 1;
                         }
                         return Collections.singletonList(new StringTextComponent(
@@ -230,7 +253,7 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
                 .setName("IncOutput")
                 .setSize(14, 14)
                 .setTexture(TEX_INCREMENT, 42, 14)
-                .setEnabled(() -> tile.amountOutput < DeviceItemBufferTile.XFER_MAX);
+                .setEnabled(() -> tile.amountOutput < DeviceFluidBufferTile.XFER_MAX);
 
         addElement(decInput);
         addElement(incInput);

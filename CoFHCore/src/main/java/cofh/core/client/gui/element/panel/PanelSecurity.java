@@ -3,7 +3,6 @@ package cofh.core.client.gui.element.panel;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.lib.util.control.ISecurable;
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.SoundHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -15,6 +14,7 @@ import java.util.UUID;
 
 import static cofh.core.client.gui.CoreTextures.*;
 import static cofh.lib.util.control.ISecurable.AccessMode.*;
+import static cofh.lib.util.helpers.SoundHelper.playClickSound;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelSecurity extends PanelBase {
@@ -174,22 +174,22 @@ public class PanelSecurity extends PanelBase {
         if (38 <= x && x < 54 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PUBLIC) {
                 mySecurable.setAccess(PUBLIC);
-                SoundHelper.playClickSound(0.5F);
+                playClickSound(0.5F);
             }
         } else if (58 <= x && x < 74 && 22 <= y && y < 38) {
             if (mySecurable.getAccess() != PRIVATE) {
                 mySecurable.setAccess(PRIVATE);
-                SoundHelper.playClickSound(0.8F);
+                playClickSound(0.8F);
             }
         } else if (38 <= x && x < 54 && 42 <= y && y < 58) {
             if (mySecurable.getAccess() != FRIENDS) {
                 mySecurable.setAccess(FRIENDS);
-                SoundHelper.playClickSound(0.6F);
+                playClickSound(0.6F);
             }
         } else if (58 <= x && x < 74 && 42 <= y && y < 58) {
             if (mySecurable.getAccess() != TEAM) {
                 mySecurable.setAccess(TEAM);
-                SoundHelper.playClickSound(0.7F);
+                playClickSound(0.7F);
             }
         }
         return true;

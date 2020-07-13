@@ -7,7 +7,6 @@ import cofh.lib.util.control.IReconfigurable;
 import cofh.lib.util.control.ITransferControllable;
 import cofh.lib.util.helpers.BlockHelper;
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.SoundHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.Direction;
@@ -18,6 +17,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static cofh.core.client.gui.CoreTextures.*;
+import static cofh.lib.util.helpers.SoundHelper.playClickSound;
 import static cofh.lib.util.helpers.StringHelper.localize;
 
 public class PanelConfiguration extends PanelBase {
@@ -226,12 +226,12 @@ public class PanelConfiguration extends PanelBase {
         if (input) {
             if (myTransfer.hasTransferIn()) {
                 myTransfer.setControl(!myTransfer.getTransferIn(), myTransfer.getTransferOut());
-                SoundHelper.playClickSound(myTransfer.getTransferIn() ? 0.8F : 0.4F);
+                playClickSound(myTransfer.getTransferIn() ? 0.8F : 0.4F);
             }
         } else {
             if (myTransfer.hasTransferOut()) {
                 myTransfer.setControl(myTransfer.getTransferIn(), !myTransfer.getTransferOut());
-                SoundHelper.playClickSound(myTransfer.getTransferOut() ? 0.8F : 0.4F);
+                playClickSound(myTransfer.getTransferOut() ? 0.8F : 0.4F);
             }
         }
     }
@@ -243,10 +243,10 @@ public class PanelConfiguration extends PanelBase {
         if (Screen.hasShiftDown()) {
             if (side == facing) {
                 if (myReconfig.clearAllSides()) {
-                    SoundHelper.playClickSound(0.2F);
+                    playClickSound(0.2F);
                 }
             } else if (myReconfig.setSideConfig(side, IReconfigurable.SideConfig.SIDE_NONE)) {
-                SoundHelper.playClickSound(0.4F);
+                playClickSound(0.4F);
             }
             return;
         }
@@ -255,11 +255,11 @@ public class PanelConfiguration extends PanelBase {
         }
         if (mouseButton == 0) {
             if (myReconfig.nextSideConfig(side)) {
-                SoundHelper.playClickSound(0.8F);
+                playClickSound(0.8F);
             }
         } else if (mouseButton == 1) {
             if (myReconfig.prevSideConfig(side)) {
-                SoundHelper.playClickSound(0.6F);
+                playClickSound(0.6F);
             }
         }
     }

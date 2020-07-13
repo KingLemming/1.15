@@ -47,12 +47,12 @@ public class SoundHelper {
 
     public static void playClickSound(float pitch) {
 
-        playClickSound(pitch, 0.3F);
+        playClickSound(0.3F, pitch);
     }
 
-    public static void playClickSound(float pitch, float volume) {
+    public static void playClickSound(float volume, float pitch) {
 
-        playSimpleSound(SoundEvents.UI_BUTTON_CLICK, pitch, volume);
+        playSimpleSound(SoundEvents.UI_BUTTON_CLICK, volume, pitch);
     }
 
     public static void playSimpleSound(SoundEvent sound, float volume, float pitch) {

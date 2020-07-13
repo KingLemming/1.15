@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 
-import static cofh.lib.util.constants.Constants.FALSE;
 import static cofh.lib.util.constants.Constants.TRUE;
 
 public abstract class ElementBase {
 
-    protected static BooleanSupplier advancedTooltips = TRUE;
+    protected TooltipFactory tooltip = TooltipFactory.EMPTY;
 
     protected BooleanSupplier enabled = TRUE;
     protected BooleanSupplier visible = TRUE;
@@ -66,6 +65,7 @@ public abstract class ElementBase {
 
     public void addTooltip(List<ITextComponent> tooltipList, int mouseX, int mouseY) {
 
+        tooltipList.addAll(tooltip.create(this, mouseX, mouseY));
     }
 
     public void update(int mouseX, int mouseY) {
@@ -78,18 +78,6 @@ public abstract class ElementBase {
     }
 
     // region SETTERS / GETTERS
-    public final ElementBase setEnabled(boolean enabled) {
-
-        this.enabled = enabled ? TRUE : FALSE;
-        return this;
-    }
-
-    public final ElementBase setVisible(boolean visible) {
-
-        this.visible = visible ? TRUE : FALSE;
-        return this;
-    }
-
     public final ElementBase setEnabled(BooleanSupplier enabled) {
 
         this.enabled = enabled;
@@ -99,6 +87,12 @@ public abstract class ElementBase {
     public final ElementBase setVisible(BooleanSupplier visible) {
 
         this.visible = visible;
+        return this;
+    }
+
+    public final ElementBase setTooltipFactory(TooltipFactory tooltip) {
+
+        this.tooltip = tooltip;
         return this;
     }
 

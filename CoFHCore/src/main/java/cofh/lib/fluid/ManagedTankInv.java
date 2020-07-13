@@ -47,6 +47,10 @@ public class ManagedTankInv extends SimpleTankInv {
             case INTERNAL:
                 internalTanks.add(tank);
                 break;
+            case ACCESSIBLE:
+                inputTanks.add(tank);
+                outputTanks.add(tank);
+                break;
             default:
         }
     }

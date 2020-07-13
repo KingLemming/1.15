@@ -372,6 +372,7 @@
   "_comment": "Thermal Expansion",
   "_comment": "========================================================================================================",
 
+  "block.thermal.device_fluid_buffer": "Fluid Allocator",
   "block.thermal.device_item_buffer": "Item Allocator",
   "block.thermal.device_rock_gen": "Igneous Extruder",
   "block.thermal.device_water_gen": "Aqueous Accumulator",
@@ -395,6 +396,10 @@
   "block.thermal.machine_refinery": "Fractionating Still",
   "block.thermal.machine_sawmill": "Sawmill",
   "block.thermal.machine_smelter": "Induction Smelter",
+
+  "info.thermal.device_fluid_buffer.0": "Stores and transfers fluids. Can automatically extract.",
+  "info.thermal.device_fluid_buffer.1": "It's like a hopper, for fluids!",
+  "info.thermal.device_fluid_buffer.2": "Hold Shift or Ctrl to fine tune quantities.",
 
   "info.thermal.device_item_buffer.0": "Stores and transfers items. Can automatically extract.",
   "info.thermal.device_item_buffer.1": "Better than a Hopper, really!",

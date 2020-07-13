@@ -53,6 +53,9 @@
   "info.cofh.transfer_out_enabled": "Auto-Output Enabled",
   "info.cofh.transfer_out_unavailable": "Auto-Output Unavailable",
 
+  "info.cofh.decrease_by": "Decrease by",
+  "info.cofh.increase_by": "Increase by",
+
   "info.cofh.information": "Information",
 
   "info.cofh.secure_block": "This block now belongs to you.",
