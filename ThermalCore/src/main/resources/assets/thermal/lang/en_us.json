@@ -12,6 +12,7 @@
   "block.thermal.lead_ore": "Lead Ore",
   "block.thermal.nickel_ore": "Nickel Ore",
   "block.thermal.silver_ore": "Silver Ore",
+  "block.thermal.tin_ore": "Tin Ore",
 
   "block.thermal.ruby_ore": "Ruby Ore",
   "block.thermal.sapphire_ore": "Sapphire Ore",
@@ -25,10 +26,12 @@
   "block.thermal.lead_block": "Block of Lead",
   "block.thermal.nickel_block": "Block of Nickel",
   "block.thermal.silver_block": "Block of Silver",
+  "block.thermal.tin_block": "Block of Tin",
 
   "block.thermal.ruby_block": "Block of Ruby",
   "block.thermal.sapphire_block": "Block of Sapphire",
 
+  "block.thermal.bronze_block": "Block of Bronze",
   "block.thermal.constantan_block": "Block of Constantan",
   "block.thermal.electrum_block": "Block of Electrum",
   "block.thermal.invar_block": "Block of Invar",
@@ -104,6 +107,13 @@
   "item.thermal.silver_nugget": "Silver Nugget",
   "item.thermal.silver_plate": "Silver Plate",
 
+  "item.thermal.tin_coin": "Tin Coin",
+  "item.thermal.tin_dust": "Tin Dust",
+  "item.thermal.tin_gear": "Tin Gear",
+  "item.thermal.tin_ingot": "Tin Ingot",
+  "item.thermal.tin_nugget": "Tin Nugget",
+  "item.thermal.tin_plate": "Tin Plate",
+
   "item.thermal.ruby_dust": "Ruby Dust",
   "item.thermal.ruby_gear": "Ruby Gear",
   "item.thermal.ruby_gem": "Ruby",
@@ -115,6 +125,13 @@
   "item.thermal.sapphire_gem": "Sapphire",
   "item.thermal.sapphire_nugget": "Sapphire Nugget",
   "item.thermal.sapphire_plate": "Sapphire Plate",
+
+  "item.thermal.bronze_coin": "Bronze Coin",
+  "item.thermal.bronze_dust": "Bronze Blend",
+  "item.thermal.bronze_gear": "Bronze Gear",
+  "item.thermal.bronze_ingot": "Bronze Ingot",
+  "item.thermal.bronze_nugget": "Bronze Nugget",
+  "item.thermal.bronze_plate": "Bronze Plate",
 
   "item.thermal.constantan_coin": "Constantan Coin",
   "item.thermal.constantan_dust": "Constantan Blend",

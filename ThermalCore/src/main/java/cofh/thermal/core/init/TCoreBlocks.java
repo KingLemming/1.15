@@ -93,9 +93,10 @@ public class TCoreBlocks {
         registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
+        registerBlock(ID_TIN_ORE, () -> new OreBlockCoFH(1));
         registerBlock(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
-        registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
         registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
 
         registerBlock(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
         registerBlock(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
@@ -115,19 +116,16 @@ public class TCoreBlocks {
             }
         });
         registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
 
-        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
-        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
-
+        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));
 
-        registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
             @Override
@@ -142,12 +140,15 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
+        registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
+
+        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
+        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
     }
 
     private static void registerBuildingBlocks() {
 
-        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
@@ -162,6 +163,8 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
+        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
     }
 
     private static void registerTileBlocks() {

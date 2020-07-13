@@ -2,6 +2,7 @@ package cofh.core.util;
 
 import com.mojang.authlib.GameProfile;
 
+import java.nio.file.Path;
 import java.util.*;
 
 public class SocialUtils {
@@ -17,6 +18,9 @@ public class SocialUtils {
 
     public static final List<String> CLIENT_FRIENDS = new LinkedList<>();
     public static final List<String> CLIENT_TEAMS = new LinkedList<>();
+
+    private static Path friendFile;
+    private static Path teamFile;
 
     // region FRIENDS
     public synchronized static boolean addFriend(GameProfile player, String friendName) {

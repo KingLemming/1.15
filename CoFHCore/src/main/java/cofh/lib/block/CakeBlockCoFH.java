@@ -38,7 +38,6 @@ public class CakeBlockCoFH extends CakeBlock {
                 return ActionResultType.CONSUME;
             }
         }
-
         return this.eatPiece(worldIn, pos, state, player);
     }
 

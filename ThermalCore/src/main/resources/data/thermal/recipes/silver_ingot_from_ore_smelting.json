@@ -4,6 +4,6 @@
     "item": "thermal:silver_ore"
   },
   "result": "thermal:silver_ingot",
-  "experience": 0.8,
+  "experience": 1.0,
   "cookingtime": 200
 }

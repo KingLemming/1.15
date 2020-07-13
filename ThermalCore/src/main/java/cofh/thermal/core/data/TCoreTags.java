@@ -38,9 +38,11 @@ public class TCoreTags {
             getBuilder(CoFHTags.Blocks.ORES_SAPPHIRE).add(BLOCKS.get(ID_SAPPHIRE_ORE));
             getBuilder(CoFHTags.Blocks.ORES_SILVER).add(BLOCKS.get(ID_SILVER_ORE));
             getBuilder(CoFHTags.Blocks.ORES_SULFUR).add(BLOCKS.get(ID_SULFUR_ORE));
+            getBuilder(CoFHTags.Blocks.ORES_TIN).add(BLOCKS.get(ID_TIN_ORE));
 
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_APATITE).add(BLOCKS.get(ID_APATITE_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_BAMBOO).add(BLOCKS.get(ID_BAMBOO_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_BRONZE).add(BLOCKS.get(ID_BRONZE_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_CHARCOAL).add(BLOCKS.get(ID_CHARCOAL_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_CINNABAR).add(BLOCKS.get(ID_CINNABAR_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_CONSTANTAN).add(BLOCKS.get(ID_CONSTANTAN_BLOCK));
@@ -58,6 +60,7 @@ public class TCoreTags {
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SILVER).add(BLOCKS.get(ID_SILVER_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SUGAR_CANE).add(BLOCKS.get(ID_SUGAR_CANE_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SULFUR).add(BLOCKS.get(ID_SULFUR_BLOCK));
+            getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_TIN).add(BLOCKS.get(ID_TIN_BLOCK));
         }
 
     }
@@ -88,9 +91,11 @@ public class TCoreTags {
             copy(CoFHTags.Blocks.ORES_SAPPHIRE, CoFHTags.Items.ORES_SAPPHIRE);
             copy(CoFHTags.Blocks.ORES_SILVER, CoFHTags.Items.ORES_SILVER);
             copy(CoFHTags.Blocks.ORES_SULFUR, CoFHTags.Items.ORES_SULFUR);
+            copy(CoFHTags.Blocks.ORES_TIN, CoFHTags.Items.ORES_TIN);
 
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_APATITE, CoFHTags.Items.STORAGE_BLOCKS_APATITE);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_BAMBOO, CoFHTags.Items.STORAGE_BLOCKS_BAMBOO);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_BRONZE, CoFHTags.Items.STORAGE_BLOCKS_BRONZE);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_CHARCOAL, CoFHTags.Items.STORAGE_BLOCKS_CHARCOAL);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_CINNABAR, CoFHTags.Items.STORAGE_BLOCKS_CINNABAR);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_CONSTANTAN, CoFHTags.Items.STORAGE_BLOCKS_CONSTANTAN);
@@ -108,7 +113,9 @@ public class TCoreTags {
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_SILVER, CoFHTags.Items.STORAGE_BLOCKS_SILVER);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_SUGAR_CANE, CoFHTags.Items.STORAGE_BLOCKS_SUGAR_CANE);
             copy(CoFHTags.Blocks.STORAGE_BLOCKS_SULFUR, CoFHTags.Items.STORAGE_BLOCKS_SULFUR);
+            copy(CoFHTags.Blocks.STORAGE_BLOCKS_TIN, CoFHTags.Items.STORAGE_BLOCKS_TIN);
 
+            getBuilder(CoFHTags.Items.COINS_BRONZE).add(ITEMS.get("bronze_coin"));
             getBuilder(CoFHTags.Items.COINS_CONSTANTAN).add(ITEMS.get("constantan_coin"));
             getBuilder(CoFHTags.Items.COINS_COPPER).add(ITEMS.get("copper_coin"));
             getBuilder(CoFHTags.Items.COINS_ELECTRUM).add(ITEMS.get("electrum_coin"));
@@ -121,7 +128,9 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.COINS_NICKEL).add(ITEMS.get("nickel_coin"));
             getBuilder(CoFHTags.Items.COINS_SIGNALUM).add(ITEMS.get("signalum_coin"));
             getBuilder(CoFHTags.Items.COINS_SILVER).add(ITEMS.get("silver_coin"));
+            getBuilder(CoFHTags.Items.COINS_TIN).add(ITEMS.get("tin_coin"));
 
+            getBuilder(CoFHTags.Items.DUSTS_BRONZE).add(ITEMS.get("bronze_dust"));
             getBuilder(CoFHTags.Items.DUSTS_CONSTANTAN).add(ITEMS.get("constantan_dust"));
             getBuilder(CoFHTags.Items.DUSTS_COPPER).add(ITEMS.get("copper_dust"));
             getBuilder(CoFHTags.Items.DUSTS_ELECTRUM).add(ITEMS.get("electrum_dust"));
@@ -132,11 +141,11 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.DUSTS_LEAD).add(ITEMS.get("lead_dust"));
             getBuilder(CoFHTags.Items.DUSTS_LUMIUM).add(ITEMS.get("lumium_dust"));
             getBuilder(CoFHTags.Items.DUSTS_NICKEL).add(ITEMS.get("nickel_dust"));
-            getBuilder(CoFHTags.Items.DUSTS_RUBY).add(ITEMS.get("ruby_dust"));
-            getBuilder(CoFHTags.Items.DUSTS_SAPPHIRE).add(ITEMS.get("sapphire_dust"));
             getBuilder(CoFHTags.Items.DUSTS_SIGNALUM).add(ITEMS.get("signalum_dust"));
             getBuilder(CoFHTags.Items.DUSTS_SILVER).add(ITEMS.get("silver_dust"));
+            getBuilder(CoFHTags.Items.DUSTS_TIN).add(ITEMS.get("tin_dust"));
 
+            getBuilder(CoFHTags.Items.GEARS_BRONZE).add(ITEMS.get("bronze_gear"));
             getBuilder(CoFHTags.Items.GEARS_CONSTANTAN).add(ITEMS.get("constantan_gear"));
             getBuilder(CoFHTags.Items.GEARS_COPPER).add(ITEMS.get("copper_gear"));
             getBuilder(CoFHTags.Items.GEARS_ELECTRUM).add(ITEMS.get("electrum_gear"));
@@ -147,14 +156,14 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.GEARS_LEAD).add(ITEMS.get("lead_gear"));
             getBuilder(CoFHTags.Items.GEARS_LUMIUM).add(ITEMS.get("lumium_gear"));
             getBuilder(CoFHTags.Items.GEARS_NICKEL).add(ITEMS.get("nickel_gear"));
-            getBuilder(CoFHTags.Items.GEARS_RUBY).add(ITEMS.get("ruby_gear"));
-            getBuilder(CoFHTags.Items.GEARS_SAPPHIRE).add(ITEMS.get("sapphire_gear"));
             getBuilder(CoFHTags.Items.GEARS_SIGNALUM).add(ITEMS.get("signalum_gear"));
             getBuilder(CoFHTags.Items.GEARS_SILVER).add(ITEMS.get("silver_gear"));
+            getBuilder(CoFHTags.Items.GEARS_TIN).add(ITEMS.get("tin_gear"));
 
             getBuilder(CoFHTags.Items.GEMS_RUBY).add(ITEMS.get("ruby_gem"));
             getBuilder(CoFHTags.Items.GEMS_SAPPHIRE).add(ITEMS.get("sapphire_gem"));
 
+            getBuilder(CoFHTags.Items.INGOTS_BRONZE).add(ITEMS.get("bronze_ingot"));
             getBuilder(CoFHTags.Items.INGOTS_CONSTANTAN).add(ITEMS.get("constantan_ingot"));
             getBuilder(CoFHTags.Items.INGOTS_COPPER).add(ITEMS.get("copper_ingot"));
             getBuilder(CoFHTags.Items.INGOTS_ELECTRUM).add(ITEMS.get("electrum_ingot"));
@@ -165,7 +174,9 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.INGOTS_NICKEL).add(ITEMS.get("nickel_ingot"));
             getBuilder(CoFHTags.Items.INGOTS_SIGNALUM).add(ITEMS.get("signalum_ingot"));
             getBuilder(CoFHTags.Items.INGOTS_SILVER).add(ITEMS.get("silver_ingot"));
+            getBuilder(CoFHTags.Items.INGOTS_TIN).add(ITEMS.get("tin_ingot"));
 
+            getBuilder(CoFHTags.Items.NUGGETS_BRONZE).add(ITEMS.get("bronze_nugget"));
             getBuilder(CoFHTags.Items.NUGGETS_CONSTANTAN).add(ITEMS.get("constantan_nugget"));
             getBuilder(CoFHTags.Items.NUGGETS_COPPER).add(ITEMS.get("copper_nugget"));
             getBuilder(CoFHTags.Items.NUGGETS_ELECTRUM).add(ITEMS.get("electrum_nugget"));
@@ -176,7 +187,9 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.NUGGETS_NICKEL).add(ITEMS.get("nickel_nugget"));
             getBuilder(CoFHTags.Items.NUGGETS_SIGNALUM).add(ITEMS.get("signalum_nugget"));
             getBuilder(CoFHTags.Items.NUGGETS_SILVER).add(ITEMS.get("silver_nugget"));
+            getBuilder(CoFHTags.Items.NUGGETS_TIN).add(ITEMS.get("tin_nugget"));
 
+            getBuilder(CoFHTags.Items.PLATES_BRONZE).add(ITEMS.get("bronze_plate"));
             getBuilder(CoFHTags.Items.PLATES_CONSTANTAN).add(ITEMS.get("constantan_plate"));
             getBuilder(CoFHTags.Items.PLATES_COPPER).add(ITEMS.get("copper_plate"));
             getBuilder(CoFHTags.Items.PLATES_ELECTRUM).add(ITEMS.get("electrum_plate"));
@@ -189,6 +202,7 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.PLATES_NICKEL).add(ITEMS.get("nickel_plate"));
             getBuilder(CoFHTags.Items.PLATES_SIGNALUM).add(ITEMS.get("signalum_plate"));
             getBuilder(CoFHTags.Items.PLATES_SILVER).add(ITEMS.get("silver_plate"));
+            getBuilder(CoFHTags.Items.PLATES_TIN).add(ITEMS.get("tin_plate"));
 
             getBuilder(CoFHTags.Items.TOOLS_WRENCH).add(ITEMS.get("wrench"));
         }

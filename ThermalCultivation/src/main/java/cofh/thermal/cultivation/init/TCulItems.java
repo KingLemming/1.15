@@ -34,6 +34,7 @@ public class TCulItems {
 
         // ANNUAL
         registerCropAndSeed(ID_BARLEY);
+        registerCropAndSeed(ID_CORN, CORN);
         registerCropAndSeed(ID_ONION, ONION);
         registerCropAndSeed(ID_RADISH, RADISH);
         registerCropAndSeed(ID_RICE);
@@ -42,7 +43,6 @@ public class TCulItems {
 
         // PERENNIAL
         registerCropAndSeed(ID_BELL_PEPPER, BELL_PEPPER);
-        registerCropAndSeed(ID_CORN, CORN);
         registerCropAndSeed(ID_EGGPLANT, EGGPLANT);
         registerCropAndSeed(ID_GREEN_BEAN, GREEN_BEAN);
         registerCropAndSeed(ID_PEANUT, PEANUT);

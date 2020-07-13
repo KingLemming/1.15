@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:bronze_nugget"
+    }
+  },
+  "result": {
+    "item": "thermal:bronze_ingot"
+  }
+}

@@ -29,9 +29,9 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         DeferredRegisterCoFH<Block> reg = BLOCKS;
 
         storageBlock(reg.getSup(ID_CHARCOAL_BLOCK));
+        storageBlock(reg.getSup(ID_GUNPOWDER_BLOCK));
         axisBlock(reg.getSup(ID_BAMBOO_BLOCK), "bamboo_block", STORAGE);
         axisBlock(reg.getSup(ID_SUGAR_CANE_BLOCK), "sugar_cane_block", STORAGE);
-        storageBlock(reg.getSup(ID_GUNPOWDER_BLOCK));
 
         oreBlock(reg.getSup(ID_APATITE_ORE));
         oreBlock(reg.getSup(ID_CINNABAR_ORE));
@@ -39,9 +39,10 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         oreBlock(reg.getSup(ID_SULFUR_ORE));
 
         oreBlock(reg.getSup(ID_COPPER_ORE));
-        oreBlock(reg.getSup(ID_SILVER_ORE));
         oreBlock(reg.getSup(ID_LEAD_ORE));
         oreBlock(reg.getSup(ID_NICKEL_ORE));
+        oreBlock(reg.getSup(ID_SILVER_ORE));
+        oreBlock(reg.getSup(ID_TIN_ORE));
 
         oreBlock(reg.getSup(ID_RUBY_ORE));
         oreBlock(reg.getSup(ID_SAPPHIRE_ORE));
@@ -52,24 +53,27 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         storageBlock(reg.getSup(ID_SULFUR_BLOCK));
 
         storageBlock(reg.getSup(ID_COPPER_BLOCK));
-        storageBlock(reg.getSup(ID_SILVER_BLOCK));
         storageBlock(reg.getSup(ID_LEAD_BLOCK));
         storageBlock(reg.getSup(ID_NICKEL_BLOCK));
+        storageBlock(reg.getSup(ID_SILVER_BLOCK));
+        storageBlock(reg.getSup(ID_TIN_BLOCK));
+
+        storageBlock(reg.getSup(ID_BRONZE_BLOCK));
+        storageBlock(reg.getSup(ID_CONSTANTAN_BLOCK));
+        storageBlock(reg.getSup(ID_ELECTRUM_BLOCK));
+        storageBlock(reg.getSup(ID_INVAR_BLOCK));
+
+        storageBlock(reg.getSup(ID_ENDERIUM_BLOCK));
+        storageBlock(reg.getSup(ID_LUMIUM_BLOCK));
+        storageBlock(reg.getSup(ID_SIGNALUM_BLOCK));
 
         storageBlock(reg.getSup(ID_RUBY_BLOCK));
         storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
 
-        storageBlock(reg.getSup(ID_ELECTRUM_BLOCK));
-        storageBlock(reg.getSup(ID_INVAR_BLOCK));
-        storageBlock(reg.getSup(ID_CONSTANTAN_BLOCK));
-
-        storageBlock(reg.getSup(ID_SIGNALUM_BLOCK));
-        storageBlock(reg.getSup(ID_LUMIUM_BLOCK));
-        storageBlock(reg.getSup(ID_ENDERIUM_BLOCK));
-
-        glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
-        glassBlock(reg.getSup(ID_LUMIUM_GLASS));
         glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
+        glassBlock(reg.getSup(ID_LUMIUM_GLASS));
+        glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
+
     }
 
 }

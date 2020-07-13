@@ -98,19 +98,39 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 
         generateStorageRecipes(reg, consumer, "copper");
-        generateStorageRecipes(reg, consumer, "silver");
+        generateStorageRecipes(reg, consumer, "tin");
         generateStorageRecipes(reg, consumer, "lead");
+        generateStorageRecipes(reg, consumer, "silver");
         generateStorageRecipes(reg, consumer, "nickel");
 
+        generateStorageRecipes(reg, consumer, "bronze");
         generateStorageRecipes(reg, consumer, "electrum");
         generateStorageRecipes(reg, consumer, "invar");
         generateStorageRecipes(reg, consumer, "constantan");
 
+        //        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
+        //                .addCriterion("has_" + dustName, hasItem(dust))
+        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
+        //
+        //        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
+        //                .addCriterion("has_" + dustName, hasItem(dust))
+        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
+        //
+        //        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
+        //                .addCriterion("has_" + dustName, hasItem(dust))
+        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
+        //
+        //        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
+        //                .addCriterion("has_" + dustName, hasItem(dust))
+        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
+
         generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 0.8F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
         generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 1.0F);
         generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
 
+        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
