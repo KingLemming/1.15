@@ -94,6 +94,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateStorageRecipes(reg, consumer, reg.get(ID_POTATO_BLOCK), Items.POTATO);
 
         generateStorageRecipes(reg, consumer, reg.get(ID_APATITE_BLOCK), reg.get("apatite"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_CINNABAR_BLOCK), reg.get("cinnabar"));
         generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
         generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 

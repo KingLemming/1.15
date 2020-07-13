@@ -47,6 +47,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
 @Mod(ID_THERMAL)

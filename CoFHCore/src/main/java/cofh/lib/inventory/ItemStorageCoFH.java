@@ -7,8 +7,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
@@ -19,6 +21,7 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
  */
 public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourceStorage {
 
+    protected BooleanSupplier enabled = TRUE;
     protected Predicate<ItemStack> validator;
 
     @Nonnull
@@ -52,6 +55,14 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
         return this;
     }
 
+    public ItemStorageCoFH setEnabled(BooleanSupplier enabled) {
+
+        if (enabled != null) {
+            this.enabled = enabled;
+        }
+        return this;
+    }
+
     public ItemStorageCoFH setValidator(Predicate<ItemStack> validator) {
 
         if (validator != null) {
@@ -62,7 +73,7 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
 
     public boolean isItemValid(@Nonnull ItemStack stack) {
 
-        return validator.test(stack);
+        return enabled.getAsBoolean() && validator.test(stack);
     }
 
     public void consume() {
@@ -130,7 +141,7 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         }
-        if (!isItemValid(stack)) {
+        if (!isItemValid(stack) || !enabled.getAsBoolean()) {
             return stack;
         }
         if (item.isEmpty()) {
@@ -159,7 +170,7 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
 
-        if (amount <= 0 || item.isEmpty()) {
+        if (amount <= 0 || item.isEmpty() || !enabled.getAsBoolean()) {
             return ItemStack.EMPTY;
         }
         int retCount = Math.min(item.getCount(), amount);

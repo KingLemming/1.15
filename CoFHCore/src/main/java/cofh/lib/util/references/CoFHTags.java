@@ -83,7 +83,9 @@ public class CoFHTags {
         public static final Tag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
         public static final Tag<Item> DUSTS_CONSTANTAN = forgeTag("dusts/constantan");
         public static final Tag<Item> DUSTS_COPPER = forgeTag("dusts/copper");
+        public static final Tag<Item> DUSTS_DIAMOND = forgeTag("dusts/diamond");
         public static final Tag<Item> DUSTS_ELECTRUM = forgeTag("dusts/electrum");
+        public static final Tag<Item> DUSTS_EMERALD = forgeTag("dusts/emerald");
         public static final Tag<Item> DUSTS_ENDERIUM = forgeTag("dusts/enderium");
         public static final Tag<Item> DUSTS_GOLD = forgeTag("dusts/gold");
         public static final Tag<Item> DUSTS_INVAR = forgeTag("dusts/invar");
@@ -100,7 +102,9 @@ public class CoFHTags {
         public static final Tag<Item> GEARS_BRONZE = forgeTag("gears/bronze");
         public static final Tag<Item> GEARS_CONSTANTAN = forgeTag("gears/constantan");
         public static final Tag<Item> GEARS_COPPER = forgeTag("gears/copper");
+        public static final Tag<Item> GEARS_DIAMOND = forgeTag("gears/diamond");
         public static final Tag<Item> GEARS_ELECTRUM = forgeTag("gears/electrum");
+        public static final Tag<Item> GEARS_EMERALD = forgeTag("gears/emerald");
         public static final Tag<Item> GEARS_ENDERIUM = forgeTag("gears/enderium");
         public static final Tag<Item> GEARS_GOLD = forgeTag("gears/gold");
         public static final Tag<Item> GEARS_INVAR = forgeTag("gears/invar");
@@ -136,7 +140,9 @@ public class CoFHTags {
         public static final Tag<Item> NUGGETS_BRONZE = forgeTag("nuggets/bronze");
         public static final Tag<Item> NUGGETS_CONSTANTAN = forgeTag("nuggets/constantan");
         public static final Tag<Item> NUGGETS_COPPER = forgeTag("nuggets/copper");
+        public static final Tag<Item> NUGGETS_DIAMOND = forgeTag("nuggets/diamond");
         public static final Tag<Item> NUGGETS_ELECTRUM = forgeTag("nuggets/electrum");
+        public static final Tag<Item> NUGGETS_EMERALD = forgeTag("nuggets/emerald");
         public static final Tag<Item> NUGGETS_ENDERIUM = forgeTag("nuggets/enderium");
         public static final Tag<Item> NUGGETS_INVAR = forgeTag("nuggets/invar");
         public static final Tag<Item> NUGGETS_LEAD = forgeTag("nuggets/lead");
@@ -163,7 +169,9 @@ public class CoFHTags {
         public static final Tag<Item> PLATES_BRONZE = forgeTag("plates/bronze");
         public static final Tag<Item> PLATES_CONSTANTAN = forgeTag("plates/constantan");
         public static final Tag<Item> PLATES_COPPER = forgeTag("plates/copper");
+        public static final Tag<Item> PLATES_DIAMOND = forgeTag("plates/diamond");
         public static final Tag<Item> PLATES_ELECTRUM = forgeTag("plates/electrum");
+        public static final Tag<Item> PLATES_EMERALD = forgeTag("plates/emerald");
         public static final Tag<Item> PLATES_ENDERIUM = forgeTag("plates/enderium");
         public static final Tag<Item> PLATES_GOLD = forgeTag("plates/gold");
         public static final Tag<Item> PLATES_INVAR = forgeTag("plates/invar");

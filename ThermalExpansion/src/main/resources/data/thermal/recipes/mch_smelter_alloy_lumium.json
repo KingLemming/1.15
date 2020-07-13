@@ -1,0 +1,24 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "tag": "forge:ingots/tin",
+      "count": 3
+    },
+    {
+      "tag": "forge:ingots/electrum",
+      "count": 1
+    },
+    {
+      "tag": "forge:dusts/glowstone",
+      "count": 4
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:lumium_ingot",
+      "count": 4
+    }
+  ],
+  "energy": 16000
+}

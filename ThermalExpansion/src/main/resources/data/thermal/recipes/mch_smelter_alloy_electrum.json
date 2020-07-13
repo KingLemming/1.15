@@ -1,0 +1,20 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "tag": "forge:ingots/gold",
+      "count": 1
+    },
+    {
+      "tag": "forge:ingots/silver",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:electrum_ingot",
+      "count": 2
+    }
+  ],
+  "energy": 3200
+}

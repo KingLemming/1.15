@@ -2,7 +2,7 @@ package cofh.thermal.cultivation.init;
 
 import cofh.lib.item.BlockNamedItemCoFH;
 import cofh.lib.item.ItemCoFH;
-import cofh.thermal.core.init.TCoreItems;
+import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.cultivation.item.WateringCanItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -74,7 +74,7 @@ public class TCulItems {
 
         ITEMS.register("watering_can", () -> new WateringCanItem(new Item.Properties().maxStackSize(1).group(group), 4000));
 
-        TCoreItems.registerBeekeeperArmor();
+        ThermalFeatures.registerBeekeeperArmor();
     }
 
 }

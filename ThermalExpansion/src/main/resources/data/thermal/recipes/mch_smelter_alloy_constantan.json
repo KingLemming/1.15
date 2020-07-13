@@ -1,0 +1,20 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "tag": "forge:ingots/copper",
+      "count": 1
+    },
+    {
+      "tag": "forge:ingots/nickel",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:constantan_ingot",
+      "count": 2
+    }
+  ],
+  "energy": 3200
+}

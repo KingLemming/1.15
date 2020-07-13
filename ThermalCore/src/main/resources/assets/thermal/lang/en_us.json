@@ -44,12 +44,6 @@
   "block.thermal.lumium_glass": "Lumium Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
-  "block.thermal.tinker_bench": "Tinker's Workbench",
-
-  "info.thermal.tinker_bench.0": "Multipurpose table for augmenting, recharging, and refilling.",
-  "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
-  "info.thermal.tinker_bench.2": "Tinker on!",
-
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",
@@ -226,6 +220,12 @@
   "_comment": "These 'live' in Thermal Core but are non-default and registered from multiple possible modules.",
   "_comment": "========================================================================================================",
 
+  "block.thermal.tinker_bench": "Tinker's Workbench",
+
+  "info.thermal.tinker_bench.0": "Multipurpose table for augmenting, recharging, and refilling.",
+  "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
+  "info.thermal.tinker_bench.2": "Tinker on!",
+
   "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
   "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
   "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
@@ -235,6 +235,13 @@
   "item.thermal.hazmat_chestplate": "Hazmat Suit",
   "item.thermal.hazmat_leggings": "Hazmat Pants",
   "item.thermal.hazmat_boots": "Hazmat Boots",
+
+  "item.thermal.drill_head": "Drill Head",
+  "item.thermal.laser_diode": "Laser Diode",
+  "item.thermal.saw_blade": "Saw Blade",
+
+  "item.thermal.redstone_servo": "Redstone Servo",
+  "item.thermal.rf_coil": "Redstone Flux Coil",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - Vanilla",

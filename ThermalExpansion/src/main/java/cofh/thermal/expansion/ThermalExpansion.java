@@ -1,7 +1,5 @@
 package cofh.thermal.expansion;
 
-import cofh.thermal.expansion.client.gui.device.DeviceFluidBufferScreen;
-import cofh.thermal.expansion.client.gui.device.DeviceItemBufferScreen;
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.data.*;
@@ -70,8 +68,8 @@ public class ThermalExpansion {
         ScreenManager.registerFactory(DYNAMO_NUMISMATIC_CONTAINER, DynamoNumismaticScreen::new);
         ScreenManager.registerFactory(DYNAMO_LAPIDARY_CONTAINER, DynamoLapidaryScreen::new);
 
-        ScreenManager.registerFactory(DEVICE_FLUID_BUFFER_CONTAINER, DeviceFluidBufferScreen::new);
-        ScreenManager.registerFactory(DEVICE_ITEM_BUFFER_CONTAINER, DeviceItemBufferScreen::new);
+        //        ScreenManager.registerFactory(DEVICE_FLUID_BUFFER_CONTAINER, DeviceFluidBufferScreen::new);
+        //        ScreenManager.registerFactory(DEVICE_ITEM_BUFFER_CONTAINER, DeviceItemBufferScreen::new);
 
         RenderType cutout = RenderType.getCutout();
 
@@ -88,8 +86,8 @@ public class ThermalExpansion {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), cutout);
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_FLUID_BUFFER), cutout);
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_ITEM_BUFFER), cutout);
+        //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_FLUID_BUFFER), cutout);
+        //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_ITEM_BUFFER), cutout);
     }
     // endregion
 

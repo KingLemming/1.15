@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static cofh.thermal.core.init.TCoreReferences.CHARGE_BENCH_CONTAINER;
+import static cofh.thermal.core.common.ThermalReferences.CHARGE_BENCH_CONTAINER;
 
 public class ChargeBenchContainer extends TileContainer {
 

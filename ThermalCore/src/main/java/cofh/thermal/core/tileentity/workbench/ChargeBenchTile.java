@@ -13,7 +13,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.INTERNAL;
-import static cofh.thermal.core.init.TCoreReferences.CHARGE_BENCH_TILE;
+import static cofh.thermal.core.common.ThermalReferences.CHARGE_BENCH_TILE;
 
 public class ChargeBenchTile extends ThermalTileBase implements ITickableTileEntity {
 

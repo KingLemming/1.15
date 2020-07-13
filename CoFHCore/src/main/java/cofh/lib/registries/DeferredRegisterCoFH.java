@@ -56,6 +56,9 @@ public class DeferredRegisterCoFH<T extends IForgeRegistryEntry<T>> {
 
     public synchronized <I extends T> RegistryObject<I> register(final ResourceLocation resourceLoc, final Supplier<I> sup) {
 
+        if (registryObjects.containsKey(resourceLoc)) {
+            return registryObjects.get(resourceLoc);
+        }
         entries.add(() -> sup.get().setRegistryName(resourceLoc));
         RegistryObject<I> reg = RegistryObject.of(resourceLoc, this.type);
         registryObjects.put(resourceLoc, reg);

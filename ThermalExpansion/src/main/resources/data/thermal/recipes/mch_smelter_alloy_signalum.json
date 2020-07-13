@@ -1,0 +1,24 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "tag": "forge:ingots/copper",
+      "count": 3
+    },
+    {
+      "tag": "forge:ingots/silver",
+      "count": 1
+    },
+    {
+      "tag": "forge:dusts/redstone",
+      "count": 8
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:signalum_ingot",
+      "count": 4
+    }
+  ],
+  "energy": 16000
+}

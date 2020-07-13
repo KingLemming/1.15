@@ -3,16 +3,7 @@ package cofh.thermal.core.init;
 import cofh.thermal.core.entity.monster.BasalzEntity;
 import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
-import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
-import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
-import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
-import cofh.thermal.core.tileentity.workbench.ChargeBenchTile;
-import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
-import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -84,45 +75,6 @@ public class TCoreReferences {
     public static final String ID_REDSTONE_FLUID = "fluid_redstone";
     public static final String ID_GLOWSTONE_FLUID = "fluid_glowstone";
     public static final String ID_ENDER_FLUID = "fluid_ender";
-
-    // region ARMOR & TOOLS
-    public static final String ID_BEEKEEPER_HELMET = "beekeeper_helmet";
-    public static final String ID_BEEKEEPER_CHESTPLATE = "beekeeper_chestplate";
-    public static final String ID_BEEKEEPER_LEGGINGS = "beekeeper_leggings";
-    public static final String ID_BEEKEEPER_BOOTS = "beekeeper_boots";
-
-    public static final String ID_HAZMAT_HELMET = "hazmat_helmet";
-    public static final String ID_HAZMAT_CHESTPLATE = "hazmat_chestplate";
-    public static final String ID_HAZMAT_LEGGINGS = "hazmat_leggings";
-    public static final String ID_HAZMAT_BOOTS = "hazmat_boots";
-    // endregion
-
-    // region CRAFTING STATIONS
-    public static final String ID_CHARGE_BENCH = ID_THERMAL + ":charge_bench";
-    public static final String ID_PROJECT_BENCH = ID_THERMAL + ":project_bench";
-    public static final String ID_TINKER_BENCH = ID_THERMAL + ":tinker_bench";
-
-    @ObjectHolder(ID_CHARGE_BENCH)
-    public static final Block CHARGE_BENCH_BLOCK = null;
-    @ObjectHolder(ID_CHARGE_BENCH)
-    public static final TileEntityType<ChargeBenchTile> CHARGE_BENCH_TILE = null;
-    @ObjectHolder(ID_CHARGE_BENCH)
-    public static final ContainerType<ChargeBenchContainer> CHARGE_BENCH_CONTAINER = null;
-
-    @ObjectHolder(ID_PROJECT_BENCH)
-    public static final Block PROJECT_BENCH_BLOCK = null;
-    @ObjectHolder(ID_PROJECT_BENCH)
-    public static final TileEntityType<ProjectBenchTile> PROJECT_BENCH_TILE = null;
-    @ObjectHolder(ID_PROJECT_BENCH)
-    public static final ContainerType<ProjectBenchContainer> PROJECT_BENCH_CONTAINER = null;
-
-    @ObjectHolder(ID_TINKER_BENCH)
-    public static final Block TINKER_BENCH_BLOCK = null;
-    @ObjectHolder(ID_TINKER_BENCH)
-    public static final TileEntityType<TinkerBenchTile> TINKER_BENCH_TILE = null;
-    @ObjectHolder(ID_TINKER_BENCH)
-    public static final ContainerType<TinkerBenchContainer> TINKER_BENCH_CONTAINER = null;
-    // endregion
 
     // region ENTITIES
     public static final String ID_BASALZ = ID_THERMAL + ":basalz";

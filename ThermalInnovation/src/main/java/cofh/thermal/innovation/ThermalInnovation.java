@@ -1,5 +1,6 @@
 package cofh.thermal.innovation;
 
+import cofh.thermal.innovation.init.TInoBlocks;
 import cofh.thermal.innovation.init.TInoItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +23,7 @@ public class ThermalInnovation {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
+        TInoBlocks.register();
         TInoItems.register();
     }
 

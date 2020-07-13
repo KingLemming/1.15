@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
-import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_CONTAINER;
+import static cofh.thermal.core.common.ThermalReferences.TINKER_BENCH_CONTAINER;
 
 public class TinkerBenchContainer extends TileContainer {
 

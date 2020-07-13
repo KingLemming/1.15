@@ -6,13 +6,12 @@ import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
+import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;
 import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
 import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
-import net.minecraft.block.Block;
-import net.minecraft.block.HayBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Rarity;
@@ -31,6 +30,8 @@ public class TCulBlocks {
 
     public static void register() {
 
+        ThermalFeatures.registerTinkerBench();
+
         registerPlants();
         registerFoods();
         registerStorage();
@@ -47,6 +48,10 @@ public class TCulBlocks {
 
         PHYTOSOIL_BLOCK.setBoost(2);
         PHYTOSOIL_CHARGED_BLOCK.setBoost(4);
+
+        FireBlock fire = (FireBlock) Blocks.FIRE;
+
+        fire.setFireInfo(BLOCKS.get(block(ID_BARLEY)), 60, 20);
     }
 
     // region HELPERS

@@ -5,6 +5,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.lib.inventory.IItemStackAccess;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.helpers.FluidHelper;
+import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;
@@ -171,6 +172,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
 
         clear();
         if (defaultPotionRecipes) {
+            ThermalCore.LOG.debug("Adding default Potion recipes to the Fluid Encapsulator...");
             int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
             addRecipe(new BottlerRecipePotion(energy, 0.0F, -1, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
         }

@@ -8,7 +8,7 @@ import net.minecraft.inventory.container.Container;
 
 import javax.annotation.Nullable;
 
-import static cofh.thermal.core.init.TCoreReferences.PROJECT_BENCH_TILE;
+import static cofh.thermal.core.common.ThermalReferences.PROJECT_BENCH_TILE;
 
 public class ProjectBenchTile extends ThermalTileBase {
 

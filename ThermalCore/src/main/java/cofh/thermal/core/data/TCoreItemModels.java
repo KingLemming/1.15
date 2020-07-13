@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreItemModels extends ItemModelProviderCoFH {
@@ -91,6 +92,12 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("machine_catalyst_augment"), AUGMENTS);
         generated(reg.getSup("dynamo_output_augment"), AUGMENTS);
         generated(reg.getSup("dynamo_fuel_augment"), AUGMENTS);
+
+        generated(reg.getSup("redstone_servo"), CRAFTING);
+        generated(reg.getSup("rf_coil"), CRAFTING);
+        generated(reg.getSup("drill_head"), CRAFTING);
+        generated(reg.getSup("laser_diode"), CRAFTING);
+        generated(reg.getSup("saw_blade"), CRAFTING);
 
         generated(reg.getSup(ID_BEEKEEPER_HELMET), ARMOR);
         generated(reg.getSup(ID_BEEKEEPER_CHESTPLATE), ARMOR);

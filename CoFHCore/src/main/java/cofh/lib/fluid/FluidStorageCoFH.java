@@ -7,7 +7,10 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
+
+import static cofh.lib.util.constants.Constants.TRUE;
 
 /**
  * Implementation of a Fluid Storage object. Does NOT implement {@link IFluidTank}.
@@ -17,6 +20,7 @@ import java.util.function.Predicate;
 public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IResourceStorage {
 
     protected final int baseCapacity;
+    protected BooleanSupplier enabled = TRUE;
     protected Predicate<FluidStack> validator;
 
     @Nonnull
@@ -50,6 +54,14 @@ public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IReso
         return this;
     }
 
+    public FluidStorageCoFH setEnabled(BooleanSupplier enabled) {
+
+        if (enabled != null) {
+            this.enabled = enabled;
+        }
+        return this;
+    }
+
     public FluidStorageCoFH setValidator(Predicate<FluidStack> validator) {
 
         if (validator != null) {
@@ -60,7 +72,7 @@ public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IReso
 
     public boolean isFluidValid(@Nonnull FluidStack stack) {
 
-        return validator.test(stack);
+        return enabled.getAsBoolean() && validator.test(stack);
     }
 
     public void setFluidStack(FluidStack stack) {
@@ -120,7 +132,7 @@ public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IReso
     @Override
     public int fill(FluidStack resource, FluidAction action) {
 
-        if (resource.isEmpty() || !isFluidValid(resource)) {
+        if (resource.isEmpty() || !isFluidValid(resource) || !enabled.getAsBoolean()) {
             return 0;
         }
         if (action.simulate()) {
@@ -164,7 +176,7 @@ public class FluidStorageCoFH implements IFluidHandler, IFluidStackAccess, IReso
     @Override
     public FluidStack drain(int maxDrain, FluidAction action) {
 
-        if (maxDrain <= 0 || fluid.isEmpty()) {
+        if (maxDrain <= 0 || fluid.isEmpty() || !enabled.getAsBoolean()) {
             return FluidStack.EMPTY;
         }
         int drained = maxDrain;
