@@ -5,6 +5,7 @@ import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.scoreboard.Team;
 
 import java.util.UUID;
 
@@ -57,17 +58,20 @@ public interface ISecurable {
                 return true;
             }
             UUID otherID = getID(player);
-
             switch (this) {
-                case PUBLIC:
-                    return true;
                 case PRIVATE:
                     return ownerID.equals(otherID);
                 case FRIENDS:
                     return ownerID.equals(otherID) || SocialUtils.isFriendOrSelf(owner, player);
                 case TEAM:
-                    // TODO: Fix
-                    return ownerID.equals(otherID); // || TeamRegistry.playerHasAccess(owner, player);
+                    if (ownerID.equals(otherID)) {
+                        return true;
+                    }
+                    Team team = player.getTeam();
+                    if (team == null) {
+                        return false;
+                    }
+                    return team.getMembershipCollection().contains(owner.getName());
                 default:
                     return true;
             }

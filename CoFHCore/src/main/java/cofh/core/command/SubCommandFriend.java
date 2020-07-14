@@ -33,7 +33,7 @@ public class SubCommandFriend {
     private static int addFriends(ServerPlayerEntity user, Collection<GameProfile> players) {
 
         for (GameProfile player : players) {
-            SocialUtils.addFriend(user, player.getName());
+            SocialUtils.addFriend(user, player);
         }
         return players.size();
     }
@@ -41,7 +41,7 @@ public class SubCommandFriend {
     private static int removeFriends(ServerPlayerEntity user, Collection<GameProfile> players) {
 
         for (GameProfile player : players) {
-            SocialUtils.removeFriend(user, player.getName());
+            SocialUtils.removeFriend(user, player);
         }
         return players.size();
     }
