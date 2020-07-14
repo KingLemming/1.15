@@ -23,7 +23,7 @@ public abstract class PanelBase extends ElementBase {
     public static int panelExpandSpeed = 8;
 
     public boolean open;
-    public boolean fullyOpen;
+    protected boolean fullyOpen;
     public int side;
 
     protected int headerColor = 0xe1c92f;
@@ -57,6 +57,12 @@ public abstract class PanelBase extends ElementBase {
         width = minWidth;
         height = minHeight;
         texture = side == LEFT ? DEFAULT_TEXTURE_LEFT : DEFAULT_TEXTURE_RIGHT;
+    }
+
+    public PanelBase setBackgroundColor(int backgroundColor) {
+
+        this.backgroundColor = backgroundColor;
+        return this;
     }
 
     public boolean intersectsWith(double mouseX, double mouseY, int shiftX, int shiftY) {

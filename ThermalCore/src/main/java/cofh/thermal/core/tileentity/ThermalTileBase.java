@@ -255,6 +255,21 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         return isActive ? scale : 0;
     }
 
+    public int getCurSpeed() {
+
+        return -1;
+    }
+
+    public int getMaxSpeed() {
+
+        return -1;
+    }
+
+    public double getEfficiency() {
+
+        return -1.0D;
+    }
+
     @Override
     public boolean clearEnergy(int coil) {
 

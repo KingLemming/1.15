@@ -351,6 +351,28 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     // endregion
 
     // region GUI
+    @Override
+    public int getCurSpeed() {
+
+        return isActive ? processTick : 0;
+    }
+
+    @Override
+    public int getMaxSpeed() {
+
+        return baseProcessTick;
+    }
+
+    @Override
+    public double getEfficiency() {
+
+        if (getEnergyMod() <= 0) {
+            return Double.MAX_VALUE;
+        }
+        return 1.0D / getEnergyMod();
+    }
+
+    @Override
     public int getScaledProgress(int scale) {
 
         if (!isActive || processMax <= 0 || process <= 0) {
@@ -359,6 +381,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         return scale * (processMax - process) / processMax;
     }
 
+    @Override
     public int getScaledSpeed(int scale) {
 
         if (!isActive) {
@@ -524,7 +547,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public final float getEnergyMod() {
 
-        return energyMod;
+        return energyMod * (1.05F - baseMod / 20);
     }
 
     @Override

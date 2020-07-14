@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
+import static cofh.lib.util.helpers.StringHelper.localize;
 
 public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecipeCategory<T> {
 
@@ -60,11 +61,11 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
             if (!chances.isEmpty() && slotIndex >= indexOffset && slotIndex < indexOffset + chances.size()) {
                 float chance = Math.abs(chances.get(slotIndex - indexOffset));
                 if (chance < BASE_CHANCE) {
-                    tooltip.add(StringHelper.localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
+                    tooltip.add(localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
                 } else {
                     chance -= (int) chance;
                     if (chance > 0) {
-                        tooltip.add(StringHelper.localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
+                        tooltip.add(localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
                     }
                 }
             }
@@ -122,7 +123,7 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
         List<String> tooltip = new ArrayList<>();
 
         if (energy != null && mouseX > ENERGY_X && mouseX < ENERGY_X + energy.getWidth() - 1 && mouseY > ENERGY_Y && mouseY < ENERGY_Y + energy.getHeight() - 1) {
-            tooltip.add(StringHelper.localize("info.cofh.energy") + ": " + StringHelper.format(recipe.getEnergy()) + " RF");
+            tooltip.add(localize("info.cofh.energy") + ": " + StringHelper.format(recipe.getEnergy()) + " RF");
         }
         return tooltip;
     }

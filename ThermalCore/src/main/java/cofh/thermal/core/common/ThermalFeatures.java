@@ -180,6 +180,7 @@ public class ThermalFeatures {
     public static void registerUpgradeAugments() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        // final float[] upgradeMods = new float[]{1.0F, 1.5F, 2.5F, 4.0F, 6.0F, 8.5F};
         final float[] upgradeMods = new float[]{1.0F, 1.5F, 2.0F, 2.5F, 3.0F, 3.5F};
 
         for (int i = 1; i <= 4; ++i) {

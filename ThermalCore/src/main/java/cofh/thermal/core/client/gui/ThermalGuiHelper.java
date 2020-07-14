@@ -1,9 +1,11 @@
 package cofh.thermal.core.client.gui;
 
+import cofh.core.client.gui.CoreTextures;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.ElementConditionalLayered;
 import cofh.core.client.gui.element.ElementScaled;
 import cofh.core.client.gui.element.ElementScaledFluid;
+import cofh.core.client.gui.element.panel.PanelResource;
 import cofh.core.util.GuiHelper;
 import cofh.lib.util.helpers.BlockHelper;
 import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
@@ -127,6 +129,24 @@ public class ThermalGuiHelper {
     public static ElementScaled createDefaultDuration(IGuiAccess gui, int posX, int posY, String texture, ThermalTileBase tile) {
 
         return GuiHelper.createDefaultDuration(gui, posX, posY, texture, tile::getScaledDuration);
+    }
+
+    public static PanelResource createDefaultEnergyUserPanel(IGuiAccess gui, ThermalTileBase tile) {
+
+        return new PanelResource(gui)
+                .setResource(CoreTextures.ICON_ENERGY, "info.cofh.energy", false)
+                .setCurrent(tile::getCurSpeed, "info.cofh.energy_use", "RF/t")
+                .setMax(tile::getMaxSpeed, "info.cofh.energy_max_use", "RF/t")
+                .setEfficiency(tile::getEfficiency);
+    }
+
+    public static PanelResource createDefaultEnergyProducerPanel(IGuiAccess gui, ThermalTileBase tile) {
+
+        return new PanelResource(gui)
+                .setResource(CoreTextures.ICON_ENERGY, "info.cofh.energy", true)
+                .setCurrent(tile::getCurSpeed, "info.cofh.energy_prod", "RF/t")
+                .setMax(tile::getMaxSpeed, "info.cofh.energy_max_prod", "RF/t")
+                .setEfficiency(tile::getEfficiency);
     }
     // endregion
 }

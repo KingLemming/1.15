@@ -31,9 +31,11 @@
   "info.cofh.chance_additional": "Additional Chance",
   "info.cofh.clear_storage": "Hold Shift + Alt and Click to clear.",
   "info.cofh.effects": "Effects",
+  "info.cofh.efficiency": "Efficiency",
   "info.cofh.empty": "Empty",
   "info.cofh.energy": "Energy",
   "info.cofh.fluid": "Fluid",
+  "info.cofh.infinite": "Infinite",
   "info.cofh.infinite_source": "Infinite Source",
   "info.cofh.single_block": "Single Block",
   "info.cofh.transfer": "Transfer",
@@ -43,6 +45,12 @@
   "info.cofh_use_sneak_deactivate": "Use while sneaking to deactivate.",
 
   "info.cofh.augmentation": "Augmentation",
+
+  "info.cofh.energy_max_prod": "Max Production",
+  "info.cofh.energy_max_use": "Max Use",
+  "info.cofh.energy_prod": "Energy Production",
+  "info.cofh.energy_stored": "Energy Stored",
+  "info.cofh.energy_use": "Energy Use",
 
   "info.cofh.configuration": "Configuration",
   "info.cofh.transfer_in_disabled": "Auto-Input Disabled",

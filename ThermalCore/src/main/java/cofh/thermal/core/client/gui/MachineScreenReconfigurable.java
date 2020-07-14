@@ -28,6 +28,7 @@ public class MachineScreenReconfigurable<T extends ContainerCoFH> extends Therma
                 .addConditionals(ThermalGuiHelper.createDefaultMachineConfigs(this, name, tile)));
 
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
+            addPanel(ThermalGuiHelper.createDefaultEnergyUserPanel(this, tile));
             addElement(setClearable(createDefaultEnergyStorage(this, 8, 8, tile.getEnergyStorage()), tile, 0));
         }
     }
