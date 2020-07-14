@@ -4,6 +4,7 @@ import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -143,6 +144,25 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateSmeltingAndBlastingRecipes(reg, consumer, "signalum", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "lumium", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "enderium", 0);
+
+        // registerAlloyRecipes(consumer);
     }
 
+    // region HELPERS
+    private void registerAlloyRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("enderium_ingot"))
+                .key('B', Items.BLAZE_POWDER)
+                .key('E', reg.get("electrum_ingot"))
+                .key('L', reg.get("lead_ingot"))
+                .key('P', Items.ENDER_PEARL)
+                .patternLine("LLL")
+                .patternLine("PBP")
+                .patternLine("EEE")
+                .addCriterion("has_ender_pearl", hasItem(Items.ENDER_PEARL))
+                .build(consumer);
+    }
+    // endregion
 }

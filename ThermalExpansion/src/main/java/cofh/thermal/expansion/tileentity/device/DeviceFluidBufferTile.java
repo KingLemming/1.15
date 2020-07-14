@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.device;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.core.tileentity.ReconfigurableTileBase;
+import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
 import cofh.thermal.expansion.inventory.container.device.DeviceFluidBufferContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -23,7 +23,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_IN;
 import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_OUT;
 import static cofh.thermal.expansion.init.TExpReferences.DEVICE_FLUID_BUFFER_TILE;
 
-public class DeviceFluidBufferTile extends ReconfigurableTileBase implements ITickableTileEntity {
+public class DeviceFluidBufferTile extends ReconfigurableTile4Way implements ITickableTileEntity {
 
     public static int XFER_MAX = TANK_MEDIUM;
 

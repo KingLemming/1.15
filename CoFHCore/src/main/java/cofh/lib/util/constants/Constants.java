@@ -109,6 +109,7 @@ public class Constants {
     public static final String CMD_DURATION = "duration";
     public static final String CMD_FLAG = "flag";
     public static final String CMD_PLAYER = "player";
+    public static final String CMD_PLAYERS = "players";
     public static final String CMD_TARGETS = "targets";
     // endregion
 

@@ -4,7 +4,7 @@ import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
 import cofh.lib.inventory.container.slot.SlotCoFH;
 import cofh.lib.inventory.container.slot.SlotRemoveOnly;
-import cofh.thermal.core.tileentity.ReconfigurableTileBase;
+import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
@@ -14,12 +14,12 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_REFINERY_CONTAI
 
 public class MachineRefineryContainer extends TileContainer {
 
-    public final ReconfigurableTileBase tile;
+    public final ReconfigurableTile4Way tile;
 
     public MachineRefineryContainer(int windowId, World world, BlockPos pos, PlayerInventory inventory, PlayerEntity player) {
 
         super(MACHINE_REFINERY_CONTAINER, windowId, world, pos, inventory, player);
-        this.tile = (ReconfigurableTileBase) world.getTileEntity(pos);
+        this.tile = (ReconfigurableTile4Way) world.getTileEntity(pos);
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
         addSlot(new SlotRemoveOnly(tileInv, 0, 107, 35));

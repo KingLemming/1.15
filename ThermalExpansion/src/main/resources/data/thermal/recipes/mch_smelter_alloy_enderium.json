@@ -2,12 +2,12 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/invar",
+      "tag": "forge:ingots/lead",
       "count": 3
     },
     {
       "tag": "forge:ingots/electrum",
-      "count": 1
+      "count": 3
     },
     {
       "tag": "forge:ender_pearls",

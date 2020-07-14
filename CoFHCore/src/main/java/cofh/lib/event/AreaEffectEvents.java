@@ -3,10 +3,14 @@ package cofh.lib.event;
 import cofh.lib.capability.templates.AreaEffectItemWrapper;
 import cofh.lib.util.Utils;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.management.PlayerInteractionManager;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -63,6 +67,7 @@ public class AreaEffectEvents {
             if (stack.isEmpty()) {
                 break;
             }
+            // tryHarvestBlock(playerMP.interactionManager, pos);
             playerMP.interactionManager.tryHarvestBlock(pos);
         }
     }
@@ -171,6 +176,64 @@ public class AreaEffectEvents {
             }
         }
         return maxHardness;
+    }
+
+    private static boolean tryHarvestBlock(PlayerInteractionManager manager, BlockPos pos) {
+
+        BlockState blockstate = manager.world.getBlockState(pos);
+        int exp = net.minecraftforge.common.ForgeHooks.onBlockBreakEvent(manager.world, manager.getGameType(), manager.player, pos);
+        if (exp == -1) {
+            return false;
+        } else {
+            TileEntity tileentity = manager.world.getTileEntity(pos);
+            Block block = blockstate.getBlock();
+            if ((block instanceof CommandBlockBlock || block instanceof StructureBlock || block instanceof JigsawBlock) && !manager.player.canUseCommandBlock()) {
+                manager.world.notifyBlockUpdate(pos, blockstate, blockstate, 3);
+                return false;
+            } else if (manager.player.getHeldItemMainhand().onBlockStartBreak(pos, manager.player)) {
+                return false;
+            } else if (manager.player.blockActionRestricted(manager.world, pos, manager.getGameType())) {
+                return false;
+            } else {
+                if (manager.isCreative()) {
+                    removeBlock(manager, pos, false);
+                    return true;
+                } else {
+                    ItemStack itemstack = manager.player.getHeldItemMainhand();
+                    ItemStack itemstack1 = itemstack.copy();
+                    boolean flag1 = blockstate.canHarvestBlock(manager.world, pos, manager.player);
+                    itemstack.onBlockDestroyed(manager.world, blockstate, pos, manager.player);
+                    if (itemstack.isEmpty() && !itemstack1.isEmpty()) {
+                        net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(manager.player, itemstack1, Hand.MAIN_HAND);
+                    }
+                    boolean flag = removeBlock(manager, pos, flag1);
+
+                    if (flag && flag1) {
+                        block.harvestBlock(manager.world, manager.player, pos, blockstate, tileentity, itemstack1);
+                    }
+                    if (flag && exp > 0)
+                        blockstate.getBlock().dropXpOnBlockBreak(manager.world, pos, exp);
+                    return true;
+                }
+            }
+        }
+    }
+
+    private static boolean removeBlock(PlayerInteractionManager manager, BlockPos pos, boolean canHarvest) {
+
+        BlockState state = manager.world.getBlockState(pos);
+        boolean removed = removedByPlayer(manager.world.getBlockState(pos), manager.world, pos, manager.player, canHarvest, manager.world.getFluidState(pos));
+        if (removed)
+            state.getBlock().onPlayerDestroy(manager.world, pos, state);
+        return removed;
+    }
+
+    private static boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, IFluidState fluid) {
+
+        if (false) {
+            state.getBlock().onBlockHarvested(world, pos, state, player);
+        }
+        return world.setBlockState(pos, fluid.getBlockState(), world.isRemote ? 11 : 3);
     }
     // endregion
 }

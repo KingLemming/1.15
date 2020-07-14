@@ -3,7 +3,7 @@ package cofh.thermal.expansion.tileentity.device;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.helpers.InventoryHelper;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.core.tileentity.ReconfigurableTileBase;
+import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
 import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -21,7 +21,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_IN;
 import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_OUT;
 import static cofh.thermal.expansion.init.TExpReferences.DEVICE_ITEM_BUFFER_TILE;
 
-public class DeviceItemBufferTile extends ReconfigurableTileBase implements ITickableTileEntity {
+public class DeviceItemBufferTile extends ReconfigurableTile4Way implements ITickableTileEntity {
 
     public static int XFER_MAX = 64;
 

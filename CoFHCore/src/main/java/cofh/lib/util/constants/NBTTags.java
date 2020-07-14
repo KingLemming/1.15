@@ -35,6 +35,7 @@ public class NBTTags {
     public static final String TAG_INDEX = "Index";
     public static final String TAG_ITEM_INV = "ItemInv";
     public static final String TAG_MODE = "Mode";
+    public static final String TAG_NAME = "Name";
     public static final String TAG_ORIGIN = "Origin";
     public static final String TAG_POTION = "Potion";
     public static final String TAG_PROCESS = "Proc";
@@ -52,6 +53,7 @@ public class NBTTags {
     public static final String TAG_TRACK_IN = "TrackIn";
     public static final String TAG_TRACK_OUT = "TrackOut";
     public static final String TAG_TYPE = "Type";
+    public static final String TAG_UUID = "UUID";
 
     public static final String TAG_SECURITY = "Security";
     public static final String TAG_SEC_ACCESS = "SecAccess";

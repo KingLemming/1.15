@@ -2,7 +2,6 @@ package cofh.thermal.expansion.plugins.jei;
 
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
-import cofh.thermal.expansion.util.managers.machine.BottlerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
 import mezz.jei.api.IModPlugin;
@@ -46,8 +45,6 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ID_RECIPE_BREWER);
         registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BREWER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ID_RECIPE_BOTTLER);
-
-        System.out.println(recipeManager.getRecipes(RECIPE_BOTTLER).values());
     }
 
     @Override

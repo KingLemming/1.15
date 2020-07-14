@@ -21,6 +21,7 @@ public class CoFHCommand {
                 //                .then(SubCommandCrafting.register())
                 //                .then(SubCommandCrafting.registerAlt())
                 .then(SubCommandEnderChest.register())
+                .then(SubCommandFriend.register())
                 .then(SubCommandHeal.register())
                 .then(SubCommandIgnite.register())
                 .then(SubCommandInvis.register())

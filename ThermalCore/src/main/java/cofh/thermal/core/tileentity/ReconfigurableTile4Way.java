@@ -41,7 +41,7 @@ import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
-public abstract class ReconfigurableTileBase extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
+public abstract class ReconfigurableTile4Way extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 
     public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
     // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
@@ -54,7 +54,7 @@ public abstract class ReconfigurableTileBase extends ThermalTileBase implements 
     protected ReconfigControlModule reconfigControl = new ReconfigControlModule(this);
     protected TransferControlModule transferControl = new TransferControlModule(this);
 
-    public ReconfigurableTileBase(TileEntityType<?> tileEntityTypeIn) {
+    public ReconfigurableTile4Way(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
     }

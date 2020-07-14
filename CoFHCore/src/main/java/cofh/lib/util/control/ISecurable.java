@@ -4,6 +4,7 @@ import cofh.core.util.SocialUtils;
 import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public interface ISecurable {
 
     default boolean canAccess(PlayerEntity player) {
 
-        return getAccess().matches(getOwner(), player);
+        return getAccess().matches(getOwner(), (ServerPlayerEntity) player);
     }
 
     /**
@@ -49,7 +50,7 @@ public interface ISecurable {
 
         public static final AccessMode[] VALUES = values();
 
-        public boolean matches(GameProfile owner, PlayerEntity player) {
+        public boolean matches(GameProfile owner, ServerPlayerEntity player) {
 
             UUID ownerID = owner.getId();
             if (isDefaultUUID(ownerID)) {
@@ -63,7 +64,7 @@ public interface ISecurable {
                 case PRIVATE:
                     return ownerID.equals(otherID);
                 case FRIENDS:
-                    return ownerID.equals(otherID) || SocialUtils.isFriendOrSelf(owner, player.getGameProfile().getName());
+                    return ownerID.equals(otherID) || SocialUtils.isFriendOrSelf(owner, player);
                 case TEAM:
                     // TODO: Fix
                     return ownerID.equals(otherID); // || TeamRegistry.playerHasAccess(owner, player);
