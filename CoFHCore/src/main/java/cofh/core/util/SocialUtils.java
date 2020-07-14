@@ -47,12 +47,9 @@ public class SocialUtils {
         return friends(player).clearAllFriendLists(player);
     }
 
-    public static boolean isFriendOrSelf(GameProfile owner, PlayerEntity player) {
+    public static boolean isFriendOrSelf(GameProfile owner, ServerPlayerEntity player) {
 
-        if (player instanceof ServerPlayerEntity) {
-            return friends((ServerPlayerEntity) player).isFriendOrSelf(owner, player);
-        }
-        return false;
+        return friends(player).isFriendOrSelf(owner, player);
     }
     // endregion
 

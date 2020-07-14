@@ -3,7 +3,7 @@ package cofh.lib.util.control;
 import cofh.core.util.SocialUtils;
 import cofh.lib.util.helpers.SecurityHelper;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.scoreboard.Team;
 
@@ -27,9 +27,9 @@ public interface ISecurable {
         return getOwner().getName();
     }
 
-    default boolean canAccess(PlayerEntity player) {
+    default boolean canAccess(Entity entity) {
 
-        return getAccess().matches(getOwner(), (ServerPlayerEntity) player);
+        return getAccess().matches(getOwner(), entity);
     }
 
     /**
@@ -51,23 +51,23 @@ public interface ISecurable {
 
         public static final AccessMode[] VALUES = values();
 
-        public boolean matches(GameProfile owner, ServerPlayerEntity player) {
+        public boolean matches(GameProfile owner, Entity entity) {
 
             UUID ownerID = owner.getId();
             if (isDefaultUUID(ownerID)) {
                 return true;
             }
-            UUID otherID = getID(player);
+            UUID otherID = getID(entity);
             switch (this) {
                 case PRIVATE:
                     return ownerID.equals(otherID);
                 case FRIENDS:
-                    return ownerID.equals(otherID) || SocialUtils.isFriendOrSelf(owner, player);
+                    return ownerID.equals(otherID) || entity instanceof ServerPlayerEntity && SocialUtils.isFriendOrSelf(owner, (ServerPlayerEntity) entity);
                 case TEAM:
                     if (ownerID.equals(otherID)) {
                         return true;
                     }
-                    Team team = player.getTeam();
+                    Team team = entity.getTeam();
                     if (team == null) {
                         return false;
                     }

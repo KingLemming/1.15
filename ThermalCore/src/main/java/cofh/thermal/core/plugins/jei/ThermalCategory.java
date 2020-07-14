@@ -11,6 +11,7 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
     protected IDrawableAnimated speed;
 
     protected IDrawableStatic icon;
-    protected String localizedName;
+    protected ITextComponent name;
 
     public ThermalCategory(IGuiHelper guiHelper, ResourceLocation uid) {
 
@@ -89,7 +90,7 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
     @Override
     public String getTitle() {
 
-        return localizedName;
+        return name.getFormattedText();
     }
 
     @Override

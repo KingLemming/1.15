@@ -272,36 +272,4 @@ public class GuiHelper {
         return builder.toString();
     }
     // endregion
-
-    // region TUTORIAL TAB HELPERS
-    public static String tutorialTabAugment() {
-
-        return localize("info.cofh.tutorial.tabAugment");
-    }
-
-    public static String tutorialTabAugmentUpgrade() {
-
-        return localize("info.cofh.tutorial.tabAugmentUpgrade");
-    }
-
-    public static String tutorialTabConfiguration() {
-
-        return localize("info.cofh.tutorial.tabConfiguration");
-    }
-
-    public static String tutorialTabRedstone() {
-
-        return localize("info.cofh.tutorial.tabRedstone");
-    }
-
-    public static String tutorialTabSecurity() {
-
-        return localize("info.cofh.tutorial.tabSecurity");
-    }
-
-    public static String tutorialTabFluxRequired() {
-
-        return localize("info.cofh.tutorial.fluxRequired");
-    }
-    // endregion
 }

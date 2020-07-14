@@ -1,7 +1,6 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineInsolatorScreen;
@@ -21,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_BLOCK;
 
 public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
@@ -35,7 +35,7 @@ public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
         background = guiHelper.drawableBuilder(MachineInsolatorScreen.TEXTURE, 26, 11, 130, 62)
                 .addPadding(0, 0, 16, 18)
                 .build();
-        localizedName = StringHelper.localize(MACHINE_INSOLATOR_BLOCK.getTranslationKey());
+        name = getTextComponent(MACHINE_INSOLATOR_BLOCK.getTranslationKey());
 
         progressBackground = Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_ARROW);
         progressFluidBackground = Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_ARROW_FLUID);

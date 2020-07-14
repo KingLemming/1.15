@@ -1,7 +1,6 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalCategory;
 import cofh.thermal.expansion.client.gui.machine.MachinePressScreen;
@@ -21,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PRESS_BLOCK;
 
 public class PressRecipeCategory extends ThermalCategory<PressRecipe> {
@@ -35,7 +35,7 @@ public class PressRecipeCategory extends ThermalCategory<PressRecipe> {
         background = guiHelper.drawableBuilder(MachinePressScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)
                 .build();
-        localizedName = StringHelper.localize(MACHINE_PRESS_BLOCK.getTranslationKey());
+        name = getTextComponent(MACHINE_PRESS_BLOCK.getTranslationKey());
 
         progressBackground = Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_ARROW);
         progressFluidBackground = Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_ARROW_FLUID);

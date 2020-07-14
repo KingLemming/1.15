@@ -5,10 +5,11 @@ import cofh.lib.util.control.ISecurable.AccessMode;
 import com.google.common.base.Strings;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -38,16 +39,19 @@ public class SecurityHelper {
         return DEFAULT_GAME_PROFILE.equals(profile);
     }
 
-    public static UUID getID(PlayerEntity player) {
+    public static UUID getID(Entity entity) {
 
-        if (player == null) {
+        if (entity == null) {
             return DEFAULT_GAME_PROFILE.getId();
         }
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server != null && server.isServerRunning()) {
-            return player.getGameProfile().getId();
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) entity;
+            if (player instanceof ServerPlayerEntity) {
+                return player.getGameProfile().getId();
+            }
+            return getClientID(player);
         }
-        return getClientID(player);
+        return entity.getUniqueID();
     }
 
     private static UUID getClientID(PlayerEntity player) {

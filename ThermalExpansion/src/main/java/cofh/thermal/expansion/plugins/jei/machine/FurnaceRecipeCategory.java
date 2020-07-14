@@ -1,6 +1,5 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
-import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineFurnaceScreen;
@@ -16,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_BLOCK;
 
 public class FurnaceRecipeCategory extends ThermalCategory<FurnaceRecipe> {
@@ -27,7 +27,7 @@ public class FurnaceRecipeCategory extends ThermalCategory<FurnaceRecipe> {
         background = guiHelper.drawableBuilder(MachineFurnaceScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)
                 .build();
-        localizedName = StringHelper.localize(MACHINE_FURNACE_BLOCK.getTranslationKey());
+        name = getTextComponent(MACHINE_FURNACE_BLOCK.getTranslationKey());
 
         progressBackground = Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_ARROW);
         speedBackground = Drawables.getDrawables(guiHelper).getScale(Drawables.SCALE_FLAME);

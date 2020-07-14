@@ -1,7 +1,6 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
-import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineBrewerScreen;
@@ -21,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_BLOCK;
 
 public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
@@ -38,7 +38,7 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
         background = guiHelper.drawableBuilder(MachineBrewerScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)
                 .build();
-        localizedName = StringHelper.localize(MACHINE_BREWER_BLOCK.getTranslationKey());
+        name = getTextComponent(MACHINE_BREWER_BLOCK.getTranslationKey());
 
         progressBackground = Drawables.getDrawables(guiHelper).getProgress(Drawables.PROGRESS_DROP);
         progressFluidBackground = Drawables.getDrawables(guiHelper).getProgressFill(Drawables.PROGRESS_DROP);
