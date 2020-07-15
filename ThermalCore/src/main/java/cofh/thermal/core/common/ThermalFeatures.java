@@ -67,7 +67,7 @@ public class ThermalFeatures {
         registerItem("area_radius_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
                         .type(TAG_AUGMENT_TYPE_AREA_EFFECT)
-                        .mod(TAG_AUGMENT_RADIUS, 1.0F)
+                        .mod(TAG_AUGMENT_AREA_RADIUS, 1.0F)
                         .build()));
     }
 

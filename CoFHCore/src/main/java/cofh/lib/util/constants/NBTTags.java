@@ -78,7 +78,7 @@ public class NBTTags {
     public static final String TAG_AUGMENT_TYPE_MACHINE = "MchAug";
     public static final String TAG_AUGMENT_TYPE_DYNAMO = "DynAug";
     public static final String TAG_AUGMENT_TYPE_AREA_EFFECT = "AEAug";
-    public static final String TAG_AUGMENT_TYPE_POTION = "Potion";
+    public static final String TAG_AUGMENT_TYPE_POTION = "PotAug";
 
     // General
     public static final String TAG_AUGMENT_ENERGY_STORAGE = "RFMax";
@@ -87,12 +87,17 @@ public class NBTTags {
 
     public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
 
-    public static final String TAG_AUGMENT_DEPTH = "Depth";
-    public static final String TAG_AUGMENT_RADIUS = "Radius";
-    public static final String TAG_AUGMENT_REACH = "Reach";
+    public static final String TAG_AUGMENT_AREA_DEPTH = "AEDpt";
+    public static final String TAG_AUGMENT_AREA_RADIUS = "AERad";
+    public static final String TAG_AUGMENT_AREA_REACH = "AERch";
 
     public static final String TAG_AUGMENT_POTION_AMPLIFIER = "PotAmp";
     public static final String TAG_AUGMENT_POTION_DURATION = "PotDur";
+
+    // Dynamo-Specific
+    public static final String TAG_AUGMENT_DYNAMO_COIL = "DynCoil";
+    public static final String TAG_AUGMENT_DYNAMO_PRODUCTION = "DynProd";
+    public static final String TAG_AUGMENT_DYNAMO_EFFICIENCY = "DynEff";
 
     // Machine-Specific
     public static final String TAG_AUGMENT_MACHINE_PRIMARY = "MchPri";
@@ -104,11 +109,7 @@ public class NBTTags {
     public static final String TAG_AUGMENT_MACHINE_CATALYST = "MchCat";
     public static final String TAG_AUGMENT_MACHINE_XP = "MchXp";
 
-    // Dynamo-Specific
-    public static final String TAG_AUGMENT_DYNAMO_COIL = "DynCoil";
-    public static final String TAG_AUGMENT_DYNAMO_PRODUCTION = "DynProd";
-    public static final String TAG_AUGMENT_DYNAMO_EFFICIENCY = "DynEff";
-
+    // Compatibility
     public static final String TAG_DEMAGNETIZE_COMPAT = "AllowMachineRemoteMovement";
     public static final String TAG_CONVEYOR_COMPAT = "PreventRemoteMovement";
 

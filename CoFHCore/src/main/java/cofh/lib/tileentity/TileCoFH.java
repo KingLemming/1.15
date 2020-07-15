@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
 
 public class TileCoFH extends TileEntity implements ITileCallback, IConveyableData {
 
+    protected int numPlayersUsing;
+
     public TileCoFH(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
@@ -47,6 +49,21 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
             world.tickableTileEntities.remove(this);
         }
         validate();
+    }
+
+    public int getPlayersUsing() {
+
+        return numPlayersUsing;
+    }
+
+    public void addPlayerUsing() {
+
+        ++numPlayersUsing;
+    }
+
+    public void removePlayerUsing() {
+
+        --numPlayersUsing;
     }
 
     public void receiveGuiNetworkData(int id, int data) {

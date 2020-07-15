@@ -1,0 +1,47 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "thermal:item/tools/flux_magnet",
+    "layer1": "thermal:item/tools/flux_magnet_empty"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [0, 2.0, -3.0],
+      "scale": [0.7, 0.7, 0.7]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [0, 2.0, -3.0],
+      "scale": [0.7, 0.7, 0.7]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [0.6, 0.6, 0.6]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [0.6, 0.6, 0.6]
+    },
+    "ground": {
+      "translation": [0, 3.0, 0],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "charged": 1
+      },
+      "model": "thermal:item/flux_magnet_charged"
+    },
+    {
+      "predicate": {
+        "active": 1
+      },
+      "model": "thermal:item/flux_magnet_active"
+    }
+  ]
+}

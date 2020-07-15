@@ -1,0 +1,43 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "thermal:item/tools/flux_drill",
+    "layer1": "thermal:item/tools/flux_drill_empty"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, -35],
+      "translation": [0, 5.0, 0],
+      "scale": [0.8, 0.8, 0.8]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, 35],
+      "translation": [0, 5.0, 0],
+      "scale": [0.8, 0.8, 0.8]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 20],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [0.68, 0.68, 0.68]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -20],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [0.68, 0.68, 0.68]
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "charged": 1
+      },
+      "model": "thermal:item/flux_drill_charged"
+    },
+    {
+      "predicate": {
+        "active": 1
+      },
+      "model": "thermal:item/flux_drill_active"
+    }
+  ]
+}

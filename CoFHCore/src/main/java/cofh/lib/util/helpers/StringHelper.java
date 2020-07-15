@@ -11,6 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -19,6 +20,9 @@ public final class StringHelper {
     private StringHelper() {
 
     }
+
+    public static final DecimalFormat DF0 = new DecimalFormat("#");
+    public static final DecimalFormat DF2 = new DecimalFormat("#.##");
 
     public static String titleCase(String input) {
 
@@ -143,7 +147,7 @@ public final class StringHelper {
 
     public static ITextComponent getInfoTextComponent(String key) {
 
-        return getTextComponent(key).applyTextStyle(TextFormatting.GREEN);
+        return getTextComponent(key).applyTextStyle(TextFormatting.GOLD);
     }
     // endregion
 

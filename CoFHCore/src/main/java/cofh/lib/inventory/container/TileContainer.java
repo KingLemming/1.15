@@ -20,6 +20,10 @@ public class TileContainer extends ContainerCoFH {
         super(type, windowId, inventory, player);
         TileEntity tile = world.getTileEntity(pos);
         baseTile = tile instanceof TileCoFH ? (TileCoFH) tile : null;
+
+        if (baseTile != null) {
+            baseTile.addPlayerUsing();
+        }
     }
 
     @Override
@@ -44,7 +48,6 @@ public class TileContainer extends ContainerCoFH {
     public void detectAndSendChanges() {
 
         super.detectAndSendChanges();
-
         if (baseTile == null) {
             return;
         }
@@ -62,6 +65,15 @@ public class TileContainer extends ContainerCoFH {
             return;
         }
         baseTile.receiveGuiNetworkData(i, j);
+    }
+
+    @Override
+    public void onContainerClosed(PlayerEntity player) {
+
+        if (baseTile != null) {
+            baseTile.removePlayerUsing();
+        }
+        super.onContainerClosed(player);
     }
 
 }

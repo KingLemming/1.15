@@ -97,7 +97,7 @@ public class RFFluidVacItem extends EnergyContainerItem implements IAugmentableI
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
 
-        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_AREA_RADIUS);
     }
 
     protected boolean hasActiveTag(ItemStack stack) {
@@ -117,7 +117,7 @@ public class RFFluidVacItem extends EnergyContainerItem implements IAugmentableI
 
     protected int getRadius(ItemStack stack) {
 
-        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_RADIUS, 0.0F);
+        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_AREA_RADIUS, 0.0F);
     }
     // endregion
 

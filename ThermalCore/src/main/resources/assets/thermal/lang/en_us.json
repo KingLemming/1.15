@@ -44,6 +44,8 @@
   "block.thermal.lumium_glass": "Lumium Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
+  "block.thermal.machine_frame": "Machine Frame",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",
@@ -173,6 +175,40 @@
   "item.thermal.glowstone_fluid_bucket": "Energized Glowstone Bucket",
   "item.thermal.ender_fluid_bucket": "Resonant Ender Bucket",
 
+  "_comment": "========================================================================================================",
+  "_comment": "Thermal Core - Augments",
+  "_comment": "========================================================================================================",
+
+  "info.thermal.augment.attr.AEDpt": "Maximum Depth",
+  "info.thermal.augment.attr.AERad": "Maximum Radius",
+  "info.thermal.augment.attr.AERch": "Maximum Reach",
+
+  "info.thermal.augment.attr.DynProd": "Maximum Output",
+  "info.thermal.augment.attr.DynEff": "Fuel Energy",
+
+  "info.thermal.augment.attr.FlMax": "Tank Capacity",
+
+  "info.thermal.augment.attr.MchCat": "Catalyst Usage",
+  "info.thermal.augment.attr.MchEn": "Energy Usage",
+  "info.thermal.augment.attr.MchPri": "Primary Product",
+  "info.thermal.augment.attr.MchPwr": "Maximum Power",
+  "info.thermal.augment.attr.MchSec": "Secondary Product",
+  "info.thermal.augment.attr.MchXp": "XP Modifier",
+
+  "info.thermal.augment.attr.PotAmp": "Effect Level",
+  "info.thermal.augment.attr.PotDur": "Effect Duration",
+
+  "info.thermal.augment.attr.RFMax": "RF Capacity",
+  "info.thermal.augment.attr.RFXfer": "RF Transfer",
+
+  "info.thermal.augment.type.AEAug": "Area Effect",
+  "info.thermal.augment.type.DynAug": "Dynamo",
+  "info.thermal.augment.type.FlAug": "Fluid",
+  "info.thermal.augment.type.MchAug": "Machine",
+  "info.thermal.augment.type.PotAug": "Potion",
+  "info.thermal.augment.type.RFAug": "RF Coil",
+  "info.thermal.augment.type.UpgAug": "Upgrade",
+
   "item.thermal.area_depth_augment": "Axial Enhancement",
   "item.thermal.area_radius_augment": "Radial Enhancement",
 
@@ -191,6 +227,7 @@
   "item.thermal.machine_catalyst_augment": "Catalytic Reclamation Chamber",
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
   "item.thermal.machine_speed_augment": "Flux Linkage Amplifier",
+  "item.thermal.machine_speed_augment.desc": "Magic box go `brrrrrrr`",
 
   "item.thermal.potion_amplifier_augment": "Alchemical Amplifier",
   "item.thermal.potion_duration_augment": "Alchemical Extender",

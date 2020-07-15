@@ -203,7 +203,7 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
 
-        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_AREA_RADIUS);
     }
 
     protected boolean hasActiveTag(ItemStack stack) {
@@ -243,7 +243,7 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
 
     protected int getRadius(ItemStack stack) {
 
-        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_RADIUS, 0.0F);
+        return (int) getPropertyWithDefault(stack, TAG_AUGMENT_AREA_RADIUS, 0.0F);
     }
     // endregion
 

@@ -5,17 +5,13 @@ import cofh.lib.util.helpers.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.text.ITextComponent;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
 
-import static cofh.lib.util.helpers.StringHelper.getTextComponent;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.lib.util.helpers.StringHelper.*;
 
 public class PanelResource extends PanelBase {
-
-    private static DecimalFormat df0 = new DecimalFormat("#");
 
     public static int defaultSide = LEFT;
     public static int defaultHeaderColor = 0xe1c92f;
@@ -107,7 +103,7 @@ public class PanelResource extends PanelBase {
         }
         if (efficiency.getAsDouble() > -1) {
             getFontRenderer().drawStringWithShadow(localize("info.cofh.efficiency") + ":", sideOffset() + 6, 66, subheaderColor);
-            getFontRenderer().drawString(df0.format(efficiency.getAsDouble() * 100) + "%", sideOffset() + 14, 78, textColor);
+            getFontRenderer().drawString(DF0.format(efficiency.getAsDouble() * 100) + "%", sideOffset() + 14, 78, textColor);
         }
         RenderHelper.resetColor();
     }

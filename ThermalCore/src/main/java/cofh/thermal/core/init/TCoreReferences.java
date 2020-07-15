@@ -68,6 +68,8 @@ public class TCoreReferences {
     public static final String ID_SIGNALUM_BLOCK = "signalum_block";
     // endregion
 
+    public static final String ID_MACHINE_FRAME = "machine_frame";
+
     public static final String ID_ENDERIUM_GLASS = "enderium_glass";
     public static final String ID_LUMIUM_GLASS = "lumium_glass";
     public static final String ID_SIGNALUM_GLASS = "signalum_glass";

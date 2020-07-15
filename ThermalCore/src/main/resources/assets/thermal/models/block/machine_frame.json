@@ -1,0 +1,14 @@
+{
+  "parent": "thermal:block/core_cube",
+  "textures": {
+    "particle": "thermal:block/machines/machine_frame_top",
+    "down": "thermal:block/machines/machine_frame_bottom",
+    "up": "thermal:block/machines/machine_frame_top",
+    "north": "thermal:block/machines/machine_frame_side",
+    "east": "thermal:block/machines/machine_frame_side",
+    "south": "thermal:block/machines/machine_frame_side",
+    "west": "thermal:block/machines/machine_frame_side",
+    "inner": "thermal:block/machines/machine_frame_inner",
+    "center": "thermal:block/machines/machine_frame_inner"
+  }
+}

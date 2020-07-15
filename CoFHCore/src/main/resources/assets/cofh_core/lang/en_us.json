@@ -39,6 +39,7 @@
   "info.cofh.infinite_source": "Infinite Source",
   "info.cofh.single_block": "Single Block",
   "info.cofh.transfer": "Transfer",
+  "info.cofh.type": "Type",
 
   "info.cofh.mode_change": "Press '%s' to change mode.",
   "info.cofh.use_sneak_activate": "Use while sneaking to activate.",

@@ -204,7 +204,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
 
     protected int getRadius(ItemStack stack) {
 
-        float mod = getPropertyWithDefault(stack, TAG_AUGMENT_RADIUS, 1.0F);
+        float mod = getPropertyWithDefault(stack, TAG_AUGMENT_AREA_RADIUS, 1.0F);
         return Math.round(RADIUS + mod);
     }
 
@@ -214,7 +214,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
         if (subTag == null) {
             return;
         }
-        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_RADIUS);
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_AREA_RADIUS);
 
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
