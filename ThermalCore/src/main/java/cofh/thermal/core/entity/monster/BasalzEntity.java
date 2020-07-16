@@ -1,12 +1,12 @@
 package cofh.thermal.core.entity.monster;
 
+import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -235,11 +235,9 @@ public class BasalzEntity extends MonsterEntity {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.basalz.world.playEvent(null, 1018, new BlockPos(this.basalz), 0);
 
-                            for (int i = 0; i < 1; ++i) {
-                                SmallFireballEntity smallfireballentity = new SmallFireballEntity(this.basalz.world, this.basalz, d1 + this.basalz.getRNG().nextGaussian() * (double) f, d2, d3 + this.basalz.getRNG().nextGaussian() * (double) f);
-                                smallfireballentity.setPosition(smallfireballentity.getPosX(), this.basalz.getPosYHeight(0.5D) + 0.5D, smallfireballentity.getPosZ());
-                                this.basalz.world.addEntity(smallfireballentity);
-                            }
+                            BasalzProjectileEntity projectile = new BasalzProjectileEntity(this.basalz, d1 + this.basalz.getRNG().nextGaussian() * (double) f, d2, d3 + this.basalz.getRNG().nextGaussian() * (double) f, this.basalz.world);
+                            projectile.setPosition(projectile.getPosX(), this.basalz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
+                            this.basalz.world.addEntity(projectile);
                         }
                     }
                     this.basalz.getLookController().setLookPositionWithEntity(livingentity, 10.0F, 10.0F);

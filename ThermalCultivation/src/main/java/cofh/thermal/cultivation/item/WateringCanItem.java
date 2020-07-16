@@ -10,6 +10,7 @@ import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +25,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +39,7 @@ import java.util.List;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
+import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.lib.util.constants.Constants.RGB_DURABILITY_WATER;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.AugmentableHelper.*;
@@ -78,6 +81,16 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
+        int radius = getMode(stack) * 2 + 1;
+        if (radius <= 1) {
+            tooltip.add(new TranslationTextComponent("info.cofh.single_block").applyTextStyle(TextFormatting.ITALIC));
+        } else {
+            tooltip.add(new TranslationTextComponent("info.cofh.area").appendText(": " + radius + "x" + radius).applyTextStyle(TextFormatting.ITALIC));
+        }
+        if (getNumModes(stack) > 1) {
+            tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override

@@ -39,6 +39,8 @@ public class CoreReferences {
     public static final String ID_EFFECT_LOVE = ID_COFH_CORE + ":love";
     public static final String ID_EFFECT_PANACEA = ID_COFH_CORE + ":panacea";
     public static final String ID_EFFECT_REDERGIZED = ID_COFH_CORE + ":redergized";
+    public static final String ID_EFFECT_SHOCKED = ID_COFH_CORE + ":shocked";
+    public static final String ID_EFFECT_SUNDERED = ID_COFH_CORE + ":sundered";
 
     public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
 
@@ -116,6 +118,12 @@ public class CoreReferences {
 
     @ObjectHolder(ID_EFFECT_PANACEA)
     public static final Effect PANACEA = null;
+
+    @ObjectHolder(ID_EFFECT_SHOCKED)
+    public static final Effect SHOCKED = null;
+
+    @ObjectHolder(ID_EFFECT_SUNDERED)
+    public static final Effect SUNDERED = null;
     // endregion
 
     // region ENCHANTMENTS

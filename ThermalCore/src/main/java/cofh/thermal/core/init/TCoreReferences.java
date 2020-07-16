@@ -3,6 +3,9 @@ package cofh.thermal.core.init;
 import cofh.thermal.core.entity.monster.BasalzEntity;
 import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
+import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
+import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
+import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.ObjectHolder;
@@ -83,6 +86,10 @@ public class TCoreReferences {
     public static final String ID_BLITZ = ID_THERMAL + ":blitz";
     public static final String ID_BLIZZ = ID_THERMAL + ":blizz";
 
+    public static final String ID_BASALZ_PROJECTILE = ID_THERMAL + ":basalz_projectile";
+    public static final String ID_BLITZ_PROJECTILE = ID_THERMAL + ":blitz_projectile";
+    public static final String ID_BLIZZ_PROJECTILE = ID_THERMAL + ":blizz_projectile";
+
     @ObjectHolder(ID_BASALZ)
     public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
 
@@ -91,6 +98,15 @@ public class TCoreReferences {
 
     @ObjectHolder(ID_BLIZZ)
     public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
+
+    @ObjectHolder(ID_BASALZ_PROJECTILE)
+    public static final EntityType<BasalzProjectileEntity> BASALZ_PROJECTILE_ENTITY = null;
+
+    @ObjectHolder(ID_BLITZ_PROJECTILE)
+    public static final EntityType<BlitzProjectileEntity> BLITZ_PROJECTILE_ENTITY = null;
+
+    @ObjectHolder(ID_BLIZZ_PROJECTILE)
+    public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS

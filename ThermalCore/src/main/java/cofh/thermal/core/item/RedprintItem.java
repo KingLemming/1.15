@@ -10,17 +10,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Rarity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static cofh.lib.util.helpers.StringHelper.canLocalize;
+import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 
 public class RedprintItem extends ItemCoFH implements IPlacementItem {
 
@@ -33,8 +38,20 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
-        if (stack.getTag() != null) {
-            tooltip.add(new StringTextComponent(stack.getTag().toString()));
+        CompoundNBT conveyableData = stack.getTag();
+
+        if (conveyableData != null) {
+            tooltip.add(getTextComponent("info.thermal.redprint.contents"));
+            for (String type : conveyableData.keySet()) {
+                if (!canLocalize("info.thermal.redprint.data." + type)) {
+                    tooltip.add(getTextComponent("info.thermal.redprint.unknown")
+                            .applyTextStyle(TextFormatting.DARK_GRAY));
+                }
+                tooltip.add(new StringTextComponent(" - ")
+                        .appendSibling(getTextComponent("info.thermal.redprint.data." + type)
+                                .applyTextStyle(TextFormatting.GRAY))
+                );
+            }
         }
     }
 
@@ -66,9 +83,9 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
             return false;
         }
         if (tile instanceof IConveyableData) {
-            IConveyableData portable = (IConveyableData) tile;
+            IConveyableData conveyableTile = (IConveyableData) tile;
             if (stack.getTag() == null && context.getHand() == Hand.MAIN_HAND) {
-                portable.writeConveyableData(player, stack.getOrCreateTag());
+                conveyableTile.writeConveyableData(player, stack.getOrCreateTag());
                 tile.markDirty();
                 if (stack.getTag().isEmpty()) {
                     stack.setTag(null);
@@ -77,7 +94,7 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
                     player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.5F, 0.7F);
                 }
             } else {
-                portable.readConveyableData(player, stack.getTag());
+                conveyableTile.readConveyableData(player, stack.getTag());
                 player.world.playSound(null, player.getPosition(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.PLAYERS, 0.5F, 0.8F);
             }
             return true;

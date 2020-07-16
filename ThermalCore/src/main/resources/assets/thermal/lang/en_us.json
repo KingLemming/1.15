@@ -46,6 +46,14 @@
 
   "block.thermal.machine_frame": "Machine Frame",
 
+  "death.attack.basalz": "%1$s had their world rocked!",
+  "death.attack.blitz": "%1$s was tragically enlightened!",
+  "death.attack.blizz": "%1$s met a frigid fate!",
+
+  "entity.thermal.basalz": "Basalz",
+  "entity.thermal.blitz": "Blitz",
+  "entity.thermal.blizz": "Blizz",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",
@@ -71,9 +79,13 @@
   "item.thermal.fire_catalyst": "Igneous Catalyst",
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
+  "item.thermal.lock.desc": "Used to enable security on a block.",
   "item.thermal.phytogro": "Phyto-Gro",
+  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
   "item.thermal.redprint": "Redprint",
+  "item.thermal.redprint.desc": "Copies and transfers settings between blocks.",
   "item.thermal.wrench": "Crescent Hammer",
+  "item.thermal.wrench.desc": "Rotates many blocks. Also known as a Wrench.",
 
   "item.thermal.copper_coin": "Copper Coin",
   "item.thermal.copper_dust": "Copper Dust",
@@ -183,13 +195,15 @@
   "info.thermal.augment.attr.AERad": "Maximum Radius",
   "info.thermal.augment.attr.AERch": "Maximum Reach",
 
+  "info.thermal.augment.attr.BaseMod": "Scale Factor",
+
   "info.thermal.augment.attr.DynProd": "Maximum Output",
   "info.thermal.augment.attr.DynEff": "Fuel Energy",
 
   "info.thermal.augment.attr.FlMax": "Tank Capacity",
 
   "info.thermal.augment.attr.MchCat": "Catalyst Usage",
-  "info.thermal.augment.attr.MchEn": "Energy Usage",
+  "info.thermal.augment.attr.MchEn": "Process Energy",
   "info.thermal.augment.attr.MchPri": "Primary Product",
   "info.thermal.augment.attr.MchPwr": "Maximum Power",
   "info.thermal.augment.attr.MchSec": "Secondary Product",
@@ -206,8 +220,16 @@
   "info.thermal.augment.type.FlAug": "Fluid",
   "info.thermal.augment.type.MchAug": "Machine",
   "info.thermal.augment.type.PotAug": "Potion",
-  "info.thermal.augment.type.RFAug": "RF Coil",
+  "info.thermal.augment.type.RFAug": "Redstone Flux",
   "info.thermal.augment.type.UpgAug": "Upgrade",
+
+  "info.thermal.augment.maximized": "Does not stack; highest value used.",
+
+  "info.thermal.redprint.contents": "Contents:",
+  "info.thermal.redprint.unknown": "Unknown Data",
+  "info.thermal.redprint.data.RSControl": "Redstone Control",
+  "info.thermal.redprint.data.Sides": "Side Configuration",
+  "info.thermal.redprint.data.Xfer": "Transfer Control",
 
   "item.thermal.area_depth_augment": "Axial Enhancement",
   "item.thermal.area_radius_augment": "Radial Enhancement",
@@ -227,7 +249,6 @@
   "item.thermal.machine_catalyst_augment": "Catalytic Reclamation Chamber",
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
   "item.thermal.machine_speed_augment": "Flux Linkage Amplifier",
-  "item.thermal.machine_speed_augment.desc": "Magic box go `brrrrrrr`",
 
   "item.thermal.potion_amplifier_augment": "Alchemical Amplifier",
   "item.thermal.potion_duration_augment": "Alchemical Extender",
@@ -248,9 +269,13 @@
   "item.thermal.rf_coil_xfer_augment_4": "Resonant High-Flux Coil",
 
   "item.thermal.upgrade_augment_1": "Hardened Integral Components",
+  "item.thermal.upgrade_augment_1.desc": "Improves base attributes and amplifies augments.",
   "item.thermal.upgrade_augment_2": "Reinforced Integral Components",
+  "item.thermal.upgrade_augment_2.desc": "Improves base attributes and amplifies augments.",
   "item.thermal.upgrade_augment_3": "Precision Integral Components",
+  "item.thermal.upgrade_augment_3.desc": "Improves base attributes and amplifies augments.",
   "item.thermal.upgrade_augment_4": "Resonant Integral Components",
+  "item.thermal.upgrade_augment_4.desc": "Improves base attributes and amplifies augments.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - External",
@@ -392,6 +417,7 @@
   "item.thermal.tomato_seeds": "Tomato Seeds",
 
   "item.thermal.watering_can": "Watering Can",
+  "item.thermal.watering_can.desc": "Improves plant growth using water.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Dynamics",

@@ -4,9 +4,7 @@ import cofh.core.util.ProxyUtils;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
-import cofh.thermal.core.client.renderer.entity.BasalzRenderer;
-import cofh.thermal.core.client.renderer.entity.BlitzRenderer;
-import cofh.thermal.core.client.renderer.entity.BlizzRenderer;
+import cofh.thermal.core.client.renderer.entity.*;
 import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
@@ -135,6 +133,10 @@ public class ThermalCore {
         RenderingRegistry.registerEntityRenderingHandler(BASALZ_ENTITY, BasalzRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLITZ_ENTITY, BlitzRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLIZZ_ENTITY, BlizzRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(BASALZ_PROJECTILE_ENTITY, BasalzProjectileRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BLITZ_PROJECTILE_ENTITY, BlitzProjectileRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BLIZZ_PROJECTILE_ENTITY, BlizzProjectileRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

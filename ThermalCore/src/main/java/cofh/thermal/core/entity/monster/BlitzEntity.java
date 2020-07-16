@@ -1,12 +1,12 @@
 package cofh.thermal.core.entity.monster;
 
+import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -234,11 +234,9 @@ public class BlitzEntity extends MonsterEntity {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.blitz.world.playEvent(null, 1018, new BlockPos(this.blitz), 0);
 
-                            for (int i = 0; i < 1; ++i) {
-                                SmallFireballEntity smallfireballentity = new SmallFireballEntity(this.blitz.world, this.blitz, d1 + this.blitz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blitz.getRNG().nextGaussian() * (double) f);
-                                smallfireballentity.setPosition(smallfireballentity.getPosX(), this.blitz.getPosYHeight(0.5D) + 0.5D, smallfireballentity.getPosZ());
-                                this.blitz.world.addEntity(smallfireballentity);
-                            }
+                            BlitzProjectileEntity projectile = new BlitzProjectileEntity(this.blitz, d1 + this.blitz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blitz.getRNG().nextGaussian() * (double) f, this.blitz.world);
+                            projectile.setPosition(projectile.getPosX(), this.blitz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
+                            this.blitz.world.addEntity(projectile);
                         }
                     }
                     this.blitz.getLookController().setLookPositionWithEntity(livingentity, 10.0F, 10.0F);
