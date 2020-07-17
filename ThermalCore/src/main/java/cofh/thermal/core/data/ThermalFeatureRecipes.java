@@ -1,4 +1,4 @@
-package cofh.thermal.core.common;
+package cofh.thermal.core.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;

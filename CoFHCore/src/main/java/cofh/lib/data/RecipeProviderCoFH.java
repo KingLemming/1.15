@@ -8,10 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
-public class RecipeProviderCoFH extends RecipeProvider {
+public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuilder {
 
     private final String modid;
 
@@ -20,6 +22,57 @@ public class RecipeProviderCoFH extends RecipeProvider {
         super(generatorIn);
         this.modid = modid;
     }
+
+    // TODO: Finish adding this to fully support modular features.
+    protected void addConditionalRecipe(ResourceLocation id, IFinishedRecipe recipe, Consumer<IFinishedRecipe> consumer) {
+
+    }
+    //
+    //    protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+    //
+    //        ResourceLocation ID = new ResourceLocation("data_gen_test", "conditional");
+    //
+    //        ConditionalRecipe.builder()
+    //                .addCondition(
+    //                        and(
+    //                                not(modLoaded("minecraft")),
+    //                                itemExists("minecraft", "dirt"),
+    //                                FALSE()
+    //                        )
+    //                )
+    //                .addRecipe(
+    //                        ShapedRecipeBuilder.shapedRecipe(Blocks.DIAMOND_BLOCK, 64)
+    //                                .patternLine("XXX")
+    //                                .patternLine("XXX")
+    //                                .patternLine("XXX")
+    //                                .key('X', Blocks.DIRT)
+    //                                .setGroup("")
+    //                                .addCriterion("has_dirt", hasItem(Blocks.DIRT)) //Doesn't actually print... TODO: nested/conditional advancements?
+    //                                ::build
+    //                )
+    //                .setAdvancement(ID,
+    //                        ConditionalAdvancement.builder()
+    //                                .addCondition(
+    //                                        and(
+    //                                                not(modLoaded("minecraft")),
+    //                                                itemExists("minecraft", "dirt"),
+    //                                                FALSE()
+    //                                        )
+    //                                )
+    //                                .addAdvancement(
+    //                                        Advancement.Builder.builder()
+    //                                                .withParentId(new ResourceLocation("minecraft", "root"))
+    //                                                .withDisplay(Blocks.DIAMOND_BLOCK,
+    //                                                        new StringTextComponent("Dirt2Diamonds"),
+    //                                                        new StringTextComponent("The BEST crafting recipe in the game!"),
+    //                                                        null, FrameType.TASK, false, false, false
+    //                                                )
+    //                                                .withRewards(AdvancementRewards.Builder.recipe(ID))
+    //                                                .withCriterion("has_dirt", hasItem(Blocks.DIRT))
+    //                                )
+    //                )
+    //                .build(consumer, ID);
+    //    }
 
     // region HELPERS
     protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item storage, Item individual) {
