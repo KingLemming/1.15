@@ -31,6 +31,10 @@ public class ThermalTextures {
         event.addSprite(MACHINE_CONFIG_OUTPUT_LOC);
         event.addSprite(MACHINE_CONFIG_BOTH_LOC);
         event.addSprite(MACHINE_CONFIG_ACCESSIBLE_LOC);
+
+        event.addSprite(CELL_CONFIG_NONE_LOC);
+        event.addSprite(CELL_CONFIG_INPUT_LOC);
+        event.addSprite(CELL_CONFIG_OUTPUT_LOC);
     }
 
     @SubscribeEvent
@@ -47,6 +51,10 @@ public class ThermalTextures {
         MACHINE_CONFIG_OUTPUT = map.getSprite(MACHINE_CONFIG_OUTPUT_LOC);
         MACHINE_CONFIG_BOTH = map.getSprite(MACHINE_CONFIG_BOTH_LOC);
         MACHINE_CONFIG_ACCESSIBLE = map.getSprite(MACHINE_CONFIG_ACCESSIBLE_LOC);
+
+        CELL_CONFIG_NONE = map.getSprite(CELL_CONFIG_NONE_LOC);
+        CELL_CONFIG_INPUT = map.getSprite(CELL_CONFIG_INPUT_LOC);
+        CELL_CONFIG_OUTPUT = map.getSprite(CELL_CONFIG_OUTPUT_LOC);
     }
 
     // region CONFIG
@@ -58,10 +66,18 @@ public class ThermalTextures {
     public static ResourceLocation MACHINE_CONFIG_BOTH_LOC = new ResourceLocation(CONFIG_ + "machine_config_both");
     public static ResourceLocation MACHINE_CONFIG_ACCESSIBLE_LOC = new ResourceLocation(CONFIG_ + "machine_config_accessible");
 
+    public static ResourceLocation CELL_CONFIG_NONE_LOC = new ResourceLocation(CONFIG_ + "cell_config_none");
+    public static ResourceLocation CELL_CONFIG_INPUT_LOC = new ResourceLocation(CONFIG_ + "cell_config_input");
+    public static ResourceLocation CELL_CONFIG_OUTPUT_LOC = new ResourceLocation(CONFIG_ + "cell_config_output");
+
     public static TextureAtlasSprite MACHINE_CONFIG_NONE;
     public static TextureAtlasSprite MACHINE_CONFIG_INPUT;
     public static TextureAtlasSprite MACHINE_CONFIG_OUTPUT;
     public static TextureAtlasSprite MACHINE_CONFIG_BOTH;
     public static TextureAtlasSprite MACHINE_CONFIG_ACCESSIBLE;
+
+    public static TextureAtlasSprite CELL_CONFIG_NONE;
+    public static TextureAtlasSprite CELL_CONFIG_INPUT;
+    public static TextureAtlasSprite CELL_CONFIG_OUTPUT;
     // endregion
 }

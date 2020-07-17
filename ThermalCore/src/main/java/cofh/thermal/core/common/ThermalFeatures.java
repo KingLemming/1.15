@@ -1,5 +1,7 @@
 package cofh.thermal.core.common;
 
+import cofh.core.item.BeekeeperArmorItem;
+import cofh.core.item.HazmatArmorItem;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.item.ArmorMaterialCoFH;
@@ -7,8 +9,6 @@ import cofh.lib.item.AugmentItem;
 import cofh.lib.item.ItemCoFH;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
-import cofh.thermal.core.item.BeekeeperArmorItem;
-import cofh.thermal.core.item.HazmatArmorItem;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -204,8 +204,6 @@ public class ThermalFeatures {
     }
 
     public static void registerToolParts() {
-
-        registerBasicParts();
 
         ItemGroup group = THERMAL_ITEMS;
 

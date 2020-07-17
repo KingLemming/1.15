@@ -1,4 +1,4 @@
-package cofh.thermal.core.item;
+package cofh.core.item;
 
 import cofh.core.util.ChatHelper;
 import cofh.lib.item.IPlacementItem;

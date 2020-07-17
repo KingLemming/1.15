@@ -1,4 +1,4 @@
-package cofh.thermal.core.item;
+package cofh.core.item;
 
 import cofh.lib.item.ItemCoFH;
 import net.minecraft.block.*;

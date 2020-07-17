@@ -16,6 +16,7 @@ public class TExpItems {
 
     public static void register() {
 
+        ThermalFeatures.registerBasicParts();
         ThermalFeatures.registerToolParts();
 
         ThermalFeatures.registerUpgradeAugments();

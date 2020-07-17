@@ -1,5 +1,6 @@
 package cofh.thermal.innovation;
 
+import cofh.thermal.innovation.data.TInoRecipes;
 import cofh.thermal.innovation.init.TInoBlocks;
 import cofh.thermal.innovation.init.TInoItems;
 import net.minecraft.data.DataGenerator;
@@ -50,6 +51,7 @@ public class ThermalInnovation {
 
     private void registerServerProviders(DataGenerator generator) {
 
+        generator.addProvider(new TInoRecipes(generator));
     }
 
     private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

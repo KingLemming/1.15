@@ -1,12 +1,96 @@
 {
-  "misc.tinker": {
+  "mob.basalz.ambient": {
     "sounds": [
-      "thermal:misc/tinker"
+      "thermal:mob/basalz/breathe0",
+      "thermal:mob/basalz/breathe1"
     ]
   },
+  "mob.basalz.death": {
+    "sounds": [
+      "thermal:mob/basalz/death"
+    ]
+  },
+  "mob.basalz.hurt": {
+    "sounds": [
+      "thermal:mob/basalz/hurt"
+    ]
+  },
+  "mob.basalz.roam": {
+    "sounds": [
+      "thermal:mob/basalz/roam"
+    ]
+  },
+  "mob.basalz.shoot": {
+    "sounds": [
+      "thermal:mob/basalz/shoot"
+    ]
+  },
+
+  "mob.blitz.ambient": {
+    "sounds": [
+      "thermal:mob/blitz/breathe0",
+      "thermal:mob/blitz/breathe1",
+      "thermal:mob/blitz/breathe2"
+    ]
+  },
+  "mob.blitz.death": {
+    "sounds": [
+      "thermal:mob/blitz/death"
+    ]
+  },
+  "mob.blitz.hurt": {
+    "sounds": [
+      "thermal:mob/blitz/hurt"
+    ]
+  },
+  "mob.blitz.roam": {
+    "sounds": [
+      "thermal:mob/blitz/roam"
+    ]
+  },
+  "mob.blitz.shoot": {
+    "sounds": [
+      "thermal:mob/blitz/shoot"
+    ]
+  },
+
+  "mob.blizz.ambient": {
+    "sounds": [
+      "thermal:mob/blizz/breathe0",
+      "thermal:mob/blizz/breathe1",
+      "thermal:mob/blizz/breathe2"
+    ]
+  },
+  "mob.blizz.death": {
+    "sounds": [
+      "thermal:mob/blizz/death"
+    ]
+  },
+  "mob.blizz.hurt": {
+    "sounds": [
+      "thermal:mob/blizz/hurt"
+    ]
+  },
+  "mob.blizz.roam": {
+    "sounds": [
+      "thermal:mob/blizz/roam"
+    ]
+  },
+  "mob.blizz.shoot": {
+    "sounds": [
+      "thermal:mob/blizz/shoot"
+    ]
+  },
+
   "item.magnet": {
     "sounds": [
       "minecraft:mob/endermen/portal2"
+    ]
+  },
+
+  "misc.tinker": {
+    "sounds": [
+      "thermal:misc/tinker"
     ]
   }
 }

@@ -15,7 +15,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,6 +24,7 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.init.TCoreSounds.*;
 
 public class BlitzEntity extends MonsterEntity {
 
@@ -71,19 +71,19 @@ public class BlitzEntity extends MonsterEntity {
     @Override
     protected SoundEvent getAmbientSound() {
 
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+        return SOUND_BLITZ_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 
-        return SoundEvents.ENTITY_BLAZE_HURT;
+        return SOUND_BLITZ_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
 
-        return SoundEvents.ENTITY_BLAZE_DEATH;
+        return SOUND_BLITZ_DEATH;
     }
 
     @Override
@@ -93,8 +93,8 @@ public class BlitzEntity extends MonsterEntity {
             this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
         }
         if (this.world.isRemote) {
-            if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+            if (this.rand.nextInt(128) == 0 && !this.isSilent()) {
+                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLITZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
             if (this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.CLOUD, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
@@ -233,8 +233,9 @@ public class BlitzEntity extends MonsterEntity {
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.blitz.world.playEvent(null, 1018, new BlockPos(this.blitz), 0);
+                            // this.blitz.world.playSound(blitz.getPosX() + 0.5D, blitz.getPosY() + 0.5D, blitz.getPosZ() + 0.5D, SOUND_BLITZ_SHOOT, SoundCategory.HOSTILE, 1.0F, (blitz.rand.nextFloat() - blitz.rand.nextFloat()) * 0.2F + 1.0F, false);
 
-                            BlitzProjectileEntity projectile = new BlitzProjectileEntity(this.blitz, d1 + this.blitz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blitz.getRNG().nextGaussian() * (double) f, this.blitz.world);
+                            BlitzProjectileEntity projectile = new BlitzProjectileEntity(this.blitz, d1 + this.blitz.rand.nextGaussian() * (double) f, d2, d3 + this.blitz.rand.nextGaussian() * (double) f, this.blitz.world);
                             projectile.setPosition(projectile.getPosX(), this.blitz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
                             this.blitz.world.addEntity(projectile);
                         }

@@ -15,7 +15,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,6 +24,7 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.init.TCoreSounds.*;
 
 public class BasalzEntity extends MonsterEntity {
 
@@ -72,19 +72,19 @@ public class BasalzEntity extends MonsterEntity {
     @Override
     protected SoundEvent getAmbientSound() {
 
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+        return SOUND_BASALZ_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 
-        return SoundEvents.ENTITY_BLAZE_HURT;
+        return SOUND_BASALZ_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
 
-        return SoundEvents.ENTITY_BLAZE_DEATH;
+        return SOUND_BASALZ_DEATH;
     }
 
     @Override
@@ -94,8 +94,8 @@ public class BasalzEntity extends MonsterEntity {
             this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
         }
         if (this.world.isRemote) {
-            if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+            if (this.rand.nextInt(64) == 0 && !this.isSilent()) {
+                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BASALZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
             if (this.isAngry() && this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.FALLING_LAVA, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);

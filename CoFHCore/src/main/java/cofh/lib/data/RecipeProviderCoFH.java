@@ -2,9 +2,11 @@ package cofh.lib.data;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.advancements.criterion.*;
+import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 
 import java.util.function.Consumer;
@@ -182,8 +184,32 @@ public class RecipeProviderCoFH extends RecipeProvider {
         // @formatter:on
     }
 
+    @Override
+    public EnterBlockTrigger.Instance enteredBlock(Block blockIn) {
+
+        return new EnterBlockTrigger.Instance(blockIn, StatePropertiesPredicate.EMPTY);
+    }
+
+    @Override
+    public InventoryChangeTrigger.Instance hasItem(IItemProvider itemIn) {
+
+        return this.hasItem(ItemPredicate.Builder.create().item(itemIn).build());
+    }
+
+    @Override
+    public InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
+
+        return this.hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
+    }
+
+    @Override
+    public InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
+
+        return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
+    }
+
     // TODO: Change if Mojang implements some better defaults...
-    protected InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
+    public InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
 
         return this.hasItem(new ItemPredicate(null, itemIn.asItem(), amount, MinMaxBounds.IntBound.UNBOUNDED, EnchantmentPredicate.field_226534_b_, EnchantmentPredicate.field_226534_b_, null, NBTPredicate.ANY)); // ItemPredicate.Builder.create().item(itemIn).count(amount).build());
     }

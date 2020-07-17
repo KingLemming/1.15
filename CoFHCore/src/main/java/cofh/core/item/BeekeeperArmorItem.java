@@ -1,6 +1,5 @@
-package cofh.thermal.core.item;
+package cofh.core.item;
 
-import cofh.core.item.ArmorItemCoFH;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;

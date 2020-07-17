@@ -1,4 +1,4 @@
-package cofh.thermal.expansion.data;
+package cofh.thermal.innovation.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
 import cofh.thermal.core.common.ThermalFeatureRecipes;
@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
-public class TExpRecipes extends RecipeProviderCoFH {
+public class TInoRecipes extends RecipeProviderCoFH {
 
-    public TExpRecipes(DataGenerator generatorIn) {
+    public TInoRecipes(DataGenerator generatorIn) {
 
         super(generatorIn, ID_THERMAL);
     }
@@ -19,7 +19,7 @@ public class TExpRecipes extends RecipeProviderCoFH {
     @Override
     public String getName() {
 
-        return "Thermal Expansion: Recipes";
+        return "Thermal Innovation: Recipes";
     }
 
     @Override

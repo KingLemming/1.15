@@ -8,6 +8,7 @@ import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.init.TCoreReferences.*;
@@ -29,4 +30,23 @@ public class TCoreEntities {
         ENTITIES.register(ID_BLIZZ_PROJECTILE, () -> EntityType.Builder.<BlizzProjectileEntity>create(BlizzProjectileEntity::new, EntityClassification.MISC).size(0.3125F, 0.3125F).build(ID_BLIZZ_PROJECTILE));
     }
 
+    // region REFERENCES
+    @ObjectHolder(ID_BASALZ)
+    public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
+
+    @ObjectHolder(ID_BLITZ)
+    public static final EntityType<BlitzEntity> BLITZ_ENTITY = null;
+
+    @ObjectHolder(ID_BLIZZ)
+    public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
+
+    @ObjectHolder(ID_BASALZ_PROJECTILE)
+    public static final EntityType<BasalzProjectileEntity> BASALZ_PROJECTILE_ENTITY = null;
+
+    @ObjectHolder(ID_BLITZ_PROJECTILE)
+    public static final EntityType<BlitzProjectileEntity> BLITZ_PROJECTILE_ENTITY = null;
+
+    @ObjectHolder(ID_BLIZZ_PROJECTILE)
+    public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
+    // endregion
 }

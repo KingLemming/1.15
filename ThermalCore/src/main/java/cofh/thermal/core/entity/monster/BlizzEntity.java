@@ -15,7 +15,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,6 +24,7 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.init.TCoreSounds.*;
 
 public class BlizzEntity extends MonsterEntity {
 
@@ -69,19 +69,19 @@ public class BlizzEntity extends MonsterEntity {
     @Override
     protected SoundEvent getAmbientSound() {
 
-        return SoundEvents.ENTITY_BLAZE_AMBIENT;
+        return SOUND_BLIZZ_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 
-        return SoundEvents.ENTITY_BLAZE_HURT;
+        return SOUND_BLIZZ_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
 
-        return SoundEvents.ENTITY_BLAZE_DEATH;
+        return SOUND_BLIZZ_DEATH;
     }
 
     @Override
@@ -91,8 +91,8 @@ public class BlizzEntity extends MonsterEntity {
             this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
         }
         if (this.world.isRemote) {
-            if (this.rand.nextInt(24) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+            if (this.rand.nextInt(64) == 0 && !this.isSilent()) {
+                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLIZZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
             if (this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
@@ -231,6 +231,8 @@ public class BlizzEntity extends MonsterEntity {
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.blizz.world.playEvent(null, 1018, new BlockPos(this.blizz), 0);
+
+                            // this.blizz.world.playSound(blizz.getPosX() + 0.5D, blizz.getPosY() + 0.5D, blizz.getPosZ() + 0.5D, SOUND_BLIZZ_SHOOT, SoundCategory.HOSTILE, 1.0F, (blizz.rand.nextFloat() - blizz.rand.nextFloat()) * 0.2F + 1.0F, false);
 
                             BlizzProjectileEntity projectile = new BlizzProjectileEntity(this.blizz, d1 + this.blizz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blizz.getRNG().nextGaussian() * (double) f, this.blizz.world);
                             projectile.setPosition(projectile.getPosX(), this.blizz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());

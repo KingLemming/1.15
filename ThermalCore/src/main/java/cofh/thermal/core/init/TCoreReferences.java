@@ -1,15 +1,5 @@
 package cofh.thermal.core.init;
 
-import cofh.thermal.core.entity.monster.BasalzEntity;
-import cofh.thermal.core.entity.monster.BlitzEntity;
-import cofh.thermal.core.entity.monster.BlizzEntity;
-import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
-import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
-import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.registries.ObjectHolder;
-
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 public class TCoreReferences {
@@ -71,15 +61,19 @@ public class TCoreReferences {
     public static final String ID_SIGNALUM_BLOCK = "signalum_block";
     // endregion
 
+    // region BUILDING BLOCKS
     public static final String ID_MACHINE_FRAME = "machine_frame";
 
     public static final String ID_ENDERIUM_GLASS = "enderium_glass";
     public static final String ID_LUMIUM_GLASS = "lumium_glass";
     public static final String ID_SIGNALUM_GLASS = "signalum_glass";
+    // endregion
 
+    // region FLUIDS
     public static final String ID_REDSTONE_FLUID = "fluid_redstone";
     public static final String ID_GLOWSTONE_FLUID = "fluid_glowstone";
     public static final String ID_ENDER_FLUID = "fluid_ender";
+    // endregion
 
     // region ENTITIES
     public static final String ID_BASALZ = ID_THERMAL + ":basalz";
@@ -89,34 +83,28 @@ public class TCoreReferences {
     public static final String ID_BASALZ_PROJECTILE = ID_THERMAL + ":basalz_projectile";
     public static final String ID_BLITZ_PROJECTILE = ID_THERMAL + ":blitz_projectile";
     public static final String ID_BLIZZ_PROJECTILE = ID_THERMAL + ":blizz_projectile";
-
-    @ObjectHolder(ID_BASALZ)
-    public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
-
-    @ObjectHolder(ID_BLITZ)
-    public static final EntityType<BlitzEntity> BLITZ_ENTITY = null;
-
-    @ObjectHolder(ID_BLIZZ)
-    public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
-
-    @ObjectHolder(ID_BASALZ_PROJECTILE)
-    public static final EntityType<BasalzProjectileEntity> BASALZ_PROJECTILE_ENTITY = null;
-
-    @ObjectHolder(ID_BLITZ_PROJECTILE)
-    public static final EntityType<BlitzProjectileEntity> BLITZ_PROJECTILE_ENTITY = null;
-
-    @ObjectHolder(ID_BLIZZ_PROJECTILE)
-    public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS
+    public static final String ID_SOUND_BASALZ_AMBIENT = ID_THERMAL + ":mob.basalz.ambient";
+    public static final String ID_SOUND_BASALZ_DEATH = ID_THERMAL + ":mob.basalz.death";
+    public static final String ID_SOUND_BASALZ_HURT = ID_THERMAL + ":mob.basalz.hurt";
+    public static final String ID_SOUND_BASALZ_ROAM = ID_THERMAL + ":mob.basalz.roam";
+    public static final String ID_SOUND_BASALZ_SHOOT = ID_THERMAL + ":mob.basalz.shoot";
+
+    public static final String ID_SOUND_BLITZ_AMBIENT = ID_THERMAL + ":mob.blitz.ambient";
+    public static final String ID_SOUND_BLITZ_DEATH = ID_THERMAL + ":mob.blitz.death";
+    public static final String ID_SOUND_BLITZ_HURT = ID_THERMAL + ":mob.blitz.hurt";
+    public static final String ID_SOUND_BLITZ_ROAM = ID_THERMAL + ":mob.blitz.roam";
+    public static final String ID_SOUND_BLITZ_SHOOT = ID_THERMAL + ":mob.blitz.shoot";
+
+    public static final String ID_SOUND_BLIZZ_AMBIENT = ID_THERMAL + ":mob.blizz.ambient";
+    public static final String ID_SOUND_BLIZZ_DEATH = ID_THERMAL + ":mob.blizz.death";
+    public static final String ID_SOUND_BLIZZ_HURT = ID_THERMAL + ":mob.blizz.hurt";
+    public static final String ID_SOUND_BLIZZ_ROAM = ID_THERMAL + ":mob.blizz.roam";
+    public static final String ID_SOUND_BLIZZ_SHOOT = ID_THERMAL + ":mob.blizz.shoot";
+
     public static final String ID_SOUND_MAGNET = ID_THERMAL + ":item.magnet";
     public static final String ID_SOUND_TINKER = ID_THERMAL + ":misc.tinker";
-
-    @ObjectHolder(ID_SOUND_MAGNET)
-    public static final SoundEvent SOUND_MAGNET = null;
-
-    @ObjectHolder(ID_SOUND_TINKER)
-    public static final SoundEvent SOUND_TINKER = null;
     // endregion
 }

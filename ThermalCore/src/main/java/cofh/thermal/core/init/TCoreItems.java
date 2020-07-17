@@ -1,18 +1,18 @@
 package cofh.thermal.core.init;
 
+import cofh.core.item.FertilizerItem;
+import cofh.core.item.LockItem;
+import cofh.core.item.WrenchItem;
 import cofh.lib.item.SpawnEggItemCoFH;
 import cofh.lib.util.constants.ToolTypes;
 import cofh.thermal.core.common.ThermalItemGroups;
-import cofh.thermal.core.item.FertilizerItem;
-import cofh.thermal.core.item.LockItem;
 import cofh.thermal.core.item.RedprintItem;
-import cofh.thermal.core.item.WrenchItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreEntities.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
 
 public class TCoreItems {

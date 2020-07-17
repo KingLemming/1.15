@@ -34,56 +34,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("redprint"))
-                .addIngredient(Items.PAPER)
-                .addIngredient(Items.PAPER)
-                .addIngredient(Items.REDSTONE)
-                .addIngredient(Items.REDSTONE)
-                .addCriterion("has_redstone", hasItem(Items.REDSTONE))
-                .build(consumer);
-
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 8)
-                .addIngredient(Tags.Items.SAND)
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("niter"))
-                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
-                .build(consumer, ID_THERMAL + ":phytogro_8");
-
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 4)
-                .addIngredient(Tags.Items.SAND)
-                .addIngredient(Items.BONE_MEAL)
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("niter"))
-                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
-                .build(consumer, ID_THERMAL + ":phytogro_4");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
-                .addIngredient(Items.CHARCOAL)
-                .addIngredient(reg.get("niter"))
-                .addIngredient(reg.get("niter"))
-                .addIngredient(reg.get("sulfur"))
-                .addCriterion("has_gunpowder", hasItem(Items.GUNPOWDER))
-                .build(consumer, ID_THERMAL + ":gunpowder");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
-                .addIngredient(Items.PRISMARINE)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
-                .build(consumer, ID_THERMAL + ":split_prismarine");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
-                .addIngredient(Items.PRISMARINE_BRICKS)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
-                .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
-                .addIngredient(Items.QUARTZ_BLOCK)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
-                .build(consumer, ID_THERMAL + ":split_quartz_block");
-
         generateStorageRecipes(reg, consumer, reg.get(ID_CHARCOAL_BLOCK), Items.CHARCOAL);
         generateStorageRecipes(reg, consumer, reg.get(ID_BAMBOO_BLOCK), Items.BAMBOO);
         generateStorageRecipes(reg, consumer, reg.get(ID_SUGAR_CANE_BLOCK), Items.SUGAR_CANE);
@@ -145,11 +95,12 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateSmeltingAndBlastingRecipes(reg, consumer, "lumium", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "enderium", 0);
 
-        // registerAlloyRecipes(consumer);
+        // generateAlloyRecipes(consumer);
+        generateWrenchRecipes(consumer);
     }
 
     // region HELPERS
-    private void registerAlloyRecipes(Consumer<IFinishedRecipe> consumer) {
+    private void generateAlloyRecipes(Consumer<IFinishedRecipe> consumer) {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
@@ -163,6 +114,61 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("EEE")
                 .addCriterion("has_ender_pearl", hasItem(Items.ENDER_PEARL))
                 .build(consumer);
+    }
+
+    private void generateWrenchRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("redprint"))
+                .addIngredient(Items.PAPER)
+                .addIngredient(Items.PAPER)
+                .addIngredient(Items.REDSTONE)
+                .addIngredient(Items.REDSTONE)
+                .addCriterion("has_redstone", hasItem(Items.REDSTONE))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 8)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("niter"))
+                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_8");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 4)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(Items.BONE_MEAL)
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("niter"))
+                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_4");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
+                .addIngredient(Items.CHARCOAL)
+                .addIngredient(reg.get("niter"))
+                .addIngredient(reg.get("niter"))
+                .addIngredient(reg.get("sulfur"))
+                .addCriterion("has_gunpowder", hasItem(Items.GUNPOWDER))
+                .build(consumer, ID_THERMAL + ":gunpowder");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
+                .addIngredient(Items.PRISMARINE)
+                .addIngredient(reg.get("wrench"))
+                .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
+                .build(consumer, ID_THERMAL + ":split_prismarine");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
+                .addIngredient(Items.PRISMARINE_BRICKS)
+                .addIngredient(reg.get("wrench"))
+                .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
+                .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
+                .addIngredient(Items.QUARTZ_BLOCK)
+                .addIngredient(reg.get("wrench"))
+                .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
+                .build(consumer, ID_THERMAL + ":split_quartz_block");
     }
     // endregion
 }
