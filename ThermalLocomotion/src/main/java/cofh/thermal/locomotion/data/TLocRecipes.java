@@ -32,12 +32,8 @@ public class TLocRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        String rail = Items.RAIL.getRegistryName().getPath();
-        String activatorRail = Items.ACTIVATOR_RAIL.getRegistryName().getPath();
-        String detectorRail = Items.DETECTOR_RAIL.getRegistryName().getPath();
-        String poweredRail = Items.POWERED_RAIL.getRegistryName().getPath();
+        registerRailRecipes(consumer);
 
-        // @formatter:off
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_UNDERWATER_CART))
                 .key('C', Items.MINECART)
                 .key('G', Tags.Items.GLASS)
@@ -47,6 +43,15 @@ public class TLocRecipes extends RecipeProviderCoFH {
                 .patternLine("PPP")
                 .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
                 .build(consumer);
+    }
+
+    // region HELPERS
+    private void registerRailRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        String rail = Items.RAIL.getRegistryName().getPath();
+        String activatorRail = Items.ACTIVATOR_RAIL.getRegistryName().getPath();
+        String detectorRail = Items.DETECTOR_RAIL.getRegistryName().getPath();
+        String poweredRail = Items.POWERED_RAIL.getRegistryName().getPath();
 
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_CROSSOVER_RAIL))
                 .key('I', Items.STICK)
@@ -103,7 +108,7 @@ public class TLocRecipes extends RecipeProviderCoFH {
                 .patternLine("XSX")
                 .addCriterion("has_" + poweredRail, hasItem(Items.POWERED_RAIL))
                 .build(consumer);
-        
+
         ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_RAIL), 6)
                 .key('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .key('X', Blocks.RAIL)
@@ -147,7 +152,6 @@ public class TLocRecipes extends RecipeProviderCoFH {
                 .patternLine("XIX")
                 .addCriterion("has_" + poweredRail, hasItem(Items.POWERED_RAIL))
                 .build(consumer);
-        // @formatter:on
     }
-
+    // endregion
 }

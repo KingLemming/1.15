@@ -103,7 +103,6 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         Item gem = reg.get(type + "_gem");
         Item nugget = reg.get(type + "_nugget");
 
-        // @formatter:off
         if (block != null) {
             String blockName = block.getRegistryName().getPath();
 
@@ -163,25 +162,24 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                         .addCriterion("has_" + ingotName, hasItem(ingot))
                         .build(consumer, this.modid + ":" + nuggetName + "_from_ingot");
             }
-//            else if (gem != null) {
-//                String gemName = gem.getRegistryName().getPath();
-//
-//                ShapedRecipeBuilder.shapedRecipe(gem)
-//                        .key('#', nugget)
-//                        .patternLine("###")
-//                        .patternLine("###")
-//                        .patternLine("###")
-//                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-//                        .build(consumer, this.modid + ":" + gemName + "_from_nuggets");
-//
-//                ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
-//                        .addIngredient(gem)
-//                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-//                        .addCriterion("has_" + gemName, hasItem(gem))
-//                        .build(consumer, this.modid + ":" + nuggetName + "_from_gem");
-//            }
+            //            else if (gem != null) {
+            //                String gemName = gem.getRegistryName().getPath();
+            //
+            //                ShapedRecipeBuilder.shapedRecipe(gem)
+            //                        .key('#', nugget)
+            //                        .patternLine("###")
+            //                        .patternLine("###")
+            //                        .patternLine("###")
+            //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
+            //                        .build(consumer, this.modid + ":" + gemName + "_from_nuggets");
+            //
+            //                ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
+            //                        .addIngredient(gem)
+            //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
+            //                        .addCriterion("has_" + gemName, hasItem(gem))
+            //                        .build(consumer, this.modid + ":" + nuggetName + "_from_gem");
+            //            }
         }
-        // @formatter:on
     }
 
     protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type, float xp) {
@@ -192,7 +190,6 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         Item nugget = reg.get(type + "_nugget");
         Item dust = reg.get(type + "_dust");
 
-        // @formatter:off
         if (ingot != null) {
             String ingotName = ingot.getRegistryName().getPath();
 
@@ -201,11 +198,11 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
 
                 CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
                         .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_dust_smelting");
 
                 CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
                         .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_dust_blasting");
             }
 
             if (ore != null) {
@@ -213,11 +210,11 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
 
                 CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ore), ingot, xp, 200)
                         .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, this.modid + ":" +ingotName + "_from_ore_smelting");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_ore_smelting");
 
                 CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(ore), ingot, xp, 100)
                         .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, this.modid + ":" +ingotName + "_from_ore_blasting");
+                        .build(consumer, this.modid + ":" + ingotName + "_from_ore_blasting");
             }
         } else if (gem != null) {
             String gemName = gem.getRegistryName().getPath();
@@ -234,7 +231,6 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                         .build(consumer, gemName + "_from_ore_blasting");
             }
         }
-        // @formatter:on
     }
 
     @Override

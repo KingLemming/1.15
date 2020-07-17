@@ -63,6 +63,7 @@ public class TCoreBlocks {
                 entityIn.onLivingFall(fallDistance, 0.8F);
             }
         });
+
         registerBlock(ID_APPLE_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(ID_CARROT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
         registerBlock(ID_POTATO_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
@@ -99,6 +100,7 @@ public class TCoreBlocks {
                 return side == Direction.UP;
             }
         });
+
         registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
         registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));

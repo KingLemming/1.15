@@ -47,7 +47,6 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
 
     protected abstract void addTables();
 
-    // @formatter:off
     protected LootTable.Builder createSilkTouchTable(String name, Block block, Item lootItem, float min, float max, int bonus) {
 
         LootPool.Builder builder = LootPool.builder()
@@ -137,7 +136,6 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
                                 .func_216075_a(DynamicLootEntry.func_216162_a(new ResourceLocation("minecraft", "contents")))));
         return LootTable.builder().addLootPool(builder);
     }
-    // @formatter:on
 
     @Override
     public void act(DirectoryCache cache) {

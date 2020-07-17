@@ -32,7 +32,6 @@ public class APRecipeProvider extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        // @formatter:off
         ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_BLAZE_ARROW), 4)
                 .key('X', Items.BLAZE_POWDER)
                 .key('#', Items.ARROW)
@@ -207,7 +206,6 @@ public class APRecipeProvider extends RecipeProviderCoFH {
                 .patternLine("Z#Y")
                 .addCriterion("has_components", hasItem(Items.GRASS_BLOCK))
                 .build(consumer);
-        // @formatter:on
     }
 
 }

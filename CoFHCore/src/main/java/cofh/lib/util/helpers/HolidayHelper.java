@@ -38,7 +38,6 @@ public final class HolidayHelper {
     // region HOLIDAYS
     public enum Holiday {
 
-        // @formatter:off
         NEW_YEAR(1, 1),
         VALENTINES(2, 14),
         LEAP(2, 29),
@@ -52,7 +51,6 @@ public final class HolidayHelper {
         CHRISTMAS(12, 25),
         BOXING_DAY(12, 26),
         NEW_YEARS_EVE(12, 31);
-        // @formatter:on
 
         protected final MonthDay date;
 

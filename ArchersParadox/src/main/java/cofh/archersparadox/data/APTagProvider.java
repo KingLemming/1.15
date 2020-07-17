@@ -24,7 +24,6 @@ public class APTagProvider {
         @Override
         protected void registerTags() {
 
-            // @formatter:off
             getBuilder(ItemTags.ARROWS).add(
                     BLAZE_ARROW_ITEM,
                     CHALLENGE_ARROW_ITEM,
@@ -45,7 +44,6 @@ public class APTagProvider {
                     TRAINING_ARROW_ITEM,
                     VERDANT_ARROW_ITEM
             );
-            // @formatter:on
         }
 
     }

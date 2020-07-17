@@ -27,7 +27,6 @@ public class TLocTags {
         @Override
         protected void registerTags() {
 
-            // @formatter:off
             getBuilder(BlockTags.RAILS).add(
                     BLOCKS.get(ID_CROSSOVER_RAIL),
 
@@ -43,7 +42,6 @@ public class TLocTags {
                     BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL),
                     BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL)
             );
-            // @formatter:on
         }
 
     }

@@ -28,10 +28,24 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         DeferredRegisterCoFH<Block> reg = BLOCKS;
 
+        registerVanilla(reg);
+        registerResources(reg);
+        registerStorage(reg);
+        registerBuildingBlocks(reg);
+    }
+
+    // region HELPERS
+    private void registerVanilla(DeferredRegisterCoFH<Block> reg) {
+
         storageBlock(reg.getSup(ID_CHARCOAL_BLOCK));
         storageBlock(reg.getSup(ID_GUNPOWDER_BLOCK));
         axisBlock(reg.getSup(ID_BAMBOO_BLOCK), "bamboo_block", STORAGE);
         axisBlock(reg.getSup(ID_SUGAR_CANE_BLOCK), "sugar_cane_block", STORAGE);
+
+        // TODO: Missing - Food Crates
+    }
+
+    private void registerResources(DeferredRegisterCoFH<Block> reg) {
 
         oreBlock(reg.getSup(ID_APATITE_ORE));
         oreBlock(reg.getSup(ID_CINNABAR_ORE));
@@ -46,6 +60,9 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         oreBlock(reg.getSup(ID_RUBY_ORE));
         oreBlock(reg.getSup(ID_SAPPHIRE_ORE));
+    }
+
+    private void registerStorage(DeferredRegisterCoFH<Block> reg) {
 
         storageBlock(reg.getSup(ID_APATITE_BLOCK));
         storageBlock(reg.getSup(ID_CINNABAR_BLOCK));
@@ -69,11 +86,15 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         storageBlock(reg.getSup(ID_RUBY_BLOCK));
         storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
+    }
+
+    private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {
+
+        // TODO: Missing - Machine Frame
 
         glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
         glassBlock(reg.getSup(ID_LUMIUM_GLASS));
         glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
-
     }
-
+    // endregion
 }

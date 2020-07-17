@@ -33,11 +33,40 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        registerVanilla(reg);
+        registerResources(reg);
+        registerTools(reg);
+
+        registerAugments(reg);
+        registerParts(reg);
+        registerArmor(reg);
+    }
+
+    // region ITEM HELPERS
+    private void registerVanilla(DeferredRegisterCoFH<Item> reg) {
+
         metalSet(reg, "iron", true);
         metalSet(reg, "gold", true);
 
         gemSet(reg, "diamond", true);
         gemSet(reg, "emerald", true);
+    }
+
+    private void registerResources(DeferredRegisterCoFH<Item> reg) {
+
+        generated(reg.getSup("wood_dust"), DUSTS);
+
+        generated(reg.getSup("apatite"), RESOURCES);
+        generated(reg.getSup("cinnabar"), RESOURCES);
+        generated(reg.getSup("niter"), RESOURCES);
+        generated(reg.getSup("sulfur"), RESOURCES);
+
+        generated(reg.getSup("basalz_rod"), RESOURCES);
+        generated(reg.getSup("basalz_powder"), RESOURCES);
+        generated(reg.getSup("blitz_rod"), RESOURCES);
+        generated(reg.getSup("blitz_powder"), RESOURCES);
+        generated(reg.getSup("blizz_rod"), RESOURCES);
+        generated(reg.getSup("blizz_powder"), RESOURCES);
 
         metalSet(reg, "copper");
         metalSet(reg, "lead");
@@ -56,25 +85,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         metalSet(reg, "signalum");
         metalSet(reg, "lumium");
         metalSet(reg, "enderium");
+    }
 
-        generated(reg.getSup("wood_dust"), DUSTS);
-
-        generated(reg.getSup("apatite"), RESOURCES);
-        generated(reg.getSup("cinnabar"), RESOURCES);
-        generated(reg.getSup("niter"), RESOURCES);
-        generated(reg.getSup("sulfur"), RESOURCES);
-
-        generated(reg.getSup("basalz_rod"), RESOURCES);
-        generated(reg.getSup("basalz_powder"), RESOURCES);
-        generated(reg.getSup("blitz_rod"), RESOURCES);
-        generated(reg.getSup("blitz_powder"), RESOURCES);
-        generated(reg.getSup("blizz_rod"), RESOURCES);
-        generated(reg.getSup("blizz_powder"), RESOURCES);
-
-        handheld(reg.getSup("wrench"), TOOLS);
-        generated(reg.getSup("redprint"), TOOLS);
-        generated(reg.getSup("lock"), TOOLS);
-        generated(reg.getSup("phytogro"), TOOLS);
+    private void registerAugments(DeferredRegisterCoFH<Item> reg) {
 
         for (int i = 1; i <= 4; ++i) {
             generated(reg.getSup("upgrade_augment_" + i), AUGMENTS);
@@ -92,12 +105,26 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("machine_catalyst_augment"), AUGMENTS);
         generated(reg.getSup("dynamo_output_augment"), AUGMENTS);
         generated(reg.getSup("dynamo_fuel_augment"), AUGMENTS);
+    }
+
+    private void registerParts(DeferredRegisterCoFH<Item> reg) {
 
         generated(reg.getSup("redstone_servo"), CRAFTING);
         generated(reg.getSup("rf_coil"), CRAFTING);
         generated(reg.getSup("drill_head"), CRAFTING);
         generated(reg.getSup("laser_diode"), CRAFTING);
         generated(reg.getSup("saw_blade"), CRAFTING);
+    }
+
+    private void registerTools(DeferredRegisterCoFH<Item> reg) {
+
+        handheld(reg.getSup("wrench"), TOOLS);
+        generated(reg.getSup("redprint"), TOOLS);
+        generated(reg.getSup("lock"), TOOLS);
+        generated(reg.getSup("phytogro"), TOOLS);
+    }
+
+    private void registerArmor(DeferredRegisterCoFH<Item> reg) {
 
         generated(reg.getSup(ID_BEEKEEPER_HELMET), ARMOR);
         generated(reg.getSup(ID_BEEKEEPER_CHESTPLATE), ARMOR);
@@ -109,10 +136,20 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup(ID_HAZMAT_LEGGINGS), ARMOR);
         generated(reg.getSup(ID_HAZMAT_BOOTS), ARMOR);
     }
+    // endregion
 
     private void registerBlockItemModels() {
 
         DeferredRegisterCoFH<Block> reg = BLOCKS;
+
+        registerVanillaBlocks(reg);
+        registerResourceBlocks(reg);
+        registerStorageBlocks(reg);
+        registerBuildingBlocks(reg);
+    }
+
+    // region BLOCK HELPERS
+    private void registerVanillaBlocks(DeferredRegisterCoFH<Block> reg) {
 
         blockItem(reg.getSup(ID_CHARCOAL_BLOCK));
         blockItem(reg.getSup(ID_BAMBOO_BLOCK));
@@ -123,6 +160,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_BEETROOT_BLOCK));
         blockItem(reg.getSup(ID_CARROT_BLOCK));
         blockItem(reg.getSup(ID_POTATO_BLOCK));
+    }
+
+    private void registerResourceBlocks(DeferredRegisterCoFH<Block> reg) {
 
         blockItem(reg.getSup(ID_APATITE_ORE));
         blockItem(reg.getSup(ID_CINNABAR_ORE));
@@ -137,6 +177,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         blockItem(reg.getSup(ID_RUBY_ORE));
         blockItem(reg.getSup(ID_SAPPHIRE_ORE));
+    }
+
+    private void registerStorageBlocks(DeferredRegisterCoFH<Block> reg) {
 
         blockItem(reg.getSup(ID_APATITE_BLOCK));
         blockItem(reg.getSup(ID_CINNABAR_BLOCK));
@@ -160,10 +203,13 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_ENDERIUM_BLOCK));
         blockItem(reg.getSup(ID_LUMIUM_BLOCK));
         blockItem(reg.getSup(ID_SIGNALUM_BLOCK));
+    }
+
+    private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {
 
         blockItem(reg.getSup(ID_ENDERIUM_GLASS));
         blockItem(reg.getSup(ID_LUMIUM_GLASS));
         blockItem(reg.getSup(ID_SIGNALUM_GLASS));
     }
-
+    // endregion
 }

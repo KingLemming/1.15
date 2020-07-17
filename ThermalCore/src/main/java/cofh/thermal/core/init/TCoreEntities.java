@@ -33,19 +33,15 @@ public class TCoreEntities {
     // region REFERENCES
     @ObjectHolder(ID_BASALZ)
     public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
-
     @ObjectHolder(ID_BLITZ)
     public static final EntityType<BlitzEntity> BLITZ_ENTITY = null;
-
     @ObjectHolder(ID_BLIZZ)
     public static final EntityType<BlizzEntity> BLIZZ_ENTITY = null;
 
     @ObjectHolder(ID_BASALZ_PROJECTILE)
     public static final EntityType<BasalzProjectileEntity> BASALZ_PROJECTILE_ENTITY = null;
-
     @ObjectHolder(ID_BLITZ_PROJECTILE)
     public static final EntityType<BlitzProjectileEntity> BLITZ_PROJECTILE_ENTITY = null;
-
     @ObjectHolder(ID_BLIZZ_PROJECTILE)
     public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
     // endregion

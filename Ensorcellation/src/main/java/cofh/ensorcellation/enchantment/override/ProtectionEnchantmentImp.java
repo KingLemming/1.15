@@ -89,14 +89,12 @@ public class ProtectionEnchantmentImp extends EnchantmentOverride {
 
     // region TYPE
     public enum Type {
-        // @formatter:off
         ALL("all", 1, 11),
         FALL("fall", 5, 6),
         FIRE("fire", 10, 8),
         EXPLOSION("explosion", 5, 8),
         MAGIC("magic", 10, 8),
         PROJECTILE("projectile", 3, 6);
-        // @formatter:on
 
         private final String typeName;
         private final int minEnchantability;

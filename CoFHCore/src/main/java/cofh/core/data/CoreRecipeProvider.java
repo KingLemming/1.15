@@ -29,13 +29,11 @@ public class CoreRecipeProvider extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        // @formatter:off
         ShapelessRecipeBuilder.shapelessRecipe(ITEMS.get(ID_ECTOPLASM))
                 .addIngredient(Items.GHAST_TEAR)
                 .addIngredient(Tags.Items.SLIMEBALLS)
                 .addCriterion("has_ghast_tear", hasItem(Items.GHAST_TEAR))
                 .build(consumer);
-        // @formatter:on
     }
 
 }
