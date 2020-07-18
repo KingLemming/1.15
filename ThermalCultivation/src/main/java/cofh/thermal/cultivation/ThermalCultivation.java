@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation;
 
 import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
-import cofh.thermal.cultivation.data.*;
+import cofh.thermal.cultivation.datagen.*;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
 import net.minecraft.block.ComposterBlock;
@@ -33,7 +33,6 @@ public class ThermalCultivation {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
 
         TCulBlocks.register();
         TCulItems.register();
@@ -124,34 +123,6 @@ public class ThermalCultivation {
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_FROST_MELON_STEM_ATTACHED), cutout);
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new TCulTags.Block(generator));
-        generator.addProvider(new TCulTags.Item(generator));
-        generator.addProvider(new TCulTags.Fluid(generator));
-
-        generator.addProvider(new TCulLootTables(generator));
-        generator.addProvider(new TCulRecipes(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new TCulBlockStates(generator, event.getExistingFileHelper()));
-        generator.addProvider(new TCulItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

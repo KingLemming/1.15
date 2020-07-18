@@ -1,6 +1,7 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url 'https://files.minecraftforge.net/maven' }
+        maven { url 'https://plugins.gradle.org/m2/' }
         jcenter()
         mavenCentral()
     }
@@ -8,35 +9,46 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
-apply plugin: 'idea'
-apply plugin: 'maven-publish'
 apply plugin: 'net.minecraftforge.gradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 
 version = "${mc_version}-${mod_version}"
 group = 'com.teamcofh'
 archivesBaseName = "${mod_id}"
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-compileJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+compileJava { sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8 }
+
+def setupSourceSet(SourceSet sourceSet, String name) {
+    sourceSet.java {
+        srcDir 'src/' + name + '/java'
+    }
+    sourceSet.compileClasspath += sourceSets.main.output
 }
 
 minecraft {
     mappings channel: 'snapshot', version: "${mcp_mappings}"
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
+    evaluationDependsOn(':CoFHCore')
+
     runs {
         data {
             workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
 
-            if (findProject(':Workspace') != null) {
-                ideaModule '1.15.ThermalCore.main'
-            }
-            args '--mod', 'thermal', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+            args '--all', '--output', file('src/datagen/generated/'),
+                    '--mod', archivesBaseName,
+                    '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
-                thermal {
-                    source sourceSets.main
+                CoFHCore {
+                    source findProject(':CoFHCore').sourceSets.main
+                }
+                ThermalCore {
+                    source findProject(':ThermalCore').sourceSets.main
                 }
             }
         }
@@ -44,15 +56,22 @@ minecraft {
 }
 
 repositories {
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
+    maven { // TOP
+        name 'tterrag maven'
+        url 'https://maven.tterrag.com/'
     }
     maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
+        url 'https://modmaven.k-4u.nl'
+    }
+    maven { // JEI
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+    maven { // Patchouli
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        name 'CurseForge'
+        url 'https://minecraft.curseforge.com/api/maven/'
     }
 }
 

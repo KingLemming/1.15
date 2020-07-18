@@ -49,8 +49,11 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
 
         super.setEnchantments(enchantments);
         Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
-        int encRespiration = enchantMap.get(Enchantments.RESPIRATION);
-        this.respirationFactor = Math.max(1, encRespiration + 1);
+
+        if (enchantMap.containsKey(Enchantments.RESPIRATION)) {
+            int encRespiration = enchantMap.get(Enchantments.RESPIRATION);
+            this.respirationFactor = Math.max(1, encRespiration + 1);
+        }
         return this;
     }
 

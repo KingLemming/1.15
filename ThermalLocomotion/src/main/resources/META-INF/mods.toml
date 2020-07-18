@@ -23,7 +23,7 @@ Thermal Locomotion!
 [[dependencies.thermal_locomotion]]
     modId="forge"
     mandatory=true
-    versionRange="[31.1.0,)"
+    versionRange="[31.2.30,)"
     ordering="AFTER"
     side="BOTH"
 

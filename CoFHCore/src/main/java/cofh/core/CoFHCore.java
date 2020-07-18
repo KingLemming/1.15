@@ -1,10 +1,6 @@
 package cofh.core;
 
 import cofh.core.command.CoFHCommand;
-import cofh.core.data.CoreBlockStateProvider;
-import cofh.core.data.CoreItemModelProvider;
-import cofh.core.data.CoreLootTableProvider;
-import cofh.core.data.CoreRecipeProvider;
 import cofh.core.init.*;
 import cofh.core.key.CoreKeys;
 import cofh.core.network.packet.client.*;
@@ -18,7 +14,6 @@ import cofh.lib.capability.CapabilityShieldItem;
 import cofh.lib.network.PacketHandler;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
@@ -31,7 +26,6 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -62,7 +56,6 @@ public class CoFHCore {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
 
         MinecraftForge.EVENT_BUS.addListener(this::serverStarting);
 
@@ -121,30 +114,6 @@ public class CoFHCore {
     private void serverStarting(final FMLServerStartingEvent event) {
 
         CoFHCommand.initialize(event.getCommandDispatcher());
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new CoreLootTableProvider(generator));
-        generator.addProvider(new CoreRecipeProvider(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new CoreBlockStateProvider(generator, event.getExistingFileHelper()));
-        generator.addProvider(new CoreItemModelProvider(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

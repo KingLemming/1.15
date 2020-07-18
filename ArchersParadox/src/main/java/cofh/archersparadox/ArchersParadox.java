@@ -1,15 +1,11 @@
 package cofh.archersparadox;
 
 import cofh.archersparadox.client.renderer.entity.*;
-import cofh.archersparadox.data.APItemModelProvider;
-import cofh.archersparadox.data.APRecipeProvider;
-import cofh.archersparadox.data.APTagProvider;
 import cofh.archersparadox.init.APConfig;
 import cofh.archersparadox.init.APEffects;
 import cofh.archersparadox.init.APEntities;
 import cofh.archersparadox.init.APItems;
 import cofh.lib.registries.DeferredRegisterCoFH;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -22,7 +18,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -48,7 +43,6 @@ public class ArchersParadox {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
 
         EFFECTS.register(modEventBus);
         ENTITIES.register(modEventBus);
@@ -101,29 +95,6 @@ public class ArchersParadox {
         } else {
             itemGroup = ItemGroup.COMBAT;
         }
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new APRecipeProvider(generator));
-        generator.addProvider(new APTagProvider.Item(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new APItemModelProvider(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

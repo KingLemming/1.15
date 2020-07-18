@@ -5,11 +5,11 @@ issueTrackerURL="https://github.com/cofh/feedback"
 [[mods]]
     modId="thermal"
     version="0.1.0a"
-    displayName="Thermal Series"
+    displayName="Thermal Core"
     credits="Team CoFH"
     authors="King Lemming"
     description='''
-Thermal Series!
+Thermal Core!
 '''
 [[dependencies.thermal]]
     modId="minecraft"
@@ -21,7 +21,7 @@ Thermal Series!
 [[dependencies.thermal]]
     modId="forge"
     mandatory=true
-    versionRange="[31.1.0,)"
+    versionRange="[31.2.30,)"
     ordering="AFTER"
     side="BOTH"
 

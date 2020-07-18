@@ -3,13 +3,9 @@ package cofh.omgourd;
 import cofh.core.init.CoreItems;
 import cofh.lib.block.deco.CarvedPumpkinBlockCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
-import cofh.omgourd.data.OMGItemModels;
-import cofh.omgourd.data.OMGLootTables;
-import cofh.omgourd.data.OMGRecipeProvider;
 import cofh.omgourd.init.OMGBlocks;
 import cofh.omgourd.init.OMGConfig;
 import net.minecraft.block.Block;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -19,7 +15,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -43,7 +38,6 @@ public class OMGourd {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
@@ -77,29 +71,6 @@ public class OMGourd {
         } else {
             itemGroup = ItemGroup.BUILDING_BLOCKS;
         }
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new OMGLootTables(generator));
-        generator.addProvider(new OMGRecipeProvider(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new OMGItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

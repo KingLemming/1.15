@@ -8,7 +8,6 @@ import cofh.thermal.core.client.renderer.entity.*;
 import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalRecipeManagers;
-import cofh.thermal.core.data.*;
 import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
@@ -16,7 +15,6 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.resources.ReloadListener;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.ContainerType;
@@ -34,7 +32,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -81,7 +82,6 @@ public class ThermalCore {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::enqueueIMC);
         modEventBus.addListener(this::processIMC);
-        modEventBus.addListener(this::gatherData);
 
         MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
         MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
@@ -186,34 +186,6 @@ public class ThermalCore {
     private void recipesUpdated(RecipesUpdatedEvent event) {
 
         ThermalRecipeManagers.instance().refreshClient(event.getRecipeManager());
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new TCoreTags.Block(generator));
-        generator.addProvider(new TCoreTags.Item(generator));
-        generator.addProvider(new TCoreTags.Fluid(generator));
-
-        generator.addProvider(new TCoreLootTables(generator));
-        generator.addProvider(new TCoreRecipes(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new TCoreBlockStates(generator, event.getExistingFileHelper()));
-        generator.addProvider(new TCoreItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }

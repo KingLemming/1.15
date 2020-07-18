@@ -2,7 +2,6 @@ package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
-import cofh.thermal.expansion.data.*;
 import cofh.thermal.expansion.init.TExpBlocks;
 import cofh.thermal.expansion.init.TExpItems;
 import cofh.thermal.expansion.util.managers.TExpRecipeManagers;
@@ -11,12 +10,10 @@ import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
@@ -32,7 +29,6 @@ public class ThermalExpansion {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
-        modEventBus.addListener(this::gatherData);
 
         TExpBlocks.register();
         TExpItems.register();
@@ -88,34 +84,6 @@ public class ThermalExpansion {
 
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_FLUID_BUFFER), cutout);
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_ITEM_BUFFER), cutout);
-    }
-    // endregion
-
-    // region DATA
-    private void gatherData(final GatherDataEvent event) {
-
-        if (event.includeServer()) {
-            registerServerProviders(event.getGenerator());
-        }
-        if (event.includeClient()) {
-            registerClientProviders(event.getGenerator(), event);
-        }
-    }
-
-    private void registerServerProviders(DataGenerator generator) {
-
-        generator.addProvider(new TExpTags.Block(generator));
-        generator.addProvider(new TExpTags.Item(generator));
-        generator.addProvider(new TExpTags.Fluid(generator));
-
-        generator.addProvider(new TExpLootTables(generator));
-        generator.addProvider(new TExpRecipes(generator));
-    }
-
-    private void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
-
-        generator.addProvider(new TExpBlockStates(generator, event.getExistingFileHelper()));
-        generator.addProvider(new TExpItemModels(generator, event.getExistingFileHelper()));
     }
     // endregion
 }
