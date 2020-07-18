@@ -24,6 +24,23 @@ compileJava {
 minecraft {
     mappings channel: 'snapshot', version: "${mcp_mappings}"
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        data {
+            workingDirectory project.file('run')
+
+            if (findProject(':Workspace') != null) {
+                ideaModule '1.15.ThermalCore.main'
+            }
+            args '--mod', 'thermal', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+
+            mods {
+                thermal {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 repositories {
@@ -42,13 +59,14 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    if (project(':CoFHCore') != null) {
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    if (findProject(':CoFHCore') != null) {
         compile project(':CoFHCore')
     } else {
         // TODO: Maven!
     }
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 jar {

@@ -256,18 +256,18 @@ public abstract class PanelBase extends ElementBase {
     // endregion
 
     // region CALLBACKS
-    public boolean keyTyped(int keyCode, int scanCode) {
+    public boolean keyTyped(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_) {
 
         for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
             if (!c.visible() || !c.enabled()) {
                 continue;
             }
-            if (c.keyTyped(keyCode, scanCode)) {
+            if (c.keyTyped(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_)) {
                 return true;
             }
         }
-        return super.keyTyped(keyCode, scanCode);
+        return super.keyTyped(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
     }
 
     /**

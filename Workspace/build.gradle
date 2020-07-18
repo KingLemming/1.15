@@ -42,18 +42,16 @@ minecraft {
             ideaModule "${rootProject.name}.${project.name}.main"
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
+            // property 'forge.logging.console.level', 'debug'
 
             mods {
                 CoFHCore {
                     source project(':CoFHCore').sourceSets.main
                 }
-//                CoFHWorld {
-//                    source project(':CoFHWorld').sourceSets.main
-//                }
+
                 ArchersParadox {
                     source project(':ArchersParadox').sourceSets.main
                 }
@@ -96,110 +94,106 @@ minecraft {
             ideaModule "${rootProject.name}.${project.name}.main"
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
+            // property 'forge.logging.console.level', 'debug'
 
             mods {
                 CoFHCore {
                     source project(':CoFHCore').sourceSets.main
                 }
-//                CoFHWorld {
-//                    source project(':CoFHWorld').sourceSets.main
+
+                ArchersParadox {
+                    source project(':ArchersParadox').sourceSets.main
+                }
+                Ensorcellation {
+                    source project(':Ensorcellation').sourceSets.main
+                }
+                OMGourd {
+                    source project(':OMGourd').sourceSets.main
+                }
+
+                ThermalCore {
+                    source project(':ThermalCore').sourceSets.main
+                }
+                ThermalCultivation {
+                    source project(':ThermalCultivation').sourceSets.main
+                }
+                ThermalDynamics {
+                    source project(':ThermalDynamics').sourceSets.main
+                }
+                ThermalEssentials {
+                    source project(':ThermalEssentials').sourceSets.main
+                }
+                ThermalExpansion {
+                    source project(':ThermalExpansion').sourceSets.main
+                }
+                ThermalFoundation {
+                    source project(':ThermalFoundation').sourceSets.main
+                }
+                ThermalInnovation {
+                    source project(':ThermalInnovation').sourceSets.main
+                }
+                ThermalLocomotion {
+                    source project(':ThermalLocomotion').sourceSets.main
+                }
+            }
+        }
+
+//        data {
+//            workingDirectory project.file('run')
+//            ideaModule "${rootProject.name}.${project.name}.main"
+//
+//            // Recommended logging data for a userdev environment
+//            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+//
+//            // Recommended logging level for the console
+//            // property 'forge.logging.console.level', 'debug'
+//
+//            // args '--mod', 'mytutorial', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+//
+//            mods {
+//                CoFHCore {
+//                    source project(':CoFHCore').sourceSets.main
 //                }
-                ArchersParadox {
-                    source project(':ArchersParadox').sourceSets.main
-                }
-                Ensorcellation {
-                    source project(':Ensorcellation').sourceSets.main
-                }
-                OMGourd {
-                    source project(':OMGourd').sourceSets.main
-                }
-
-                ThermalCore {
-                    source project(':ThermalCore').sourceSets.main
-                }
-                ThermalCultivation {
-                    source project(':ThermalCultivation').sourceSets.main
-                }
-                ThermalDynamics {
-                    source project(':ThermalDynamics').sourceSets.main
-                }
-                ThermalEssentials {
-                    source project(':ThermalEssentials').sourceSets.main
-                }
-                ThermalExpansion {
-                    source project(':ThermalExpansion').sourceSets.main
-                }
-                ThermalFoundation {
-                    source project(':ThermalFoundation').sourceSets.main
-                }
-                ThermalInnovation {
-                    source project(':ThermalInnovation').sourceSets.main
-                }
-                ThermalLocomotion {
-                    source project(':ThermalLocomotion').sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
-
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'mytutorial', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                CoFHCore {
-                    source project(':CoFHCore').sourceSets.main
-                }
-                // CoFHWorld {
-                //     source project(':CoFHWorld').sourceSets.main
-                // }
-                ArchersParadox {
-                    source project(':ArchersParadox').sourceSets.main
-                }
-                Ensorcellation {
-                    source project(':Ensorcellation').sourceSets.main
-                }
-                OMGourd {
-                    source project(':OMGourd').sourceSets.main
-                }
-
-                ThermalCore {
-                    source project(':ThermalCore').sourceSets.main
-                }
-                ThermalCultivation {
-                    source project(':ThermalCultivation').sourceSets.main
-                }
-                ThermalDynamics {
-                    source project(':ThermalDynamics').sourceSets.main
-                }
-                ThermalEssentials {
-                    source project(':ThermalEssentials').sourceSets.main
-                }
-                ThermalExpansion {
-                    source project(':ThermalExpansion').sourceSets.main
-                }
-                ThermalFoundation {
-                    source project(':ThermalFoundation').sourceSets.main
-                }
-                ThermalInnovation {
-                    source project(':ThermalInnovation').sourceSets.main
-                }
-                ThermalLocomotion {
-                    source project(':ThermalLocomotion').sourceSets.main
-                }
-            }
-        }
+//
+////                ArchersParadox {
+////                    source project(':ArchersParadox').sourceSets.main
+////                }
+////                Ensorcellation {
+////                    source project(':Ensorcellation').sourceSets.main
+////                }
+////                OMGourd {
+////                    source project(':OMGourd').sourceSets.main
+////                }
+////
+////                ThermalCore {
+////                    source project(':ThermalCore').sourceSets.main
+////                }
+////                ThermalCultivation {
+////                    source project(':ThermalCultivation').sourceSets.main
+////                }
+////                ThermalDynamics {
+////                    source project(':ThermalDynamics').sourceSets.main
+////                }
+////                ThermalEssentials {
+////                    source project(':ThermalEssentials').sourceSets.main
+////                }
+////                ThermalExpansion {
+////                    source project(':ThermalExpansion').sourceSets.main
+////                }
+////                ThermalFoundation {
+////                    source project(':ThermalFoundation').sourceSets.main
+////                }
+////                ThermalInnovation {
+////                    source project(':ThermalInnovation').sourceSets.main
+////                }
+////                ThermalLocomotion {
+////                    source project(':ThermalLocomotion').sourceSets.main
+////                }
+//            }
+//        }
     }
 }
 

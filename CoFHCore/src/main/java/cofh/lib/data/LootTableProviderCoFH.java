@@ -104,7 +104,7 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
                         .acceptCondition(harvestAge)
                         .addEntry(ItemLootEntry.builder(crop)
                                 .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3)))
-                .acceptFunction(ExplosionDecay.builder()));
+                        .acceptFunction(ExplosionDecay.builder()));
     }
 
     protected LootTable.Builder createSimpleDropTable(Block block) {
@@ -132,8 +132,8 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
                                 .addOperation("Info", "BlockEntityTag.Info", CopyNbt.Action.REPLACE)
                                 .addOperation("Items", "BlockEntityTag.Items", CopyNbt.Action.REPLACE)
                                 .addOperation("Energy", "BlockEntityTag.Energy", CopyNbt.Action.REPLACE))
-                        .acceptFunction(SetContents.func_215920_b()
-                                .func_216075_a(DynamicLootEntry.func_216162_a(new ResourceLocation("minecraft", "contents")))));
+                        .acceptFunction(SetContents.builder()
+                                .addLootEntry(DynamicLootEntry.func_216162_a(new ResourceLocation("minecraft", "contents")))));
         return LootTable.builder().addLootPool(builder);
     }
 

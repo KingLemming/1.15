@@ -24,6 +24,23 @@ compileJava {
 minecraft {
     mappings channel: 'snapshot', version: "${mcp_mappings}"
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        data {
+            workingDirectory project.file('run')
+
+            if (findProject(':Workspace') != null) {
+                ideaModule '1.15.CoFHCore.main'
+            }
+            args '--mod', 'cofh_core', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+
+            mods {
+                cofh_core {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
 }
 
 repositories {

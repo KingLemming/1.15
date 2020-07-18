@@ -221,7 +221,7 @@ public abstract class ElementBase {
     // endregion
 
     // region CALLBACKS
-    public boolean keyTyped(int keyCode, int scanCode) {
+    public boolean keyTyped(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_) {
 
         return false;
     }

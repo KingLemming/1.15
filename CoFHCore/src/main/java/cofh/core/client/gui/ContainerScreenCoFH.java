@@ -365,6 +365,23 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     }
 
     @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int mouseButton, double unused_1, double unused_2) {
+
+        Slot slot = getSlotAtPosition(mX, mY);
+        ItemStack itemstack = getMinecraft().player.inventory.getItemStack();
+
+        if (this.dragSplitting && slot != null && !itemstack.isEmpty() && slot instanceof SlotFalseCopy) {
+            if (lastIndex != slot.slotNumber) {
+                lastIndex = slot.slotNumber;
+                this.handleMouseClick(slot, slot.slotNumber, 0, ClickType.PICKUP);
+            }
+            return true;
+        }
+        lastIndex = -1;
+        return super.mouseDragged(mouseX, mouseY, mouseButton, unused_1, unused_2);
+    }
+
+    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int mouseButton) {
 
         mouseX -= guiLeft;
@@ -383,23 +400,6 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
         mouseY += guiTop;
 
         return super.mouseReleased(mouseX, mouseY, mouseButton);
-    }
-
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int mouseButton, double unused_1, double unused_2) {
-
-        Slot slot = getSlotAtPosition(mX, mY);
-        ItemStack itemstack = getMinecraft().player.inventory.getItemStack();
-
-        if (this.dragSplitting && slot != null && !itemstack.isEmpty() && slot instanceof SlotFalseCopy) {
-            if (lastIndex != slot.slotNumber) {
-                lastIndex = slot.slotNumber;
-                this.handleMouseClick(slot, slot.slotNumber, 0, ClickType.PICKUP);
-            }
-            return true;
-        }
-        lastIndex = -1;
-        return super.mouseDragged(mouseX, mouseY, mouseButton, unused_1, unused_2);
     }
 
     @Override
@@ -425,18 +425,18 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
     }
 
     @Override
-    protected boolean func_195363_d(int keyCode, int scanCode) {
+    public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_) {
 
         for (int i = elements.size(); i-- > 0; ) {
             ElementBase c = elements.get(i);
             if (!c.visible() || !c.enabled()) {
                 continue;
             }
-            if (c.keyTyped(keyCode, scanCode)) {
+            if (c.keyTyped(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_)) {
                 return true;
             }
         }
-        return super.func_195363_d(keyCode, scanCode);
+        return super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
     }
     // endregion
 
