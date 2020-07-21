@@ -1,6 +1,5 @@
 package cofh.thermal.innovation.init;
 
-import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.innovation.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -15,14 +14,6 @@ public class TInoItems {
     }
 
     public static void register() {
-
-        ThermalFeatures.registerBasicParts();
-        ThermalFeatures.registerToolParts();
-
-        ThermalFeatures.registerUpgradeAugments();
-        ThermalFeatures.registerStorageAugments();
-        ThermalFeatures.registerAreaAugments();
-        ThermalFeatures.registerPotionAugments();
 
         registerTools();
         registerArmor();
@@ -48,7 +39,6 @@ public class TInoItems {
 
     private static void registerArmor() {
 
-        ThermalFeatures.registerHazmatArmor();
     }
     // endregion
 }

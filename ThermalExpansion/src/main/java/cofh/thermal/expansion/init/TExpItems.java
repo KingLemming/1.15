@@ -1,7 +1,6 @@
 package cofh.thermal.expansion.init;
 
 import cofh.lib.item.ItemCoFH;
-import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalItemGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -15,14 +14,6 @@ public class TExpItems {
     }
 
     public static void register() {
-
-        ThermalFeatures.registerBasicParts();
-        ThermalFeatures.registerToolParts();
-
-        ThermalFeatures.registerUpgradeAugments();
-        ThermalFeatures.registerStorageAugments();
-        ThermalFeatures.registerMachineAugments();
-        ThermalFeatures.registerDynamoAugments();
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 

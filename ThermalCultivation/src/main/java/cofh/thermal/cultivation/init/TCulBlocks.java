@@ -6,7 +6,6 @@ import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
-import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;
 import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
@@ -30,8 +29,6 @@ public class TCulBlocks {
     }
 
     public static void register() {
-
-        ThermalFeatures.registerTinkerBench();
 
         registerPlants();
         registerFoods();

@@ -17,20 +17,14 @@ import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class ShieldItemCoFH extends ShieldItem implements ICoFHItem {
 
+    protected BooleanSupplier showInGroups = SHOW;
     protected BooleanSupplier showEnchantEffect = TRUE;
-    protected BooleanSupplier showInItemGroup = TRUE;
-    protected boolean creative;
+
     protected int enchantability;
 
     public ShieldItemCoFH(Properties builder) {
 
         super(builder);
-    }
-
-    public ShieldItemCoFH setCreative(boolean creative) {
-
-        this.creative = creative;
-        return this;
     }
 
     public ShieldItemCoFH setEnchantability(int enchantability) {
@@ -39,15 +33,16 @@ public class ShieldItemCoFH extends ShieldItem implements ICoFHItem {
         return this;
     }
 
-    public boolean isCreative(ItemStack stack) {
+    public ShieldItemCoFH setShowInGroups(BooleanSupplier showInGroups) {
 
-        return creative;
+        this.showInGroups = showInGroups;
+        return this;
     }
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.getAsBoolean()) {
+        if (!showInGroups.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);

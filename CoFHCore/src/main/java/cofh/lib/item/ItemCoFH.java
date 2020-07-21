@@ -13,20 +13,14 @@ import static cofh.lib.util.constants.Constants.TRUE;
 
 public class ItemCoFH extends Item implements ICoFHItem {
 
+    protected BooleanSupplier showInGroups = SHOW;
     protected BooleanSupplier showEnchantEffect = TRUE;
-    protected BooleanSupplier showInItemGroup = TRUE;
-    protected boolean creative;
+
     protected int enchantability;
 
     public ItemCoFH(Properties builder) {
 
         super(builder);
-    }
-
-    public ItemCoFH setCreative(boolean creative) {
-
-        this.creative = creative;
-        return this;
     }
 
     public ItemCoFH setEnchantability(int enchantability) {
@@ -35,15 +29,16 @@ public class ItemCoFH extends Item implements ICoFHItem {
         return this;
     }
 
-    public boolean isCreative(ItemStack stack) {
+    public ItemCoFH setShowInGroups(BooleanSupplier showInGroups) {
 
-        return creative;
+        this.showInGroups = showInGroups;
+        return this;
     }
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.getAsBoolean()) {
+        if (!showInGroups.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);

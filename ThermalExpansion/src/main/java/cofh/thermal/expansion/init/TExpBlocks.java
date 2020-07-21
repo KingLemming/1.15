@@ -4,7 +4,6 @@ import cofh.core.util.ProxyUtils;
 import cofh.lib.block.TileBlock4Way;
 import cofh.thermal.core.block.TileBlockDynamo;
 import cofh.thermal.core.common.ThermalConfig;
-import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
 import cofh.thermal.expansion.tileentity.dynamo.*;
@@ -31,8 +30,6 @@ public class TExpBlocks {
     }
 
     public static void register() {
-
-        ThermalFeatures.registerTinkerBench();
 
         registerTileBlocks();
         registerTileContainers();

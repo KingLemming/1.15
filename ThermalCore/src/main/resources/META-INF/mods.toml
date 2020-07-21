@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/cofh/feedback"
 [[mods]]
     modId="thermal"
     version="0.1.0a"
-    displayName="Thermal Core"
+    displayName="Thermal Series"
     credits="Team CoFH"
     authors="King Lemming"
     description='''

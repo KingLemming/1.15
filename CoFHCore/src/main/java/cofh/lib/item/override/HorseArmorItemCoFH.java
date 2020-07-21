@@ -18,9 +18,9 @@ import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
 
+    protected BooleanSupplier showInGroups = SHOW;
     protected BooleanSupplier showEnchantEffect = TRUE;
-    protected BooleanSupplier showInItemGroup = TRUE;
-    protected boolean creative;
+
     protected int enchantability;
 
     public HorseArmorItemCoFH(int protection, String texture, Properties builder) {
@@ -33,27 +33,22 @@ public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
         super(protection, texture, builder);
     }
 
-    public HorseArmorItemCoFH setCreative(boolean creative) {
-
-        this.creative = creative;
-        return this;
-    }
-
     public HorseArmorItemCoFH setEnchantability(int enchantability) {
 
         this.enchantability = enchantability;
         return this;
     }
 
-    public boolean isCreative(ItemStack stack) {
+    public HorseArmorItemCoFH setShowInGroups(BooleanSupplier showInGroups) {
 
-        return creative;
+        this.showInGroups = showInGroups;
+        return this;
     }
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.getAsBoolean()) {
+        if (!showInGroups.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);

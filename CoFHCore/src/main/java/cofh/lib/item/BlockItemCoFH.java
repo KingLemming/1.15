@@ -17,9 +17,9 @@ import static cofh.lib.util.constants.Constants.TRUE;
 
 public class BlockItemCoFH extends BlockItem implements ICoFHItem {
 
+    protected BooleanSupplier showInGroups = SHOW;
     protected BooleanSupplier showEnchantEffect = TRUE;
-    protected BooleanSupplier showInItemGroup = TRUE;
-    protected boolean creative;
+
     protected int enchantability;
 
     protected Supplier<ItemGroup> displayGroup;
@@ -27,12 +27,6 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
     public BlockItemCoFH(Block blockIn, Properties builder) {
 
         super(blockIn, builder);
-    }
-
-    public BlockItemCoFH setCreative(boolean creative) {
-
-        this.creative = creative;
-        return this;
     }
 
     public BlockItemCoFH setEnchantability(int enchantability) {
@@ -47,20 +41,19 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
         return this;
     }
 
-    public boolean isCreative(ItemStack stack) {
+    public BlockItemCoFH setShowInGroups(BooleanSupplier showInGroups) {
 
-        return creative;
+        this.showInGroups = showInGroups;
+        return this;
     }
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.getAsBoolean()) {
+        if (!showInGroups.getAsBoolean() || getBlock() == null) {
             return;
         }
-        if (getBlock() != null) {
-            super.fillItemGroup(group, items);
-        }
+        super.fillItemGroup(group, items);
     }
 
     @Override

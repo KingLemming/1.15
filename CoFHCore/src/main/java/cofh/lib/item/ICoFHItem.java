@@ -8,11 +8,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeItem;
 
 import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 /**
  * Hacky default interface to reduce boilerplate. :)
  */
 public interface ICoFHItem extends IForgeItem {
+
+    BooleanSupplier SHOW = () -> true;
+    BooleanSupplier HIDE = () -> false;
+
+    default boolean isCreative(ItemStack stack) {
+
+        return false;
+    }
 
     @Override
     default boolean hasCustomEntity(ItemStack stack) {

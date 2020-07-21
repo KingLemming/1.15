@@ -10,10 +10,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import static cofh.lib.item.ICoFHItem.SHOW;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_BLOCKS;
@@ -29,23 +31,33 @@ public class RegistrationHelper {
     // region BLOCKS
     public static void registerBlock(String name, Supplier<Block> sup) {
 
-        registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON);
+        registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON, SHOW);
+    }
+
+    public static void registerBlock(String name, Supplier<Block> sup, BooleanSupplier showInGroups) {
+
+        registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON, showInGroups);
     }
 
     public static void registerBlock(String name, Supplier<Block> sup, Rarity rarity) {
 
-        registerBlock(name, sup, THERMAL_BLOCKS, rarity);
+        registerBlock(name, sup, THERMAL_BLOCKS, rarity, SHOW);
     }
 
-    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group) {
+    public static void registerBlock(String name, Supplier<Block> sup, Rarity rarity, BooleanSupplier showInGroups) {
 
-        registerBlock(name, sup, group, Rarity.COMMON);
+        registerBlock(name, sup, THERMAL_BLOCKS, rarity, showInGroups);
     }
 
-    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity) {
+    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, BooleanSupplier showInGroups) {
+
+        registerBlock(name, sup, group, Rarity.COMMON, showInGroups);
+    }
+
+    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
         BLOCKS.register(name, sup);
-        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)));
+        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
     }
 
     public static void registerBlockOnly(String name, Supplier<Block> sup) {
@@ -57,23 +69,28 @@ public class RegistrationHelper {
     // AUGMENTABLE BLOCKS
     public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment) {
 
-        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON);
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON, SHOW);
     }
 
-    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, Rarity rarity) {
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, BooleanSupplier showInGroups) {
 
-        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, rarity);
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON, showInGroups);
     }
 
-    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group) {
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, Rarity rarity, BooleanSupplier showInGroups) {
 
-        registerAugBlock(name, sup, numSlots, validAugment, group, Rarity.COMMON);
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, rarity, showInGroups);
     }
 
-    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, Rarity rarity) {
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, BooleanSupplier showInGroups) {
+
+        registerAugBlock(name, sup, numSlots, validAugment, group, Rarity.COMMON, showInGroups);
+    }
+
+    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
         BLOCKS.register(name, sup);
-        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemAugmentable(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setNumSlots(numSlots).setSetAugValidator(validAugment));
+        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemAugmentable(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setNumSlots(numSlots).setAugValidator(validAugment).setShowInGroups(showInGroups));
     }
     // endregion
 
