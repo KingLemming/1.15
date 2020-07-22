@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:cinnabar_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "cinnabar"
+    }
+  ]
 }

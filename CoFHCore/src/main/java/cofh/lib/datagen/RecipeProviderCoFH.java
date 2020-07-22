@@ -1,6 +1,5 @@
-package cofh.lib.data;
+package cofh.lib.datagen;
 
-import cofh.core.init.CoreFeatures;
 import cofh.core.util.FeatureManager;
 import cofh.core.util.FeatureRecipeCondition;
 import cofh.lib.registries.DeferredRegisterCoFH;
@@ -19,7 +18,7 @@ import java.util.function.Consumer;
 public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuilder {
 
     private final String modid;
-    private FeatureManager manager = CoreFeatures.manager();
+    // private FeatureManager manager;
 
     public RecipeProviderCoFH(DataGenerator generatorIn, String modid) {
 
@@ -27,18 +26,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         this.modid = modid;
     }
 
-    public RecipeProviderCoFH(DataGenerator generatorIn, String modid, FeatureManager manager) {
-
-        this(generatorIn, modid);
-        this.manager = manager;
-    }
-
     // TODO: Finish adding this to fully support modular features.
-    //    protected void generateFlaggedRecipe(IFinishedRecipe recipe, String flag, Consumer<IFinishedRecipe> consumer) {
-    //
-    //        generateFlaggedRecipe(recipe.getID(), recipe, flag, consumer);
-    //    }
-    //
     //    protected void generateFlaggedRecipe(ResourceLocation id, Consumer<Consumer<IFinishedRecipe>> callable, String flag, Consumer<IFinishedRecipe> consumer) {
     //
     //        ConditionalRecipe.builder()

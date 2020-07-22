@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:nickel_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "nickel"
+    }
+  ]
 }

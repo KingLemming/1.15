@@ -1,6 +1,6 @@
 package cofh.thermal.cultivation.datagen;
 
-import cofh.lib.data.ItemModelProviderCoFH;
+import cofh.lib.datagen.ItemModelProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;

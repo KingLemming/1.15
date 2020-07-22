@@ -5,5 +5,11 @@
   },
   "result": "thermal:bronze_ingot",
   "experience": 0.0,
-  "cookingtime": 100
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "bronze"
+    }
+  ]
 }

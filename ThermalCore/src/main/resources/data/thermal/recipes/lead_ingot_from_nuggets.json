@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:lead_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "lead"
+    }
+  ]
 }

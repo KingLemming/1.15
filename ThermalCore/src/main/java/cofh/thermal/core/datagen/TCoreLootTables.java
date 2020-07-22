@@ -1,6 +1,6 @@
 package cofh.thermal.core.datagen;
 
-import cofh.lib.data.LootTableProviderCoFH;
+import cofh.lib.datagen.LootTableProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;

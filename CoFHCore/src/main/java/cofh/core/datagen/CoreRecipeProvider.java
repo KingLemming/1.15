@@ -1,6 +1,6 @@
 package cofh.core.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -34,9 +34,6 @@ public class CoreRecipeProvider extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.SLIMEBALLS)
                 .addCriterion("has_ghast_tear", hasItem(Items.GHAST_TEAR))
                 .build(consumer);
-
-        //generateFlaggedRecipe(
-
     }
 
 }

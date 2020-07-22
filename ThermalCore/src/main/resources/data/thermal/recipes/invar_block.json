@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:invar_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "invar"
+    }
+  ]
 }

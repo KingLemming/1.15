@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.datagen;
 
-import cofh.lib.data.LootTableProviderCoFH;
+import cofh.lib.datagen.LootTableProviderCoFH;
 import net.minecraft.data.DataGenerator;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;

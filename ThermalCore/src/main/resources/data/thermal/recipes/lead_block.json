@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:lead_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "lead"
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 package cofh.thermal.core;
 
+import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
@@ -7,6 +8,7 @@ import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.*;
 import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
+import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
@@ -29,6 +31,7 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -99,6 +102,7 @@ public class ThermalCore {
         TILE_ENTITIES.register(modEventBus);
 
         ThermalConfig.register();
+        CraftingHelper.register(new FeatureRecipeCondition.Serializer(ThermalFeatures.manager(), new ResourceLocation(ID_THERMAL, "flag")));
     }
 
     // region INITIALIZATION

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:bronze_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "bronze"
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-package cofh.lib.data;
+package cofh.lib.datagen;
 
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:nickel_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "nickel"
+    }
+  ]
 }

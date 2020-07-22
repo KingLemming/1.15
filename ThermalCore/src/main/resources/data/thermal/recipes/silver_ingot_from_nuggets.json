@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:silver_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "silver"
+    }
+  ]
 }

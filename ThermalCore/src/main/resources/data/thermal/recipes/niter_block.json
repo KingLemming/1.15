@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:niter_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "niter"
+    }
+  ]
 }

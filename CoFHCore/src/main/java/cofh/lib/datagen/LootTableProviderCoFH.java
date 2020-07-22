@@ -1,4 +1,4 @@
-package cofh.lib.data;
+package cofh.lib.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

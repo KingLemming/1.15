@@ -1,6 +1,6 @@
 package cofh.thermal.core.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -34,32 +34,46 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        generateStorageRecipes(reg, consumer, reg.get(ID_CHARCOAL_BLOCK), Items.CHARCOAL);
-        generateStorageRecipes(reg, consumer, reg.get(ID_BAMBOO_BLOCK), Items.BAMBOO);
-        generateStorageRecipes(reg, consumer, reg.get(ID_SUGAR_CANE_BLOCK), Items.SUGAR_CANE);
-        generateStorageRecipes(reg, consumer, reg.get(ID_GUNPOWDER_BLOCK), Items.GUNPOWDER);
+        boolean genConditionalBases = false;
 
-        generateStorageRecipes(reg, consumer, reg.get(ID_APPLE_BLOCK), Items.APPLE);
-        generateStorageRecipes(reg, consumer, reg.get(ID_BEETROOT_BLOCK), Items.BEETROOT);
-        generateStorageRecipes(reg, consumer, reg.get(ID_CARROT_BLOCK), Items.CARROT);
-        generateStorageRecipes(reg, consumer, reg.get(ID_POTATO_BLOCK), Items.POTATO);
+        if (genConditionalBases) {
+            generateStorageRecipes(reg, consumer, reg.get(ID_CHARCOAL_BLOCK), Items.CHARCOAL);
+            generateStorageRecipes(reg, consumer, reg.get(ID_BAMBOO_BLOCK), Items.BAMBOO);
+            generateStorageRecipes(reg, consumer, reg.get(ID_SUGAR_CANE_BLOCK), Items.SUGAR_CANE);
+            generateStorageRecipes(reg, consumer, reg.get(ID_GUNPOWDER_BLOCK), Items.GUNPOWDER);
 
-        generateStorageRecipes(reg, consumer, reg.get(ID_APATITE_BLOCK), reg.get("apatite"));
-        generateStorageRecipes(reg, consumer, reg.get(ID_CINNABAR_BLOCK), reg.get("cinnabar"));
-        generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
-        generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
+            generateStorageRecipes(reg, consumer, reg.get(ID_APPLE_BLOCK), Items.APPLE);
+            generateStorageRecipes(reg, consumer, reg.get(ID_BEETROOT_BLOCK), Items.BEETROOT);
+            generateStorageRecipes(reg, consumer, reg.get(ID_CARROT_BLOCK), Items.CARROT);
+            generateStorageRecipes(reg, consumer, reg.get(ID_POTATO_BLOCK), Items.POTATO);
 
-        generateStorageRecipes(reg, consumer, "copper");
-        generateStorageRecipes(reg, consumer, "tin");
-        generateStorageRecipes(reg, consumer, "lead");
-        generateStorageRecipes(reg, consumer, "silver");
-        generateStorageRecipes(reg, consumer, "nickel");
+            generateStorageRecipes(reg, consumer, reg.get(ID_APATITE_BLOCK), reg.get("apatite"));
+            generateStorageRecipes(reg, consumer, reg.get(ID_CINNABAR_BLOCK), reg.get("cinnabar"));
+            generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
+            generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 
-        generateStorageRecipes(reg, consumer, "bronze");
-        generateStorageRecipes(reg, consumer, "electrum");
-        generateStorageRecipes(reg, consumer, "invar");
-        generateStorageRecipes(reg, consumer, "constantan");
+            generateStorageRecipes(reg, consumer, "copper");
+            generateStorageRecipes(reg, consumer, "tin");
+            generateStorageRecipes(reg, consumer, "lead");
+            generateStorageRecipes(reg, consumer, "silver");
+            generateStorageRecipes(reg, consumer, "nickel");
 
+            generateStorageRecipes(reg, consumer, "bronze");
+            generateStorageRecipes(reg, consumer, "electrum");
+            generateStorageRecipes(reg, consumer, "invar");
+            generateStorageRecipes(reg, consumer, "constantan");
+
+            generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 1.0F);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
+
+            generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
+            generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
+        }
         //        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
         //                .addCriterion("has_" + dustName, hasItem(dust))
         //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
@@ -75,17 +89,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         //        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
         //                .addCriterion("has_" + dustName, hasItem(dust))
         //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
-
-        generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 1.0F);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
-
-        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
-        generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
 
         generateStorageRecipes(reg, consumer, "signalum");
         generateStorageRecipes(reg, consumer, "lumium");

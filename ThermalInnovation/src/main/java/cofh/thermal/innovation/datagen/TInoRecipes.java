@@ -1,6 +1,6 @@
 package cofh.thermal.innovation.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.thermal.core.datagen.ThermalFeatureRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

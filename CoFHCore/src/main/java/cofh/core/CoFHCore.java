@@ -5,7 +5,6 @@ import cofh.core.init.*;
 import cofh.core.key.CoreKeys;
 import cofh.core.network.packet.client.*;
 import cofh.core.network.packet.server.*;
-import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
 import cofh.lib.capability.CapabilityArchery;
@@ -22,7 +21,6 @@ import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -75,8 +73,6 @@ public class CoFHCore {
         CoreEffects.register();
         CoreItems.register();
         // CoreParticles.register();
-
-        CraftingHelper.register(new FeatureRecipeCondition.Serializer(CoreFeatures.manager(), new ResourceLocation("cofh", "flag")));
     }
 
     private void registerPackets() {

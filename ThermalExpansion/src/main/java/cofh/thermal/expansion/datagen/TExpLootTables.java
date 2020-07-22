@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.datagen;
 
-import cofh.lib.data.LootTableProviderCoFH;
+import cofh.lib.datagen.LootTableProviderCoFH;
 import net.minecraft.data.DataGenerator;
 
 public class TExpLootTables extends LootTableProviderCoFH {

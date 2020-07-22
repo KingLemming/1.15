@@ -1,6 +1,6 @@
 package cofh.omgourd.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;

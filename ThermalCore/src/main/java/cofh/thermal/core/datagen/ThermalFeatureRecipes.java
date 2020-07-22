@@ -1,6 +1,6 @@
 package cofh.thermal.core.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.lib.util.references.CoFHTags;
 import net.minecraft.data.IFinishedRecipe;

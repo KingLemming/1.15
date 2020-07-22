@@ -12,6 +12,11 @@ public class ThermalFeatures {
 
     private static final FeatureManager FEATURE_MANAGER = new FeatureManager();
 
+    public static FeatureManager manager() {
+
+        return FEATURE_MANAGER;
+    }
+
     public static void setFeature(String flag, boolean enable) {
 
         FEATURE_MANAGER.setFeature(flag, enable);

@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.datagen;
 
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.lib.util.references.CoFHTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;

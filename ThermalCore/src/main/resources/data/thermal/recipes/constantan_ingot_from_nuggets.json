@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:constantan_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "constantan"
+    }
+  ]
 }

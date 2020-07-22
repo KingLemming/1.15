@@ -1,7 +1,7 @@
 package cofh.archersparadox.datagen;
 
 import cofh.core.CoFHCore;
-import cofh.lib.data.RecipeProviderCoFH;
+import cofh.lib.datagen.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;

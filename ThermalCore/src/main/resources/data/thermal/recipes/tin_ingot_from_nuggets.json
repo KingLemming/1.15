@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:tin_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "tin"
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 package cofh.core.datagen;
 
-import cofh.lib.data.BlockStateProviderCoFH;
+import cofh.lib.datagen.BlockStateProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 

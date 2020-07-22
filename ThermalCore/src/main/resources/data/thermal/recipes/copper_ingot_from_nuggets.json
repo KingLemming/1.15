@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:copper_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "copper"
+    }
+  ]
 }

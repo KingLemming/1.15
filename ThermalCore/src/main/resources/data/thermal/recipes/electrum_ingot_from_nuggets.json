@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:electrum_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "electrum"
+    }
+  ]
 }

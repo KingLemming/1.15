@@ -8,5 +8,11 @@
   "result": {
     "item": "thermal:constantan_ingot",
     "count": 9
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "constantan"
+    }
+  ]
 }

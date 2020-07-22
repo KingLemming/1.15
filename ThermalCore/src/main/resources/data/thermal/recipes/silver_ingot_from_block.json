@@ -8,5 +8,11 @@
   "result": {
     "item": "thermal:silver_ingot",
     "count": 9
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "silver"
+    }
+  ]
 }
