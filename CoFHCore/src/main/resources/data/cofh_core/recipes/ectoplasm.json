@@ -10,5 +10,11 @@
   ],
   "result": {
     "item": "cofh_core:ectoplasm"
-  }
+  },
+  "conditions": [
+    {
+      "type": "cofh:flag",
+      "flag": "ectoplasm"
+    }
+  ]
 }

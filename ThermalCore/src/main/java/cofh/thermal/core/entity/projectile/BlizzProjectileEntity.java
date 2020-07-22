@@ -23,7 +23,7 @@ import static cofh.thermal.core.init.TCoreEntities.BLIZZ_PROJECTILE_ENTITY;
 
 public class BlizzProjectileEntity extends DamagingProjectileEntity {
 
-    private static int CLOUD_DURATION = 20;
+    private static final int CLOUD_DURATION = 20;
 
     public static float baseDamage = 5.0F;
     public static int effectAmplifier = 0;

@@ -42,8 +42,8 @@ public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
             UUID.fromString("66785022-03BE-4987-BF53-BD392DB96DB0")
     };
 
+    protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
-    protected BooleanSupplier showInItemGroup = TRUE;
 
     protected Supplier<ItemGroup> displayGroup;
 
@@ -58,10 +58,16 @@ public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
         return this;
     }
 
+    public ArmorItemCoFH setShowInGroups(BooleanSupplier showInGroups) {
+
+        this.showInGroups = showInGroups;
+        return this;
+    }
+
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (!showInItemGroup.getAsBoolean()) {
+        if (!showInGroups.getAsBoolean()) {
             return;
         }
         super.fillItemGroup(group, items);

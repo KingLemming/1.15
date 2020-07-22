@@ -1,9 +1,8 @@
 package cofh.thermal.core.common;
 
-import java.util.function.BooleanSupplier;
+import cofh.core.util.FeatureManager;
 
-import static cofh.lib.item.ICoFHItem.HIDE;
-import static cofh.lib.item.ICoFHItem.SHOW;
+import java.util.function.BooleanSupplier;
 
 public class ThermalFeatures {
 
@@ -11,55 +10,74 @@ public class ThermalFeatures {
 
     }
 
-    public static void featureVanillaBlocks(boolean enable) {
+    private static final FeatureManager FEATURE_MANAGER = new FeatureManager();
 
-        enableVanillaBlocks = enable ? SHOW : HIDE;
+    public static void setFeature(String flag, boolean enable) {
+
+        FEATURE_MANAGER.setFeature(flag, enable);
     }
 
-    public static void featureTinkerBench(boolean enable) {
+    public static void setFeature(String flag, BooleanSupplier condition) {
 
-        enableTinkerBench = enable ? SHOW : HIDE;
+        FEATURE_MANAGER.setFeature(flag, condition);
     }
 
-    public static void enableAreaAugments(boolean enable) {
+    public static BooleanSupplier getFeature(String flag) {
 
-        enableAreaAugments = enable ? SHOW : HIDE;
+        return FEATURE_MANAGER.getFeature(flag);
     }
 
-    public static void enableDynamoAugments(boolean enable) {
+    // region SPECIFIC FEATURES
+    public static String FLAG_TOOL_WRENCH = "tool_wrench";
+    public static String FLAG_TOOL_REDPRINT = "tool_redprint";
+    public static String FLAG_TOOL_LOCK = "tool_lock";
+    public static String FLAG_TOOL_PHYTOGRO = "tool_phytogro";
 
-        enableDynamoAugments = enable ? SHOW : HIDE;
+    public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";
+    public static String FLAG_ARMOR_HAZMAT = "armor_hazmat";
+
+    public static String FLAG_RESOURCE_APATITE = "apatite";
+    public static String FLAG_RESOURCE_CINNABAR = "cinnabar";
+    public static String FLAG_RESOURCE_NITER = "niter";
+    public static String FLAG_RESOURCE_SULFUR = "sulfur";
+
+    public static String FLAG_RESOURCE_COPPER = "copper";
+    public static String FLAG_RESOURCE_TIN = "tin";
+    public static String FLAG_RESOURCE_LEAD = "lead";
+    public static String FLAG_RESOURCE_SILVER = "silver";
+    public static String FLAG_RESOURCE_NICKEL = "nickel";
+    public static String FLAG_RESOURCE_RUBY = "ruby";
+    public static String FLAG_RESOURCE_SAPPHIRE = "sapphire";
+
+    public static String FLAG_RESOURCE_BRONZE = "bronze";
+    public static String FLAG_RESOURCE_ELECTRUM = "electrum";
+    public static String FLAG_RESOURCE_INVAR = "invar";
+    public static String FLAG_RESOURCE_CONSTANTAN = "constantan";
+
+    public static String FLAG_MOB_BASALZ = "basalz";
+    public static String FLAG_MOB_BLITZ = "blitz";
+    public static String FLAG_MOB_BLIZZ = "blizz";
+    // endregion
+
+    // region CATEGORIES
+    public static String FLAG_VANILLA_BLOCKS = "vanilla_blocks";
+    public static String FLAG_VANILLA_ITEMS = "vanilla_items";
+
+    public static String FLAG_BASIC_COMPONENTS = "basic_components";
+    public static String FLAG_TOOL_COMPONENTS = "tool_components";
+
+    public static String FLAG_AREA_AUGMENTS = "area_augments";
+    public static String FLAG_DYNAMO_AUGMENTS = "dynamo_augments";
+    public static String FLAG_MACHINE_AUGMENTS = "machine_augments";
+    public static String FLAG_POTION_AUGMENTS = "potion_augments";
+    public static String FLAG_STORAGE_AUGMENTS = "storage_augments";
+    public static String FLAG_UPGRADE_AUGMENTS = "upgrade_augments";
+    // endregion
+
+    static {
+        setFeature(FLAG_RESOURCE_BRONZE, () -> getFeature(FLAG_RESOURCE_COPPER).getAsBoolean() && getFeature(FLAG_RESOURCE_TIN).getAsBoolean());
+        setFeature(FLAG_RESOURCE_ELECTRUM, getFeature(FLAG_RESOURCE_SILVER));
+        setFeature(FLAG_RESOURCE_INVAR, getFeature(FLAG_RESOURCE_NICKEL));
+        setFeature(FLAG_RESOURCE_CONSTANTAN, () -> getFeature(FLAG_RESOURCE_COPPER).getAsBoolean() && getFeature(FLAG_RESOURCE_NICKEL).getAsBoolean());
     }
-
-    public static void enableMachineAugments(boolean enable) {
-
-        enableMachineAugments = enable ? SHOW : HIDE;
-    }
-
-    public static void enablePotionAugments(boolean enable) {
-
-        enablePotionAugments = enable ? SHOW : HIDE;
-    }
-
-    public static void enableStorageAugments(boolean enable) {
-
-        enableStorageAugments = enable ? SHOW : HIDE;
-    }
-
-    public static void enableUpgradeAugments(boolean enable) {
-
-        enableUpgradeAugments = enable ? SHOW : HIDE;
-    }
-
-    public static BooleanSupplier enableVanillaBlocks = HIDE;
-
-    public static BooleanSupplier enableTinkerBench = HIDE;
-
-    public static BooleanSupplier enableAreaAugments = HIDE;
-    public static BooleanSupplier enableDynamoAugments = HIDE;
-    public static BooleanSupplier enableMachineAugments = HIDE;
-    public static BooleanSupplier enablePotionAugments = HIDE;
-    public static BooleanSupplier enableStorageAugments = HIDE;
-    public static BooleanSupplier enableUpgradeAugments = HIDE;
-
 }

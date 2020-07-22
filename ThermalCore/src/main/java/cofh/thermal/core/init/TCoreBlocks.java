@@ -6,6 +6,7 @@ import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
 import cofh.thermal.core.common.ThermalConfig;
+import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.*;
@@ -26,8 +27,7 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
-import static cofh.thermal.core.common.ThermalFeatures.enableTinkerBench;
-import static cofh.thermal.core.common.ThermalFeatures.enableVanillaBlocks;
+import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.common.ThermalReferences.ID_TINKER_BENCH;
 import static cofh.thermal.core.common.ThermalReferences.TINKER_BENCH_BLOCK;
 import static cofh.thermal.core.init.TCoreReferences.*;
@@ -65,8 +65,8 @@ public class TCoreBlocks {
     // region HELPERS
     private static void registerVanilla() {
 
-        registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)), enableVanillaBlocks);
-        registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)), enableVanillaBlocks);
+        registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)), getFeature(FLAG_VANILLA_BLOCKS));
+        registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)), getFeature(FLAG_VANILLA_BLOCKS));
         registerBlock(ID_SUGAR_CANE_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.CROP)) {
 
             @Override
@@ -74,7 +74,7 @@ public class TCoreBlocks {
 
                 entityIn.onLivingFall(fallDistance, 0.6F);
             }
-        }, enableVanillaBlocks);
+        }, getFeature(FLAG_VANILLA_BLOCKS));
         registerBlock(ID_BAMBOO_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)) {
 
             @Override
@@ -82,36 +82,38 @@ public class TCoreBlocks {
 
                 entityIn.onLivingFall(fallDistance, 0.8F);
             }
-        }, enableVanillaBlocks);
+        }, getFeature(FLAG_VANILLA_BLOCKS));
 
-        registerBlock(ID_APPLE_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), enableVanillaBlocks);
-        registerBlock(ID_CARROT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), enableVanillaBlocks);
-        registerBlock(ID_POTATO_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), enableVanillaBlocks);
-        registerBlock(ID_BEETROOT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), enableVanillaBlocks);
+        registerBlock(ID_APPLE_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
+        registerBlock(ID_CARROT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
+        registerBlock(ID_POTATO_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
+        registerBlock(ID_BEETROOT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
+
+        ThermalFeatures.setFeature(FLAG_VANILLA_BLOCKS, true);
     }
 
     private static void registerResources() {
 
-        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
-        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_APATITE));
+        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_CINNABAR));
+        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_NITER));
+        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_SULFUR));
 
-        registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1));
-        registerBlock(ID_TIN_ORE, () -> new OreBlockCoFH(1));
-        registerBlock(ID_LEAD_ORE, () -> new OreBlockCoFH(2));
-        registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2));
-        registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2));
+        registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1), getFeature(FLAG_RESOURCE_COPPER));
+        registerBlock(ID_TIN_ORE, () -> new OreBlockCoFH(1), getFeature(FLAG_RESOURCE_TIN));
+        registerBlock(ID_LEAD_ORE, () -> new OreBlockCoFH(2), getFeature(FLAG_RESOURCE_LEAD));
+        registerBlock(ID_SILVER_ORE, () -> new OreBlockCoFH(2), getFeature(FLAG_RESOURCE_SILVER));
+        registerBlock(ID_NICKEL_ORE, () -> new OreBlockCoFH(2), getFeature(FLAG_RESOURCE_NICKEL));
 
-        registerBlock(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
-        registerBlock(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7));
+        registerBlock(ID_RUBY_ORE, () -> new OreBlockCoFH(2).xp(3, 7), getFeature(FLAG_RESOURCE_RUBY));
+        registerBlock(ID_SAPPHIRE_ORE, () -> new OreBlockCoFH(2).xp(3, 7), getFeature(FLAG_RESOURCE_SAPPHIRE));
     }
 
     private static void registerStorage() {
 
-        registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
-        registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
-        registerBlock(ID_NITER_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
+        registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_APATITE));
+        registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_CINNABAR));
+        registerBlock(ID_NITER_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_NITER));
         registerBlock(ID_SULFUR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)) {
 
             @Override
@@ -119,18 +121,18 @@ public class TCoreBlocks {
 
                 return side == Direction.UP;
             }
-        });
+        }, getFeature(FLAG_RESOURCE_SULFUR));
 
-        registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_COPPER));
+        registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_TIN));
+        registerBlock(ID_LEAD_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_LEAD));
+        registerBlock(ID_SILVER_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_SILVER));
+        registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_NICKEL));
 
-        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1));
-        registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1));
+        registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_BRONZE));
+        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_SILVER));
+        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_NICKEL));
+        registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_CONSTANTAN));
 
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(7)) {
 
@@ -149,8 +151,8 @@ public class TCoreBlocks {
         registerBlock(ID_LUMIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(15)), Rarity.UNCOMMON);
         registerBlock(ID_ENDERIUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.CYAN).hardnessAndResistance(25.0F, 30.0F).sound(SoundType.METAL).harvestLevel(2).harvestTool(ToolType.PICKAXE).lightValue(3)), Rarity.UNCOMMON);
 
-        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1));
-        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1));
+        registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1), getFeature(FLAG_RESOURCE_RUBY));
+        registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1), getFeature(FLAG_RESOURCE_SAPPHIRE));
     }
 
     private static void registerBuildingBlocks() {
@@ -180,7 +182,7 @@ public class TCoreBlocks {
         IntSupplier workbenchAugs = () -> ThermalConfig.workbenchAugments;
         Predicate<ItemStack> workbenchValidator = (e) -> true;
 
-        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator, enableTinkerBench);
+        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator, getFeature(ID_TINKER_BENCH));
     }
 
     private static void registerTileContainers() {

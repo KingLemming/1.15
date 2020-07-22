@@ -17,7 +17,7 @@ import static cofh.lib.util.constants.Constants.TRUE;
 
 public class BlockItemCoFH extends BlockItem implements ICoFHItem {
 
-    protected BooleanSupplier showInGroups = SHOW;
+    protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
 
     protected int enchantability;

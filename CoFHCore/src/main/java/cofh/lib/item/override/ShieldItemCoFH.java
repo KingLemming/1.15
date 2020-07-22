@@ -17,7 +17,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_ACTIVE;
 
 public class ShieldItemCoFH extends ShieldItem implements ICoFHItem {
 
-    protected BooleanSupplier showInGroups = SHOW;
+    protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
 
     protected int enchantability;

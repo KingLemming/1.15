@@ -28,7 +28,7 @@ import static cofh.lib.util.references.CoreReferences.CHILLED;
 
 public class FrostArrowEntity extends AbstractArrowEntity {
 
-    private static int CLOUD_DURATION = 20;
+    private static final int CLOUD_DURATION = 20;
 
     public static float baseDamage = 1.5F;
     public static int effectAmplifier = 1;

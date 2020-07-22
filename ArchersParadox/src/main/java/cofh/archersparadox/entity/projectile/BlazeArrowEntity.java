@@ -24,7 +24,7 @@ import static cofh.lib.util.constants.NBTTags.TAG_ARROW_DATA;
 
 public class BlazeArrowEntity extends AbstractArrowEntity {
 
-    private static int CLOUD_DURATION = 20;
+    private static final int CLOUD_DURATION = 20;
 
     public static float baseDamage = 1.5F;
     public static int effectDuration = 10;

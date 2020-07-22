@@ -1,20 +1,17 @@
 package cofh.thermal.cultivation;
 
 import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
-import cofh.thermal.cultivation.datagen.*;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.HoeItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;

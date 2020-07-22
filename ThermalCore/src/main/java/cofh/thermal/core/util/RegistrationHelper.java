@@ -15,7 +15,7 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static cofh.lib.item.ICoFHItem.SHOW;
+import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_BLOCKS;
@@ -31,7 +31,7 @@ public class RegistrationHelper {
     // region BLOCKS
     public static void registerBlock(String name, Supplier<Block> sup) {
 
-        registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON, SHOW);
+        registerBlock(name, sup, THERMAL_BLOCKS, Rarity.COMMON, TRUE);
     }
 
     public static void registerBlock(String name, Supplier<Block> sup, BooleanSupplier showInGroups) {
@@ -41,17 +41,7 @@ public class RegistrationHelper {
 
     public static void registerBlock(String name, Supplier<Block> sup, Rarity rarity) {
 
-        registerBlock(name, sup, THERMAL_BLOCKS, rarity, SHOW);
-    }
-
-    public static void registerBlock(String name, Supplier<Block> sup, Rarity rarity, BooleanSupplier showInGroups) {
-
-        registerBlock(name, sup, THERMAL_BLOCKS, rarity, showInGroups);
-    }
-
-    public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, BooleanSupplier showInGroups) {
-
-        registerBlock(name, sup, group, Rarity.COMMON, showInGroups);
+        registerBlock(name, sup, THERMAL_BLOCKS, rarity, TRUE);
     }
 
     public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
@@ -69,22 +59,12 @@ public class RegistrationHelper {
     // AUGMENTABLE BLOCKS
     public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment) {
 
-        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON, SHOW);
+        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON, TRUE);
     }
 
     public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, BooleanSupplier showInGroups) {
 
         registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, Rarity.COMMON, showInGroups);
-    }
-
-    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, Rarity rarity, BooleanSupplier showInGroups) {
-
-        registerAugBlock(name, sup, numSlots, validAugment, THERMAL_BLOCKS, rarity, showInGroups);
-    }
-
-    public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, BooleanSupplier showInGroups) {
-
-        registerAugBlock(name, sup, numSlots, validAugment, group, Rarity.COMMON, showInGroups);
     }
 
     public static void registerAugBlock(String name, Supplier<Block> sup, IntSupplier numSlots, Predicate<ItemStack> validAugment, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
@@ -100,100 +80,65 @@ public class RegistrationHelper {
         return ITEMS.register(name, sup);
     }
 
-    public static RegistryObject<Item> registerItem(String name) {
-
-        return registerItem(name, THERMAL_ITEMS, Rarity.COMMON);
-    }
-
     public static RegistryObject<Item> registerItem(String name, ItemGroup group) {
 
         return registerItem(name, group, Rarity.COMMON);
     }
 
-    public static RegistryObject<Item> registerItem(String name, Rarity rarity) {
-
-        return registerItem(name, THERMAL_ITEMS, rarity);
-    }
-
     public static RegistryObject<Item> registerItem(String name, ItemGroup group, Rarity rarity) {
 
-        return ITEMS.register(name, () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        return registerItem(name, () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
     }
     // endregion
 
     // region METAL SETS
-    public static void registerMetalSet(String prefix) {
-
-        registerMetalSet(prefix, THERMAL_ITEMS, Rarity.COMMON, false);
-    }
-
-    public static void registerMetalSet(String prefix, ItemGroup group) {
-
-        registerMetalSet(prefix, group, Rarity.COMMON, false);
-    }
-
-    public static void registerMetalSet(String prefix, Rarity rarity) {
-
-        registerMetalSet(prefix, THERMAL_ITEMS, rarity, false);
-    }
-
     public static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity) {
 
-        registerMetalSet(prefix, group, rarity, false);
+        registerMetalSet(prefix, group, rarity, TRUE, false);
     }
 
-    public static void registerMetalSet(String prefix, ItemGroup group, boolean vanilla) {
+    public static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
-        registerMetalSet(prefix, group, Rarity.COMMON, vanilla);
+        registerMetalSet(prefix, group, rarity, showInGroups, false);
     }
 
-    public static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity, boolean vanilla) {
+    public static void registerMetalSet(String prefix, ItemGroup group, BooleanSupplier showInGroups) {
+
+        registerMetalSet(prefix, group, Rarity.COMMON, showInGroups, false);
+    }
+
+    public static void registerMetalSet(String prefix, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups, boolean vanilla) {
 
         if (!vanilla) {
-            ITEMS.register(prefix + "_ingot", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-            ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+            ITEMS.register(prefix + "_ingot", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+            ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
         }
-        ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
+        ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+        ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+        ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+        ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
     }
     // endregion
 
     // region GEM SETS
-    public static void registerGemSet(String prefix) {
+    public static void registerGemSet(String prefix, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
-        registerGemSet(prefix, THERMAL_ITEMS, Rarity.COMMON, false);
+        registerGemSet(prefix, group, rarity, showInGroups, false);
     }
 
-    public static void registerGemSet(String prefix, ItemGroup group) {
+    public static void registerGemSet(String prefix, ItemGroup group, BooleanSupplier showInGroups) {
 
-        registerGemSet(prefix, group, Rarity.COMMON, false);
+        registerGemSet(prefix, group, Rarity.COMMON, showInGroups, false);
     }
 
-    public static void registerGemSet(String prefix, Rarity rarity) {
-
-        registerGemSet(prefix, THERMAL_ITEMS, rarity, false);
-    }
-
-    public static void registerGemSet(String prefix, ItemGroup group, Rarity rarity) {
-
-        registerGemSet(prefix, group, rarity, false);
-    }
-
-    public static void registerGemSet(String prefix, ItemGroup group, boolean vanilla) {
-
-        registerGemSet(prefix, group, Rarity.COMMON, vanilla);
-    }
-
-    public static void registerGemSet(String prefix, ItemGroup group, Rarity rarity, boolean vanilla) {
+    public static void registerGemSet(String prefix, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups, boolean vanilla) {
 
         if (!vanilla) {
-            ITEMS.register(prefix + "_gem", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+            ITEMS.register(prefix + "_gem", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
         }
         // ITEMS.register(prefix + "_nugget", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
-        ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)));
+        ITEMS.register(prefix + "_dust", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+        ITEMS.register(prefix + "_gear", () -> new ItemCoFH(new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
         // ITEMS.register(prefix + "_plate", () -> new CountedItem(new Item.Properties().group(group).rarity(rarity)));
         // ITEMS.register(prefix + "_coin", () -> new CoinItem(new Item.Properties().group(group).rarity(rarity)));
     }

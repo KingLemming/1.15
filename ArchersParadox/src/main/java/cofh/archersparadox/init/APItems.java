@@ -2,12 +2,14 @@ package cofh.archersparadox.init;
 
 import cofh.archersparadox.ArchersParadox;
 import cofh.archersparadox.item.projectile.*;
+import cofh.core.init.CoreFeatures;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.APReferences.*;
+import static cofh.core.init.CoreFeatures.FLAG_ECTOPLASM;
 
 public class APItems {
 
@@ -16,6 +18,8 @@ public class APItems {
     }
 
     public static void register() {
+
+        CoreFeatures.setFeature(FLAG_ECTOPLASM, true);
 
         ItemGroup group = ItemGroup.COMBAT;
 

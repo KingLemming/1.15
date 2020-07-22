@@ -1,5 +1,8 @@
 package cofh.lib.data;
 
+import cofh.core.init.CoreFeatures;
+import cofh.core.util.FeatureManager;
+import cofh.core.util.FeatureRecipeCondition;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
@@ -8,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
@@ -16,6 +19,7 @@ import java.util.function.Consumer;
 public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuilder {
 
     private final String modid;
+    private FeatureManager manager = CoreFeatures.manager();
 
     public RecipeProviderCoFH(DataGenerator generatorIn, String modid) {
 
@@ -23,10 +27,27 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         this.modid = modid;
     }
 
-    // TODO: Finish adding this to fully support modular features.
-    protected void addConditionalRecipe(ResourceLocation id, IFinishedRecipe recipe, Consumer<IFinishedRecipe> consumer) {
+    public RecipeProviderCoFH(DataGenerator generatorIn, String modid, FeatureManager manager) {
 
+        this(generatorIn, modid);
+        this.manager = manager;
     }
+
+    // TODO: Finish adding this to fully support modular features.
+    //    protected void generateFlaggedRecipe(IFinishedRecipe recipe, String flag, Consumer<IFinishedRecipe> consumer) {
+    //
+    //        generateFlaggedRecipe(recipe.getID(), recipe, flag, consumer);
+    //    }
+    //
+    //    protected void generateFlaggedRecipe(ResourceLocation id, Consumer<Consumer<IFinishedRecipe>> callable, String flag, Consumer<IFinishedRecipe> consumer) {
+    //
+    //        ConditionalRecipe.builder()
+    //                .addCondition(
+    //                        flagEnabled(manager, flag)
+    //                )
+    //                .addRecipe(callable)
+    //                .build(consumer, id);
+    //    }
     //
     //    protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
     //
@@ -261,6 +282,13 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
     public InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
 
         return this.hasItem(new ItemPredicate(null, itemIn.asItem(), amount, MinMaxBounds.IntBound.UNBOUNDED, EnchantmentPredicate.field_226534_b_, EnchantmentPredicate.field_226534_b_, null, NBTPredicate.ANY)); // ItemPredicate.Builder.create().item(itemIn).count(amount).build());
+    }
+    // endregion
+
+    // region CONDITIONS
+    protected ICondition flagEnabled(FeatureManager manager, String flag) {
+
+        return new FeatureRecipeCondition(manager, flag);
     }
     // endregion
 }
