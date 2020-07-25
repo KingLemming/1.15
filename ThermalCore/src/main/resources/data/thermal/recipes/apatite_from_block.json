@@ -8,7 +8,7 @@
   "result": {
     "item": "thermal:apatite",
     "count": 9
-  },"conditions": [
+  }, "conditions": [
   {
     "type": "thermal:flag",
     "flag": "apatite"

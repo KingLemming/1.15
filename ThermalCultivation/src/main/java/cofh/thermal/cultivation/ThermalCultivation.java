@@ -18,6 +18,7 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.lib.util.constants.Constants.TILLED;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulReferences.*;
 
@@ -33,6 +34,22 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
+
+        setFeature(FLAG_TOOL_WRENCH, true);
+        setFeature(FLAG_TOOL_REDPRINT, true);
+        setFeature(FLAG_TOOL_LOCK, true);
+        setFeature(FLAG_TOOL_PHYTOGRO, true);
+
+        setFeature(FLAG_RESOURCE_APATITE, true);
+        setFeature(FLAG_RESOURCE_NITER, true);
+
+        setFeature(FLAG_BASIC_COMPONENTS, true);
+
+        setFeature(FLAG_AREA_AUGMENTS, true);
+        setFeature(FLAG_STORAGE_AUGMENTS, true);
+        setFeature(FLAG_UPGRADE_AUGMENTS, true);
+
+        setFeature(FLAG_ARMOR_BEEKEEPER, true);
     }
 
     // region INITIALIZATION

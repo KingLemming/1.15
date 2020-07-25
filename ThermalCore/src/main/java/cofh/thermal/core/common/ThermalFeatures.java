@@ -29,7 +29,7 @@ public class ThermalFeatures {
 
     public static BooleanSupplier getFeature(String flag) {
 
-        return FEATURE_MANAGER.getFeature(flag);
+        return () -> FEATURE_MANAGER.getFeature(flag).getAsBoolean();
     }
 
     // region SPECIFIC FEATURES

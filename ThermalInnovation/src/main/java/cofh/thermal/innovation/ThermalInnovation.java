@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_INNOVATION;
+import static cofh.thermal.core.common.ThermalFeatures.*;
 
 @Mod(ID_THERMAL_INNOVATION)
 public class ThermalInnovation {
@@ -22,6 +23,16 @@ public class ThermalInnovation {
 
         TInoBlocks.register();
         TInoItems.register();
+
+        setFeature(FLAG_BASIC_COMPONENTS, true);
+        setFeature(FLAG_TOOL_COMPONENTS, true);
+
+        setFeature(FLAG_AREA_AUGMENTS, true);
+        setFeature(FLAG_POTION_AUGMENTS, true);
+        setFeature(FLAG_STORAGE_AUGMENTS, true);
+        setFeature(FLAG_UPGRADE_AUGMENTS, true);
+
+        setFeature(FLAG_ARMOR_HAZMAT, true);
     }
 
     // region INITIALIZATION

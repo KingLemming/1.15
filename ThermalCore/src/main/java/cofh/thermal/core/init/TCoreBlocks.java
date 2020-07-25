@@ -6,7 +6,6 @@ import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
 import cofh.thermal.core.common.ThermalConfig;
-import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.*;
@@ -88,8 +87,6 @@ public class TCoreBlocks {
         registerBlock(ID_CARROT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
         registerBlock(ID_POTATO_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
         registerBlock(ID_BEETROOT_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), getFeature(FLAG_VANILLA_BLOCKS));
-
-        ThermalFeatures.setFeature(FLAG_VANILLA_BLOCKS, true);
     }
 
     private static void registerResources() {
@@ -130,8 +127,8 @@ public class TCoreBlocks {
         registerBlock(ID_NICKEL_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_NICKEL));
 
         registerBlock(ID_BRONZE_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_BRONZE));
-        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_SILVER));
-        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_NICKEL));
+        registerBlock(ID_ELECTRUM_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_ELECTRUM));
+        registerBlock(ID_INVAR_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_INVAR));
         registerBlock(ID_CONSTANTAN_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_CONSTANTAN));
 
         registerBlock(ID_SIGNALUM_BLOCK, () -> new MetalStorageBlock(create(Material.IRON, MaterialColor.RED).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).harvestLevel(1).harvestTool(ToolType.PICKAXE).lightValue(7)) {
