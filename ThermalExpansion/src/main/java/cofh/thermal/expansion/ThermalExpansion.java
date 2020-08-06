@@ -50,8 +50,9 @@ public class ThermalExpansion {
 
         setFeature(FLAG_RESOURCE_COPPER, true);
         setFeature(FLAG_RESOURCE_TIN, true);
-        setFeature(FLAG_RESOURCE_LEAD, true);
-        setFeature(FLAG_RESOURCE_SILVER, true);
+        // TODO: Determine if readding makes sense here.
+        //        setFeature(FLAG_RESOURCE_LEAD, true);
+        //        setFeature(FLAG_RESOURCE_SILVER, true);
         setFeature(FLAG_RESOURCE_NICKEL, true);
 
         setFeature(FLAG_BASIC_COMPONENTS, true);

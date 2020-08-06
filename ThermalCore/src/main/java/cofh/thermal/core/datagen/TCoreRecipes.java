@@ -2,6 +2,7 @@ package cofh.thermal.core.datagen;
 
 import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.lib.util.references.CoFHTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -34,6 +35,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        // TODO: Adjust this when regen necessary; conditionals are NOT handled by generators at this time.
         boolean genConditionalBases = false;
 
         if (genConditionalBases) {
@@ -100,6 +102,8 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         // generateAlloyRecipes(consumer);
         generateWrenchRecipes(consumer);
+        generateBasicPartsRecipes(consumer);
+        generateToolPartsRecipes(consumer);
     }
 
     // region HELPERS
@@ -172,6 +176,52 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(reg.get("wrench"))
                 .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
                 .build(consumer, ID_THERMAL + ":split_quartz_block");
+    }
+
+    private void generateBasicPartsRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("redstone_servo"))
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .patternLine(" R ")
+                .patternLine(" I ")
+                .patternLine(" R ")
+                .addCriterion("has_redstone_dust", hasItem(Tags.Items.DUSTS_REDSTONE))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rf_coil"))
+                .key('I', Tags.Items.INGOTS_GOLD)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .patternLine("  R")
+                .patternLine(" I ")
+                .patternLine("R  ")
+                .addCriterion("has_redstone_dust", hasItem(Tags.Items.DUSTS_REDSTONE))
+                .build(consumer);
+    }
+
+    private void generateToolPartsRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("drill_head"))
+                .key('C', CoFHTags.Items.INGOTS_COPPER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .patternLine(" I ")
+                .patternLine("ICI")
+                .patternLine("III")
+                .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("saw_blade"))
+                .key('C', CoFHTags.Items.INGOTS_COPPER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .patternLine("II ")
+                .patternLine("ICI")
+                .patternLine(" II")
+                .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
     }
     // endregion
 }

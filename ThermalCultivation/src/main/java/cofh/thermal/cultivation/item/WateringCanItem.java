@@ -35,7 +35,9 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
@@ -56,6 +58,13 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
 
     protected static boolean allowFakePlayers = false;
     protected static boolean removeSourceBlocks = true;
+
+    protected static final Set<Block> EFFECTIVE_BLOCKS = new HashSet<>();
+
+    static {
+        EFFECTIVE_BLOCKS.add(Blocks.MYCELIUM);
+        EFFECTIVE_BLOCKS.add(Blocks.CHORUS_FLOWER);
+    }
 
     public WateringCanItem(Properties builder, int fluidCapacity) {
 
@@ -167,7 +176,7 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
             if (world.rand.nextFloat() < Math.max(getEffectiveness(stack), 0.05)) {
                 for (BlockPos scan : area) {
                     Block plant = world.getBlockState(scan).getBlock();
-                    if (plant instanceof IGrowable || plant instanceof IPlantable || plant == Blocks.MYCELIUM || plant == Blocks.CHORUS_FLOWER) {
+                    if (plant instanceof IGrowable || plant instanceof IPlantable || EFFECTIVE_BLOCKS.contains(plant)) {
                         world.getPendingBlockTicks().scheduleTick(scan, plant, 0);
                     }
                 }

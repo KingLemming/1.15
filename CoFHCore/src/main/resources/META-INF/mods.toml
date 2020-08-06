@@ -1,31 +1,31 @@
-modLoader="javafml"
-loaderVersion="[28,)"
-issueTrackerURL="https://github.com/cofh/feedback"
+modLoader = "javafml"
+loaderVersion = "[28,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
 
 [[mods]]
-    modId="cofh_core"
-    version="0.4.1b"
-    displayName="CoFH Core"
-    updateJSONURL="https://raw.github.com/cofh/version/master/cofh_core/update.json"
-    displayURL="https://teamcofh.com/"
-    logoFile="logo.png"
-    credits="Team CoFH"
-    authors="King Lemming, Zeldo Kavira, covers1624, skyboy, Cynycal, Drullkus"
-    description='''
+modId = "cofh_core"
+version = "0.4.1b"
+displayName = "CoFH Core"
+updateJSONURL = "https://raw.github.com/cofh/version/master/cofh_core/update.json"
+displayURL = "https://teamcofh.com/"
+logoFile = "logo.png"
+credits = "Team CoFH"
+authors = "King Lemming, Zeldo Kavira, covers1624, skyboy, Cynycal, Drullkus"
+description = '''
 Core Library required for the functionality of all CoFH mods.
 
 Also contains a number of optional gameplay tweaks for convenience.
 '''
 [[dependencies.cofh_core]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.15.2]"
-    ordering="AFTER"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.cofh_core]]
-    modId="forge"
-    mandatory=true
-    versionRange="[31.2.30,)"
-    ordering="AFTER"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "[31.2.30,)"
+ordering = "AFTER"
+side = "BOTH"

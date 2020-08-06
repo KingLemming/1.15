@@ -199,24 +199,25 @@ public class TCoreItems {
                             .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier])
                             .build()).setShowInGroups(getFeature("storage_augments")));
         }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("rf_coil_stor_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .type(TAG_AUGMENT_TYPE_RF)
-                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier + 1])
-                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier - 1])
-                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
-        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("rf_coil_xfer_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .type(TAG_AUGMENT_TYPE_RF)
-                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier - 1])
-                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier + 1])
-                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
-        }
+        // TODO: Consider bringing back after adjusting for balance.
+        //        for (int i = 1; i <= 4; ++i) {
+        //            int tier = i;
+        //            registerItem("rf_coil_stor_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
+        //                    AugmentDataHelper.builder()
+        //                            .type(TAG_AUGMENT_TYPE_RF)
+        //                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier + 1])
+        //                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier - 1])
+        //                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
+        //        }
+        //        for (int i = 1; i <= 4; ++i) {
+        //            int tier = i;
+        //            registerItem("rf_coil_xfer_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
+        //                    AugmentDataHelper.builder()
+        //                            .type(TAG_AUGMENT_TYPE_RF)
+        //                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier - 1])
+        //                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier + 1])
+        //                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
+        //        }
         for (int i = 1; i <= 4; ++i) {
             int tier = i;
             registerItem("fluid_tank_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),

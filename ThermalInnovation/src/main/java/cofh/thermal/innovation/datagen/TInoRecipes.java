@@ -1,7 +1,6 @@
 package cofh.thermal.innovation.datagen;
 
 import cofh.lib.datagen.RecipeProviderCoFH;
-import cofh.thermal.core.datagen.ThermalFeatureRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 
@@ -25,8 +24,6 @@ public class TInoRecipes extends RecipeProviderCoFH {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        ThermalFeatureRecipes.generateBasicPartsRecipes(this, consumer);
-        ThermalFeatureRecipes.generateToolPartsRecipes(this, consumer);
     }
 
 }
