@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.lib.util.references.CoreReferences.CHILLED;
-import static cofh.thermal.core.init.TCoreEntities.BLIZZ_PROJECTILE_ENTITY;
+import static cofh.thermal.core.init.TCoreReferences.BLIZZ_PROJECTILE_ENTITY;
 
 public class BlizzProjectileEntity extends DamagingProjectileEntity {
 

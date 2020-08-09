@@ -85,4 +85,5 @@ public class ThermalFeatures {
         setFeature(FLAG_RESOURCE_INVAR, getFeature(FLAG_RESOURCE_NICKEL));
         setFeature(FLAG_RESOURCE_CONSTANTAN, () -> getFeature(FLAG_RESOURCE_COPPER).getAsBoolean() && getFeature(FLAG_RESOURCE_NICKEL).getAsBoolean());
     }
+
 }

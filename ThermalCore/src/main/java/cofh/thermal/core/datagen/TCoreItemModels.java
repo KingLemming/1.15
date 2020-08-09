@@ -10,7 +10,6 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalReferences.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreItemModels extends ItemModelProviderCoFH {
@@ -54,7 +53,12 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
     private void registerResources(DeferredRegisterCoFH<Item> reg) {
 
-        generated(reg.getSup("wood_dust"), DUSTS);
+        generated(reg.getSup("wood_dust"), RESOURCES);
+        generated(reg.getSup("rosin"), RESOURCES);
+        generated(reg.getSup("rubber"), RESOURCES);
+        generated(reg.getSup("cured_rubber"), RESOURCES);
+        generated(reg.getSup("slag"), RESOURCES);
+        generated(reg.getSup("rich_slag"), RESOURCES);
 
         generated(reg.getSup("apatite"), RESOURCES);
         generated(reg.getSup("cinnabar"), RESOURCES);

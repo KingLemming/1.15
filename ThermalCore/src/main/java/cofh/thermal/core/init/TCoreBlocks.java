@@ -27,8 +27,6 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.common.ThermalFeatures.*;
-import static cofh.thermal.core.common.ThermalReferences.ID_TINKER_BENCH;
-import static cofh.thermal.core.common.ThermalReferences.TINKER_BENCH_BLOCK;
 import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
@@ -170,8 +168,8 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15)), Rarity.UNCOMMON);
-        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3)), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
     }
 
     private static void registerTileBlocks() {

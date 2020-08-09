@@ -23,6 +23,8 @@ public class DynamoScreenBase<T extends ContainerCoFH> extends ThermalScreenBase
 
         super.init();
 
+        addPanel(ThermalGuiHelper.createDefaultEnergyProducerPanel(this, tile));
+
         if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
             addElement(setClearable(createDefaultEnergyStorage(this, 80, 18, tile.getEnergyStorage()), tile, 0));
         }

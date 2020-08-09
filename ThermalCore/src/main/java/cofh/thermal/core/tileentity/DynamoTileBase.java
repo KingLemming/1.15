@@ -148,6 +148,27 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
     // region GUI
     @Override
+    public int getCurSpeed() {
+
+        return isActive ? processTick : 0;
+    }
+
+    @Override
+    public int getMaxSpeed() {
+
+        return baseProcessTick;
+    }
+
+    @Override
+    public double getEfficiency() {
+
+        if (getEnergyMod() <= 0) {
+            return Double.MAX_VALUE;
+        }
+        return 1.0D / getEnergyMod();
+    }
+
+    @Override
     public int getScaledDuration(int scale) {
 
         if (fuelMax <= 0 || fuel <= 0) {
@@ -242,6 +263,8 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         baseProcessTick = Math.round(getBaseProcessTick() * baseMod * processMod);
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
+
+        processTick = baseProcessTick;
     }
 
     @Override
@@ -260,6 +283,11 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     protected float getFluidStorageMod() {
 
         return fluidStorageMod * baseMod;
+    }
+
+    protected final float getEnergyMod() {
+
+        return energyMod;
     }
     // endregion
 }

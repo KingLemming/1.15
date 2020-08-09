@@ -135,7 +135,7 @@ public class CoFHTags {
         public static final Tag<Item> INGOTS_TIN = forgeTag("ingots/tin");
 
         public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
-        public static final Tag<Item> MACHINE_MOLDS = thermalTag("crafting/molds");
+        public static final Tag<Item> MACHINE_CASTS = thermalTag("crafting/casts");
 
         public static final Tag<Item> NUGGETS_BRONZE = forgeTag("nuggets/bronze");
         public static final Tag<Item> NUGGETS_CONSTANTAN = forgeTag("nuggets/constantan");

@@ -47,9 +47,9 @@
 
   "info.cofh.augmentation": "Augmentation",
 
-  "info.cofh.energy_max_prod": "Max Production",
+  "info.cofh.energy_max_prod": "Max Prod.",
   "info.cofh.energy_max_use": "Max Use",
-  "info.cofh.energy_prod": "Energy Production",
+  "info.cofh.energy_prod": "Energy Prod.",
   "info.cofh.energy_stored": "Energy Stored",
   "info.cofh.energy_use": "Energy Use",
 

@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.lib.util.references.CoreReferences.SHOCKED;
-import static cofh.thermal.core.init.TCoreEntities.BLITZ_PROJECTILE_ENTITY;
+import static cofh.thermal.core.init.TCoreReferences.BLITZ_PROJECTILE_ENTITY;
 
 public class BlitzProjectileEntity extends DamagingProjectileEntity {
 

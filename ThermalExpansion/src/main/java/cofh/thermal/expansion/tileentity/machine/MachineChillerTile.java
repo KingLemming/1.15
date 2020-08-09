@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.*;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.lib.util.references.CoFHTags.Items.MACHINE_MOLDS;
+import static cofh.lib.util.references.CoFHTags.Items.MACHINE_CASTS;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_TILE;
 
@@ -66,7 +66,7 @@ public class MachineChillerTile extends MachineTileProcess {
     protected void resolveInputs() {
 
         // Input Items
-        if (!itemInputCounts.isEmpty() && !inputSlot.getItemStack().getItem().isIn(MACHINE_MOLDS)) {
+        if (!itemInputCounts.isEmpty() && !inputSlot.getItemStack().getItem().isIn(MACHINE_CASTS)) {
             inputSlot.modify(-itemInputCounts.get(0));
         }
         // Input Fluids

@@ -29,6 +29,8 @@ public class TExpItemModels extends ItemModelProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        generated(reg.getSup("chiller_ball_cast"), CRAFTING);
+
         generated(reg.getSup("press_coin_die"), CRAFTING);
         generated(reg.getSup("press_gear_die"), CRAFTING);
     }

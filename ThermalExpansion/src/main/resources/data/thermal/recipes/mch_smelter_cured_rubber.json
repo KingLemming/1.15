@@ -1,0 +1,20 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "item": "thermal:rubber",
+      "count": 2
+    },
+    {
+      "item": "thermal:sulfur",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:cured_rubber",
+      "count": 4
+    }
+  ],
+  "energy": 3200
+}

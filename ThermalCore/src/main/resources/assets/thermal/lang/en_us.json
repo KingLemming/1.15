@@ -54,6 +54,12 @@
   "entity.thermal.blitz": "Blitz",
   "entity.thermal.blizz": "Blizz",
 
+  "fluid.thermal.latex": "Latex",
+  "fluid.thermal.resin": "Resin",
+  "fluid.thermal.sap": "Sap",
+  "fluid.thermal.syrup": "Syrup",
+  "fluid.thermal.tree_oil": "Tree Oil",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",
@@ -64,6 +70,12 @@
   "item.thermal.cinnabar": "Cinnabar",
   "item.thermal.niter": "Niter",
   "item.thermal.sulfur": "Sulfur",
+
+  "item.thermal.cured_rubber": "Cured Rubber",
+  "item.thermal.rich_slag": "Rich Slag",
+  "item.thermal.rosin": "Rosin",
+  "item.thermal.rubber": "Rubber",
+  "item.thermal.slag": "Slag",
   "item.thermal.wood_dust": "Sawdust",
 
   "item.thermal.basalz_powder": "Basalz Powder",
@@ -536,6 +548,8 @@
   "info.thermal.machine_sawmill.0": "Cuts logs into planks and reprocesses wooden objects.",
   "info.thermal.machine_sawmill.1": "Very useful for making the most out of a tree.",
   "info.thermal.machine_sawmill.2": "Watch your hands.",
+
+  "item.thermal.chiller_ball_cast": "Ball Cast",
 
   "item.thermal.press_coin_die": "Numismatic Die",
   "item.thermal.press_gear_die": "Gearworking Die",

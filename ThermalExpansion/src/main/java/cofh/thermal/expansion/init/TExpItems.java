@@ -20,7 +20,7 @@ public class TExpItems {
         registerItem("press_coin_die", () -> new ItemCoFH(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("press_gear_die", () -> new ItemCoFH(new Item.Properties().maxStackSize(1).group(group)));
 
-        // TODO: Chiller Molds
+        registerItem("chiller_ball_cast", () -> new ItemCoFH(new Item.Properties().maxStackSize(1).group(group)));
     }
 
 }

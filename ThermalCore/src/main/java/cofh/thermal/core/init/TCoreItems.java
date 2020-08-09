@@ -17,8 +17,7 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
-import static cofh.thermal.core.common.ThermalReferences.*;
-import static cofh.thermal.core.init.TCoreEntities.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
 
 public class TCoreItems {
@@ -65,6 +64,11 @@ public class TCoreItems {
         //        registerItem("sulfur_dust", group);
         //        registerItem("obsidian_dust", group);
         registerItem("wood_dust", group);
+        registerItem("rosin", group);
+        registerItem("rubber", group);
+        registerItem("cured_rubber", group);
+        registerItem("slag", group);
+        registerItem("rich_slag", group);
 
         registerItem("apatite", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_APATITE)));
         registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_CINNABAR)));
@@ -259,15 +263,15 @@ public class TCoreItems {
 
         ItemGroup group = THERMAL_TOOLS;
 
-        ITEMS.register(ID_BEEKEEPER_HELMET, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_HELMET, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
 
-        ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_LEGGINGS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_BOOTS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_LEGGINGS, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_BOOTS, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
     }
 
     private static void registerSpawnEggs() {

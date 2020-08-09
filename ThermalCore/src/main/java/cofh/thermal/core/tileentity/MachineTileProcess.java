@@ -387,7 +387,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         if (!isActive) {
             return 0;
         }
-        return Math.max(1, scale * processTick / baseProcessTick);
+        return MathHelper.clamp(scale * processTick / baseProcessTick, 1, scale);
     }
     // endregion
 
@@ -493,6 +493,15 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
         experienceMod = MathHelper.clamp(experienceMod, scaleMin, scaleMax);
         catalystMod = MathHelper.clamp(catalystMod, scaleMin, scaleMax);
+
+        processTick = baseProcessTick;
+        if (curRecipe != null) {
+            int minTicks = curRecipe.getMinTicks();
+            if (minTicks > 0) {
+                int energy = curRecipe.getEnergy(this);
+                processTick = Math.min(processTick, Math.max(getMinProcessTick(), energy / minTicks));
+            }
+        }
     }
 
     @Override
@@ -535,19 +544,19 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public final float getPrimaryMod() {
 
-        return primaryMod * (0.9F + baseMod / 10);
+        return primaryMod * (0.95F + baseMod / 20);
     }
 
     @Override
     public final float getSecondaryMod() {
 
-        return secondaryMod * (0.8F + baseMod / 5);
+        return secondaryMod * (0.9F + baseMod / 10);
     }
 
     @Override
     public final float getEnergyMod() {
 
-        return energyMod * (1.05F - baseMod / 20);
+        return energyMod;
     }
 
     @Override
@@ -559,7 +568,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public final float getMinOutputChance() {
 
-        return minOutputChance * (0.9F + baseMod / 10);
+        return minOutputChance * (0.95F + baseMod / 20);
     }
 
     @Override
