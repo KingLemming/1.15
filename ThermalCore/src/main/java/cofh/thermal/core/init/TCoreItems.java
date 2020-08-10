@@ -1,13 +1,12 @@
 package cofh.thermal.core.init;
 
-import cofh.core.item.*;
 import cofh.lib.item.AugmentItem;
 import cofh.lib.item.ItemCoFH;
 import cofh.lib.item.SpawnEggItemCoFH;
 import cofh.lib.util.constants.ToolTypes;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
-import cofh.thermal.core.item.RedprintItem;
+import cofh.thermal.core.item.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -64,16 +63,20 @@ public class TCoreItems {
         //        registerItem("sulfur_dust", group);
         //        registerItem("obsidian_dust", group);
         registerItem("wood_dust", group);
-        registerItem("rosin", group);
+        registerItem("rosin",() -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
         registerItem("rubber", group);
         registerItem("cured_rubber", group);
         registerItem("slag", group);
         registerItem("rich_slag", group);
 
+        registerItem("beekeeper_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        registerItem("diving_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        registerItem("hazmat_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+
         registerItem("apatite", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_APATITE)));
         registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_CINNABAR)));
         registerItem("niter", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_NITER)));
-        registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_SULFUR)));
+        registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(1200).setShowInGroups(getFeature(FLAG_RESOURCE_SULFUR)));
 
         registerItem("basalz_rod", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
         registerItem("basalz_powder", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
@@ -111,8 +114,8 @@ public class TCoreItems {
         registerItem("rf_coil", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_BASIC_COMPONENTS)));
 
         registerItem("drill_head", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
-        registerItem("laser_diode", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
         registerItem("saw_blade", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
+        registerItem("laser_diode", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
     }
 
     // region AUGMENTS
@@ -267,6 +270,11 @@ public class TCoreItems {
         ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
         ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
         ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+
+        ITEMS.register(ID_DIVING_HELMET, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_CHESTPLATE, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_LEGGINGS, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_BOOTS, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
 
         ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
         ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));

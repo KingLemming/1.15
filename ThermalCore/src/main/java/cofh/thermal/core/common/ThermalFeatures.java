@@ -39,6 +39,7 @@ public class ThermalFeatures {
     public static String FLAG_TOOL_PHYTOGRO = "tool_phytogro";
 
     public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";
+    public static String FLAG_ARMOR_DIVING = "armor_diving";
     public static String FLAG_ARMOR_HAZMAT = "armor_hazmat";
 
     public static String FLAG_RESOURCE_APATITE = "apatite";

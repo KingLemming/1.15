@@ -20,6 +20,7 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
     protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
 
+    protected int burnTime = -1;
     protected int enchantability;
 
     protected Supplier<ItemGroup> displayGroup;
@@ -32,6 +33,12 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
     public BlockItemCoFH setEnchantability(int enchantability) {
 
         this.enchantability = enchantability;
+        return this;
+    }
+
+    public BlockItemCoFH setBurnTime(int burnTime) {
+
+        this.burnTime = burnTime;
         return this;
     }
 
@@ -73,6 +80,12 @@ public class BlockItemCoFH extends BlockItem implements ICoFHItem {
     public int getItemEnchantability() {
 
         return enchantability;
+    }
+
+    @Override
+    public int getBurnTime(ItemStack itemStack) {
+
+        return burnTime;
     }
 
     @Override

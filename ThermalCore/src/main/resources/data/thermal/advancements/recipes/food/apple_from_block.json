@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:apple_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:apple",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_apple_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:apple_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:apple_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_apple",
+      "has_apple_block",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -10,6 +10,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.ForgeItemTagsProvider;
 
 import java.util.function.Consumer;
 
@@ -76,21 +77,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
             generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
         }
-        //        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
-        //                .addCriterion("has_" + dustName, hasItem(dust))
-        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
-        //
-        //        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
-        //                .addCriterion("has_" + dustName, hasItem(dust))
-        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
-        //
-        //        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
-        //                .addCriterion("has_" + dustName, hasItem(dust))
-        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_smelting");
-        //
-        //        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
-        //                .addCriterion("has_" + dustName, hasItem(dust))
-        //                .build(consumer, this.modid + ":" +ingotName + "_from_dust_blasting");
 
         generateStorageRecipes(reg, consumer, "signalum");
         generateStorageRecipes(reg, consumer, "lumium");
@@ -104,6 +90,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateWrenchRecipes(consumer);
         generateBasicPartsRecipes(consumer);
         generateToolPartsRecipes(consumer);
+        generateVanillaRecipes(consumer);
     }
 
     // region HELPERS
@@ -199,6 +186,33 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("R  ")
                 .addCriterion("has_redstone_dust", hasItem(Tags.Items.DUSTS_REDSTONE))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("beekeeper_fabric"))
+                .key('S', Tags.Items.STRING)
+                .key('H', Items.HONEYCOMB)
+                .patternLine(" S ")
+                .patternLine("SHS")
+                .patternLine(" S ")
+                .addCriterion("has_honeycomb", hasItem(Items.HONEYCOMB))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("diving_fabric"))
+                .key('S', Tags.Items.STRING)
+                .key('H', Tags.Items.GEMS_PRISMARINE)
+                .patternLine(" S ")
+                .patternLine("SHS")
+                .patternLine(" S ")
+                .addCriterion("has_prismarine", hasItem(Tags.Items.GEMS_PRISMARINE))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("hazmat_fabric"))
+                .key('S', Tags.Items.STRING)
+                .key('H', reg.get("cured_rubber"))
+                .patternLine(" S ")
+                .patternLine("SHS")
+                .patternLine(" S ")
+                .addCriterion("has_cured_rubber", hasItem(reg.get("cured_rubber")))
+                .build(consumer);
     }
 
     private void generateToolPartsRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -222,6 +236,59 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine(" II")
                 .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
                 .build(consumer);
+    }
+
+    private void generateVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        Item gear = reg.get("iron_gear");
+        Item ingot = Items.IRON_INGOT;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Tags.Items.NUGGETS_IRON)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
+
+        gear = reg.get("gold_gear");
+        ingot = Items.GOLD_INGOT;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Tags.Items.NUGGETS_IRON)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
+
+        //        gear = reg.get("diamond_gear");
+        //        ingot = Items.DIAMOND;
+        //
+        //        ShapedRecipeBuilder.shapedRecipe(gear)
+        //                .key('#', ingot)
+        //                .key('i', Items.IRON_NUGGET)
+        //                .patternLine(" # ")
+        //                .patternLine("#i#")
+        //                .patternLine(" # ")
+        //                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+        //                .build(consumer);
+        //
+        //        gear = reg.get("emerald_gear");
+        //        ingot = Items.EMERALD;
+        //
+        //        ShapedRecipeBuilder.shapedRecipe(gear)
+        //                .key('#', ingot)
+        //                .key('i', Items.IRON_NUGGET)
+        //                .patternLine(" # ")
+        //                .patternLine("#i#")
+        //                .patternLine(" # ")
+        //                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+        //                .build(consumer);
     }
     // endregion
 }

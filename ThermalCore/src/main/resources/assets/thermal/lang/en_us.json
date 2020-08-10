@@ -78,6 +78,10 @@
   "item.thermal.slag": "Slag",
   "item.thermal.wood_dust": "Sawdust",
 
+  "item.thermal.beekeeper_fabric": "Woven Fabric",
+  "item.thermal.diving_fabric": "Marine Fabric",
+  "item.thermal.hazmat_fabric": "Hazmat Fabric",
+
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
   "item.thermal.basalz_spawn_egg": "Bazalz Spawn Egg",

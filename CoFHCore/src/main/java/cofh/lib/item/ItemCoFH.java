@@ -16,6 +16,7 @@ public class ItemCoFH extends Item implements ICoFHItem {
     protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
 
+    protected int burnTime = -1;
     protected int enchantability;
 
     public ItemCoFH(Properties builder) {
@@ -26,6 +27,12 @@ public class ItemCoFH extends Item implements ICoFHItem {
     public ItemCoFH setEnchantability(int enchantability) {
 
         this.enchantability = enchantability;
+        return this;
+    }
+
+    public ItemCoFH setBurnTime(int burnTime) {
+
+        this.burnTime = burnTime;
         return this;
     }
 
@@ -61,6 +68,12 @@ public class ItemCoFH extends Item implements ICoFHItem {
     public int getItemEnchantability(ItemStack stack) {
 
         return enchantability;
+    }
+
+    @Override
+    public int getBurnTime(ItemStack itemStack) {
+
+        return burnTime;
     }
 
     //    @Override

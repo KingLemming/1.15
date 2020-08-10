@@ -160,13 +160,19 @@ public class TCoreReferences {
     public static final String ID_BEEKEEPER_LEGGINGS = "beekeeper_leggings";
     public static final String ID_BEEKEEPER_BOOTS = "beekeeper_boots";
 
+    public static final String ID_DIVING_HELMET = "diving_helmet";
+    public static final String ID_DIVING_CHESTPLATE = "diving_chestplate";
+    public static final String ID_DIVING_LEGGINGS = "diving_leggings";
+    public static final String ID_DIVING_BOOTS = "diving_boots";
+
     public static final String ID_HAZMAT_HELMET = "hazmat_helmet";
     public static final String ID_HAZMAT_CHESTPLATE = "hazmat_chestplate";
     public static final String ID_HAZMAT_LEGGINGS = "hazmat_leggings";
     public static final String ID_HAZMAT_BOOTS = "hazmat_boots";
 
-    public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 1, 1, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(Items.STRING));
-    public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 2, 3, 1}, 18, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(Items.STRING));
+    public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 1, 1, 1}, 16, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(Items.STRING));
+    public static final ArmorMaterialCoFH DIVING = new ArmorMaterialCoFH("thermal:diving", 12, new int[]{2, 5, 6, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromItems(Items.STRING));
+    public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(Items.STRING));
     // endregion
 
     // region WORKBENCHES
