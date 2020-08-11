@@ -87,6 +87,10 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         storageBlock(reg.getSup(ID_RUBY_BLOCK));
         storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
 
+        storageBlock(reg.getSup(ID_SAWDUST_BLOCK));
+        // TODO: Add a top/bottom method to handle this easily.
+        // storageBlock(reg.getSup(ID_ROSIN_BLOCK));
+
         storageBlock(reg.getSup(ID_RUBBER_BLOCK));
         storageBlock(reg.getSup(ID_CURED_RUBBER_BLOCK));
         storageBlock(reg.getSup(ID_SLAG_BLOCK));

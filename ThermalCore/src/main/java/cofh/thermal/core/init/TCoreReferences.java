@@ -59,6 +59,8 @@ public class TCoreReferences {
     // endregion
 
     // region STORAGE
+    public static final String ID_SAWDUST_BLOCK = "sawdust_block";
+    public static final String ID_ROSIN_BLOCK = "rosin_block";
     public static final String ID_RUBBER_BLOCK = "rubber_block";
     public static final String ID_CURED_RUBBER_BLOCK = "cured_rubber_block";
     public static final String ID_SLAG_BLOCK = "slag_block";

@@ -62,7 +62,7 @@ public class TCoreItems {
         //        registerItem("niter_dust", group);
         //        registerItem("sulfur_dust", group);
         //        registerItem("obsidian_dust", group);
-        registerItem("wood_dust", group);
+        registerItem("sawdust", group);
         registerItem("rosin", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
         registerItem("rubber", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_RUBBER)));
         registerItem("cured_rubber", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_RUBBER)));

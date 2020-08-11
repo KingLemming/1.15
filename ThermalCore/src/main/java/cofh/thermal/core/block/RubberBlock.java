@@ -21,7 +21,7 @@ public class RubberBlock extends Block {
         if (entityIn.isSuppressingBounce()) {
             super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         } else {
-            entityIn.onLivingFall(fallDistance, 0.25F);
+            entityIn.onLivingFall(fallDistance, 0.1F);
         }
     }
 

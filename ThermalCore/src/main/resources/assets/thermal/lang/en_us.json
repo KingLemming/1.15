@@ -46,6 +46,8 @@
 
   "block.thermal.machine_frame": "Machine Frame",
 
+  "block.thermal.sawdust_block": "Block of Sawdust",
+  "block.thermal.rosin_block": "Block of Rosin",
   "block.thermal.rubber_block": "Block of Rubber",
   "block.thermal.cured_rubber_block": "Block of Cured Rubber",
   "block.thermal.slag_block": "Block of Slag",
@@ -81,7 +83,7 @@
   "item.thermal.rosin": "Rosin",
   "item.thermal.rubber": "Rubber",
   "item.thermal.slag": "Slag",
-  "item.thermal.wood_dust": "Sawdust",
+  "item.thermal.sawdust": "Sawdust",
 
   "item.thermal.beekeeper_fabric": "Woven Fabric",
   "item.thermal.diving_fabric": "Marine Fabric",

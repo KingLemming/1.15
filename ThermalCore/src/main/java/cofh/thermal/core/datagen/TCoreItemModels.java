@@ -53,7 +53,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
     private void registerResources(DeferredRegisterCoFH<Item> reg) {
 
-        generated(reg.getSup("wood_dust"), RESOURCES);
+        generated(reg.getSup("sawdust"), RESOURCES);
         generated(reg.getSup("rosin"), RESOURCES);
         generated(reg.getSup("rubber"), RESOURCES);
         generated(reg.getSup("cured_rubber"), RESOURCES);
@@ -217,6 +217,9 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_ENDERIUM_BLOCK));
         blockItem(reg.getSup(ID_LUMIUM_BLOCK));
         blockItem(reg.getSup(ID_SIGNALUM_BLOCK));
+
+        blockItem(reg.getSup(ID_SAWDUST_BLOCK));
+        blockItem(reg.getSup(ID_ROSIN_BLOCK));
 
         blockItem(reg.getSup(ID_RUBBER_BLOCK));
         blockItem(reg.getSup(ID_CURED_RUBBER_BLOCK));

@@ -20,6 +20,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 
@@ -58,6 +60,9 @@ public class TCoreBlocks {
         fire.setFireInfo(BLOCKS.get(ID_GUNPOWDER_BLOCK), 15, 100);
         fire.setFireInfo(BLOCKS.get(ID_SUGAR_CANE_BLOCK), 60, 20);
         fire.setFireInfo(BLOCKS.get(ID_BAMBOO_BLOCK), 60, 20);
+
+        fire.setFireInfo(BLOCKS.get(ID_SAWDUST_BLOCK), 10, 10);
+        fire.setFireInfo(BLOCKS.get(ID_ROSIN_BLOCK), 5, 5);
     }
 
     // region HELPERS
@@ -150,6 +155,22 @@ public class TCoreBlocks {
         registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1), getFeature(FLAG_RESOURCE_RUBY));
         registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1), getFeature(FLAG_RESOURCE_SAPPHIRE));
 
+        registerBlock(ID_SAWDUST_BLOCK, () -> new FallingBlock(create(Material.WOOD).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.SAND)) {
+
+            @OnlyIn(Dist.CLIENT)
+            public int getDustColor(BlockState state) {
+
+                return 11507581;
+            }
+        });
+        registerBlock(ID_ROSIN_BLOCK, () -> new Block(create(Material.CLAY, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 4.0F).speedFactor(0.8F).jumpFactor(0.8F).sound(SoundType.field_226947_m_)) {
+
+            @Override
+            public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+
+                entityIn.onLivingFall(fallDistance, 0.8F);
+            }
+        });
         registerBlock(ID_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
         registerBlock(ID_CURED_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
         registerBlock(ID_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_SLAG));
