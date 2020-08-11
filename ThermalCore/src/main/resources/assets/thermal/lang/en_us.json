@@ -46,6 +46,11 @@
 
   "block.thermal.machine_frame": "Machine Frame",
 
+  "block.thermal.rubber_block": "Block of Rubber",
+  "block.thermal.cured_rubber_block": "Block of Cured Rubber",
+  "block.thermal.slag_block": "Block of Slag",
+  "block.thermal.rich_slag_block": "Block of Rich Slag",
+
   "death.attack.basalz": "%1$s had their world rocked!",
   "death.attack.blitz": "%1$s was tragically enlightened!",
   "death.attack.blizz": "%1$s met a frigid fate!",
@@ -308,6 +313,11 @@
   "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
   "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
   "item.thermal.beekeeper_boots": "Beekeeper's Boots",
+
+  "item.thermal.diving_helmet": "Diving Helmet",
+  "item.thermal.diving_chestplate": "Diving Suit",
+  "item.thermal.diving_leggings": "Diving Leggings",
+  "item.thermal.diving_boots": "Diving Flippers",
 
   "item.thermal.hazmat_helmet": "Hazmat Helmet",
   "item.thermal.hazmat_chestplate": "Hazmat Suit",

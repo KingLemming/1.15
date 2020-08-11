@@ -32,6 +32,7 @@ public class ThermalInnovation {
         setFeature(FLAG_STORAGE_AUGMENTS, true);
         setFeature(FLAG_UPGRADE_AUGMENTS, true);
 
+        setFeature(FLAG_ARMOR_DIVING, true);
         setFeature(FLAG_ARMOR_HAZMAT, true);
     }
 

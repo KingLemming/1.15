@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:redprint"
+      "thermal:enderium_dust_2"
     ]
   },
   "criteria": {
-    "has_redstone": {
+    "has_ender_pearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:redstone"
+            "tag": "forge:ender_pearls"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:redprint"
+        "recipe": "thermal:enderium_dust_2"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_ender_pearl",
       "has_the_recipe"
     ]
   ]

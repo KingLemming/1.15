@@ -63,11 +63,11 @@ public class TCoreItems {
         //        registerItem("sulfur_dust", group);
         //        registerItem("obsidian_dust", group);
         registerItem("wood_dust", group);
-        registerItem("rosin",() -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
-        registerItem("rubber", group);
-        registerItem("cured_rubber", group);
-        registerItem("slag", group);
-        registerItem("rich_slag", group);
+        registerItem("rosin", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
+        registerItem("rubber", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_RUBBER)));
+        registerItem("cured_rubber", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_RUBBER)));
+        registerItem("slag", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_SLAG)));
+        registerItem("rich_slag", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_SLAG)));
 
         registerItem("beekeeper_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
         registerItem("diving_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));

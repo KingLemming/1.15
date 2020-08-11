@@ -46,13 +46,18 @@ public class RegistrationHelper {
 
     public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
-        BLOCKS.register(name, sup);
-        ITEMS.register(name, (Supplier<Item>) () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
+        registerBlockAndItem(name, sup, () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));
     }
 
     public static void registerBlockOnly(String name, Supplier<Block> sup) {
 
         BLOCKS.register(name, sup);
+    }
+
+    public static void registerBlockAndItem(String name, Supplier<Block> blockSup, Supplier<Item> itemSup) {
+
+        BLOCKS.register(name, blockSup);
+        ITEMS.register(name, itemSup);
     }
     // endregion
 

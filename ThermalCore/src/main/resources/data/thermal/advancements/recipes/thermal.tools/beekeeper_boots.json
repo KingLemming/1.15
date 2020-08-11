@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:gunpowder"
+      "thermal:beekeeper_boots"
     ]
   },
   "criteria": {
-    "has_gunpowder": {
+    "has_fabric": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:gunpowder"
+            "item": "thermal:beekeeper_fabric"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:gunpowder"
+        "recipe": "thermal:beekeeper_boots"
       }
     }
   },
   "requirements": [
     [
-      "has_gunpowder",
+      "has_fabric",
       "has_the_recipe"
     ]
   ]

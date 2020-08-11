@@ -206,17 +206,22 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_SILVER_BLOCK));
         blockItem(reg.getSup(ID_TIN_BLOCK));
 
+        blockItem(reg.getSup(ID_RUBY_BLOCK));
+        blockItem(reg.getSup(ID_SAPPHIRE_BLOCK));
+
         blockItem(reg.getSup(ID_BRONZE_BLOCK));
         blockItem(reg.getSup(ID_ELECTRUM_BLOCK));
         blockItem(reg.getSup(ID_INVAR_BLOCK));
         blockItem(reg.getSup(ID_CONSTANTAN_BLOCK));
 
-        blockItem(reg.getSup(ID_RUBY_BLOCK));
-        blockItem(reg.getSup(ID_SAPPHIRE_BLOCK));
-
         blockItem(reg.getSup(ID_ENDERIUM_BLOCK));
         blockItem(reg.getSup(ID_LUMIUM_BLOCK));
         blockItem(reg.getSup(ID_SIGNALUM_BLOCK));
+
+        blockItem(reg.getSup(ID_RUBBER_BLOCK));
+        blockItem(reg.getSup(ID_CURED_RUBBER_BLOCK));
+        blockItem(reg.getSup(ID_SLAG_BLOCK));
+        blockItem(reg.getSup(ID_RICH_SLAG_BLOCK));
     }
 
     private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {

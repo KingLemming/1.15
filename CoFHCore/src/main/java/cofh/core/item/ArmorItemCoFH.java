@@ -42,6 +42,13 @@ public class ArmorItemCoFH extends ArmorItem implements ICoFHItem {
             UUID.fromString("66785022-03BE-4987-BF53-BD392DB96DB0")
     };
 
+    protected static final UUID[] UUID_SWIM_SPEED = new UUID[]{
+            UUID.fromString("367C0155-9577-4914-9E51-6D9A151ED489"),
+            UUID.fromString("5B7192D4-103B-4480-B75E-1EAB8AD104E5"),
+            UUID.fromString("3BA931C6-7F68-41F5-99DA-BC636B5E0C8C"),
+            UUID.fromString("A8BD3E20-FA60-47AF-8A09-B1A57D26F3CC")
+    };
+
     protected BooleanSupplier showInGroups = TRUE;
     protected BooleanSupplier showEnchantEffect = TRUE;
 

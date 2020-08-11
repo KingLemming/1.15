@@ -5,5 +5,11 @@
   },
   "result": "thermal:cured_rubber",
   "experience": 0.2,
-  "cookingtime": 100
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "rubber"
+    }
+  ]
 }

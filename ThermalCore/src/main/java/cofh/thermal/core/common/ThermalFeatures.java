@@ -42,6 +42,9 @@ public class ThermalFeatures {
     public static String FLAG_ARMOR_DIVING = "armor_diving";
     public static String FLAG_ARMOR_HAZMAT = "armor_hazmat";
 
+    public static String FLAG_RESOURCE_RUBBER = "rubber";
+    public static String FLAG_RESOURCE_SLAG = "slag";
+
     public static String FLAG_RESOURCE_APATITE = "apatite";
     public static String FLAG_RESOURCE_CINNABAR = "cinnabar";
     public static String FLAG_RESOURCE_NITER = "niter";

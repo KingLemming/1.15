@@ -48,6 +48,9 @@ public class ThermalExpansion {
         setFeature(FLAG_RESOURCE_NITER, true);
         setFeature(FLAG_RESOURCE_SULFUR, true);
 
+        setFeature(FLAG_RESOURCE_RUBBER, true);
+        setFeature(FLAG_RESOURCE_SLAG, true);
+
         setFeature(FLAG_RESOURCE_COPPER, true);
         setFeature(FLAG_RESOURCE_TIN, true);
         // TODO: Determine if readding makes sense here.

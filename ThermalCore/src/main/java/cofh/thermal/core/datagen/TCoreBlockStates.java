@@ -86,6 +86,11 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         storageBlock(reg.getSup(ID_RUBY_BLOCK));
         storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
+
+        storageBlock(reg.getSup(ID_RUBBER_BLOCK));
+        storageBlock(reg.getSup(ID_CURED_RUBBER_BLOCK));
+        storageBlock(reg.getSup(ID_SLAG_BLOCK));
+        storageBlock(reg.getSup(ID_RICH_SLAG_BLOCK));
     }
 
     private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {

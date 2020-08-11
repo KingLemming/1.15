@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:rubber_block"
+    }
+  ],
+  "result": {
+    "item": "thermal:rubber",
+    "count": 9
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "rubber"
+    }
+  ]
+}

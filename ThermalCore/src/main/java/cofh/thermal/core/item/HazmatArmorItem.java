@@ -18,6 +18,8 @@ import static cofh.core.init.CoreAttributes.HAZARD_RESISTANCE;
 
 public class HazmatArmorItem extends ArmorItemCoFH {
 
+    protected static final int AIR_DURATION = 600;
+
     public HazmatArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
 
         super(materialIn, slot, builder);
@@ -46,7 +48,7 @@ public class HazmatArmorItem extends ArmorItemCoFH {
             //            }
             // Current method
             if (!player.areEyesInFluid(FluidTags.WATER)) {
-                Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, 600, 0, false, false, true));
+                Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, AIR_DURATION, 0, false, false, true));
             }
         }
     }
