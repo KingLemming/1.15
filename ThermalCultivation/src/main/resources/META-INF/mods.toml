@@ -1,42 +1,42 @@
-modLoader="javafml"
-loaderVersion="[28,)"
-issueTrackerURL="https://github.com/cofh/feedback"
+modLoader = "javafml"
+loaderVersion = "[28,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
 
 [[mods]]
-    modId="thermal_cultivation"
-    version="0.1.0a"
-    displayName="Thermal Cultivation"
-    displayURL="https://teamcofh.com/"
-    logoFile="logo.png"
-    credits="Team CoFH"
-    authors="King Lemming"
-    description='''
+modId = "thermal_cultivation"
+version = "0.1.0a"
+displayName = "Thermal Cultivation"
+displayURL = "https://teamcofh.com/"
+logoFile = "logo.png"
+credits = "Team CoFH"
+authors = "King Lemming"
+description = '''
 Thermal Cultivation!
 '''
 [[dependencies.thermal_cultivation]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.15.2]"
-    ordering="AFTER"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.thermal_cultivation]]
-    modId="forge"
-    mandatory=true
-    versionRange="[31.2.30,)"
-    ordering="AFTER"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "[31.2.30,)"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.thermal_cultivation]]
-    modId="cofh_core"
-    mandatory=true
-    versionRange="[0.4,)"
-    ordering="AFTER"
-    side="BOTH"
+modId = "cofh_core"
+mandatory = true
+versionRange = "[0.4,)"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.thermal_cultivation]]
-    modId="thermal"
-    mandatory=true
-    versionRange="[0.1.0a]"
-    ordering="AFTER"
-    side="BOTH"
+modId = "thermal"
+mandatory = true
+versionRange = "[0.1.0a]"
+ordering = "AFTER"
+side = "BOTH"

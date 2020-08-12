@@ -3,12 +3,11 @@ package cofh.thermal.core.tileentity.device;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
-import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
+import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
 
@@ -18,12 +17,12 @@ import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_TREE_EXTRACTOR_TILE;
 
-public class DeviceTreeExtractorTile extends ReconfigurableTile4Way implements ITickableTileEntity {
+public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickableTileEntity {
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH();
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_MEDIUM);
 
-    public DeviceTreeExtractorTile(TileEntityType<?> tileEntityTypeIn) {
+    public DeviceTreeExtractorTile() {
 
         super(DEVICE_TREE_EXTRACTOR_TILE);
 

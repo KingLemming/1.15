@@ -7,10 +7,12 @@ import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
+import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.ProjectBenchContainer;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
+import cofh.thermal.core.tileentity.device.DeviceHiveExtractorTile;
 import cofh.thermal.core.tileentity.device.DeviceTreeExtractorTile;
 import cofh.thermal.core.tileentity.workbench.ChargeBenchTile;
 import cofh.thermal.core.tileentity.workbench.ProjectBenchTile;
@@ -185,7 +187,15 @@ public class TCoreReferences {
     // endregion
 
     // region DEVICES
+    public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
     public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
+
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static final Block DEVICE_HIVE_EXTRACTOR_BLOCK = null;
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static final TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE = null;
+    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
+    public static final ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER = null;
 
     @ObjectHolder(ID_DEVICE_TREE_EXTRACTOR)
     public static final Block DEVICE_TREE_EXTRACTOR_BLOCK = null;

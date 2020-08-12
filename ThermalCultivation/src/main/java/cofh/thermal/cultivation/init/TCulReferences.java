@@ -1,11 +1,7 @@
 package cofh.thermal.cultivation.init;
 
 import cofh.thermal.cultivation.block.SoilBlock;
-import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
-import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -65,14 +61,7 @@ public class TCulReferences {
     // endregion
 
     // region DEVICES
-    public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
 
-    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static final Block DEVICE_HIVE_EXTRACTOR_BLOCK = null;
-    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static final TileEntityType<DeviceHiveExtractorTile> DEVICE_HIVE_EXTRACTOR_TILE = null;
-    @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
-    public static final ContainerType<DeviceHiveExtractorContainer> DEVICE_HIVE_EXTRACTOR_CONTAINER = null;
     // endregion
 
     // region DYNAMOS

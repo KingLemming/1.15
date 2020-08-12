@@ -305,9 +305,18 @@
   "_comment": "These 'live' in Thermal Core but are non-default and registered from multiple possible modules.",
   "_comment": "========================================================================================================",
 
+  "block.thermal.device_hive_extractor": "Hive Hopper",
   "block.thermal.device_tree_extractor": "Arboreal Extractor",
 
   "block.thermal.tinker_bench": "Tinker's Workbench",
+
+  "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
+  "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
+  "info.thermal.device_hive_extractor.2": "Buzz buzz.",
+
+  "info.thermal.device_tree_extractor.0": "Extracts fluids from adjacent trees.",
+  "info.thermal.device_tree_extractor.1": "Use fertilizer to boost production.",
+  "info.thermal.device_tree_extractor.2": "Put down the axe.",
 
   "info.thermal.tinker_bench.0": "Multipurpose table for augmenting, recharging, and refilling.",
   "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
@@ -380,7 +389,6 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
-  "block.thermal.device_hive_extractor": "Hive Hopper",
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
   "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
@@ -404,10 +412,6 @@
   "block.thermal.strawberry_block": "Crate of Strawberries",
   "block.thermal.tea_block": "Sack of Tea",
   "block.thermal.tomato_block": "Crate of Tomatoes",
-
-  "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
-  "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
-  "info.thermal.device_hive_extractor.2": "Buzz buzz.",
 
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",

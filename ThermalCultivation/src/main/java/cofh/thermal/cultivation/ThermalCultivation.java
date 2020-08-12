@@ -1,10 +1,8 @@
 package cofh.thermal.cultivation;
 
-import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.HoeItem;
@@ -113,8 +111,6 @@ public class ThermalCultivation {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
-        ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
 
         RenderType cutout = RenderType.getCutout();
 

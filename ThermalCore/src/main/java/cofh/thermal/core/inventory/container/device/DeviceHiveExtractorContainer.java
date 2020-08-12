@@ -1,4 +1,4 @@
-package cofh.thermal.cultivation.inventory.container;
+package cofh.thermal.core.inventory.container.device;
 
 import cofh.lib.inventory.InvWrapperCoFH;
 import cofh.lib.inventory.container.TileContainer;
@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR_CONTAINER;
+import static cofh.thermal.core.init.TCoreReferences.DEVICE_HIVE_EXTRACTOR_CONTAINER;
 
 public class DeviceHiveExtractorContainer extends TileContainer {
 
@@ -23,6 +23,7 @@ public class DeviceHiveExtractorContainer extends TileContainer {
 
         addSlot(new SlotRemoveOnly(tileInv, 0, 44, 35));
 
+        bindAugmentSlots(tileInv, 1, this.tile.augSize());
         bindPlayerInventory(inventory);
     }
 

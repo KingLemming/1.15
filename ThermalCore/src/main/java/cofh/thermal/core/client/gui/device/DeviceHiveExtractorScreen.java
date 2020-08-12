@@ -1,8 +1,8 @@
-package cofh.thermal.cultivation.client.gui;
+package cofh.thermal.core.client.gui.device;
 
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
-import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
+import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;

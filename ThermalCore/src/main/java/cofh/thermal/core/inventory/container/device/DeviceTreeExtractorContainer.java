@@ -21,7 +21,7 @@ public class DeviceTreeExtractorContainer extends TileContainer {
         this.tile = (ThermalTileBase) world.getTileEntity(pos);
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
-        addSlot(new SlotCoFH(tileInv, 0, 35, 35));
+        addSlot(new SlotCoFH(tileInv, 0, 44, 35));
 
         bindAugmentSlots(tileInv, 1, this.tile.augSize());
         bindPlayerInventory(inventory);

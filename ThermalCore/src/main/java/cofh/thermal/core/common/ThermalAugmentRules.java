@@ -116,8 +116,12 @@ public class ThermalAugmentRules {
     // endregion
 
     // region VALIDATORS
+    public static final Predicate<ItemStack> DEVICE_VALIDATOR = (e) -> true;
+
     public static final Predicate<ItemStack> DYNAMO_VALIDATOR = (e) -> true;
 
     public static final Predicate<ItemStack> MACHINE_VALIDATOR = (e) -> true;
+
+    public static final Predicate<ItemStack> STORAGE_VALIDATOR = (e) -> true;
     // endregion
 }

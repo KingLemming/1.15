@@ -1,10 +1,10 @@
-package cofh.thermal.cultivation.tileentity;
+package cofh.thermal.core.tileentity.device;
 
 import cofh.core.network.packet.client.TileControlPacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.tileentity.ThermalTileBase;
-import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +26,8 @@ import static cofh.lib.util.StorageGroup.OUTPUT;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 import static cofh.lib.util.references.CoreReferences.FLUID_HONEY;
-import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_HIVE_EXTRACTOR_TILE;
+import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
+import static cofh.thermal.core.init.TCoreReferences.DEVICE_HIVE_EXTRACTOR_TILE;
 
 public class DeviceHiveExtractorTile extends ThermalTileBase {
 
@@ -43,6 +44,9 @@ public class DeviceHiveExtractorTile extends ThermalTileBase {
         inventory.addSlot(outputSlot, OUTPUT);
 
         tankInv.addTank(outputTank, OUTPUT);
+
+        addAugmentSlots(deviceAugments);
+        initHandlers();
     }
 
     protected void extractProducts(BlockPos above) {

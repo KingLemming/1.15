@@ -4,6 +4,8 @@ import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.client.gui.device.DeviceHiveExtractorScreen;
+import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.*;
 import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
@@ -118,6 +120,9 @@ public class ThermalCore {
     private void clientSetup(final FMLClientSetupEvent event) {
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
+        ScreenManager.registerFactory(DEVICE_TREE_EXTRACTOR_CONTAINER, DeviceTreeExtractorScreen::new);
 
         ScreenManager.registerFactory(TINKER_BENCH_CONTAINER, TinkerBenchScreen::new);
 
