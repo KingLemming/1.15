@@ -41,6 +41,7 @@ public class DeviceWaterGenTile extends ThermalTileBase {
     public DeviceWaterGenTile() {
 
         super(DEVICE_WATER_GEN_TILE);
+
         tankInv.addTank(tank, OUTPUT);
     }
 
@@ -118,5 +119,4 @@ public class DeviceWaterGenTile extends ThermalTileBase {
         return super.getCapability(cap, side);
     }
     // endregion
-
 }

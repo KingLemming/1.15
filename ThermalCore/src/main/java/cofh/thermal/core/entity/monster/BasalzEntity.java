@@ -234,7 +234,6 @@ public class BasalzEntity extends MonsterEntity {
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.basalz.world.playEvent(null, 1018, new BlockPos(this.basalz), 0);
-
                             BasalzProjectileEntity projectile = new BasalzProjectileEntity(this.basalz, d1 + this.basalz.getRNG().nextGaussian() * (double) f, d2, d3 + this.basalz.getRNG().nextGaussian() * (double) f, this.basalz.world);
                             projectile.setPosition(projectile.getPosX(), this.basalz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
                             this.basalz.world.addEntity(projectile);

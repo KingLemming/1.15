@@ -53,9 +53,8 @@ public class ThermalExpansion {
 
         setFeature(FLAG_RESOURCE_COPPER, true);
         setFeature(FLAG_RESOURCE_TIN, true);
-        // TODO: Determine if readding makes sense here.
-        //        setFeature(FLAG_RESOURCE_LEAD, true);
-        //        setFeature(FLAG_RESOURCE_SILVER, true);
+        setFeature(FLAG_RESOURCE_LEAD, true);
+        setFeature(FLAG_RESOURCE_SILVER, true);
         setFeature(FLAG_RESOURCE_NICKEL, true);
 
         setFeature(FLAG_BASIC_COMPONENTS, true);
@@ -68,6 +67,10 @@ public class ThermalExpansion {
 
         setFeature(FLAG_ARMOR_DIVING, true);
         setFeature(FLAG_ARMOR_HAZMAT, true);
+
+        setFeature(FLAG_MOB_BASALZ, true);
+        setFeature(FLAG_MOB_BLITZ, true);
+        setFeature(FLAG_MOB_BLIZZ, true);
     }
 
     // region INITIALIZATION

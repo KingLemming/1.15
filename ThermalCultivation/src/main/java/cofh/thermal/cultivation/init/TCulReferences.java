@@ -66,7 +66,6 @@ public class TCulReferences {
 
     // region DEVICES
     public static final String ID_DEVICE_HIVE_EXTRACTOR = ID_THERMAL + ":device_hive_extractor";
-    public static final String ID_DEVICE_TREE_EXTRACTOR = ID_THERMAL + ":device_tree_extractor";
 
     @ObjectHolder(ID_DEVICE_HIVE_EXTRACTOR)
     public static final Block DEVICE_HIVE_EXTRACTOR_BLOCK = null;

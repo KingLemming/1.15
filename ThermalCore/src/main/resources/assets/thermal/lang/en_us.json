@@ -91,7 +91,7 @@
 
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
-  "item.thermal.basalz_spawn_egg": "Bazalz Spawn Egg",
+  "item.thermal.basalz_spawn_egg": "Basalz Spawn Egg",
   "item.thermal.blitz_powder": "Blitz Powder",
   "item.thermal.blitz_rod": "Blitz Mote",
   "item.thermal.blitz_spawn_egg": "Blitz Spawn Egg",
@@ -304,6 +304,8 @@
   "_comment": "Thermal Core - External",
   "_comment": "These 'live' in Thermal Core but are non-default and registered from multiple possible modules.",
   "_comment": "========================================================================================================",
+
+  "block.thermal.device_tree_extractor": "Arboreal Extractor",
 
   "block.thermal.tinker_bench": "Tinker's Workbench",
 

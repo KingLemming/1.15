@@ -231,9 +231,7 @@ public class BlizzEntity extends MonsterEntity {
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.blizz.world.playEvent(null, 1018, new BlockPos(this.blizz), 0);
-
                             // this.blizz.world.playSound(blizz.getPosX() + 0.5D, blizz.getPosY() + 0.5D, blizz.getPosZ() + 0.5D, SOUND_BLIZZ_SHOOT, SoundCategory.HOSTILE, 1.0F, (blizz.rand.nextFloat() - blizz.rand.nextFloat()) * 0.2F + 1.0F, false);
-
                             BlizzProjectileEntity projectile = new BlizzProjectileEntity(this.blizz, d1 + this.blizz.getRNG().nextGaussian() * (double) f, d2, d3 + this.blizz.getRNG().nextGaussian() * (double) f, this.blizz.world);
                             projectile.setPosition(projectile.getPosX(), this.blizz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
                             this.blizz.world.addEntity(projectile);
