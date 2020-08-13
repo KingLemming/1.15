@@ -259,7 +259,7 @@ public class TCoreItems {
         registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group).addToolType(ToolTypes.WRENCH, 1)).setShowInGroups(getFeature(FLAG_TOOL_WRENCH)));
         registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)).setShowInGroups(getFeature(FLAG_TOOL_REDPRINT)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_LOCK)));
-        registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2).setShowInGroups(getFeature(FLAG_TOOL_PHYTOGRO)));
+        registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
     }
 
     private static void registerArmor() {

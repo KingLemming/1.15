@@ -36,7 +36,8 @@ public class ThermalFeatures {
     public static String FLAG_TOOL_WRENCH = "tool_wrench";
     public static String FLAG_TOOL_REDPRINT = "tool_redprint";
     public static String FLAG_TOOL_LOCK = "tool_lock";
-    public static String FLAG_TOOL_PHYTOGRO = "tool_phytogro";
+
+    public static String FLAG_PHYTOGRO = "phytogro";
 
     public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";
     public static String FLAG_ARMOR_DIVING = "armor_diving";

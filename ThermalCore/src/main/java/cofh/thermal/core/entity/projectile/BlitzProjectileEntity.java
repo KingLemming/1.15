@@ -45,7 +45,7 @@ public class BlitzProjectileEntity extends DamagingProjectileEntity {
     @Override
     protected IParticleData getParticle() {
 
-        return ParticleTypes.CLOUD;
+        return ParticleTypes.INSTANT_EFFECT;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class ThermalExpansion {
         setFeature(FLAG_TOOL_WRENCH, true);
         setFeature(FLAG_TOOL_REDPRINT, true);
         setFeature(FLAG_TOOL_LOCK, true);
-        setFeature(FLAG_TOOL_PHYTOGRO, true);
+        setFeature(FLAG_PHYTOGRO, true);
 
         setFeature(FLAG_RESOURCE_APATITE, true);
         setFeature(FLAG_RESOURCE_CINNABAR, true);

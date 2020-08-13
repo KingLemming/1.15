@@ -5,16 +5,16 @@ import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class BasalzProjectileModel<T extends Entity> extends SegmentedModel<T> {
+public class ElementalProjectileModel<T extends Entity> extends SegmentedModel<T> {
 
     private final ModelRenderer renderer;
 
-    public BasalzProjectileModel() {
+    public ElementalProjectileModel() {
 
         this.textureWidth = 32;
         this.textureHeight = 16;
         this.renderer = new ModelRenderer(this);
-        this.renderer.setTextureOffset(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F);
+        this.renderer.setTextureOffset(0, 0).addBox(-4.0F, -4.0F, -4.0F, 8.0F, 8.0F, 8.0F);
         this.renderer.setRotationPoint(0.0F, 0.0F, 0.0F);
     }
 
