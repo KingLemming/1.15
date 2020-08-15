@@ -103,8 +103,6 @@
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.lock.desc": "Used to enable security on a block.",
-  "item.thermal.phytogro": "Phyto-Gro",
-  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
   "item.thermal.redprint": "Redprint",
   "item.thermal.redprint.desc": "Copies and transfers settings between blocks.",
   "item.thermal.wrench": "Crescent Hammer",
@@ -343,6 +341,14 @@
 
   "item.thermal.redstone_servo": "Redstone Servo",
   "item.thermal.rf_coil": "Redstone Flux Coil",
+
+  "item.thermal.phytogrenade": "Phyto-Gronade",
+  "item.thermal.phytogrenade.desc": "Throwable Phyto-Gro with more area.",
+  "item.thermal.phytogro": "Phyto-Gro",
+  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
+
+  "block.thermal.pnt": "PNT",
+  "block.thermal.pnt.desc": "Phyto-Nitro-Toluene. Not throwable; large area.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - Vanilla",

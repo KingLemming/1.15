@@ -1,12 +1,14 @@
 package cofh.thermal.core.init;
 
 import cofh.lib.item.ArmorMaterialCoFH;
+import cofh.thermal.core.entity.item.PNTEntity;
 import cofh.thermal.core.entity.monster.BasalzEntity;
 import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
+import cofh.thermal.core.entity.projectile.FertilizerThrownEntity;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
@@ -20,6 +22,7 @@ import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tileentity.TileEntityType;
@@ -127,6 +130,9 @@ public class TCoreReferences {
     public static final String ID_BLITZ_PROJECTILE = ID_THERMAL + ":blitz_projectile";
     public static final String ID_BLIZZ_PROJECTILE = ID_THERMAL + ":blizz_projectile";
 
+    public static final String ID_PHYTOGRENADE = ID_THERMAL + ":phytogrenade";
+    public static final String ID_PNT = ID_THERMAL + ":pnt";
+
     @ObjectHolder(ID_BASALZ)
     public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
     @ObjectHolder(ID_BLITZ)
@@ -140,6 +146,14 @@ public class TCoreReferences {
     public static final EntityType<BlitzProjectileEntity> BLITZ_PROJECTILE_ENTITY = null;
     @ObjectHolder(ID_BLIZZ_PROJECTILE)
     public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
+
+    @ObjectHolder(ID_PHYTOGRENADE)
+    public static final Item PHYTO_GRENADE_ITEM = null;
+    @ObjectHolder(ID_PHYTOGRENADE)
+    public static final EntityType<FertilizerThrownEntity> PHYTO_GRENADE_ENTITY = null;
+
+    @ObjectHolder(ID_PNT)
+    public static final EntityType<PNTEntity> PNT_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS

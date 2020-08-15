@@ -32,6 +32,7 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         registerResources(reg);
         registerStorage(reg);
         registerBuildingBlocks(reg);
+        registerMisc(reg);
     }
 
     // region HELPERS
@@ -104,6 +105,11 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
         glassBlock(reg.getSup(ID_LUMIUM_GLASS));
         glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
+    }
+
+    private void registerMisc(DeferredRegisterCoFH<Block> reg) {
+
+        // miscBlock(reg.getSup(ID_PNT));
     }
     // endregion
 }

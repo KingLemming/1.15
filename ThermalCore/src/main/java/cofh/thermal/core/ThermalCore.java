@@ -1,5 +1,6 @@
 package cofh.thermal.core;
 
+import cofh.core.client.renderer.entity.SpriteRendererCoFH;
 import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
@@ -152,6 +153,9 @@ public class ThermalCore {
         RenderingRegistry.registerEntityRenderingHandler(BASALZ_PROJECTILE_ENTITY, BasalzProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLITZ_PROJECTILE_ENTITY, BlitzProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLIZZ_PROJECTILE_ENTITY, BlizzProjectileRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(PHYTO_GRENADE_ENTITY, SpriteRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(PNT_ENTITY, PNTRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

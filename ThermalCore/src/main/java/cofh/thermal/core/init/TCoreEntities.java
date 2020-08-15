@@ -1,11 +1,13 @@
 package cofh.thermal.core.init;
 
+import cofh.thermal.core.entity.item.PNTEntity;
 import cofh.thermal.core.entity.monster.BasalzEntity;
 import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
+import cofh.thermal.core.entity.projectile.FertilizerThrownEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
@@ -27,6 +29,9 @@ public class TCoreEntities {
         ENTITIES.register(ID_BASALZ_PROJECTILE, () -> EntityType.Builder.<BasalzProjectileEntity>create(BasalzProjectileEntity::new, EntityClassification.MISC).size(0.3125F, 0.3125F).build(ID_BASALZ_PROJECTILE));
         ENTITIES.register(ID_BLITZ_PROJECTILE, () -> EntityType.Builder.<BlitzProjectileEntity>create(BlitzProjectileEntity::new, EntityClassification.MISC).size(0.3125F, 0.3125F).build(ID_BLITZ_PROJECTILE));
         ENTITIES.register(ID_BLIZZ_PROJECTILE, () -> EntityType.Builder.<BlizzProjectileEntity>create(BlizzProjectileEntity::new, EntityClassification.MISC).size(0.3125F, 0.3125F).build(ID_BLIZZ_PROJECTILE));
+
+        ENTITIES.register(ID_PHYTOGRENADE, () -> EntityType.Builder.<FertilizerThrownEntity>create(FertilizerThrownEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ID_PHYTOGRENADE));
+        ENTITIES.register(ID_PNT, () -> EntityType.Builder.<PNTEntity>create(PNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_PNT));
     }
 
 }

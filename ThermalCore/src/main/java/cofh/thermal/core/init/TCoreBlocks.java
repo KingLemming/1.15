@@ -5,6 +5,7 @@ import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
+import cofh.thermal.core.block.PNTBlock;
 import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
@@ -51,6 +52,7 @@ public class TCoreBlocks {
         registerResources();
         registerStorage();
         registerBuildingBlocks();
+        registerMisc();
 
         registerTileBlocks();
         registerTileContainers();
@@ -185,6 +187,7 @@ public class TCoreBlocks {
 
         registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()));
 
+        // registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
         registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
@@ -201,6 +204,11 @@ public class TCoreBlocks {
         }, Rarity.UNCOMMON);
         registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
         registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
+    }
+
+    private static void registerMisc() {
+
+        registerBlock(ID_PNT, () -> new PNTBlock(Block.Properties.create(Material.TNT, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
     }
 
     private static void registerTileBlocks() {

@@ -84,9 +84,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
         }
 
-        generateStorageRecipes(reg, consumer, reg.get(ID_SAWDUST_BLOCK), reg.get("sawdust"));
-        generateStorageRecipes(reg, consumer, reg.get(ID_ROSIN_BLOCK), reg.get("rosin"));
-
         generateStorageRecipes(reg, consumer, "signalum");
         generateStorageRecipes(reg, consumer, "lumium");
         generateStorageRecipes(reg, consumer, "enderium");
@@ -352,12 +349,31 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_apatite", hasItem(reg.get("apatite")))
                 .build(consumer, ID_THERMAL + ":phytogro_4");
 
+        ShapedRecipeBuilder.shapedRecipe(reg.get("phytogrenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', reg.get("phytogro"))
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
+                .build(consumer, ID_THERMAL + ":phytogrenade_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("pnt"))
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('P', reg.get("phytogro"))
+                .patternLine("GPG")
+                .patternLine("PGP")
+                .patternLine("GPG")
+                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
                 .addIngredient(Items.CHARCOAL)
                 .addIngredient(reg.get("niter"))
                 .addIngredient(reg.get("niter"))
                 .addIngredient(reg.get("sulfur"))
-                .addCriterion("has_gunpowder", hasItem(Items.GUNPOWDER))
+                .addCriterion("has_gunpowder", hasItem(Tags.Items.GUNPOWDER))
                 .build(consumer, ID_THERMAL + ":gunpowder_4");
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)

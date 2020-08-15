@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:phytogrenade_4"
+    ]
+  },
+  "criteria": {
+    "has_phytogro": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:phytogro"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:phytogrenade_4"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_phytogro",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -2,7 +2,6 @@ package cofh.thermal.core.item;
 
 import cofh.lib.item.ItemCoFH;
 import net.minecraft.block.*;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -12,20 +11,18 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class FertilizerItem extends ItemCoFH {
+
+    private static final int CLOUD_DURATION = 20;
 
     protected int radius;
 
@@ -38,12 +35,6 @@ public class FertilizerItem extends ItemCoFH {
 
         this.radius = radius;
         return this;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-
     }
 
     @Override
@@ -60,7 +51,7 @@ public class FertilizerItem extends ItemCoFH {
         return ActionResultType.PASS;
     }
 
-    private static boolean growPlants(ItemStack stack, World worldIn, BlockPos pos, ItemUseContext context, int radius) {
+    protected static boolean growPlants(ItemStack stack, World worldIn, BlockPos pos, ItemUseContext context, int radius) {
 
         BlockState state = worldIn.getBlockState(pos);
         PlayerEntity player = context.getPlayer();
@@ -81,7 +72,7 @@ public class FertilizerItem extends ItemCoFH {
         return used;
     }
 
-    private static boolean growPlant(World worldIn, BlockPos pos, BlockState state) {
+    protected static boolean growPlant(World worldIn, BlockPos pos, BlockState state) {
 
         if (state.getBlock() instanceof IGrowable) {
             IGrowable growable = (IGrowable) state.getBlock();
@@ -116,7 +107,7 @@ public class FertilizerItem extends ItemCoFH {
     //        return false;
     //    }
 
-    private static boolean growSeagrass(World worldIn, BlockPos pos, @Nullable Direction side) {
+    public static boolean growSeagrass(World worldIn, BlockPos pos, @Nullable Direction side) {
 
         if (worldIn.getBlockState(pos).getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {
             if (!(worldIn instanceof ServerWorld)) {
@@ -164,13 +155,13 @@ public class FertilizerItem extends ItemCoFH {
         }
     }
 
-    private static void makeAreaOfEffectCloud(World world, BlockPos pos, int radius) {
+    protected static void makeAreaOfEffectCloud(World world, BlockPos pos, int radius) {
 
         boolean isPlant = world.getBlockState(pos).getBlock() instanceof IPlantable;
         AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, pos.getX() + 0.5D, pos.getY() + (isPlant ? 0.0D : 1.0D), pos.getZ() + 0.5D);
         cloud.setRadius(1);
         cloud.setParticleData(ParticleTypes.HAPPY_VILLAGER);
-        cloud.setDuration(20);
+        cloud.setDuration(CLOUD_DURATION);
         cloud.setWaitTime(0);
         cloud.setRadiusPerTick((1 + radius - cloud.getRadius()) / (float) cloud.getDuration());
 

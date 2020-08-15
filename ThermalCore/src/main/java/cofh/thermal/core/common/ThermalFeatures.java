@@ -33,10 +33,6 @@ public class ThermalFeatures {
     }
 
     // region SPECIFIC FEATURES
-    public static String FLAG_TOOL_WRENCH = "tool_wrench";
-    public static String FLAG_TOOL_REDPRINT = "tool_redprint";
-    public static String FLAG_TOOL_LOCK = "tool_lock";
-
     public static String FLAG_PHYTOGRO = "phytogro";
 
     public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";

@@ -111,6 +111,8 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("redprint"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
+
+        generated(reg.getSup("phytogrenade"), TOOLS);
     }
 
     private void registerArmor(DeferredRegisterCoFH<Item> reg) {
@@ -160,6 +162,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         registerResourceBlocks(reg);
         registerStorageBlocks(reg);
         registerBuildingBlocks(reg);
+        registerMiscBlocks(reg);
     }
 
     // region BLOCK HELPERS
@@ -232,6 +235,11 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_ENDERIUM_GLASS));
         blockItem(reg.getSup(ID_LUMIUM_GLASS));
         blockItem(reg.getSup(ID_SIGNALUM_GLASS));
+    }
+
+    private void registerMiscBlocks(DeferredRegisterCoFH<Block> reg) {
+
+        blockItem(reg.getSup(ID_PNT));
     }
     // endregion
 }

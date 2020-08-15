@@ -609,6 +609,41 @@ public class Utils {
         return worldIn.rand.nextDouble() < chance && (block == MYCELIUM || block == PODZOL);
     }
 
+    public static void growPlants(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        BlockState state;
+        for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = iterPos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                state = worldIn.getBlockState(iterPos);
+                if (state.getBlock() instanceof IGrowable) {
+                    IGrowable growable = (IGrowable) state.getBlock();
+                    if (growable.canGrow(worldIn, iterPos, state, worldIn.isRemote)) {
+                        if (!worldIn.isRemote) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state)) {
+                                // TODO: Remove try/catch when Mojang fixes base issue.
+                                try {
+                                    growable.grow((ServerWorld) worldIn, worldIn.rand, iterPos, state);
+                                } catch (Exception e) {
+                                    // Vanilla issue causes bamboo to crash if grown close to world height
+                                    if (!(growable instanceof BambooBlock)) {
+                                        throw e;
+                                    }
+                                }
+                                // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                                // ++grow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void growPlants(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
@@ -649,7 +684,7 @@ public class Utils {
                     IGrowable growable = (IGrowable) state.getBlock();
                     if (growable.canGrow(worldIn, iterPos, state, worldIn.isRemote)) {
                         if (!worldIn.isRemote) {
-                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state)) {
                                 // TODO: Remove try/catch when Mojang fixes base issue.
                                 try {
                                     growable.grow((ServerWorld) worldIn, worldIn.rand, iterPos, state);
@@ -672,6 +707,6 @@ public class Utils {
     // endregion
 
     private static final int HORZ_MAX = 16;
-    private static final int VERT_MAX = 4;
+    private static final int VERT_MAX = 8;
 
 }

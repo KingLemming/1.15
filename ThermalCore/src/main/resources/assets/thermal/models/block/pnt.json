@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "thermal:block/misc/pnt_bottom",
+    "top": "thermal:block/misc/pnt_top",
+    "side": "thermal:block/misc/pnt_side"
+  }
+}

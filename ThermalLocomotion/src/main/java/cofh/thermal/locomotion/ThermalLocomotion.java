@@ -15,8 +15,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.common.ThermalFeatures.FLAG_TOOL_WRENCH;
-import static cofh.thermal.core.common.ThermalFeatures.setFeature;
 import static cofh.thermal.locomotion.init.TLocReferences.*;
 
 @Mod(ID_THERMAL_LOCOMOTION)
@@ -32,8 +30,6 @@ public class ThermalLocomotion {
         TLocBlocks.register();
         TLocEntities.register();
         TLocItems.register();
-
-        setFeature(FLAG_TOOL_WRENCH, true);
     }
 
     // region INITIALIZATION
