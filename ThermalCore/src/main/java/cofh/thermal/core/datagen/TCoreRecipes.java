@@ -127,6 +127,15 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        ShapedRecipeBuilder.shapedRecipe(reg.get("wrench"))
+              .key('I', Tags.Items.INGOTS_IRON)
+              .key('T', CoFHTags.Items.INGOTS_TIN)
+              .patternLine("I I")
+              .patternLine(" T ")
+              .patternLine(" I ")
+              .addCriterion("has_tin", hasItem(CoFHTags.Items.INGOTS_TIN))
+              .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("redprint"))
                 .addIngredient(Items.PAPER)
                 .addIngredient(Items.PAPER)
