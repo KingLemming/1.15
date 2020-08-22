@@ -1,18 +1,15 @@
 package cofh.thermal.cultivation.block;
 
-import net.minecraft.block.*;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.block.AttachedStemBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,39 +17,23 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
+import static cofh.lib.util.constants.Constants.CHARGED;
+
 public class SoilBlock extends Block {
 
-    public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
     protected static final VoxelShape SHAPE_TILLED = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
-
-    protected int boost = 2;
 
     public SoilBlock(Properties properties) {
 
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TILLED, false));
-    }
-
-    public SoilBlock setBoost(int boost) {
-
-        this.boost = boost;
-        return this;
+        this.setDefaultState(this.stateContainer.getBaseState().with(CHARGED, 3));
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 
         super.fillStateContainer(builder);
-        builder.add(TILLED);
-    }
-
-    @Override
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-
-        if (!state.isValidPosition(worldIn, pos)) {
-            worldIn.setBlockState(pos, state.with(TILLED, false), 2);
-        }
-        super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
+        builder.add(CHARGED);
     }
 
     @Override
@@ -62,28 +43,31 @@ public class SoilBlock extends Block {
         BlockState aboveState = worldIn.getBlockState(abovePos);
 
         if (aboveState.getBlock() instanceof IPlantable && aboveState.ticksRandomly()) {
+            int charge = state.get(CHARGED);
+            int boost = 1 + charge;
             for (int i = 0; i < boost; ++i) {
                 aboveState.randomTick(worldIn, abovePos, rand);
+            }
+            if (rand.nextInt(boost) > 0) {
+                worldIn.setBlockState(pos, state.with(CHARGED, charge - 1), 2);
             }
         }
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public int getLightValue(BlockState state) {
 
-        return state.get(TILLED) ? SHAPE_TILLED : VoxelShapes.fullCube();
-    }
-
-    @Override
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-
-        return false;
+        return state.get(CHARGED) > 0 ? super.getLightValue(state) : 0;
     }
 
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
 
-        boolean tilled = state.get(TILLED);
+        return canSustainPlant(world, pos, facing, plantable, false);
+    }
+
+    protected boolean canSustainPlant(IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable, boolean tilled) {
+
         if (plantable.getPlant(world, pos.offset(facing)).getBlock() instanceof AttachedStemBlock) {
             return true;
         }
@@ -113,19 +97,6 @@ public class SoilBlock extends Block {
     public boolean isFertile(BlockState state, IBlockReader world, BlockPos pos) {
 
         return true;
-    }
-
-    @Override
-    public boolean isTransparent(BlockState state) {
-
-        return state.get(TILLED);
-    }
-
-    @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-
-        BlockState blockstate = worldIn.getBlockState(pos.up());
-        return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
     }
 
     @OnlyIn(Dist.CLIENT)

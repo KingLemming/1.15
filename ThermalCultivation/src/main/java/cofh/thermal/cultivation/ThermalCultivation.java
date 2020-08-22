@@ -13,7 +13,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
-import static cofh.lib.util.constants.Constants.TILLED;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
@@ -101,8 +100,7 @@ public class ThermalCultivation {
 
             ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_FROST_MELON)), chance);
         }
-        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL).getDefaultState().with(TILLED, true));
-        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL_CHARGED), BLOCKS.get(ID_PHYTOSOIL_CHARGED).getDefaultState().with(TILLED, true));
+        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL_TILLED).getDefaultState());
 
         TCulBlocks.setup();
     }

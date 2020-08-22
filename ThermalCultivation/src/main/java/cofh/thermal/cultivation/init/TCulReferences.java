@@ -1,6 +1,5 @@
 package cofh.thermal.cultivation.init;
 
-import cofh.thermal.cultivation.block.SoilBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -51,13 +50,13 @@ public class TCulReferences {
 
     // region MISC
     public static final String ID_PHYTOSOIL = ID_THERMAL + ":phytosoil";
-    public static final String ID_PHYTOSOIL_CHARGED = ID_THERMAL + ":phytosoil_charged";
+    public static final String ID_PHYTOSOIL_TILLED = ID_THERMAL + ":phytosoil_tilled";
 
     @ObjectHolder(ID_PHYTOSOIL)
-    public static final SoilBlock PHYTOSOIL_BLOCK = null;
+    public static final Block PHYTOSOIL_BLOCK = null;
 
-    @ObjectHolder(ID_PHYTOSOIL_CHARGED)
-    public static final SoilBlock PHYTOSOIL_CHARGED_BLOCK = null;
+    @ObjectHolder(ID_PHYTOSOIL_TILLED)
+    public static final Block PHYTOSOIL_CHARGED_BLOCK = null;
     // endregion
 
     // region DEVICES

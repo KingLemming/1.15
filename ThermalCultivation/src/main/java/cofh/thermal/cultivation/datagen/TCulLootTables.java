@@ -73,7 +73,7 @@ public class TCulLootTables extends LootTableProviderCoFH {
                         regItems.get(seeds(ID_FROST_MELON))));
 
         lootTables.put(regBlocks.get(ID_PHYTOSOIL), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
-        lootTables.put(regBlocks.get(ID_PHYTOSOIL_CHARGED), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
+        lootTables.put(regBlocks.get(ID_PHYTOSOIL_TILLED), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
 
         lootTables.put(regBlocks.get(block(ID_BARLEY)), createSimpleDropTable(regBlocks.get(block(ID_BARLEY))));
         lootTables.put(regBlocks.get(block(ID_BELL_PEPPER)), createSimpleDropTable(regBlocks.get(block(ID_BELL_PEPPER))));

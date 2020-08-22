@@ -61,12 +61,14 @@ public class Constants {
 
     // region BLOCKSTATE PROPERTIES
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
-    public static final BooleanProperty CHARGED = BooleanProperty.create("charged");
+    public static final IntegerProperty CHARGED = IntegerProperty.create("charged", 0, 4);
     public static final BooleanProperty TILLED = BooleanProperty.create("tilled");
+
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
     public static final IntegerProperty AGE_PERENNIAL = IntegerProperty.create("age", 0, 10);
     public static final IntegerProperty AGE_TALL = IntegerProperty.create("age", 0, 11);
     public static final IntegerProperty AGE_TALL_PERENNIAL = IntegerProperty.create("age", 0, 15);
+
     public static final DirectionProperty FACING_ALL = DirectionProperty.create("facing", Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.UP, Direction.DOWN);
     public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Plane.HORIZONTAL);
 

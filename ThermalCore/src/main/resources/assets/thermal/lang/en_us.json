@@ -348,7 +348,7 @@
   "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
 
   "block.thermal.pnt": "PNT",
-  "block.thermal.pnt.desc": "Phyto-Nitro-Toluene. Not throwable; large area.",
+  "block.thermal.pnt.desc": "Spreads Phyto-Gro in a large area. Not throwable.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - Vanilla",
@@ -395,9 +395,11 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
+  "block.thermal.device_soil_charger": "Phyto-Soil Infuser",
+
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
-  "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
+  "block.thermal.phytosoil_tilled": "Tilled Phyto-Soil",
 
   "block.thermal.chocolate_cake": "Chocolate Cake",
   "block.thermal.spice_cake": "Spice Cake",

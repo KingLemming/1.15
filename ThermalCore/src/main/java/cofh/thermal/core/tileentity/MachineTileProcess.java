@@ -27,10 +27,6 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileProcess extends ReconfigurableTile4Way implements ITickableTileEntity, IMachineInventory {
 
-    protected static final int MIN_PROCESS_TICK = 5;
-    protected static final int BASE_PROCESS_TICK = 20;
-    protected static final int BASE_ENERGY = 20000;
-
     protected IMachineRecipe curRecipe;
     protected IRecipeCatalyst curCatalyst;
     protected List<Integer> itemInputCounts = new ArrayList<>();
@@ -47,28 +43,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         super(tileEntityTypeIn);
         energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
     }
-
-    // region BASE PARAMETERS
-    protected int getBaseEnergyStorage() {
-
-        return BASE_ENERGY;
-    }
-
-    protected int getBaseEnergyXfer() {
-
-        return BASE_PROCESS_TICK * 4;
-    }
-
-    protected int getBaseProcessTick() {
-
-        return BASE_PROCESS_TICK;
-    }
-
-    protected int getMinProcessTick() {
-
-        return MIN_PROCESS_TICK;
-    }
-    // endregion
 
     @Override
     public void tick() {

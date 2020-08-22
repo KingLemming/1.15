@@ -6,6 +6,7 @@ import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;
+import cofh.thermal.cultivation.block.TilledSoilBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -29,14 +30,11 @@ public class TCulBlocks {
         registerFoods();
         registerStorage();
 
-        registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
-        registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+        registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+        registerBlock(ID_PHYTOSOIL_TILLED, () -> new TilledSoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
     }
 
     public static void setup() {
-
-        PHYTOSOIL_BLOCK.setBoost(2);
-        PHYTOSOIL_CHARGED_BLOCK.setBoost(4);
 
         FireBlock fire = (FireBlock) Blocks.FIRE;
 

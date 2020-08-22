@@ -110,9 +110,7 @@ public class FertilizerItem extends ItemCoFH {
     public static boolean growSeagrass(World worldIn, BlockPos pos, @Nullable Direction side) {
 
         if (worldIn.getBlockState(pos).getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {
-            if (!(worldIn instanceof ServerWorld)) {
-                return true;
-            } else {
+            if (worldIn instanceof ServerWorld) {
                 label80:
                 for (int i = 0; i < 128; ++i) {
                     BlockPos blockpos = pos;
@@ -148,11 +146,10 @@ public class FertilizerItem extends ItemCoFH {
                         }
                     }
                 }
-                return true;
             }
-        } else {
-            return false;
+            return true;
         }
+        return false;
     }
 
     protected static void makeAreaOfEffectCloud(World world, BlockPos pos, int radius) {
