@@ -10,6 +10,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,7 +27,7 @@ public class SoilBlock extends Block {
     public SoilBlock(Properties properties) {
 
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(CHARGED, 3));
+        this.setDefaultState(this.stateContainer.getBaseState().with(CHARGED, 0));
     }
 
     @Override
@@ -54,6 +55,14 @@ public class SoilBlock extends Block {
         }
     }
 
+    public static void charge(BlockState state, World worldIn, BlockPos pos) {
+
+        int charge = state.get(CHARGED);
+        if (charge < 4) {
+            worldIn.setBlockState(pos, state.with(CHARGED, charge + 1), 2);
+        }
+    }
+
     @Override
     public int getLightValue(BlockState state) {
 
@@ -61,12 +70,14 @@ public class SoilBlock extends Block {
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable
+            plantable) {
 
         return canSustainPlant(world, pos, facing, plantable, false);
     }
 
-    protected boolean canSustainPlant(IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable, boolean tilled) {
+    protected boolean canSustainPlant(IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable,
+                                      boolean tilled) {
 
         if (plantable.getPlant(world, pos.offset(facing)).getBlock() instanceof AttachedStemBlock) {
             return true;

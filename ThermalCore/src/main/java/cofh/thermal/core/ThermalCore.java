@@ -120,8 +120,6 @@ public class ThermalCore {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
         ScreenManager.registerFactory(DEVICE_TREE_EXTRACTOR_CONTAINER, DeviceTreeExtractorScreen::new);
 

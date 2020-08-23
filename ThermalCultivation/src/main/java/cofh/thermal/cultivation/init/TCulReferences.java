@@ -1,6 +1,10 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.thermal.cultivation.inventory.container.device.DeviceSoilInfuserContainer;
+import cofh.thermal.cultivation.tileentity.DeviceSoilInfuserTile;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -60,7 +64,14 @@ public class TCulReferences {
     // endregion
 
     // region DEVICES
+    public static final String ID_DEVICE_SOIL_INFUSER = ID_THERMAL + ":device_soil_infuser";
 
+    @ObjectHolder(ID_DEVICE_SOIL_INFUSER)
+    public static final Block DEVICE_SOIL_INFUSER_BLOCK = null;
+    @ObjectHolder(ID_DEVICE_SOIL_INFUSER)
+    public static final TileEntityType<DeviceSoilInfuserTile> DEVICE_SOIL_INFUSER_TILE = null;
+    @ObjectHolder(ID_DEVICE_SOIL_INFUSER)
+    public static final ContainerType<DeviceSoilInfuserContainer> DEVICE_SOIL_INFUSER_CONTAINER = null;
     // endregion
 
     // region DYNAMOS

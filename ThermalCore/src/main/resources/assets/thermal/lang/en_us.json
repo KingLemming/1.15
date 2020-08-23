@@ -395,7 +395,7 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
-  "block.thermal.device_soil_charger": "Phyto-Soil Infuser",
+  "block.thermal.device_soil_infuser": "Phyto-Soil Infuser",
 
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
@@ -420,6 +420,10 @@
   "block.thermal.strawberry_block": "Crate of Strawberries",
   "block.thermal.tea_block": "Sack of Tea",
   "block.thermal.tomato_block": "Crate of Tomatoes",
+
+  "info.thermal.device_soil_infuser.0": "Infuses nearby Phyto-Soil with Redstone Flux.",
+  "info.thermal.device_soil_infuser.1": "Affects one layer above and below.",
+  "info.thermal.device_soil_infuser.2": "Safe for crops, really!",
 
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",
@@ -585,7 +589,7 @@
   "item.thermal.press_gear_die": "Gearworking Die",
 
   "_comment": "========================================================================================================",
-  "_comment": "Thermal Foundation",
+  "_comment": "Thermal Horizon",
   "_comment": "========================================================================================================",
 
   "_comment": "========================================================================================================",

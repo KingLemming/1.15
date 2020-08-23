@@ -38,7 +38,7 @@ public class BlitzProjectileRenderer extends EntityRenderer<BlitzProjectileEntit
         matrixStackIn.scale(0.5F, 0.5F, 0.5F);
         this.model.setRotationAngles(entityIn, 0.0F, 0.0F, 0.0F, f, f1);
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RENDER_TYPE);
-        this.model.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 0.5F);
+        this.model.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 0.8F);
         matrixStackIn.pop();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }

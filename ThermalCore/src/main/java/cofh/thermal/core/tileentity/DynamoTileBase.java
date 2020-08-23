@@ -229,7 +229,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     // endregion
 
     // region AUGMENTS
-    protected float baseMod = 1.0F;
     protected float processMod = 1.0F;
     protected float energyMod = 1.0F;
 
@@ -238,7 +237,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.resetAttributes();
 
-        baseMod = 1.0F;
         processMod = 1.0F;
         energyMod = 1.0F;
     }
@@ -248,7 +246,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         super.setAttributesFromAugment(augmentData);
 
-        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_DYNAMO_PRODUCTION);
         energyMod *= getAttributeModWithDefault(augmentData, TAG_AUGMENT_DYNAMO_EFFICIENCY, 1.0F);
     }
@@ -265,24 +262,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
 
         processTick = baseProcessTick;
-    }
-
-    @Override
-    protected float getEnergyStorageMod() {
-
-        return energyStorageMod * baseMod;
-    }
-
-    @Override
-    protected float getEnergyXferMod() {
-
-        return energyXferMod * baseMod;
-    }
-
-    @Override
-    protected float getFluidStorageMod() {
-
-        return fluidStorageMod * baseMod;
     }
 
     protected final float getEnergyMod() {

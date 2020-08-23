@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_bottom_top",
+  "parent": "block/cube",
   "textures": {
     "particle": "thermal:block/devices/device_soil_infuser",
     "down": "thermal:block/devices/device_soil_infuser_bottom",

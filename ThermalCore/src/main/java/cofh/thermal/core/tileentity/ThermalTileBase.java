@@ -509,6 +509,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // endregion
 
     // region AUGMENTS
+    protected float baseMod = 1.0F;
     protected float energyStorageMod = 1.0F;
     protected float energyXferMod = 1.0F;
     protected float fluidStorageMod = 1.0F;
@@ -546,6 +547,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void resetAttributes() {
 
+        baseMod = 1.0F;
         energyStorageMod = 1.0F;
         energyXferMod = 1.0F;
         fluidStorageMod = 1.0F;
@@ -553,6 +555,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
+        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         energyStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE), energyStorageMod);
         energyXferMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER), energyXferMod);
         fluidStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_FLUID_STORAGE), fluidStorageMod);
@@ -573,21 +576,19 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         }
     }
 
-    // Defaults here are balanced for "pure" storage solutions; hence the ^2 factor.
-
     protected float getEnergyStorageMod() {
 
-        return energyStorageMod * energyStorageMod;
+        return energyStorageMod * baseMod;
     }
 
     protected float getEnergyXferMod() {
 
-        return energyXferMod * energyXferMod;
+        return energyXferMod * baseMod;
     }
 
     protected float getFluidStorageMod() {
 
-        return fluidStorageMod * fluidStorageMod;
+        return fluidStorageMod * baseMod;
     }
 
     protected float getAttributeMod(CompoundNBT augmentData, String key) {

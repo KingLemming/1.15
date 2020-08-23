@@ -414,7 +414,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     // endregion
 
     // region AUGMENTS
-    protected float baseMod = 1.0F;
     protected float processMod = 1.0F;
     protected float primaryMod = 1.0F;
     protected float secondaryMod = 1.0F;
@@ -428,7 +427,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
 
         super.resetAttributes();
 
-        baseMod = 1.0F;
         processMod = 1.0F;
         primaryMod = 1.0F;
         secondaryMod = 1.0F;
@@ -443,7 +441,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
 
         super.setAttributesFromAugment(augmentData);
 
-        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_POWER);
         primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_PRIMARY);
         secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_SECONDARY);
@@ -476,24 +473,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
                 processTick = Math.min(processTick, Math.max(getMinProcessTick(), energy / minTicks));
             }
         }
-    }
-
-    @Override
-    protected float getEnergyStorageMod() {
-
-        return energyStorageMod * baseMod;
-    }
-
-    @Override
-    protected float getEnergyXferMod() {
-
-        return energyXferMod * baseMod;
-    }
-
-    @Override
-    protected float getFluidStorageMod() {
-
-        return fluidStorageMod * baseMod;
     }
     // endregion
 
