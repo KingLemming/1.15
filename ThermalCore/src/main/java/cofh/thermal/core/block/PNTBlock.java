@@ -2,8 +2,12 @@ package cofh.thermal.core.block;
 
 import cofh.thermal.core.entity.item.PNTEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.TNTBlock;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -29,4 +33,20 @@ public class PNTBlock extends TNTBlock {
         }
     }
 
+    // region DISPENSER BEHAVIOR
+    public static final DefaultDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
+
+        @Override
+        protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+
+            World world = source.getWorld();
+            BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+            PNTEntity entity = new PNTEntity(world, (double) blockpos.getX() + 0.5D, (double) blockpos.getY(), (double) blockpos.getZ() + 0.5D);
+            world.addEntity(entity);
+            world.playSound(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            stack.shrink(1);
+            return stack;
+        }
+    };
+    // endregion
 }

@@ -49,7 +49,7 @@ public class DeviceSoilInfuserTile extends ThermalTileBase implements ITickableT
     @Override
     public void tick() {
 
-        if (isActive) {
+        if (isActive && energyStorage.getEnergyStored() >= processTick) {
             process += processTick;
             energyStorage.modify(-processTick);
 

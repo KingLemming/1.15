@@ -259,9 +259,9 @@ public class TCoreItems {
         registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group).addToolType(ToolTypes.WRENCH, 1)));
         registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
-        registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setRadius(2).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
+        registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
 
-        registerItem("phytogrenade", () -> new FertilizerThrownItem(new Item.Properties().group(group).maxStackSize(16)).setRadius(4).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
+        registerItem("phytogrenade", () -> new FertilizerThrownItem(new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
     }
 
     private static void registerArmor() {
@@ -287,7 +287,7 @@ public class TCoreItems {
     private static void registerSpawnEggs() {
 
         registerItem("basalz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BASALZ_ENTITY, 0x363840, 0x080407, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
-        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0x77A6BE, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
+        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
         registerItem("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0x7BD4FF, 0x0D6FD9, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
     }
     // endregion

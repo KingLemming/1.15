@@ -69,6 +69,8 @@ public class TCoreBlocks {
 
         fire.setFireInfo(BLOCKS.get(ID_SAWDUST_BLOCK), 10, 10);
         fire.setFireInfo(BLOCKS.get(ID_ROSIN_BLOCK), 5, 5);
+
+        DispenserBlock.registerDispenseBehavior(BLOCKS.get(ID_PNT), PNTBlock.DISPENSER_BEHAVIOR);
     }
 
     // region HELPERS

@@ -22,19 +22,12 @@ import javax.annotation.Nullable;
 
 public class FertilizerItem extends ItemCoFH {
 
-    private static final int CLOUD_DURATION = 20;
-
-    protected int radius;
+    protected static final int CLOUD_DURATION = 20;
+    protected static final int RADIUS = 2;
 
     public FertilizerItem(Properties builder) {
 
         super(builder);
-    }
-
-    public FertilizerItem setRadius(int radius) {
-
-        this.radius = radius;
-        return this;
     }
 
     @Override
@@ -42,9 +35,9 @@ public class FertilizerItem extends ItemCoFH {
 
         World world = context.getWorld();
         BlockPos pos = context.getPos();
-        if (growPlants(context.getItem(), world, pos, context, radius)) {
+        if (growPlants(context.getItem(), world, pos, context, RADIUS)) {
             if (!world.isRemote) {
-                makeAreaOfEffectCloud(world, pos, radius);
+                makeAreaOfEffectCloud(world, pos, RADIUS);
             }
             return ActionResultType.SUCCESS;
         }
