@@ -1,7 +1,7 @@
 package cofh.thermal.core.entity.item;
 
 import cofh.lib.util.Utils;
-import cofh.thermal.core.item.FertilizerItem;
+import cofh.thermal.core.item.PhytoGroItem;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -91,7 +91,7 @@ public class PNTEntity extends Entity {
         if (Utils.isServerWorld(world)) {
             Utils.growPlants(this, world, this.getPosition(), RADIUS);
             for (int i = 0; i < 4; ++i) {
-                FertilizerItem.growSeagrass(world, this.getPosition(), null);
+                PhytoGroItem.growSeagrass(world, this.getPosition(), null);
             }
             makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);

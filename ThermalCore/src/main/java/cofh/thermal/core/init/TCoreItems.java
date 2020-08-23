@@ -1,16 +1,21 @@
 package cofh.thermal.core.init;
 
+import cofh.lib.entity.AbstractGrenadeEntity;
 import cofh.lib.item.AugmentItem;
+import cofh.lib.item.GrenadeItem;
 import cofh.lib.item.ItemCoFH;
 import cofh.lib.item.SpawnEggItemCoFH;
 import cofh.lib.util.constants.ToolTypes;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
+import cofh.thermal.core.entity.projectile.PhytoGrenadeEntity;
 import cofh.thermal.core.item.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.world.World;
 
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
@@ -259,9 +264,23 @@ public class TCoreItems {
         registerItem("wrench", () -> new WrenchItem(new Item.Properties().maxStackSize(1).group(group).addToolType(ToolTypes.WRENCH, 1)));
         registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
-        registerItem("phytogro", () -> new FertilizerItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
+        registerItem("phytogro", () -> new PhytoGroItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
 
-        registerItem("phytogrenade", () -> new FertilizerThrownItem(new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
+        registerItem("phytogrenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new PhytoGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new PhytoGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
     }
 
     private static void registerArmor() {

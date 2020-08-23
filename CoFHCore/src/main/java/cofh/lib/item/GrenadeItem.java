@@ -1,28 +1,29 @@
-package cofh.thermal.core.item;
+package cofh.lib.item;
 
-import cofh.lib.item.ItemCoFH;
-import cofh.thermal.core.entity.projectile.FertilizerThrownEntity;
+import cofh.lib.entity.AbstractGrenadeEntity;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 
-public class FertilizerThrownItem extends ItemCoFH {
+public class GrenadeItem extends ItemCoFH {
 
-    protected static final int RADIUS = 4;
+    protected final IGrenadeFactory<? extends AbstractGrenadeEntity> factory;
 
-    public FertilizerThrownItem(Properties builder) {
+    protected int radius = 4;
+
+    public GrenadeItem(IGrenadeFactory<? extends AbstractGrenadeEntity> factory, Properties builder) {
 
         super(builder);
-
+        this.factory = factory;
         this.addPropertyOverride(new ResourceLocation("thrown"), (stack, world, living) -> (stack.getDamage() > 0 ? 1.0F : 0.0F));
         DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
     }
@@ -33,13 +34,7 @@ public class FertilizerThrownItem extends ItemCoFH {
         ItemStack stack = playerIn.getHeldItem(handIn);
         worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isRemote) {
-            FertilizerThrownEntity grenade = new FertilizerThrownEntity(worldIn, playerIn);
-            ItemStack throwStack = cloneStack(stack, 1);
-            throwStack.setDamage(1);
-            grenade.setItem(throwStack);
-            grenade.setRadius(1 + RADIUS);
-            grenade.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 0.5F);
-            worldIn.addEntity(grenade);
+            createGrenade(stack, worldIn, playerIn);
         }
         playerIn.addStat(Stats.ITEM_USED.get(this));
         if (!playerIn.abilities.isCreativeMode) {
@@ -48,11 +43,26 @@ public class FertilizerThrownItem extends ItemCoFH {
         return ActionResult.resultSuccess(stack);
     }
 
-    @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
+    protected void createGrenade(ItemStack stack, World world, PlayerEntity player) {
 
-        return ActionResultType.PASS;
+        AbstractGrenadeEntity grenade = factory.createGrenade(world, player);
+        ItemStack throwStack = cloneStack(stack, 1);
+        throwStack.setDamage(1);
+        grenade.setItem(throwStack);
+        grenade.setRadius(1 + radius);
+        grenade.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 0.5F);
+        world.addEntity(grenade);
     }
+
+    // region FACTORY
+    public interface IGrenadeFactory<T extends AbstractGrenadeEntity> {
+
+        T createGrenade(World world, LivingEntity living);
+
+        T createGrenade(World world, double posX, double posY, double posZ);
+
+    }
+    // endregion
 
     // region DISPENSER BEHAVIOR
     private static final ProjectileDispenseBehavior DISPENSER_BEHAVIOR = new ProjectileDispenseBehavior() {
@@ -60,11 +70,13 @@ public class FertilizerThrownItem extends ItemCoFH {
         @Override
         protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
 
-            FertilizerThrownEntity grenade = new FertilizerThrownEntity(worldIn, position.getX(), position.getY(), position.getZ());
+            GrenadeItem grenadeItem = ((GrenadeItem) stackIn.getItem());
+
+            AbstractGrenadeEntity grenade = grenadeItem.factory.createGrenade(worldIn, position.getX(), position.getY(), position.getZ());
             ItemStack throwStack = cloneStack(stackIn, 1);
             throwStack.setDamage(1);
             grenade.setItem(throwStack);
-            grenade.setRadius(1 + RADIUS);
+            grenade.setRadius(1 + grenadeItem.radius);
             return grenade;
         }
     };

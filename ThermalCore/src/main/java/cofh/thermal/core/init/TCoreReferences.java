@@ -8,7 +8,7 @@ import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
-import cofh.thermal.core.entity.projectile.FertilizerThrownEntity;
+import cofh.thermal.core.entity.projectile.PhytoGrenadeEntity;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
@@ -130,6 +130,11 @@ public class TCoreReferences {
     public static final String ID_BLITZ_PROJECTILE = ID_THERMAL + ":blitz_projectile";
     public static final String ID_BLIZZ_PROJECTILE = ID_THERMAL + ":blizz_projectile";
 
+    public static final String ID_EARTH_GRENADE = ID_THERMAL + ":earth_grenade";
+    public static final String ID_FIRE_GRENADE = ID_THERMAL + ":fire_grenade";
+    public static final String ID_ICE_GRENADE = ID_THERMAL + ":ice_grenade";
+    public static final String ID_LIGHTNING_GRENADE = ID_THERMAL + ":lightning_grenade";
+
     public static final String ID_PHYTOGRENADE = ID_THERMAL + ":phytogrenade";
     public static final String ID_PNT = ID_THERMAL + ":pnt";
 
@@ -147,10 +152,29 @@ public class TCoreReferences {
     @ObjectHolder(ID_BLIZZ_PROJECTILE)
     public static final EntityType<BlizzProjectileEntity> BLIZZ_PROJECTILE_ENTITY = null;
 
+    @ObjectHolder(ID_EARTH_GRENADE)
+    public static final Item EARTH_GRENADE_ITEM = null;
+    @ObjectHolder(ID_FIRE_GRENADE)
+    public static final Item FIRE_GRENADE_ITEM = null;
+    @ObjectHolder(ID_ICE_GRENADE)
+    public static final Item ICE_GRENADE_ITEM = null;
+    @ObjectHolder(ID_LIGHTNING_GRENADE)
+    public static final Item LIGHTNING_GRENADE_ITEM = null;
+
+    // TODO: Finish
+    //    @ObjectHolder(ID_EARTH_GRENADE)
+    //    public static final EntityType EARTH_GRENADE_ENTITY = null;
+    //    @ObjectHolder(ID_FIRE_GRENADE)
+    //    public static final EntityType FIRE_GRENADE_ENTITY = null;
+    //    @ObjectHolder(ID_ICE_GRENADE)
+    //    public static final EntityType ICE_GRENADE_ENTITY = null;
+    //    @ObjectHolder(ID_LIGHTNING_GRENADE)
+    //    public static final EntityType LIGHTNING_GRENADE_ENTITY = null;
+
     @ObjectHolder(ID_PHYTOGRENADE)
     public static final Item PHYTO_GRENADE_ITEM = null;
     @ObjectHolder(ID_PHYTOGRENADE)
-    public static final EntityType<FertilizerThrownEntity> PHYTO_GRENADE_ENTITY = null;
+    public static final EntityType<PhytoGrenadeEntity> PHYTO_GRENADE_ENTITY = null;
 
     @ObjectHolder(ID_PNT)
     public static final EntityType<PNTEntity> PNT_ENTITY = null;

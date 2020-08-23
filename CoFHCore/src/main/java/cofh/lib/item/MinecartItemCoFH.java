@@ -69,7 +69,7 @@ public class MinecartItemCoFH extends ItemCoFH {
     // endregion
 
     // region DISPENSER BEHAVIOR
-    static final IDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
+    private static final IDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
 
         private final DefaultDispenseItemBehavior behaviourDefaultDispenseItem = new DefaultDispenseItemBehavior();
 

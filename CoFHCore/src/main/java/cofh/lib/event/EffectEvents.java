@@ -82,10 +82,10 @@ public class EffectEvents {
     // region HELPERS
     private static int getXPValue(int baseExp, int amplifier) {
 
-        return baseExp * (100 + clarityMod * (1 + amplifier)) / 100;
+        return baseExp * (100 + CLARITY_MOD * (1 + amplifier)) / 100;
     }
     // endregion
 
-    private static final int clarityMod = 40;
+    private static final int CLARITY_MOD = 40;
 
 }

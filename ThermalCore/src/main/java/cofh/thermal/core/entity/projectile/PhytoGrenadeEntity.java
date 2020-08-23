@@ -1,7 +1,8 @@
 package cofh.thermal.core.entity.projectile;
 
+import cofh.lib.entity.AbstractGrenadeEntity;
 import cofh.lib.util.Utils;
-import cofh.thermal.core.item.FertilizerItem;
+import cofh.thermal.core.item.PhytoGroItem;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -18,31 +19,23 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import static cofh.thermal.core.init.TCoreReferences.PHYTO_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.PHYTO_GRENADE_ITEM;
 
-public class FertilizerThrownEntity extends ProjectileItemEntity {
+public class PhytoGrenadeEntity extends AbstractGrenadeEntity {
 
     private static final int CLOUD_DURATION = 20;
 
-    public int radius = 5;
-
-    public FertilizerThrownEntity(EntityType<? extends ProjectileItemEntity> type, World worldIn) {
+    public PhytoGrenadeEntity(EntityType<? extends ProjectileItemEntity> type, World worldIn) {
 
         super(type, worldIn);
     }
 
-    public FertilizerThrownEntity(World worldIn, LivingEntity livingEntityIn) {
+    public PhytoGrenadeEntity(World worldIn, LivingEntity livingEntityIn) {
 
         super(PHYTO_GRENADE_ENTITY, livingEntityIn, worldIn);
     }
 
-    public FertilizerThrownEntity(World worldIn, double x, double y, double z) {
+    public PhytoGrenadeEntity(World worldIn, double x, double y, double z) {
 
         super(PHYTO_GRENADE_ENTITY, x, y, z, worldIn);
-    }
-
-    public FertilizerThrownEntity setRadius(int radius) {
-
-        this.radius = radius;
-        return this;
     }
 
     @Override
@@ -57,7 +50,7 @@ public class FertilizerThrownEntity extends ProjectileItemEntity {
         if (Utils.isServerWorld(world)) {
             Utils.growPlants(this, world, this.getPosition(), radius);
             for (int i = 0; i < 2; ++i) {
-                FertilizerItem.growSeagrass(world, this.getPosition(), null);
+                PhytoGroItem.growSeagrass(world, this.getPosition(), null);
             }
             makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);

@@ -20,12 +20,13 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 
-public class FertilizerItem extends ItemCoFH {
+public class PhytoGroItem extends ItemCoFH {
 
     protected static final int CLOUD_DURATION = 20;
-    protected static final int RADIUS = 2;
 
-    public FertilizerItem(Properties builder) {
+    protected int radius = 2;
+
+    public PhytoGroItem(Properties builder) {
 
         super(builder);
     }
@@ -35,9 +36,9 @@ public class FertilizerItem extends ItemCoFH {
 
         World world = context.getWorld();
         BlockPos pos = context.getPos();
-        if (growPlants(context.getItem(), world, pos, context, RADIUS)) {
+        if (growPlants(context.getItem(), world, pos, context, radius)) {
             if (!world.isRemote) {
-                makeAreaOfEffectCloud(world, pos, RADIUS);
+                makeAreaOfEffectCloud(world, pos, radius);
             }
             return ActionResultType.SUCCESS;
         }
