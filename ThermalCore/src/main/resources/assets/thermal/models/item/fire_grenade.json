@@ -1,14 +1,14 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "thermal:item/tools/phytogrenade"
+    "layer0": "thermal:item/tools/fire_grenade"
   },
   "overrides": [
     {
       "predicate": {
         "thrown": 1
       },
-      "model": "thermal:item/phytogrenade_thrown"
+      "model": "thermal:item/fire_grenade_thrown"
     }
   ]
 }

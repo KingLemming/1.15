@@ -1,14 +1,11 @@
 package cofh.thermal.core.init;
 
 import cofh.lib.item.ArmorMaterialCoFH;
-import cofh.thermal.core.entity.item.PNTEntity;
+import cofh.thermal.core.entity.item.PhytoTNTEntity;
 import cofh.thermal.core.entity.monster.BasalzEntity;
 import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
-import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
-import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
-import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
-import cofh.thermal.core.entity.projectile.PhytoGrenadeEntity;
+import cofh.thermal.core.entity.projectile.*;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
@@ -135,8 +132,8 @@ public class TCoreReferences {
     public static final String ID_ICE_GRENADE = ID_THERMAL + ":ice_grenade";
     public static final String ID_LIGHTNING_GRENADE = ID_THERMAL + ":lightning_grenade";
 
-    public static final String ID_PHYTOGRENADE = ID_THERMAL + ":phytogrenade";
-    public static final String ID_PNT = ID_THERMAL + ":pnt";
+    public static final String ID_PHYTO_GRENADE = ID_THERMAL + ":phyto_grenade";
+    public static final String ID_PHYTO_TNT = ID_THERMAL + ":phyto_tnt";
 
     @ObjectHolder(ID_BASALZ)
     public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
@@ -161,23 +158,22 @@ public class TCoreReferences {
     @ObjectHolder(ID_LIGHTNING_GRENADE)
     public static final Item LIGHTNING_GRENADE_ITEM = null;
 
-    // TODO: Finish
-    //    @ObjectHolder(ID_EARTH_GRENADE)
-    //    public static final EntityType EARTH_GRENADE_ENTITY = null;
-    //    @ObjectHolder(ID_FIRE_GRENADE)
-    //    public static final EntityType FIRE_GRENADE_ENTITY = null;
-    //    @ObjectHolder(ID_ICE_GRENADE)
-    //    public static final EntityType ICE_GRENADE_ENTITY = null;
-    //    @ObjectHolder(ID_LIGHTNING_GRENADE)
-    //    public static final EntityType LIGHTNING_GRENADE_ENTITY = null;
+    @ObjectHolder(ID_FIRE_GRENADE)
+    public static final EntityType<FireGrenadeEntity> FIRE_GRENADE_ENTITY = null;
+    @ObjectHolder(ID_EARTH_GRENADE)
+    public static final EntityType<EarthGrenadeEntity> EARTH_GRENADE_ENTITY = null;
+    @ObjectHolder(ID_ICE_GRENADE)
+    public static final EntityType<IceGrenadeEntity> ICE_GRENADE_ENTITY = null;
+    @ObjectHolder(ID_LIGHTNING_GRENADE)
+    public static final EntityType<LightningGrenadeEntity> LIGHTNING_GRENADE_ENTITY = null;
 
-    @ObjectHolder(ID_PHYTOGRENADE)
+    @ObjectHolder(ID_PHYTO_GRENADE)
     public static final Item PHYTO_GRENADE_ITEM = null;
-    @ObjectHolder(ID_PHYTOGRENADE)
+    @ObjectHolder(ID_PHYTO_GRENADE)
     public static final EntityType<PhytoGrenadeEntity> PHYTO_GRENADE_ENTITY = null;
 
-    @ObjectHolder(ID_PNT)
-    public static final EntityType<PNTEntity> PNT_ENTITY = null;
+    @ObjectHolder(ID_PHYTO_TNT)
+    public static final EntityType<PhytoTNTEntity> PNT_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS

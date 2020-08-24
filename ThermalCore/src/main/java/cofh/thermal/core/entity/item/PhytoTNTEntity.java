@@ -14,23 +14,25 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import javax.annotation.Nullable;
+
 import static cofh.thermal.core.init.TCoreReferences.PNT_ENTITY;
 
-public class PNTEntity extends Entity {
+public class PhytoTNTEntity extends Entity {
 
-    private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(PNTEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FUSE = EntityDataManager.createKey(PhytoTNTEntity.class, DataSerializers.VARINT);
     private static final int CLOUD_DURATION = 20;
     private static final int RADIUS = 9;
 
     private int fuse = 80;
 
-    public PNTEntity(EntityType<? extends PNTEntity> type, World worldIn) {
+    public PhytoTNTEntity(EntityType<? extends PhytoTNTEntity> type, World worldIn) {
 
         super(type, worldIn);
         this.preventEntitySpawning = true;
     }
 
-    public PNTEntity(World worldIn, double x, double y, double z) {
+    public PhytoTNTEntity(World worldIn, double x, double y, double z, @Nullable LivingEntity igniter) {
 
         this(PNT_ENTITY, worldIn);
         this.setPosition(x, y, z);

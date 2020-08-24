@@ -109,7 +109,7 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
     private void registerMisc(DeferredRegisterCoFH<Block> reg) {
 
-        // miscBlock(reg.getSup(ID_PNT));
+        // miscBlock(reg.getSup(ID_PHYTO_TNT));
     }
     // endregion
 }

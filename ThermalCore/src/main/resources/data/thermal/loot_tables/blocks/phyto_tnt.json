@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "thermal:pnt"
+          "name": "thermal:phyto_tnt"
         }
       ],
       "conditions": [

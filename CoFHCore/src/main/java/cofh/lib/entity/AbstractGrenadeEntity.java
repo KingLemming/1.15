@@ -3,10 +3,13 @@ package cofh.lib.entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
+import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public abstract class AbstractGrenadeEntity extends ProjectileItemEntity {
 
+    protected static final int CLOUD_DURATION = 20;
     public int radius = 5;
 
     public AbstractGrenadeEntity(EntityType<? extends ProjectileItemEntity> type, World worldIn) {
@@ -28,6 +31,12 @@ public abstract class AbstractGrenadeEntity extends ProjectileItemEntity {
 
         this.radius = radius;
         return this;
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
 }

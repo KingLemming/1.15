@@ -13,17 +13,11 @@
       "tag": "forge:ingots/iron"
     },
     "P": {
-      "item": "thermal:phytogro"
+      "item": "minecraft:blaze_powder"
     }
   },
   "result": {
-    "item": "thermal:phytogrenade",
+    "item": "thermal:fire_grenade",
     "count": 4
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "phytogro"
-    }
-  ]
+  }
 }

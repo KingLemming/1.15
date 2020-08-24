@@ -34,6 +34,7 @@ public class ThermalFeatures {
 
     // region SPECIFIC FEATURES
     public static String FLAG_PHYTOGRO = "phytogro";
+    public static String FLAG_ELEMENTAL_EXPLOSIVES = "elemental_explosives";
 
     public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";
     public static String FLAG_ARMOR_DIVING = "armor_diving";

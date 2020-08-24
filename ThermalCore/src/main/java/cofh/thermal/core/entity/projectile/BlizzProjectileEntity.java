@@ -71,8 +71,8 @@ public class BlizzProjectileEntity extends DamagingProjectileEntity {
         if (Utils.isServerWorld(world)) {
             if (effectRadius > 0) {
                 Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                Utils.freezeNearbyWater(this, world, this.getPosition(), effectRadius, permanentWater);
-                Utils.freezeNearbyLava(this, world, this.getPosition(), effectRadius, permanentLava);
+                Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, permanentWater);
+                Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, permanentLava);
                 makeAreaOfEffectCloud();
             }
             this.world.setEntityState(this, (byte) 3);

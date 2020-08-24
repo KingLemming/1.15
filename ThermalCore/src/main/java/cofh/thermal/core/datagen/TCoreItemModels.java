@@ -111,8 +111,6 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("redprint"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
-
-        generated(reg.getSup("phytogrenade"), TOOLS);
     }
 
     private void registerArmor(DeferredRegisterCoFH<Item> reg) {
@@ -239,7 +237,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
     private void registerMiscBlocks(DeferredRegisterCoFH<Block> reg) {
 
-        blockItem(reg.getSup(ID_PNT));
+        blockItem(reg.getSup(ID_PHYTO_TNT));
     }
     // endregion
 }

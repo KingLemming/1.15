@@ -96,6 +96,8 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateArmorRecipes(consumer);
         generateBasicRecipes(consumer);
         generateComponentRecipes(consumer);
+        generateExplosiveRecipes(consumer);
+        generatePhytogroRecipes(consumer);
         generateVanillaRecipes(consumer);
     }
 
@@ -333,49 +335,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_redstone", hasItem(Tags.Items.DUSTS_REDSTONE))
                 .build(consumer);
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 8)
-                .addIngredient(Tags.Items.SAND)
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("niter"))
-                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
-                .build(consumer, ID_THERMAL + ":phytogro_8");
-
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 4)
-                .addIngredient(Tags.Items.SAND)
-                .addIngredient(Items.BONE_MEAL)
-                .addIngredient(reg.get("apatite"))
-                .addIngredient(reg.get("niter"))
-                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
-                .build(consumer, ID_THERMAL + ":phytogro_4");
-
-        ShapedRecipeBuilder.shapedRecipe(reg.get("phytogrenade"), 4)
-                .key('G', Tags.Items.GUNPOWDER)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('P', reg.get("phytogro"))
-                .patternLine("GPG")
-                .patternLine("PIP")
-                .patternLine("GPG")
-                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
-                .build(consumer, ID_THERMAL + ":phytogrenade_4");
-
-        ShapedRecipeBuilder.shapedRecipe(reg.get("pnt"))
-                .key('G', Tags.Items.GUNPOWDER)
-                .key('P', reg.get("phytogro"))
-                .patternLine("GPG")
-                .patternLine("PGP")
-                .patternLine("GPG")
-                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
-                .build(consumer);
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
-                .addIngredient(Items.CHARCOAL)
-                .addIngredient(reg.get("niter"))
-                .addIngredient(reg.get("niter"))
-                .addIngredient(reg.get("sulfur"))
-                .addCriterion("has_gunpowder", hasItem(Tags.Items.GUNPOWDER))
-                .build(consumer, ID_THERMAL + ":gunpowder_4");
-
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)
                 .addIngredient(reg.get("wrench"))
@@ -460,6 +419,99 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("SHS")
                 .patternLine(" S ")
                 .addCriterion("has_cured_rubber", hasItem(reg.get("cured_rubber")))
+                .build(consumer);
+    }
+
+    private void generateExplosiveRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.GUNPOWDER, 4)
+                .addIngredient(Items.CHARCOAL)
+                .addIngredient(reg.get("niter"))
+                .addIngredient(reg.get("niter"))
+                .addIngredient(reg.get("sulfur"))
+                .addCriterion("has_gunpowder", hasItem(Tags.Items.GUNPOWDER))
+                .build(consumer, ID_THERMAL + ":gunpowder_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("fire_grenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', Items.BLAZE_POWDER)
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_blaze_powder", hasItem(Items.BLAZE_POWDER))
+                .build(consumer, ID_THERMAL + ":fire_grenade_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("earth_grenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', reg.get("basalz_powder"))
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_basalz_powder", hasItem(reg.get("basalz_powder")))
+                .build(consumer, ID_THERMAL + ":earth_grenade_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("ice_grenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', reg.get("blizz_powder"))
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_basalz_powder", hasItem(reg.get("basalz_powder")))
+                .build(consumer, ID_THERMAL + ":ice_grenade_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("lightning_grenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', reg.get("blitz_powder"))
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_basalz_powder", hasItem(reg.get("basalz_powder")))
+                .build(consumer, ID_THERMAL + ":lightning_grenade_4");
+    }
+
+    private void generatePhytogroRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 8)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("niter"))
+                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_8");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 4)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(Items.BONE_MEAL)
+                .addIngredient(reg.get("apatite"))
+                .addIngredient(reg.get("niter"))
+                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
+                .build(consumer, ID_THERMAL + ":phytogro_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("phyto_grenade"), 4)
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', reg.get("phytogro"))
+                .patternLine("GPG")
+                .patternLine("PIP")
+                .patternLine("GPG")
+                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
+                .build(consumer, ID_THERMAL + ":phyto_grenade_4");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("phyto_tnt"))
+                .key('G', Tags.Items.GUNPOWDER)
+                .key('P', reg.get("phytogro"))
+                .patternLine("GPG")
+                .patternLine("PGP")
+                .patternLine("GPG")
+                .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
                 .build(consumer);
     }
 

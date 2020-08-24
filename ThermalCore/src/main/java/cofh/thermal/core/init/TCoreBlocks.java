@@ -1,13 +1,14 @@
 package cofh.thermal.core.init;
 
 import cofh.core.block.GunpowderBlock;
+import cofh.core.block.TNTBlockCoFH;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
-import cofh.thermal.core.block.PNTBlock;
 import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
+import cofh.thermal.core.entity.item.PhytoTNTEntity;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
@@ -70,7 +71,7 @@ public class TCoreBlocks {
         fire.setFireInfo(BLOCKS.get(ID_SAWDUST_BLOCK), 10, 10);
         fire.setFireInfo(BLOCKS.get(ID_ROSIN_BLOCK), 5, 5);
 
-        DispenserBlock.registerDispenseBehavior(BLOCKS.get(ID_PNT), PNTBlock.DISPENSER_BEHAVIOR);
+        DispenserBlock.registerDispenseBehavior(BLOCKS.get(ID_PHYTO_TNT), TNTBlockCoFH.DISPENSER_BEHAVIOR);
     }
 
     // region HELPERS
@@ -210,7 +211,7 @@ public class TCoreBlocks {
 
     private static void registerMisc() {
 
-        registerBlock(ID_PNT, () -> new PNTBlock(Block.Properties.create(Material.TNT, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
+        registerBlock(ID_PHYTO_TNT, () -> new TNTBlockCoFH(PhytoTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)));
     }
 
     private static void registerTileBlocks() {

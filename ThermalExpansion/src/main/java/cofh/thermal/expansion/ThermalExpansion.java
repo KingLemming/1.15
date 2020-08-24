@@ -38,9 +38,8 @@ public class ThermalExpansion {
         TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
 
-        setFeature(FLAG_PHYTOGRO, true);
+        setFeature(FLAG_ELEMENTAL_EXPLOSIVES, true);
 
-        setFeature(FLAG_RESOURCE_APATITE, true);
         setFeature(FLAG_RESOURCE_CINNABAR, true);
         setFeature(FLAG_RESOURCE_NITER, true);
         setFeature(FLAG_RESOURCE_SULFUR, true);

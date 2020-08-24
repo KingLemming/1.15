@@ -8,7 +8,7 @@ import cofh.lib.item.SpawnEggItemCoFH;
 import cofh.lib.util.constants.ToolTypes;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
-import cofh.thermal.core.entity.projectile.PhytoGrenadeEntity;
+import cofh.thermal.core.entity.projectile.*;
 import cofh.thermal.core.item.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -266,7 +266,7 @@ public class TCoreItems {
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new PhytoGroItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
 
-        registerItem("phytogrenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+        registerItem("phyto_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
 
             @Override
             public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
@@ -281,6 +281,67 @@ public class TCoreItems {
             }
 
         }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
+
+        registerItem("fire_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new FireGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new FireGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_ELEMENTAL_EXPLOSIVES)));
+        registerItem("earth_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new EarthGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new EarthGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_ELEMENTAL_EXPLOSIVES)));
+        registerItem("ice_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new IceGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new IceGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_ELEMENTAL_EXPLOSIVES)));
+        registerItem("lightning_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new LightningGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new LightningGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_ELEMENTAL_EXPLOSIVES)));
     }
 
     private static void registerArmor() {
@@ -306,8 +367,8 @@ public class TCoreItems {
     private static void registerSpawnEggs() {
 
         registerItem("basalz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BASALZ_ENTITY, 0x363840, 0x080407, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
-        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
         registerItem("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0x7BD4FF, 0x0D6FD9, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
+        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
     }
     // endregion
 }

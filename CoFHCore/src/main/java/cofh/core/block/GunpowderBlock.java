@@ -96,11 +96,6 @@ public class GunpowderBlock extends FallingBlock {
     }
 
     // region HELPERS
-    public static void explode(World world, BlockPos pos) {
-
-        explode(world, pos, null);
-    }
-
     private static void explode(World world, BlockPos pos, @Nullable LivingEntity igniter) {
 
         if (!world.isRemote) {

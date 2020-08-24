@@ -2,24 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "GPG",
-    "PGP",
+    "PIP",
     "GPG"
   ],
   "key": {
     "G": {
       "tag": "forge:gunpowder"
     },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
     "P": {
-      "item": "thermal:phytogro"
+      "item": "thermal:blitz_powder"
     }
   },
   "result": {
-    "item": "thermal:pnt"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "phytogro"
-    }
-  ]
+    "item": "thermal:lightning_grenade",
+    "count": 4
+  }
 }
