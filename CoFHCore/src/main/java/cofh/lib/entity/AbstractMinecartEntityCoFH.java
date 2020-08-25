@@ -35,19 +35,19 @@ public abstract class AbstractMinecartEntityCoFH extends AbstractMinecartEntity 
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-
-        super.writeAdditional(compound);
-
-        compound.put(TAG_ENCHANTMENTS, enchantments);
-    }
-
-    @Override
     public void readAdditional(CompoundNBT compound) {
 
         super.readAdditional(compound);
 
         enchantments = compound.getList(TAG_ENCHANTMENTS, TAG_COMPOUND);
+    }
+
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
+
+        super.writeAdditional(compound);
+
+        compound.put(TAG_ENCHANTMENTS, enchantments);
     }
 
     @Override

@@ -30,6 +30,7 @@ public class NBTTags {
     public static final String TAG_FACING = "Facing";
     public static final String TAG_FUEL = "Fuel";
     public static final String TAG_FUEL_MAX = "FuelMax";
+    public static final String TAG_FUSE = "Fuse";
     public static final String TAG_FILTER = "Filter";
     public static final String TAG_FLUID = "Fluid";
     public static final String TAG_INDEX = "Index";

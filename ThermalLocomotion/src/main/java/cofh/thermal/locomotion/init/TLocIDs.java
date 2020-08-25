@@ -8,6 +8,15 @@ public class TLocIDs {
 
     // region CARTS
     public static final String ID_UNDERWATER_CART = "underwater_minecart";
+
+    public static final String ID_PHYTO_TNT_CART = "phyto_tnt_minecart";
+
+    public static final String ID_FIRE_TNT_CART = "fire_tnt_minecart";
+    public static final String ID_EARTH_TNT_CART = "earth_tnt_minecart";
+    public static final String ID_ICE_TNT_CART = "ice_tnt_minecart";
+    public static final String ID_LIGHTNING_TNT_CART = "lightning_tnt_minecart";
+
+    public static final String ID_NUKE_TNT_CART = "nuke_tnt_minecart";
     // endregion
 
     // region RAILS

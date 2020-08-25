@@ -63,7 +63,6 @@ public class LightningGrenadeEntity extends AbstractGrenadeEntity {
             }
             shockNearbyEntities(this, world, this.getPosition(), radius);
             Utils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 3);
-            // makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }
@@ -79,18 +78,6 @@ public class LightningGrenadeEntity extends AbstractGrenadeEntity {
         AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
         worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)
                 .forEach(livingEntity -> livingEntity.addPotionEffect(new EffectInstance(SHOCKED, effectDuration, effectAmplifier, false, false)));
-    }
-
-    private void makeAreaOfEffectCloud() {
-
-        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY() + 0.5D, getPosZ());
-        cloud.setRadius(1);
-        cloud.setParticleData(ParticleTypes.CRIT);
-        cloud.setDuration(CLOUD_DURATION);
-        cloud.setWaitTime(0);
-        cloud.setRadiusPerTick((radius - cloud.getRadius()) / (float) cloud.getDuration());
-
-        world.addEntity(cloud);
     }
 
 }

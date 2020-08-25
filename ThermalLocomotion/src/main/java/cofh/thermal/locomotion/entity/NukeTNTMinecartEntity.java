@@ -1,43 +1,47 @@
-package cofh.thermal.core.entity.item;
+package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractTNTEntity;
+import cofh.lib.entity.AbstractTNTMinecartEntity;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.entity.item.NukeTNTEntity;
 import cofh.thermal.core.entity.projectile.NukeGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.init.TCoreIDs.ID_NUKE_TNT;
-import static cofh.thermal.core.init.TCoreReferences.NUKE_TNT_ENTITY;
+import static cofh.thermal.locomotion.init.TLocReferences.NUKE_TNT_CART_ENTITY;
+import static cofh.thermal.locomotion.init.TLocReferences.NUKE_TNT_CART_ITEM;
 
-public class NukeTNTEntity extends AbstractTNTEntity {
+public class NukeTNTMinecartEntity extends AbstractTNTMinecartEntity {
 
-    public static double explosionStrength = 16.0;
-    public static boolean explosionsBreakBlocks = true;
-
-    public NukeTNTEntity(EntityType<? extends NukeTNTEntity> type, World worldIn) {
+    public NukeTNTMinecartEntity(EntityType<?> type, World worldIn) {
 
         super(type, worldIn);
     }
 
-    public NukeTNTEntity(World worldIn, double x, double y, double z, @Nullable LivingEntity igniter) {
+    public NukeTNTMinecartEntity(World worldIn, double posX, double posY, double posZ) {
 
-        super(NUKE_TNT_ENTITY, worldIn, x, y, z, igniter);
+        super(NUKE_TNT_CART_ENTITY, worldIn, posX, posY, posZ);
     }
 
     @Override
     public Block getBlock() {
 
-        return BLOCKS.get(ID_NUKE_TNT);
+        return detonated ? Blocks.AIR : BLOCKS.get(ID_NUKE_TNT);
+    }
+
+    @Override
+    public ItemStack getCartItem() {
+
+        return detonated ? new ItemStack(Items.AIR) : new ItemStack(NUKE_TNT_CART_ITEM);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class NukeTNTEntity extends AbstractTNTEntity {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
             NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius + radius / 2);
             NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius);
-            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) explosionStrength, !this.isInWater(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeTNTEntity.explosionStrength, !this.isInWater(), NukeTNTEntity.explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.remove();
         }
         this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);

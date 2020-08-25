@@ -61,7 +61,7 @@ public class NukeGrenadeEntity extends AbstractGrenadeEntity {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
             destroyBlocks(this, world, this.getPosition(), radius);
             damageNearbyEntities(this, world, this.getPosition(), radius);
-            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) explosionStrength, true, explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) explosionStrength, !this.isInWater(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }

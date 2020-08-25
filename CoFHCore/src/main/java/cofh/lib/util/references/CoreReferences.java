@@ -1,5 +1,9 @@
 package cofh.lib.util.references;
 
+import cofh.core.tileentity.EnderAirTile;
+import cofh.core.tileentity.GlowAirTile;
+import cofh.core.tileentity.LightningAirTile;
+import cofh.core.tileentity.SignalAirTile;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.fluid.FlowingFluid;
@@ -54,16 +58,16 @@ public class CoreReferences {
 
     // region TILES
     @ObjectHolder(ID_SIGNAL_AIR)
-    public static final TileEntityType<?> SIGNAL_AIR_TILE = null;
+    public static final TileEntityType<SignalAirTile> SIGNAL_AIR_TILE = null;
 
     @ObjectHolder(ID_GLOW_AIR)
-    public static final TileEntityType<?> GLOW_AIR_TILE = null;
+    public static final TileEntityType<GlowAirTile> GLOW_AIR_TILE = null;
 
     @ObjectHolder(ID_ENDER_AIR)
-    public static final TileEntityType<?> ENDER_AIR_TILE = null;
+    public static final TileEntityType<EnderAirTile> ENDER_AIR_TILE = null;
 
     @ObjectHolder(ID_LIGHTNING_AIR)
-    public static final TileEntityType<?> LIGHTNING_AIR_TILE = null;
+    public static final TileEntityType<LightningAirTile> LIGHTNING_AIR_TILE = null;
     // endregion
 
     // region EFFECTS

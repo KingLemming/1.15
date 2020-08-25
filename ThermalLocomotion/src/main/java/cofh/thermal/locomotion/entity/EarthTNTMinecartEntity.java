@@ -1,39 +1,45 @@
-package cofh.thermal.core.entity.item;
+package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractTNTEntity;
+import cofh.lib.entity.AbstractTNTMinecartEntity;
 import cofh.lib.util.Utils;
 import cofh.thermal.core.entity.projectile.EarthGrenadeEntity;
 import net.minecraft.block.Block;
-import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.init.TCoreIDs.ID_EARTH_TNT;
-import static cofh.thermal.core.init.TCoreReferences.EARTH_TNT_ENTITY;
+import static cofh.thermal.locomotion.init.TLocReferences.EARTH_TNT_CART_ENTITY;
+import static cofh.thermal.locomotion.init.TLocReferences.EARTH_TNT_CART_ITEM;
 
-public class EarthTNTEntity extends AbstractTNTEntity {
+public class EarthTNTMinecartEntity extends AbstractTNTMinecartEntity {
 
-    public EarthTNTEntity(EntityType<? extends EarthTNTEntity> type, World worldIn) {
+    public EarthTNTMinecartEntity(EntityType<?> type, World worldIn) {
 
         super(type, worldIn);
     }
 
-    public EarthTNTEntity(World worldIn, double x, double y, double z, @Nullable LivingEntity igniter) {
+    public EarthTNTMinecartEntity(World worldIn, double posX, double posY, double posZ) {
 
-        super(EARTH_TNT_ENTITY, worldIn, x, y, z, igniter);
+        super(EARTH_TNT_CART_ENTITY, worldIn, posX, posY, posZ);
     }
 
     @Override
     public Block getBlock() {
 
-        return BLOCKS.get(ID_EARTH_TNT);
+        return detonated ? Blocks.AIR : BLOCKS.get(ID_EARTH_TNT);
+    }
+
+    @Override
+    public ItemStack getCartItem() {
+
+        return detonated ? new ItemStack(Items.MINECART) : new ItemStack(EARTH_TNT_CART_ITEM);
     }
 
     @Override
@@ -41,8 +47,9 @@ public class EarthTNTEntity extends AbstractTNTEntity {
 
         if (Utils.isServerWorld(world)) {
             EarthGrenadeEntity.sunderNearbyEntities(this, world, this.getPosition(), radius);
-            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 2, igniter);
+            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 2, null);
             this.remove();
+            this.entityDropItem(getCartItem());
         }
         this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);

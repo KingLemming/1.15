@@ -80,19 +80,19 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-
-        super.writeAdditional(compound);
-
-        compound.putInt(TAG_CART_DATA, respirationFactor);
-    }
-
-    @Override
     public void readAdditional(CompoundNBT compound) {
 
         super.readAdditional(compound);
 
         respirationFactor = compound.getInt(TAG_CART_DATA);
+    }
+
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
+
+        super.writeAdditional(compound);
+
+        compound.putInt(TAG_CART_DATA, respirationFactor);
     }
 
     @Override

@@ -13,6 +13,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
+import static cofh.lib.util.constants.NBTTags.TAG_FUSE;
+
 public abstract class AbstractTNTEntity extends Entity {
 
     protected static final DataParameter<Integer> FUSE = EntityDataManager.createKey(AbstractTNTEntity.class, DataSerializers.VARINT);
@@ -21,7 +23,7 @@ public abstract class AbstractTNTEntity extends Entity {
     @Nullable
     protected LivingEntity igniter;
     protected int fuse = 80;
-    protected int radius = 8;
+    protected int radius = 9;
 
     public AbstractTNTEntity(EntityType<? extends AbstractTNTEntity> type, World worldIn) {
 
@@ -86,13 +88,13 @@ public abstract class AbstractTNTEntity extends Entity {
     @Override
     protected void writeAdditional(CompoundNBT compound) {
 
-        compound.putShort("Fuse", (short) this.getFuse());
+        compound.putShort(TAG_FUSE, (short) this.getFuse());
     }
 
     @Override
     protected void readAdditional(CompoundNBT compound) {
 
-        this.setFuse(compound.getShort("Fuse"));
+        this.setFuse(compound.getShort(TAG_FUSE));
     }
 
     @Override
