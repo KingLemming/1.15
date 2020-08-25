@@ -2,6 +2,7 @@ package cofh.thermal.core.entity.item;
 
 import cofh.lib.entity.AbstractTNTEntity;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.entity.projectile.IceGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
@@ -16,7 +17,6 @@ import javax.annotation.Nullable;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.common.ThermalConfig.permanentLava;
 import static cofh.thermal.core.common.ThermalConfig.permanentWater;
-import static cofh.thermal.core.entity.projectile.IceGrenadeEntity.chillNearbyEntities;
 import static cofh.thermal.core.init.TCoreReferences.ICE_TNT_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.ID_ICE_TNT;
 
@@ -42,7 +42,7 @@ public class IceTNTEntity extends AbstractTNTEntity {
     protected void explode() {
 
         if (Utils.isServerWorld(world)) {
-            chillNearbyEntities(this, world, this.getPosition(), radius);
+            IceGrenadeEntity.chillNearbyEntities(this, world, this.getPosition(), radius);
             Utils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
             Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
             Utils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);

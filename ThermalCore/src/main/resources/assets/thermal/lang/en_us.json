@@ -358,6 +358,9 @@
   "item.thermal.lightning_grenade": "Fulminating Grenade",
   "item.thermal.lightning_grenade.desc": "Shocks an area on impact. May bring the thunder.",
 
+  "item.thermal.nuke_grenade": "Nuclear Grenade",
+  "item.thermal.nuke_grenade.desc": "Not for use at close range.",
+
   "block.thermal.phyto_tnt": "PNT",
   "block.thermal.phyto_tnt.desc": "Spreads Phyto-Gro in a large area. Not throwable.",
 
@@ -369,6 +372,9 @@
   "block.thermal.ice_tnt.desc": "Freezes a large area.",
   "block.thermal.lightning_tnt": "Fulminating Explosive",
   "block.thermal.lightning_tnt.desc": "Shocks a large area. Very likely to bring the thunder.",
+
+  "block.thermal.nuke_tnt": "Nuclear Explosive",
+  "block.thermal.nuke_tnt.desc": "Do not stand anywhere close to this.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - Vanilla",

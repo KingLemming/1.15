@@ -357,6 +357,22 @@ public class TCoreItems {
             }
 
         }, new Item.Properties().group(group).maxStackSize(16)).setShowInGroups(getFeature(FLAG_ELEMENTAL_EXPLOSIVES)));
+
+        registerItem("nuke_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new NukeGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new NukeGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).rarity(Rarity.UNCOMMON).maxStackSize(16)));
     }
 
     private static void registerArmor() {

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:enderium_ingot_2_no_smelter"
+    ]
+  },
+  "criteria": {
+    "has_ender_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ender_pearls"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:enderium_ingot_2_no_smelter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ender_pearl",
+      "has_the_recipe"
+    ]
+  ]
+}

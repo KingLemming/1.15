@@ -35,12 +35,16 @@ public class TCoreEntities {
         ENTITIES.register(ID_ICE_GRENADE, () -> EntityType.Builder.<IceGrenadeEntity>create(IceGrenadeEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ID_ICE_GRENADE));
         ENTITIES.register(ID_LIGHTNING_GRENADE, () -> EntityType.Builder.<LightningGrenadeEntity>create(LightningGrenadeEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ID_LIGHTNING_GRENADE));
 
+        ENTITIES.register(ID_NUKE_GRENADE, () -> EntityType.Builder.<NukeGrenadeEntity>create(NukeGrenadeEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ID_NUKE_GRENADE));
+
         ENTITIES.register(ID_PHYTO_TNT, () -> EntityType.Builder.<PhytoTNTEntity>create(PhytoTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_PHYTO_TNT));
 
         ENTITIES.register(ID_FIRE_TNT, () -> EntityType.Builder.<FireTNTEntity>create(FireTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_FIRE_TNT));
         ENTITIES.register(ID_EARTH_TNT, () -> EntityType.Builder.<EarthTNTEntity>create(EarthTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_EARTH_TNT));
         ENTITIES.register(ID_ICE_TNT, () -> EntityType.Builder.<IceTNTEntity>create(IceTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_ICE_TNT));
         ENTITIES.register(ID_LIGHTNING_TNT, () -> EntityType.Builder.<LightningTNTEntity>create(LightningTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_LIGHTNING_TNT));
+
+        ENTITIES.register(ID_NUKE_TNT, () -> EntityType.Builder.<NukeTNTEntity>create(NukeTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_NUKE_TNT));
     }
 
 }

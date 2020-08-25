@@ -15,6 +15,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -36,6 +37,16 @@ public class TNTBlockCoFH extends TNTBlock {
             Entity entity = factory.createTNT(world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, igniter);
             world.addEntity(entity);
             world.playSound(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
+    }
+
+    @Override
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
+
+        if (!worldIn.isRemote) {
+            AbstractTNTEntity entity = factory.createTNT(worldIn, ((float) pos.getX() + 0.5F), pos.getY(), ((float) pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy());
+            entity.setFuse((short) (worldIn.rand.nextInt(entity.getFuse() / 4) + entity.getFuse() / 8));
+            worldIn.addEntity(entity);
         }
     }
 

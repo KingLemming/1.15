@@ -2,6 +2,7 @@ package cofh.thermal.core.entity.projectile;
 
 import cofh.lib.entity.AbstractGrenadeEntity;
 import cofh.lib.util.Utils;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -61,6 +62,8 @@ public class LightningGrenadeEntity extends AbstractGrenadeEntity {
                 ((ServerWorld) this.world).addLightningBolt(bolt);
             }
             shockNearbyEntities(this, world, this.getPosition(), radius);
+            Utils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 3);
+            makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }
@@ -71,11 +74,23 @@ public class LightningGrenadeEntity extends AbstractGrenadeEntity {
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
     }
 
-    private void shockNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius) {
+    public static void shockNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius) {
 
         AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
         worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)
                 .forEach(livingEntity -> livingEntity.addPotionEffect(new EffectInstance(SHOCKED, effectDuration, effectAmplifier, false, false)));
+    }
+
+    private void makeAreaOfEffectCloud() {
+
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY() + 0.5D, getPosZ());
+        cloud.setRadius(1);
+        cloud.setParticleData(ParticleTypes.CRIT);
+        cloud.setDuration(CLOUD_DURATION);
+        cloud.setWaitTime(0);
+        cloud.setRadiusPerTick((radius - cloud.getRadius()) / (float) cloud.getDuration());
+
+        world.addEntity(cloud);
     }
 
 }

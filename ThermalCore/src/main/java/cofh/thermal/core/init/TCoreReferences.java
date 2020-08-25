@@ -135,12 +135,16 @@ public class TCoreReferences {
     public static final String ID_ICE_GRENADE = ID_THERMAL + ":ice_grenade";
     public static final String ID_LIGHTNING_GRENADE = ID_THERMAL + ":lightning_grenade";
 
+    public static final String ID_NUKE_GRENADE = ID_THERMAL + ":nuke_grenade";
+
     public static final String ID_PHYTO_TNT = ID_THERMAL + ":phyto_tnt";
 
     public static final String ID_FIRE_TNT = ID_THERMAL + ":fire_tnt";
     public static final String ID_EARTH_TNT = ID_THERMAL + ":earth_tnt";
     public static final String ID_ICE_TNT = ID_THERMAL + ":ice_tnt";
     public static final String ID_LIGHTNING_TNT = ID_THERMAL + ":lightning_tnt";
+
+    public static final String ID_NUKE_TNT = ID_THERMAL + ":nuke_tnt";
 
     @ObjectHolder(ID_BASALZ)
     public static final EntityType<BasalzEntity> BASALZ_ENTITY = null;
@@ -184,6 +188,9 @@ public class TCoreReferences {
     @ObjectHolder(ID_LIGHTNING_GRENADE)
     public static final EntityType<LightningGrenadeEntity> LIGHTNING_GRENADE_ENTITY = null;
 
+    @ObjectHolder(ID_NUKE_GRENADE)
+    public static final EntityType<LightningGrenadeEntity> NUKE_GRENADE_ENTITY = null;
+
     @ObjectHolder(ID_PHYTO_TNT)
     public static final EntityType<PhytoTNTEntity> PHYTO_TNT_ENTITY = null;
 
@@ -195,6 +202,9 @@ public class TCoreReferences {
     public static final EntityType<IceTNTEntity> ICE_TNT_ENTITY = null;
     @ObjectHolder(ID_LIGHTNING_TNT)
     public static final EntityType<LightningTNTEntity> LIGHTNING_TNT_ENTITY = null;
+
+    @ObjectHolder(ID_NUKE_TNT)
+    public static final EntityType<NukeTNTEntity> NUKE_TNT_ENTITY = null;
     // endregion
 
     // region SOUND EVENTS

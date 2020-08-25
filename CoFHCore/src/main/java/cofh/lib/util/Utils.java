@@ -359,8 +359,9 @@ public class Utils {
 
     private static boolean isValidFirePosition(World worldIn, BlockPos pos, double chance) {
 
-        BlockState state = worldIn.getBlockState(pos.down());
-        if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
+        BlockPos below = pos.down();
+        BlockState state = worldIn.getBlockState(below);
+        if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, below), Direction.UP)) {
             return state.getMaterial().isFlammable() || worldIn.rand.nextDouble() < chance; // Random chance.
         }
         return false;
@@ -540,6 +541,16 @@ public class Utils {
     // endregion
 
     // region AREA TRANSFORMS / MISC
+    private static boolean isValidLightningBoltPosition(World worldIn, BlockPos pos, double chance) {
+
+        BlockPos below = pos.down();
+        BlockState state = worldIn.getBlockState(below);
+        if (worldIn.canSeeSky(pos) && Block.doesSideFillSquare(state.getCollisionShape(worldIn, below), Direction.UP)) {
+            return worldIn.rand.nextDouble() < chance; // Random chance.
+        }
+        return false;
+    }
+
     public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState replaceable, BlockState replacement, int radius, boolean requireAir) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
@@ -634,6 +645,31 @@ public class Utils {
         Set<BlockState> replaceable = new HashSet<>();
         Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, ENDER_AIR.getDefaultState(), radius, false);
+    }
+
+    public static void zapNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius, double chance, int max) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        int count = 0;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            if (count >= max) {
+                return;
+            }
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
+                    if (isValidLightningBoltPosition(worldIn, mutable, chance)) {
+                        worldIn.setBlockState(mutable, LIGHTNING_AIR.getDefaultState());
+                    }
+                }
+            }
+        }
     }
 
     public static void growMushrooms(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
@@ -773,7 +809,7 @@ public class Utils {
     }
     // endregion
 
-    private static final int HORZ_MAX = 16;
-    private static final int VERT_MAX = 8;
+    public static final int HORZ_MAX = 16;
+    public static final int VERT_MAX = 8;
 
 }

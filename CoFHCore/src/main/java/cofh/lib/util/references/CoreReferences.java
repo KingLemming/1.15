@@ -21,6 +21,7 @@ public class CoreReferences {
     public static final String ID_SIGNAL_AIR = ID_COFH_CORE + ":signal_air";
     public static final String ID_GLOW_AIR = ID_COFH_CORE + ":glow_air";
     public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
+    public static final String ID_LIGHTNING_AIR = ID_COFH_CORE + ":lightning_air";
 
     public static final String ID_FLUID_EXPERIENCE = ID_COFH_CORE + ":experience";
     public static final String ID_FLUID_HONEY = ID_COFH_CORE + ":honey";
@@ -61,6 +62,9 @@ public class CoreReferences {
 
     @ObjectHolder(ID_ENDER_AIR)
     public static final Block ENDER_AIR = null;
+
+    @ObjectHolder(ID_LIGHTNING_AIR)
+    public static final Block LIGHTNING_AIR = null;
     // endregion
 
     // region FLUIDS
@@ -89,6 +93,9 @@ public class CoreReferences {
 
     @ObjectHolder(ID_ENDER_AIR)
     public static final TileEntityType<?> ENDER_AIR_TILE = null;
+
+    @ObjectHolder(ID_LIGHTNING_AIR)
+    public static final TileEntityType<?> LIGHTNING_AIR_TILE = null;
     // endregion
 
     // region EFFECTS

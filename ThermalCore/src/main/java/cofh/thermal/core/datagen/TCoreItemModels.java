@@ -243,6 +243,8 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         blockItem(reg.getSup(ID_EARTH_TNT));
         blockItem(reg.getSup(ID_ICE_TNT));
         blockItem(reg.getSup(ID_LIGHTNING_TNT));
+
+        blockItem(reg.getSup(ID_NUKE_TNT));
     }
     // endregion
 }
