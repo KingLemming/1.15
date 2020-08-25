@@ -10,7 +10,7 @@ import net.minecraft.potion.EffectType;
 
 import static cofh.core.CoFHCore.EFFECTS;
 import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.references.CoreReferences.*;
+import static cofh.lib.util.references.CoreIDs.*;
 
 public class CoreEffects {
 

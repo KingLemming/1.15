@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.locomotion.init.TLocReferences.ID_UNDERWATER_CART;
+import static cofh.thermal.locomotion.init.TLocIDs.ID_UNDERWATER_CART;
 
 public class TLocItems {
 

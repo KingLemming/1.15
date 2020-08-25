@@ -16,7 +16,9 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.expansion.init.TExpIDs.*;
 
+@ObjectHolder(ID_THERMAL)
 public class TExpReferences {
 
     private TExpReferences() {
@@ -24,12 +26,6 @@ public class TExpReferences {
     }
 
     // region DEVICES
-    public static final String ID_DEVICE_ROCK_GEN = ID_THERMAL + ":device_rock_gen";
-    public static final String ID_DEVICE_WATER_GEN = ID_THERMAL + ":device_water_gen";
-
-    public static final String ID_DEVICE_FLUID_BUFFER = ID_THERMAL + ":device_fluid_buffer";
-    public static final String ID_DEVICE_ITEM_BUFFER = ID_THERMAL + ":device_item_buffer";
-
     @ObjectHolder(ID_DEVICE_ROCK_GEN)
     public static final Block DEVICE_ROCK_GEN_BLOCK = null;
     @ObjectHolder(ID_DEVICE_ROCK_GEN)
@@ -56,12 +52,6 @@ public class TExpReferences {
     // endregion
 
     // region DYNAMOS
-    public static final String ID_DYNAMO_STIRLING = ID_THERMAL + ":dynamo_stirling";
-    public static final String ID_DYNAMO_COMPRESSION = ID_THERMAL + ":dynamo_compression";
-    public static final String ID_DYNAMO_MAGMATIC = ID_THERMAL + ":dynamo_magmatic";
-    public static final String ID_DYNAMO_NUMISMATIC = ID_THERMAL + ":dynamo_numismatic";
-    public static final String ID_DYNAMO_LAPIDARY = ID_THERMAL + ":dynamo_lapidary";
-
     @ObjectHolder(ID_DYNAMO_STIRLING)
     public static final Block DYNAMO_STIRLING_BLOCK = null;
     @ObjectHolder(ID_DYNAMO_STIRLING)
@@ -99,20 +89,6 @@ public class TExpReferences {
     // endregion
 
     // region MACHINES
-    public static final String ID_MACHINE_FURNACE = ID_THERMAL + ":machine_furnace";
-    public static final String ID_MACHINE_SAWMILL = ID_THERMAL + ":machine_sawmill";
-    public static final String ID_MACHINE_PULVERIZER = ID_THERMAL + ":machine_pulverizer";
-    public static final String ID_MACHINE_SMELTER = ID_THERMAL + ":machine_smelter";
-    public static final String ID_MACHINE_INSOLATOR = ID_THERMAL + ":machine_insolator";
-    public static final String ID_MACHINE_CENTRIFUGE = ID_THERMAL + ":machine_centrifuge";
-    public static final String ID_MACHINE_PRESS = ID_THERMAL + ":machine_press";
-    public static final String ID_MACHINE_CRUCIBLE = ID_THERMAL + ":machine_crucible";
-    public static final String ID_MACHINE_CHILLER = ID_THERMAL + ":machine_chiller";
-    public static final String ID_MACHINE_REFINERY = ID_THERMAL + ":machine_refinery";
-    public static final String ID_MACHINE_BREWER = ID_THERMAL + ":machine_brewer";
-    public static final String ID_MACHINE_BOTTLER = ID_THERMAL + ":machine_bottler";
-    public static final String ID_MACHINE_CRAFTER = ID_THERMAL + ":machine_crafter";
-
     @ObjectHolder(ID_MACHINE_FURNACE)
     public static final Block MACHINE_FURNACE_BLOCK = null;
     @ObjectHolder(ID_MACHINE_FURNACE)

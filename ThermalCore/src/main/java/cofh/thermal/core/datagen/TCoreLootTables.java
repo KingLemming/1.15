@@ -14,7 +14,7 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreLootTables extends LootTableProviderCoFH {
 

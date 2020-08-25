@@ -25,7 +25,8 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
-import static cofh.thermal.cultivation.init.TCulReferences.*;
+import static cofh.thermal.cultivation.init.TCulIDs.*;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_BLOCK;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCulBlocks {

@@ -2,6 +2,7 @@ package cofh.thermal.core.entity.item;
 
 import cofh.lib.entity.AbstractTNTEntity;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.entity.projectile.EarthGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
@@ -14,8 +15,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.init.TCoreIDs.ID_EARTH_TNT;
 import static cofh.thermal.core.init.TCoreReferences.EARTH_TNT_ENTITY;
-import static cofh.thermal.core.init.TCoreReferences.ID_EARTH_TNT;
 
 public class EarthTNTEntity extends AbstractTNTEntity {
 
@@ -39,7 +40,9 @@ public class EarthTNTEntity extends AbstractTNTEntity {
     protected void explode() {
 
         if (Utils.isServerWorld(world)) {
-            makeAreaOfEffectCloud();
+            EarthGrenadeEntity.sunderNearbyEntities(this, world, this.getPosition(), radius);
+            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 2, igniter);
+            // makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }

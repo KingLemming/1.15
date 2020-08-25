@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.references.EnsorcellationReferences.AIR_AFFINITY;
+import static cofh.lib.util.references.EnsorcReferences.AIR_AFFINITY;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 
 @Mod.EventBusSubscriber(modid = ID_THERMAL)

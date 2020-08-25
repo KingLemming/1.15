@@ -53,7 +53,9 @@ import java.util.List;
 
 import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
 import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static cofh.lib.util.references.EnsorcIDs.ID_REACH;
+import static cofh.lib.util.references.EnsorcIDs.ID_VITALITY;
+import static cofh.lib.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.EFFICIENCY;
 import static net.minecraft.enchantment.Enchantments.FROST_WALKER;

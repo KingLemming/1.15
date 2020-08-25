@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
-import static cofh.lib.util.references.EnsorcellationReferences.PHALANX;
+import static cofh.lib.util.references.EnsorcReferences.PHALANX;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_ENSORCELLATION)
 public class ShieldEnchClientEvents {

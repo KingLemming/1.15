@@ -21,7 +21,7 @@ public abstract class AbstractTNTEntity extends Entity {
     @Nullable
     protected LivingEntity igniter;
     protected int fuse = 80;
-    protected int radius = 9;
+    protected int radius = 8;
 
     public AbstractTNTEntity(EntityType<? extends AbstractTNTEntity> type, World worldIn) {
 

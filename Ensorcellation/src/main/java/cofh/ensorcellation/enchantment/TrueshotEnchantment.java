@@ -7,7 +7,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
-import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
+import static cofh.lib.util.references.EnsorcReferences.VOLLEY;
 
 public class TrueshotEnchantment extends EnchantmentCoFH {
 

@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.APReferences.*;
+import static cofh.archersparadox.init.APIDs.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 import static cofh.lib.util.helpers.ItemHelper.cloneStack;
 

@@ -8,7 +8,7 @@ import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static cofh.lib.util.references.EnsorcellationReferences.FURROWING;
+import static cofh.lib.util.references.EnsorcReferences.FURROWING;
 
 public class TillingEnchantment extends EnchantmentCoFH {
 

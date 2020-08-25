@@ -23,7 +23,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static cofh.lib.util.references.EnsorcIDs.ID_BULWARK;
+import static cofh.lib.util.references.EnsorcIDs.ID_PHALANX;
+import static cofh.lib.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 import static net.minecraft.entity.ai.attributes.AttributeModifier.Operation.ADDITION;

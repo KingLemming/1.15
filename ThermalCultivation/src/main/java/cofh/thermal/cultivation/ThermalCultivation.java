@@ -19,7 +19,8 @@ import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
-import static cofh.thermal.cultivation.init.TCulReferences.*;
+import static cofh.thermal.cultivation.init.TCulIDs.*;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_CONTAINER;
 
 @Mod(ID_THERMAL_CULTIVATION)
 public class ThermalCultivation {

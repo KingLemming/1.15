@@ -9,7 +9,7 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.util.RegistrationHelper.block;
-import static cofh.thermal.cultivation.init.TCulReferences.ID_BARLEY;
+import static cofh.thermal.cultivation.init.TCulIDs.ID_BARLEY;
 
 public class TCulBlockStates extends BlockStateProviderCoFH {
 

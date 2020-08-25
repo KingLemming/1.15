@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.expansion.init.TExpReferences.*;
+import static cofh.thermal.expansion.init.TExpIDs.*;
 
 public class TExpRecipes extends RecipeProviderCoFH {
 

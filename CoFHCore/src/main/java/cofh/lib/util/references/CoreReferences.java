@@ -9,46 +9,14 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.lib.util.references.CoreIDs.*;
 
+@ObjectHolder(ID_COFH_CORE)
 public class CoreReferences {
 
     private CoreReferences() {
 
     }
-
-    // region IDS
-    public static final String ID_GLOSSED_MAGMA = ID_COFH_CORE + ":glossed_magma";
-    public static final String ID_SIGNAL_AIR = ID_COFH_CORE + ":signal_air";
-    public static final String ID_GLOW_AIR = ID_COFH_CORE + ":glow_air";
-    public static final String ID_ENDER_AIR = ID_COFH_CORE + ":ender_air";
-    public static final String ID_LIGHTNING_AIR = ID_COFH_CORE + ":lightning_air";
-
-    public static final String ID_FLUID_EXPERIENCE = ID_COFH_CORE + ":experience";
-    public static final String ID_FLUID_HONEY = ID_COFH_CORE + ":honey";
-    public static final String ID_FLUID_MILK = ID_COFH_CORE + ":milk";
-    public static final String ID_FLUID_POTION = ID_COFH_CORE + ":potion";
-    public static final String ID_FLUID_STEAM = ID_COFH_CORE + ":steam";
-
-    public static final String ID_EFFECT_EXPLOSION_RESISTANCE = ID_COFH_CORE + ":explosion_resistance";
-    public static final String ID_EFFECT_LIGHTNING_RESISTANCE = ID_COFH_CORE + ":lightning_resistance";
-    public static final String ID_EFFECT_MAGIC_RESISTANCE = ID_COFH_CORE + ":magic_resistance";
-
-    public static final String ID_EFFECT_AMPLIFICATION = ID_COFH_CORE + ":amplification";
-    public static final String ID_EFFECT_CHILLED = ID_COFH_CORE + ":chilled";
-    public static final String ID_EFFECT_CLARITY = ID_COFH_CORE + ":clarity";
-    public static final String ID_EFFECT_ENDERFERENCE = ID_COFH_CORE + ":enderference";
-    public static final String ID_EFFECT_LOVE = ID_COFH_CORE + ":love";
-    public static final String ID_EFFECT_PANACEA = ID_COFH_CORE + ":panacea";
-    public static final String ID_EFFECT_REDERGIZED = ID_COFH_CORE + ":redergized";
-    public static final String ID_EFFECT_SHOCKED = ID_COFH_CORE + ":shocked";
-    public static final String ID_EFFECT_SUNDERED = ID_COFH_CORE + ":sundered";
-
-    public static final String ID_HOLDING = ID_COFH_CORE + ":holding";
-
-    public static final String ID_ECTOPLASM = ID_COFH_CORE + ":ectoplasm";
-
-    // public static final String ID_PARTICLE_SNOW = ID_COFH_CORE + ":snow";
-    // endregion
 
     // region BLOCKS
     @ObjectHolder(ID_GLOSSED_MAGMA)

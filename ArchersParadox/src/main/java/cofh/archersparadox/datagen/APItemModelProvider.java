@@ -5,7 +5,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.APReferences.*;
+import static cofh.archersparadox.init.APIDs.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 
 public class APItemModelProvider extends ItemModelProviderCoFH {

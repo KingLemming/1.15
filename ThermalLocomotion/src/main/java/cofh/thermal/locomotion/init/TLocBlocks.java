@@ -7,7 +7,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Rarity;
 
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.locomotion.init.TLocIDs.*;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TLocBlocks {

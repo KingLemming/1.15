@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.locomotion.init.TLocIDs.*;
 
 public class TLocRecipes extends RecipeProviderCoFH {
 

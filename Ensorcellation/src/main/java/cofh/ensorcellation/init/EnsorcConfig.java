@@ -14,7 +14,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
-import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static cofh.lib.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.Enchantments.*;
 
 public class EnsorcConfig {

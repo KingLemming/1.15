@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 
-import static cofh.lib.util.references.EnsorcellationReferences.TILLING;
+import static cofh.lib.util.references.EnsorcReferences.TILLING;
 
 public class ExcavatingEnchantment extends EnchantmentCoFH {
 

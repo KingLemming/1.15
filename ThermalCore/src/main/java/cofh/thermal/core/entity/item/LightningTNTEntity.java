@@ -19,7 +19,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreReferences.ID_LIGHTNING_TNT;
+import static cofh.thermal.core.init.TCoreIDs.ID_LIGHTNING_TNT;
 import static cofh.thermal.core.init.TCoreReferences.LIGHTNING_TNT_ENTITY;
 
 public class LightningTNTEntity extends AbstractTNTEntity {
@@ -52,7 +52,7 @@ public class LightningTNTEntity extends AbstractTNTEntity {
             }
             LightningGrenadeEntity.shockNearbyEntities(this, world, this.getPosition(), radius);
             Utils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 12);
-            makeAreaOfEffectCloud();
+            // makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }

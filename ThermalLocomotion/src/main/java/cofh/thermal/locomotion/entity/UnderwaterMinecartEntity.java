@@ -32,7 +32,6 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     public static final int AIR_SUPPLY_MAX = 4800;
 
     protected int airSupply = AIR_SUPPLY_MAX;
-
     protected int respirationFactor = 1;
 
     public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, World worldIn) {

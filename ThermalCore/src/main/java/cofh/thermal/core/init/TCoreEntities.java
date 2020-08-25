@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreEntities {
 

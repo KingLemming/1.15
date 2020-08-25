@@ -92,7 +92,6 @@ public class GunpowderBlock extends FallingBlock {
                 worldIn.removeBlock(blockpos, false);
             }
         }
-
     }
 
     // region HELPERS

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreReferences.ID_PHYTO_TNT;
+import static cofh.thermal.core.init.TCoreIDs.ID_PHYTO_TNT;
 import static cofh.thermal.core.init.TCoreReferences.PHYTO_TNT_ENTITY;
 
 public class PhytoTNTEntity extends AbstractTNTEntity {

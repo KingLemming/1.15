@@ -19,8 +19,8 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import static cofh.lib.capability.CapabilityArchery.AMMO_ITEM_CAPABILITY;
 import static cofh.lib.capability.CapabilityArchery.BOW_ITEM_CAPABILITY;
-import static cofh.lib.util.references.EnsorcellationReferences.TRUESHOT;
-import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
+import static cofh.lib.util.references.EnsorcReferences.TRUESHOT;
+import static cofh.lib.util.references.EnsorcReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.*;
 

@@ -19,6 +19,7 @@ public class GrenadeItem extends ItemCoFH {
     protected final IGrenadeFactory<? extends AbstractGrenadeEntity> factory;
 
     protected int radius = 4;
+    protected int cooldown = 20;
 
     public GrenadeItem(IGrenadeFactory<? extends AbstractGrenadeEntity> factory, Properties builder) {
 
@@ -33,6 +34,7 @@ public class GrenadeItem extends ItemCoFH {
 
         ItemStack stack = playerIn.getHeldItem(handIn);
         worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        playerIn.getCooldownTracker().setCooldown(this, cooldown);
         if (!worldIn.isRemote) {
             createGrenade(stack, worldIn, playerIn);
         }

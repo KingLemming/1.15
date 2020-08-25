@@ -5,7 +5,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.thermal.core.ThermalCore.SOUND_EVENTS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreSounds {
 

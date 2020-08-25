@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import static cofh.thermal.core.ThermalCore.FLUIDS;
-import static cofh.thermal.core.init.TCoreReferences.ID_FLUID_TREE_OIL;
+import static cofh.thermal.core.init.TCoreIDs.ID_FLUID_TREE_OIL;
 
 public class TreeOilFluid extends FluidCoFH {
 

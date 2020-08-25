@@ -20,6 +20,7 @@ import static cofh.thermal.core.ThermalCore.TILE_ENTITIES;
 import static cofh.thermal.core.common.ThermalAugmentRules.DYNAMO_VALIDATOR;
 import static cofh.thermal.core.common.ThermalAugmentRules.MACHINE_VALIDATOR;
 import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
+import static cofh.thermal.expansion.init.TExpIDs.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 import static net.minecraft.block.Block.Properties.create;
 

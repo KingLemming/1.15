@@ -36,6 +36,7 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;

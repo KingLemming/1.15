@@ -22,8 +22,8 @@ import javax.annotation.Nullable;
 
 import static cofh.core.CoFHCore.FLUIDS;
 import static cofh.lib.util.constants.NBTTags.TAG_POTION;
+import static cofh.lib.util.references.CoreIDs.ID_FLUID_POTION;
 import static cofh.lib.util.references.CoreReferences.FLUID_POTION;
-import static cofh.lib.util.references.CoreReferences.ID_FLUID_POTION;
 
 public class PotionFluid extends FluidCoFH {
 

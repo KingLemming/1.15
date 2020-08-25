@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.init.TCoreIDs.ID_FIRE_TNT;
 import static cofh.thermal.core.init.TCoreReferences.FIRE_TNT_ENTITY;
-import static cofh.thermal.core.init.TCoreReferences.ID_FIRE_TNT;
 
 public class FireTNTEntity extends AbstractTNTEntity {
 

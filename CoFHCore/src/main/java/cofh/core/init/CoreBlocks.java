@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntityType;
 
 import static cofh.core.CoFHCore.BLOCKS;
 import static cofh.core.CoFHCore.TILE_ENTITIES;
+import static cofh.lib.util.references.CoreIDs.*;
 import static cofh.lib.util.references.CoreReferences.*;
 import static net.minecraft.block.Block.Properties.from;
 

@@ -2,6 +2,7 @@ package cofh.thermal.core.entity.item;
 
 import cofh.lib.entity.AbstractTNTEntity;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.entity.projectile.NukeGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -15,8 +16,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.entity.projectile.NukeGrenadeEntity.removeBlocks;
-import static cofh.thermal.core.init.TCoreReferences.ID_NUKE_TNT;
+import static cofh.thermal.core.init.TCoreIDs.ID_NUKE_TNT;
 import static cofh.thermal.core.init.TCoreReferences.NUKE_TNT_ENTITY;
 
 public class NukeTNTEntity extends AbstractTNTEntity {
@@ -45,7 +45,8 @@ public class NukeTNTEntity extends AbstractTNTEntity {
 
         if (Utils.isServerWorld(world)) {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
-            removeBlocks(this, world, this.getPosition(), 8);
+            NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius + radius / 2);
+            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius);
             world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) explosionStrength, true, explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.world.setEntityState(this, (byte) 3);
             this.remove();

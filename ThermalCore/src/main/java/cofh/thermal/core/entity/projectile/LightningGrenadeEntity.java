@@ -63,7 +63,7 @@ public class LightningGrenadeEntity extends AbstractGrenadeEntity {
             }
             shockNearbyEntities(this, world, this.getPosition(), radius);
             Utils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 3);
-            makeAreaOfEffectCloud();
+            // makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
         }

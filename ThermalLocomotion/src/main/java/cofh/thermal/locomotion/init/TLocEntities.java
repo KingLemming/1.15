@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
-import static cofh.thermal.locomotion.init.TLocReferences.ID_UNDERWATER_CART;
+import static cofh.thermal.locomotion.init.TLocIDs.ID_UNDERWATER_CART;
 
 public class TLocEntities {
 

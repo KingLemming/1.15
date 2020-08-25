@@ -1,10 +1,7 @@
 package cofh.thermal.core.init;
 
 import cofh.lib.entity.AbstractGrenadeEntity;
-import cofh.lib.item.AugmentItem;
-import cofh.lib.item.GrenadeItem;
-import cofh.lib.item.ItemCoFH;
-import cofh.lib.item.SpawnEggItemCoFH;
+import cofh.lib.item.*;
 import cofh.lib.util.constants.ToolTypes;
 import cofh.lib.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
@@ -15,12 +12,15 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
+import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
 
@@ -379,20 +379,20 @@ public class TCoreItems {
 
         ItemGroup group = THERMAL_TOOLS;
 
-        ITEMS.register(ID_BEEKEEPER_HELMET, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
-        ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(TCoreReferences.BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_HELMET, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_CHESTPLATE, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_LEGGINGS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
+        ITEMS.register(ID_BEEKEEPER_BOOTS, () -> new BeekeeperArmorItem(BEEKEEPER, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_BEEKEEPER)));
 
-        ITEMS.register(ID_DIVING_HELMET, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
-        ITEMS.register(ID_DIVING_CHESTPLATE, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
-        ITEMS.register(ID_DIVING_LEGGINGS, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
-        ITEMS.register(ID_DIVING_BOOTS, () -> new DivingArmorItem(TCoreReferences.DIVING, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_HELMET, () -> new DivingArmorItem(DIVING, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_CHESTPLATE, () -> new DivingArmorItem(DIVING, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_LEGGINGS, () -> new DivingArmorItem(DIVING, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
+        ITEMS.register(ID_DIVING_BOOTS, () -> new DivingArmorItem(DIVING, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_DIVING)));
 
-        ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_LEGGINGS, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
-        ITEMS.register(ID_HAZMAT_BOOTS, () -> new HazmatArmorItem(TCoreReferences.HAZMAT, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_HELMET, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.HEAD, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_CHESTPLATE, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.CHEST, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_LEGGINGS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.LEGS, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
+        ITEMS.register(ID_HAZMAT_BOOTS, () -> new HazmatArmorItem(HAZMAT, EquipmentSlotType.FEET, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_ARMOR_HAZMAT)));
     }
 
     private static void registerSpawnEggs() {
@@ -402,4 +402,9 @@ public class TCoreItems {
         registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
     }
     // endregion
+
+    public static final ArmorMaterialCoFH BEEKEEPER = new ArmorMaterialCoFH("thermal:beekeeper", 3, new int[]{1, 2, 3, 1}, 16, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA, 0.0F, () -> Ingredient.fromItems(ITEMS.get("beekeeper_fabric")));
+    public static final ArmorMaterialCoFH DIVING = new ArmorMaterialCoFH("thermal:diving", 12, new int[]{1, 4, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F, () -> Ingredient.fromItems(ITEMS.get("diving_fabric")));
+    public static final ArmorMaterialCoFH HAZMAT = new ArmorMaterialCoFH("thermal:hazmat", 4, new int[]{1, 4, 5, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, () -> Ingredient.fromItems(ITEMS.get("hazmat_fabric")));
+
 }
