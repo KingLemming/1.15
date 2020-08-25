@@ -1,5 +1,6 @@
 package cofh.core.block;
 
+import cofh.lib.entity.AbstractTNTEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.TNTBlock;
@@ -20,9 +21,9 @@ import javax.annotation.Nullable;
 
 public class TNTBlockCoFH extends TNTBlock {
 
-    protected final ITNTFactory<? extends Entity> factory;
+    protected final ITNTFactory<? extends AbstractTNTEntity> factory;
 
-    public TNTBlockCoFH(ITNTFactory<? extends Entity> factory, Properties properties) {
+    public TNTBlockCoFH(ITNTFactory<? extends AbstractTNTEntity> factory, Properties properties) {
 
         super(properties);
         this.factory = factory;
@@ -39,7 +40,7 @@ public class TNTBlockCoFH extends TNTBlock {
     }
 
     // region FACTORY
-    public interface ITNTFactory<T extends Entity> {
+    public interface ITNTFactory<T extends AbstractTNTEntity> {
 
         T createTNT(World world, double posX, double posY, double posZ, @Nullable LivingEntity igniter);
 

@@ -29,8 +29,6 @@ public class BlizzProjectileEntity extends DamagingProjectileEntity {
     public static int effectAmplifier = 0;
     public static int effectDuration = 100;
     public static int effectRadius = 2;
-    public static boolean permanentLava = false;
-    public static boolean permanentWater = false;
 
     public BlizzProjectileEntity(EntityType<? extends DamagingProjectileEntity> type, World world) {
 
@@ -71,8 +69,8 @@ public class BlizzProjectileEntity extends DamagingProjectileEntity {
         if (Utils.isServerWorld(world)) {
             if (effectRadius > 0) {
                 Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, permanentWater);
-                Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, permanentLava);
+                Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, false);
+                Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, false);
                 makeAreaOfEffectCloud();
             }
             this.world.setEntityState(this, (byte) 3);

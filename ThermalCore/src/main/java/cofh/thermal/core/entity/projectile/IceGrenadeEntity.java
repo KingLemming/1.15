@@ -19,6 +19,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import static cofh.lib.util.references.CoreReferences.CHILLED;
+import static cofh.thermal.core.common.ThermalConfig.permanentLava;
+import static cofh.thermal.core.common.ThermalConfig.permanentWater;
 import static cofh.thermal.core.init.TCoreReferences.ICE_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.ICE_GRENADE_ITEM;
 
@@ -26,9 +28,6 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
 
     public static int effectAmplifier = 1;
     public static int effectDuration = 200;
-
-    public static boolean permanentLava = true;
-    public static boolean permanentWater = true;
 
     public IceGrenadeEntity(EntityType<? extends ProjectileItemEntity> type, World worldIn) {
 
@@ -56,8 +55,8 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
 
         if (Utils.isServerWorld(world)) {
             chillNearbyEntities(this, world, this.getPosition(), radius);
-            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
             Utils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
+            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
             Utils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);
             Utils.freezeAllLava(this, world, this.getPosition(), radius, permanentLava);
             makeAreaOfEffectCloud();
@@ -71,7 +70,7 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
     }
 
-    private void chillNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius) {
+    public static void chillNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius) {
 
         AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
         worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)

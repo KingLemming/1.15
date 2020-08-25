@@ -48,7 +48,7 @@ public class FireGrenadeEntity extends AbstractGrenadeEntity {
             if (!this.isInWater()) {
                 Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, effectDuration);
                 Utils.igniteSpecial(this, world, this.getPosition(), radius, true, true, getThrower());
-                Utils.igniteNearbyGround(this, world, this.getPosition(), radius, 0.25);
+                Utils.igniteNearbyGround(this, world, this.getPosition(), radius, 0.2);
                 makeAreaOfEffectCloud();
             }
             this.world.setEntityState(this, (byte) 3);

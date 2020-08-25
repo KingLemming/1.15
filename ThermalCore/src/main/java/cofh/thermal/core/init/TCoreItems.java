@@ -266,6 +266,21 @@ public class TCoreItems {
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new PhytoGroItem(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_PHYTOGRO)));
 
+        registerItem("explosive_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, LivingEntity living) {
+
+                return new ExplosiveGrenadeEntity(world, living);
+            }
+
+            @Override
+            public AbstractGrenadeEntity createGrenade(World world, double posX, double posY, double posZ) {
+
+                return new ExplosiveGrenadeEntity(world, posX, posY, posZ);
+            }
+
+        }, new Item.Properties().group(group).maxStackSize(16)));
         registerItem("phyto_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
 
             @Override

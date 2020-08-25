@@ -84,12 +84,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title": "${mod_name}",
-                "Specification-Vendor": "Team CoFH",
-                "Specification-Version": "${mc_version}",
-                "Implementation-Title": "${mod_id}",
-                "Implementation-Vendor" :"Team CoFH",
-                "Implementation-Version": "${mod_version}",
+                "Specification-Title"     : "${mod_name}",
+                "Specification-Vendor"    : "Team CoFH",
+                "Specification-Version"   : "${mc_version}",
+                "Implementation-Title"    : "${mod_id}",
+                "Implementation-Vendor"   : "Team CoFH",
+                "Implementation-Version"  : "${mod_version}",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

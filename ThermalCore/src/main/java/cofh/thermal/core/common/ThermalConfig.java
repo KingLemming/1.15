@@ -105,6 +105,9 @@ public class ThermalConfig {
 
     public static int toolAugments = 4;
 
+    public static boolean permanentLava = true;
+    public static boolean permanentWater = true;
+
     public static BooleanValue keepEnergy;
     public static BooleanValue keepItems;
     public static BooleanValue keepFluids;
@@ -113,6 +116,9 @@ public class ThermalConfig {
     public static BooleanValue keepRSControl;
     public static BooleanValue keepSideConfig;
     public static BooleanValue keepTransferControl;
+
+    private static BooleanValue freezePermanentLava;
+    private static BooleanValue freezePermanentWater;
     // endregion
 
     // region CONFIGURATION

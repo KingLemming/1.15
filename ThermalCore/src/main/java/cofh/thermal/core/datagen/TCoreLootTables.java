@@ -90,6 +90,11 @@ public class TCoreLootTables extends LootTableProviderCoFH {
 
         lootTables.put(regBlocks.get(ID_PHYTO_TNT), createSimpleDropTable(regBlocks.get(ID_PHYTO_TNT)));
 
+        lootTables.put(regBlocks.get(ID_FIRE_TNT), createSimpleDropTable(regBlocks.get(ID_FIRE_TNT)));
+        lootTables.put(regBlocks.get(ID_EARTH_TNT), createSimpleDropTable(regBlocks.get(ID_EARTH_TNT)));
+        lootTables.put(regBlocks.get(ID_ICE_TNT), createSimpleDropTable(regBlocks.get(ID_ICE_TNT)));
+        lootTables.put(regBlocks.get(ID_LIGHTNING_TNT), createSimpleDropTable(regBlocks.get(ID_LIGHTNING_TNT)));
+
         lootTables.put(regBlocks.get(ID_APATITE_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_APATITE_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_APATITE_ORE), ItemLootEntry.builder(regItems.get("apatite"))
                 .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));

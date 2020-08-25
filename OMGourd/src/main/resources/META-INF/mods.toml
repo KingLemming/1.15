@@ -1,38 +1,38 @@
-modLoader="javafml"
-loaderVersion="[28,)"
-issueTrackerURL="https://github.com/cofh/feedback"
+modLoader = "javafml"
+loaderVersion = "[28,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
 
 [[mods]]
-    modId="omgourd"
-    version="0.4.0b"
-    displayName="Oh My Gourd"
-    updateJSONURL="https://raw.github.com/cofh/version/master/omgourd/update.json"
-    displayURL="https://teamcofh.com/"
-    logoFile="logo.png"
-    credits="Team CoFH"
-    authors="King Lemming, Endergized"
-    description='''
+modId = "omgourd"
+version = "0.4.0b"
+displayName = "Oh My Gourd"
+updateJSONURL = "https://raw.github.com/cofh/version/master/omgourd/update.json"
+displayURL = "https://teamcofh.com/"
+logoFile = "logo.png"
+credits = "Team CoFH"
+authors = "King Lemming, Endergized"
+description = '''
 Adds a lot more carvings for Pumpkins and Jack o'Lanterns.
 
 Suitable for both lightly and heavily modded worlds.
 '''
 [[dependencies.omgourd]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.15.2]"
-    ordering="AFTER"
-    side="BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.omgourd]]
-    modId="forge"
-    mandatory=true
-    versionRange="[31.2.30,)"
-    ordering="AFTER"
-    side="BOTH"
+modId = "forge"
+mandatory = true
+versionRange = "[31.2.30,)"
+ordering = "AFTER"
+side = "BOTH"
 
 [[dependencies.omgourd]]
-    modId="cofh_core"
-    mandatory=true
-    versionRange="[0.4,)"
-    ordering="AFTER"
-    side="BOTH"
+modId = "cofh_core"
+mandatory = true
+versionRange = "[0.4,)"
+ordering = "AFTER"
+side = "BOTH"

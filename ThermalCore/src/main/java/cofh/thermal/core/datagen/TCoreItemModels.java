@@ -238,6 +238,11 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
     private void registerMiscBlocks(DeferredRegisterCoFH<Block> reg) {
 
         blockItem(reg.getSup(ID_PHYTO_TNT));
+
+        blockItem(reg.getSup(ID_FIRE_TNT));
+        blockItem(reg.getSup(ID_EARTH_TNT));
+        blockItem(reg.getSup(ID_ICE_TNT));
+        blockItem(reg.getSup(ID_LIGHTNING_TNT));
     }
     // endregion
 }

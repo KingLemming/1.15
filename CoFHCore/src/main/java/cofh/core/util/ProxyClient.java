@@ -2,6 +2,7 @@ package cofh.core.util;
 
 import cofh.core.event.CoreClientSetupEvents;
 import cofh.lib.util.helpers.SoundHelper;
+import cofh.lib.util.helpers.StringHelper;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,6 +51,12 @@ public class ProxyClient extends Proxy {
     public boolean isClient() {
 
         return true;
+    }
+
+    @Override
+    public boolean canLocalize(String key) {
+
+        return StringHelper.canLocalize(key);
     }
 
     @Override

@@ -38,8 +38,6 @@ public class ThermalExpansion {
         TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
 
-        setFeature(FLAG_ELEMENTAL_EXPLOSIVES, true);
-
         setFeature(FLAG_RESOURCE_CINNABAR, true);
         setFeature(FLAG_RESOURCE_NITER, true);
         setFeature(FLAG_RESOURCE_SULFUR, true);
