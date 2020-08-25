@@ -230,9 +230,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
     private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {
 
-        blockItem(reg.getSup(ID_ENDERIUM_GLASS));
-        blockItem(reg.getSup(ID_LUMIUM_GLASS));
+        blockItem(reg.getSup(ID_HARDENED_GLASS));
         blockItem(reg.getSup(ID_SIGNALUM_GLASS));
+        blockItem(reg.getSup(ID_LUMIUM_GLASS));
+        blockItem(reg.getSup(ID_ENDERIUM_GLASS));
     }
 
     private void registerMiscBlocks(DeferredRegisterCoFH<Block> reg) {
