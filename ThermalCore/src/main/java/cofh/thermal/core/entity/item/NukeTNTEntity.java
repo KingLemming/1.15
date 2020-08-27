@@ -21,9 +21,6 @@ import static cofh.thermal.core.init.TCoreReferences.NUKE_TNT_ENTITY;
 
 public class NukeTNTEntity extends AbstractTNTEntity {
 
-    public static double explosionStrength = 16.0;
-    public static boolean explosionsBreakBlocks = true;
-
     public NukeTNTEntity(EntityType<? extends NukeTNTEntity> type, World worldIn) {
 
         super(type, worldIn);
@@ -45,12 +42,12 @@ public class NukeTNTEntity extends AbstractTNTEntity {
 
         if (Utils.isServerWorld(world)) {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
-            NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius + radius / 2);
-            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius);
-            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) explosionStrength, !this.isInWater(), explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius * 2, igniter);
+            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius + radius / 2);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeGrenadeEntity.explosionStrength * 2, !this.isInWater(), NukeGrenadeEntity.explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.remove();
         }
-        this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
+        this.world.addParticle(ParticleTypes.FLASH, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
     }
 

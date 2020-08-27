@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.util.recipes.machine;
 
 import cofh.thermal.core.util.recipes.ThermalCatalyst;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.ID_CATALYST_SMELTER;
+import static cofh.thermal.expansion.init.TExpRecipeTypes.ID_CATALYST_SMELTER;
 
 public class SmelterCatalyst extends ThermalCatalyst {
 

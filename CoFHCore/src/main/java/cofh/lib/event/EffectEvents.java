@@ -55,6 +55,9 @@ public class EffectEvents {
         }
         LivingEntity entity = event.getEntityLiving();
         DamageSource source = event.getSource();
+        if (source.isDamageAbsolute()) {
+            return;
+        }
         if (source.isExplosion() && entity.isPotionActive(EXPLOSION_RESISTANCE)) {
             event.setCanceled(true);
         } else if (source.isMagicDamage() && entity.isPotionActive(MAGIC_RESISTANCE)) {

@@ -1,4 +1,4 @@
-package cofh.thermal.expansion.util.recipes;
+package cofh.thermal.expansion.init;
 
 import cofh.lib.util.recipes.SerializableRecipeType;
 import cofh.thermal.expansion.util.recipes.dynamo.*;

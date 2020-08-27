@@ -19,5 +19,11 @@
   "result": {
     "item": "thermal:phyto_grenade",
     "count": 4
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "phytogro"
+    }
+  ]
 }

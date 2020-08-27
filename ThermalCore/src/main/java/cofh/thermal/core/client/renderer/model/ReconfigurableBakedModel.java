@@ -157,12 +157,12 @@ public class ReconfigurableBakedModel extends BakedModelWrapper<IBakedModel> imp
                 if (cachedQuads == null || cachedQuads.length < 6) {
                     cachedQuads = new BakedQuad[6];
 
-                    cachedQuads[0] = new BakedQuadRetextured(builder.getQuads(DOWN).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[0]));
-                    cachedQuads[1] = new BakedQuadRetextured(builder.getQuads(UP).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[1]));
-                    cachedQuads[2] = new BakedQuadRetextured(builder.getQuads(NORTH).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[2]));
-                    cachedQuads[3] = new BakedQuadRetextured(builder.getQuads(SOUTH).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[3]));
-                    cachedQuads[4] = new BakedQuadRetextured(builder.getQuads(WEST).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[4]));
-                    cachedQuads[5] = new BakedQuadRetextured(builder.getQuads(EAST).get(0), ReconfigurableBakedModel.getTextureRaw(sideConfigRaw[5]));
+                    cachedQuads[0] = new BakedQuadRetextured(builder.getQuads(DOWN).get(0), getTextureRaw(sideConfigRaw[0]));
+                    cachedQuads[1] = new BakedQuadRetextured(builder.getQuads(UP).get(0), getTextureRaw(sideConfigRaw[1]));
+                    cachedQuads[2] = new BakedQuadRetextured(builder.getQuads(NORTH).get(0), getTextureRaw(sideConfigRaw[2]));
+                    cachedQuads[3] = new BakedQuadRetextured(builder.getQuads(SOUTH).get(0), getTextureRaw(sideConfigRaw[3]));
+                    cachedQuads[4] = new BakedQuadRetextured(builder.getQuads(WEST).get(0), getTextureRaw(sideConfigRaw[4]));
+                    cachedQuads[5] = new BakedQuadRetextured(builder.getQuads(EAST).get(0), getTextureRaw(sideConfigRaw[5]));
                     ITEM_QUAD_CACHE.put(configHash, cachedQuads);
                 }
                 builder.addFaceQuad(DOWN, cachedQuads[0]);

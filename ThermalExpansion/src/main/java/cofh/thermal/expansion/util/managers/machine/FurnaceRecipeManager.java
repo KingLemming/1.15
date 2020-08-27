@@ -4,7 +4,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import cofh.thermal.expansion.util.recipes.machine.FurnaceRecipe;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

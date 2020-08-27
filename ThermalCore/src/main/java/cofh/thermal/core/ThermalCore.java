@@ -80,6 +80,10 @@ public class ThermalCore {
         TCoreEntities.register();
         TCoreSounds.register();
 
+        TCoreRecipeManagers.register();
+        TCoreRecipeSerializers.register();
+        TCoreRecipeTypes.register();
+
         setFeature(FLAG_VANILLA_BLOCKS, true);
         setFeature(FLAG_VANILLA_ITEMS, true);
     }

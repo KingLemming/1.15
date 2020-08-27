@@ -14,5 +14,11 @@
   },
   "result": {
     "item": "thermal:fire_tnt_minecart"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "elemental_explosives"
+    }
+  ]
 }

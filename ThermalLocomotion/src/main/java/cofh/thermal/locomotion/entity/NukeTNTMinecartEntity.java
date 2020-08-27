@@ -2,7 +2,6 @@ package cofh.thermal.locomotion.entity;
 
 import cofh.lib.entity.AbstractTNTMinecartEntity;
 import cofh.lib.util.Utils;
-import cofh.thermal.core.entity.item.NukeTNTEntity;
 import cofh.thermal.core.entity.projectile.NukeGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -49,12 +48,12 @@ public class NukeTNTMinecartEntity extends AbstractTNTMinecartEntity {
 
         if (Utils.isServerWorld(world)) {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
-            NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius + radius / 2);
-            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius);
-            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeTNTEntity.explosionStrength, !this.isInWater(), NukeTNTEntity.explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            NukeGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius * 2, null);
+            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius + radius / 2);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeGrenadeEntity.explosionStrength * 2, !this.isInWater(), NukeGrenadeEntity.explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
             this.remove();
         }
-        this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
+        this.world.addParticle(ParticleTypes.FLASH, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
     }
 

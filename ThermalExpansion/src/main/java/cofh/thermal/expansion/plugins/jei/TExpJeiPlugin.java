@@ -17,8 +17,8 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.expansion.init.TExpRecipeTypes.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
-import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.*;
 
 @JeiPlugin
 public class TExpJeiPlugin implements IModPlugin {

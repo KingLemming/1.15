@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "thermal:earth_tnt"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "elemental_explosives"
+    }
+  ]
 }

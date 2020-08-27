@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "thermal:lightning_tnt"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "elemental_explosives"
+    }
+  ]
 }

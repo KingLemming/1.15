@@ -17,6 +17,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 import java.util.Set;
@@ -24,6 +25,7 @@ import java.util.Set;
 import static cofh.lib.util.StorageGroup.INPUT;
 import static cofh.lib.util.StorageGroup.OUTPUT;
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.constants.NBTTags.TAG_TIME_CONSTANT;
 import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_TREE_EXTRACTOR_TILE;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
@@ -45,6 +47,9 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
     private int timeConstant = TIME_CONSTANT;
     private final int timeOffset;
 
+    private float boostMult;
+    private int boostCycles;
+
     public DeviceTreeExtractorTile() {
 
         super(DEVICE_TREE_EXTRACTOR_TILE);
@@ -56,6 +61,11 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         addAugmentSlots(deviceAugments);
         initHandlers();
+
+        trunkPos = new BlockPos(pos);
+        for (int i = 0; i < NUM_LEAVES; i++) {
+            leafPos[i] = new BlockPos(pos);
+        }
     }
 
     protected void updateValidity() {
@@ -169,24 +179,17 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         if (isActive) {
             if (valid) {
-                outputTank.fill(renderFluid, EXECUTE);
-                //                renderFluid = TreeExtractorManager.instance().getFluid(world.getBlockState(trunkPos));
-                //                if (boostTime > 0) {
-                //                    outputTank.fill(new FluidStack(renderFluid, renderFluid.getAmount() * boostMult), true);
-                //                    --boostTime;
-                //                } else {
-                //                    boostMult = TapperManager.getFertilizerMultiplier(inventory[0]);
-                //                    if (boostMult > 0) {
-                //                        outputTank.fill(new FluidStack(renderFluid, renderFluid.getAmount() * boostMult), true);
-                //                        boostTime = boostCycles - 1;
-                //                        inventory[0].shrink(1);
-                //                        if (inventory[0].getCount() <= 0) {
-                //                            inventory[0] = ItemStack.EMPTY;
-                //                        }
-                //                    } else if (!requireFertilizer) {
-                //                        outputTank.fill(renderFluid, true);
-                //                    }
-                //                }
+                if (boostCycles > 0) {
+                    --boostCycles;
+                } else if (false) { // TODO: Fertilizer;
+                    boostMult = 1.0F; // get FertilizerMult
+                    boostCycles = 0; // get Boost Cycles
+                    inputSlot.consume();
+                } else {
+                    boostMult = 1.0F; // get FertilizerMult
+                    boostCycles = 0; // get Boost Cycles
+                }
+                outputTank.fill(new FluidStack(renderFluid, (int) (renderFluid.getAmount() * baseMod * boostMult)), EXECUTE);
                 updateValidity();
             }
         }
@@ -207,16 +210,14 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
     }
 
     // region NBT
-
-    // endregion
-
-    /* NBT METHODS */
     @Override
     public void read(CompoundNBT nbt) {
 
         super.read(nbt);
 
-        timeConstant = nbt.getInt("TimeConstant");
+        boostMult = nbt.getFloat("BoostMult");
+        boostCycles = nbt.getInt("BoostTime");
+        timeConstant = nbt.getInt(TAG_TIME_CONSTANT);
 
         if (timeConstant <= 0) {
             timeConstant = TIME_CONSTANT;
@@ -232,7 +233,9 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         super.write(nbt);
 
-        nbt.putInt("TimeConstant", timeConstant);
+        nbt.putFloat("BoostMult", boostMult);
+        nbt.putInt("BoostTime", boostCycles);
+        nbt.putInt(TAG_TIME_CONSTANT, timeConstant);
 
         for (int i = 0; i < NUM_LEAVES; i++) {
             nbt.putInt("LeafX" + i, leafPos[i].getX());
@@ -245,54 +248,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         return nbt;
     }
-
-    //    public void readFromNBT(NBTTagCompound nbt) {
-    //
-    //        super.readFromNBT(nbt);
-    //
-    //        validTree = nbt.getBoolean("Tree");
-    //        inputTracker = nbt.getInteger(CoreProps.TRACK_IN);
-    //        outputTrackerFluid = nbt.getInteger(CoreProps.TRACK_OUT);
-    //        tank.readFromNBT(nbt);
-    //
-    //        boostMult = nbt.getInteger("BoostMult");
-    //        boostTime = nbt.getInteger("BoostTime");
-    //        timeConstant = nbt.getInteger("TimeConstant");
-    //
-    //        if (timeConstant <= 0) {
-    //            timeConstant = TIME_CONSTANT;
-    //        }
-    //        for (int i = 0; i < NUM_LEAVES; i++) {
-    //            leafPos[i] = new BlockPos(nbt.getInteger("LeafX" + i), nbt.getInteger("LeafY" + i), nbt.getInteger("LeafZ" + i));
-    //        }
-    //        trunkPos = new BlockPos(nbt.getInteger("TrunkX"), nbt.getInteger("TrunkY"), nbt.getInteger("TrunkZ"));
-    //    }
-    //
-    //    @Override
-    //    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-    //
-    //        super.writeToNBT(nbt);
-    //
-    //        nbt.setBoolean("Tree", validTree);
-    //        nbt.setInteger(CoreProps.TRACK_IN, inputTracker);
-    //        nbt.setInteger(CoreProps.TRACK_OUT, outputTrackerFluid);
-    //        tank.writeToNBT(nbt);
-    //
-    //        nbt.setInteger("BoostMult", boostMult);
-    //        nbt.setInteger("BoostTime", boostTime);
-    //        nbt.setInteger("TimeConstant", timeConstant);
-    //
-    //        for (int i = 0; i < NUM_LEAVES; i++) {
-    //            nbt.setInteger("LeafX" + i, leafPos[i].getX());
-    //            nbt.setInteger("LeafY" + i, leafPos[i].getY());
-    //            nbt.setInteger("LeafZ" + i, leafPos[i].getZ());
-    //        }
-    //        nbt.setInteger("TrunkX", trunkPos.getX());
-    //        nbt.setInteger("TrunkY", trunkPos.getY());
-    //        nbt.setInteger("TrunkZ", trunkPos.getZ());
-    //
-    //        return nbt;
-    //    }
+    // endregion
 
     // region HELPERS
     protected boolean timeCheckOffset() {

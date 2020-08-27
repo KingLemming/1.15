@@ -1,4 +1,4 @@
-package cofh.thermal.expansion.util.managers;
+package cofh.thermal.expansion.init;
 
 import cofh.thermal.expansion.util.managers.dynamo.*;
 import cofh.thermal.expansion.util.managers.machine.*;

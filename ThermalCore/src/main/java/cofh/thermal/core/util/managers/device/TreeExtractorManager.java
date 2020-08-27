@@ -54,6 +54,11 @@ public class TreeExtractorManager implements IManager {
     //        fertilizerMap.put(fertilizer.getItem(), multiplier);
     //    }
 
+    public int getDefaultCycles() {
+
+        return 8;
+    }
+
     // region IManager
     @Override
     public void config() {

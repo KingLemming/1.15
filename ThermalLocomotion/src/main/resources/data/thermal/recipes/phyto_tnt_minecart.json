@@ -14,5 +14,11 @@
   },
   "result": {
     "item": "thermal:phyto_tnt_minecart"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "phytogro"
+    }
+  ]
 }

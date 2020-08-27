@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.util.recipes.machine;
 
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.ID_RECIPE_FURNACE;
+import static cofh.thermal.expansion.init.TExpRecipeTypes.ID_RECIPE_FURNACE;
 
 public class FurnaceRecipe extends ThermalRecipe {
 

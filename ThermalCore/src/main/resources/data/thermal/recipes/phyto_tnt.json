@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "thermal:phyto_tnt"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "phytogro"
+    }
+  ]
 }

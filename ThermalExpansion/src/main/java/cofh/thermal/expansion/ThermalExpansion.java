@@ -2,11 +2,7 @@ package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
-import cofh.thermal.expansion.init.TExpBlocks;
-import cofh.thermal.expansion.init.TExpItems;
-import cofh.thermal.expansion.util.managers.TExpRecipeManagers;
-import cofh.thermal.expansion.util.recipes.TExpRecipeSerializers;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;

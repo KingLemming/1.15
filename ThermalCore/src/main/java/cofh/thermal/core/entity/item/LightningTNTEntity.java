@@ -4,7 +4,6 @@ import cofh.lib.entity.AbstractTNTEntity;
 import cofh.lib.util.Utils;
 import cofh.thermal.core.entity.projectile.LightningGrenadeEntity;
 import net.minecraft.block.Block;
-import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;

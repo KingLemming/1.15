@@ -292,8 +292,8 @@ public abstract class RecipeJsonUtils {
 
         JsonObject json = element.getAsJsonObject();
 
-        if (json.has(MOD)) {
-            return ModList.get().isLoaded(json.get(MOD).getAsString());
+        if (json.has(MOD_LOADED)) {
+            return ModList.get().isLoaded(json.get(MOD_LOADED).getAsString());
         }
         return true;
     }
@@ -301,10 +301,12 @@ public abstract class RecipeJsonUtils {
 
     // region STRING CONSTANTS
     public static final String AMOUNT = "amount";
+    public static final String BOOST_MOD = "boost_mod";
     public static final String CHANCE = "chance";
     public static final String COMMENT = "//";
     public static final String CONSTANT = "constant";
     public static final String COUNT = "count";
+    public static final String CYCLES = "cycles";
     public static final String DEPENDENCY = "dependency";
     public static final String ENABLE = "enable";
     public static final String ENERGY = "energy";
@@ -320,7 +322,7 @@ public abstract class RecipeJsonUtils {
     public static final String LOCKED = "locked";
     public static final String MIN_CHANCE = "min_chance";
     public static final String MIN_TICKS = "min_ticks";
-    public static final String MOD = "mod";
+    public static final String MOD_LOADED = "mod";
     public static final String NBT = "nbt";
     public static final String OUTPUT = "output";
     public static final String OUTPUTS = "outputs";

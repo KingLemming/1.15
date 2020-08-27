@@ -19,5 +19,11 @@
   "result": {
     "item": "thermal:earth_grenade",
     "count": 4
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "elemental_explosives"
+    }
+  ]
 }
