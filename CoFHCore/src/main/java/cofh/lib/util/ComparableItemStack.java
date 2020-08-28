@@ -13,8 +13,8 @@ import net.minecraft.item.Items;
  */
 public class ComparableItemStack {
 
-    public Item item;
-    public int stackSize;
+    private final Item item;
+    private int stackSize;
 
     public ComparableItemStack(ItemStack stack) {
 

@@ -10,7 +10,8 @@
     },
     {
       "item": "thermal:cinnabar",
-      "chance": 0.2
+      "chance": 0.1,
+      "locked": true
     },
     {
       "item": "thermal:rich_slag",

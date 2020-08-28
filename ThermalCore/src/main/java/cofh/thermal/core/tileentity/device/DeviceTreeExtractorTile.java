@@ -3,6 +3,7 @@ package cofh.thermal.core.tileentity.device;
 import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.util.ComparableBlockState;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
@@ -21,6 +22,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static cofh.lib.util.StorageGroup.INPUT;
 import static cofh.lib.util.StorageGroup.OUTPUT;
@@ -35,7 +37,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
     protected static final int NUM_LEAVES = 3;
     protected static final int TIME_CONSTANT = 500;
 
-    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH();
+    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(TreeExtractorManager.instance()::validBoost);
     protected FluidStorageCoFH outputTank = new FluidStorageCoFH(TANK_MEDIUM);
 
     private boolean cached;
@@ -77,20 +79,17 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         if (valid) {
             if (isTrunkBase(trunkPos)) {
-                Set<BlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
+                Set<ComparableBlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
                 int leafCount = 0;
                 for (int i = 0; i < NUM_LEAVES; ++i) {
-                    BlockState state = world.getBlockState(leafPos[i]);
-                    if (leafSet.contains(state)) {
+                    if (leafSet.contains(TreeExtractorManager.convert(world.getBlockState(leafPos[i])))) {
                         ++leafCount;
                     }
                 }
                 if (leafCount >= NUM_LEAVES) {
                     Iterable<BlockPos> area = BlockPos.getAllInBoxMutable(trunkPos, trunkPos.add(0, leafPos[0].getY() - trunkPos.getY(), 0));
                     for (BlockPos scan : area) {
-                        BlockState state = world.getBlockState(scan);
-                        Material material = state.getMaterial();
-
+                        Material material = world.getBlockState(scan).getMaterial();
                         if (material == Material.ORGANIC || material == Material.EARTH || material == Material.ROCK) {
                             valid = false;
                             cached = true;
@@ -99,8 +98,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
                     }
                     area = BlockPos.getAllInBoxMutable(pos.add(0, 1, 0), pos.add(0, leafPos[0].getY() - pos.getY(), 0));
                     for (BlockPos scan : area) {
-                        BlockState state = world.getBlockState(scan);
-                        if (state == this.getBlockState()) {
+                        if (isTreeExtractor(world.getBlockState(scan))) {
                             valid = false;
                             cached = true;
                             return;
@@ -127,20 +125,22 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
             cached = true;
             return;
         }
-        Set<BlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
+        Set<ComparableBlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
         int leafCount = 0;
-        for (int i = 0; i < NUM_LEAVES; ++i) {
-            BlockState state = world.getBlockState(leafPos[i]);
-            if (leafSet.contains(state)) {
+        Iterable<BlockPos> area = BlockPos.getAllInBox(pos.add(-1, 0, -1), pos.add(1, Math.min(256 - pos.getY(), 40), 1)).map(BlockPos::toImmutable).collect(Collectors.toList());
+        for (BlockPos scan : area) {
+            if (leafSet.contains(TreeExtractorManager.convert(world.getBlockState(scan)))) {
+                leafPos[leafCount] = new BlockPos(scan);
                 ++leafCount;
+                if (leafCount >= NUM_LEAVES) {
+                    break;
+                }
             }
         }
         if (leafCount >= NUM_LEAVES) {
-            Iterable<BlockPos> area = BlockPos.getAllInBoxMutable(trunkPos, trunkPos.add(0, leafPos[0].getY() - trunkPos.getY(), 0));
+            area = BlockPos.getAllInBoxMutable(trunkPos, trunkPos.add(0, leafPos[0].getY() - trunkPos.getY(), 0));
             for (BlockPos scan : area) {
-                BlockState state = world.getBlockState(scan);
-                Material material = state.getMaterial();
-
+                Material material = world.getBlockState(scan).getMaterial();
                 if (material == Material.ORGANIC || material == Material.EARTH || material == Material.ROCK) {
                     valid = false;
                     cached = true;
@@ -149,8 +149,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
             }
             area = BlockPos.getAllInBoxMutable(pos.add(0, 1, 0), pos.add(0, leafPos[0].getY() - pos.getY(), 0));
             for (BlockPos scan : area) {
-                BlockState state = world.getBlockState(scan);
-                if (state == this.getBlockState()) {
+                if (isTreeExtractor(world.getBlockState(scan))) {
                     valid = false;
                     cached = true;
                     return;
@@ -181,13 +180,13 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
             if (valid) {
                 if (boostCycles > 0) {
                     --boostCycles;
-                } else if (false) { // TODO: Fertilizer;
-                    boostMult = 1.0F; // get FertilizerMult
-                    boostCycles = 0; // get Boost Cycles
+                } else if (!inputSlot.isEmpty()) {
+                    boostMult = TreeExtractorManager.instance().getBoostMultiplier(inputSlot.getItemStack());
+                    boostCycles = TreeExtractorManager.instance().getBoostCycles(inputSlot.getItemStack());
                     inputSlot.consume();
                 } else {
-                    boostMult = 1.0F; // get FertilizerMult
-                    boostCycles = 0; // get Boost Cycles
+                    boostMult = 1.0F;
+                    boostCycles = 0;
                 }
                 outputTank.fill(new FluidStack(renderFluid, (int) (renderFluid.getAmount() * baseMod * boostMult)), EXECUTE);
                 updateValidity();
@@ -209,6 +208,14 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         return new DeviceTreeExtractorContainer(i, world, pos, inventory, player);
     }
 
+    // region GUI
+    @Override
+    public int getScaledDuration(int scale) {
+
+        return !isActive || boostCycles <= 0 ? 0 : scale;
+    }
+    // endregion
+
     // region NBT
     @Override
     public void read(CompoundNBT nbt) {
@@ -216,7 +223,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         super.read(nbt);
 
         boostMult = nbt.getFloat("BoostMult");
-        boostCycles = nbt.getInt("BoostTime");
+        boostCycles = nbt.getInt("BoostCycles");
         timeConstant = nbt.getInt(TAG_TIME_CONSTANT);
 
         if (timeConstant <= 0) {
@@ -234,7 +241,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         super.write(nbt);
 
         nbt.putFloat("BoostMult", boostMult);
-        nbt.putInt("BoostTime", boostCycles);
+        nbt.putInt("BoostCycles", boostCycles);
         nbt.putInt(TAG_TIME_CONSTANT, timeConstant);
 
         for (int i = 0; i < NUM_LEAVES; i++) {
@@ -282,7 +289,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
     protected boolean isTreeExtractor(BlockState state) {
 
-        return state == this.getBlockState();
+        return state.getBlock() == this.getBlockState().getBlock();
     }
     // endregion
 }

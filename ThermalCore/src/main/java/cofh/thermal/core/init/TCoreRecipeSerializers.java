@@ -15,7 +15,7 @@ public class TCoreRecipeSerializers {
 
     public static void register() {
 
-        RECIPE_SERIALIZERS.register(ID_BOOST_TREE_EXTRACTOR, () -> new ThermalBoostSerializer<>(TreeExtractorBoost::new, TreeExtractorManager.instance().getDefaultCycles()));
+        RECIPE_SERIALIZERS.register(ID_BOOST_TREE_EXTRACTOR, () -> new ThermalBoostSerializer<>(TreeExtractorBoost::new, TreeExtractorManager.instance().getDefaultEnergy()));
     }
 
 }
