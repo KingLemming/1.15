@@ -8,10 +8,11 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.function.BooleanSupplier;
+import java.util.function.Supplier;
 
 public class ElementConditionalLayered extends ElementBase {
 
-    protected ArrayList<Pair<TextureAtlasSprite, BooleanSupplier>> conditionalTextures = new ArrayList<>();
+    protected ArrayList<Pair<Supplier<TextureAtlasSprite>, BooleanSupplier>> conditionalTextures = new ArrayList<>();
 
     public ElementConditionalLayered(IGuiAccess gui) {
 
@@ -30,11 +31,15 @@ public class ElementConditionalLayered extends ElementBase {
 
     public ElementConditionalLayered addSprite(ResourceLocation location, BooleanSupplier condition) {
 
-        conditionalTextures.add(Pair.of(RenderHelper.getTexture(location), condition));
-        return this;
+        return addSprite(() -> RenderHelper.getTexture(location), condition);
     }
 
     public ElementConditionalLayered addSprite(TextureAtlasSprite sprite, BooleanSupplier condition) {
+
+        return addSprite(() -> sprite, condition);
+    }
+
+    public ElementConditionalLayered addSprite(Supplier<TextureAtlasSprite> sprite, BooleanSupplier condition) {
 
         conditionalTextures.add(Pair.of(sprite, condition));
         return this;
@@ -43,9 +48,9 @@ public class ElementConditionalLayered extends ElementBase {
     @Override
     public void drawBackground(int mouseX, int mouseY) {
 
-        for (Pair<TextureAtlasSprite, BooleanSupplier> entry : conditionalTextures) {
+        for (Pair<Supplier<TextureAtlasSprite>, BooleanSupplier> entry : conditionalTextures) {
             if (entry.getRight().getAsBoolean()) {
-                gui.drawIcon(entry.getLeft(), posX(), posY());
+                gui.drawIcon(entry.getLeft().get(), posX(), posY());
             }
         }
     }

@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.lib.util.constants.Constants.TRUE;
 import static cofh.lib.util.control.IReconfigurable.SideConfig.*;
+import static cofh.lib.util.helpers.RenderHelper.getFluidTexture;
 import static cofh.lib.util.helpers.RenderHelper.textureExists;
 import static cofh.thermal.core.client.gui.ThermalTextures.*;
 import static net.minecraft.util.Direction.DOWN;
@@ -80,6 +81,7 @@ public class ThermalGuiHelper {
         String texture = ID_THERMAL + ":block/machines/machine_" + machine;
         String activeTexture = ID_THERMAL + ":block/machines/machine_" + machine + "_active";
         return (ElementConditionalLayered) new ElementConditionalLayered(gui)
+                .addSprite(() -> getFluidTexture(tile.getRenderFluid()), () -> !tile.getRenderFluid().isEmpty())
                 .addSprite(textureExists(new ResourceLocation(texture)) ? texture : "thermal:block/machines/machine_side", () -> !tile.isActive)
                 .addSprite(textureExists(new ResourceLocation(activeTexture)) ? activeTexture : "thermal:block/machines/machine_side", () -> tile.isActive)
                 .setSize(16, 16);
