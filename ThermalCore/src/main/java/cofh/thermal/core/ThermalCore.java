@@ -11,6 +11,7 @@ import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.*;
 import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
+import cofh.thermal.core.client.renderer.model.UnderlayModelLoader;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
@@ -140,6 +141,9 @@ public class ThermalCore {
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FRAME), cutout);
 
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_TREE_EXTRACTOR), cutout);
+
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "underlay"), new UnderlayModelLoader());
         ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new ReconfigurableModelLoader());
 
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);

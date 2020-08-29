@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube",
+  "parent": "thermal:block/device_base",
   "textures": {
     "particle": "thermal:block/devices/device_tree_extractor_side",
     "down": "thermal:block/devices/device_tree_extractor_bottom",

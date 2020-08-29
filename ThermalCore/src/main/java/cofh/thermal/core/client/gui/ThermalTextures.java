@@ -1,6 +1,7 @@
 package cofh.thermal.core.client.gui;
 
 import cofh.thermal.core.client.renderer.model.ReconfigurableBakedModel;
+import cofh.thermal.core.client.renderer.model.UnderlayBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
@@ -43,6 +44,7 @@ public class ThermalTextures {
         if (!event.getMap().getTextureLocation().toString().equals(BLOCK_ATLAS)) {
             return;
         }
+        UnderlayBakedModel.clearCache();
         ReconfigurableBakedModel.clearCache();
 
         AtlasTexture map = event.getMap();

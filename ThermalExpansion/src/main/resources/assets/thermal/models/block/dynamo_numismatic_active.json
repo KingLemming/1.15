@@ -1,5 +1,5 @@
 {
-  "parent": "thermal:block/dynamo_base",
+  "parent": "thermal:block/dynamo_numismatic",
   "textures": {
     "top": "thermal:block/dynamos/dynamo_numismatic_active",
     "side": "thermal:block/dynamos/dynamo_numismatic_side_active",

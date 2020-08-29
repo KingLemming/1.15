@@ -1,7 +1,6 @@
 package cofh.thermal.core.util.managers.device;
 
 import cofh.lib.inventory.FalseIInventory;
-import cofh.lib.util.ComparableBlockState;
 import cofh.lib.util.ComparableItemStack;
 import cofh.thermal.core.init.TCoreRecipeTypes;
 import cofh.thermal.core.util.managers.AbstractManager;
@@ -17,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,8 +30,8 @@ public class TreeExtractorManager extends AbstractManager {
     protected Map<ComparableItemStack, FluidStack> itemMap = new Object2ObjectOpenHashMap<>();
     protected Map<ComparableItemStack, Pair<Float, Integer>> boostMap = new Object2ObjectOpenHashMap<>();
 
-    protected Map<ComparableBlockState, FluidStack> trunkMap = new Object2ObjectOpenHashMap<>();
-    protected SetMultimap<ComparableBlockState, ComparableBlockState> leafMap = HashMultimap.create();
+    protected IdentityHashMap<BlockState, FluidStack> trunkMap = new IdentityHashMap<>();
+    protected SetMultimap<BlockState, BlockState> leafMap = HashMultimap.create();
 
     protected TreeExtractorManager() {
 
@@ -53,19 +53,19 @@ public class TreeExtractorManager extends AbstractManager {
     }
 
     // region WORLD
-    public Set<ComparableBlockState> getMatchingLeaves(BlockState trunk) {
+    public Set<BlockState> getMatchingLeaves(BlockState trunk) {
 
-        return leafMap.get(convert(trunk));
+        return leafMap.get(trunk);
     }
 
     public boolean validTrunk(BlockState state) {
 
-        return trunkMap.containsKey(convert(state));
+        return trunkMap.containsKey(state);
     }
 
     public FluidStack getFluid(BlockState trunk) {
 
-        return validTrunk(trunk) ? trunkMap.get(convert(trunk)) : FluidStack.EMPTY;
+        return validTrunk(trunk) ? trunkMap.get(trunk) : FluidStack.EMPTY;
     }
 
     public boolean addTrunkMapping(BlockState trunk, FluidStack stack) {
@@ -73,7 +73,7 @@ public class TreeExtractorManager extends AbstractManager {
         if (stack.isEmpty() || trunk == null || trunk.getBlock() == Blocks.AIR) {
             return false;
         }
-        trunkMap.put(convert(trunk), stack);
+        trunkMap.put(trunk, stack);
         return true;
     }
 
@@ -82,7 +82,7 @@ public class TreeExtractorManager extends AbstractManager {
         if (trunk == null || trunk.getBlock() == Blocks.AIR || leaf == null || leaf.getBlock() == Blocks.AIR) {
             return false;
         }
-        leafMap.put(convert(trunk), convert(leaf));
+        leafMap.put(trunk, leaf);
         return true;
     }
     // endregion

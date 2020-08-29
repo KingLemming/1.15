@@ -1,5 +1,5 @@
 {
-  "parent": "thermal:block/dynamo_base",
+  "parent": "thermal:block/dynamo_stirling",
   "textures": {
     "top": "thermal:block/dynamos/dynamo_stirling_active",
     "side": "thermal:block/dynamos/dynamo_stirling_side_active",

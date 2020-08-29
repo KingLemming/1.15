@@ -3,7 +3,6 @@ package cofh.thermal.core.tileentity.device;
 import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.ComparableBlockState;
 import cofh.lib.util.Utils;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
@@ -16,10 +15,17 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.model.ModelDataManager;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -79,10 +85,10 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         if (valid) {
             if (isTrunkBase(trunkPos)) {
-                Set<ComparableBlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
+                Set<BlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
                 int leafCount = 0;
                 for (int i = 0; i < NUM_LEAVES; ++i) {
-                    if (leafSet.contains(TreeExtractorManager.convert(world.getBlockState(leafPos[i])))) {
+                    if (leafSet.contains(world.getBlockState(leafPos[i]))) {
                         ++leafCount;
                     }
                 }
@@ -125,11 +131,11 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
             cached = true;
             return;
         }
-        Set<ComparableBlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
+        Set<BlockState> leafSet = TreeExtractorManager.instance().getMatchingLeaves(world.getBlockState(trunkPos));
         int leafCount = 0;
         Iterable<BlockPos> area = BlockPos.getAllInBox(pos.add(-1, 0, -1), pos.add(1, Math.min(256 - pos.getY(), 40), 1)).map(BlockPos::toImmutable).collect(Collectors.toList());
         for (BlockPos scan : area) {
-            if (leafSet.contains(TreeExtractorManager.convert(world.getBlockState(scan)))) {
+            if (leafSet.contains(world.getBlockState(scan))) {
                 leafPos[leafCount] = new BlockPos(scan);
                 ++leafCount;
                 if (leafCount >= NUM_LEAVES) {
@@ -201,6 +207,15 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         updateActiveState();
     }
 
+    @Nonnull
+    @Override
+    public IModelData getModelData() {
+
+        return new ModelDataMap.Builder()
+                .withInitial(FLUID, renderFluid)
+                .build();
+    }
+
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
@@ -213,6 +228,32 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
     public int getScaledDuration(int scale) {
 
         return !isActive || boostCycles <= 0 ? 0 : scale;
+    }
+    // endregion
+
+    // region NETWORK
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+
+        super.onDataPacket(net, pkt);
+
+        ModelDataManager.requestModelDataRefresh(this);
+    }
+
+    @Override
+    public void handleControlPacket(PacketBuffer buffer) {
+
+        super.handleControlPacket(buffer);
+
+        ModelDataManager.requestModelDataRefresh(this);
+    }
+
+    @Override
+    public void handleStatePacket(PacketBuffer buffer) {
+
+        super.handleStatePacket(buffer);
+
+        ModelDataManager.requestModelDataRefresh(this);
     }
     // endregion
 

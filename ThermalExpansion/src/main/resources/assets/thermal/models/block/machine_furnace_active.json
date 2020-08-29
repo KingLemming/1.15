@@ -1,5 +1,5 @@
 {
-  "parent": "thermal:block/machine_base",
+  "parent": "thermal:block/machine_furnace",
   "textures": {
     "north": "thermal:block/machines/machine_furnace_active"
   }

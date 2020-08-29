@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "thermal:block/device_tree_extractor",
   "textures": {
-    "particle": "thermal:block/devices/device_tree_extractor_side",
-    "down": "thermal:block/devices/device_tree_extractor_bottom",
     "up": "thermal:block/devices/device_tree_extractor_top_active",
-    "east": "thermal:block/devices/device_tree_extractor_side",
-    "west": "thermal:block/devices/device_tree_extractor_side",
-    "north": "thermal:block/devices/device_tree_extractor_active",
-    "south": "thermal:block/devices/device_tree_extractor_side"
+    "north": "thermal:block/devices/device_tree_extractor_active"
   }
 }

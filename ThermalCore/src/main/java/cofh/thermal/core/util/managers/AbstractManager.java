@@ -1,9 +1,7 @@
 package cofh.thermal.core.util.managers;
 
-import cofh.lib.util.ComparableBlockState;
 import cofh.lib.util.ComparableItemStack;
 import cofh.lib.util.ComparableItemStackNBT;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 
 public abstract class AbstractManager implements IManager {
@@ -37,11 +35,6 @@ public abstract class AbstractManager implements IManager {
             this.scaleFactor = scaleFactor;
         }
         return this;
-    }
-
-    public static ComparableBlockState convert(BlockState state) {
-
-        return new ComparableBlockState(state);
     }
 
     public static ComparableItemStack convert(ItemStack stack) {

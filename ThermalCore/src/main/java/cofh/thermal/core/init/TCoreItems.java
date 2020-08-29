@@ -200,7 +200,7 @@ public class TCoreItems {
     private static void registerStorageAugments() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
-        final float[] storageMods = new float[]{1.0F, 2.0F, 3.0F, 4.0F, 5.0F, 6.0F};
+        final float[] storageMods = new float[]{1.0F, 2.0F, 4.0F, 6.0F, 8.0F, 10.0F};
 
         for (int i = 1; i <= 4; ++i) {
             int tier = i;
