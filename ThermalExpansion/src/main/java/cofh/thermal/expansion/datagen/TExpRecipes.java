@@ -34,9 +34,23 @@ public class TExpRecipes extends RecipeProviderCoFH {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-
+        generateItemRecipes(consumer);
         generateMachineRecipes(consumer);
         generateDynamoRecipes(consumer);
+    }
+
+    private void generateItemRecipes(Consumer<IFinishedRecipe> consumer) {
+        DeferredRegisterCoFH<Item> regItems = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(regItems.get("machine_frame"))
+              .key('T', CoFHTags.Items.INGOTS_TIN)
+              .key('G', Tags.Items.GLASS)
+              .key('I', Tags.Items.INGOTS_IRON)
+              .patternLine("TGT")
+              .patternLine("GIG")
+              .patternLine("TGT")
+              .addCriterion("has_tin", hasItem(CoFHTags.Items.INGOTS_TIN))
+              .build(consumer);
     }
 
     private void generateMachineRecipes(Consumer<IFinishedRecipe> consumer) {
