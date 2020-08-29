@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachinePulverizerScreen;
 import cofh.thermal.expansion.util.recipes.machine.PulverizerRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -18,7 +18,7 @@ import java.util.List;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_BLOCK;
 
-public class PulverizerRecipeCategory extends ThermalCategory<PulverizerRecipe> {
+public class PulverizerRecipeCategory extends ThermalRecipeCategory<PulverizerRecipe> {
 
     public PulverizerRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
 

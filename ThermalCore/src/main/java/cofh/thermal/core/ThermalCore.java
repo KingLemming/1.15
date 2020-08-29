@@ -4,14 +4,16 @@ import cofh.core.client.renderer.entity.SpriteRendererCoFH;
 import cofh.core.client.renderer.entity.TNTRendererCoFH;
 import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
+import cofh.lib.client.renderer.model.SimpleModelLoader;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.device.DeviceHiveExtractorScreen;
 import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.*;
-import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
-import cofh.thermal.core.client.renderer.model.UnderlayModelLoader;
+import cofh.thermal.core.client.renderer.model.DynamoBakedModel;
+import cofh.thermal.core.client.renderer.model.ReconfigurableBakedModel;
+import cofh.thermal.core.client.renderer.model.UnderlayBakedModel;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
@@ -143,8 +145,9 @@ public class ThermalCore {
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_TREE_EXTRACTOR), cutout);
 
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "underlay"), new UnderlayModelLoader());
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new ReconfigurableModelLoader());
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "underlay"), new SimpleModelLoader(UnderlayBakedModel::new));
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "dynamo"), new SimpleModelLoader(DynamoBakedModel::new));
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new SimpleModelLoader(ReconfigurableBakedModel::new));
 
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);

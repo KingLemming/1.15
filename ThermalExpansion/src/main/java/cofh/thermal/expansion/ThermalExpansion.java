@@ -108,6 +108,12 @@ public class ThermalExpansion {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), cutout);
 
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_STIRLING), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_COMPRESSION), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_MAGMATIC), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_NUMISMATIC), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_LAPIDARY), cutout);
+
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_FLUID_BUFFER), cutout);
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_ITEM_BUFFER), cutout);
     }

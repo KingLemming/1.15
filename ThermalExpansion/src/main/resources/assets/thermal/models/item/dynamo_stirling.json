@@ -1,9 +1,0 @@
-{
-  "parent": "thermal:block/dynamo_inventory",
-  "textures": {
-    "top": "thermal:block/dynamos/dynamo_stirling",
-    "side": "thermal:block/dynamos/dynamo_stirling_side",
-    "bottom": "thermal:block/dynamos/dynamo_stirling",
-    "coil": "thermal:block/dynamos/dynamo_coil_rf"
-  }
-}

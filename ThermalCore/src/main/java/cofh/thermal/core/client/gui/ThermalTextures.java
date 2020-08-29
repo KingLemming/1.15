@@ -1,5 +1,6 @@
 package cofh.thermal.core.client.gui;
 
+import cofh.thermal.core.client.renderer.model.DynamoBakedModel;
 import cofh.thermal.core.client.renderer.model.ReconfigurableBakedModel;
 import cofh.thermal.core.client.renderer.model.UnderlayBakedModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -45,6 +46,7 @@ public class ThermalTextures {
             return;
         }
         UnderlayBakedModel.clearCache();
+        DynamoBakedModel.clearCache();
         ReconfigurableBakedModel.clearCache();
 
         AtlasTexture map = event.getMap();

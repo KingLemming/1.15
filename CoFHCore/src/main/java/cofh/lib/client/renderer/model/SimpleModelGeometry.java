@@ -1,4 +1,4 @@
-package cofh.thermal.core.client.renderer.model;
+package cofh.lib.client.renderer.model;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.model.*;
@@ -13,19 +13,21 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.function.Function;
 
-public class UnderlayModelGeometry implements ISimpleModelGeometry<UnderlayModelGeometry> {
+public class SimpleModelGeometry implements ISimpleModelGeometry<SimpleModelGeometry> {
 
     private final ModelLoaderRegistry.VanillaProxy model;
+    private final SimpleModelGeometry.IFactory<IBakedModel> factory;
 
-    public UnderlayModelGeometry(ModelLoaderRegistry.VanillaProxy model) {
+    public SimpleModelGeometry(ModelLoaderRegistry.VanillaProxy model, SimpleModelGeometry.IFactory<IBakedModel> factory) {
 
         this.model = model;
+        this.factory = factory;
     }
 
     @Override
     public IBakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, IModelTransform modelTransform, ItemOverrideList overrides, ResourceLocation modelLocation) {
 
-        return new UnderlayBakedModel(model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation));
+        return factory.create(model.bake(owner, bakery, spriteGetter, modelTransform, overrides, modelLocation));
     }
 
     @Override
@@ -38,6 +40,12 @@ public class UnderlayModelGeometry implements ISimpleModelGeometry<UnderlayModel
     public Collection<Material> getTextures(IModelConfiguration owner, Function<ResourceLocation, IUnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
 
         return model.getTextures(owner, modelGetter, missingTextureErrors);
+    }
+
+    public interface IFactory<T extends IBakedModel> {
+
+        T create(IBakedModel originalModel);
+
     }
 
 }

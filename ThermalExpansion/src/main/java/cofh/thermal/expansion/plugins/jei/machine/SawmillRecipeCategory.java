@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineSawmillScreen;
 import cofh.thermal.expansion.util.recipes.machine.SawmillRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -18,7 +18,7 @@ import java.util.List;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SAWMILL_BLOCK;
 
-public class SawmillRecipeCategory extends ThermalCategory<SawmillRecipe> {
+public class SawmillRecipeCategory extends ThermalRecipeCategory<SawmillRecipe> {
 
     public SawmillRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
 

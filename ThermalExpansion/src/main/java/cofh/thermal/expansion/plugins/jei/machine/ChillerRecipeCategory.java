@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineChillerScreen;
 import cofh.thermal.expansion.util.recipes.machine.ChillerRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.ThermalJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CHILLER_BLOCK;
 
-public class ChillerRecipeCategory extends ThermalCategory<ChillerRecipe> {
+public class ChillerRecipeCategory extends ThermalRecipeCategory<ChillerRecipe> {
 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
@@ -76,7 +77,7 @@ public class ChillerRecipeCategory extends ThermalCategory<ChillerRecipe> {
 
         guiItemStacks.init(0, true, 51, 14);
         guiItemStacks.init(1, false, 114, 23);
-        guiFluidStacks.init(0, true, 25, 11, 16, 40, TANK_MEDIUM, false, tankOverlay);
+        guiFluidStacks.init(0, true, 25, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(tankOverlay));
 
         if (!inputItems.isEmpty()) {
             guiItemStacks.set(0, inputItems.get(0));

@@ -30,7 +30,7 @@ public class TileBlockDynamo extends TileBlock6Way {
             Block.makeCuboidShape(4, 10, 4, 12, 16, 12),
             Block.makeCuboidShape(4, 4, 0, 12, 12, 6),
             Block.makeCuboidShape(4, 4, 10, 12, 12, 16),
-            Block.makeCuboidShape(0, 4, 4, 12, 12, 6),
+            Block.makeCuboidShape(0, 4, 4, 6, 12, 12),
             Block.makeCuboidShape(10, 4, 4, 16, 12, 12)
     };
 

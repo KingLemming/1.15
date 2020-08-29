@@ -12,20 +12,24 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.thermal.core.common.ThermalConfig.jeiBucketTanks;
 
-public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecipeCategory<T> {
+public abstract class ThermalRecipeCategory<T extends ThermalRecipe> implements IRecipeCategory<T> {
 
     protected final int ENERGY_X = 2;
     protected final int ENERGY_Y = 10;
 
     protected final ResourceLocation uid;
     protected IDrawableStatic background;
+    protected IDrawableStatic icon;
+    protected ITextComponent name;
 
     protected IDrawableStatic energyBackground;
     protected IDrawableStatic progressBackground;
@@ -37,15 +41,12 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
     protected IDrawableAnimated progressFluid;
     protected IDrawableAnimated speed;
 
-    protected IDrawableStatic icon;
-    protected ITextComponent name;
-
-    public ThermalCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public ThermalRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
 
         this(guiHelper, uid, true);
     }
 
-    public ThermalCategory(IGuiHelper guiHelper, ResourceLocation uid, boolean drawEnergy) {
+    public ThermalRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid, boolean drawEnergy) {
 
         this.uid = uid;
 
@@ -68,15 +69,6 @@ public abstract class ThermalCategory<T extends ThermalRecipe> implements IRecip
                         tooltip.add(localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
                     }
                 }
-            }
-        });
-    }
-
-    protected void addDefaultFluidTooltipCallback(IGuiFluidStackGroup group) {
-
-        group.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (FluidHelper.hasPotionTag(ingredient)) {
-                FluidHelper.addPotionTooltipStrings(ingredient, tooltip);
             }
         });
     }

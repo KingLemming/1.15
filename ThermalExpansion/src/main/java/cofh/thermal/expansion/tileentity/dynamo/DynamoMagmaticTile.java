@@ -1,12 +1,16 @@
 package cofh.thermal.expansion.tileentity.dynamo;
 
+import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoMagmaticContainer;
 import cofh.thermal.expansion.util.managers.dynamo.MagmaticFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
@@ -42,6 +46,17 @@ public class DynamoMagmaticTile extends DynamoTileBase {
 
         fuel += fuelMax = Math.round(MagmaticFuelManager.instance().getEnergy(fuelTank.getFluidStack()) * energyMod);
         fuelTank.modify(-FLUID_FUEL_AMOUNT);
+        if (cacheRenderFluid()) {
+            TileStatePacket.sendToClient(this);
+        }
+    }
+
+    @Override
+    protected boolean cacheRenderFluid() {
+
+        FluidStack prevFluid = renderFluid;
+        renderFluid = new FluidStack(fuelTank.getFluidStack(), fuelTank.isEmpty() ? 0 : FluidAttributes.BUCKET_VOLUME);
+        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
     // endregion
 

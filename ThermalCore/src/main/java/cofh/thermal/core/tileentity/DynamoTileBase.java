@@ -6,12 +6,19 @@ import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.client.model.ModelDataManager;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
+
+import javax.annotation.Nonnull;
 
 import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
@@ -88,6 +95,15 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
             }
         }
         updateActiveState(curActive);
+    }
+
+    @Nonnull
+    @Override
+    public IModelData getModelData() {
+
+        return new ModelDataMap.Builder()
+                .withInitial(FLUID, renderFluid)
+                .build();
     }
 
     // region PROCESS
@@ -197,6 +213,30 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
         fuelMax = buffer.readInt();
         fuel = buffer.readInt();
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+
+        super.onDataPacket(net, pkt);
+
+        ModelDataManager.requestModelDataRefresh(this);
+    }
+
+    @Override
+    public void handleControlPacket(PacketBuffer buffer) {
+
+        super.handleControlPacket(buffer);
+
+        ModelDataManager.requestModelDataRefresh(this);
+    }
+
+    @Override
+    public void handleStatePacket(PacketBuffer buffer) {
+
+        super.handleStatePacket(buffer);
+
+        ModelDataManager.requestModelDataRefresh(this);
     }
     // endregion
 

@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineCrucibleScreen;
 import cofh.thermal.expansion.util.recipes.machine.CrucibleRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.ThermalJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_BLOCK;
 
-public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
+public class CrucibleRecipeCategory extends ThermalRecipeCategory<CrucibleRecipe> {
 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
@@ -72,7 +73,7 @@ public class CrucibleRecipeCategory extends ThermalCategory<CrucibleRecipe> {
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 42, 14);
-        guiFluidStacks.init(0, false, 116, 11, 16, 40, TANK_MEDIUM, false, tankOverlay);
+        guiFluidStacks.init(0, false, 116, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(tankOverlay));
 
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, outputFluids.get(0));
