@@ -21,7 +21,7 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
-import static cofh.thermal.core.plugins.jei.ThermalJeiPlugin.*;
+import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_BLOCK;
 
 public class BrewerRecipeCategory extends ThermalRecipeCategory<BrewerRecipe> {

@@ -1,7 +1,7 @@
 {
   "type": "thermal:centrifuge",
   "ingredient": {
-    "item": "cofh:ectoplasm"
+    "item": "cofh_core:ectoplasm"
   },
   "result": [
     {

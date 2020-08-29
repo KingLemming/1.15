@@ -8,6 +8,7 @@ import cofh.thermal.expansion.inventory.container.dynamo.DynamoMagmaticContainer
 import cofh.thermal.expansion.util.managers.dynamo.MagmaticFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -30,6 +31,8 @@ public class DynamoMagmaticTile extends DynamoTileBase {
 
         tankInv.addTank(fuelTank, INPUT);
 
+        renderFluid = new FluidStack(Fluids.LAVA, FluidAttributes.BUCKET_VOLUME);
+
         addAugmentSlots(dynamoAugments);
         initHandlers();
     }
@@ -44,18 +47,18 @@ public class DynamoMagmaticTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
-        fuel += fuelMax = Math.round(MagmaticFuelManager.instance().getEnergy(fuelTank.getFluidStack()) * energyMod);
-        fuelTank.modify(-FLUID_FUEL_AMOUNT);
         if (cacheRenderFluid()) {
             TileStatePacket.sendToClient(this);
         }
+        fuel += fuelMax = Math.round(MagmaticFuelManager.instance().getEnergy(fuelTank.getFluidStack()) * energyMod);
+        fuelTank.modify(-FLUID_FUEL_AMOUNT);
     }
 
     @Override
     protected boolean cacheRenderFluid() {
 
         FluidStack prevFluid = renderFluid;
-        renderFluid = new FluidStack(fuelTank.getFluidStack(), fuelTank.isEmpty() ? 0 : FluidAttributes.BUCKET_VOLUME);
+        renderFluid = new FluidStack(fuelTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
     // endregion

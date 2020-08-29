@@ -70,4 +70,37 @@ public class StirlingFuelManager extends SingleItemFuelManager {
         }
     }
     // endregion
+
+    //    // region CONVERSION
+    //    protected List<StirlingFuel> convertedFuels = new ArrayList<>();
+    //
+    //    public List<StirlingFuel> getConvertedFuels() {
+    //
+    //        return convertedFuels;
+    //    }
+    //
+    //    protected void createConvertedRecipes(RecipeManager recipeManager) {
+    //
+    //        for (IRecipe<IInventory> recipe : recipeManager.getRecipes(IRecipeType.SMELTING).values()) {
+    //            createConvertedRecipe((AbstractCookingRecipe) recipe);
+    //        }
+    //    }
+    //
+    //    protected boolean createConvertedRecipe(AbstractCookingRecipe recipe) {
+    //
+    //        if (recipe.isDynamic() || recipe.getRecipeOutput().isEmpty()) {
+    //            return false;
+    //        }
+    //        convertedRecipes.add(convert(recipe));
+    //        return true;
+    //    }
+    //
+    //    protected FurnaceRecipe convert(AbstractCookingRecipe recipe) {
+    //
+    //        ItemStack recipeOutput = recipe.getRecipeOutput();
+    //        float experience = recipe.getExperience();
+    //        int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
+    //        return new FurnaceRecipe(new ResourceLocation(ID_THERMAL, "dyn_stirling_" + recipe.getIngredients().get(0).hashCode()), energy, experience, recipe);
+    //    }
+    //    // endregion
 }

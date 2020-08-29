@@ -68,6 +68,12 @@
   "fluid.thermal.syrup": "Syrup",
   "fluid.thermal.tree_oil": "Tree Oil",
 
+  "item.thermal.latex_bucket": "Latex Bucket",
+  "item.thermal.resin_bucket": "Resin Bucket",
+  "item.thermal.sap_bucket": "Sap Bucket",
+  "item.thermal.syrup_bucket": "Syrup Bucket",
+  "item.thermal.tree_oil_bucket": "Tree Oil Bucket",
+
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
   "itemGroup.thermal.items": "Thermal Series: Items",

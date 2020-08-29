@@ -49,25 +49,24 @@ public class DeviceSoilInfuserTile extends ThermalTileBase implements ITickableT
     @Override
     public void tick() {
 
-        if (isActive && energyStorage.getEnergyStored() >= processTick) {
-            process += processTick;
-            energyStorage.modify(-processTick);
-
-            if (process >= processMax) {
-                process -= processMax;
-                BlockPos.getAllInBox(pos.add(-radius, -1, -radius), pos.add(radius, 1, radius))
-                        .forEach(this::chargeSoil);
-            }
-        }
-        updateActiveState();
-        chargeEnergy();
-    }
-
-    protected void updateActiveState() {
-
         boolean curActive = isActive;
-        isActive = redstoneControl.getState();
+        if (isActive) {
+            if (energyStorage.getEnergyStored() >= processTick) {
+                process += processTick;
+                energyStorage.modify(-processTick);
+                if (process >= processMax) {
+                    process -= processMax;
+                    BlockPos.getAllInBox(pos.add(-radius, -1, -radius), pos.add(radius, 1, radius))
+                            .forEach(this::chargeSoil);
+                }
+            } else {
+                processOff();
+            }
+        } else if (redstoneControl.getState() && energyStorage.getEnergyStored() >= processTick) {
+            isActive = true;
+        }
         updateActiveState(curActive);
+        chargeEnergy();
     }
 
     protected void chargeSoil(BlockPos blockPos) {
@@ -84,6 +83,16 @@ public class DeviceSoilInfuserTile extends ThermalTileBase implements ITickableT
             chargeSlot.getItemStack()
                     .getCapability(CapabilityEnergy.ENERGY, null)
                     .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false));
+        }
+    }
+
+    protected void processOff() {
+
+        // This intentionally does not clear the process value.
+        isActive = false;
+        wasActive = true;
+        if (world != null) {
+            timeTracker.markTime(world);
         }
     }
 
@@ -181,7 +190,7 @@ public class DeviceSoilInfuserTile extends ThermalTileBase implements ITickableT
 
         super.finalizeAttributes();
 
-        processMax = BASE_PROCESS_MAX * radius * radius;
+        processMax = BASE_PROCESS_MAX * (1 + radius);
         processTick = Math.round(getBaseProcessTick() * baseMod);
     }
     // endregion

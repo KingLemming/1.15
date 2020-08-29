@@ -1,25 +1,21 @@
 package cofh.thermal.core.plugins.jei;
 
-import cofh.lib.util.helpers.FluidHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fluids.FluidAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static cofh.lib.util.constants.Constants.BASE_CHANCE;
 import static cofh.lib.util.helpers.StringHelper.localize;
-import static cofh.thermal.core.common.ThermalConfig.jeiBucketTanks;
 
 public abstract class ThermalRecipeCategory<T extends ThermalRecipe> implements IRecipeCategory<T> {
 

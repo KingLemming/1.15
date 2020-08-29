@@ -15,7 +15,7 @@ import static cofh.thermal.core.common.ThermalConfig.jeiBucketTanks;
 
 // TODO: Implement as necessary.
 // @JeiPlugin
-public class ThermalJeiPlugin implements IModPlugin {
+public class TCoreJeiPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {

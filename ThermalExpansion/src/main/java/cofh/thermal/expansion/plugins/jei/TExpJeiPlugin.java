@@ -1,6 +1,8 @@
 package cofh.thermal.expansion.plugins.jei;
 
+import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
+import cofh.thermal.expansion.plugins.jei.dynamo.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
 import cofh.thermal.expansion.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
@@ -45,6 +47,12 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BREWER).values(), ID_RECIPE_BREWER);
         registration.addRecipes(BrewerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BREWER);
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ID_RECIPE_BOTTLER);
+
+        registration.addRecipes(recipeManager.getRecipes(FUEL_STIRLING).values(), ID_FUEL_STIRLING);
+        registration.addRecipes(recipeManager.getRecipes(FUEL_COMPRESSION).values(), ID_FUEL_COMPRESSION);
+        registration.addRecipes(recipeManager.getRecipes(FUEL_MAGMATIC).values(), ID_FUEL_MAGMATIC);
+        registration.addRecipes(recipeManager.getRecipes(FUEL_NUMISMATIC).values(), ID_FUEL_NUMISMATIC);
+        registration.addRecipes(recipeManager.getRecipes(FUEL_LAPIDARY).values(), ID_FUEL_LAPIDARY);
     }
 
     @Override
@@ -62,6 +70,12 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new RefineryRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_REFINERY));
         registration.addRecipeCategories(new BrewerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_BREWER));
         registration.addRecipeCategories(new BottlerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_BOTTLER));
+
+        registration.addRecipeCategories(new StirlingFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_STIRLING));
+        registration.addRecipeCategories(new CompressionFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_COMPRESSION));
+        registration.addRecipeCategories(new MagmaticFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_MAGMATIC));
+        registration.addRecipeCategories(new NumismaticFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_NUMISMATIC));
+        registration.addRecipeCategories(new LapidaryFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_LAPIDARY));
     }
 
     @Override
@@ -83,6 +97,12 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeClickArea(MachineRefineryScreen.class, 65, progressY, progressW, progressH, ID_RECIPE_REFINERY);
         registration.addRecipeClickArea(MachineBrewerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BREWER);
         registration.addRecipeClickArea(MachineBottlerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BOTTLER);
+
+        registration.addRecipeClickArea(DynamoStirlingScreen.class, 80, progressY, progressH, progressH, ID_FUEL_STIRLING);
+        registration.addRecipeClickArea(DynamoCompressionScreen.class, 80, progressY, progressH, progressH, ID_FUEL_COMPRESSION);
+        registration.addRecipeClickArea(DynamoMagmaticScreen.class, 80, progressY, progressH, progressH, ID_FUEL_MAGMATIC);
+        registration.addRecipeClickArea(DynamoNumismaticScreen.class, 80, progressY, progressH, progressH, ID_FUEL_NUMISMATIC);
+        registration.addRecipeClickArea(DynamoLapidaryScreen.class, 80, progressY, progressH, progressH, ID_FUEL_LAPIDARY);
     }
 
     @Override
@@ -100,6 +120,12 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(MACHINE_REFINERY_BLOCK), ID_RECIPE_REFINERY);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_BREWER_BLOCK), ID_RECIPE_BREWER);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_BOTTLER_BLOCK), ID_RECIPE_BOTTLER);
+
+        registration.addRecipeCatalyst(new ItemStack(DYNAMO_STIRLING_BLOCK), ID_FUEL_STIRLING);
+        registration.addRecipeCatalyst(new ItemStack(DYNAMO_COMPRESSION_BLOCK), ID_FUEL_COMPRESSION);
+        registration.addRecipeCatalyst(new ItemStack(DYNAMO_MAGMATIC_BLOCK), ID_FUEL_MAGMATIC);
+        registration.addRecipeCatalyst(new ItemStack(DYNAMO_NUMISMATIC_BLOCK), ID_FUEL_NUMISMATIC);
+        registration.addRecipeCatalyst(new ItemStack(DYNAMO_LAPIDARY_BLOCK), ID_FUEL_LAPIDARY);
     }
 
     @Override

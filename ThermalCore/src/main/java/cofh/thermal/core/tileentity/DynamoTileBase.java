@@ -1,7 +1,8 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.helpers.EnergyHelper;
+import cofh.lib.util.helpers.BlockHelper;
 import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,6 +11,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -17,8 +19,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static cofh.lib.util.constants.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
@@ -36,13 +41,20 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
 
     protected int baseProcessTick = getBaseProcessTick();
     protected int processTick = baseProcessTick;
+    protected int minProcessTick = processTick / 10;
 
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
+        energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
     }
 
     // region BASE PARAMETERS
+    protected int getBaseEnergyStorage() {
+
+        return BASE_PROCESS_TICK * 100;
+    }
+
     protected int getBaseProcessTick() {
 
         return BASE_PROCESS_TICK;
@@ -76,7 +88,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     public void tick() {
 
         boolean curActive = isActive;
-
         if (isActive) {
             processTick();
             if (canProcessFinish()) {
@@ -88,7 +99,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
                 }
             }
         } else if (redstoneControl.getState()) {
-            if (timeCheck() && canProcessStart()) {
+            if (timeCheckQuarter() && canProcessStart()) {
                 processStart();
                 processTick();
                 isActive = true;
@@ -134,17 +145,30 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         if (fuel <= 0) {
             return 0;
         }
-        int energy = Math.min(fuel, processTick);
+        int energy = calcEnergy();
+        energyStorage.modify(energy);
         fuel -= energy;
-        transferEnergy(energy);
+        transferRF();
         return energy;
+    }
+
+    protected int calcEnergy() {
+
+        return Math.min(processTick, minProcessTick + (int) (processTick * (1.0D - energyStorage.getRatio())));
     }
     // endregion
 
     // region HELPERS
-    protected void transferEnergy(int energy) {
+    protected void transferRF() {
 
-        EnergyHelper.insertIntoAdjacent(this, energy, getFacing());
+        TileEntity adjTile = BlockHelper.getAdjacentTileEntity(this, getFacing());
+        Direction opposite = getFacing().getOpposite();
+
+        if (adjTile != null) {
+            int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
+            adjTile.getCapability(CapabilityEnergy.ENERGY, opposite)
+                    .ifPresent(e -> energyStorage.extractEnergy(e.receiveEnergy(maxTransfer, false), false));
+        }
     }
 
     protected Direction getFacing() {
@@ -166,7 +190,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     @Override
     public int getCurSpeed() {
 
-        return isActive ? processTick : 0;
+        return isActive ? calcEnergy() : 0;
     }
 
     @Override
@@ -179,9 +203,9 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     public double getEfficiency() {
 
         if (getEnergyMod() <= 0) {
-            return Double.MAX_VALUE;
+            return Double.MIN_VALUE;
         }
-        return 1.0D / getEnergyMod();
+        return getEnergyMod();
     }
 
     @Override
@@ -302,11 +326,31 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         energyMod = MathHelper.clamp(energyMod, scaleMin, scaleMax);
 
         processTick = baseProcessTick;
+        minProcessTick = baseProcessTick / 10;
     }
 
     protected final float getEnergyMod() {
 
         return energyMod;
+    }
+
+    @Override
+    protected float getEnergyStorageMod() {
+
+        return baseMod * processMod;
+    }
+
+    @Override
+    protected float getEnergyXferMod() {
+
+        return baseMod * processMod;
+    }
+    // endregion
+
+    // region CAPABILITIES
+    protected <T> LazyOptional<T> getEnergyCapability(@Nullable Direction side) {
+
+        return LazyOptional.empty();
     }
     // endregion
 }

@@ -48,7 +48,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     public void tick() {
 
         boolean curActive = isActive;
-
         if (isActive) {
             processTick();
             if (canProcessFinish()) {
@@ -490,6 +489,21 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
             }
         }
         super.onInventoryChange(slot);
+    }
+
+    @Override
+    public void onTankChange(int tank) {
+
+        if (Utils.isServerWorld(world) && tank < tankInv.getInputTanks().size()) {
+            if (isActive) {
+                IMachineRecipe tempRecipe = curRecipe;
+                IRecipeCatalyst tempCatalyst = curCatalyst;
+                if (!validateInputs() || tempRecipe != curRecipe || tempCatalyst != curCatalyst) {
+                    processOff();
+                }
+            }
+        }
+        super.onTankChange(tank);
     }
     // endregion
 

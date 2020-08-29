@@ -5,9 +5,6 @@ import cofh.thermal.core.tileentity.DynamoTileBase;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.core.util.GuiHelper.createDefaultEnergyStorage;
-import static cofh.core.util.GuiHelper.setClearable;
-
 public class DynamoScreenBase<T extends ContainerCoFH> extends ThermalScreenBase<T> {
 
     protected DynamoTileBase tile;
@@ -25,9 +22,9 @@ public class DynamoScreenBase<T extends ContainerCoFH> extends ThermalScreenBase
 
         addPanel(ThermalGuiHelper.createDefaultEnergyProducerPanel(this, tile));
 
-        if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
-            addElement(setClearable(createDefaultEnergyStorage(this, 80, 18, tile.getEnergyStorage()), tile, 0));
-        }
+        //        if (tile.getEnergyStorage().getMaxEnergyStored() > 0) {
+        //            addElement(setClearable(createDefaultEnergyStorage(this, 125, 22, tile.getEnergyStorage()), tile, 0));
+        //        }
     }
 
 }
