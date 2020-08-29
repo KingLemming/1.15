@@ -18,5 +18,11 @@
   },
   "result": {
     "item": "thermal:phytosoil"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "phytogro"
+    }
+  ]
 }

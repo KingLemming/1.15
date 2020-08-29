@@ -1,14 +1,11 @@
 package cofh.thermal.core.common;
 
-import cofh.lib.util.control.IReconfigurable.SideConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import static cofh.lib.util.control.IReconfigurable.SideConfig.SIDE_NONE;
 
 public class ThermalConfig {
 
@@ -93,16 +90,19 @@ public class ThermalConfig {
     }
 
     // region GLOBALS
-    public static final SideConfig[] DEFAULT_MACHINE_SIDES = new SideConfig[]{SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE, SIDE_NONE};
     public static final byte[] DEFAULT_MACHINE_SIDES_RAW = new byte[]{0, 0, 0, 0, 0, 0};
     // endregion
 
-    // region VARIABLES
+    // region SERVER VARIABLES
+    public static int deviceAugments = 2;
     public static int dynamoAugments = 4;
     public static int machineAugments = 4;
     public static int workbenchAugments = 2;
 
     public static int toolAugments = 4;
+
+    public static boolean permanentLava = true;
+    public static boolean permanentWater = true;
 
     public static BooleanValue keepEnergy;
     public static BooleanValue keepItems;
@@ -112,6 +112,13 @@ public class ThermalConfig {
     public static BooleanValue keepRSControl;
     public static BooleanValue keepSideConfig;
     public static BooleanValue keepTransferControl;
+
+    private static BooleanValue freezePermanentLava;
+    private static BooleanValue freezePermanentWater;
+    // endregion
+
+    // region CLIENT VARIABLES
+    public static boolean jeiBucketTanks = true;
     // endregion
 
     // region CONFIGURATION

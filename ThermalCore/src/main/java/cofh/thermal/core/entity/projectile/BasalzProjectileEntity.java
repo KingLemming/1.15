@@ -63,7 +63,7 @@ public class BasalzProjectileEntity extends DamagingProjectileEntity {
                     living.addVelocity(vec3d.x, 0.1D, vec3d.z);
                 }
             }
-            entity.attackEntityFrom(BasalzDamageSource.causeDamage(this, shootingEntity), entity.isImmuneToFire() ? baseDamage + 3.0F : baseDamage);
+            entity.attackEntityFrom(BasalzDamageSource.causeDamage(this, shootingEntity), baseDamage);
         }
         if (Utils.isServerWorld(world)) {
             this.world.setEntityState(this, (byte) 3);
@@ -90,11 +90,6 @@ public class BasalzProjectileEntity extends DamagingProjectileEntity {
 
     // region DAMAGE SOURCE
     protected static class BasalzDamageSource extends EntityDamageSource {
-
-        public BasalzDamageSource() {
-
-            this(null);
-        }
 
         public BasalzDamageSource(Entity source) {
 

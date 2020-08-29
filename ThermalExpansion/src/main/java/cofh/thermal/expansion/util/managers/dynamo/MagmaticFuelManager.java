@@ -4,7 +4,7 @@ import cofh.lib.inventory.FalseIInventory;
 import cofh.thermal.core.util.managers.SingleFluidFuelManager;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;

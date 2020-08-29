@@ -49,6 +49,9 @@ public class ManagedFluidHandler extends SimpleFluidHandler {
         }
         for (FluidStorageCoFH tank : inputTanks) {
             ret = tank.drain(resource, action);
+            if (action.execute()) {
+                onTankChange(0);
+            }
             if (!ret.isEmpty()) {
                 return ret;
             }
@@ -69,6 +72,9 @@ public class ManagedFluidHandler extends SimpleFluidHandler {
         }
         for (FluidStorageCoFH tank : inputTanks) {
             ret = tank.drain(maxDrain, action);
+            if (action.execute()) {
+                onTankChange(0);
+            }
             if (!ret.isEmpty()) {
                 return ret;
             }

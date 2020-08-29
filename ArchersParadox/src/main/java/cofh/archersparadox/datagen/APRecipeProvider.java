@@ -12,9 +12,9 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.APReferences.*;
+import static cofh.archersparadox.init.APIDs.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
-import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
+import static cofh.lib.util.references.CoreIDs.ID_ECTOPLASM;
 
 public class APRecipeProvider extends RecipeProviderCoFH {
 

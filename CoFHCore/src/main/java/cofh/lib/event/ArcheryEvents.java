@@ -24,8 +24,8 @@ import static cofh.lib.util.constants.Constants.DAMAGE_ARROW;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.ArcheryHelper.findAmmo;
 import static cofh.lib.util.helpers.ArcheryHelper.validBow;
-import static cofh.lib.util.references.EnsorcellationReferences.QUICK_DRAW;
-import static cofh.lib.util.references.EnsorcellationReferences.VOLLEY;
+import static cofh.lib.util.references.EnsorcReferences.QUICK_DRAW;
+import static cofh.lib.util.references.EnsorcReferences.VOLLEY;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.INFINITY;
 

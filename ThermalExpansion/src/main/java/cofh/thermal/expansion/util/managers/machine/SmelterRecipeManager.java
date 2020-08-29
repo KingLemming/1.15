@@ -13,7 +13,7 @@ import cofh.thermal.core.util.recipes.internal.BaseMachineCatalyst;
 import cofh.thermal.core.util.recipes.internal.CatalyzedMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;

@@ -27,6 +27,9 @@ public class TransferControlPacket extends PacketBase implements IPacketServer {
     public void handleServer(ServerPlayerEntity player) {
 
         World world = player.world;
+        if (!world.isBlockPresent(pos)) {
+            return;
+        }
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof ITransferControllableTile) {
             ((ITransferControllableTile) tile).setControl(transferIn, transferOut);

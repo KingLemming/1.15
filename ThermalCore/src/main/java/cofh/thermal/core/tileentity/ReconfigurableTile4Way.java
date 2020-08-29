@@ -24,7 +24,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
-import net.minecraftforge.client.model.data.ModelProperty;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -42,9 +41,6 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.BlockHelper.*;
 
 public abstract class ReconfigurableTile4Way extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
-
-    public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
-    // public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
 
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
 
@@ -94,7 +90,7 @@ public abstract class ReconfigurableTile4Way extends ThermalTileBase implements 
 
         return new ModelDataMap.Builder()
                 .withInitial(SIDES, reconfigControl().getRawSideConfig())
-                // .withInitial(FLUID, renderFluid)
+                .withInitial(FLUID, renderFluid)
                 .build();
     }
 

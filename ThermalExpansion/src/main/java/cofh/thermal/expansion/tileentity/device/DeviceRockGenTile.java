@@ -48,6 +48,7 @@ public class DeviceRockGenTile extends ThermalTileBase {
     public DeviceRockGenTile() {
 
         super(DEVICE_ROCK_GEN_TILE);
+
         inventory.addSlot(slot, OUTPUT);
     }
 

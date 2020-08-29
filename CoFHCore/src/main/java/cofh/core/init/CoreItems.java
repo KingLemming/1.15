@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 import static cofh.core.CoFHCore.ITEMS;
-import static cofh.lib.util.references.CoreReferences.ID_ECTOPLASM;
+import static cofh.lib.util.references.CoreIDs.ID_ECTOPLASM;
 
 public class CoreItems {
 

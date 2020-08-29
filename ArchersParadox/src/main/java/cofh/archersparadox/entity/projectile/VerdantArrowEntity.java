@@ -26,7 +26,7 @@ public class VerdantArrowEntity extends AbstractArrowEntity {
 
     public static float baseDamage = 0.5F;
     public static int effectRadius = 4;
-    public static int effectGrowCount = 4;
+    public static int effectGrowCount = 16;
     public static boolean transform = true;
 
     public boolean discharged;

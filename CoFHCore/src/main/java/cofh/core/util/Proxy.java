@@ -33,6 +33,11 @@ public class Proxy {
         return false;
     }
 
+    public boolean canLocalize(String key) {
+
+        return false;
+    }
+
     public Object addModel(Item item, Object model) {
 
         return item == null ? null : addModel(item.getRegistryName(), model);

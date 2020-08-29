@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/copper"
+    },
+    {
+      "tag": "forge:dusts/nickel"
+    }
+  ],
+  "result": {
+    "item": "thermal:constantan_dust",
+    "count": 2
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "constantan"
+    }
+  ]
+}

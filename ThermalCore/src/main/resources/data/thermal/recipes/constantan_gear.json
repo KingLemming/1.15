@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#i#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:constantan_ingot"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "result": {
+    "item": "thermal:constantan_gear"
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "constantan"
+    }
+  ]
+}

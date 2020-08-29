@@ -29,7 +29,7 @@ public class DynamoMagmaticScreen extends DynamoScreenBase<DynamoMagmaticContain
         super.init();
 
         addElement(setClearable(createMediumFluidStorage(this, 34, 22, tile.getTank(0)), tile, 0));
-        addElement(ThermalGuiHelper.createDefaultDuration(this, 115, 35, SCALE_FLAME, tile));
+        addElement(ThermalGuiHelper.createDefaultDuration(this, 80, 35, SCALE_FLAME, tile));
     }
 
 }

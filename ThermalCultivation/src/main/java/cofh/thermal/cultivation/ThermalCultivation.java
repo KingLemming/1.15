@@ -1,6 +1,6 @@
 package cofh.thermal.cultivation;
 
-import cofh.thermal.cultivation.client.gui.DeviceHiveExtractorScreen;
+import cofh.thermal.cultivation.client.gui.device.DeviceSoilInfuserScreen;
 import cofh.thermal.cultivation.init.TCulBlocks;
 import cofh.thermal.cultivation.init.TCulItems;
 import net.minecraft.block.ComposterBlock;
@@ -15,12 +15,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
-import static cofh.lib.util.constants.Constants.TILLED;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
-import static cofh.thermal.cultivation.init.TCulReferences.*;
+import static cofh.thermal.cultivation.init.TCulIDs.*;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_CONTAINER;
 
 @Mod(ID_THERMAL_CULTIVATION)
 public class ThermalCultivation {
@@ -35,10 +35,7 @@ public class ThermalCultivation {
         TCulBlocks.register();
         TCulItems.register();
 
-        setFeature(FLAG_TOOL_WRENCH, true);
-        setFeature(FLAG_TOOL_REDPRINT, true);
-        setFeature(FLAG_TOOL_LOCK, true);
-        setFeature(FLAG_TOOL_PHYTOGRO, true);
+        setFeature(FLAG_PHYTOGRO, true);
 
         setFeature(FLAG_RESOURCE_APATITE, true);
         setFeature(FLAG_RESOURCE_NITER, true);
@@ -106,15 +103,14 @@ public class ThermalCultivation {
 
             ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_FROST_MELON)), chance);
         }
-        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL).getDefaultState().with(TILLED, true));
-        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL_CHARGED), BLOCKS.get(ID_PHYTOSOIL_CHARGED).getDefaultState().with(TILLED, true));
+        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL_TILLED).getDefaultState());
 
         TCulBlocks.setup();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
+        ScreenManager.registerFactory(DEVICE_SOIL_INFUSER_CONTAINER, DeviceSoilInfuserScreen::new);
 
         RenderType cutout = RenderType.getCutout();
 

@@ -6,41 +6,15 @@ import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraftforge.registries.ObjectHolder;
 
+import static cofh.archersparadox.init.APIDs.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 
+@ObjectHolder(ID_ARCHERS_PARADOX)
 public class APReferences {
 
     private APReferences() {
 
     }
-
-    // region IDS
-    public static final String ID_BLAZE_ARROW = ID_ARCHERS_PARADOX + ":blaze_arrow";
-    public static final String ID_CHALLENGE_ARROW = ID_ARCHERS_PARADOX + ":challenge_arrow";
-    public static final String ID_DIAMOND_ARROW = ID_ARCHERS_PARADOX + ":diamond_arrow";
-    public static final String ID_DISPLACEMENT_ARROW = ID_ARCHERS_PARADOX + ":displacement_arrow";
-    public static final String ID_ENDER_ARROW = ID_ARCHERS_PARADOX + ":ender_arrow";
-    public static final String ID_EXPLOSIVE_ARROW = ID_ARCHERS_PARADOX + ":explosive_arrow";
-    public static final String ID_FROST_ARROW = ID_ARCHERS_PARADOX + ":frost_arrow";
-    public static final String ID_GLOWSTONE_ARROW = ID_ARCHERS_PARADOX + ":glowstone_arrow";
-    public static final String ID_LIGHTNING_ARROW = ID_ARCHERS_PARADOX + ":lightning_arrow";
-    public static final String ID_MAGMA_ARROW = ID_ARCHERS_PARADOX + ":magma_arrow";
-    public static final String ID_PHANTASMAL_ARROW = ID_ARCHERS_PARADOX + ":phantasmal_arrow";
-    public static final String ID_PRISMARINE_ARROW = ID_ARCHERS_PARADOX + ":prismarine_arrow";
-    public static final String ID_QUARTZ_ARROW = ID_ARCHERS_PARADOX + ":quartz_arrow";
-    public static final String ID_REDSTONE_ARROW = ID_ARCHERS_PARADOX + ":redstone_arrow";
-    public static final String ID_SHULKER_ARROW = ID_ARCHERS_PARADOX + ":shulker_arrow";
-    public static final String ID_SLIME_ARROW = ID_ARCHERS_PARADOX + ":slime_arrow";
-    public static final String ID_SPORE_ARROW = ID_ARCHERS_PARADOX + ":spore_arrow";
-    public static final String ID_TRAINING_ARROW = ID_ARCHERS_PARADOX + ":training_arrow";
-    public static final String ID_VERDANT_ARROW = ID_ARCHERS_PARADOX + ":verdant_arrow";
-
-    public static final String ID_EFFECT_CHALLENGE_COMPLETE = ID_ARCHERS_PARADOX + ":challenge_complete";
-    public static final String ID_EFFECT_CHALLENGE_MISS = ID_ARCHERS_PARADOX + ":challenge_miss";
-    public static final String ID_EFFECT_CHALLENGE_STREAK = ID_ARCHERS_PARADOX + ":challenge_streak";
-    public static final String ID_EFFECT_TRAINING_MISS = ID_ARCHERS_PARADOX + ":training_miss";
-    public static final String ID_EFFECT_TRAINING_STREAK = ID_ARCHERS_PARADOX + ":training_streak";
-    // endregion
 
     // region EFFECTS
     @ObjectHolder(ID_EFFECT_CHALLENGE_COMPLETE)

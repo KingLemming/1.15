@@ -45,7 +45,7 @@ public class BlitzProjectileEntity extends DamagingProjectileEntity {
     @Override
     protected IParticleData getParticle() {
 
-        return ParticleTypes.CLOUD;
+        return ParticleTypes.INSTANT_EFFECT;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BlitzProjectileEntity extends DamagingProjectileEntity {
                 LivingEntity living = (LivingEntity) entity;
                 living.addPotionEffect(new EffectInstance(SHOCKED, effectDuration, effectAmplifier, false, false));
             }
-            entity.attackEntityFrom(BlitzDamageSource.causeDamage(this, shootingEntity), entity.isImmuneToFire() ? baseDamage + 3.0F : baseDamage);
+            entity.attackEntityFrom(BlitzDamageSource.causeDamage(this, shootingEntity), entity.isWet() ? baseDamage + 3.0F : baseDamage);
         }
         if (Utils.isServerWorld(world)) {
             this.world.setEntityState(this, (byte) 3);
@@ -84,11 +84,6 @@ public class BlitzProjectileEntity extends DamagingProjectileEntity {
 
     // region DAMAGE SOURCE
     protected static class BlitzDamageSource extends EntityDamageSource {
-
-        public BlitzDamageSource() {
-
-            this(null);
-        }
 
         public BlitzDamageSource(Entity source) {
 

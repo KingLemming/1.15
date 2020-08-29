@@ -1,5 +1,6 @@
 package cofh.thermal.locomotion;
 
+import cofh.core.client.renderer.entity.TNTMinecartRendererCoFH;
 import cofh.thermal.core.client.renderer.entity.UnderwaterMinecartRenderer;
 import cofh.thermal.locomotion.init.TLocBlocks;
 import cofh.thermal.locomotion.init.TLocEntities;
@@ -15,8 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.common.ThermalFeatures.FLAG_TOOL_WRENCH;
-import static cofh.thermal.core.common.ThermalFeatures.setFeature;
+import static cofh.thermal.locomotion.init.TLocIDs.*;
 import static cofh.thermal.locomotion.init.TLocReferences.*;
 
 @Mod(ID_THERMAL_LOCOMOTION)
@@ -32,8 +32,6 @@ public class ThermalLocomotion {
         TLocBlocks.register();
         TLocEntities.register();
         TLocItems.register();
-
-        setFeature(FLAG_TOOL_WRENCH, true);
     }
 
     // region INITIALIZATION
@@ -60,6 +58,15 @@ public class ThermalLocomotion {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), cutout);
 
         RenderingRegistry.registerEntityRenderingHandler(UNDERWATER_CART_ENTITY, UnderwaterMinecartRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(PHYTO_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(FIRE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(EARTH_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(ICE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(NUKE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
     }
     // endregion
 }

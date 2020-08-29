@@ -6,7 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-import static cofh.lib.util.references.EnsorcellationReferences.EXCAVATING;
+import static cofh.lib.util.references.EnsorcReferences.EXCAVATING;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
 public class AreaEffectMiningItemWrapper extends AreaEffectItemWrapper {

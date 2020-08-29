@@ -36,6 +36,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.data.ModelProperty;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -58,6 +59,13 @@ import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {
 
+    public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
+    public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
+
+    protected static final int MIN_PROCESS_TICK = 5;
+    protected static final int BASE_PROCESS_TICK = 20;
+    protected static final int BASE_ENERGY = 20000;
+
     protected TimeTracker timeTracker = new TimeTracker();
     protected ManagedItemInv inventory = new ManagedItemInv(this, TAG_ITEM_INV);
     protected ManagedTankInv tankInv = new ManagedTankInv(this, TAG_TANK_INV);
@@ -77,6 +85,28 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
         super(tileEntityTypeIn);
     }
+
+    // region BASE PARAMETERS
+    protected int getBaseEnergyStorage() {
+
+        return BASE_ENERGY;
+    }
+
+    protected int getBaseEnergyXfer() {
+
+        return BASE_PROCESS_TICK * 4;
+    }
+
+    protected int getBaseProcessTick() {
+
+        return BASE_PROCESS_TICK;
+    }
+
+    protected int getMinProcessTick() {
+
+        return MIN_PROCESS_TICK;
+    }
+    // endregion
 
     // TODO: Does this need to exist?
     @Override
@@ -483,6 +513,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     // endregion
 
     // region AUGMENTS
+    protected float baseMod = 1.0F;
     protected float energyStorageMod = 1.0F;
     protected float energyXferMod = 1.0F;
     protected float fluidStorageMod = 1.0F;
@@ -520,6 +551,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void resetAttributes() {
 
+        baseMod = 1.0F;
         energyStorageMod = 1.0F;
         energyXferMod = 1.0F;
         fluidStorageMod = 1.0F;
@@ -527,6 +559,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected void setAttributesFromAugment(CompoundNBT augmentData) {
 
+        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         energyStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_STORAGE), energyStorageMod);
         energyXferMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_ENERGY_XFER), energyXferMod);
         fluidStorageMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_FLUID_STORAGE), fluidStorageMod);
@@ -547,21 +580,19 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
         }
     }
 
-    // Defaults here are balanced for "pure" storage solutions; hence the ^2 factor.
-
     protected float getEnergyStorageMod() {
 
-        return energyStorageMod * energyStorageMod;
+        return energyStorageMod * baseMod;
     }
 
     protected float getEnergyXferMod() {
 
-        return energyXferMod * energyXferMod;
+        return energyXferMod * baseMod;
     }
 
     protected float getFluidStorageMod() {
 
-        return fluidStorageMod * fluidStorageMod;
+        return fluidStorageMod * baseMod;
     }
 
     protected float getAttributeMod(CompoundNBT augmentData, String key) {

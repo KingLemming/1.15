@@ -1,12 +1,17 @@
 package cofh.thermal.expansion.tileentity.dynamo;
 
+import cofh.core.network.packet.client.TileStatePacket;
 import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoCompressionContainer;
 import cofh.thermal.expansion.util.managers.dynamo.CompressionFuelManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
@@ -26,6 +31,8 @@ public class DynamoCompressionTile extends DynamoTileBase {
 
         tankInv.addTank(fuelTank, INPUT);
 
+        renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
+
         addAugmentSlots(dynamoAugments);
         initHandlers();
     }
@@ -40,8 +47,19 @@ public class DynamoCompressionTile extends DynamoTileBase {
     @Override
     protected void processStart() {
 
+        if (cacheRenderFluid()) {
+            TileStatePacket.sendToClient(this);
+        }
         fuel += fuelMax = Math.round(CompressionFuelManager.instance().getEnergy(fuelTank.getFluidStack()) * energyMod);
         fuelTank.modify(-FLUID_FUEL_AMOUNT);
+    }
+
+    @Override
+    protected boolean cacheRenderFluid() {
+
+        FluidStack prevFluid = renderFluid;
+        renderFluid = new FluidStack(fuelTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
+        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
     // endregion
 

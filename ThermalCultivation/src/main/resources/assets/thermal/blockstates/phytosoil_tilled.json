@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "charged=0": {
+      "model": "thermal:block/phytosoil_tilled"
+    },
+    "charged=1": {
+      "model": "thermal:block/phytosoil_charged_tilled"
+    },
+    "charged=2": {
+      "model": "thermal:block/phytosoil_charged_tilled"
+    },
+    "charged=3": {
+      "model": "thermal:block/phytosoil_charged_tilled"
+    },
+    "charged=4": {
+      "model": "thermal:block/phytosoil_charged_tilled"
+    }
+  }
+}

@@ -27,10 +27,6 @@ import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileProcess extends ReconfigurableTile4Way implements ITickableTileEntity, IMachineInventory {
 
-    protected static final int MIN_PROCESS_TICK = 5;
-    protected static final int BASE_PROCESS_TICK = 20;
-    protected static final int BASE_ENERGY = 20000;
-
     protected IMachineRecipe curRecipe;
     protected IRecipeCatalyst curCatalyst;
     protected List<Integer> itemInputCounts = new ArrayList<>();
@@ -48,33 +44,10 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
     }
 
-    // region BASE PARAMETERS
-    protected int getBaseEnergyStorage() {
-
-        return BASE_ENERGY;
-    }
-
-    protected int getBaseEnergyXfer() {
-
-        return BASE_PROCESS_TICK * 4;
-    }
-
-    protected int getBaseProcessTick() {
-
-        return BASE_PROCESS_TICK;
-    }
-
-    protected int getMinProcessTick() {
-
-        return MIN_PROCESS_TICK;
-    }
-    // endregion
-
     @Override
     public void tick() {
 
         boolean curActive = isActive;
-
         if (isActive) {
             processTick();
             if (canProcessFinish()) {
@@ -440,7 +413,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     // endregion
 
     // region AUGMENTS
-    protected float baseMod = 1.0F;
     protected float processMod = 1.0F;
     protected float primaryMod = 1.0F;
     protected float secondaryMod = 1.0F;
@@ -454,7 +426,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
 
         super.resetAttributes();
 
-        baseMod = 1.0F;
         processMod = 1.0F;
         primaryMod = 1.0F;
         secondaryMod = 1.0F;
@@ -469,7 +440,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
 
         super.setAttributesFromAugment(augmentData);
 
-        baseMod = Math.max(getAttributeMod(augmentData, TAG_AUGMENT_BASE_MOD), baseMod);
         processMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_POWER);
         primaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_PRIMARY);
         secondaryMod += getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_SECONDARY);
@@ -503,24 +473,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
             }
         }
     }
-
-    @Override
-    protected float getEnergyStorageMod() {
-
-        return energyStorageMod * baseMod;
-    }
-
-    @Override
-    protected float getEnergyXferMod() {
-
-        return energyXferMod * baseMod;
-    }
-
-    @Override
-    protected float getFluidStorageMod() {
-
-        return fluidStorageMod * baseMod;
-    }
     // endregion
 
     // region ITileCallback
@@ -537,6 +489,21 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
             }
         }
         super.onInventoryChange(slot);
+    }
+
+    @Override
+    public void onTankChange(int tank) {
+
+        if (Utils.isServerWorld(world) && tank < tankInv.getInputTanks().size()) {
+            if (isActive) {
+                IMachineRecipe tempRecipe = curRecipe;
+                IRecipeCatalyst tempCatalyst = curCatalyst;
+                if (!validateInputs() || tempRecipe != curRecipe || tempCatalyst != curCatalyst) {
+                    processOff();
+                }
+            }
+        }
+        super.onTankChange(tank);
     }
     // endregion
 

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
-import static cofh.archersparadox.init.APReferences.*;
+import static cofh.archersparadox.init.APIDs.*;
 
 public class APItems {
 

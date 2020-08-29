@@ -39,6 +39,11 @@ public class ProxyUtils {
         return CoFHCore.PROXY.isClient();
     }
 
+    public static boolean canLocalize(String key) {
+
+        return CoFHCore.PROXY.canLocalize(key);
+    }
+
     public static Object addModel(Item item, Object model) {
 
         return CoFHCore.PROXY.addModel(item, model);

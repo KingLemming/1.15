@@ -5,7 +5,7 @@ import cofh.core.potion.NeutralEffect;
 import net.minecraft.potion.EffectType;
 
 import static cofh.archersparadox.ArchersParadox.EFFECTS;
-import static cofh.archersparadox.init.APReferences.*;
+import static cofh.archersparadox.init.APIDs.*;
 
 public class APEffects {
 

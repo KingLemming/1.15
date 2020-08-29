@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#i#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:lead_ingot"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "result": {
+    "item": "thermal:lead_gear"
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "lead"
+    }
+  ]
+}

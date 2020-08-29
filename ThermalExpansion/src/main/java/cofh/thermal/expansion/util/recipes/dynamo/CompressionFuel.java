@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.util.recipes.dynamo;
 
 import cofh.thermal.core.util.recipes.ThermalFuel;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.ID_FUEL_COMPRESSION;
+import static cofh.thermal.expansion.init.TExpRecipeTypes.ID_FUEL_COMPRESSION;
 
 public class CompressionFuel extends ThermalFuel {
 

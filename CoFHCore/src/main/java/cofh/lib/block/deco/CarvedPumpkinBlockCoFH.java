@@ -1,6 +1,6 @@
 package cofh.lib.block.deco;
 
-import cofh.lib.util.helpers.StringHelper;
+import cofh.core.util.ProxyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CarvedPumpkinBlock;
@@ -49,7 +49,7 @@ public class CarvedPumpkinBlockCoFH extends CarvedPumpkinBlock {
     public String getTranslationKey() {
 
         String specificTranslation = Util.makeTranslationKey("block", Registry.BLOCK.getKey(this));
-        if (StringHelper.canLocalize(specificTranslation)) {
+        if (ProxyUtils.canLocalize(specificTranslation)) {
             return specificTranslation;
         }
         return this.lightValue > 0 ? "block.minecraft.jack_o_lantern" : "block.minecraft.carved_pumpkin";

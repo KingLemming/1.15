@@ -8,7 +8,7 @@ import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreBlockStates extends BlockStateProviderCoFH {
 
@@ -32,6 +32,7 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
         registerResources(reg);
         registerStorage(reg);
         registerBuildingBlocks(reg);
+        registerMisc(reg);
     }
 
     // region HELPERS
@@ -86,15 +87,30 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         storageBlock(reg.getSup(ID_RUBY_BLOCK));
         storageBlock(reg.getSup(ID_SAPPHIRE_BLOCK));
+
+        storageBlock(reg.getSup(ID_SAWDUST_BLOCK));
+        // TODO: Add a top/bottom method to handle this easily.
+        // storageBlock(reg.getSup(ID_ROSIN_BLOCK));
+
+        storageBlock(reg.getSup(ID_RUBBER_BLOCK));
+        storageBlock(reg.getSup(ID_CURED_RUBBER_BLOCK));
+        storageBlock(reg.getSup(ID_SLAG_BLOCK));
+        storageBlock(reg.getSup(ID_RICH_SLAG_BLOCK));
     }
 
     private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {
 
         // TODO: Missing - Machine Frame
 
-        glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
-        glassBlock(reg.getSup(ID_LUMIUM_GLASS));
+        glassBlock(reg.getSup(ID_HARDENED_GLASS));
         glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
+        glassBlock(reg.getSup(ID_LUMIUM_GLASS));
+        glassBlock(reg.getSup(ID_ENDERIUM_GLASS));
+    }
+
+    private void registerMisc(DeferredRegisterCoFH<Block> reg) {
+
+        // miscBlock(reg.getSup(ID_PHYTO_TNT));
     }
     // endregion
 }

@@ -50,6 +50,14 @@ public class SimpleFluidHandler implements IFluidHandler {
         return true;
     }
 
+    public void onTankChange(int tank) {
+
+        if (tile == null) {
+            return;
+        }
+        tile.onTankChange(tank);
+    }
+
     // region IFluidHandler
     @Override
     public int getTanks() {

@@ -234,7 +234,6 @@ public class BlitzEntity extends MonsterEntity {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
                             this.blitz.world.playEvent(null, 1018, new BlockPos(this.blitz), 0);
                             // this.blitz.world.playSound(blitz.getPosX() + 0.5D, blitz.getPosY() + 0.5D, blitz.getPosZ() + 0.5D, SOUND_BLITZ_SHOOT, SoundCategory.HOSTILE, 1.0F, (blitz.rand.nextFloat() - blitz.rand.nextFloat()) * 0.2F + 1.0F, false);
-
                             BlitzProjectileEntity projectile = new BlitzProjectileEntity(this.blitz, d1 + this.blitz.rand.nextGaussian() * (double) f, d2, d3 + this.blitz.rand.nextGaussian() * (double) f, this.blitz.world);
                             projectile.setPosition(projectile.getPosX(), this.blitz.getPosYHeight(0.5D) + 0.5D, projectile.getPosZ());
                             this.blitz.world.addEntity(projectile);

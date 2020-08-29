@@ -8,10 +8,10 @@
       "item": "minecraft:paper"
     },
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     }
   ],
   "result": {

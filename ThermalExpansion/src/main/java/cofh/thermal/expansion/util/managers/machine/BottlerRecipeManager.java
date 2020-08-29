@@ -12,7 +12,7 @@ import cofh.thermal.core.util.managers.IRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import cofh.thermal.expansion.util.recipes.machine.BottlerRecipePotion;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;

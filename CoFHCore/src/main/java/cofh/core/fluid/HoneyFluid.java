@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import static cofh.core.CoFHCore.FLUIDS;
-import static cofh.lib.util.references.CoreReferences.ID_FLUID_HONEY;
+import static cofh.lib.util.references.CoreIDs.ID_FLUID_HONEY;
 
 public class HoneyFluid extends FluidCoFH {
 

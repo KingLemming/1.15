@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.cultivation.init.TCulReferences.ID_FROST_MELON_STEM;
-import static cofh.thermal.cultivation.init.TCulReferences.ID_FROST_MELON_STEM_ATTACHED;
+import static cofh.thermal.cultivation.init.TCulIDs.ID_FROST_MELON_STEM;
+import static cofh.thermal.cultivation.init.TCulIDs.ID_FROST_MELON_STEM_ATTACHED;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_THERMAL_CULTIVATION, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TCulClientSetupEvents {

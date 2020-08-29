@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.util.recipes.machine;
 
 import cofh.thermal.core.util.recipes.ThermalRecipe;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
-import static cofh.thermal.expansion.util.recipes.TExpRecipeTypes.ID_RECIPE_SMELTER;
+import static cofh.thermal.expansion.init.TExpRecipeTypes.ID_RECIPE_SMELTER;
 
 public class SmelterRecipe extends ThermalRecipe {
 

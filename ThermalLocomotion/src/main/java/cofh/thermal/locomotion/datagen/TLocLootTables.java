@@ -4,7 +4,7 @@ import cofh.lib.datagen.LootTableProviderCoFH;
 import net.minecraft.data.DataGenerator;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.locomotion.init.TLocIDs.*;
 
 public class TLocLootTables extends LootTableProviderCoFH {
 

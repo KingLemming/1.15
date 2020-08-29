@@ -30,6 +30,7 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
     public static final String GEARS = "gears";
     public static final String GEMS = "gems";
     public static final String INGOTS = "ingots";
+    public static final String MINECARTS = "minecarts";
     public static final String NUGGETS = "nuggets";
     public static final String PLATES = "plates";
     public static final String PROJECTILES = "projectiles";

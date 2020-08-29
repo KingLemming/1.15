@@ -1,12 +1,19 @@
 package cofh.thermal.core;
 
+import cofh.core.client.renderer.entity.SpriteRendererCoFH;
+import cofh.core.client.renderer.entity.TNTRendererCoFH;
 import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
+import cofh.lib.client.renderer.model.SimpleModelLoader;
 import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.client.gui.device.DeviceHiveExtractorScreen;
+import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
 import cofh.thermal.core.client.renderer.entity.*;
-import cofh.thermal.core.client.renderer.model.ReconfigurableModelLoader;
+import cofh.thermal.core.client.renderer.model.DynamoBakedModel;
+import cofh.thermal.core.client.renderer.model.ReconfigurableBakedModel;
+import cofh.thermal.core.client.renderer.model.UnderlayBakedModel;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
@@ -50,6 +57,7 @@ import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
 @Mod(ID_THERMAL)
@@ -74,6 +82,10 @@ public class ThermalCore {
 
         TCoreEntities.register();
         TCoreSounds.register();
+
+        TCoreRecipeManagers.register();
+        TCoreRecipeSerializers.register();
+        TCoreRecipeTypes.register();
 
         setFeature(FLAG_VANILLA_BLOCKS, true);
         setFeature(FLAG_VANILLA_ITEMS, true);
@@ -117,22 +129,31 @@ public class ThermalCore {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ScreenManager.registerFactory(DEVICE_HIVE_EXTRACTOR_CONTAINER, DeviceHiveExtractorScreen::new);
+        ScreenManager.registerFactory(DEVICE_TREE_EXTRACTOR_CONTAINER, DeviceTreeExtractorScreen::new);
 
         ScreenManager.registerFactory(TINKER_BENCH_CONTAINER, TinkerBenchScreen::new);
 
         RenderType cutout = RenderType.getCutout();
 
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_HARDENED_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SIGNALUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_FRAME), cutout);
 
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new ReconfigurableModelLoader());
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_TREE_EXTRACTOR), cutout);
+
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "underlay"), new SimpleModelLoader(UnderlayBakedModel::new));
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "dynamo"), new SimpleModelLoader(DynamoBakedModel::new));
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(ID_THERMAL, "reconfigurable"), new SimpleModelLoader(ReconfigurableBakedModel::new));
 
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_HELMET), ArmorModelFullSuit.LARGE);
         ProxyUtils.addModel(ITEMS.get(ID_BEEKEEPER_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
+
+        ProxyUtils.addModel(ITEMS.get(ID_DIVING_HELMET), ArmorModelFullSuit.LARGE);
+        ProxyUtils.addModel(ITEMS.get(ID_DIVING_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
 
         ProxyUtils.addModel(ITEMS.get(ID_HAZMAT_HELMET), ArmorModelFullSuit.LARGE);
         ProxyUtils.addModel(ITEMS.get(ID_HAZMAT_CHESTPLATE), ArmorModelFullSuit.DEFAULT);
@@ -144,6 +165,25 @@ public class ThermalCore {
         RenderingRegistry.registerEntityRenderingHandler(BASALZ_PROJECTILE_ENTITY, BasalzProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLITZ_PROJECTILE_ENTITY, BlitzProjectileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BLIZZ_PROJECTILE_ENTITY, BlizzProjectileRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EXPLOSIVE_GRENADE_ENTITY, SpriteRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(PHYTO_GRENADE_ENTITY, SpriteRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(FIRE_GRENADE_ENTITY, SpriteRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(EARTH_GRENADE_ENTITY, SpriteRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(ICE_GRENADE_ENTITY, SpriteRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_GRENADE_ENTITY, SpriteRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(NUKE_GRENADE_ENTITY, SpriteRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(PHYTO_TNT_ENTITY, TNTRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(FIRE_TNT_ENTITY, TNTRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(EARTH_TNT_ENTITY, TNTRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(ICE_TNT_ENTITY, TNTRendererCoFH::new);
+        RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_TNT_ENTITY, TNTRendererCoFH::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(NUKE_TNT_ENTITY, TNTRendererCoFH::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

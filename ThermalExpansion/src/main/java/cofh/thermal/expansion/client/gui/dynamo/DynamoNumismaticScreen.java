@@ -29,7 +29,7 @@ public class DynamoNumismaticScreen extends DynamoScreenBase<DynamoNumismaticCon
 
         super.init();
 
-        addElement(ThermalGuiHelper.createDefaultDuration(this, 115, 35, SCALE_FLAME_GREEN, tile));
+        addElement(ThermalGuiHelper.createDefaultDuration(this, 80, 35, SCALE_FLAME_GREEN, tile));
     }
 
 }

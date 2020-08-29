@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineBrewerScreen;
 import cofh.thermal.expansion.util.recipes.machine.BrewerRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_BREWER_BLOCK;
 
-public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
+public class BrewerRecipeCategory extends ThermalRecipeCategory<BrewerRecipe> {
 
     protected IDrawableStatic tankInput;
     protected IDrawableStatic tankOutput;
@@ -80,8 +81,8 @@ public class BrewerRecipeCategory extends ThermalCategory<BrewerRecipe> {
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 51, 14);
-        guiFluidStacks.init(0, true, 25, 11, 16, 40, TANK_MEDIUM, false, inputOverlay);
-        guiFluidStacks.init(1, false, 116, 11, 16, 40, TANK_MEDIUM, false, outputOverlay);
+        guiFluidStacks.init(0, true, 25, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(inputOverlay));
+        guiFluidStacks.init(1, false, 116, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(outputOverlay));
 
         guiItemStacks.set(0, inputItems.get(0));
         guiFluidStacks.set(0, inputFluids.get(0));

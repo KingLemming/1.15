@@ -10,7 +10,8 @@
     },
     {
       "item": "thermal:cinnabar",
-      "chance": 0.25
+      "chance": 0.25,
+      "locked": true
     },
     {
       "item": "minecraft:gravel",

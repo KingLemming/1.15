@@ -23,6 +23,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static cofh.archersparadox.init.APIDs.ID_BLAZE_ARROW;
 import static cofh.archersparadox.init.APReferences.*;
 import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
 

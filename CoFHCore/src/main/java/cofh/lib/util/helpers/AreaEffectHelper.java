@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
-import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static cofh.lib.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.util.Direction.DOWN;
 

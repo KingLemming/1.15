@@ -18,7 +18,7 @@ import static cofh.archersparadox.init.APReferences.EXPLOSIVE_ARROW_ITEM;
 public class ExplosiveArrowEntity extends AbstractArrowEntity {
 
     public static float baseDamage = 0.5F;
-    public static double explosionStrength = 1.9F;
+    public static double explosionStrength = 1.9;
     public static boolean explosionsBreakBlocks = true;
     public static boolean explosionsCauseFire = true;
     public static boolean knockbackBoost = true;

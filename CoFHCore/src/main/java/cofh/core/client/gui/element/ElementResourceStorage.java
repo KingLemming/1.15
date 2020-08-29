@@ -24,7 +24,7 @@ public abstract class ElementResourceStorage extends ElementBase {
 
     protected IResourceStorage storage;
     protected boolean infinite;
-    protected int minDisplay;
+    protected int minDisplay = 1;
 
     protected BooleanSupplier drawUnderlay = TRUE;
     protected BooleanSupplier drawOverlay = TRUE;

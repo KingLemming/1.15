@@ -1,12 +1,19 @@
 package cofh.thermal.core.init;
 
 import cofh.core.block.GunpowderBlock;
+import cofh.core.block.TNTBlockCoFH;
 import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
+import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
+import cofh.thermal.core.entity.item.*;
+import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
+import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
+import cofh.thermal.core.tileentity.device.DeviceHiveExtractorTile;
+import cofh.thermal.core.tileentity.device.DeviceTreeExtractorTile;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -19,6 +26,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 
@@ -27,6 +36,7 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
@@ -44,6 +54,7 @@ public class TCoreBlocks {
         registerResources();
         registerStorage();
         registerBuildingBlocks();
+        registerMisc();
 
         registerTileBlocks();
         registerTileContainers();
@@ -57,6 +68,11 @@ public class TCoreBlocks {
         fire.setFireInfo(BLOCKS.get(ID_GUNPOWDER_BLOCK), 15, 100);
         fire.setFireInfo(BLOCKS.get(ID_SUGAR_CANE_BLOCK), 60, 20);
         fire.setFireInfo(BLOCKS.get(ID_BAMBOO_BLOCK), 60, 20);
+
+        fire.setFireInfo(BLOCKS.get(ID_SAWDUST_BLOCK), 10, 10);
+        fire.setFireInfo(BLOCKS.get(ID_ROSIN_BLOCK), 5, 5);
+
+        DispenserBlock.registerDispenseBehavior(BLOCKS.get(ID_PHYTO_TNT), TNTBlockCoFH.DISPENSER_BEHAVIOR);
     }
 
     // region HELPERS
@@ -148,13 +164,35 @@ public class TCoreBlocks {
 
         registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1), getFeature(FLAG_RESOURCE_RUBY));
         registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1), getFeature(FLAG_RESOURCE_SAPPHIRE));
+
+        registerBlock(ID_SAWDUST_BLOCK, () -> new FallingBlock(create(Material.WOOD).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.SAND)) {
+
+            @OnlyIn(Dist.CLIENT)
+            public int getDustColor(BlockState state) {
+
+                return 11507581;
+            }
+        });
+        registerBlock(ID_ROSIN_BLOCK, () -> new Block(create(Material.CLAY, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 4.0F).speedFactor(0.8F).jumpFactor(0.8F).sound(SoundType.field_226947_m_)) {
+
+            @Override
+            public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+
+                entityIn.onLivingFall(fallDistance, 0.8F);
+            }
+        });
+        registerBlock(ID_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
+        registerBlock(ID_CURED_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
+        registerBlock(ID_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_SLAG));
+        registerBlock(ID_RICH_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_SLAG));
     }
 
     private static void registerBuildingBlocks() {
 
         registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()));
 
-        registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
+        registerBlock(ID_HARDENED_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
+        registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(1.5F, 7.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
             public boolean canProvidePower(BlockState state) {
@@ -168,24 +206,48 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
-        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(2.5F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(1.5F, 7.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
+    }
+
+    private static void registerMisc() {
+
+        registerBlock(ID_PHYTO_TNT, () -> new TNTBlockCoFH(PhytoTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.GREEN).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_PHYTOGRO));
+
+        registerBlock(ID_FIRE_TNT, () -> new TNTBlockCoFH(FireTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.RED).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
+        registerBlock(ID_EARTH_TNT, () -> new TNTBlockCoFH(EarthTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.OBSIDIAN).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
+        registerBlock(ID_ICE_TNT, () -> new TNTBlockCoFH(IceTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.ICE).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
+        registerBlock(ID_LIGHTNING_TNT, () -> new TNTBlockCoFH(LightningTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.YELLOW).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
+
+        registerBlock(ID_NUKE_TNT, () -> new TNTBlockCoFH(NukeTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.LIME_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), Rarity.UNCOMMON);
     }
 
     private static void registerTileBlocks() {
 
+        IntSupplier deviceAugs = () -> ThermalConfig.deviceAugments;
+        Predicate<ItemStack> deviceValidator = (e) -> true;
+
+        registerAugBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new), deviceAugs, deviceValidator);
+        registerAugBlock(ID_DEVICE_TREE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceTreeExtractorTile::new), deviceAugs, deviceValidator);
+
         IntSupplier workbenchAugs = () -> ThermalConfig.workbenchAugments;
         Predicate<ItemStack> workbenchValidator = (e) -> true;
 
-        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator, getFeature(ID_TINKER_BENCH));
+        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator);
     }
 
     private static void registerTileContainers() {
+
+        CONTAINERS.register(ID_DEVICE_HIVE_EXTRACTOR, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceHiveExtractorContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
+        CONTAINERS.register(ID_DEVICE_TREE_EXTRACTOR, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceTreeExtractorContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
 
         CONTAINERS.register(ID_TINKER_BENCH, () -> IForgeContainerType.create((windowId, inv, data) -> new TinkerBenchContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
     }
 
     private static void registerTileEntities() {
+
+        TILE_ENTITIES.register(ID_DEVICE_HIVE_EXTRACTOR, () -> TileEntityType.Builder.create(DeviceHiveExtractorTile::new, DEVICE_HIVE_EXTRACTOR_BLOCK).build(null));
+        TILE_ENTITIES.register(ID_DEVICE_TREE_EXTRACTOR, () -> TileEntityType.Builder.create(DeviceTreeExtractorTile::new, DEVICE_TREE_EXTRACTOR_BLOCK).build(null));
 
         TILE_ENTITIES.register(ID_TINKER_BENCH, () -> TileEntityType.Builder.create(TinkerBenchTile::new, TINKER_BENCH_BLOCK).build(null));
     }

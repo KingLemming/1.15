@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineInsolatorScreen;
 import cofh.thermal.expansion.util.recipes.machine.InsolatorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_BLOCK;
 
-public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
+public class InsolatorRecipeCategory extends ThermalRecipeCategory<InsolatorRecipe> {
 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
@@ -87,7 +88,7 @@ public class InsolatorRecipeCategory extends ThermalCategory<InsolatorRecipe> {
         guiItemStacks.init(3, false, 105, 32);
         guiItemStacks.init(4, false, 123, 32);
 
-        guiFluidStacks.init(0, false, 25, 11, 16, 40, TANK_MEDIUM, false, tankOverlay);
+        guiFluidStacks.init(0, false, 25, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(tankOverlay));
 
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, inputFluids.get(0));

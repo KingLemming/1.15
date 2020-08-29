@@ -42,6 +42,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -336,7 +337,7 @@ public class Utils {
         }
     }
 
-    public static void igniteSpecial(Entity entity, World worldIn, BlockPos pos, int radius, boolean campfire, boolean tnt) {
+    public static void igniteSpecial(Entity entity, World worldIn, BlockPos pos, int radius, boolean campfire, boolean tnt, @Nullable LivingEntity igniter) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
         float v = (float) Math.min(VERT_MAX, radius);
@@ -348,9 +349,8 @@ public class Utils {
                 BlockState state = worldIn.getBlockState(blockpos);
                 if (campfire && isUnlitCampfire(state)) {
                     worldIn.setBlockState(blockpos, state.with(BlockStateProperties.LIT, true));
-                }
-                if (tnt && isUnlitTNT(state)) {
-                    TNTBlock.explode(worldIn, blockpos);
+                } else if (tnt && isUnlitTNT(state)) {
+                    state.getBlock().catchFire(state, worldIn, blockpos, Direction.UP, igniter);
                     worldIn.setBlockState(blockpos, AIR.getDefaultState());
                 }
             }
@@ -359,11 +359,17 @@ public class Utils {
 
     private static boolean isValidFirePosition(World worldIn, BlockPos pos, double chance) {
 
-        BlockState state = worldIn.getBlockState(pos.down());
-        if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos.down()), Direction.UP)) {
-            return state.getMaterial().isFlammable() || worldIn.rand.nextDouble() < chance; // Random 1 in 4 chance.
+        BlockPos below = pos.down();
+        BlockState state = worldIn.getBlockState(below);
+        if (Block.doesSideFillSquare(state.getCollisionShape(worldIn, below), Direction.UP)) {
+            return state.getMaterial().isFlammable() || worldIn.rand.nextDouble() < chance; // Random chance.
         }
         return false;
+    }
+
+    private static boolean isLitCampfire(BlockState state) {
+
+        return state.getBlock() == CAMPFIRE && state.get(BlockStateProperties.LIT);
     }
 
     private static boolean isUnlitCampfire(BlockState state) {
@@ -373,7 +379,7 @@ public class Utils {
 
     private static boolean isUnlitTNT(BlockState state) {
 
-        return state.getBlock() == TNT;
+        return state.getBlock() instanceof TNTBlock;
     }
     // endregion
 
@@ -396,19 +402,30 @@ public class Utils {
                         worldIn.setBlockState(mutable, state);
                     }
                 }
-                // TODO: Fire extinguishing?
-                //                else if (blockstate1.getBlock() == FIRE) {
-                //                    worldIn.setBlockState(mutable, AIR.getDefaultState());
-                //                }
-                // TODO: Snow layering?
-                //                else if (blockstate1.getBlock() == SNOW && blockstate1.get(SnowBlock.LAYERS) < 3) {
-                //                    worldIn.setBlockState(mutable, blockstate1.with(SnowBlock.LAYERS, Math.min(blockstate1.get(SnowBlock.LAYERS) + 1, 3)));
-                //                }
             }
         }
     }
 
-    public static void freezeNearbyWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+    public static void freezeSpecial(Entity entity, World worldIn, BlockPos pos, int radius, boolean campfire, boolean fire) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                BlockState state = worldIn.getBlockState(blockpos);
+                if (campfire && isLitCampfire(state)) {
+                    worldIn.setBlockState(blockpos, state.with(BlockStateProperties.LIT, false));
+                } else if (fire && state.getBlock() == FIRE) {
+                    worldIn.setBlockState(blockpos, AIR.getDefaultState());
+                }
+            }
+        }
+    }
+
+    public static void freezeSurfaceWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
 
         BlockState state = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
         float f = (float) Math.min(HORZ_MAX, radius);
@@ -426,6 +443,30 @@ public class Utils {
                     boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
                     if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
+                        if (!permanent) {
+                            worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void freezeAllWater(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+
+        BlockState state = permanent ? ICE.getDefaultState() : FROSTED_ICE.getDefaultState();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                BlockState blockstate2 = worldIn.getBlockState(blockpos);
+                boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                    worldIn.setBlockState(blockpos, state);
+                    if (!permanent) {
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
                 }
@@ -433,7 +474,7 @@ public class Utils {
         }
     }
 
-    public static void freezeNearbyLava(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+    public static void freezeSurfaceLava(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
 
         if (GLOSSED_MAGMA == null && !permanent) {
             return;
@@ -454,6 +495,33 @@ public class Utils {
                     boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
                     if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
+                        if (!permanent) {
+                            worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void freezeAllLava(Entity entity, World worldIn, BlockPos pos, int radius, boolean permanent) {
+
+        if (GLOSSED_MAGMA == null && !permanent) {
+            return;
+        }
+        BlockState state = permanent ? OBSIDIAN.getDefaultState() : GLOSSED_MAGMA.getDefaultState();
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                BlockState blockstate2 = worldIn.getBlockState(blockpos);
+                boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
+                if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                    worldIn.setBlockState(blockpos, state);
+                    if (!permanent) {
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));
                     }
                 }
@@ -473,6 +541,16 @@ public class Utils {
     // endregion
 
     // region AREA TRANSFORMS / MISC
+    private static boolean isValidLightningBoltPosition(World worldIn, BlockPos pos, double chance) {
+
+        BlockPos below = pos.down();
+        BlockState state = worldIn.getBlockState(below);
+        if (worldIn.canSeeSky(pos) && Block.doesSideFillSquare(state.getCollisionShape(worldIn, below), Direction.UP)) {
+            return worldIn.rand.nextDouble() < chance; // Random chance.
+        }
+        return false;
+    }
+
     public static void transformArea(Entity entity, World worldIn, BlockPos pos, BlockState replaceable, BlockState replacement, int radius, boolean requireAir) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
@@ -569,6 +647,31 @@ public class Utils {
         transformArea(entity, worldIn, pos, replaceable, ENDER_AIR.getDefaultState(), radius, false);
     }
 
+    public static void zapNearbyGround(Entity entity, World worldIn, BlockPos pos, int radius, double chance, int max) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        int count = 0;
+
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            if (count >= max) {
+                return;
+            }
+            double distance = blockpos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = worldIn.getBlockState(mutable);
+                if (blockstate1.isAir(worldIn, mutable)) {
+                    if (isValidLightningBoltPosition(worldIn, mutable, chance)) {
+                        worldIn.setBlockState(mutable, LIGHTNING_AIR.getDefaultState());
+                    }
+                }
+            }
+        }
+    }
+
     public static void growMushrooms(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
 
         float f = (float) Math.min(HORZ_MAX, radius);
@@ -607,6 +710,41 @@ public class Utils {
 
         Block block = worldIn.getBlockState(pos).getBlock();
         return worldIn.rand.nextDouble() < chance && (block == MYCELIUM || block == PODZOL);
+    }
+
+    public static void growPlants(Entity entity, World worldIn, BlockPos pos, int radius) {
+
+        float f = (float) Math.min(HORZ_MAX, radius);
+        float v = (float) Math.min(VERT_MAX, radius);
+        float f2 = f * f;
+
+        BlockState state;
+        for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -v, -f), pos.add(f, v, f))) {
+            double distance = iterPos.distanceSq(entity.getPositionVec(), true);
+            if (distance < f2) {
+                state = worldIn.getBlockState(iterPos);
+                if (state.getBlock() instanceof IGrowable) {
+                    IGrowable growable = (IGrowable) state.getBlock();
+                    if (growable.canGrow(worldIn, iterPos, state, worldIn.isRemote)) {
+                        if (!worldIn.isRemote) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state)) {
+                                // TODO: Remove try/catch when Mojang fixes base issue.
+                                try {
+                                    growable.grow((ServerWorld) worldIn, worldIn.rand, iterPos, state);
+                                } catch (Exception e) {
+                                    // Vanilla issue causes bamboo to crash if grown close to world height
+                                    if (!(growable instanceof BambooBlock)) {
+                                        throw e;
+                                    }
+                                }
+                                // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                                // ++grow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void growPlants(Entity entity, World worldIn, BlockPos pos, int radius, int count) {
@@ -649,7 +787,7 @@ public class Utils {
                     IGrowable growable = (IGrowable) state.getBlock();
                     if (growable.canGrow(worldIn, iterPos, state, worldIn.isRemote)) {
                         if (!worldIn.isRemote) {
-                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state) && worldIn.rand.nextDouble() < 0.5 - (distance / f2)) {
+                            if (growable.canUseBonemeal(worldIn, worldIn.rand, iterPos, state)) {
                                 // TODO: Remove try/catch when Mojang fixes base issue.
                                 try {
                                     growable.grow((ServerWorld) worldIn, worldIn.rand, iterPos, state);
@@ -671,7 +809,7 @@ public class Utils {
     }
     // endregion
 
-    private static final int HORZ_MAX = 16;
-    private static final int VERT_MAX = 4;
+    public static final int HORZ_MAX = 16;
+    public static final int VERT_MAX = 8;
 
 }

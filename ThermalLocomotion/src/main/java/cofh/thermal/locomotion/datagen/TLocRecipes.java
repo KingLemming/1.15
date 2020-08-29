@@ -14,7 +14,8 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
+import static cofh.thermal.locomotion.init.TLocIDs.*;
 
 public class TLocRecipes extends RecipeProviderCoFH {
 
@@ -41,6 +42,54 @@ public class TLocRecipes extends RecipeProviderCoFH {
                 .patternLine("GGG")
                 .patternLine("GCG")
                 .patternLine("PPP")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_PHYTO_TNT_CART))
+                .key('A', ITEMS.get(ID_PHYTO_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_FIRE_TNT_CART))
+                .key('A', ITEMS.get(ID_FIRE_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_EARTH_TNT_CART))
+                .key('A', ITEMS.get(ID_EARTH_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_ICE_TNT_CART))
+                .key('A', ITEMS.get(ID_ICE_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_LIGHTNING_TNT_CART))
+                .key('A', ITEMS.get(ID_LIGHTNING_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
+                .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_NUKE_TNT_CART))
+                .key('A', ITEMS.get(ID_NUKE_TNT))
+                .key('B', Items.MINECART)
+                .patternLine("A")
+                .patternLine("B")
                 .addCriterion("has_" + Items.MINECART.getRegistryName().getPath(), hasItem(Items.MINECART))
                 .build(consumer);
     }

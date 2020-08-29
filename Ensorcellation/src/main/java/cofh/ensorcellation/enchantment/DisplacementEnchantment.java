@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.references.EnsorcellationReferences.*;
+import static cofh.lib.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class DisplacementEnchantment extends EnchantmentCoFH {

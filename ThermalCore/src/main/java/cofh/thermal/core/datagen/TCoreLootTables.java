@@ -14,7 +14,7 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreReferences.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreLootTables extends LootTableProviderCoFH {
 
@@ -73,13 +73,30 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_RUBY_BLOCK), createSimpleDropTable(regBlocks.get(ID_RUBY_BLOCK)));
         lootTables.put(regBlocks.get(ID_SAPPHIRE_BLOCK), createSimpleDropTable(regBlocks.get(ID_SAPPHIRE_BLOCK)));
 
-        lootTables.put(regBlocks.get(ID_ENDERIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_ENDERIUM_BLOCK)));
-        lootTables.put(regBlocks.get(ID_LUMIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_LUMIUM_BLOCK)));
-        lootTables.put(regBlocks.get(ID_SIGNALUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_SIGNALUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_SAWDUST_BLOCK), createSimpleDropTable(regBlocks.get(ID_SAWDUST_BLOCK)));
+        lootTables.put(regBlocks.get(ID_ROSIN_BLOCK), createSimpleDropTable(regBlocks.get(ID_ROSIN_BLOCK)));
+        lootTables.put(regBlocks.get(ID_RUBBER_BLOCK), createSimpleDropTable(regBlocks.get(ID_RUBBER_BLOCK)));
+        lootTables.put(regBlocks.get(ID_CURED_RUBBER_BLOCK), createSimpleDropTable(regBlocks.get(ID_CURED_RUBBER_BLOCK)));
+        lootTables.put(regBlocks.get(ID_SLAG_BLOCK), createSimpleDropTable(regBlocks.get(ID_SLAG_BLOCK)));
+        lootTables.put(regBlocks.get(ID_RICH_SLAG_BLOCK), createSimpleDropTable(regBlocks.get(ID_RICH_SLAG_BLOCK)));
 
-        lootTables.put(regBlocks.get(ID_ENDERIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_ENDERIUM_GLASS)));
-        lootTables.put(regBlocks.get(ID_LUMIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_LUMIUM_GLASS)));
+        lootTables.put(regBlocks.get(ID_SIGNALUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_SIGNALUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_LUMIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_LUMIUM_BLOCK)));
+        lootTables.put(regBlocks.get(ID_ENDERIUM_BLOCK), createSimpleDropTable(regBlocks.get(ID_ENDERIUM_BLOCK)));
+
+        lootTables.put(regBlocks.get(ID_HARDENED_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_HARDENED_GLASS)));
         lootTables.put(regBlocks.get(ID_SIGNALUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_SIGNALUM_GLASS)));
+        lootTables.put(regBlocks.get(ID_LUMIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_LUMIUM_GLASS)));
+        lootTables.put(regBlocks.get(ID_ENDERIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_ENDERIUM_GLASS)));
+
+        lootTables.put(regBlocks.get(ID_PHYTO_TNT), createSimpleDropTable(regBlocks.get(ID_PHYTO_TNT)));
+
+        lootTables.put(regBlocks.get(ID_FIRE_TNT), createSimpleDropTable(regBlocks.get(ID_FIRE_TNT)));
+        lootTables.put(regBlocks.get(ID_EARTH_TNT), createSimpleDropTable(regBlocks.get(ID_EARTH_TNT)));
+        lootTables.put(regBlocks.get(ID_ICE_TNT), createSimpleDropTable(regBlocks.get(ID_ICE_TNT)));
+        lootTables.put(regBlocks.get(ID_LIGHTNING_TNT), createSimpleDropTable(regBlocks.get(ID_LIGHTNING_TNT)));
+
+        lootTables.put(regBlocks.get(ID_NUKE_TNT), createSimpleDropTable(regBlocks.get(ID_NUKE_TNT)));
 
         lootTables.put(regBlocks.get(ID_APATITE_ORE), BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_APATITE_ORE), BlockLootTables.withExplosionDecay(regBlocks.get(ID_APATITE_ORE), ItemLootEntry.builder(regItems.get("apatite"))
                 .acceptFunction(SetCount.builder(RandomValueRange.of(4.0F, 9.0F)))

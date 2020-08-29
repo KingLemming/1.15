@@ -2,11 +2,7 @@ package cofh.thermal.expansion;
 
 import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
-import cofh.thermal.expansion.init.TExpBlocks;
-import cofh.thermal.expansion.init.TExpItems;
-import cofh.thermal.expansion.util.managers.TExpRecipeManagers;
-import cofh.thermal.expansion.util.recipes.TExpRecipeSerializers;
-import cofh.thermal.expansion.util.recipes.TExpRecipeTypes;
+import cofh.thermal.expansion.init.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -19,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.expansion.init.TExpIDs.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
 @Mod(ID_THERMAL_EXPANSION)
@@ -38,21 +35,17 @@ public class ThermalExpansion {
         TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
 
-        setFeature(FLAG_TOOL_WRENCH, true);
-        setFeature(FLAG_TOOL_REDPRINT, true);
-        setFeature(FLAG_TOOL_LOCK, true);
-        setFeature(FLAG_TOOL_PHYTOGRO, true);
-
-        setFeature(FLAG_RESOURCE_APATITE, true);
         setFeature(FLAG_RESOURCE_CINNABAR, true);
         setFeature(FLAG_RESOURCE_NITER, true);
         setFeature(FLAG_RESOURCE_SULFUR, true);
 
+        setFeature(FLAG_RESOURCE_RUBBER, true);
+        setFeature(FLAG_RESOURCE_SLAG, true);
+
         setFeature(FLAG_RESOURCE_COPPER, true);
         setFeature(FLAG_RESOURCE_TIN, true);
-        // TODO: Determine if readding makes sense here.
-        //        setFeature(FLAG_RESOURCE_LEAD, true);
-        //        setFeature(FLAG_RESOURCE_SILVER, true);
+        setFeature(FLAG_RESOURCE_LEAD, true);
+        setFeature(FLAG_RESOURCE_SILVER, true);
         setFeature(FLAG_RESOURCE_NICKEL, true);
 
         setFeature(FLAG_BASIC_COMPONENTS, true);
@@ -63,7 +56,12 @@ public class ThermalExpansion {
         setFeature(FLAG_STORAGE_AUGMENTS, true);
         setFeature(FLAG_UPGRADE_AUGMENTS, true);
 
+        setFeature(FLAG_ARMOR_DIVING, true);
         setFeature(FLAG_ARMOR_HAZMAT, true);
+
+        setFeature(FLAG_MOB_BASALZ, true);
+        setFeature(FLAG_MOB_BLITZ, true);
+        setFeature(FLAG_MOB_BLIZZ, true);
     }
 
     // region INITIALIZATION
@@ -109,6 +107,12 @@ public class ThermalExpansion {
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_REFINERY), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BREWER), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_MACHINE_BOTTLER), cutout);
+
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_STIRLING), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_COMPRESSION), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_MAGMATIC), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_NUMISMATIC), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DYNAMO_LAPIDARY), cutout);
 
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_FLUID_BUFFER), cutout);
         //        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_DEVICE_ITEM_BUFFER), cutout);

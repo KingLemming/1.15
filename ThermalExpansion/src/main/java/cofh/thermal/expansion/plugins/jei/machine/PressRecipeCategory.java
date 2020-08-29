@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachinePressScreen;
 import cofh.thermal.expansion.util.recipes.machine.PressRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PRESS_BLOCK;
 
-public class PressRecipeCategory extends ThermalCategory<PressRecipe> {
+public class PressRecipeCategory extends ThermalRecipeCategory<PressRecipe> {
 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
@@ -85,7 +86,7 @@ public class PressRecipeCategory extends ThermalCategory<PressRecipe> {
         guiItemStacks.init(1, true, 42, 41);
         guiItemStacks.init(2, false, 105, 23);
 
-        guiFluidStacks.init(0, false, 141, 11, 16, 40, TANK_SMALL, false, tankOverlay);
+        guiFluidStacks.init(0, false, 141, 11, 16, 40, tankSize(TANK_SMALL), false, tankOverlay(tankOverlay));
 
         for (int i = 0; i < inputs.size(); ++i) {
             guiItemStacks.set(i, inputs.get(i));

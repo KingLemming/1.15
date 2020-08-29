@@ -32,7 +32,6 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     public static final int AIR_SUPPLY_MAX = 4800;
 
     protected int airSupply = AIR_SUPPLY_MAX;
-
     protected int respirationFactor = 1;
 
     public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, World worldIn) {
@@ -81,19 +80,19 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
-
-        super.writeAdditional(compound);
-
-        compound.putInt(TAG_CART_DATA, respirationFactor);
-    }
-
-    @Override
     public void readAdditional(CompoundNBT compound) {
 
         super.readAdditional(compound);
 
         respirationFactor = compound.getInt(TAG_CART_DATA);
+    }
+
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
+
+        super.writeAdditional(compound);
+
+        compound.putInt(TAG_CART_DATA, respirationFactor);
     }
 
     @Override

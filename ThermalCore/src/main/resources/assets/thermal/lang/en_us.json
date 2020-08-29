@@ -41,10 +41,18 @@
   "block.thermal.signalum_block": "Block of Signalum",
 
   "block.thermal.enderium_glass": "Enderium Glass",
+  "block.thermal.hardened_glass": "Hardened Glass",
   "block.thermal.lumium_glass": "Lumium Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
   "block.thermal.machine_frame": "Machine Frame",
+
+  "block.thermal.sawdust_block": "Block of Sawdust",
+  "block.thermal.rosin_block": "Block of Rosin",
+  "block.thermal.rubber_block": "Block of Rubber",
+  "block.thermal.cured_rubber_block": "Block of Cured Rubber",
+  "block.thermal.slag_block": "Block of Slag",
+  "block.thermal.rich_slag_block": "Block of Rich Slag",
 
   "death.attack.basalz": "%1$s had their world rocked!",
   "death.attack.blitz": "%1$s was tragically enlightened!",
@@ -59,6 +67,12 @@
   "fluid.thermal.sap": "Sap",
   "fluid.thermal.syrup": "Syrup",
   "fluid.thermal.tree_oil": "Tree Oil",
+
+  "item.thermal.latex_bucket": "Latex Bucket",
+  "item.thermal.resin_bucket": "Resin Bucket",
+  "item.thermal.sap_bucket": "Sap Bucket",
+  "item.thermal.syrup_bucket": "Syrup Bucket",
+  "item.thermal.tree_oil_bucket": "Tree Oil Bucket",
 
   "itemGroup.thermal.blocks": "Thermal Series: Blocks",
   "itemGroup.thermal.foods": "Thermal Series: Crops and Foods",
@@ -76,11 +90,15 @@
   "item.thermal.rosin": "Rosin",
   "item.thermal.rubber": "Rubber",
   "item.thermal.slag": "Slag",
-  "item.thermal.wood_dust": "Sawdust",
+  "item.thermal.sawdust": "Sawdust",
+
+  "item.thermal.beekeeper_fabric": "Woven Fabric",
+  "item.thermal.diving_fabric": "Marine Fabric",
+  "item.thermal.hazmat_fabric": "Hazmat Fabric",
 
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
-  "item.thermal.basalz_spawn_egg": "Bazalz Spawn Egg",
+  "item.thermal.basalz_spawn_egg": "Basalz Spawn Egg",
   "item.thermal.blitz_powder": "Blitz Powder",
   "item.thermal.blitz_rod": "Blitz Mote",
   "item.thermal.blitz_spawn_egg": "Blitz Spawn Egg",
@@ -92,8 +110,6 @@
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.lock.desc": "Used to enable security on a block.",
-  "item.thermal.phytogro": "Phyto-Gro",
-  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
   "item.thermal.redprint": "Redprint",
   "item.thermal.redprint.desc": "Copies and transfers settings between blocks.",
   "item.thermal.wrench": "Crescent Hammer",
@@ -294,7 +310,18 @@
   "_comment": "These 'live' in Thermal Core but are non-default and registered from multiple possible modules.",
   "_comment": "========================================================================================================",
 
+  "block.thermal.device_hive_extractor": "Hive Hopper",
+  "block.thermal.device_tree_extractor": "Arboreal Extractor",
+
   "block.thermal.tinker_bench": "Tinker's Workbench",
+
+  "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
+  "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
+  "info.thermal.device_hive_extractor.2": "Buzz buzz.",
+
+  "info.thermal.device_tree_extractor.0": "Extracts fluids from adjacent trees.",
+  "info.thermal.device_tree_extractor.1": "Use fertilizer to boost production.",
+  "info.thermal.device_tree_extractor.2": "Put down the axe.",
 
   "info.thermal.tinker_bench.0": "Multipurpose table for augmenting, recharging, and refilling.",
   "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
@@ -304,6 +331,11 @@
   "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
   "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
   "item.thermal.beekeeper_boots": "Beekeeper's Boots",
+
+  "item.thermal.diving_helmet": "Diving Helmet",
+  "item.thermal.diving_chestplate": "Diving Suit",
+  "item.thermal.diving_leggings": "Diving Leggings",
+  "item.thermal.diving_boots": "Diving Flippers",
 
   "item.thermal.hazmat_helmet": "Hazmat Helmet",
   "item.thermal.hazmat_chestplate": "Hazmat Suit",
@@ -316,6 +348,40 @@
 
   "item.thermal.redstone_servo": "Redstone Servo",
   "item.thermal.rf_coil": "Redstone Flux Coil",
+
+  "item.thermal.phytogro": "Phyto-Gro",
+  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
+  "item.thermal.phyto_grenade": "Phyto-Gronade",
+  "item.thermal.phyto_grenade.desc": "Throwable Phyto-Gro with increased area.",
+
+  "item.thermal.explosive_grenade": "Grenade",
+  "item.thermal.explosive_grenade.desc": "Smaller, throwable TNT.",
+  "item.thermal.earth_grenade": "Tectonic Grenade",
+  "item.thermal.earth_grenade.desc": "Breaks apart rocks and earth. Very effective for mining.",
+  "item.thermal.fire_grenade": "Inferno Grenade",
+  "item.thermal.fire_grenade.desc": "Ignites an area on impact.",
+  "item.thermal.ice_grenade": "Glacial Grenade",
+  "item.thermal.ice_grenade.desc": "Freezes an area on impact.",
+  "item.thermal.lightning_grenade": "Fulminating Grenade",
+  "item.thermal.lightning_grenade.desc": "Shocks an area on impact. May bring the thunder.",
+
+  "item.thermal.nuke_grenade": "Nuclear Grenade",
+  "item.thermal.nuke_grenade.desc": "Not for use at close range.",
+
+  "block.thermal.phyto_tnt": "PNT",
+  "block.thermal.phyto_tnt.desc": "Spreads Phyto-Gro in a large area. Not throwable.",
+
+  "block.thermal.earth_tnt": "Tectonic Explosive",
+  "block.thermal.earth_tnt.desc": "Breaks apart rocks and earth. Very effective for mining.",
+  "block.thermal.fire_tnt": "Inferno Explosive",
+  "block.thermal.fire_tnt.desc": "Ignites a large area.",
+  "block.thermal.ice_tnt": "Glacial Explosive",
+  "block.thermal.ice_tnt.desc": "Freezes a large area.",
+  "block.thermal.lightning_tnt": "Fulminating Explosive",
+  "block.thermal.lightning_tnt.desc": "Shocks a large area. Very likely to bring the thunder.",
+
+  "block.thermal.nuke_tnt": "Nuclear Explosive",
+  "block.thermal.nuke_tnt.desc": "Do not stand anywhere close to this.",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Core - Vanilla",
@@ -362,10 +428,11 @@
   "_comment": "Thermal Cultivation",
   "_comment": "========================================================================================================",
 
-  "block.thermal.device_hive_extractor": "Hive Hopper",
+  "block.thermal.device_soil_infuser": "Phyto-Soil Infuser",
+
   "block.thermal.frost_melon": "Frost Melon",
   "block.thermal.phytosoil": "Phyto-Soil",
-  "block.thermal.phytosoil_charged": "Charged Phyto-Soil",
+  "block.thermal.phytosoil_tilled": "Tilled Phyto-Soil",
 
   "block.thermal.chocolate_cake": "Chocolate Cake",
   "block.thermal.spice_cake": "Spice Cake",
@@ -387,9 +454,9 @@
   "block.thermal.tea_block": "Sack of Tea",
   "block.thermal.tomato_block": "Crate of Tomatoes",
 
-  "info.thermal.device_hive_extractor.0": "Carefully extracts products from beehives.",
-  "info.thermal.device_hive_extractor.1": "Good for bees and keepers alike!",
-  "info.thermal.device_hive_extractor.2": "Buzz buzz.",
+  "info.thermal.device_soil_infuser.0": "Infuses nearby Phyto-Soil with Redstone Flux.",
+  "info.thermal.device_soil_infuser.1": "Affects one layer above and below.",
+  "info.thermal.device_soil_infuser.2": "Safe for crops, really!",
 
   "item.thermal.barley": "Barley",
   "item.thermal.barley_seeds": "Barley Seeds",
@@ -555,7 +622,7 @@
   "item.thermal.press_gear_die": "Gearworking Die",
 
   "_comment": "========================================================================================================",
-  "_comment": "Thermal Foundation",
+  "_comment": "Thermal Horizon",
   "_comment": "========================================================================================================",
 
   "_comment": "========================================================================================================",
@@ -617,5 +684,14 @@
   "block.thermal.prismarine_powered_rail": "Powered Prismarine Rail",
   "block.thermal.prismarine_rail": "Prismarine Rail",
 
-  "item.thermal.underwater_minecart": "Underwater Minecart"
+  "item.thermal.underwater_minecart": "Underwater Minecart",
+
+  "item.thermal.phyto_tnt_minecart": "Minecart with PNT",
+
+  "item.thermal.earth_tnt_minecart": "Minecart with Tectonic Explosive",
+  "item.thermal.fire_tnt_minecart": "Minecart with Inferno Explosive",
+  "item.thermal.ice_tnt_minecart": "Minecart with Glacial Explosive",
+  "item.thermal.lightning_tnt_minecart": "Minecart with Fulminating Explosive",
+
+  "item.thermal.nuke_tnt_minecart": "Minecart with Nuclear Explosive"
 }

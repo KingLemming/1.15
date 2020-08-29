@@ -6,4 +6,8 @@ public interface IInventoryCallback {
 
     }
 
+    default void onTankChange(int tank) {
+
+    }
+
 }

@@ -31,7 +31,7 @@ import java.util.List;
 import static cofh.lib.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
 import static cofh.lib.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;
-import static cofh.lib.util.references.EnsorcellationReferences.WEEDING;
+import static cofh.lib.util.references.EnsorcReferences.WEEDING;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.item.HoeItem.HOE_LOOKUP;
 
@@ -84,9 +84,6 @@ public class AreaEffectEvents {
             return;
         }
         ImmutableList<BlockPos> areaBlocks = stack.getCapability(AREA_EFFECT_ITEM_CAPABILITY).orElse(new AreaEffectItemWrapper(stack)).getAreaEffectBlocks(event.getPos(), player);
-
-        float oldSpeed = event.getOriginalSpeed();
-        float newSpeed = event.getNewSpeed();
 
         float curHardness = event.getState().getBlockHardness(player.world, event.getPos());
         if (curHardness <= 0) {

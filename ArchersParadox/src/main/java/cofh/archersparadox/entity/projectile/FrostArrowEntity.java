@@ -72,8 +72,8 @@ public class FrostArrowEntity extends AbstractArrowEntity {
             if (effectRadius > 0) {
                 if (Utils.isServerWorld(world)) {
                     Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                    Utils.freezeNearbyWater(this, world, this.getPosition(), effectRadius, permanentWater);
-                    Utils.freezeNearbyLava(this, world, this.getPosition(), effectRadius, permanentLava);
+                    Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, permanentWater);
+                    Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, permanentLava);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

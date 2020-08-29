@@ -18,7 +18,7 @@ import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.util.RegistrationHelper.block;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
-import static cofh.thermal.cultivation.init.TCulReferences.*;
+import static cofh.thermal.cultivation.init.TCulIDs.*;
 
 public class TCulLootTables extends LootTableProviderCoFH {
 
@@ -73,13 +73,15 @@ public class TCulLootTables extends LootTableProviderCoFH {
                         regItems.get(seeds(ID_FROST_MELON))));
 
         lootTables.put(regBlocks.get(ID_PHYTOSOIL), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
-        lootTables.put(regBlocks.get(ID_PHYTOSOIL_CHARGED), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
+        lootTables.put(regBlocks.get(ID_PHYTOSOIL_TILLED), createSimpleDropTable(regBlocks.get(ID_PHYTOSOIL)));
 
         lootTables.put(regBlocks.get(block(ID_BARLEY)), createSimpleDropTable(regBlocks.get(block(ID_BARLEY))));
         lootTables.put(regBlocks.get(block(ID_BELL_PEPPER)), createSimpleDropTable(regBlocks.get(block(ID_BELL_PEPPER))));
         lootTables.put(regBlocks.get(block(ID_COFFEE)), createSimpleDropTable(regBlocks.get(block(ID_COFFEE))));
+        lootTables.put(regBlocks.get(block(ID_CORN)), createSimpleDropTable(regBlocks.get(block(ID_CORN))));
         lootTables.put(regBlocks.get(block(ID_EGGPLANT)), createSimpleDropTable(regBlocks.get(block(ID_EGGPLANT))));
         lootTables.put(regBlocks.get(block(ID_GREEN_BEAN)), createSimpleDropTable(regBlocks.get(block(ID_GREEN_BEAN))));
+        lootTables.put(regBlocks.get(block(ID_HOPS)), createSimpleDropTable(regBlocks.get(block(ID_HOPS))));
         lootTables.put(regBlocks.get(block(ID_ONION)), createSimpleDropTable(regBlocks.get(block(ID_ONION))));
         lootTables.put(regBlocks.get(block(ID_PEANUT)), createSimpleDropTable(regBlocks.get(block(ID_PEANUT))));
         lootTables.put(regBlocks.get(block(ID_RADISH)), createSimpleDropTable(regBlocks.get(block(ID_RADISH))));

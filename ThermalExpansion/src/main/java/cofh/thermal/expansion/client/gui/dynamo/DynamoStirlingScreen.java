@@ -29,7 +29,7 @@ public class DynamoStirlingScreen extends DynamoScreenBase<DynamoStirlingContain
 
         super.init();
 
-        addElement(ThermalGuiHelper.createDefaultDuration(this, 115, 35, SCALE_FLAME, tile));
+        addElement(ThermalGuiHelper.createDefaultDuration(this, 80, 35, SCALE_FLAME, tile));
     }
 
 }

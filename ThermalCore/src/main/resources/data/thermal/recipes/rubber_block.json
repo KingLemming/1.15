@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "thermal:rubber"
+    }
+  },
+  "result": {
+    "item": "thermal:rubber_block"
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "rubber"
+    }
+  ]
+}

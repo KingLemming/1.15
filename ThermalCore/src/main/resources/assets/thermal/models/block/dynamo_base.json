@@ -1,8 +1,6 @@
 {
+  "loader": "thermal:dynamo",
   "parent": "block/block",
-  "textures": {
-    "particle": "#side"
-  },
   "elements": [
     {
       "from": [0, 0, 0],
@@ -38,6 +36,40 @@
           "cullface": "east"
         }
       }
+    },
+    {
+      "from": [4, 8, 4],
+      "to": [12, 16, 12],
+      "faces": {
+        "north": {
+          "texture": "#coil",
+          "uv": [0, 8, 8, 16]
+        },
+        "east": {
+          "texture": "#coil",
+          "uv": [8, 8, 16, 16]
+        },
+        "south": {
+          "texture": "#coil",
+          "uv": [0, 8, 8, 16]
+        },
+        "west": {
+          "texture": "#coil",
+          "uv": [8, 8, 16, 16]
+        },
+        "up": {
+          "texture": "#coil",
+          "uv": [0, 0, 8, 8]
+        },
+        "down": {
+          "texture": "#coil",
+          "uv": [8, 0, 16, 8]
+        }
+      }
     }
-  ]
+  ],
+  "textures": {
+    "particle": "#side",
+    "coil": "thermal:block/dynamos/dynamo_coil_rf"
+  }
 }

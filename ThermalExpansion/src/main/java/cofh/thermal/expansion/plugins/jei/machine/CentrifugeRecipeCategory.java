@@ -2,7 +2,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 
 import cofh.lib.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
-import cofh.thermal.core.plugins.jei.ThermalCategory;
+import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineCentrifugeScreen;
 import cofh.thermal.expansion.util.recipes.machine.CentrifugeRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,9 +21,10 @@ import java.util.List;
 
 import static cofh.lib.util.constants.Constants.TANK_SMALL;
 import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CENTRIFUGE_BLOCK;
 
-public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> {
+public class CentrifugeRecipeCategory extends ThermalRecipeCategory<CentrifugeRecipe> {
 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
@@ -87,7 +88,7 @@ public class CentrifugeRecipeCategory extends ThermalCategory<CentrifugeRecipe> 
         guiItemStacks.init(3, false, 96, 32);
         guiItemStacks.init(4, false, 114, 32);
 
-        guiFluidStacks.init(0, false, 141, 11, 16, 40, TANK_SMALL, false, tankOverlay);
+        guiFluidStacks.init(0, false, 141, 11, 16, 40, tankSize(TANK_SMALL), false, tankOverlay(tankOverlay));
 
         guiItemStacks.set(0, inputs.get(0));
         for (int i = 0; i < outputs.size(); ++i) {

@@ -6,20 +6,27 @@ import cofh.lib.block.CakeBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.crops.StemBlockAttached;
 import cofh.lib.block.crops.StemBlockCoFH;
+import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;
-import cofh.thermal.cultivation.inventory.container.DeviceHiveExtractorContainer;
-import cofh.thermal.cultivation.tileentity.DeviceHiveExtractorTile;
+import cofh.thermal.cultivation.block.TilledSoilBlock;
+import cofh.thermal.cultivation.inventory.container.device.DeviceSoilInfuserContainer;
+import cofh.thermal.cultivation.tileentity.DeviceSoilInfuserTile;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 
+import java.util.function.IntSupplier;
+import java.util.function.Predicate;
+
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.util.RegistrationHelper.*;
-import static cofh.thermal.cultivation.init.TCulReferences.*;
+import static cofh.thermal.cultivation.init.TCulIDs.*;
+import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_BLOCK;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCulBlocks {
@@ -33,9 +40,7 @@ public class TCulBlocks {
         registerPlants();
         registerFoods();
         registerStorage();
-
-        registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND)));
-        registerBlockOnly(ID_PHYTOSOIL_CHARGED, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+        registerMisc();
 
         registerTileBlocks();
         registerTileContainers();
@@ -43,9 +48,6 @@ public class TCulBlocks {
     }
 
     public static void setup() {
-
-        PHYTOSOIL_BLOCK.setBoost(2);
-        PHYTOSOIL_CHARGED_BLOCK.setBoost(4);
 
         FireBlock fire = (FireBlock) Blocks.FIRE;
 
@@ -111,19 +113,28 @@ public class TCulBlocks {
         registerBlock(block(ID_TEA), () -> new Block4Way(create(Material.WOOL, MaterialColor.GREEN_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     }
 
+    private static void registerMisc() {
+
+        registerBlock(ID_PHYTOSOIL, () -> new SoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+        registerBlock(ID_PHYTOSOIL_TILLED, () -> new TilledSoilBlock(create(Material.EARTH).tickRandomly().hardnessAndResistance(0.8F).sound(SoundType.GROUND).lightValue(7)));
+    }
+
     private static void registerTileBlocks() {
 
-        registerBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new));
+        IntSupplier deviceAugs = () -> ThermalConfig.deviceAugments;
+        Predicate<ItemStack> deviceValidator = (e) -> true;
+
+        registerAugBlock(ID_DEVICE_SOIL_INFUSER, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F).lightValue(10), DeviceSoilInfuserTile::new), deviceAugs, deviceValidator);
     }
 
     private static void registerTileContainers() {
 
-        CONTAINERS.register(ID_DEVICE_HIVE_EXTRACTOR, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceHiveExtractorContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
+        CONTAINERS.register(ID_DEVICE_SOIL_INFUSER, () -> IForgeContainerType.create((windowId, inv, data) -> new DeviceSoilInfuserContainer(windowId, ProxyUtils.getClientWorld(), data.readBlockPos(), inv, ProxyUtils.getClientPlayer())));
     }
 
     private static void registerTileEntities() {
 
-        TILE_ENTITIES.register(ID_DEVICE_HIVE_EXTRACTOR, () -> TileEntityType.Builder.create(DeviceHiveExtractorTile::new, DEVICE_HIVE_EXTRACTOR_BLOCK).build(null));
+        TILE_ENTITIES.register(ID_DEVICE_SOIL_INFUSER, () -> TileEntityType.Builder.create(DeviceSoilInfuserTile::new, DEVICE_SOIL_INFUSER_BLOCK).build(null));
     }
     // endregion
 }

@@ -149,7 +149,7 @@ public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
     }
 
     // region DISPENSER BEHAVIOR
-    DefaultDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
+    private static final DefaultDispenseItemBehavior DISPENSER_BEHAVIOR = new DefaultDispenseItemBehavior() {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
@@ -162,5 +162,5 @@ public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
             return stack;
         }
     };
-
+    // endregion
 }
