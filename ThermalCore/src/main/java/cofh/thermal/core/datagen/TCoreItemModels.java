@@ -230,10 +230,27 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
     private void registerBuildingBlocks(DeferredRegisterCoFH<Block> reg) {
 
-        blockItem(reg.getSup(ID_HARDENED_GLASS));
+        blockItem(reg.getSup(ID_OBSIDIAN_GLASS));
         blockItem(reg.getSup(ID_SIGNALUM_GLASS));
         blockItem(reg.getSup(ID_LUMIUM_GLASS));
         blockItem(reg.getSup(ID_ENDERIUM_GLASS));
+
+        blockItem(reg.getSup(ID_WHITE_ROCKWOOL));
+        blockItem(reg.getSup(ID_ORANGE_ROCKWOOL));
+        blockItem(reg.getSup(ID_MAGENTA_ROCKWOOL));
+        blockItem(reg.getSup(ID_LIGHT_BLUE_ROCKWOOL));
+        blockItem(reg.getSup(ID_YELLOW_ROCKWOOL));
+        blockItem(reg.getSup(ID_LIME_ROCKWOOL));
+        blockItem(reg.getSup(ID_PINK_ROCKWOOL));
+        blockItem(reg.getSup(ID_GRAY_ROCKWOOL));
+        blockItem(reg.getSup(ID_LIGHT_GRAY_ROCKWOOL));
+        blockItem(reg.getSup(ID_CYAN_ROCKWOOL));
+        blockItem(reg.getSup(ID_PURPLE_ROCKWOOL));
+        blockItem(reg.getSup(ID_BLUE_ROCKWOOL));
+        blockItem(reg.getSup(ID_BROWN_ROCKWOOL));
+        blockItem(reg.getSup(ID_GREEN_ROCKWOOL));
+        blockItem(reg.getSup(ID_RED_ROCKWOOL));
+        blockItem(reg.getSup(ID_BLACK_ROCKWOOL));
     }
 
     private void registerMiscBlocks(DeferredRegisterCoFH<Block> reg) {

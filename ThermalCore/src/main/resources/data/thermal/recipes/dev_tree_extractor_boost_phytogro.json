@@ -4,11 +4,5 @@
     "item": "thermal:phytogro"
   },
   "boost_mod": 2.0,
-  "cycles": 16,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "phytogro"
-    }
-  ]
+  "cycles": 16
 }

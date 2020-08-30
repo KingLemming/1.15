@@ -33,15 +33,15 @@ public class ThermalFeatures {
     }
 
     // region SPECIFIC FEATURES
-    public static String FLAG_PHYTOGRO = "phytogro";
+    public static String FLAG_ROCKWOOL = "rockwool";
+
+    public static String FLAG_BEEKEEPER_ARMOR = "beekeeper_armor";
+    public static String FLAG_DIVING_ARMOR = "diving_armor";
+    public static String FLAG_HAZMAT_ARMOR = "hazmat_armor";
+
+    public static String FLAG_PHYTOGRO_EXPLOSIVES = "phytogro_explosives";
     public static String FLAG_ELEMENTAL_EXPLOSIVES = "elemental_explosives";
-
-    public static String FLAG_ARMOR_BEEKEEPER = "armor_beekeeper";
-    public static String FLAG_ARMOR_DIVING = "armor_diving";
-    public static String FLAG_ARMOR_HAZMAT = "armor_hazmat";
-
-    public static String FLAG_RESOURCE_RUBBER = "rubber";
-    public static String FLAG_RESOURCE_SLAG = "slag";
+    public static String FLAG_NUCLEAR_EXPLOSIVES = "nuclear_explosives";
 
     public static String FLAG_RESOURCE_APATITE = "apatite";
     public static String FLAG_RESOURCE_CINNABAR = "cinnabar";
@@ -68,7 +68,6 @@ public class ThermalFeatures {
 
     // region CATEGORIES
     public static String FLAG_VANILLA_BLOCKS = "vanilla_blocks";
-    public static String FLAG_VANILLA_ITEMS = "vanilla_items";
 
     public static String FLAG_BASIC_COMPONENTS = "basic_components";
     public static String FLAG_TOOL_COMPONENTS = "tool_components";

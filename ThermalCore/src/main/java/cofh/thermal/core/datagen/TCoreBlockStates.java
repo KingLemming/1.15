@@ -102,7 +102,7 @@ public class TCoreBlockStates extends BlockStateProviderCoFH {
 
         // TODO: Missing - Machine Frame
 
-        glassBlock(reg.getSup(ID_HARDENED_GLASS));
+        glassBlock(reg.getSup(ID_OBSIDIAN_GLASS));
         glassBlock(reg.getSup(ID_SIGNALUM_GLASS));
         glassBlock(reg.getSup(ID_LUMIUM_GLASS));
         glassBlock(reg.getSup(ID_ENDERIUM_GLASS));

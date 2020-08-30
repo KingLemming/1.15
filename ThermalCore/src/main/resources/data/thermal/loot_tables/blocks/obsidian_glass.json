@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "thermal:hardened_glass"
+          "name": "thermal:obsidian_glass"
         }
       ],
       "conditions": [

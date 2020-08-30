@@ -23,7 +23,7 @@
   "conditions": [
     {
       "type": "thermal:flag",
-      "flag": "phytogro"
+      "flag": "phytogro_explosives"
     }
   ]
 }

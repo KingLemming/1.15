@@ -14,7 +14,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.expansion.init.TExpIDs.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
@@ -35,33 +34,6 @@ public class ThermalExpansion {
         TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
 
-        setFeature(FLAG_RESOURCE_CINNABAR, true);
-        setFeature(FLAG_RESOURCE_NITER, true);
-        setFeature(FLAG_RESOURCE_SULFUR, true);
-
-        setFeature(FLAG_RESOURCE_RUBBER, true);
-        setFeature(FLAG_RESOURCE_SLAG, true);
-
-        setFeature(FLAG_RESOURCE_COPPER, true);
-        setFeature(FLAG_RESOURCE_TIN, true);
-        setFeature(FLAG_RESOURCE_LEAD, true);
-        setFeature(FLAG_RESOURCE_SILVER, true);
-        setFeature(FLAG_RESOURCE_NICKEL, true);
-
-        setFeature(FLAG_BASIC_COMPONENTS, true);
-        setFeature(FLAG_TOOL_COMPONENTS, true);
-
-        setFeature(FLAG_DYNAMO_AUGMENTS, true);
-        setFeature(FLAG_MACHINE_AUGMENTS, true);
-        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        setFeature(FLAG_UPGRADE_AUGMENTS, true);
-
-        setFeature(FLAG_ARMOR_DIVING, true);
-        setFeature(FLAG_ARMOR_HAZMAT, true);
-
-        setFeature(FLAG_MOB_BASALZ, true);
-        setFeature(FLAG_MOB_BLITZ, true);
-        setFeature(FLAG_MOB_BLIZZ, true);
     }
 
     // region INITIALIZATION

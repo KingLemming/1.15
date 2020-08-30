@@ -40,12 +40,29 @@
   "block.thermal.lumium_block": "Block of Lumium",
   "block.thermal.signalum_block": "Block of Signalum",
 
+  "block.thermal.machine_frame": "Machine Frame",
+
   "block.thermal.enderium_glass": "Enderium Glass",
-  "block.thermal.hardened_glass": "Hardened Glass",
   "block.thermal.lumium_glass": "Lumium Glass",
+  "block.thermal.obsidian_glass": "Hardened Glass",
   "block.thermal.signalum_glass": "Signalum Glass",
 
-  "block.thermal.machine_frame": "Machine Frame",
+  "block.thermal.white_rockwool": "White Rockwool",
+  "block.thermal.orange_rockwool": "Orange Rockwool",
+  "block.thermal.magenta_rockwool": "Magenta Rockwool",
+  "block.thermal.light_blue_rockwool": "Light Blue Rockwool",
+  "block.thermal.yellow_rockwool": "Yellow Rockwool",
+  "block.thermal.lime_rockwool": "Lime Rockwool",
+  "block.thermal.pink_rockwool": "Pink Rockwool",
+  "block.thermal.gray_rockwool": "Gray Rockwool",
+  "block.thermal.light_gray_rockwool": "Light Gray Rockwool",
+  "block.thermal.cyan_rockwool": "Cyan Rockwool",
+  "block.thermal.purple_rockwool": "Purple Rockwool",
+  "block.thermal.blue_rockwool": "Blue Rockwool",
+  "block.thermal.brown_rockwool": "Brown Rockwool",
+  "block.thermal.green_rockwool": "Green Rockwool",
+  "block.thermal.red_rockwool": "Red Rockwool",
+  "block.thermal.black_rockwool": "Black Rockwool",
 
   "block.thermal.sawdust_block": "Block of Sawdust",
   "block.thermal.rosin_block": "Block of Rosin",
@@ -67,6 +84,12 @@
   "fluid.thermal.sap": "Sap",
   "fluid.thermal.syrup": "Syrup",
   "fluid.thermal.tree_oil": "Tree Oil",
+
+  "info.thermal.redprint.contents": "Contents:",
+  "info.thermal.redprint.unknown": "Unknown Data",
+  "info.thermal.redprint.data.RSControl": "Redstone Control",
+  "info.thermal.redprint.data.Sides": "Side Configuration",
+  "info.thermal.redprint.data.Xfer": "Transfer Control",
 
   "item.thermal.latex_bucket": "Latex Bucket",
   "item.thermal.resin_bucket": "Resin Bucket",
@@ -92,10 +115,6 @@
   "item.thermal.slag": "Slag",
   "item.thermal.sawdust": "Sawdust",
 
-  "item.thermal.beekeeper_fabric": "Woven Fabric",
-  "item.thermal.diving_fabric": "Marine Fabric",
-  "item.thermal.hazmat_fabric": "Hazmat Fabric",
-
   "item.thermal.basalz_powder": "Basalz Powder",
   "item.thermal.basalz_rod": "Basalz Shard",
   "item.thermal.basalz_spawn_egg": "Basalz Spawn Egg",
@@ -110,6 +129,8 @@
   "item.thermal.frost_catalyst": "Glacial Catalyst",
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.lock.desc": "Used to enable security on a block.",
+  "item.thermal.phytogro": "Phyto-Gro",
+  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
   "item.thermal.redprint": "Redprint",
   "item.thermal.redprint.desc": "Copies and transfers settings between blocks.",
   "item.thermal.wrench": "Crescent Hammer",
@@ -253,12 +274,6 @@
 
   "info.thermal.augment.maximized": "Does not stack; highest value used.",
 
-  "info.thermal.redprint.contents": "Contents:",
-  "info.thermal.redprint.unknown": "Unknown Data",
-  "info.thermal.redprint.data.RSControl": "Redstone Control",
-  "info.thermal.redprint.data.Sides": "Side Configuration",
-  "info.thermal.redprint.data.Xfer": "Transfer Control",
-
   "item.thermal.area_depth_augment": "Axial Enhancement",
   "item.thermal.area_radius_augment": "Radial Enhancement",
 
@@ -327,16 +342,19 @@
   "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
   "info.thermal.tinker_bench.2": "Tinker on!",
 
+  "item.thermal.beekeeper_fabric": "Woven Fabric",
   "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
   "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",
   "item.thermal.beekeeper_leggings": "Beekeeper's Pants",
   "item.thermal.beekeeper_boots": "Beekeeper's Boots",
 
+  "item.thermal.diving_fabric": "Marine Fabric",
   "item.thermal.diving_helmet": "Diving Helmet",
   "item.thermal.diving_chestplate": "Diving Suit",
   "item.thermal.diving_leggings": "Diving Leggings",
   "item.thermal.diving_boots": "Diving Flippers",
 
+  "item.thermal.hazmat_fabric": "Protective Fabric",
   "item.thermal.hazmat_helmet": "Hazmat Helmet",
   "item.thermal.hazmat_chestplate": "Hazmat Suit",
   "item.thermal.hazmat_leggings": "Hazmat Pants",
@@ -349,8 +367,6 @@
   "item.thermal.redstone_servo": "Redstone Servo",
   "item.thermal.rf_coil": "Redstone Flux Coil",
 
-  "item.thermal.phytogro": "Phyto-Gro",
-  "item.thermal.phytogro.desc": "Extremely potent fertilizer.",
   "item.thermal.phyto_grenade": "Phyto-Gronade",
   "item.thermal.phyto_grenade.desc": "Throwable Phyto-Gro with increased area.",
 

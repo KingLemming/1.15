@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:signalum_glass_2_no_smelter"
+    ]
+  },
+  "criteria": {
+    "has_signalum": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/signalum"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:signalum_glass_2_no_smelter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_signalum",
+      "has_the_recipe"
+    ]
+  ]
+}

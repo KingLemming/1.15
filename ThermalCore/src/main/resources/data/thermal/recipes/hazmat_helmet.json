@@ -21,7 +21,7 @@
   "conditions": [
     {
       "type": "thermal:flag",
-      "flag": "armor_hazmat"
+      "flag": "hazmat_armor"
     }
   ]
 }

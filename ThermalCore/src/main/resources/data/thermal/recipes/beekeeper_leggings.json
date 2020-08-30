@@ -16,7 +16,7 @@
   "conditions": [
     {
       "type": "thermal:flag",
-      "flag": "armor_beekeeper"
+      "flag": "beekeeper_armor"
     }
   ]
 }

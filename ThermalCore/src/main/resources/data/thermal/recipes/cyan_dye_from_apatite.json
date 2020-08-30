@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "thermal:apatite"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cyan_dye"
+  }
+}

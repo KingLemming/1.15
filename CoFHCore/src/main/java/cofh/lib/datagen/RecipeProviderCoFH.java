@@ -7,6 +7,7 @@ import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.Tag;
@@ -298,6 +299,17 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                         .build(consumer, gemName + "_from_ore_blasting");
             }
         }
+    }
+
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp) {
+
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input), output, xp, 200)
+                .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
+                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from_smelting");
+
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(input), output, xp, 100)
+                .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
+                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from_blasting");
     }
 
     @Override

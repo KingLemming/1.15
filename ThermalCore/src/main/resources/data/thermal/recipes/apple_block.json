@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:apple_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "vanilla_blocks"
+    }
+  ]
 }

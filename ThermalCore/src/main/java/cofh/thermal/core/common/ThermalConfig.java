@@ -7,6 +7,8 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import static cofh.thermal.core.common.ThermalFeatures.*;
+
 public class ThermalConfig {
 
     private static boolean registered = false;
@@ -69,6 +71,17 @@ public class ThermalConfig {
 
         SERVER_CONFIG.pop();
 
+        SERVER_CONFIG.push("Features");
+
+        flagVanillaBlocks = SERVER_CONFIG
+                .comment("If TRUE, various 'Vanilla+' Blocks and Recipes are enabled.")
+                .define("Vanilla+", true);
+        flagRockwool = SERVER_CONFIG
+                .comment("IF TRUE, Rockwool Blocks and Recipes are enabled.")
+                .define("Rockwool", true);
+
+        SERVER_CONFIG.pop();
+
         serverSpec = SERVER_CONFIG.build();
     }
 
@@ -83,6 +96,8 @@ public class ThermalConfig {
 
     private static void refreshServerConfig() {
 
+        setFeature(FLAG_VANILLA_BLOCKS, flagVanillaBlocks.get());
+        setFeature(FLAG_ROCKWOOL, flagRockwool.get());
     }
 
     private static void refreshClientConfig() {
@@ -112,6 +127,9 @@ public class ThermalConfig {
     public static BooleanValue keepRSControl;
     public static BooleanValue keepSideConfig;
     public static BooleanValue keepTransferControl;
+
+    public static BooleanValue flagVanillaBlocks;
+    public static BooleanValue flagRockwool;
 
     private static BooleanValue freezePermanentLava;
     private static BooleanValue freezePermanentWater;

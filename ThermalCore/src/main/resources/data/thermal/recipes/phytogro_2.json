@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:sand"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "thermal:rich_slag"
+    },
+    {
+      "item": "thermal:niter"
+    }
+  ],
+  "result": {
+    "item": "thermal:phytogro",
+    "count": 2
+  }
+}

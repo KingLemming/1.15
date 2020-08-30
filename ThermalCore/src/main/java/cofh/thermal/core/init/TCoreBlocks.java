@@ -6,6 +6,7 @@ import cofh.core.util.ProxyUtils;
 import cofh.lib.block.OreBlockCoFH;
 import cofh.lib.block.TileBlock4Way;
 import cofh.lib.block.storage.MetalStorageBlock;
+import cofh.lib.item.BlockItemCoFH;
 import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.entity.item.*;
@@ -19,6 +20,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.tileentity.TileEntityType;
@@ -36,10 +38,10 @@ import java.util.function.Predicate;
 
 import static cofh.thermal.core.ThermalCore.*;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_BLOCKS;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
-import static cofh.thermal.core.util.RegistrationHelper.registerAugBlock;
-import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
+import static cofh.thermal.core.util.RegistrationHelper.*;
 import static net.minecraft.block.Block.Properties.create;
 
 public class TCoreBlocks {
@@ -78,7 +80,8 @@ public class TCoreBlocks {
     // region HELPERS
     private static void registerVanilla() {
 
-        registerBlock(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)), getFeature(FLAG_VANILLA_BLOCKS));
+        registerBlockAndItem(ID_CHARCOAL_BLOCK, () -> new Block(create(Material.WOOD, MaterialColor.BLACK).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.STONE)),
+                () -> new BlockItemCoFH(BLOCKS.get(ID_CHARCOAL_BLOCK), new Item.Properties().group(THERMAL_BLOCKS)).setBurnTime(16000).setShowInGroups(getFeature(FLAG_VANILLA_BLOCKS)));
         registerBlock(ID_GUNPOWDER_BLOCK, () -> new GunpowderBlock(create(Material.TNT, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.SAND)), getFeature(FLAG_VANILLA_BLOCKS));
         registerBlock(ID_SUGAR_CANE_BLOCK, () -> new RotatedPillarBlock(create(Material.ORGANIC, MaterialColor.FOLIAGE).hardnessAndResistance(1.0F).sound(SoundType.CROP)) {
 
@@ -165,34 +168,36 @@ public class TCoreBlocks {
         registerBlock(ID_RUBY_BLOCK, () -> new MetalStorageBlock(MaterialColor.RED, 1), getFeature(FLAG_RESOURCE_RUBY));
         registerBlock(ID_SAPPHIRE_BLOCK, () -> new MetalStorageBlock(MaterialColor.BLUE, 1), getFeature(FLAG_RESOURCE_SAPPHIRE));
 
-        registerBlock(ID_SAWDUST_BLOCK, () -> new FallingBlock(create(Material.WOOD).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.SAND)) {
+        registerBlockAndItem(ID_SAWDUST_BLOCK, () -> new FallingBlock(create(Material.WOOD).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.SAND)) {
 
             @OnlyIn(Dist.CLIENT)
             public int getDustColor(BlockState state) {
 
                 return 11507581;
             }
-        });
-        registerBlock(ID_ROSIN_BLOCK, () -> new Block(create(Material.CLAY, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 4.0F).speedFactor(0.8F).jumpFactor(0.8F).sound(SoundType.field_226947_m_)) {
+        }, () -> new BlockItemCoFH(BLOCKS.get(ID_SAWDUST_BLOCK), new Item.Properties().group(THERMAL_BLOCKS)).setBurnTime(2400));
+
+        registerBlockAndItem(ID_ROSIN_BLOCK, () -> new Block(create(Material.CLAY, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 4.0F).speedFactor(0.8F).jumpFactor(0.8F).sound(SoundType.field_226947_m_)) {
 
             @Override
             public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
 
                 entityIn.onLivingFall(fallDistance, 0.8F);
             }
-        });
-        registerBlock(ID_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
-        registerBlock(ID_CURED_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)), getFeature(FLAG_RESOURCE_RUBBER));
-        registerBlock(ID_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_SLAG));
-        registerBlock(ID_RICH_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_SLAG));
+        }, () -> new BlockItemCoFH(BLOCKS.get(ID_ROSIN_BLOCK), new Item.Properties().group(THERMAL_BLOCKS)).setBurnTime(8000));
+
+        registerBlock(ID_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)));
+        registerBlock(ID_CURED_RUBBER_BLOCK, () -> new RubberBlock(create(Material.CLAY, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).jumpFactor(1.25F).sound(SoundType.GROUND)));
+        registerBlock(ID_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
+        registerBlock(ID_RICH_SLAG_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
     }
 
     private static void registerBuildingBlocks() {
 
         registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()));
 
-        registerBlock(ID_HARDENED_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
-        registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(1.5F, 7.5F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
+        registerBlock(ID_OBSIDIAN_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
+        registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
             public boolean canProvidePower(BlockState state) {
@@ -206,20 +211,37 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(1.5F, 7.5F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
         registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
+
+        registerBlock(ID_WHITE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.SNOW).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_ORANGE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_MAGENTA_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.MAGENTA).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_LIGHT_BLUE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_YELLOW_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.YELLOW).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_LIME_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.LIME).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_PINK_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.PINK).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_GRAY_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_LIGHT_GRAY_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_GRAY).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_CYAN_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.CYAN).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_PURPLE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.PURPLE).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_BLUE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.BLUE).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_BROWN_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.BROWN).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_GREEN_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.GREEN).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_RED_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.RED).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
+        registerBlock(ID_BLACK_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
     }
 
     private static void registerMisc() {
 
-        registerBlock(ID_PHYTO_TNT, () -> new TNTBlockCoFH(PhytoTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.GREEN).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_PHYTOGRO));
+        registerBlock(ID_PHYTO_TNT, () -> new TNTBlockCoFH(PhytoTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.GREEN).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_PHYTOGRO_EXPLOSIVES));
 
         registerBlock(ID_FIRE_TNT, () -> new TNTBlockCoFH(FireTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.RED).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
         registerBlock(ID_EARTH_TNT, () -> new TNTBlockCoFH(EarthTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.OBSIDIAN).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
         registerBlock(ID_ICE_TNT, () -> new TNTBlockCoFH(IceTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.ICE).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
         registerBlock(ID_LIGHTNING_TNT, () -> new TNTBlockCoFH(LightningTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.YELLOW).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), getFeature(FLAG_ELEMENTAL_EXPLOSIVES));
 
-        registerBlock(ID_NUKE_TNT, () -> new TNTBlockCoFH(NukeTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.LIME_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), Rarity.UNCOMMON);
+        registerBlock(ID_NUKE_TNT, () -> new TNTBlockCoFH(NukeTNTEntity::new, Block.Properties.create(Material.TNT, MaterialColor.LIME_TERRACOTTA).hardnessAndResistance(0.0F).sound(SoundType.PLANT)), Rarity.UNCOMMON, getFeature(FLAG_NUCLEAR_EXPLOSIVES));
     }
 
     private static void registerTileBlocks() {

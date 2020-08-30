@@ -24,18 +24,7 @@ public class ThermalInnovation {
         TInoBlocks.register();
         TInoItems.register();
 
-        setFeature(FLAG_ELEMENTAL_EXPLOSIVES, true);
 
-        setFeature(FLAG_BASIC_COMPONENTS, true);
-        setFeature(FLAG_TOOL_COMPONENTS, true);
-
-        setFeature(FLAG_AREA_AUGMENTS, true);
-        setFeature(FLAG_POTION_AUGMENTS, true);
-        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        setFeature(FLAG_UPGRADE_AUGMENTS, true);
-
-        setFeature(FLAG_ARMOR_DIVING, true);
-        setFeature(FLAG_ARMOR_HAZMAT, true);
     }
 
     // region INITIALIZATION

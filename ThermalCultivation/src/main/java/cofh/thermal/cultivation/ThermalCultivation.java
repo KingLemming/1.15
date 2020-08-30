@@ -34,19 +34,6 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
-
-        setFeature(FLAG_PHYTOGRO, true);
-
-        setFeature(FLAG_RESOURCE_APATITE, true);
-        setFeature(FLAG_RESOURCE_NITER, true);
-
-        setFeature(FLAG_BASIC_COMPONENTS, true);
-
-        setFeature(FLAG_AREA_AUGMENTS, true);
-        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        setFeature(FLAG_UPGRADE_AUGMENTS, true);
-
-        setFeature(FLAG_ARMOR_BEEKEEPER, true);
     }
 
     // region INITIALIZATION

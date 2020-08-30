@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "thermal:gunpowder_block"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "vanilla_blocks"
+    }
+  ]
 }

@@ -44,6 +44,11 @@ public class RegistrationHelper {
         registerBlock(name, sup, THERMAL_BLOCKS, rarity, TRUE);
     }
 
+    public static void registerBlock(String name, Supplier<Block> sup, Rarity rarity, BooleanSupplier showInGroups) {
+
+        registerBlock(name, sup, THERMAL_BLOCKS, rarity, showInGroups);
+    }
+
     public static void registerBlock(String name, Supplier<Block> sup, ItemGroup group, Rarity rarity, BooleanSupplier showInGroups) {
 
         registerBlockAndItem(name, sup, () -> new BlockItemCoFH(BLOCKS.get(name), new Item.Properties().group(group).rarity(rarity)).setShowInGroups(showInGroups));

@@ -1,0 +1,20 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "item": "thermal:obsidian_glass",
+      "count": 2
+    },
+    {
+      "tag": "forge:ingots/signalum",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:signalum_glass",
+      "count": 2
+    }
+  ],
+  "energy": 4800
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "thermal:slag"
+  },
+  "result": "thermal:light_gray_rockwool",
+  "experience": 0.1,
+  "cookingtime": 100
+}

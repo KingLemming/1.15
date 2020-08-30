@@ -3,10 +3,10 @@
 		"ctm_version": 1,
 		"type": "ctm",
 		"layer": "CUTOUT",
-		"textures": [ "thermal:blocks/glass/hardened_glass_ctm" ],
+		"textures": [ "thermal:blocks/glass/obsidian_glass_ctm" ],
 		"extra": {
 			"connect_to": [
-				{ "block": "thermal:hardened_glass" }
+				{ "block": "thermal:obsidian_glass" }
 			]
 		}
 	}

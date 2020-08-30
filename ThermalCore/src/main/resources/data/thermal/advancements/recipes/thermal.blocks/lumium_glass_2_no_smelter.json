@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lumium_glass_2_no_smelter"
+    ]
+  },
+  "criteria": {
+    "has_lumium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/lumium"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lumium_glass_2_no_smelter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lumium",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -7,11 +7,5 @@
   "secondary_mod": 2.5,
   "energy_mod": 0.6,
   "min_chance": 0.3,
-  "use_chance": 0.2,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "phytogro"
-    }
-  ]
+  "use_chance": 0.2
 }

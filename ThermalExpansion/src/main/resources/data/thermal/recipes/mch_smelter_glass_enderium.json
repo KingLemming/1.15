@@ -1,0 +1,20 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "item": "thermal:obsidian_glass",
+      "count": 2
+    },
+    {
+      "tag": "forge:ingots/enderium",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "thermal:enderium_glass",
+      "count": 2
+    }
+  ],
+  "energy": 4800
+}

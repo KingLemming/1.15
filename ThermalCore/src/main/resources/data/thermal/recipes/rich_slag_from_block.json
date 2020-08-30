@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:rich_slag",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "slag"
-    }
-  ]
+  }
 }

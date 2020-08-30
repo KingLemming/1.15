@@ -7,6 +7,10 @@
     {
       "item": "thermal:blitz_powder",
       "chance": 3.0
+    },
+    {
+      "item": "thermal:niter",
+      "chance": 0.25
     }
   ]
 }

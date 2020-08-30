@@ -63,18 +63,35 @@ public class TCoreIDs {
     public static final String ID_RUBY_BLOCK = "ruby_block";
     public static final String ID_SAPPHIRE_BLOCK = "sapphire_block";
 
-    public static final String ID_ENDERIUM_BLOCK = "enderium_block";
-    public static final String ID_LUMIUM_BLOCK = "lumium_block";
     public static final String ID_SIGNALUM_BLOCK = "signalum_block";
+    public static final String ID_LUMIUM_BLOCK = "lumium_block";
+    public static final String ID_ENDERIUM_BLOCK = "enderium_block";
     // endregion
 
     // region BUILDING BLOCKS
-    public static final String ID_HARDENED_GLASS = "hardened_glass";
-    public static final String ID_ENDERIUM_GLASS = "enderium_glass";
-    public static final String ID_LUMIUM_GLASS = "lumium_glass";
+    public static final String ID_OBSIDIAN_GLASS = "obsidian_glass";
     public static final String ID_SIGNALUM_GLASS = "signalum_glass";
+    public static final String ID_LUMIUM_GLASS = "lumium_glass";
+    public static final String ID_ENDERIUM_GLASS = "enderium_glass";
 
     public static final String ID_MACHINE_FRAME = "machine_frame";
+
+    public static final String ID_WHITE_ROCKWOOL = "white_rockwool";
+    public static final String ID_ORANGE_ROCKWOOL = "orange_rockwool";
+    public static final String ID_MAGENTA_ROCKWOOL = "magenta_rockwool";
+    public static final String ID_LIGHT_BLUE_ROCKWOOL = "light_blue_rockwool";
+    public static final String ID_YELLOW_ROCKWOOL = "yellow_rockwool";
+    public static final String ID_LIME_ROCKWOOL = "lime_rockwool";
+    public static final String ID_PINK_ROCKWOOL = "pink_rockwool";
+    public static final String ID_GRAY_ROCKWOOL = "gray_rockwool";
+    public static final String ID_LIGHT_GRAY_ROCKWOOL = "light_gray_rockwool";
+    public static final String ID_CYAN_ROCKWOOL = "cyan_rockwool";
+    public static final String ID_PURPLE_ROCKWOOL = "purple_rockwool";
+    public static final String ID_BLUE_ROCKWOOL = "blue_rockwool";
+    public static final String ID_BROWN_ROCKWOOL = "brown_rockwool";
+    public static final String ID_GREEN_ROCKWOOL = "green_rockwool";
+    public static final String ID_RED_ROCKWOOL = "red_rockwool";
+    public static final String ID_BLACK_ROCKWOOL = "black_rockwool";
     // endregion
 
     // region DEVICES

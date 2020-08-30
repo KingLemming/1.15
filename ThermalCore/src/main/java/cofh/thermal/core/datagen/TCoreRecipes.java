@@ -199,6 +199,38 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Items.FIRE_CHARGE)
                 .addCriterion("has_ender_pearl", hasItem(Tags.Items.ENDER_PEARLS))
                 .build(consumer, ID_THERMAL + ":enderium_ingot_2_no_smelter");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("obsidian_glass"), 2)
+                .addIngredient(Tags.Items.OBSIDIAN)
+                .addIngredient(Tags.Items.GEMS_QUARTZ)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_obsidian", hasItem(Tags.Items.OBSIDIAN))
+                .build(consumer, ID_THERMAL + ":obsidian_glass_2_no_smelter");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("signalum_glass"), 2)
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(CoFHTags.Items.INGOTS_SIGNALUM)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_signalum", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
+                .build(consumer, ID_THERMAL + ":signalum_glass_2_no_smelter");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("lumium_glass"), 2)
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(CoFHTags.Items.INGOTS_LUMIUM)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_lumium", hasItem(CoFHTags.Items.INGOTS_LUMIUM))
+                .build(consumer, ID_THERMAL + ":lumium_glass_2_no_smelter");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("enderium_glass"), 2)
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(reg.get("obsidian_glass"))
+                .addIngredient(CoFHTags.Items.INGOTS_ENDERIUM)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_enderium", hasItem(CoFHTags.Items.INGOTS_ENDERIUM))
+                .build(consumer, ID_THERMAL + ":enderium_glass_2_no_smelter");
     }
 
     private void generateArmorRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -319,23 +351,20 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
         ShapedRecipeBuilder.shapedRecipe(reg.get("wrench"))
-
-              .key('I', Tags.Items.INGOTS_IRON)
-              .key('T', CoFHTags.Items.INGOTS_TIN)
-              .patternLine("I I")
-              .patternLine(" T ")
-              .patternLine(" I ")
-              .addCriterion("has_tin", hasItem(CoFHTags.Items.INGOTS_TIN))
-              .build(consumer);
-
-//                 .key('I', Tags.Items.INGOTS_IRON)
-//                 .key('G', CoFHTags.Items.GEARS_IRON)
-//                 .patternLine("I I")
-//                 .patternLine(" G ")
-//                 .patternLine(" I ")
-//                 .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
-//                 .build(consumer);
-
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('G', CoFHTags.Items.GEARS_IRON)
+                .patternLine("I I")
+                .patternLine(" G ")
+                .patternLine(" I ")
+                .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
+        //                .key('I', Tags.Items.INGOTS_IRON)
+        //                .key('T', CoFHTags.Items.INGOTS_TIN)
+        //                .patternLine("I I")
+        //                .patternLine(" T ")
+        //                .patternLine(" I ")
+        //                .addCriterion("has_tin", hasItem(CoFHTags.Items.INGOTS_TIN))
+        //                .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("redprint"))
                 .addIngredient(Items.PAPER)
@@ -343,6 +372,15 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.DUSTS_REDSTONE)
                 .addIngredient(Tags.Items.DUSTS_REDSTONE)
                 .addCriterion("has_redstone", hasItem(Tags.Items.DUSTS_REDSTONE))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("lock"))
+                .key('i', Tags.Items.NUGGETS_IRON)
+                .key('S', CoFHTags.Items.INGOTS_SIGNALUM)
+                .patternLine(" i ")
+                .patternLine("iSi")
+                .patternLine("iii")
+                .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
                 .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
@@ -362,11 +400,33 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(reg.get("wrench"))
                 .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
                 .build(consumer, ID_THERMAL + ":split_quartz_block");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.CYAN_DYE)
+                .addIngredient(reg.get("apatite"))
+                .addCriterion("has_apatite", hasItem(reg.get("apatite")))
+                .build(consumer, ID_THERMAL + ":cyan_dye_from_apatite");
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("slag"), reg.get(ID_LIGHT_GRAY_ROCKWOOL), 0.1F);
     }
 
     private void generateComponentRecipes(Consumer<IFinishedRecipe> consumer) {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("rubber"), 3)
+                .addIngredient(reg.get("latex_bucket"))
+                .addCriterion("latex_bucket", hasItem(reg.get("latex_bucket")))
+                .build(consumer, ID_THERMAL + ":rubber_3");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("machine_frame"))
+                .key('G', Tags.Items.GLASS)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('T', CoFHTags.Items.GEARS_TIN)
+                .patternLine("IGI")
+                .patternLine("GTG")
+                .patternLine("IGI")
+                .addCriterion("has_tin", hasItem(CoFHTags.Items.INGOTS_TIN))
+                .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(reg.get("redstone_servo"))
                 .key('I', Tags.Items.INGOTS_IRON)
@@ -550,6 +610,14 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(reg.get("niter"))
                 .addCriterion("has_apatite", hasItem(reg.get("apatite")))
                 .build(consumer, ID_THERMAL + ":phytogro_4");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("phytogro"), 2)
+                .addIngredient(Tags.Items.SAND)
+                .addIngredient(Items.BONE_MEAL)
+                .addIngredient(reg.get("rich_slag"))
+                .addIngredient(reg.get("niter"))
+                .addCriterion("rich_slag", hasItem(reg.get("rich_slag")))
+                .build(consumer, ID_THERMAL + ":phytogro_2");
 
         ShapedRecipeBuilder.shapedRecipe(reg.get("phyto_grenade"), 4)
                 .key('G', Tags.Items.GUNPOWDER)

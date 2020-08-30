@@ -56,7 +56,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
@@ -77,8 +76,8 @@ public class ThermalCore {
 
     static {
         TCoreBlocks.register();
-        TCoreFluids.register();
         TCoreItems.register();
+        TCoreFluids.register();
 
         TCoreEntities.register();
         TCoreSounds.register();
@@ -87,8 +86,7 @@ public class ThermalCore {
         TCoreRecipeSerializers.register();
         TCoreRecipeTypes.register();
 
-        setFeature(FLAG_VANILLA_BLOCKS, true);
-        setFeature(FLAG_VANILLA_ITEMS, true);
+        //        setFeature(FLAG_ROCKWOOL, true);
     }
 
     public ThermalCore() {
@@ -136,7 +134,7 @@ public class ThermalCore {
 
         RenderType cutout = RenderType.getCutout();
 
-        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_HARDENED_GLASS), cutout);
+        RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_OBSIDIAN_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_SIGNALUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_LUMIUM_GLASS), cutout);
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_ENDERIUM_GLASS), cutout);

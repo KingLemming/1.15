@@ -12,11 +12,5 @@
   },
   "result": {
     "item": "thermal:rubber_block"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "rubber"
-    }
-  ]
+  }
 }
