@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 
@@ -348,6 +349,16 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     // endregion
 
     // region CAPABILITIES
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+
+        if (side != null && side.equals(getFacing())) {
+            return LazyOptional.empty();
+        }
+        return super.getCapability(cap, side);
+    }
+
     protected <T> LazyOptional<T> getEnergyCapability(@Nullable Direction side) {
 
         return LazyOptional.empty();

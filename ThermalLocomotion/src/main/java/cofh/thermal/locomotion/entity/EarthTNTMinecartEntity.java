@@ -47,7 +47,7 @@ public class EarthTNTMinecartEntity extends AbstractTNTMinecartEntity {
 
         if (Utils.isServerWorld(world)) {
             EarthGrenadeEntity.sunderNearbyEntities(this, world, this.getPosition(), radius);
-            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 2, null);
+            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 1, null);
             this.remove();
             this.entityDropItem(getCartItem());
         }

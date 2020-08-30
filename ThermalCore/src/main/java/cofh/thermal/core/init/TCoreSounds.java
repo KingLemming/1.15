@@ -4,8 +4,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
+import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.SOUND_EVENTS;
-import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TCoreSounds {
 
@@ -36,6 +36,29 @@ public class TCoreSounds {
         SOUND_EVENTS.register(ID_SOUND_MAGNET, () -> new SoundEvent(new ResourceLocation(ID_SOUND_MAGNET)));
         SOUND_EVENTS.register(ID_SOUND_TINKER, () -> new SoundEvent(new ResourceLocation(ID_SOUND_TINKER)));
     }
+
+    // region IDs
+    public static final String ID_SOUND_BASALZ_AMBIENT = ID_THERMAL + ":mob.basalz.ambient";
+    public static final String ID_SOUND_BASALZ_DEATH = ID_THERMAL + ":mob.basalz.death";
+    public static final String ID_SOUND_BASALZ_HURT = ID_THERMAL + ":mob.basalz.hurt";
+    public static final String ID_SOUND_BASALZ_ROAM = ID_THERMAL + ":mob.basalz.roam";
+    public static final String ID_SOUND_BASALZ_SHOOT = ID_THERMAL + ":mob.basalz.shoot";
+
+    public static final String ID_SOUND_BLITZ_AMBIENT = ID_THERMAL + ":mob.blitz.ambient";
+    public static final String ID_SOUND_BLITZ_DEATH = ID_THERMAL + ":mob.blitz.death";
+    public static final String ID_SOUND_BLITZ_HURT = ID_THERMAL + ":mob.blitz.hurt";
+    public static final String ID_SOUND_BLITZ_ROAM = ID_THERMAL + ":mob.blitz.roam";
+    public static final String ID_SOUND_BLITZ_SHOOT = ID_THERMAL + ":mob.blitz.shoot";
+
+    public static final String ID_SOUND_BLIZZ_AMBIENT = ID_THERMAL + ":mob.blizz.ambient";
+    public static final String ID_SOUND_BLIZZ_DEATH = ID_THERMAL + ":mob.blizz.death";
+    public static final String ID_SOUND_BLIZZ_HURT = ID_THERMAL + ":mob.blizz.hurt";
+    public static final String ID_SOUND_BLIZZ_ROAM = ID_THERMAL + ":mob.blizz.roam";
+    public static final String ID_SOUND_BLIZZ_SHOOT = ID_THERMAL + ":mob.blizz.shoot";
+
+    public static final String ID_SOUND_MAGNET = ID_THERMAL + ":item.magnet";
+    public static final String ID_SOUND_TINKER = ID_THERMAL + ":misc.tinker";
+    // endregion
 
     // region REFERENCES
     @ObjectHolder(ID_SOUND_BASALZ_AMBIENT)

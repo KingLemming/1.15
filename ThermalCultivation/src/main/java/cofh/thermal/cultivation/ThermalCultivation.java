@@ -28,6 +28,8 @@ public class ThermalCultivation {
 
     public ThermalCultivation() {
 
+        setFeatureFlags();
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -35,21 +37,18 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
+    }
 
-        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
-        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
-        setFeature(ID_TINKER_BENCH, true);
+    private void setFeatureFlags() {
+
+        setFeature(FLAG_RESOURCE_APATITE, true);
+
+        setFeature(FLAG_BEEKEEPER_ARMOR, true);
 
         setFeature(FLAG_PHYTOGRO_EXPLOSIVES, true);
 
-        setFeature(FLAG_RESOURCE_APATITE, true);
-        setFeature(FLAG_RESOURCE_NITER, true);
-
-        //        setFeature(FLAG_AREA_AUGMENTS, true);
-        //        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        //        setFeature(FLAG_UPGRADE_AUGMENTS, true);
-
-        setFeature(FLAG_BEEKEEPER_ARMOR, true);
+        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
+        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
     }
 
     // region INITIALIZATION

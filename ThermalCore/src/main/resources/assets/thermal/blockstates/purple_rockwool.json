@@ -1,5 +1,5 @@
 {
-    "variants": {
-        "": { "model": "thermal:block/purple_rockwool" }
-    }
+  "variants": {
+    "": {"model": "thermal:block/purple_rockwool"}
+  }
 }

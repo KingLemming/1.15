@@ -93,6 +93,9 @@ public class TCulLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(block(ID_TEA)), createSimpleDropTable(regBlocks.get(block(ID_TEA))));
         lootTables.put(regBlocks.get(block(ID_TOMATO)), createSimpleDropTable(regBlocks.get(block(ID_TOMATO))));
 
+        lootTables.put(regBlocks.get(ID_CHOCOLATE_CAKE), createEmptyTable());
+        lootTables.put(regBlocks.get(ID_SPICE_CAKE), createEmptyTable());
+
         lootTables.put(regBlocks.get(ID_DEVICE_SOIL_INFUSER), createSyncDropTable(regBlocks.get(ID_DEVICE_SOIL_INFUSER)));
     }
 

@@ -16,6 +16,8 @@ public class ThermalInnovation {
 
     public ThermalInnovation() {
 
+        setFeatureFlags();
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -23,8 +25,18 @@ public class ThermalInnovation {
 
         TInoBlocks.register();
         TInoItems.register();
+    }
 
+    private void setFeatureFlags() {
 
+        setFeature(FLAG_DIVING_ARMOR, true);
+        setFeature(FLAG_HAZMAT_ARMOR, true);
+
+        setFeature(FLAG_POTION_AUGMENTS, true);
+
+        setFeature(FLAG_TOOL_COMPONENTS, true);
+
+        setFeature(FLAG_ELEMENTAL_EXPLOSIVES, true);
     }
 
     // region INITIALIZATION

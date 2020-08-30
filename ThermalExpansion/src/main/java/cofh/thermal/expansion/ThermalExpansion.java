@@ -14,6 +14,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.expansion.init.TExpIDs.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
@@ -21,6 +22,8 @@ import static cofh.thermal.expansion.init.TExpReferences.*;
 public class ThermalExpansion {
 
     public ThermalExpansion() {
+
+        setFeatureFlags();
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -33,7 +36,14 @@ public class ThermalExpansion {
         TExpRecipeManagers.register();
         TExpRecipeSerializers.register();
         TExpRecipeTypes.register();
+    }
 
+    private void setFeatureFlags() {
+
+        setFeature(FLAG_RESOURCE_CINNABAR, true);
+
+        setFeature(FLAG_DYNAMO_AUGMENTS, true);
+        setFeature(FLAG_MACHINE_AUGMENTS, true);
     }
 
     // region INITIALIZATION

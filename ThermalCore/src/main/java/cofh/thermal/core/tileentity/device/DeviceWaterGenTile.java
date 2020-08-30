@@ -1,4 +1,4 @@
-package cofh.thermal.expansion.tileentity.device;
+package cofh.thermal.core.tileentity.device;
 
 import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.fluid.FluidStorageInfinite;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 
 import static cofh.lib.util.StorageGroup.OUTPUT;
 import static cofh.lib.util.constants.Constants.TANK_LARGE;
-import static cofh.thermal.expansion.init.TExpReferences.DEVICE_WATER_GEN_TILE;
+import static cofh.thermal.core.init.TCoreReferences.DEVICE_WATER_GEN_TILE;
 
 public class DeviceWaterGenTile extends ThermalTileBase {
 

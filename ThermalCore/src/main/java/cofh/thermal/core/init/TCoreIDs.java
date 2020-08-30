@@ -1,7 +1,5 @@
 package cofh.thermal.core.init;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-
 public class TCoreIDs {
 
     private TCoreIDs() {
@@ -68,7 +66,7 @@ public class TCoreIDs {
     public static final String ID_ENDERIUM_BLOCK = "enderium_block";
     // endregion
 
-    // region BUILDING BLOCKS
+    // region BLOCKS
     public static final String ID_OBSIDIAN_GLASS = "obsidian_glass";
     public static final String ID_SIGNALUM_GLASS = "signalum_glass";
     public static final String ID_LUMIUM_GLASS = "lumium_glass";
@@ -97,6 +95,9 @@ public class TCoreIDs {
     // region DEVICES
     public static final String ID_DEVICE_HIVE_EXTRACTOR = "device_hive_extractor";
     public static final String ID_DEVICE_TREE_EXTRACTOR = "device_tree_extractor";
+
+    public static final String ID_DEVICE_ROCK_GEN = "device_rock_gen";
+    public static final String ID_DEVICE_WATER_GEN = "device_water_gen";
     // endregion
 
     // region WORKBENCHES
@@ -166,28 +167,4 @@ public class TCoreIDs {
     public static final String ID_HAZMAT_LEGGINGS = "hazmat_leggings";
     public static final String ID_HAZMAT_BOOTS = "hazmat_boots";
     // endregion
-
-    // region SOUND EVENTS
-    public static final String ID_SOUND_BASALZ_AMBIENT = ID_THERMAL + ":mob.basalz.ambient";
-    public static final String ID_SOUND_BASALZ_DEATH = ID_THERMAL + ":mob.basalz.death";
-    public static final String ID_SOUND_BASALZ_HURT = ID_THERMAL + ":mob.basalz.hurt";
-    public static final String ID_SOUND_BASALZ_ROAM = ID_THERMAL + ":mob.basalz.roam";
-    public static final String ID_SOUND_BASALZ_SHOOT = ID_THERMAL + ":mob.basalz.shoot";
-
-    public static final String ID_SOUND_BLITZ_AMBIENT = ID_THERMAL + ":mob.blitz.ambient";
-    public static final String ID_SOUND_BLITZ_DEATH = ID_THERMAL + ":mob.blitz.death";
-    public static final String ID_SOUND_BLITZ_HURT = ID_THERMAL + ":mob.blitz.hurt";
-    public static final String ID_SOUND_BLITZ_ROAM = ID_THERMAL + ":mob.blitz.roam";
-    public static final String ID_SOUND_BLITZ_SHOOT = ID_THERMAL + ":mob.blitz.shoot";
-
-    public static final String ID_SOUND_BLIZZ_AMBIENT = ID_THERMAL + ":mob.blizz.ambient";
-    public static final String ID_SOUND_BLIZZ_DEATH = ID_THERMAL + ":mob.blizz.death";
-    public static final String ID_SOUND_BLIZZ_HURT = ID_THERMAL + ":mob.blizz.hurt";
-    public static final String ID_SOUND_BLIZZ_ROAM = ID_THERMAL + ":mob.blizz.roam";
-    public static final String ID_SOUND_BLIZZ_SHOOT = ID_THERMAL + ":mob.blizz.shoot";
-
-    public static final String ID_SOUND_MAGNET = ID_THERMAL + ":item.magnet";
-    public static final String ID_SOUND_TINKER = ID_THERMAL + ":misc.tinker";
-    // endregion
-
 }

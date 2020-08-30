@@ -6,8 +6,6 @@ import cofh.thermal.expansion.inventory.container.dynamo.*;
 import cofh.thermal.expansion.inventory.container.machine.*;
 import cofh.thermal.expansion.tileentity.device.DeviceFluidBufferTile;
 import cofh.thermal.expansion.tileentity.device.DeviceItemBufferTile;
-import cofh.thermal.expansion.tileentity.device.DeviceRockGenTile;
-import cofh.thermal.expansion.tileentity.device.DeviceWaterGenTile;
 import cofh.thermal.expansion.tileentity.dynamo.*;
 import cofh.thermal.expansion.tileentity.machine.*;
 import net.minecraft.block.Block;
@@ -26,16 +24,6 @@ public class TExpReferences {
     }
 
     // region DEVICES
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static final Block DEVICE_ROCK_GEN_BLOCK = null;
-    @ObjectHolder(ID_DEVICE_ROCK_GEN)
-    public static final TileEntityType<DeviceRockGenTile> DEVICE_ROCK_GEN_TILE = null;
-
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static final Block DEVICE_WATER_GEN_BLOCK = null;
-    @ObjectHolder(ID_DEVICE_WATER_GEN)
-    public static final TileEntityType<DeviceWaterGenTile> DEVICE_WATER_GEN_TILE = null;
-
     @ObjectHolder(ID_DEVICE_FLUID_BUFFER)
     public static final Block DEVICE_FLUID_BUFFER_BLOCK = null;
     @ObjectHolder(ID_DEVICE_FLUID_BUFFER)

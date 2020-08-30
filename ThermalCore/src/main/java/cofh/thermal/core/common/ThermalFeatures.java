@@ -33,11 +33,21 @@ public class ThermalFeatures {
     }
 
     // region SPECIFIC FEATURES
+    public static String FLAG_VANILLA_BLOCKS = "vanilla_blocks";
     public static String FLAG_ROCKWOOL = "rockwool";
 
     public static String FLAG_BEEKEEPER_ARMOR = "beekeeper_armor";
     public static String FLAG_DIVING_ARMOR = "diving_armor";
     public static String FLAG_HAZMAT_ARMOR = "hazmat_armor";
+
+    public static String FLAG_AREA_AUGMENTS = "area_augments";
+    public static String FLAG_DYNAMO_AUGMENTS = "dynamo_augments";
+    public static String FLAG_MACHINE_AUGMENTS = "machine_augments";
+    public static String FLAG_POTION_AUGMENTS = "potion_augments";
+    public static String FLAG_STORAGE_AUGMENTS = "storage_augments";
+    public static String FLAG_UPGRADE_AUGMENTS = "upgrade_augments";
+
+    public static String FLAG_TOOL_COMPONENTS = "tool_components";
 
     public static String FLAG_PHYTOGRO_EXPLOSIVES = "phytogro_explosives";
     public static String FLAG_ELEMENTAL_EXPLOSIVES = "elemental_explosives";
@@ -64,19 +74,6 @@ public class ThermalFeatures {
     public static String FLAG_MOB_BASALZ = "basalz";
     public static String FLAG_MOB_BLITZ = "blitz";
     public static String FLAG_MOB_BLIZZ = "blizz";
-    // endregion
-
-    // region CATEGORIES
-    public static String FLAG_VANILLA_BLOCKS = "vanilla_blocks";
-
-    public static String FLAG_TOOL_COMPONENTS = "tool_components";
-
-    public static String FLAG_AREA_AUGMENTS = "area_augments";
-    public static String FLAG_DYNAMO_AUGMENTS = "dynamo_augments";
-    public static String FLAG_MACHINE_AUGMENTS = "machine_augments";
-    public static String FLAG_POTION_AUGMENTS = "potion_augments";
-    public static String FLAG_STORAGE_AUGMENTS = "storage_augments";
-    public static String FLAG_UPGRADE_AUGMENTS = "upgrade_augments";
     // endregion
 
     static {

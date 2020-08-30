@@ -18,5 +18,11 @@
   },
   "result": {
     "item": "thermal:machine_frame"
-  }
+  },
+  "conditions": [
+    {
+      "type": "thermal:flag",
+      "flag": "machine_frame"
+    }
+  ]
 }

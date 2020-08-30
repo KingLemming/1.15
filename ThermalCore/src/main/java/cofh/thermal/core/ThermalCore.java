@@ -86,16 +86,11 @@ public class ThermalCore {
         TCoreRecipeManagers.register();
         TCoreRecipeSerializers.register();
         TCoreRecipeTypes.register();
-
-        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
-        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
-        setFeature(ID_TINKER_BENCH, true);
-
-        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        setFeature(FLAG_UPGRADE_AUGMENTS, true);
     }
 
     public ThermalCore() {
+
+        setFeatureFlags();
 
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -121,6 +116,24 @@ public class ThermalCore {
 
         ThermalConfig.register();
         CraftingHelper.register(new FeatureRecipeCondition.Serializer(ThermalFeatures.manager(), new ResourceLocation(ID_THERMAL, "flag")));
+    }
+
+    private void setFeatureFlags() {
+
+        setFeature(FLAG_RESOURCE_NITER, true);
+        setFeature(FLAG_RESOURCE_SULFUR, true);
+
+        setFeature(FLAG_RESOURCE_COPPER, true);
+        setFeature(FLAG_RESOURCE_TIN, true);
+        setFeature(FLAG_RESOURCE_LEAD, true);
+        setFeature(FLAG_RESOURCE_SILVER, true);
+        setFeature(FLAG_RESOURCE_NICKEL, true);
+
+        setFeature(FLAG_AREA_AUGMENTS, true);
+        setFeature(FLAG_STORAGE_AUGMENTS, true);
+        setFeature(FLAG_UPGRADE_AUGMENTS, true);
+
+        setFeature(ID_TINKER_BENCH, true);
     }
 
     // region INITIALIZATION

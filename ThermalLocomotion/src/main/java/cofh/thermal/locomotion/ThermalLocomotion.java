@@ -24,6 +24,8 @@ public class ThermalLocomotion {
 
     public ThermalLocomotion() {
 
+        setFeatureFlags();
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -32,6 +34,10 @@ public class ThermalLocomotion {
         TLocBlocks.register();
         TLocEntities.register();
         TLocItems.register();
+    }
+
+    private void setFeatureFlags() {
+
     }
 
     // region INITIALIZATION

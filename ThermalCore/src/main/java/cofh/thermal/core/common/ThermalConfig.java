@@ -80,6 +80,16 @@ public class ThermalConfig {
                 .comment("IF TRUE, Rockwool Blocks and Recipes are enabled.")
                 .define("Rockwool", true);
 
+        flagMobBasalz = SERVER_CONFIG
+                .comment("IF TRUE, the Basalz Mob is enabled.")
+                .define("Basalz", true);
+        flagMobBlitz = SERVER_CONFIG
+                .comment("IF TRUE, the Blitz Mob is enabled.")
+                .define("Basalz", true);
+        flagMobBlizz = SERVER_CONFIG
+                .comment("IF TRUE, the Blizz Mob is enabled.")
+                .define("Basalz", true);
+
         SERVER_CONFIG.pop();
 
         serverSpec = SERVER_CONFIG.build();
@@ -98,6 +108,10 @@ public class ThermalConfig {
 
         setFeature(FLAG_VANILLA_BLOCKS, flagVanillaBlocks.get());
         setFeature(FLAG_ROCKWOOL, flagRockwool.get());
+
+        setFeature(FLAG_MOB_BASALZ, flagMobBasalz.get());
+        setFeature(FLAG_MOB_BLITZ, flagMobBlitz.get());
+        setFeature(FLAG_MOB_BLIZZ, flagMobBlizz.get());
     }
 
     private static void refreshClientConfig() {
@@ -128,8 +142,12 @@ public class ThermalConfig {
     public static BooleanValue keepSideConfig;
     public static BooleanValue keepTransferControl;
 
-    public static BooleanValue flagVanillaBlocks;
-    public static BooleanValue flagRockwool;
+    private static BooleanValue flagVanillaBlocks;
+    private static BooleanValue flagRockwool;
+
+    private static BooleanValue flagMobBasalz;
+    private static BooleanValue flagMobBlitz;
+    private static BooleanValue flagMobBlizz;
 
     private static BooleanValue freezePermanentLava;
     private static BooleanValue freezePermanentWater;

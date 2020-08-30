@@ -35,16 +35,18 @@ public class TCoreItems {
 
         registerResources();
         registerParts();
+
+        // TODO: Re-enable once Augment balancing is conceptualized.
+        //        registerUpgradeAugments();
+        //        registerStorageAugments();
+        //        registerMachineAugments();
+        //        registerDynamoAugments();
+        //        registerAreaAugments();
+        //        registerPotionAugments();
+
         registerMaterials();
         registerTools();
         registerArmor();
-
-        registerUpgradeAugments();
-        registerStorageAugments();
-        registerMachineAugments();
-        registerDynamoAugments();
-        registerAreaAugments();
-        registerPotionAugments();
 
         registerSpawnEggs();
     }
@@ -54,10 +56,6 @@ public class TCoreItems {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
-        //        registerItem("cinnabar_dust", group);
-        //        registerItem("niter_dust", group);
-        //        registerItem("sulfur_dust", group);
-        //        registerItem("obsidian_dust", group);
         registerItem("sawdust", group);
         registerItem("rosin", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
         registerItem("rubber", () -> new ItemCoFH(new Item.Properties().group(group)));
@@ -266,7 +264,7 @@ public class TCoreItems {
     // region AUGMENTS
     private static void registerAreaAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerItem("area_radius_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
@@ -277,7 +275,7 @@ public class TCoreItems {
 
     private static void registerDynamoAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerItem("dynamo_output_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
@@ -295,7 +293,7 @@ public class TCoreItems {
 
     public static void registerMachineAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerItem("machine_speed_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
@@ -321,7 +319,7 @@ public class TCoreItems {
 
     public static void registerPotionAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
         registerItem("potion_amplifier_augment", () -> new AugmentItem(new Item.Properties().group(group),
                 AugmentDataHelper.builder()
@@ -339,7 +337,7 @@ public class TCoreItems {
 
     private static void registerStorageAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
         final float[] storageMods = new float[]{1.0F, 2.0F, 4.0F, 6.0F, 8.0F, 10.0F};
 
         for (int i = 1; i <= 4; ++i) {
@@ -382,7 +380,7 @@ public class TCoreItems {
 
     private static void registerUpgradeAugments() {
 
-        ItemGroup group = ThermalItemGroups.THERMAL_TOOLS;
+        ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
         final float[] upgradeMods = new float[]{1.0F, 1.5F, 2.5F, 4.0F, 6.0F, 8.5F};
         // final float[] upgradeMods = new float[]{1.0F, 1.5F, 2.0F, 2.5F, 3.0F, 3.5F};
 
@@ -399,9 +397,11 @@ public class TCoreItems {
 
     private static void registerSpawnEggs() {
 
-        registerItem("basalz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BASALZ_ENTITY, 0x363840, 0x080407, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
-        registerItem("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0x7BD4FF, 0x0D6FD9, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
-        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(ItemGroup.MISC)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
+        ItemGroup group = ItemGroup.MISC;
+
+        registerItem("basalz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BASALZ_ENTITY, 0x363840, 0x080407, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
+        registerItem("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0x7BD4FF, 0x0D6FD9, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
+        registerItem("blitz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLITZ_ENTITY, 0xECFEFC, 0xFFD46D, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
     }
     // endregion
 

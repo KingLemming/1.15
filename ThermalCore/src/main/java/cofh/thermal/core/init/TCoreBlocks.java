@@ -194,7 +194,7 @@ public class TCoreBlocks {
 
     private static void registerBuildingBlocks() {
 
-        registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()));
+        registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()), getFeature(ID_MACHINE_FRAME));
 
         registerBlock(ID_OBSIDIAN_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
         registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(7).notSolid()) {

@@ -7,9 +7,6 @@ public class TExpIDs {
     }
 
     // region DEVICES
-    public static final String ID_DEVICE_ROCK_GEN = "device_rock_gen";
-    public static final String ID_DEVICE_WATER_GEN = "device_water_gen";
-
     public static final String ID_DEVICE_FLUID_BUFFER = "device_fluid_buffer";
     public static final String ID_DEVICE_ITEM_BUFFER = "device_item_buffer";
     // endregion
