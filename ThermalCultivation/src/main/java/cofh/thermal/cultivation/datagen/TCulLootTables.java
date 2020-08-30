@@ -2,20 +2,21 @@ package cofh.thermal.cultivation.datagen;
 
 import cofh.lib.datagen.LootTableProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.world.storage.loot.IntClamper;
-import net.minecraft.world.storage.loot.ItemLootEntry;
-import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.SurvivesExplosion;
 import net.minecraft.world.storage.loot.functions.ApplyBonus;
 import net.minecraft.world.storage.loot.functions.LimitCount;
 import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.init.TCoreIDs.ID_DEVICE_HIVE_EXTRACTOR;
 import static cofh.thermal.core.util.RegistrationHelper.block;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulIDs.*;
@@ -39,22 +40,22 @@ public class TCulLootTables extends LootTableProviderCoFH {
         DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
         DeferredRegisterCoFH<Item> regItems = ITEMS;
 
-        registerDefaultCropTable(ID_BARLEY);
-        registerDefaultCropTable(ID_ONION);
-        registerDefaultCropTable(ID_RADISH);
-        registerDefaultCropTable(ID_RICE);
-        registerDefaultCropTable(ID_SADIROOT);
-        registerDefaultCropTable(ID_SPINACH);
+        createDefaultCropTable(ID_BARLEY);
+        createDefaultCropTable(ID_ONION);
+        createDefaultCropTable(ID_RADISH);
+        createDefaultCropTable(ID_RICE);
+        createDefaultCropTable(ID_SADIROOT);
+        createDefaultCropTable(ID_SPINACH);
 
-        registerDefaultCropTable(ID_BELL_PEPPER);
-        registerDefaultCropTable(ID_EGGPLANT);
-        registerDefaultCropTable(ID_GREEN_BEAN);
-        registerDefaultCropTable(ID_PEANUT);
-        registerDefaultCropTable(ID_STRAWBERRY);
-        registerDefaultCropTable(ID_TOMATO);
+        createDefaultCropTable(ID_BELL_PEPPER);
+        createDefaultCropTable(ID_EGGPLANT);
+        createDefaultCropTable(ID_GREEN_BEAN);
+        createDefaultCropTable(ID_PEANUT);
+        createDefaultCropTable(ID_STRAWBERRY);
+        createDefaultCropTable(ID_TOMATO);
 
-        registerDefaultCropTable(ID_COFFEE);
-        registerDefaultCropTable(ID_TEA);
+        createDefaultCropTable(ID_COFFEE);
+        createDefaultCropTable(ID_TEA);
 
         lootTables.put(regBlocks.get(ID_FROST_MELON),
                 BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_FROST_MELON),
@@ -91,11 +92,23 @@ public class TCulLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(block(ID_STRAWBERRY)), createSimpleDropTable(regBlocks.get(block(ID_STRAWBERRY))));
         lootTables.put(regBlocks.get(block(ID_TEA)), createSimpleDropTable(regBlocks.get(block(ID_TEA))));
         lootTables.put(regBlocks.get(block(ID_TOMATO)), createSimpleDropTable(regBlocks.get(block(ID_TOMATO))));
+
+        lootTables.put(regBlocks.get(ID_DEVICE_SOIL_INFUSER), createSyncDropTable(regBlocks.get(ID_DEVICE_SOIL_INFUSER)));
     }
 
-    protected void registerDefaultCropTable(String id) {
+    protected void createDefaultCropTable(String id) {
 
         lootTables.put(BLOCKS.get(id), createCropTable(BLOCKS.get(id), ITEMS.get(id), ITEMS.get(seeds(id))));
+    }
+
+    protected LootTable.Builder createSyncDropTable(Block block) {
+
+        LootPool.Builder builder = LootPool.builder()
+                .rolls(ConstantRange.of(1))
+                .addEntry(ItemLootEntry.builder(block)
+                        .acceptFunction(TileNBTSync.builder()))
+                .acceptCondition(SurvivesExplosion.builder());
+        return LootTable.builder().addLootPool(builder);
     }
 
 }

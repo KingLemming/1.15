@@ -56,6 +56,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
@@ -86,7 +87,12 @@ public class ThermalCore {
         TCoreRecipeSerializers.register();
         TCoreRecipeTypes.register();
 
-        //        setFeature(FLAG_ROCKWOOL, true);
+        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
+        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
+        setFeature(ID_TINKER_BENCH, true);
+
+        setFeature(FLAG_STORAGE_AUGMENTS, true);
+        setFeature(FLAG_UPGRADE_AUGMENTS, true);
     }
 
     public ThermalCore() {

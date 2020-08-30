@@ -2,13 +2,14 @@ package cofh.thermal.core.datagen;
 
 import cofh.lib.datagen.LootTableProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.world.storage.loot.ItemLootEntry;
-import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.SurvivesExplosion;
 import net.minecraft.world.storage.loot.functions.ApplyBonus;
 import net.minecraft.world.storage.loot.functions.SetCount;
 
@@ -106,9 +107,9 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_RED_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_RED_ROCKWOOL)));
         lootTables.put(regBlocks.get(ID_BLACK_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_BLACK_ROCKWOOL)));
 
-        lootTables.put(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR), createSimpleDropTable(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR)));
-        lootTables.put(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR), createSimpleDropTable(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR)));
-        lootTables.put(regBlocks.get(ID_TINKER_BENCH), createSimpleDropTable(regBlocks.get(ID_TINKER_BENCH)));
+        lootTables.put(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR), createSyncDropTable(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR)));
+        lootTables.put(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR), createSyncDropTable(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR)));
+        lootTables.put(regBlocks.get(ID_TINKER_BENCH), createSyncDropTable(regBlocks.get(ID_TINKER_BENCH)));
 
         lootTables.put(regBlocks.get(ID_PHYTO_TNT), createSimpleDropTable(regBlocks.get(ID_PHYTO_TNT)));
 
@@ -132,6 +133,16 @@ public class TCoreLootTables extends LootTableProviderCoFH {
                 .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 5.0F)))
                 .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))));
 
+    }
+
+    protected LootTable.Builder createSyncDropTable(Block block) {
+
+        LootPool.Builder builder = LootPool.builder()
+                .rolls(ConstantRange.of(1))
+                .addEntry(ItemLootEntry.builder(block)
+                        .acceptFunction(TileNBTSync.builder()))
+                .acceptCondition(SurvivesExplosion.builder());
+        return LootTable.builder().addLootPool(builder);
     }
 
 }

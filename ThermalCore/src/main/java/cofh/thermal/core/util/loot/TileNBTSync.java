@@ -70,6 +70,11 @@ public class TileNBTSync extends LootFunction {
         return stack;
     }
 
+    public static LootFunction.Builder<?> builder() {
+
+        return builder(TileNBTSync::new);
+    }
+
     public static class Serializer extends LootFunction.Serializer<TileNBTSync> {
 
         public Serializer() {
