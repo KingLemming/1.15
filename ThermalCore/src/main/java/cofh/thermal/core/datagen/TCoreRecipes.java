@@ -3,17 +3,21 @@ package cofh.thermal.core.datagen;
 import cofh.lib.datagen.RecipeProviderCoFH;
 import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.lib.util.references.CoFHTags;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.init.TCoreIDs.*;
 
@@ -54,13 +58,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
             generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
 
-            generateStorageRecipes(reg, consumer, reg.get(ID_SAWDUST_BLOCK), reg.get("sawdust"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_ROSIN_BLOCK), reg.get("rosin"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_RUBBER_BLOCK), reg.get("rubber"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_CURED_RUBBER_BLOCK), reg.get("cured_rubber"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_SLAG_BLOCK), reg.get("slag"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_RICH_SLAG_BLOCK), reg.get("rich_slag"));
-
             generateStorageRecipes(reg, consumer, "copper");
             generateStorageRecipes(reg, consumer, "tin");
             generateStorageRecipes(reg, consumer, "lead");
@@ -84,6 +81,13 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
         }
 
+        generateStorageRecipes(reg, consumer, reg.get(ID_SAWDUST_BLOCK), reg.get("sawdust"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_ROSIN_BLOCK), reg.get("rosin"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_RUBBER_BLOCK), reg.get("rubber"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_CURED_RUBBER_BLOCK), reg.get("cured_rubber"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_SLAG_BLOCK), reg.get("slag"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_RICH_SLAG_BLOCK), reg.get("rich_slag"));
+
         generateStorageRecipes(reg, consumer, "signalum");
         generateStorageRecipes(reg, consumer, "lumium");
         generateStorageRecipes(reg, consumer, "enderium");
@@ -96,6 +100,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateArmorRecipes(consumer);
         generateBasicRecipes(consumer);
         generateComponentRecipes(consumer);
+        generateDeviceRecipes(consumer);
         generateExplosiveRecipes(consumer);
         generatePhytogroRecipes(consumer);
         generateVanillaRecipes(consumer);
@@ -383,6 +388,21 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
                 .build(consumer);
 
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("basalz_powder"), 2)
+                .addIngredient(reg.get("basalz_rod"))
+                .addCriterion("has_basalz_rod", hasItem(reg.get("basalz_rod")))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("blitz_powder"), 2)
+                .addIngredient(reg.get("blitz_rod"))
+                .addCriterion("has_blitz_rod", hasItem(reg.get("blitz_rod")))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("blizz_powder"), 2)
+                .addIngredient(reg.get("blizz_rod"))
+                .addCriterion("has_blizz_rod", hasItem(reg.get("blizz_rod")))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
                 .addIngredient(Items.PRISMARINE)
                 .addIngredient(reg.get("wrench"))
@@ -406,17 +426,116 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_apatite", hasItem(reg.get("apatite")))
                 .build(consumer, ID_THERMAL + ":cyan_dye_from_apatite");
 
-        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("slag"), reg.get(ID_LIGHT_GRAY_ROCKWOOL), 0.1F);
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("rubber"), 3)
+                .addIngredient(reg.get("latex_bucket"))
+                .addCriterion("latex_bucket", hasItem(reg.get("latex_bucket")))
+                .build(consumer, ID_THERMAL + ":rubber_3");
+
+        // ROCKWOOL
+        Item rockwool = reg.get(ID_WHITE_ROCKWOOL);
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("slag"), rockwool, 0.1F);
+
+        //        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_WHITE_ROCKWOOL))
+        //                .addIngredient(rockwool)
+        //                .addIngredient(Tags.Items.DYES_WHITE)
+        //                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+        //                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_ORANGE_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_ORANGE)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_MAGENTA_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_MAGENTA)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIGHT_BLUE_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_LIGHT_BLUE)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_YELLOW_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_YELLOW)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIME_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_LIME)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_PINK_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_PINK)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_GRAY_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_GRAY)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIGHT_GRAY_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_LIGHT_GRAY)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_CYAN_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_CYAN)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_PURPLE_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_PURPLE)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BLUE_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_BLUE)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BROWN_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_BROWN)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_GREEN_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_GREEN)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_RED_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_RED)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BLACK_ROCKWOOL))
+                .addIngredient(rockwool)
+                .addIngredient(Tags.Items.DYES_BLACK)
+                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
+                .build(consumer);
     }
 
     private void generateComponentRecipes(Consumer<IFinishedRecipe> consumer) {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
-
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get("rubber"), 3)
-                .addIngredient(reg.get("latex_bucket"))
-                .addCriterion("latex_bucket", hasItem(reg.get("latex_bucket")))
-                .build(consumer, ID_THERMAL + ":rubber_3");
 
         ShapedRecipeBuilder.shapedRecipe(reg.get("machine_frame"))
                 .key('G', Tags.Items.GLASS)
@@ -489,6 +608,51 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("SHS")
                 .patternLine(" S ")
                 .addCriterion("has_cured_rubber", hasItem(reg.get("cured_rubber")))
+                .build(consumer);
+    }
+
+    private void generateDeviceRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
+        DeferredRegisterCoFH<Item> regItems = ITEMS;
+
+        Item redstoneServo = regItems.get("redstone_servo");
+        Item rfCoil = regItems.get("rf_coil");
+
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR))
+                .key('C', Items.SHEARS)
+                .key('G', Tags.Items.GLASS)
+                .key('P', redstoneServo)
+                .key('X', CoFHTags.Items.GEARS_IRON)
+                .key('W', ItemTags.PLANKS)
+                .patternLine("WXW")
+                .patternLine("GCG")
+                .patternLine("WPW")
+                .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR))
+                .key('C', Items.BUCKET)
+                .key('G', Tags.Items.GLASS)
+                .key('P', redstoneServo)
+                .key('X', CoFHTags.Items.GEARS_IRON)
+                .key('W', ItemTags.PLANKS)
+                .patternLine("WXW")
+                .patternLine("GCG")
+                .patternLine("WPW")
+                .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_TINKER_BENCH))
+                .key('C', Blocks.CRAFTING_TABLE)
+                .key('G', Tags.Items.GLASS)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', rfCoil)
+                .key('W', ItemTags.PLANKS)
+                .patternLine("III")
+                .patternLine("GCG")
+                .patternLine("WPW")
+                .addCriterion("has_" + rfCoil.getRegistryName().getPath(), hasItem(rfCoil))
                 .build(consumer);
     }
 
@@ -667,29 +831,29 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
                 .build(consumer);
 
-        //        gear = reg.get("diamond_gear");
-        //        ingot = Items.DIAMOND;
-        //
-        //        ShapedRecipeBuilder.shapedRecipe(gear)
-        //                .key('#', ingot)
-        //                .key('i', Items.IRON_NUGGET)
-        //                .patternLine(" # ")
-        //                .patternLine("#i#")
-        //                .patternLine(" # ")
-        //                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-        //                .build(consumer);
-        //
-        //        gear = reg.get("emerald_gear");
-        //        ingot = Items.EMERALD;
-        //
-        //        ShapedRecipeBuilder.shapedRecipe(gear)
-        //                .key('#', ingot)
-        //                .key('i', Items.IRON_NUGGET)
-        //                .patternLine(" # ")
-        //                .patternLine("#i#")
-        //                .patternLine(" # ")
-        //                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-        //                .build(consumer);
+        gear = reg.get("diamond_gear");
+        ingot = Items.DIAMOND;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Items.IRON_NUGGET)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
+
+        gear = reg.get("emerald_gear");
+        ingot = Items.EMERALD;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Items.IRON_NUGGET)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
     }
     // endregion
 }

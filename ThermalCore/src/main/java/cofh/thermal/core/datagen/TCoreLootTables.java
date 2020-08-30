@@ -89,6 +89,27 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_LUMIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_LUMIUM_GLASS)));
         lootTables.put(regBlocks.get(ID_ENDERIUM_GLASS), BlockLootTables.onlyWithSilkTouch(regBlocks.get(ID_ENDERIUM_GLASS)));
 
+        lootTables.put(regBlocks.get(ID_WHITE_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_WHITE_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_ORANGE_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_ORANGE_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_MAGENTA_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_MAGENTA_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_LIGHT_BLUE_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_LIGHT_BLUE_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_YELLOW_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_YELLOW_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_LIME_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_LIME_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_PINK_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_PINK_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_GRAY_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_GRAY_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_LIGHT_GRAY_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_LIGHT_GRAY_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_CYAN_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_CYAN_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_PURPLE_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_PURPLE_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_BLUE_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_BLUE_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_BROWN_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_BROWN_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_GREEN_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_GREEN_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_RED_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_RED_ROCKWOOL)));
+        lootTables.put(regBlocks.get(ID_BLACK_ROCKWOOL), createSimpleDropTable(regBlocks.get(ID_BLACK_ROCKWOOL)));
+
+        lootTables.put(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR), createSimpleDropTable(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR)));
+        lootTables.put(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR), createSimpleDropTable(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR)));
+        lootTables.put(regBlocks.get(ID_TINKER_BENCH), createSimpleDropTable(regBlocks.get(ID_TINKER_BENCH)));
+
         lootTables.put(regBlocks.get(ID_PHYTO_TNT), createSimpleDropTable(regBlocks.get(ID_PHYTO_TNT)));
 
         lootTables.put(regBlocks.get(ID_FIRE_TNT), createSimpleDropTable(regBlocks.get(ID_FIRE_TNT)));

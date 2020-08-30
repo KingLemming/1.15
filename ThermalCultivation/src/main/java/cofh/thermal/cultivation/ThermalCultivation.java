@@ -18,6 +18,7 @@ import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulIDs.*;
 import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_CONTAINER;
@@ -34,6 +35,21 @@ public class ThermalCultivation {
 
         TCulBlocks.register();
         TCulItems.register();
+
+        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
+        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
+        setFeature(ID_TINKER_BENCH, true);
+
+        setFeature(FLAG_PHYTOGRO_EXPLOSIVES, true);
+
+        setFeature(FLAG_RESOURCE_APATITE, true);
+        setFeature(FLAG_RESOURCE_NITER, true);
+
+        //        setFeature(FLAG_AREA_AUGMENTS, true);
+        //        setFeature(FLAG_STORAGE_AUGMENTS, true);
+        //        setFeature(FLAG_UPGRADE_AUGMENTS, true);
+
+        setFeature(FLAG_BEEKEEPER_ARMOR, true);
     }
 
     // region INITIALIZATION

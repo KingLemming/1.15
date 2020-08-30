@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:invar_ingot_from_dust_smelting"
+    ]
+  },
+  "criteria": {
+    "has_invar_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:invar_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:invar_ingot_from_dust_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_invar_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

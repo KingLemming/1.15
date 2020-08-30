@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:white_rockwool_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_slag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:slag"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:white_rockwool_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_slag",
+      "has_the_recipe"
+    ]
+  ]
+}

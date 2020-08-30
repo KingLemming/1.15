@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:rosin_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_rosin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:rosin",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_rosin_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:rosin_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:rosin_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_rosin",
+      "has_rosin_block",
+      "has_the_recipe"
+    ]
+  ]
+}

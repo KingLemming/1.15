@@ -69,7 +69,6 @@ public class ThermalFeatures {
     // region CATEGORIES
     public static String FLAG_VANILLA_BLOCKS = "vanilla_blocks";
 
-    public static String FLAG_BASIC_COMPONENTS = "basic_components";
     public static String FLAG_TOOL_COMPONENTS = "tool_components";
 
     public static String FLAG_AREA_AUGMENTS = "area_augments";

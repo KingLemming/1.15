@@ -249,13 +249,13 @@ public class TCoreBlocks {
         IntSupplier deviceAugs = () -> ThermalConfig.deviceAugments;
         Predicate<ItemStack> deviceValidator = (e) -> true;
 
-        registerAugBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new), deviceAugs, deviceValidator);
-        registerAugBlock(ID_DEVICE_TREE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceTreeExtractorTile::new), deviceAugs, deviceValidator);
+        registerAugBlock(ID_DEVICE_HIVE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceHiveExtractorTile::new), deviceAugs, deviceValidator, getFeature(ID_DEVICE_HIVE_EXTRACTOR));
+        registerAugBlock(ID_DEVICE_TREE_EXTRACTOR, () -> new TileBlock4Way(create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), DeviceTreeExtractorTile::new), deviceAugs, deviceValidator, getFeature(ID_DEVICE_TREE_EXTRACTOR));
 
         IntSupplier workbenchAugs = () -> ThermalConfig.workbenchAugments;
         Predicate<ItemStack> workbenchValidator = (e) -> true;
 
-        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator);
+        registerAugBlock(ID_TINKER_BENCH, () -> new TileBlock4Way(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.5F), TinkerBenchTile::new), workbenchAugs, workbenchValidator, getFeature(ID_TINKER_BENCH));
     }
 
     private static void registerTileContainers() {

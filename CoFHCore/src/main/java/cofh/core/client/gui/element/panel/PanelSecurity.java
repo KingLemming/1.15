@@ -23,7 +23,7 @@ public class PanelSecurity extends PanelBase {
     public static int defaultHeaderColor = 0xe1c92f;
     public static int defaultSubHeaderColor = 0xaaafb8;
     public static int defaultTextColor = 0x000000;
-    public static int defaultBackgroundColor = 0x888888;
+    public static int defaultBackgroundColor = 0x4950BA;
 
     private final ISecurable mySecurable;
     private final UUID myPlayer;

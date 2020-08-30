@@ -75,6 +75,13 @@ public class TCoreItems {
         registerItem("slag", () -> new ItemCoFH(new Item.Properties().group(group)));
         registerItem("rich_slag", () -> new ItemCoFH(new Item.Properties().group(group)));
 
+        registerItem("basalz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("basalz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("blitz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("blitz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("blizz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("blizz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
+
         registerItem("beekeeper_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_BEEKEEPER_ARMOR)));
         registerItem("diving_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_DIVING_ARMOR)));
         registerItem("hazmat_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_HAZMAT_ARMOR)));
@@ -83,13 +90,6 @@ public class TCoreItems {
         registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_CINNABAR)));
         registerItem("niter", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_NITER)));
         registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(1200).setShowInGroups(getFeature(FLAG_RESOURCE_SULFUR)));
-
-        registerItem("basalz_rod", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
-        registerItem("basalz_powder", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
-        registerItem("blitz_rod", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
-        registerItem("blitz_powder", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLITZ)));
-        registerItem("blizz_rod", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
-        registerItem("blizz_powder", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));
 
         Rarity rarity = Rarity.UNCOMMON;
 
@@ -116,8 +116,8 @@ public class TCoreItems {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
-        registerItem("redstone_servo", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_BASIC_COMPONENTS)));
-        registerItem("rf_coil", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_BASIC_COMPONENTS)));
+        registerItem("redstone_servo", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("rf_coil", () -> new ItemCoFH(new Item.Properties().group(group)));
 
         registerItem("drill_head", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
         registerItem("saw_blade", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
