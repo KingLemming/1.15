@@ -13,9 +13,10 @@ import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
-import cofh.thermal.expansion.util.recipes.machine.BottlerRecipePotion;
+import cofh.thermal.expansion.util.recipes.machine.BottlerRecipeNBT;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,18 +24,21 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
 import static cofh.core.util.constants.Constants.BOTTLE_VOLUME;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.references.CoreReferences.FLUID_POTION;
 import static java.util.Arrays.asList;
 
 public class BottlerRecipeManager extends AbstractManager implements IRecipeManager {
 
     private static final BottlerRecipeManager INSTANCE = new BottlerRecipeManager();
-    protected static final int DEFAULT_ENERGY = 2000;
+    protected static final int DEFAULT_ENERGY = 400;
 
+    protected static boolean defaultBucketRecipes = true;
     protected static boolean defaultPotionRecipes = true;
 
     protected Map<List<Integer>, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
@@ -171,10 +175,22 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
     public void refresh(RecipeManager recipeManager) {
 
         clear();
+        int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
+        if (defaultBucketRecipes) {
+            ThermalCore.LOG.debug("Adding default Bucket recipes to the Fluid Encapsulator...");
+            for (Fluid fluid : ForgeRegistries.FLUIDS) {
+                if (fluid instanceof FlowingFluid) {
+                    Fluid still = ((FlowingFluid) fluid).getStillFluid();
+                    ItemStack bucket = new ItemStack(still.getFilledBucket());
+                    if (!bucket.isEmpty()) {
+                        addRecipe(new BottlerRecipeNBT(energy, 0.0F, -1, new ItemStack(Items.BUCKET), new FluidStack(still, BUCKET_VOLUME), bucket));
+                    }
+                }
+            }
+        }
         if (defaultPotionRecipes) {
             ThermalCore.LOG.debug("Adding default Potion recipes to the Fluid Encapsulator...");
-            int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
-            addRecipe(new BottlerRecipePotion(energy, 0.0F, -1, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
+            addRecipe(new BottlerRecipeNBT(energy, 0.0F, -1, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_BOTTLER);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {

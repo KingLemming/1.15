@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
@@ -22,12 +21,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
+
 public class InsolatorRecipeManager extends SingleItemRecipeManager.Catalyzed {
 
     private static final InsolatorRecipeManager INSTANCE = new InsolatorRecipeManager();
     protected static final int DEFAULT_ENERGY = 20000;
 
-    protected int defaultWater = FluidAttributes.BUCKET_VOLUME / 2;
+    protected int defaultWater = BUCKET_VOLUME / 2;
 
     public static InsolatorRecipeManager instance() {
 

@@ -18,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
@@ -27,6 +26,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.OUTPUT;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_LARGE;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_WATER_GEN_TILE;
 
@@ -66,7 +66,7 @@ public class DeviceWaterGenTile extends ThermalTileBase {
             }
         }
         if (adjWaterSource > 1) {
-            tank.setFluidStack(new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME / 2 * adjWaterSource));
+            tank.setFluidStack(new FluidStack(Fluids.WATER, BUCKET_VOLUME / 2 * adjWaterSource));
             valid = true;
         } else {
             tank.clear();

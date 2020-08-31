@@ -12,7 +12,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 
 import static cofh.core.util.constants.Constants.BASE_CHANCE_LOCKED;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 
 public abstract class RecipeJsonUtils {
 
@@ -238,7 +238,7 @@ public abstract class RecipeJsonUtils {
         }
         FluidStack stack;
         Fluid fluid = null;
-        int amount = FluidAttributes.BUCKET_VOLUME;
+        int amount = BUCKET_VOLUME;
 
         if (element.isJsonPrimitive()) {
             fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(element.getAsString()));

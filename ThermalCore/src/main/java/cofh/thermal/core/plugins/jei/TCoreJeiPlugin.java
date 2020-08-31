@@ -8,8 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidAttributes;
 
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.common.ThermalConfig.jeiBucketTanks;
 
@@ -45,7 +45,7 @@ public class TCoreJeiPlugin implements IModPlugin {
 
     public static int tankSize(int size) {
 
-        return jeiBucketTanks ? FluidAttributes.BUCKET_VOLUME : size;
+        return jeiBucketTanks ? BUCKET_VOLUME : size;
     }
 
     public static IDrawable tankOverlay(IDrawable overlay) {

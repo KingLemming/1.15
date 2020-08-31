@@ -83,7 +83,8 @@ public class Constants {
 
     // region GLOBALS
     public static final int AOE_BREAK_FACTOR = 8;
-    public static final int BOTTLE_VOLUME = 250;
+    public static final int BOTTLE_VOLUME = FluidAttributes.BUCKET_VOLUME / 4;
+    public static final int BUCKET_VOLUME = FluidAttributes.BUCKET_VOLUME;
     public static final int ENTITY_TRACKING_DISTANCE = 64;
     public static final int ITEM_TIMER_DURATION = 40;
     public static final int MAGMATIC_TEMPERATURE = 1000;
@@ -97,9 +98,9 @@ public class Constants {
     public static final float BASE_CHANCE = 1.0F;
     public static final float BASE_CHANCE_LOCKED = -1.0F;
 
-    public static final int TANK_SMALL = FluidAttributes.BUCKET_VOLUME * 4;
-    public static final int TANK_MEDIUM = FluidAttributes.BUCKET_VOLUME * 8;
-    public static final int TANK_LARGE = FluidAttributes.BUCKET_VOLUME * 16;
+    public static final int TANK_SMALL = BUCKET_VOLUME * 4;
+    public static final int TANK_MEDIUM = BUCKET_VOLUME * 8;
+    public static final int TANK_LARGE = BUCKET_VOLUME * 16;
 
     public static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{HEAD, CHEST, LEGS, FEET};
     public static final Direction[] DIRECTIONS = Direction.values();

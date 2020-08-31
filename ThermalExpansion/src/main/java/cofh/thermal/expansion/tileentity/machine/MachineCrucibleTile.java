@@ -9,12 +9,12 @@ import cofh.thermal.expansion.util.managers.machine.CrucibleRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRUCIBLE_TILE;
@@ -54,7 +54,7 @@ public class MachineCrucibleTile extends MachineTileProcess {
             return false;
         }
         FluidStack prevFluid = renderFluid;
-        renderFluid = new FluidStack(curRecipe.getOutputFluids(this).get(0), FluidAttributes.BUCKET_VOLUME);
+        renderFluid = new FluidStack(curRecipe.getOutputFluids(this).get(0), BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 

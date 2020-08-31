@@ -40,6 +40,11 @@ public class BlizzProjectileEntity extends DamagingProjectileEntity {
         super(BLIZZ_PROJECTILE_ENTITY, shooter, accelX, accelY, accelZ, world);
     }
 
+    public BlizzProjectileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, World world) {
+
+        super(BLIZZ_PROJECTILE_ENTITY, x, y, z, accelX, accelY, accelZ, world);
+    }
+
     @Override
     protected boolean isFireballFiery() {
 

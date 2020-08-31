@@ -11,9 +11,9 @@ import java.util.List;
 
 import static cofh.core.util.constants.Constants.BASE_CHANCE_LOCKED;
 
-public class BottlerRecipePotion extends BaseMachineRecipe {
+public class BottlerRecipeNBT extends BaseMachineRecipe {
 
-    public BottlerRecipePotion(int energy, float experience, int minTicks, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
+    public BottlerRecipeNBT(int energy, float experience, int minTicks, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
 
         super(energy, experience, minTicks);
         this.inputItems.add(inputItem);
@@ -25,12 +25,12 @@ public class BottlerRecipePotion extends BaseMachineRecipe {
     @Override
     public List<ItemStack> getOutputItems(IMachineInventory inventory) {
 
-        FluidStack fluidPotion = inventory.inputTanks().get(0).getFluidStack();
-        ItemStack itemPotion = outputItems.get(0).copy();
-        if (fluidPotion.hasTag()) {
-            itemPotion.setTag(fluidPotion.getTag().copy());
+        FluidStack fluid = inventory.inputTanks().get(0).getFluidStack();
+        ItemStack item = outputItems.get(0).copy();
+        if (fluid.hasTag()) {
+            item.setTag(fluid.getTag().copy());
         }
-        return Collections.singletonList(itemPotion);
+        return Collections.singletonList(item);
     }
 
 }

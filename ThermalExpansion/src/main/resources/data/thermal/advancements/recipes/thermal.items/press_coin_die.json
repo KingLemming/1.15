@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:press_coin_die"
+    ]
+  },
+  "criteria": {
+    "has_invar_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:plates/invar"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:press_coin_die"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_invar_plate",
+      "has_the_recipe"
+    ]
+  ]
+}

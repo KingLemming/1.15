@@ -10,14 +10,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.*;
-import static cofh.core.util.constants.Constants.TANK_MEDIUM;
-import static cofh.core.util.constants.Constants.TANK_SMALL;
+import static cofh.core.util.constants.Constants.*;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_REFINERY_TILE;
 
@@ -39,7 +37,7 @@ public class MachineRefineryTile extends MachineTileProcess {
         tankInv.addTank(outputTankA, OUTPUT);
         tankInv.addTank(outputTankB, OUTPUT);
 
-        renderFluid = new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME);
+        renderFluid = new FluidStack(Fluids.WATER, BUCKET_VOLUME);
 
         addAugmentSlots(machineAugments);
         initHandlers();
@@ -66,7 +64,7 @@ public class MachineRefineryTile extends MachineTileProcess {
             return false;
         }
         FluidStack prevFluid = renderFluid;
-        renderFluid = new FluidStack(inputTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
+        renderFluid = new FluidStack(inputTank.getFluidStack(), BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 

@@ -16,6 +16,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
+import static cofh.core.util.constants.Constants.FALSE;
 import static cofh.core.util.constants.Constants.TRUE;
 import static cofh.core.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
@@ -89,7 +90,7 @@ public class TCoreItems {
 
         registerItem("drill_head", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
         registerItem("saw_blade", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
-        registerItem("laser_diode", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
+        registerItem("laser_diode", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(FALSE));//.setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS))); // TODO: Implement
     }
 
     private static void registerMaterials() {
@@ -131,6 +132,10 @@ public class TCoreItems {
         registerItem("redprint", () -> new RedprintItem(new Item.Properties().maxStackSize(1).group(group)));
         registerItem("lock", () -> new LockItem(new Item.Properties().group(group)));
         registerItem("phytogro", () -> new PhytoGroItem(new Item.Properties().group(group)));
+
+        registerItem("earth_charge", () -> new EarthChargeItem(new Item.Properties().group(group)));
+        registerItem("ice_charge", () -> new IceChargeItem(new Item.Properties().group(group)));
+        registerItem("lightning_charge", () -> new LightningChargeItem(new Item.Properties().group(group)));
 
         registerItem("explosive_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
 

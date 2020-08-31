@@ -27,11 +27,11 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
 
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static java.util.Arrays.asList;
 
@@ -42,7 +42,7 @@ public class BrewerRecipeManager extends AbstractManager implements IRecipeManag
 
     protected static boolean defaultPotionRecipes = true;
 
-    protected int defaultPotion = FluidAttributes.BUCKET_VOLUME;
+    protected int defaultPotion = BUCKET_VOLUME;
 
     protected Map<List<Integer>, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
     protected Set<Fluid> validFluids = new ObjectOpenHashSet<>();

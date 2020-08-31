@@ -11,12 +11,13 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
+
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 
 public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implements IDynamicBakedModel {
 
@@ -50,7 +51,7 @@ public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implement
                 cachedFluidQuads = new BakedQuad[6];
             }
             if (cachedFluidQuads[sideIndex] == null) {
-                cachedFluidQuads[sideIndex] = new BakedQuadRetextured(quads.get(0), RenderHelper.getFluidTexture(fluid));
+                cachedFluidQuads[sideIndex] = new BakedQuadRetextured(RenderHelper.mulColor(quads.get(0), fluid.getFluid().getAttributes().getColor(fluid)), RenderHelper.getFluidTexture(fluid));
                 FLUID_QUAD_CACHE.put(wrapper, cachedFluidQuads);
             }
             quads.offerFirst(cachedFluidQuads[sideIndex]);
@@ -67,7 +68,7 @@ public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implement
         CacheWrapper(BlockState state, FluidStack stack) {
 
             this.state = state;
-            this.stack = new FluidStack(stack, FluidAttributes.BUCKET_VOLUME);
+            this.stack = new FluidStack(stack, BUCKET_VOLUME);
         }
 
         @Override

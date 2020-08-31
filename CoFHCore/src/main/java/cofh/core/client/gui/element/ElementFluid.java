@@ -3,8 +3,9 @@ package cofh.core.client.gui.element;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.util.helpers.RenderHelper;
 import net.minecraft.fluid.Fluid;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
+
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 
 public class ElementFluid extends ElementBase {
 
@@ -23,7 +24,7 @@ public class ElementFluid extends ElementBase {
 
     public ElementFluid setFluid(Fluid fluid) {
 
-        this.fluid = new FluidStack(fluid, FluidAttributes.BUCKET_VOLUME);
+        this.fluid = new FluidStack(fluid, BUCKET_VOLUME);
         return this;
     }
 

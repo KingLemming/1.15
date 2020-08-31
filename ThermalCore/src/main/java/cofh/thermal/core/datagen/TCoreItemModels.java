@@ -38,7 +38,6 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         registerTools(reg);
         registerArmor(reg);
         registerAugments(reg);
-
     }
 
     // region ITEM HELPERS
@@ -111,6 +110,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("redprint"), TOOLS);
         generated(reg.getSup("lock"), TOOLS);
         generated(reg.getSup("phytogro"), TOOLS);
+
+        generated(reg.getSup("earth_charge"), TOOLS);
+        generated(reg.getSup("ice_charge"), TOOLS);
+        generated(reg.getSup("lightning_charge"), TOOLS);
     }
 
     private void registerArmor(DeferredRegisterCoFH<Item> reg) {

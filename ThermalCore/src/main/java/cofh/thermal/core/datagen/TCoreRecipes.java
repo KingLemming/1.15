@@ -3,7 +3,6 @@ package cofh.thermal.core.datagen;
 import cofh.core.datagen.RecipeProviderCoFH;
 import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.core.util.references.CoFHTags;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -11,13 +10,13 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
 import static cofh.core.util.constants.Constants.ID_THERMAL;
-import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.init.TCoreIDs.*;
 
@@ -104,6 +103,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateAlloyRecipes(consumer);
         generateArmorRecipes(consumer);
         generateBasicRecipes(consumer);
+        generateChargeRecipes(consumer);
         generateComponentRecipes(consumer);
         generateDeviceRecipes(consumer);
         generateExplosiveRecipes(consumer);
@@ -408,24 +408,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_blizz_rod", hasItem(reg.get("blizz_rod")))
                 .build(consumer);
 
-        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
-                .addIngredient(Items.PRISMARINE)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
-                .build(consumer, ID_THERMAL + ":split_prismarine");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
-                .addIngredient(Items.PRISMARINE_BRICKS)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
-                .build(consumer, ID_THERMAL + ":split_prismarine_bricks");
-
-        ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
-                .addIngredient(Items.QUARTZ_BLOCK)
-                .addIngredient(reg.get("wrench"))
-                .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
-                .build(consumer, ID_THERMAL + ":split_quartz_block");
-
         ShapelessRecipeBuilder.shapelessRecipe(Items.CYAN_DYE)
                 .addIngredient(reg.get("apatite"))
                 .addCriterion("has_apatite", hasItem(reg.get("apatite")))
@@ -618,13 +600,12 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
     private void generateDeviceRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
-        DeferredRegisterCoFH<Item> regItems = ITEMS;
+        DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        Item redstoneServo = regItems.get("redstone_servo");
-        Item rfCoil = regItems.get("rf_coil");
+        Item redstoneServo = reg.get("redstone_servo");
+        Item rfCoil = reg.get("rf_coil");
 
-        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_DEVICE_HIVE_EXTRACTOR))
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_DEVICE_HIVE_EXTRACTOR))
                 .key('C', Items.SHEARS)
                 .key('G', Tags.Items.GLASS)
                 .key('P', redstoneServo)
@@ -636,7 +617,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_DEVICE_TREE_EXTRACTOR))
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_DEVICE_TREE_EXTRACTOR))
                 .key('C', Items.BUCKET)
                 .key('G', Tags.Items.GLASS)
                 .key('P', redstoneServo)
@@ -648,7 +629,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
                 .build(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(regBlocks.get(ID_TINKER_BENCH))
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_TINKER_BENCH))
                 .key('C', Blocks.CRAFTING_TABLE)
                 .key('G', Tags.Items.GLASS)
                 .key('I', Tags.Items.INGOTS_IRON)
@@ -860,5 +841,82 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
                 .build(consumer);
     }
+
+    private void generateChargeRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        Item earthCharge = reg.get("earth_charge");
+        Item iceCharge = reg.get("ice_charge");
+        Item lightningCharge = reg.get("lightning_charge");
+
+        ShapelessRecipeBuilder.shapelessRecipe(earthCharge, 3)
+                .addIngredient(reg.get("basalz_powder"))
+                .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
+                .addIngredient(Tags.Items.GUNPOWDER)
+                .addCriterion("has_basalz_powder", hasItem(reg.get("basalz_powder")))
+                .build(consumer, ID_THERMAL + ":earth_charge_3");
+
+        ShapelessRecipeBuilder.shapelessRecipe(iceCharge, 3)
+                .addIngredient(reg.get("blizz_powder"))
+                .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
+                .addIngredient(Tags.Items.GUNPOWDER)
+                .addCriterion("has_blizz_powder", hasItem(reg.get("blizz_powder")))
+                .build(consumer, ID_THERMAL + ":ice_charge_3");
+
+        ShapelessRecipeBuilder.shapelessRecipe(lightningCharge, 3)
+                .addIngredient(reg.get("blitz_powder"))
+                .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
+                .addIngredient(Tags.Items.GUNPOWDER)
+                .addCriterion("has_blitz_powder", hasItem(reg.get("blitz_powder")))
+                .build(consumer, ID_THERMAL + ":lightning_charge_3");
+
+        // region EARTH CHARGE CONVERSIONS
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 4)
+                .addIngredient(Items.PRISMARINE)
+                .addIngredient(earthCharge)
+                .addCriterion("has_prismarine", hasItem(Items.PRISMARINE))
+                .build(consumer, ID_THERMAL + ":earth_charge_prismarine_shard_from_prismarine");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PRISMARINE_SHARD, 9)
+                .addIngredient(Items.PRISMARINE_BRICKS)
+                .addIngredient(earthCharge)
+                .addCriterion("has_prismarine_bricks", hasItem(Items.PRISMARINE_BRICKS))
+                .build(consumer, ID_THERMAL + ":earth_charge_prismarine_shard_from_prismarine_bricks");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.QUARTZ, 4)
+                .addIngredient(Items.QUARTZ_BLOCK)
+                .addIngredient(earthCharge)
+                .addCriterion("has_quartz_block", hasItem(Items.QUARTZ_BLOCK))
+                .build(consumer, ID_THERMAL + ":earth_charge_quartz_from_quartz_block");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("diamond_dust"))
+                .addIngredient(Tags.Items.GEMS_DIAMOND)
+                .addIngredient(earthCharge)
+                .addCriterion("has_diamond", hasItem(Tags.Items.GEMS_DIAMOND))
+                .build(consumer, ID_THERMAL + ":earth_charge_diamond_dust_from_emerald");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("emerald_dust"))
+                .addIngredient(Tags.Items.GEMS_EMERALD)
+                .addIngredient(earthCharge)
+                .addCriterion("has_emerald", hasItem(Tags.Items.GEMS_EMERALD))
+                .build(consumer, ID_THERMAL + ":earth_charge_emerald_dust_from_emerald");
+        // endregion
+
+        // region ICE CHARGE CONVERSIONS
+        ShapelessRecipeBuilder.shapelessRecipe(Items.OBSIDIAN)
+                .addIngredient(Items.LAVA_BUCKET)
+                .addIngredient(iceCharge)
+                .addCriterion("has_lava_bucket", hasItem(Items.LAVA_BUCKET))
+                .build(consumer, ID_THERMAL + ":ice_charge_obsidian_from_lava_bucket");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.ICE)
+                .addIngredient(Items.WATER_BUCKET)
+                .addIngredient(iceCharge)
+                .addCriterion("has_water_bucket", hasItem(Items.WATER_BUCKET))
+                .build(consumer, ID_THERMAL + ":ice_charge_ice_from_water_bucket");
+        // endregion
+    }
+
     // endregion
 }

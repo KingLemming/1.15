@@ -31,7 +31,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
@@ -42,6 +41,7 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.RGB_DURABILITY_WATER;
 import static cofh.core.util.constants.NBTTags.*;
 import static cofh.core.util.helpers.AugmentableHelper.*;
@@ -206,7 +206,7 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
             if (removeSourceBlocks) {
                 worldIn.setBlockState(tracePos, Blocks.AIR.getDefaultState(), 11);
             }
-            fill(stack, new FluidStack(Fluids.WATER, FluidAttributes.BUCKET_VOLUME), EXECUTE);
+            fill(stack, new FluidStack(Fluids.WATER, BUCKET_VOLUME), EXECUTE);
             playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
             return new ActionResult<>(ActionResultType.SUCCESS, stack);
         }

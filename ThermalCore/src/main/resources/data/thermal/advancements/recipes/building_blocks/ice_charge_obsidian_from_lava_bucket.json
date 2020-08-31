@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:split_quartz_block"
+      "thermal:ice_charge_obsidian_from_lava_bucket"
     ]
   },
   "criteria": {
-    "has_quartz_block": {
+    "has_lava_bucket": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:quartz_block"
+            "item": "minecraft:lava_bucket"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:split_quartz_block"
+        "recipe": "thermal:ice_charge_obsidian_from_lava_bucket"
       }
     }
   },
   "requirements": [
     [
-      "has_quartz_block",
+      "has_lava_bucket",
       "has_the_recipe"
     ]
   ]

@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:quartz_block"
+      "item": "minecraft:prismarine"
     },
     {
-      "item": "thermal:wrench"
+      "item": "thermal:earth_charge"
     }
   ],
   "result": {
-    "item": "minecraft:quartz",
+    "item": "minecraft:prismarine_shard",
     "count": 4
   }
 }

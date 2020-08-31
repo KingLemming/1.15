@@ -9,7 +9,7 @@ import static cofh.core.util.constants.Constants.TRUE;
 
 public class FeatureManager {
 
-    private static final Object2ObjectOpenHashMap<String, BooleanSupplier> FEATURES = new Object2ObjectOpenHashMap<>();
+    private static final Object2ObjectOpenHashMap<String, BooleanSupplier> FEATURES = new Object2ObjectOpenHashMap<>(64);
 
     private BooleanSupplier getFeatureRaw(String flag) {
 

@@ -125,8 +125,9 @@
   "item.thermal.blizz_rod": "Blizz Cube",
   "item.thermal.blizz_spawn_egg": "Blizz Spawn Egg",
 
-  "item.thermal.fire_catalyst": "Igneous Catalyst",
-  "item.thermal.frost_catalyst": "Glacial Catalyst",
+  "item.thermal.earth_charge": "Earth Charge",
+  "item.thermal.ice_charge": "Ice Charge",
+  "item.thermal.lightning_charge": "Lightning Charge",
   "item.thermal.lock": "Signalum Security Lock",
   "item.thermal.lock.desc": "Used to enable security on a block.",
   "item.thermal.phytogro": "Phyto-Gro",

@@ -9,12 +9,12 @@ import cofh.thermal.expansion.util.managers.machine.ChillerRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_MEDIUM;
 import static cofh.core.util.references.CoFHTags.Items.MACHINE_CASTS;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
@@ -58,7 +58,7 @@ public class MachineChillerTile extends MachineTileProcess {
             return false;
         }
         FluidStack prevFluid = renderFluid;
-        renderFluid = new FluidStack(inputTank.getFluidStack(), FluidAttributes.BUCKET_VOLUME);
+        renderFluid = new FluidStack(inputTank.getFluidStack(), BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 

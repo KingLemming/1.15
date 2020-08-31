@@ -36,6 +36,11 @@ public class BlitzProjectileEntity extends DamagingProjectileEntity {
         super(BLITZ_PROJECTILE_ENTITY, shooter, accelX, accelY, accelZ, world);
     }
 
+    public BlitzProjectileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, World world) {
+
+        super(BLITZ_PROJECTILE_ENTITY, x, y, z, accelX, accelY, accelZ, world);
+    }
+
     @Override
     protected boolean isFireballFiery() {
 

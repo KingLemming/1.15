@@ -38,6 +38,11 @@ public class BasalzProjectileEntity extends DamagingProjectileEntity {
         super(BASALZ_PROJECTILE_ENTITY, shooter, accelX, accelY, accelZ, world);
     }
 
+    public BasalzProjectileEntity(double x, double y, double z, double accelX, double accelY, double accelZ, World world) {
+
+        super(BASALZ_PROJECTILE_ENTITY, x, y, z, accelX, accelY, accelZ, world);
+    }
+
     @Override
     protected boolean isFireballFiery() {
 

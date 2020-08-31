@@ -2,19 +2,15 @@ package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
 import cofh.core.util.Utils;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -26,6 +22,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static cofh.core.util.Utils.HORZ_MAX;
+import static cofh.core.util.Utils.destroyBlock;
 import static cofh.core.util.references.CoreReferences.SUNDERED;
 import static cofh.thermal.core.init.TCoreReferences.EARTH_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.EARTH_GRENADE_ITEM;
@@ -84,25 +81,11 @@ public class EarthGrenadeEntity extends AbstractGrenadeEntity {
             double distance = iterPos.distanceSq(entity.getPositionVec(), true);
             if (distance < f2) {
                 BlockState state = worldIn.getBlockState(iterPos);
-                if (state.getMaterial() == Material.ROCK) {
+                Material material = state.getMaterial();
+                if (material == Material.ROCK || material == Material.EARTH) {
                     destroyBlock(worldIn, iterPos, true, entityIn);
                 }
             }
-        }
-    }
-
-    public static boolean destroyBlock(World world, BlockPos pos, boolean dropBlock, @Nullable Entity entityIn) {
-
-        BlockState blockstate = world.getBlockState(pos);
-        if (blockstate.isAir(world, pos)) {
-            return false;
-        } else {
-            IFluidState ifluidstate = world.getFluidState(pos);
-            if (dropBlock) {
-                TileEntity tileentity = blockstate.hasTileEntity() ? world.getTileEntity(pos) : null;
-                Block.spawnDrops(blockstate, world, pos, tileentity, entityIn, ItemStack.EMPTY);
-            }
-            return world.setBlockState(pos, ifluidstate.getBlockState(), 3);
         }
     }
 

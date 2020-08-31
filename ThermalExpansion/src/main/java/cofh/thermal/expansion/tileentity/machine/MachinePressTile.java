@@ -9,13 +9,13 @@ import cofh.thermal.expansion.util.managers.machine.PressRecipeManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_SMALL;
 import static cofh.core.util.references.CoFHTags.Items.MACHINE_DIES;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
@@ -61,7 +61,7 @@ public class MachinePressTile extends MachineTileProcess {
         }
         FluidStack prevFluid = renderFluid;
         List<FluidStack> recipeOutputFluids = curRecipe.getOutputFluids(this);
-        renderFluid = recipeOutputFluids.isEmpty() ? FluidStack.EMPTY : new FluidStack(recipeOutputFluids.get(0), FluidAttributes.BUCKET_VOLUME);
+        renderFluid = recipeOutputFluids.isEmpty() ? FluidStack.EMPTY : new FluidStack(recipeOutputFluids.get(0), BUCKET_VOLUME);
         return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 

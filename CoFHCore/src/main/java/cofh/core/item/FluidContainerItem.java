@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -24,6 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.NBTTags.TAG_AMOUNT;
 import static cofh.core.util.constants.NBTTags.TAG_FLUID;
 import static cofh.core.util.helpers.FluidHelper.addPotionTooltip;
@@ -145,7 +145,7 @@ public class FluidContainerItem extends ItemCoFH implements IFluidContainerItem,
         if (isCreative(container)) {
             if (action.execute()) {
                 CompoundNBT fluidTag = resource.writeToNBT(new CompoundNBT());
-                fluidTag.putInt(TAG_AMOUNT, capacity - FluidAttributes.BUCKET_VOLUME);
+                fluidTag.putInt(TAG_AMOUNT, capacity - BUCKET_VOLUME);
                 containerTag.put(TAG_FLUID, fluidTag);
             }
             return resource.getAmount();

@@ -12,13 +12,11 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
-import net.minecraftforge.fluids.FluidAttributes;
 
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.ACCESSIBLE;
-import static cofh.core.util.constants.Constants.DIRECTIONS;
-import static cofh.core.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.constants.Constants.*;
 import static cofh.core.util.constants.NBTTags.TAG_AMOUNT_IN;
 import static cofh.core.util.constants.NBTTags.TAG_AMOUNT_OUT;
 import static cofh.thermal.expansion.init.TExpReferences.DEVICE_FLUID_BUFFER_TILE;
@@ -27,8 +25,8 @@ public class DeviceFluidBufferTile extends ReconfigurableTile4Way implements ITi
 
     public static int XFER_MAX = TANK_MEDIUM;
 
-    public int amountInput = FluidAttributes.BUCKET_VOLUME;
-    public int amountOutput = FluidAttributes.BUCKET_VOLUME;
+    public int amountInput = BUCKET_VOLUME;
+    public int amountOutput = BUCKET_VOLUME;
 
     public DeviceFluidBufferTile() {
 

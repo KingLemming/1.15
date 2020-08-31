@@ -15,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import static cofh.core.util.constants.Constants.ID_THERMAL_EXPANSION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.init.TCoreIDs.ID_MACHINE_FRAME;
 import static cofh.thermal.expansion.init.TExpIDs.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
@@ -41,6 +42,8 @@ public class ThermalExpansion {
     private void setFeatureFlags() {
 
         setFeature(FLAG_RESOURCE_CINNABAR, true);
+
+        setFeature(ID_MACHINE_FRAME, true);
 
         setFeature(FLAG_DYNAMO_AUGMENTS, true);
         setFeature(FLAG_MACHINE_AUGMENTS, true);

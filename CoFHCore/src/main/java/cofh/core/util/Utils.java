@@ -18,6 +18,7 @@ import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -27,6 +28,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvents;
@@ -357,7 +359,7 @@ public class Utils {
         }
     }
 
-    private static boolean isValidFirePosition(World worldIn, BlockPos pos, double chance) {
+    public static boolean isValidFirePosition(World worldIn, BlockPos pos, double chance) {
 
         BlockPos below = pos.down();
         BlockState state = worldIn.getBlockState(below);
@@ -367,17 +369,17 @@ public class Utils {
         return false;
     }
 
-    private static boolean isLitCampfire(BlockState state) {
+    public static boolean isLitCampfire(BlockState state) {
 
         return state.getBlock() == CAMPFIRE && state.get(BlockStateProperties.LIT);
     }
 
-    private static boolean isUnlitCampfire(BlockState state) {
+    public static boolean isUnlitCampfire(BlockState state) {
 
         return state.getBlock() == CAMPFIRE && !state.get(BlockStateProperties.WATERLOGGED) && !state.get(BlockStateProperties.LIT);
     }
 
-    private static boolean isUnlitTNT(BlockState state) {
+    public static boolean isUnlitTNT(BlockState state) {
 
         return state.getBlock() instanceof TNTBlock;
     }
@@ -808,6 +810,21 @@ public class Utils {
         }
     }
     // endregion
+
+    public static boolean destroyBlock(World world, BlockPos pos, boolean dropBlock, @Nullable Entity entityIn) {
+
+        BlockState blockstate = world.getBlockState(pos);
+        if (blockstate.isAir(world, pos)) {
+            return false;
+        } else {
+            IFluidState ifluidstate = world.getFluidState(pos);
+            if (dropBlock) {
+                TileEntity tileentity = blockstate.hasTileEntity() ? world.getTileEntity(pos) : null;
+                Block.spawnDrops(blockstate, world, pos, tileentity, entityIn, ItemStack.EMPTY);
+            }
+            return world.setBlockState(pos, ifluidstate.getBlockState(), 3);
+        }
+    }
 
     public static final int HORZ_MAX = 16;
     public static final int VERT_MAX = 8;

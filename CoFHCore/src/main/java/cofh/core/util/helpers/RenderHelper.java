@@ -5,15 +5,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.MissingTextureSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.pipeline.LightUtil;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 /**
  * Contains various helper functions to assist with rendering.
@@ -224,6 +230,37 @@ public final class RenderHelper {
         return !(getTexture(location) instanceof MissingTextureSprite);
     }
     // endregion
+
+    public static BakedQuad mulColor(BakedQuad quad, int color) {
+
+        VertexFormat from = DefaultVertexFormats.BLOCK; //Always BLOCK as of 1.15
+
+        float r = ((color >> 16) & 0xFF) / 255f; // red
+        float g = ((color >> 8) & 0xFF) / 255f; // green
+        float b = ((color) & 0xFF) / 255f; // blue
+
+        // Cache this somewhere static, it will never change, and you will never use a different format.
+        int colorIdx = -1;
+        List<VertexFormatElement> elements = from.getElements();
+        for (int i = 0; i < from.getElements().size(); i++) {
+            VertexFormatElement element = elements.get(i);
+            if (element.getUsage() == VertexFormatElement.Usage.COLOR) {
+                colorIdx = i;
+                break;
+            }
+        }
+
+        int[] packedData = quad.getVertexData().clone();
+        float[] data = new float[4];
+        for (int v = 0; v < 4; v++) {
+            LightUtil.unpack(packedData, data, from, v, colorIdx);
+            data[0] = MathHelper.clamp(data[0] * r, 0, 1);
+            data[1] = MathHelper.clamp(data[1] * g, 0, 1);
+            data[2] = MathHelper.clamp(data[2] * b, 0, 1);
+            LightUtil.pack(data, packedData, from, v, colorIdx);
+        }
+        return new BakedQuad(packedData, quad.getTintIndex(), quad.getFace(), quad.func_187508_a(), quad.shouldApplyDiffuseLighting());
+    }
 
     public static void setGLColorFromInt(int color) {
 

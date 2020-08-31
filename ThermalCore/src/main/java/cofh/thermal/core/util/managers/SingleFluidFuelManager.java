@@ -10,7 +10,6 @@ import cofh.thermal.core.util.recipes.internal.BaseDynamoFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
@@ -18,13 +17,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
+
 public abstract class SingleFluidFuelManager extends AbstractManager implements IFuelManager {
 
     public static final int MIN_ENERGY = 10000;
     public static final int MAX_ENERGY = 200000000;
 
     public static final int FLUID_FUEL_AMOUNT = 100;
-    public static final int ENERGY_FACTOR = FluidAttributes.BUCKET_VOLUME / FLUID_FUEL_AMOUNT;
+    public static final int ENERGY_FACTOR = BUCKET_VOLUME / FLUID_FUEL_AMOUNT;
 
     protected Map<Integer, IDynamoFuel> fuelMap = new Object2ObjectOpenHashMap<>();
 
@@ -72,8 +73,8 @@ public abstract class SingleFluidFuelManager extends AbstractManager implements 
         }
         int amount = input.getAmount();
         if (amount != FLUID_FUEL_AMOUNT) {
-            if (amount != FluidAttributes.BUCKET_VOLUME) {
-                long normEnergy = energy * FluidAttributes.BUCKET_VOLUME / amount;
+            if (amount != BUCKET_VOLUME) {
+                long normEnergy = energy * BUCKET_VOLUME / amount;
                 input.setAmount(FLUID_FUEL_AMOUNT);
                 energy = (int) normEnergy;
             }
