@@ -13,7 +13,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.expansion.init.TExpIDs.*;
 
 @ObjectHolder(ID_THERMAL)

@@ -2,8 +2,8 @@ package cofh.core.client.gui.element.panel;
 
 import cofh.core.client.gui.CoreTextures;
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.util.control.IRedstoneControllable;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.control.IRedstoneControllable;
+import cofh.core.util.helpers.RenderHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -12,9 +12,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.List;
 
 import static cofh.core.client.gui.CoreTextures.*;
-import static cofh.lib.util.control.IRedstoneControllable.ControlMode.*;
-import static cofh.lib.util.helpers.SoundHelper.playClickSound;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.core.util.control.IRedstoneControllable.ControlMode.*;
+import static cofh.core.util.helpers.SoundHelper.playClickSound;
+import static cofh.core.util.helpers.StringHelper.localize;
 
 public class PanelRedstoneControl extends PanelBase {
 

@@ -1,7 +1,7 @@
 package cofh.archersparadox.datagen;
 
 import cofh.core.CoFHCore;
-import cofh.lib.datagen.RecipeProviderCoFH;
+import cofh.core.datagen.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -13,8 +13,8 @@ import java.util.function.Consumer;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.APIDs.*;
-import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
-import static cofh.lib.util.references.CoreIDs.ID_ECTOPLASM;
+import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.references.CoreIDs.ID_ECTOPLASM;
 
 public class APRecipeProvider extends RecipeProviderCoFH {
 

@@ -1,6 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import static cofh.archersparadox.init.APReferences.MAGMA_ARROW_ENTITY;
-import static cofh.lib.util.constants.NBTTags.TAG_ARROW_DATA;
+import static cofh.core.util.constants.NBTTags.TAG_ARROW_DATA;
 
 public class MagmaArrowEntity extends AbstractArrowEntity {
 

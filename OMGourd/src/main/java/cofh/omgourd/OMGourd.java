@@ -1,8 +1,8 @@
 package cofh.omgourd;
 
+import cofh.core.block.CarvedPumpkinBlockCoFH;
 import cofh.core.init.CoreItems;
-import cofh.lib.block.deco.CarvedPumpkinBlockCoFH;
-import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.omgourd.init.OMGBlocks;
 import cofh.omgourd.init.OMGConfig;
 import net.minecraft.block.Block;
@@ -20,7 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.lib.util.constants.Constants.ID_OMGOURD;
+import static cofh.core.util.constants.Constants.ID_OMGOURD;
 
 @Mod(ID_OMGOURD)
 public class OMGourd {

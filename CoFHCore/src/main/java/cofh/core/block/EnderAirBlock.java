@@ -1,7 +1,7 @@
 package cofh.core.block;
 
 import cofh.core.tileentity.EnderAirTile;
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,7 +30,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
+import static cofh.core.util.references.CoreReferences.ENDERFERENCE;
 
 public class EnderAirBlock extends AirBlock {
 

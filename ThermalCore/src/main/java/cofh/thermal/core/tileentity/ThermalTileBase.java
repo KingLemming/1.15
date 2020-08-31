@@ -1,23 +1,23 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.fluid.ManagedTankInv;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.inventory.ManagedItemInv;
 import cofh.core.network.packet.client.TileControlPacket;
 import cofh.core.network.packet.client.TileRedstonePacket;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.fluid.ManagedTankInv;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.inventory.ManagedItemInv;
-import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.StorageGroup;
-import cofh.lib.util.TimeTracker;
-import cofh.lib.util.Utils;
-import cofh.lib.util.control.IRedstoneControllableTile;
-import cofh.lib.util.control.ISecurableTile;
-import cofh.lib.util.control.RedstoneControlModule;
-import cofh.lib.util.control.SecurityControlModule;
-import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.tileentity.TileCoFH;
+import cofh.core.util.StorageGroup;
+import cofh.core.util.TimeTracker;
+import cofh.core.util.Utils;
+import cofh.core.util.control.IRedstoneControllableTile;
+import cofh.core.util.control.ISecurableTile;
+import cofh.core.util.control.RedstoneControlModule;
+import cofh.core.util.control.SecurityControlModule;
+import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.loot.TileNBTSync;
@@ -52,9 +52,9 @@ import java.util.List;
 import java.util.Set;
 
 import static cofh.core.util.GuiHelper.*;
-import static cofh.lib.util.StorageGroup.INTERNAL;
-import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.core.util.StorageGroup.INTERNAL;
+import static cofh.core.util.constants.Constants.*;
+import static cofh.core.util.constants.NBTTags.*;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile, IRedstoneControllableTile, INamedContainerProvider, IThermalInventory {

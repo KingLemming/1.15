@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.tileentity.dynamo;
 
-import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoLapidaryContainer;
 import cofh.thermal.expansion.util.managers.dynamo.LapidaryFuelManager;
@@ -10,7 +10,7 @@ import net.minecraft.inventory.container.Container;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.INPUT;
+import static cofh.core.util.StorageGroup.INPUT;
 import static cofh.thermal.core.common.ThermalConfig.dynamoAugments;
 import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_LAPIDARY_TILE;
 

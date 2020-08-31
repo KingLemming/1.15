@@ -2,11 +2,11 @@ package cofh.thermal.core;
 
 import cofh.core.client.renderer.entity.SpriteRendererCoFH;
 import cofh.core.client.renderer.entity.TNTRendererCoFH;
+import cofh.core.client.renderer.model.SimpleModelLoader;
+import cofh.core.client.renderer.model.entity.ArmorModelFullSuit;
+import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.core.util.FeatureRecipeCondition;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.client.renderer.model.SimpleModelLoader;
-import cofh.lib.client.renderer.model.entity.ArmorModelFullSuit;
-import cofh.lib.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.client.gui.device.DeviceHiveExtractorScreen;
 import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
 import cofh.thermal.core.client.gui.workbench.TinkerBenchScreen;
@@ -55,7 +55,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;

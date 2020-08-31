@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.helpers.RenderHelper;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Supplier;

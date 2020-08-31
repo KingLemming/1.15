@@ -1,6 +1,6 @@
 package cofh.thermal.core.entity.projectile;
 
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import static cofh.lib.util.references.CoreReferences.SHOCKED;
+import static cofh.core.util.references.CoreReferences.SHOCKED;
 import static cofh.thermal.core.init.TCoreReferences.BLITZ_PROJECTILE_ENTITY;
 
 public class BlitzProjectileEntity extends DamagingProjectileEntity {

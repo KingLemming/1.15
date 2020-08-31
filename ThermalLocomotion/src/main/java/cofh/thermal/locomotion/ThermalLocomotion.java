@@ -14,7 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
+import static cofh.core.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
 import static cofh.thermal.locomotion.init.TLocReferences.*;

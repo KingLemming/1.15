@@ -1,9 +1,9 @@
 package cofh.thermal.core.client.renderer.model;
 
-import cofh.lib.client.renderer.model.BakedQuadRetextured;
-import cofh.lib.client.renderer.model.ModelUtils;
-import cofh.lib.util.ComparableItemStack;
-import cofh.lib.util.control.IReconfigurable.SideConfig;
+import cofh.core.client.renderer.model.BakedQuadRetextured;
+import cofh.core.client.renderer.model.ModelUtils;
+import cofh.core.util.ComparableItemStack;
+import cofh.core.util.control.IReconfigurable.SideConfig;
 import cofh.thermal.core.client.gui.ThermalTextures;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
-import static cofh.lib.util.constants.NBTTags.TAG_SIDES;
+import static cofh.core.util.constants.NBTTags.TAG_BLOCK_ENTITY;
+import static cofh.core.util.constants.NBTTags.TAG_SIDES;
 import static cofh.thermal.core.common.ThermalConfig.DEFAULT_MACHINE_SIDES_RAW;
 import static net.minecraft.util.Direction.*;
 

@@ -1,13 +1,13 @@
 package cofh.thermal.innovation.item;
 
+import cofh.core.item.FluidContainerItem;
+import cofh.core.item.IAugmentableItem;
+import cofh.core.item.IMultiModeItem;
 import cofh.core.util.ChatHelper;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.item.FluidContainerItem;
-import cofh.lib.item.IAugmentableItem;
-import cofh.lib.item.IMultiModeItem;
-import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.util.Utils;
+import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
@@ -35,9 +35,9 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
-import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.AugmentableHelper.*;
-import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.core.util.constants.NBTTags.*;
+import static cofh.core.util.helpers.AugmentableHelper.*;
+import static cofh.core.util.helpers.StringHelper.getTextComponent;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
 public class PotionInfuserItem extends FluidContainerItem implements IAugmentableItem, IMultiModeItem {

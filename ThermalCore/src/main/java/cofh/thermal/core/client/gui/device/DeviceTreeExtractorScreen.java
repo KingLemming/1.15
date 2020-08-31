@@ -1,6 +1,6 @@
 package cofh.thermal.core.client.gui.device;
 
-import cofh.lib.util.helpers.StringHelper;
+import cofh.core.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 import static cofh.core.util.GuiHelper.*;
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class DeviceTreeExtractorScreen extends ThermalScreenBase<DeviceTreeExtractorContainer> {
 

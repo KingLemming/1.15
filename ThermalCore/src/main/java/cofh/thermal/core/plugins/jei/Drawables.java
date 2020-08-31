@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class Drawables {
 

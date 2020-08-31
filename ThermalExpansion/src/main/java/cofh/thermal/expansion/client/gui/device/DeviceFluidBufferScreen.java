@@ -5,7 +5,7 @@ import cofh.core.client.gui.element.ElementButton;
 import cofh.core.client.gui.element.ElementTexture;
 import cofh.core.client.gui.element.panel.PanelConfiguration;
 import cofh.core.network.packet.server.TileConfigPacket;
-import cofh.lib.util.helpers.StringHelper;
+import cofh.core.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
 import cofh.thermal.expansion.inventory.container.device.DeviceFluidBufferContainer;
@@ -18,11 +18,11 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.Collections;
 
 import static cofh.core.util.GuiHelper.*;
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.helpers.SoundHelper.playClickSound;
-import static cofh.lib.util.helpers.StringHelper.format;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.helpers.SoundHelper.playClickSound;
+import static cofh.core.util.helpers.StringHelper.format;
+import static cofh.core.util.helpers.StringHelper.localize;
 
 public class DeviceFluidBufferScreen extends ThermalScreenBase<DeviceFluidBufferContainer> {
 

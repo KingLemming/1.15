@@ -1,7 +1,7 @@
 package cofh.thermal.core.fluid;
 
-import cofh.lib.fluid.FluidCoFH;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.fluid.FluidCoFH;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

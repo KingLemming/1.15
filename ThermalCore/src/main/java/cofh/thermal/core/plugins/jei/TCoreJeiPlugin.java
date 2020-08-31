@@ -1,6 +1,6 @@
 package cofh.thermal.core.plugins.jei;
 
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.util.helpers.FluidHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
@@ -10,7 +10,7 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.common.ThermalConfig.jeiBucketTanks;
 
 // TODO: Implement as necessary.

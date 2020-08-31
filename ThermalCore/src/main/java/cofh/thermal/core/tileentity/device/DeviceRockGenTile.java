@@ -1,7 +1,7 @@
 package cofh.thermal.core.tileentity.device;
 
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.inventory.ItemStorageInfinite;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.inventory.ItemStorageInfinite;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,8 +26,8 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.OUTPUT;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
+import static cofh.core.util.StorageGroup.OUTPUT;
+import static cofh.core.util.helpers.ItemHelper.cloneStack;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_ROCK_GEN_TILE;
 
 public class DeviceRockGenTile extends ThermalTileBase {

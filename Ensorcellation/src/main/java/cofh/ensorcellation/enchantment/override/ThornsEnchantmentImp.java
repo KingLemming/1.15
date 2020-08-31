@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentOverride;
+import cofh.core.enchantment.EnchantmentOverride;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.ThornsEnchantment;
@@ -16,7 +16,7 @@ import net.minecraft.util.DamageSource;
 import java.util.Map;
 import java.util.Random;
 
-import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
+import static cofh.core.util.constants.Constants.ARMOR_SLOTS;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class ThornsEnchantmentImp extends EnchantmentOverride {

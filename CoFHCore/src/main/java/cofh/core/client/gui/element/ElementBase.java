@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 
-import static cofh.lib.util.constants.Constants.TRUE;
+import static cofh.core.util.constants.Constants.TRUE;
 
 public abstract class ElementBase {
 

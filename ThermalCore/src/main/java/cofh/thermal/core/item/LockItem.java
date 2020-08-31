@@ -1,10 +1,10 @@
 package cofh.thermal.core.item;
 
+import cofh.core.item.IPlacementItem;
+import cofh.core.item.ItemCoFH;
 import cofh.core.util.ChatHelper;
-import cofh.lib.item.IPlacementItem;
-import cofh.lib.item.ItemCoFH;
-import cofh.lib.util.Utils;
-import cofh.lib.util.control.ISecurable;
+import cofh.core.util.Utils;
+import cofh.core.util.control.ISecurable;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

@@ -1,9 +1,9 @@
 package cofh.thermal.core.util.managers;
 
-import cofh.lib.fluid.FluidStackHolder;
-import cofh.lib.fluid.IFluidStackAccess;
-import cofh.lib.inventory.IItemStackAccess;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.fluid.FluidStackHolder;
+import cofh.core.fluid.IFluidStackAccess;
+import cofh.core.inventory.IItemStackAccess;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.BaseDynamoFuel;

@@ -1,8 +1,8 @@
 package cofh.thermal.core.client.renderer.model;
 
-import cofh.lib.client.renderer.model.BakedQuadRetextured;
-import cofh.lib.util.helpers.FluidHelper;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.client.renderer.model.BakedQuadRetextured;
+import cofh.core.util.helpers.FluidHelper;
+import cofh.core.util.helpers.RenderHelper;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.model.BakedQuad;

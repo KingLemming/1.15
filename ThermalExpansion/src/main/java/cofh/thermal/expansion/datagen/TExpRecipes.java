@@ -1,8 +1,8 @@
 package cofh.thermal.expansion.datagen;
 
-import cofh.lib.datagen.RecipeProviderCoFH;
-import cofh.lib.registries.DeferredRegisterCoFH;
-import cofh.lib.util.references.CoFHTags;
+import cofh.core.datagen.RecipeProviderCoFH;
+import cofh.core.registries.DeferredRegisterCoFH;
+import cofh.core.util.references.CoFHTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -14,7 +14,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.expansion.init.TExpIDs.*;

@@ -1,8 +1,8 @@
 package cofh.thermal.core.item;
 
-import cofh.lib.block.IDismantleable;
-import cofh.lib.item.ItemCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.block.IDismantleable;
+import cofh.core.item.ItemCoFH;
+import cofh.core.util.Utils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

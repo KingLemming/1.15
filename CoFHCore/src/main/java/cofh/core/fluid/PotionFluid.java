@@ -1,6 +1,5 @@
 package cofh.core.fluid;
 
-import cofh.lib.fluid.FluidCoFH;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -21,9 +20,9 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 import javax.annotation.Nullable;
 
 import static cofh.core.CoFHCore.FLUIDS;
-import static cofh.lib.util.constants.NBTTags.TAG_POTION;
-import static cofh.lib.util.references.CoreIDs.ID_FLUID_POTION;
-import static cofh.lib.util.references.CoreReferences.FLUID_POTION;
+import static cofh.core.util.constants.NBTTags.TAG_POTION;
+import static cofh.core.util.references.CoreIDs.ID_FLUID_POTION;
+import static cofh.core.util.references.CoreReferences.FLUID_POTION;
 
 public class PotionFluid extends FluidCoFH {
 

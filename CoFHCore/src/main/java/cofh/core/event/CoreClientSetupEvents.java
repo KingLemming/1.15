@@ -1,6 +1,6 @@
 package cofh.core.event;
 
-import cofh.lib.item.IColorableItem;
+import cofh.core.item.IColorableItem;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_COFH_CORE, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CoreClientSetupEvents {

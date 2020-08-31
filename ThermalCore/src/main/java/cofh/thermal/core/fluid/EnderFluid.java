@@ -1,7 +1,7 @@
 package cofh.thermal.core.fluid;
 
-import cofh.lib.fluid.FluidCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.fluid.FluidCoFH;
+import cofh.core.util.Utils;
 import cofh.thermal.core.common.ThermalItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +26,7 @@ import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import java.util.function.Supplier;
 
-import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
+import static cofh.core.util.references.CoreReferences.ENDERFERENCE;
 import static cofh.thermal.core.ThermalCore.*;
 
 public class EnderFluid extends FluidCoFH {

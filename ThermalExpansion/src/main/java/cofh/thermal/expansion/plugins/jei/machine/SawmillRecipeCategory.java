@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
-import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.core.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SAWMILL_BLOCK;
 
 public class SawmillRecipeCategory extends ThermalRecipeCategory<SawmillRecipe> {

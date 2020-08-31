@@ -1,11 +1,11 @@
 package cofh.ensorcellation.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
-import cofh.lib.enchantment.EnchantmentOverride;
+import cofh.core.enchantment.EnchantmentCoFH;
+import cofh.core.enchantment.EnchantmentOverride;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
 
 public class MendingEnchantmentAlt extends EnchantmentOverride {
 

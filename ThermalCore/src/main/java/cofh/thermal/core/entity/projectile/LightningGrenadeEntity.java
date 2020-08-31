@@ -1,7 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
-import cofh.lib.entity.AbstractGrenadeEntity;
-import cofh.lib.util.Utils;
+import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -20,7 +20,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import static cofh.lib.util.references.CoreReferences.SHOCKED;
+import static cofh.core.util.references.CoreReferences.SHOCKED;
 import static cofh.thermal.core.init.TCoreReferences.LIGHTNING_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.LIGHTNING_GRENADE_ITEM;
 

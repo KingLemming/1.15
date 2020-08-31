@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.util.managers.dynamo;
 
-import cofh.lib.inventory.FalseIInventory;
+import cofh.core.inventory.FalseIInventory;
 import cofh.thermal.core.util.managers.SingleItemFuelManager;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;

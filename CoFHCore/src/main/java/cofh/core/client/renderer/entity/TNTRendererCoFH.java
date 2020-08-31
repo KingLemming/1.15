@@ -1,6 +1,6 @@
 package cofh.core.client.renderer.entity;
 
-import cofh.lib.entity.AbstractTNTEntity;
+import cofh.core.entity.AbstractTNTEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

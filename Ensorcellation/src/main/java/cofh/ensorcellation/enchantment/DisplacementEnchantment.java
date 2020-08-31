@@ -1,7 +1,7 @@
 package cofh.ensorcellation.enchantment;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.enchantment.EnchantmentCoFH;
+import cofh.core.util.Utils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
@@ -20,8 +20,8 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Map;
 import java.util.Random;
 
-import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.references.EnsorcReferences.*;
+import static cofh.core.util.constants.Constants.ARMOR_SLOTS;
+import static cofh.core.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class DisplacementEnchantment extends EnchantmentCoFH {

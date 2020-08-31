@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
+import static cofh.core.util.constants.Constants.BASE_CHANCE_LOCKED;
 import static cofh.thermal.core.ThermalCore.RECIPE_SERIALIZERS;
 import static cofh.thermal.expansion.init.TExpRecipeTypes.ID_RECIPE_FURNACE;
 

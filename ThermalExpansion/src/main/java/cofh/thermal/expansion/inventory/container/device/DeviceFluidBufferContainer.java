@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.inventory.container.device;
 
-import cofh.lib.inventory.container.TileContainer;
+import cofh.core.inventory.container.TileContainer;
 import cofh.thermal.expansion.tileentity.device.DeviceFluidBufferTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

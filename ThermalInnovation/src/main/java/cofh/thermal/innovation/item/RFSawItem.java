@@ -1,17 +1,17 @@
 package cofh.thermal.innovation.item;
 
+import cofh.core.capability.CapabilityAreaEffect;
+import cofh.core.capability.IAreaEffect;
+import cofh.core.energy.EnergyContainerItemWrapper;
+import cofh.core.energy.IEnergyContainerItem;
+import cofh.core.item.EnergyContainerItem;
+import cofh.core.item.IAugmentableItem;
+import cofh.core.item.IMultiModeItem;
 import cofh.core.util.ChatHelper;
-import cofh.lib.capability.CapabilityAreaEffect;
-import cofh.lib.capability.IAreaEffect;
-import cofh.lib.energy.EnergyContainerItemWrapper;
-import cofh.lib.energy.IEnergyContainerItem;
-import cofh.lib.item.EnergyContainerItem;
-import cofh.lib.item.IAugmentableItem;
-import cofh.lib.item.IMultiModeItem;
-import cofh.lib.util.Utils;
-import cofh.lib.util.constants.ToolTypes;
-import cofh.lib.util.helpers.AreaEffectHelper;
-import cofh.lib.util.helpers.AugmentDataHelper;
+import cofh.core.util.Utils;
+import cofh.core.util.constants.ToolTypes;
+import cofh.core.util.helpers.AreaEffectHelper;
+import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
@@ -53,9 +53,9 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
-import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
-import static cofh.lib.util.helpers.AugmentableHelper.getPropertyWithDefault;
+import static cofh.core.util.constants.NBTTags.*;
+import static cofh.core.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
+import static cofh.core.util.helpers.AugmentableHelper.getPropertyWithDefault;
 
 public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
 

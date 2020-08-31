@@ -1,7 +1,7 @@
 package cofh.ensorcellation.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentOverride;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.enchantment.EnchantmentOverride;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
-import static cofh.lib.util.references.CoreReferences.GLOSSED_MAGMA;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.references.CoreReferences.GLOSSED_MAGMA;
 
 public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
 

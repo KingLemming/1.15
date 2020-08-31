@@ -11,7 +11,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import static cofh.lib.util.constants.Constants.CMD_PLAYER;
+import static cofh.core.util.constants.Constants.CMD_PLAYER;
 
 public class SubCommandEnderChest {
 

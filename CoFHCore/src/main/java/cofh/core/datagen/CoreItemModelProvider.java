@@ -1,12 +1,11 @@
 package cofh.core.datagen;
 
-import cofh.lib.datagen.ItemModelProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.core.CoFHCore.ITEMS;
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.references.CoreIDs.ID_ECTOPLASM;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.references.CoreIDs.ID_ECTOPLASM;
 
 public class CoreItemModelProvider extends ItemModelProviderCoFH {
 

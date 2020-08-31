@@ -1,8 +1,8 @@
 package cofh.thermal.core.util.loot;
 
-import cofh.lib.util.control.IReconfigurableTile;
-import cofh.lib.util.control.ISecurableTile;
-import cofh.lib.util.control.ITransferControllableTile;
+import cofh.core.util.control.IReconfigurableTile;
+import cofh.core.util.control.ISecurableTile;
+import cofh.core.util.control.ITransferControllableTile;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -14,9 +14,9 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootFunction;
 import net.minecraft.world.storage.loot.conditions.ILootCondition;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.constants.NBTTags.TAG_AUGMENTS;
-import static cofh.lib.util.constants.NBTTags.TAG_BLOCK_ENTITY;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.NBTTags.TAG_AUGMENTS;
+import static cofh.core.util.constants.NBTTags.TAG_BLOCK_ENTITY;
 import static cofh.thermal.core.common.ThermalConfig.*;
 import static net.minecraft.world.storage.loot.LootParameters.BLOCK_ENTITY;
 

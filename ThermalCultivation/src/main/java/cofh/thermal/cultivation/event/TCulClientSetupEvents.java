@@ -7,7 +7,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
+import static cofh.core.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.cultivation.init.TCulIDs.ID_FROST_MELON_STEM;
 import static cofh.thermal.cultivation.init.TCulIDs.ID_FROST_MELON_STEM_ATTACHED;

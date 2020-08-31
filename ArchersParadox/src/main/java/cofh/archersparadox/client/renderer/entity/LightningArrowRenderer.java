@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
-import static cofh.lib.util.constants.Constants.ID_MINECRAFT;
+import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.constants.Constants.ID_MINECRAFT;
 
 @OnlyIn(Dist.CLIENT)
 public class LightningArrowRenderer extends ArrowRenderer<LightningArrowEntity> {

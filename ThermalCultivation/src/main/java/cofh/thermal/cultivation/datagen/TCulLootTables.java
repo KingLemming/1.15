@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation.datagen;
 
-import cofh.lib.datagen.LootTableProviderCoFH;
-import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.core.datagen.LootTableProviderCoFH;
+import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.thermal.core.util.loot.TileNBTSync;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -16,7 +16,6 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreIDs.ID_DEVICE_HIVE_EXTRACTOR;
 import static cofh.thermal.core.util.RegistrationHelper.block;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulIDs.*;

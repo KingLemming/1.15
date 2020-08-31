@@ -1,7 +1,7 @@
 package cofh.thermal.core.block;
 
-import cofh.lib.block.TileBlock6Way;
-import cofh.lib.tileentity.TileCoFH;
+import cofh.core.block.TileBlock6Way;
+import cofh.core.tileentity.TileCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockReader;
 
 import java.util.function.Supplier;
 
-import static cofh.lib.util.constants.Constants.FACING_ALL;
+import static cofh.core.util.constants.Constants.FACING_ALL;
 
 public class TileBlockDynamo extends TileBlock6Way {
 

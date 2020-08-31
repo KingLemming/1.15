@@ -1,9 +1,9 @@
 package cofh.thermal.core.tileentity;
 
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.helpers.BlockHelper;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.tileentity.TileCoFH;
+import cofh.core.util.helpers.BlockHelper;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,8 +26,8 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.core.util.constants.Constants.*;
+import static cofh.core.util.constants.NBTTags.*;
 
 public abstract class DynamoTileBase extends ThermalTileBase implements ITickableTileEntity {
 

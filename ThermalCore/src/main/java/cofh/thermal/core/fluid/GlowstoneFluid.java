@@ -1,6 +1,6 @@
 package cofh.thermal.core.fluid;
 
-import cofh.lib.fluid.FluidCoFH;
+import cofh.core.fluid.FluidCoFH;
 import cofh.thermal.core.common.ThermalItemGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;

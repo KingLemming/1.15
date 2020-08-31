@@ -4,8 +4,8 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.function.BooleanSupplier;
 
-import static cofh.lib.util.constants.Constants.FALSE;
-import static cofh.lib.util.constants.Constants.TRUE;
+import static cofh.core.util.constants.Constants.FALSE;
+import static cofh.core.util.constants.Constants.TRUE;
 
 public class FeatureManager {
 

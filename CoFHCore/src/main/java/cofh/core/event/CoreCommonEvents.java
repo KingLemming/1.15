@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Map;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.FEATHER_FALLING;

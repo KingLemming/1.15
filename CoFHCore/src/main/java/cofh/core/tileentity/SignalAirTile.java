@@ -1,11 +1,11 @@
 package cofh.core.tileentity;
 
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import static cofh.lib.util.references.CoreReferences.SIGNAL_AIR_TILE;
+import static cofh.core.util.references.CoreReferences.SIGNAL_AIR_TILE;
 
 public class SignalAirTile extends TileEntity implements ITickableTileEntity {
 

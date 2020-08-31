@@ -1,10 +1,9 @@
 package cofh.core.datagen;
 
-import cofh.lib.datagen.BlockStateProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 
 public class CoreBlockStateProvider extends BlockStateProviderCoFH {
 

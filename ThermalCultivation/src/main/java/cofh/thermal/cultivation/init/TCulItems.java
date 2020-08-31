@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation.init;
 
-import cofh.lib.item.BlockNamedItemCoFH;
-import cofh.lib.item.ItemCoFH;
+import cofh.core.item.BlockNamedItemCoFH;
+import cofh.core.item.ItemCoFH;
 import cofh.thermal.cultivation.item.WateringCanItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

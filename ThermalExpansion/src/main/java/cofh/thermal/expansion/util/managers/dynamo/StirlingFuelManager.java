@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.util.managers.dynamo;
 
-import cofh.lib.inventory.FalseIInventory;
+import cofh.core.inventory.FalseIInventory;
 import cofh.thermal.core.util.managers.SingleItemFuelManager;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import java.util.Map;
 
-import static cofh.lib.util.constants.Constants.RF_PER_FURNACE_UNIT;
+import static cofh.core.util.constants.Constants.RF_PER_FURNACE_UNIT;
 
 public class StirlingFuelManager extends SingleItemFuelManager {
 

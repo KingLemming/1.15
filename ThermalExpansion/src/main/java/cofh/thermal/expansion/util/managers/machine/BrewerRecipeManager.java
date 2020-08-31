@@ -1,11 +1,11 @@
 package cofh.thermal.expansion.util.managers.machine;
 
+import cofh.core.fluid.IFluidStackAccess;
 import cofh.core.fluid.PotionFluid;
-import cofh.lib.fluid.IFluidStackAccess;
-import cofh.lib.inventory.FalseIInventory;
-import cofh.lib.inventory.IItemStackAccess;
-import cofh.lib.util.ComparableItemStack;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.inventory.FalseIInventory;
+import cofh.core.inventory.IItemStackAccess;
+import cofh.core.util.ComparableItemStack;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
@@ -32,7 +32,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static java.util.Arrays.asList;
 
 public class BrewerRecipeManager extends AbstractManager implements IRecipeManager {

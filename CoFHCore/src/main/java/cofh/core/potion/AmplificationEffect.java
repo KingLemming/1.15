@@ -1,6 +1,6 @@
 package cofh.core.potion;
 
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;

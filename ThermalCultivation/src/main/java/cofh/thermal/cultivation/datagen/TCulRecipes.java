@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation.datagen;
 
-import cofh.lib.datagen.RecipeProviderCoFH;
-import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.core.datagen.RecipeProviderCoFH;
+import cofh.core.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -13,7 +13,7 @@ import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.util.RegistrationHelper.block;

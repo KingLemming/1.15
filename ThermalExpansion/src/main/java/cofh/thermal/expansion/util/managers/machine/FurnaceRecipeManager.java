@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.util.managers.machine;
 
-import cofh.lib.inventory.FalseIInventory;
+import cofh.core.inventory.FalseIInventory;
 import cofh.thermal.core.ThermalCore;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalRecipe;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class FurnaceRecipeManager extends SingleItemRecipeManager {
 

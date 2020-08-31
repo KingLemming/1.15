@@ -9,8 +9,8 @@ import net.minecraft.world.storage.WorldSavedData;
 
 import java.util.*;
 
-import static cofh.lib.util.constants.NBTTags.TAG_NAME;
-import static cofh.lib.util.constants.NBTTags.TAG_UUID;
+import static cofh.core.util.constants.NBTTags.TAG_NAME;
+import static cofh.core.util.constants.NBTTags.TAG_UUID;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 public class SocialUtils {

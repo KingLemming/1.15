@@ -1,8 +1,8 @@
 package cofh.thermal.expansion.tileentity.device;
 
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.InventoryHelper;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.helpers.InventoryHelper;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.tileentity.ReconfigurableTile4Way;
 import cofh.thermal.expansion.inventory.container.device.DeviceItemBufferContainer;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,10 +15,10 @@ import net.minecraft.util.Direction;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.ACCESSIBLE;
-import static cofh.lib.util.constants.Constants.DIRECTIONS;
-import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_IN;
-import static cofh.lib.util.constants.NBTTags.TAG_AMOUNT_OUT;
+import static cofh.core.util.StorageGroup.ACCESSIBLE;
+import static cofh.core.util.constants.Constants.DIRECTIONS;
+import static cofh.core.util.constants.NBTTags.TAG_AMOUNT_IN;
+import static cofh.core.util.constants.NBTTags.TAG_AMOUNT_OUT;
 import static cofh.thermal.expansion.init.TExpReferences.DEVICE_ITEM_BUFFER_TILE;
 
 public class DeviceItemBufferTile extends ReconfigurableTile4Way implements ITickableTileEntity {

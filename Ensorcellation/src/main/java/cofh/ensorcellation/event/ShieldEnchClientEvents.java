@@ -1,7 +1,7 @@
 package cofh.ensorcellation.event;
 
+import cofh.core.util.helpers.MathHelper;
 import cofh.ensorcellation.enchantment.PhalanxEnchantment;
-import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -10,8 +10,8 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
-import static cofh.lib.util.references.EnsorcReferences.PHALANX;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.references.EnsorcReferences.PHALANX;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_ENSORCELLATION)
 public class ShieldEnchClientEvents {

@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
+import cofh.core.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.FishingRodItem;

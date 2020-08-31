@@ -3,7 +3,7 @@ package cofh.core.client.gui.element;
 import cofh.core.client.gui.GuiColor;
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.listbox.IListBoxElement;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.helpers.RenderHelper;
 import net.minecraft.client.gui.screen.Screen;
 
 import java.util.Collection;

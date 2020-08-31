@@ -1,9 +1,9 @@
 package cofh.core.client.gui.element;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.util.IResourceStorage;
-import cofh.lib.util.helpers.MathHelper;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.IResourceStorage;
+import cofh.core.util.helpers.MathHelper;
+import cofh.core.util.helpers.RenderHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -13,9 +13,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-import static cofh.lib.util.constants.Constants.FALSE;
-import static cofh.lib.util.constants.Constants.TRUE;
-import static cofh.lib.util.helpers.StringHelper.format;
+import static cofh.core.util.constants.Constants.FALSE;
+import static cofh.core.util.constants.Constants.TRUE;
+import static cofh.core.util.helpers.StringHelper.format;
 
 public abstract class ElementResourceStorage extends ElementBase {
 

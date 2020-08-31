@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
 @Mod.EventBusSubscriber(modid = ID_ENSORCELLATION)

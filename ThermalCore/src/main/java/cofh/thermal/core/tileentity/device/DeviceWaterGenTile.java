@@ -1,8 +1,8 @@
 package cofh.thermal.core.tileentity.device;
 
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.fluid.FluidStorageInfinite;
-import cofh.lib.util.StorageGroup;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.fluid.FluidStorageInfinite;
+import cofh.core.util.StorageGroup;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,8 +26,8 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.OUTPUT;
-import static cofh.lib.util.constants.Constants.TANK_LARGE;
+import static cofh.core.util.StorageGroup.OUTPUT;
+import static cofh.core.util.constants.Constants.TANK_LARGE;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_WATER_GEN_TILE;
 
 public class DeviceWaterGenTile extends ThermalTileBase {

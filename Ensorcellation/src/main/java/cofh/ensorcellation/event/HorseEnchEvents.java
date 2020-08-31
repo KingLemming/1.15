@@ -1,10 +1,10 @@
 package cofh.ensorcellation.event;
 
+import cofh.core.util.helpers.MathHelper;
 import cofh.ensorcellation.enchantment.DisplacementEnchantment;
 import cofh.ensorcellation.enchantment.FireRebukeEnchantment;
 import cofh.ensorcellation.enchantment.FrostRebukeEnchantment;
 import cofh.ensorcellation.enchantment.override.FrostWalkerEnchantmentImp;
-import cofh.lib.util.helpers.MathHelper;
 import net.minecraft.enchantment.FrostWalkerEnchantment;
 import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
@@ -19,8 +19,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
-import static cofh.lib.util.references.EnsorcReferences.*;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.*;
 

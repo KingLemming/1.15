@@ -1,10 +1,10 @@
 package cofh.omgourd.datagen;
 
-import cofh.lib.datagen.ItemModelProviderCoFH;
+import cofh.core.datagen.ItemModelProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
-import static cofh.lib.util.constants.Constants.ID_OMGOURD;
+import static cofh.core.util.constants.Constants.ID_OMGOURD;
 import static cofh.omgourd.OMGourd.BLOCKS;
 
 public class OMGItemModels extends ItemModelProviderCoFH {

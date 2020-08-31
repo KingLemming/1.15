@@ -1,12 +1,12 @@
 package cofh.core.client.gui.element;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.helpers.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.function.BooleanSupplier;
 
-import static cofh.lib.util.constants.Constants.TRUE;
+import static cofh.core.util.constants.Constants.TRUE;
 
 public class ElementSlot extends ElementBase {
 

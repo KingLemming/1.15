@@ -4,7 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import static cofh.lib.util.references.CoreReferences.GLOW_AIR_TILE;
+import static cofh.core.util.references.CoreReferences.GLOW_AIR_TILE;
 
 public class GlowAirTile extends TileEntity implements ITickableTileEntity {
 

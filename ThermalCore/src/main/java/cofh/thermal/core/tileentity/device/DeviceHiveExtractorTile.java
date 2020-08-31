@@ -1,8 +1,8 @@
 package cofh.thermal.core.tileentity.device;
 
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.core.network.packet.client.TileControlPacket;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.block.BeehiveBlock;
@@ -27,10 +27,10 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.OUTPUT;
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
-import static cofh.lib.util.references.CoreReferences.FLUID_HONEY;
+import static cofh.core.util.StorageGroup.OUTPUT;
+import static cofh.core.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.helpers.ItemHelper.cloneStack;
+import static cofh.core.util.references.CoreReferences.FLUID_HONEY;
 import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_HIVE_EXTRACTOR_TILE;
 

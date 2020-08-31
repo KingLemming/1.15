@@ -1,12 +1,12 @@
 package cofh.thermal.core.init;
 
 import cofh.core.block.GunpowderBlock;
+import cofh.core.block.OreBlockCoFH;
 import cofh.core.block.TNTBlockCoFH;
+import cofh.core.block.TileBlock4Way;
+import cofh.core.block.storage.MetalStorageBlock;
+import cofh.core.item.BlockItemCoFH;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.block.OreBlockCoFH;
-import cofh.lib.block.TileBlock4Way;
-import cofh.lib.block.storage.MetalStorageBlock;
-import cofh.lib.item.BlockItemCoFH;
 import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.entity.item.*;

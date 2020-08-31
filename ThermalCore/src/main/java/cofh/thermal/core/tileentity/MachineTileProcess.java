@@ -1,11 +1,11 @@
 package cofh.thermal.core.tileentity;
 
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.util.Utils;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
@@ -19,11 +19,11 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.FluidHelper.fluidsEqual;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
-import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
+import static cofh.core.util.constants.Constants.*;
+import static cofh.core.util.constants.NBTTags.*;
+import static cofh.core.util.helpers.FluidHelper.fluidsEqual;
+import static cofh.core.util.helpers.ItemHelper.cloneStack;
+import static cofh.core.util.helpers.ItemHelper.itemsEqualWithTags;
 
 public abstract class MachineTileProcess extends ReconfigurableTile4Way implements ITickableTileEntity, IMachineInventory {
 

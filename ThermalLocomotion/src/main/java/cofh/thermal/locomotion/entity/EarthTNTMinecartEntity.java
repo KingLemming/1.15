@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractTNTMinecartEntity;
-import cofh.lib.util.Utils;
+import cofh.core.entity.AbstractTNTMinecartEntity;
+import cofh.core.util.Utils;
 import cofh.thermal.core.entity.projectile.EarthGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

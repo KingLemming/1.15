@@ -1,8 +1,8 @@
 package cofh.thermal.expansion.tileentity.dynamo;
 
+import cofh.core.fluid.FluidStorageCoFH;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import cofh.thermal.expansion.inventory.container.dynamo.DynamoMagmaticContainer;
 import cofh.thermal.expansion.util.managers.dynamo.MagmaticFuelManager;
@@ -15,8 +15,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.INPUT;
-import static cofh.lib.util.constants.Constants.TANK_SMALL;
+import static cofh.core.util.StorageGroup.INPUT;
+import static cofh.core.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.core.common.ThermalConfig.dynamoAugments;
 import static cofh.thermal.core.util.managers.SingleFluidFuelManager.FLUID_FUEL_AMOUNT;
 import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_MAGMATIC_TILE;

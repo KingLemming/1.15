@@ -2,7 +2,7 @@ package cofh.core.client.gui.element.panel;
 
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.ElementBase;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.helpers.RenderHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.Rectangle2d;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 
-import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
+import static cofh.core.util.constants.Constants.PATH_ELEMENTS;
 
 public abstract class PanelBase extends ElementBase {
 

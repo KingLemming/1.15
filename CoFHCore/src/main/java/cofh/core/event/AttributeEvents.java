@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Set;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class AttributeEvents {

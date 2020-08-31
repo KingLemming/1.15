@@ -1,8 +1,8 @@
 package cofh.core.client.gui.element.panel;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.util.control.ISecurable;
-import cofh.lib.util.helpers.RenderHelper;
+import cofh.core.util.control.ISecurable;
+import cofh.core.util.helpers.RenderHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.UUID;
 
 import static cofh.core.client.gui.CoreTextures.*;
-import static cofh.lib.util.control.ISecurable.AccessMode.*;
-import static cofh.lib.util.helpers.SoundHelper.playClickSound;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.core.util.control.ISecurable.AccessMode.*;
+import static cofh.core.util.helpers.SoundHelper.playClickSound;
+import static cofh.core.util.helpers.StringHelper.localize;
 
 public class PanelSecurity extends PanelBase {
 

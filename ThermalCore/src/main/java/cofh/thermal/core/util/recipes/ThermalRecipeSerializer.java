@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.RecipeJsonUtils.*;
+import static cofh.core.util.RecipeJsonUtils.*;
 
 public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 

@@ -1,10 +1,10 @@
 package cofh.ensorcellation.init;
 
+import cofh.core.enchantment.EnchantmentCoFH;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.override.FrostWalkerEnchantmentImp;
 import cofh.ensorcellation.enchantment.override.MendingEnchantmentAlt;
 import cofh.ensorcellation.enchantment.override.ThornsEnchantmentImp;
-import cofh.lib.enchantment.EnchantmentCoFH;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
@@ -13,8 +13,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static cofh.lib.util.constants.Constants.MAX_ENCHANT_LEVEL;
-import static cofh.lib.util.references.EnsorcReferences.*;
+import static cofh.core.util.constants.Constants.MAX_ENCHANT_LEVEL;
+import static cofh.core.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.Enchantments.*;
 
 public class EnsorcConfig {

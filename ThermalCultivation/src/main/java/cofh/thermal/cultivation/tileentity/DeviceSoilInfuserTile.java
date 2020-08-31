@@ -1,8 +1,8 @@
 package cofh.thermal.cultivation.tileentity;
 
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.EnergyHelper;
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.helpers.EnergyHelper;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import cofh.thermal.cultivation.block.SoilBlock;
 import cofh.thermal.cultivation.inventory.container.device.DeviceSoilInfuserContainer;
@@ -18,8 +18,8 @@ import net.minecraftforge.energy.CapabilityEnergy;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.INTERNAL;
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.core.util.StorageGroup.INTERNAL;
+import static cofh.core.util.constants.NBTTags.*;
 import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
 import static cofh.thermal.cultivation.init.TCulReferences.DEVICE_SOIL_INFUSER_TILE;
 

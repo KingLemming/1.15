@@ -1,9 +1,9 @@
 package cofh.ensorcellation;
 
 import cofh.core.init.CoreItems;
+import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.ensorcellation.init.EnsorcConfig;
 import cofh.ensorcellation.init.EnsorcEnchantments;
-import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
 
 @Mod(ID_ENSORCELLATION)
 public class Ensorcellation {

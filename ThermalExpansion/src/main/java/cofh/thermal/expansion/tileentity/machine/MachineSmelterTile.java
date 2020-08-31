@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.tileentity.machine;
 
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineSmelterContainer;
 import cofh.thermal.expansion.util.managers.machine.SmelterRecipeManager;
@@ -12,8 +12,8 @@ import net.minecraft.inventory.container.Container;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.helpers.ItemHelper.itemsEqual;
+import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.helpers.ItemHelper.itemsEqual;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SMELTER_TILE;
 

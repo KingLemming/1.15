@@ -16,8 +16,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.lib.util.helpers.StringHelper.getTextComponent;
+import static cofh.core.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.helpers.StringHelper.getTextComponent;
 import static cofh.thermal.core.plugins.jei.TCoreJeiPlugin.*;
 import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_MAGMATIC_BLOCK;
 

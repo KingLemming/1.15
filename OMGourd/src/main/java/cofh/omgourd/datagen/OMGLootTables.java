@@ -1,6 +1,6 @@
 package cofh.omgourd.datagen;
 
-import cofh.lib.datagen.LootTableProviderCoFH;
+import cofh.core.datagen.LootTableProviderCoFH;
 import net.minecraft.data.DataGenerator;
 
 import static cofh.omgourd.OMGourd.BLOCKS;

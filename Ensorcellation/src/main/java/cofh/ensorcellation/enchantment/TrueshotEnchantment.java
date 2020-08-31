@@ -1,13 +1,13 @@
 package cofh.ensorcellation.enchantment;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
+import cofh.core.enchantment.EnchantmentCoFH;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
-import static cofh.lib.util.helpers.ArcheryHelper.validBow;
-import static cofh.lib.util.references.EnsorcReferences.VOLLEY;
+import static cofh.core.util.helpers.ArcheryHelper.validBow;
+import static cofh.core.util.references.EnsorcReferences.VOLLEY;
 
 public class TrueshotEnchantment extends EnchantmentCoFH {
 

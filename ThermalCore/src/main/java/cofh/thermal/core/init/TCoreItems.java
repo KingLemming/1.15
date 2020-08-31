@@ -1,9 +1,9 @@
 package cofh.thermal.core.init;
 
-import cofh.lib.entity.AbstractGrenadeEntity;
-import cofh.lib.item.*;
-import cofh.lib.util.constants.ToolTypes;
-import cofh.lib.util.helpers.AugmentDataHelper;
+import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.item.*;
+import cofh.core.util.constants.ToolTypes;
+import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.core.entity.projectile.*;
 import cofh.thermal.core.item.*;
@@ -16,8 +16,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-import static cofh.lib.util.constants.Constants.TRUE;
-import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.core.util.constants.Constants.TRUE;
+import static cofh.core.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;

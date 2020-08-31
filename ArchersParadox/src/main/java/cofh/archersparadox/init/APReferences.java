@@ -7,7 +7,7 @@ import net.minecraft.potion.Effect;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.archersparadox.init.APIDs.*;
-import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
 
 @ObjectHolder(ID_ARCHERS_PARADOX)
 public class APReferences {

@@ -1,6 +1,6 @@
 package cofh.omgourd.datagen;
 
-import cofh.lib.datagen.RecipeProviderCoFH;
+import cofh.core.datagen.RecipeProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
 
-import static cofh.lib.util.constants.Constants.ID_OMGOURD;
+import static cofh.core.util.constants.Constants.ID_OMGOURD;
 import static cofh.omgourd.OMGourd.ITEMS;
 
 public class OMGRecipeProvider extends RecipeProviderCoFH {

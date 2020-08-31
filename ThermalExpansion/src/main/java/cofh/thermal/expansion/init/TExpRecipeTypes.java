@@ -1,11 +1,11 @@
 package cofh.thermal.expansion.init;
 
-import cofh.lib.util.recipes.SerializableRecipeType;
+import cofh.core.util.recipes.SerializableRecipeType;
 import cofh.thermal.expansion.util.recipes.dynamo.*;
 import cofh.thermal.expansion.util.recipes.machine.*;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class TExpRecipeTypes {
 

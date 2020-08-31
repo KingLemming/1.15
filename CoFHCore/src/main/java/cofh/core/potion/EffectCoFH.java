@@ -6,7 +6,7 @@ import net.minecraft.potion.EffectType;
 /**
  * Why does this exist? I'm glad you asked.
  * <p>
- * One word: protected. As in the constructor. Because of course it is.
+ * One word: Protected. As in the constructor. Because of course it is.
  *
  * @author King Lemming
  */

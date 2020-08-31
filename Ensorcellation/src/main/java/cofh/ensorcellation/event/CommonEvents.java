@@ -1,12 +1,12 @@
 package cofh.ensorcellation.event;
 
+import cofh.core.util.Utils;
+import cofh.core.util.constants.NBTTags;
+import cofh.core.util.helpers.MathHelper;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.nyi.SmashingEnchantment;
 import cofh.ensorcellation.enchantment.nyi.SmeltingEnchantment;
 import cofh.ensorcellation.enchantment.override.FrostWalkerEnchantmentImp;
-import cofh.lib.util.Utils;
-import cofh.lib.util.constants.NBTTags;
-import cofh.lib.util.helpers.MathHelper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.enchantment.FrostWalkerEnchantment;
@@ -51,11 +51,11 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
-import static cofh.lib.util.Utils.getHeldEnchantmentLevel;
-import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.references.EnsorcIDs.ID_REACH;
-import static cofh.lib.util.references.EnsorcIDs.ID_VITALITY;
-import static cofh.lib.util.references.EnsorcReferences.*;
+import static cofh.core.util.Utils.getHeldEnchantmentLevel;
+import static cofh.core.util.constants.Constants.*;
+import static cofh.core.util.references.EnsorcIDs.ID_REACH;
+import static cofh.core.util.references.EnsorcIDs.ID_VITALITY;
+import static cofh.core.util.references.EnsorcReferences.*;
 import static net.minecraft.enchantment.EnchantmentHelper.getMaxEnchantmentLevel;
 import static net.minecraft.enchantment.Enchantments.EFFICIENCY;
 import static net.minecraft.enchantment.Enchantments.FROST_WALKER;

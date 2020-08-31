@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.tileentity.machine;
 
-import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineFurnaceContainer;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.helpers.ItemHelper.itemsEqualWithTags;
+import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.helpers.ItemHelper.itemsEqualWithTags;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_TILE;
 

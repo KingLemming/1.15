@@ -1,7 +1,6 @@
 package cofh.core.enchantment;
 
-import cofh.lib.enchantment.EnchantmentCoFH;
-import cofh.lib.item.IContainerItem;
+import cofh.core.item.IContainerItem;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;

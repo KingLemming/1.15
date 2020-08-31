@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes;
 
-import cofh.lib.util.recipes.SerializableRecipe;
+import cofh.core.util.recipes.SerializableRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.BASE_CHANCE_LOCKED;
+import static cofh.core.util.constants.Constants.BASE_CHANCE_LOCKED;
 
 public abstract class ThermalRecipe extends SerializableRecipe {
 

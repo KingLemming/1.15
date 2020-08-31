@@ -1,15 +1,15 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
+import cofh.core.network.packet.IPacketClient;
+import cofh.core.network.packet.PacketBase;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.network.packet.IPacketClient;
-import cofh.lib.network.packet.PacketBase;
-import cofh.lib.util.helpers.StringHelper;
+import cofh.core.util.helpers.StringHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.lib.util.constants.Constants.PACKET_CHAT;
+import static cofh.core.util.constants.Constants.PACKET_CHAT;
 
 public class IndexedChatPacket extends PacketBase implements IPacketClient {
 

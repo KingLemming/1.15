@@ -1,6 +1,6 @@
 package cofh.thermal.core.event;
 
-import cofh.lib.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.AugmentDataHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.constants.NBTTags.TAG_TYPE;
-import static cofh.lib.util.helpers.StringHelper.*;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.NBTTags.TAG_TYPE;
+import static cofh.core.util.helpers.StringHelper.*;
 import static cofh.thermal.core.common.ThermalAugmentRules.*;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_THERMAL)

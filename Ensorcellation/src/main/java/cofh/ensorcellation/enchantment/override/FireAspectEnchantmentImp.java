@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentOverride;
+import cofh.core.enchantment.EnchantmentOverride;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;

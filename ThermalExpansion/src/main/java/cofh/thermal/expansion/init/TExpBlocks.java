@@ -1,7 +1,7 @@
 package cofh.thermal.expansion.init;
 
+import cofh.core.block.TileBlock4Way;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.block.TileBlock4Way;
 import cofh.thermal.core.block.TileBlockDynamo;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.expansion.inventory.container.dynamo.*;

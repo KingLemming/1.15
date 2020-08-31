@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_CULTIVATION;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
+import static cofh.core.util.constants.Constants.ID_THERMAL_CULTIVATION;
+import static cofh.core.util.helpers.ItemHelper.cloneStack;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
 import static cofh.thermal.cultivation.init.TCulIDs.*;

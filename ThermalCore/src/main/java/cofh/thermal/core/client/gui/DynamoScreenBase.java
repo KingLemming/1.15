@@ -1,6 +1,6 @@
 package cofh.thermal.core.client.gui;
 
-import cofh.lib.inventory.container.ContainerCoFH;
+import cofh.core.inventory.container.ContainerCoFH;
 import cofh.thermal.core.tileentity.DynamoTileBase;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;

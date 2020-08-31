@@ -13,8 +13,8 @@ import java.util.List;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.APIDs.*;
-import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
-import static cofh.lib.util.helpers.ItemHelper.cloneStack;
+import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.helpers.ItemHelper.cloneStack;
 
 @Mod.EventBusSubscriber(modid = ID_ARCHERS_PARADOX)
 public class APCommonSetupEvents {

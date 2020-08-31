@@ -1,7 +1,7 @@
 package cofh.thermal.core.item;
 
 import cofh.core.item.ArmorItemCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,8 +1,8 @@
 package cofh.thermal.core.entity.projectile;
 
-import cofh.lib.entity.AbstractGrenadeEntity;
-import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.Utils;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.Utils.HORZ_MAX;
+import static cofh.core.util.Utils.HORZ_MAX;
 import static cofh.thermal.core.init.TCoreReferences.NUKE_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.NUKE_GRENADE_ITEM;
 import static net.minecraft.potion.Effects.WITHER;

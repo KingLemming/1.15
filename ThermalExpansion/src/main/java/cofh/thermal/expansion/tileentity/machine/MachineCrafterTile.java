@@ -1,8 +1,8 @@
 package cofh.thermal.expansion.tileentity.machine;
 
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.FalseCraftingInventory;
-import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.FalseCraftingInventory;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -13,8 +13,8 @@ import net.minecraft.item.crafting.IRecipe;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
 

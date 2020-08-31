@@ -14,10 +14,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
-import static cofh.lib.util.constants.NBTTags.TAG_STORED_ENCHANTMENTS;
-import static cofh.lib.util.helpers.StringHelper.canLocalize;
-import static cofh.lib.util.helpers.StringHelper.getInfoTextComponent;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.NBTTags.TAG_STORED_ENCHANTMENTS;
+import static cofh.core.util.helpers.StringHelper.canLocalize;
+import static cofh.core.util.helpers.StringHelper.getInfoTextComponent;
 import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ID_COFH_CORE)

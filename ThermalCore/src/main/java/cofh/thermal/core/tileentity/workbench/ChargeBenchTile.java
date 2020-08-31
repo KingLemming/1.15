@@ -1,8 +1,8 @@
 package cofh.thermal.core.tileentity.workbench;
 
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.EnergyHelper;
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.helpers.EnergyHelper;
 import cofh.thermal.core.inventory.container.workbench.ChargeBenchContainer;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.INTERNAL;
+import static cofh.core.util.StorageGroup.INTERNAL;
 import static cofh.thermal.core.init.TCoreReferences.CHARGE_BENCH_TILE;
 
 public class ChargeBenchTile extends ThermalTileBase implements ITickableTileEntity {

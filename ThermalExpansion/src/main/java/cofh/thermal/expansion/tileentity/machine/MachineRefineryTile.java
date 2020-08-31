@@ -1,8 +1,8 @@
 package cofh.thermal.expansion.tileentity.machine;
 
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineRefineryContainer;
 import cofh.thermal.expansion.util.managers.machine.RefineryRecipeManager;
@@ -15,9 +15,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.lib.util.constants.Constants.TANK_SMALL;
+import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.constants.Constants.TANK_SMALL;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_REFINERY_TILE;
 

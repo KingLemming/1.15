@@ -1,10 +1,10 @@
 package cofh.thermal.core.init;
 
-import cofh.lib.util.recipes.SerializableRecipeType;
+import cofh.core.util.recipes.SerializableRecipeType;
 import cofh.thermal.core.util.recipes.ThermalBoost;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class TCoreRecipeTypes {
 

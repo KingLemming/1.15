@@ -1,11 +1,11 @@
 package cofh.thermal.cultivation.init;
 
+import cofh.core.block.Block4Way;
+import cofh.core.block.CakeBlockCoFH;
+import cofh.core.block.TileBlock4Way;
+import cofh.core.block.crops.StemBlockAttached;
+import cofh.core.block.crops.StemBlockCoFH;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.block.Block4Way;
-import cofh.lib.block.CakeBlockCoFH;
-import cofh.lib.block.TileBlock4Way;
-import cofh.lib.block.crops.StemBlockAttached;
-import cofh.lib.block.crops.StemBlockCoFH;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.cultivation.block.FrostMelonBlock;
 import cofh.thermal.cultivation.block.SoilBlock;

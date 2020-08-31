@@ -1,9 +1,9 @@
 package cofh.thermal.core.util;
 
-import cofh.lib.block.crops.CropsBlockCoFH;
-import cofh.lib.block.crops.CropsBlockPerennial;
-import cofh.lib.item.*;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.block.crops.CropsBlockCoFH;
+import cofh.core.block.crops.CropsBlockPerennial;
+import cofh.core.item.*;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,7 +15,7 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static cofh.lib.util.constants.Constants.TRUE;
+import static cofh.core.util.constants.Constants.TRUE;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_BLOCKS;

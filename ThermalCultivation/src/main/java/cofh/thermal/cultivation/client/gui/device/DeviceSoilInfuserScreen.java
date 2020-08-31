@@ -1,7 +1,7 @@
 package cofh.thermal.cultivation.client.gui.device;
 
 import cofh.core.client.gui.element.ElementScaled;
-import cofh.lib.util.helpers.StringHelper;
+import cofh.core.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
 import cofh.thermal.cultivation.inventory.container.device.DeviceSoilInfuserContainer;
@@ -11,9 +11,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 import static cofh.core.util.GuiHelper.*;
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
-import static cofh.lib.util.helpers.StringHelper.format;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.helpers.StringHelper.format;
+import static cofh.core.util.helpers.StringHelper.localize;
 
 public class DeviceSoilInfuserScreen extends ThermalScreenBase<DeviceSoilInfuserContainer> {
 

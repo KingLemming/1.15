@@ -1,7 +1,7 @@
 package cofh.archersparadox.item.projectile;
 
 import cofh.archersparadox.entity.projectile.TrainingArrowEntity;
-import cofh.lib.item.ArrowItemCoFH;
+import cofh.core.item.ArrowItemCoFH;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;

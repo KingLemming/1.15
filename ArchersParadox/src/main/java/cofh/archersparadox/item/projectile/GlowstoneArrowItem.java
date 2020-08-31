@@ -1,7 +1,7 @@
 package cofh.archersparadox.item.projectile;
 
 import cofh.archersparadox.entity.projectile.GlowstoneArrowEntity;
-import cofh.lib.item.ArrowItemCoFH;
+import cofh.core.item.ArrowItemCoFH;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;

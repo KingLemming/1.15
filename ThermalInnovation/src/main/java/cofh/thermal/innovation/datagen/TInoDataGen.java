@@ -5,7 +5,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_INNOVATION;
+import static cofh.core.util.constants.Constants.ID_THERMAL_INNOVATION;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = ID_THERMAL_INNOVATION)
 public class TInoDataGen {

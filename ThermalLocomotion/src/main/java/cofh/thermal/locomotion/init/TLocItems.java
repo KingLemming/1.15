@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.init;
 
-import cofh.lib.item.MinecartItemCoFH;
+import cofh.core.item.MinecartItemCoFH;
 import cofh.thermal.core.common.ThermalItemGroups;
 import cofh.thermal.locomotion.entity.*;
 import cofh.thermal.locomotion.item.UnderwaterMinecartItem;

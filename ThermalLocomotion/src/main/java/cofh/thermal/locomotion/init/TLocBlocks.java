@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.init;
 
-import cofh.lib.block.rails.*;
+import cofh.core.block.rails.*;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;

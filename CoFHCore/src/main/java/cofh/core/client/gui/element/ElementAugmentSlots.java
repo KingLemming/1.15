@@ -1,9 +1,9 @@
 package cofh.core.client.gui.element;
 
 import cofh.core.client.gui.IGuiAccess;
+import cofh.core.inventory.container.slot.SlotCoFH;
 import cofh.core.util.GuiHelper;
-import cofh.lib.inventory.container.slot.SlotCoFH;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.util.helpers.MathHelper;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.function.IntSupplier;
 
 import static cofh.core.util.GuiHelper.SLOT_SIZE;
-import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
+import static cofh.core.util.constants.Constants.MAX_AUGMENTS;
 
 public class ElementAugmentSlots extends ElementBase {
 

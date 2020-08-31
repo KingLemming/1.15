@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.datagen;
 
-import cofh.lib.util.references.CoFHTags;
+import cofh.core.util.references.CoFHTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;

@@ -11,8 +11,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.CMD_DURATION;
-import static cofh.lib.util.constants.Constants.CMD_TARGETS;
+import static cofh.core.util.constants.Constants.CMD_DURATION;
+import static cofh.core.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandIgnite {
 

@@ -3,10 +3,10 @@ package cofh.ensorcellation.init;
 import cofh.ensorcellation.enchantment.*;
 import cofh.ensorcellation.enchantment.override.*;
 
+import static cofh.core.util.constants.Constants.ARMOR_SLOTS;
+import static cofh.core.util.references.EnsorcIDs.*;
 import static cofh.ensorcellation.Ensorcellation.ENCHANTMENTS;
 import static cofh.ensorcellation.enchantment.override.ProtectionEnchantmentImp.Type.*;
-import static cofh.lib.util.constants.Constants.ARMOR_SLOTS;
-import static cofh.lib.util.references.EnsorcIDs.*;
 import static net.minecraft.enchantment.Enchantment.Rarity.*;
 
 public class EnsorcEnchantments {

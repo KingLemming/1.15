@@ -1,6 +1,6 @@
 package cofh.core.block;
 
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

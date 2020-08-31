@@ -1,7 +1,7 @@
 package cofh.core.client.gui.element;
 
 import cofh.core.client.gui.IGuiAccess;
-import cofh.lib.energy.EnergyStorageCoFH;
+import cofh.core.energy.EnergyStorageCoFH;
 
 public class ElementEnergyStorage extends ElementResourceStorage {
 

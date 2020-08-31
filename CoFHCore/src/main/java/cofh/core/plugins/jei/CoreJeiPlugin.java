@@ -6,7 +6,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import net.minecraft.util.ResourceLocation;
 
-import static cofh.lib.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 
 @JeiPlugin
 public class CoreJeiPlugin implements IModPlugin {

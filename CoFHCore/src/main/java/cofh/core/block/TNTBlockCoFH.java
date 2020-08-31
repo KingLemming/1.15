@@ -1,6 +1,6 @@
 package cofh.core.block;
 
-import cofh.lib.entity.AbstractTNTEntity;
+import cofh.core.entity.AbstractTNTEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.TNTBlock;

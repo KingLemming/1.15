@@ -1,15 +1,15 @@
 package cofh.thermal.core.tileentity;
 
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.control.IReconfigurableTile;
-import cofh.lib.util.control.ITransferControllableTile;
-import cofh.lib.util.control.ReconfigControlModule;
-import cofh.lib.util.control.TransferControlModule;
-import cofh.lib.util.helpers.EnergyHelper;
-import cofh.lib.util.helpers.FluidHelper;
-import cofh.lib.util.helpers.InventoryHelper;
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.tileentity.TileCoFH;
+import cofh.core.util.control.IReconfigurableTile;
+import cofh.core.util.control.ITransferControllableTile;
+import cofh.core.util.control.ReconfigControlModule;
+import cofh.core.util.control.TransferControlModule;
+import cofh.core.util.helpers.EnergyHelper;
+import cofh.core.util.helpers.FluidHelper;
+import cofh.core.util.helpers.InventoryHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,11 +34,11 @@ import net.minecraftforge.items.wrapper.EmptyHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static cofh.lib.util.StorageGroup.*;
-import static cofh.lib.util.constants.Constants.DIRECTIONS;
-import static cofh.lib.util.constants.Constants.FACING_HORIZONTAL;
-import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.BlockHelper.*;
+import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.DIRECTIONS;
+import static cofh.core.util.constants.Constants.FACING_HORIZONTAL;
+import static cofh.core.util.constants.NBTTags.*;
+import static cofh.core.util.helpers.BlockHelper.*;
 
 public abstract class ReconfigurableTile4Way extends ThermalTileBase implements IReconfigurableTile, ITransferControllableTile {
 

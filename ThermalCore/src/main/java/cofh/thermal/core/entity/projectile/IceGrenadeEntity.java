@@ -1,7 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
-import cofh.lib.entity.AbstractGrenadeEntity;
-import cofh.lib.util.Utils;
+import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import static cofh.lib.util.references.CoreReferences.CHILLED;
+import static cofh.core.util.references.CoreReferences.CHILLED;
 import static cofh.thermal.core.common.ThermalConfig.permanentLava;
 import static cofh.thermal.core.common.ThermalConfig.permanentWater;
 import static cofh.thermal.core.init.TCoreReferences.ICE_GRENADE_ENTITY;

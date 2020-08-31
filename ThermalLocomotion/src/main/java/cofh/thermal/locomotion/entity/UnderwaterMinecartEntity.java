@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractMinecartEntityCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.entity.AbstractMinecartEntityCoFH;
+import cofh.core.util.Utils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Map;
 
-import static cofh.lib.util.constants.NBTTags.TAG_CART_DATA;
+import static cofh.core.util.constants.NBTTags.TAG_CART_DATA;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ITEM;
 

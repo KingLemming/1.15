@@ -1,6 +1,6 @@
 package cofh.thermal.core.util.recipes;
 
-import cofh.lib.util.recipes.SerializableRecipe;
+import cofh.core.util.recipes.SerializableRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;

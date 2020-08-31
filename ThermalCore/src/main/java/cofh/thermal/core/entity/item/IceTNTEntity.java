@@ -1,7 +1,7 @@
 package cofh.thermal.core.entity.item;
 
-import cofh.lib.entity.AbstractTNTEntity;
-import cofh.lib.util.Utils;
+import cofh.core.entity.AbstractTNTEntity;
+import cofh.core.util.Utils;
 import cofh.thermal.core.entity.projectile.IceGrenadeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.AreaEffectCloudEntity;

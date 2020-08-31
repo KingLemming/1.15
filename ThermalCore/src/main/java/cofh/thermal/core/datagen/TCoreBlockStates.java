@@ -1,12 +1,12 @@
 package cofh.thermal.core.datagen;
 
-import cofh.lib.datagen.BlockStateProviderCoFH;
-import cofh.lib.registries.DeferredRegisterCoFH;
+import cofh.core.datagen.BlockStateProviderCoFH;
+import cofh.core.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.init.TCoreIDs.*;
 

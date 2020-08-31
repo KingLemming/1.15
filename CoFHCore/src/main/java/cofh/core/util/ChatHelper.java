@@ -1,7 +1,6 @@
 package cofh.core.util;
 
 import cofh.core.network.packet.client.IndexedChatPacket;
-import cofh.lib.util.Utils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.ITextComponent;

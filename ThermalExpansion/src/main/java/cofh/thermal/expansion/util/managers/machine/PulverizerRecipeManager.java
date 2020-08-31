@@ -1,6 +1,6 @@
 package cofh.thermal.expansion.util.managers.machine;
 
-import cofh.lib.inventory.FalseIInventory;
+import cofh.core.inventory.FalseIInventory;
 import cofh.thermal.core.util.managers.SingleItemRecipeManager;
 import cofh.thermal.core.util.recipes.ThermalCatalyst;
 import cofh.thermal.core.util.recipes.ThermalRecipe;

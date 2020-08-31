@@ -1,9 +1,9 @@
 package cofh.thermal.expansion.util.managers.machine;
 
-import cofh.lib.fluid.IFluidStackAccess;
-import cofh.lib.inventory.FalseIInventory;
-import cofh.lib.inventory.IItemStackAccess;
-import cofh.lib.util.ComparableItemStack;
+import cofh.core.fluid.IFluidStackAccess;
+import cofh.core.inventory.FalseIInventory;
+import cofh.core.inventory.IItemStackAccess;
+import cofh.core.util.ComparableItemStack;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.managers.AbstractManager;
 import cofh.thermal.core.util.managers.IRecipeManager;

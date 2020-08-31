@@ -1,7 +1,7 @@
 package cofh.ensorcellation.event;
 
+import cofh.core.util.Utils;
 import cofh.ensorcellation.enchantment.SoulboundEnchantment;
-import cofh.lib.util.Utils;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Iterator;
 
-import static cofh.lib.util.Utils.*;
-import static cofh.lib.util.constants.Constants.ID_ENSORCELLATION;
-import static cofh.lib.util.references.EnsorcReferences.SOULBOUND;
+import static cofh.core.util.Utils.*;
+import static cofh.core.util.constants.Constants.ID_ENSORCELLATION;
+import static cofh.core.util.references.EnsorcReferences.SOULBOUND;
 import static net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel;
 import static net.minecraft.world.GameRules.KEEP_INVENTORY;
 

@@ -1,19 +1,19 @@
 package cofh.core.network.packet.client;
 
 import cofh.core.CoFHCore;
+import cofh.core.network.packet.IPacketClient;
+import cofh.core.network.packet.PacketBase;
+import cofh.core.tileentity.TileCoFH;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.network.packet.IPacketClient;
-import cofh.lib.network.packet.PacketBase;
-import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static cofh.lib.util.constants.Constants.NETWORK_UPDATE_DISTANCE;
-import static cofh.lib.util.constants.Constants.PACKET_REDSTONE;
+import static cofh.core.util.constants.Constants.NETWORK_UPDATE_DISTANCE;
+import static cofh.core.util.constants.Constants.PACKET_REDSTONE;
 
 public class TileRedstonePacket extends PacketBase implements IPacketClient {
 

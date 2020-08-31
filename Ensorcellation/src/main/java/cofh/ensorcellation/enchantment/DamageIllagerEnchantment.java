@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment;
 
-import cofh.lib.enchantment.DamageEnchantmentCoFH;
+import cofh.core.enchantment.DamageEnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.AbstractRaiderEntity;

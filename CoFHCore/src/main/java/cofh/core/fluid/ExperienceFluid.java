@@ -1,12 +1,11 @@
 package cofh.core.fluid;
 
-import cofh.lib.fluid.FluidCoFH;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 
 import static cofh.core.CoFHCore.FLUIDS;
-import static cofh.lib.util.references.CoreIDs.ID_FLUID_EXPERIENCE;
+import static cofh.core.util.references.CoreIDs.ID_FLUID_EXPERIENCE;
 
 public class ExperienceFluid extends FluidCoFH {
 

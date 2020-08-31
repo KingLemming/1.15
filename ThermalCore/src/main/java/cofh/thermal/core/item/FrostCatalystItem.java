@@ -1,6 +1,6 @@
 package cofh.thermal.core.item;
 
-import cofh.lib.item.ItemCoFH;
+import cofh.core.item.ItemCoFH;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;

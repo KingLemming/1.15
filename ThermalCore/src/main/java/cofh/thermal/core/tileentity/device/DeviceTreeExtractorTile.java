@@ -1,10 +1,10 @@
 package cofh.thermal.core.tileentity.device;
 
+import cofh.core.fluid.FluidStorageCoFH;
+import cofh.core.inventory.ItemStorageCoFH;
 import cofh.core.network.packet.client.TileStatePacket;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
-import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.MathHelper;
+import cofh.core.util.Utils;
+import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.inventory.container.device.DeviceTreeExtractorContainer;
 import cofh.thermal.core.tileentity.ThermalTileBase;
 import cofh.thermal.core.util.managers.device.TreeExtractorManager;
@@ -30,10 +30,10 @@ import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static cofh.lib.util.StorageGroup.INPUT;
-import static cofh.lib.util.StorageGroup.OUTPUT;
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
-import static cofh.lib.util.constants.NBTTags.TAG_TIME_CONSTANT;
+import static cofh.core.util.StorageGroup.INPUT;
+import static cofh.core.util.StorageGroup.OUTPUT;
+import static cofh.core.util.constants.Constants.TANK_MEDIUM;
+import static cofh.core.util.constants.NBTTags.TAG_TIME_CONSTANT;
 import static cofh.thermal.core.common.ThermalConfig.deviceAugments;
 import static cofh.thermal.core.init.TCoreReferences.DEVICE_TREE_EXTRACTOR_TILE;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;

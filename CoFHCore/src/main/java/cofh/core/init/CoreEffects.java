@@ -9,8 +9,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.EffectType;
 
 import static cofh.core.CoFHCore.EFFECTS;
-import static cofh.lib.util.constants.Constants.*;
-import static cofh.lib.util.references.CoreIDs.*;
+import static cofh.core.util.constants.Constants.*;
+import static cofh.core.util.references.CoreIDs.*;
 
 public class CoreEffects {
 

@@ -1,11 +1,11 @@
 package cofh.thermal.core.inventory.container.workbench;
 
+import cofh.core.inventory.InvWrapperCoFH;
+import cofh.core.inventory.ItemInvWrapper;
+import cofh.core.inventory.container.TileContainer;
+import cofh.core.inventory.container.slot.SlotCoFH;
 import cofh.core.network.packet.server.ContainerPacket;
-import cofh.lib.inventory.InvWrapperCoFH;
-import cofh.lib.inventory.ItemInvWrapper;
-import cofh.lib.inventory.container.TileContainer;
-import cofh.lib.inventory.container.slot.SlotCoFH;
-import cofh.lib.util.helpers.AugmentableHelper;
+import cofh.core.util.helpers.AugmentableHelper;
 import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cofh.lib.util.constants.Constants.MAX_AUGMENTS;
+import static cofh.core.util.constants.Constants.MAX_AUGMENTS;
 import static cofh.thermal.core.init.TCoreReferences.TINKER_BENCH_CONTAINER;
 
 public class TinkerBenchContainer extends TileContainer {

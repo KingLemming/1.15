@@ -1,12 +1,12 @@
 package cofh.archersparadox.datagen;
 
-import cofh.lib.datagen.ItemModelProviderCoFH;
+import cofh.core.datagen.ItemModelProviderCoFH;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
 import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.APIDs.*;
-import static cofh.lib.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
 
 public class APItemModelProvider extends ItemModelProviderCoFH {
 

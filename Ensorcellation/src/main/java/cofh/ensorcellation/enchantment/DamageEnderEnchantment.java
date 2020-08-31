@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment;
 
-import cofh.lib.enchantment.DamageEnchantmentCoFH;
+import cofh.core.enchantment.DamageEnchantmentCoFH;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 
-import static cofh.lib.util.references.CoreReferences.ENDERFERENCE;
+import static cofh.core.util.references.CoreReferences.ENDERFERENCE;
 
 public class DamageEnderEnchantment extends DamageEnchantmentCoFH {
 

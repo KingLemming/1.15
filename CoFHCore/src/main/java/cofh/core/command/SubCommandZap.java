@@ -1,6 +1,6 @@
 package cofh.core.command;
 
-import cofh.lib.util.Utils;
+import cofh.core.util.Utils;
 import com.google.common.collect.ImmutableList;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;
@@ -16,7 +16,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Collection;
 
-import static cofh.lib.util.constants.Constants.CMD_TARGETS;
+import static cofh.core.util.constants.Constants.CMD_TARGETS;
 
 public class SubCommandZap {
 

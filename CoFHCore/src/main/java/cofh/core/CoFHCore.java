@@ -1,18 +1,18 @@
 package cofh.core;
 
+import cofh.core.capability.CapabilityArchery;
+import cofh.core.capability.CapabilityAreaEffect;
+import cofh.core.capability.CapabilityEnchantableItem;
+import cofh.core.capability.CapabilityShieldItem;
 import cofh.core.command.CoFHCommand;
 import cofh.core.init.*;
 import cofh.core.key.CoreKeys;
+import cofh.core.network.PacketHandler;
 import cofh.core.network.packet.client.*;
 import cofh.core.network.packet.server.*;
+import cofh.core.registries.DeferredRegisterCoFH;
 import cofh.core.util.Proxy;
 import cofh.core.util.ProxyClient;
-import cofh.lib.capability.CapabilityArchery;
-import cofh.lib.capability.CapabilityAreaEffect;
-import cofh.lib.capability.CapabilityEnchantableItem;
-import cofh.lib.capability.CapabilityShieldItem;
-import cofh.lib.network.PacketHandler;
-import cofh.lib.registries.DeferredRegisterCoFH;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
@@ -32,7 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static cofh.lib.util.constants.Constants.*;
+import static cofh.core.util.constants.Constants.*;
 
 @Mod(ID_COFH_CORE)
 public class CoFHCore {

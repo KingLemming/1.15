@@ -1,13 +1,13 @@
 package cofh.core.network.packet.server;
 
 import cofh.core.CoFHCore;
-import cofh.lib.network.packet.IPacketServer;
-import cofh.lib.network.packet.PacketBase;
-import cofh.lib.util.helpers.ItemHelper;
+import cofh.core.network.packet.IPacketServer;
+import cofh.core.network.packet.PacketBase;
+import cofh.core.util.helpers.ItemHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 
-import static cofh.lib.util.constants.Constants.PACKET_ITEM_MODE_CHANGE;
+import static cofh.core.util.constants.Constants.PACKET_ITEM_MODE_CHANGE;
 
 public class ItemModeChangePacket extends PacketBase implements IPacketServer {
 

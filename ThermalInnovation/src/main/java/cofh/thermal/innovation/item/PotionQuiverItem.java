@@ -1,17 +1,17 @@
 package cofh.thermal.innovation.item;
 
+import cofh.core.capability.CapabilityArchery;
+import cofh.core.capability.IArcheryAmmoItem;
+import cofh.core.fluid.FluidContainerItemWrapper;
+import cofh.core.fluid.IFluidContainerItem;
+import cofh.core.item.FluidContainerItem;
+import cofh.core.item.IAugmentableItem;
+import cofh.core.item.IMultiModeItem;
 import cofh.core.util.ChatHelper;
 import cofh.core.util.ProxyUtils;
-import cofh.lib.capability.CapabilityArchery;
-import cofh.lib.capability.IArcheryAmmoItem;
-import cofh.lib.fluid.FluidContainerItemWrapper;
-import cofh.lib.fluid.IFluidContainerItem;
-import cofh.lib.item.FluidContainerItem;
-import cofh.lib.item.IAugmentableItem;
-import cofh.lib.item.IMultiModeItem;
-import cofh.lib.util.Utils;
-import cofh.lib.util.helpers.AugmentDataHelper;
-import cofh.lib.util.helpers.FluidHelper;
+import cofh.core.util.Utils;
+import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -44,12 +44,12 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
-import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.lib.util.helpers.ArcheryHelper.findArrows;
-import static cofh.lib.util.helpers.AugmentableHelper.*;
-import static cofh.lib.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
-import static cofh.lib.util.helpers.StringHelper.*;
-import static cofh.lib.util.references.CoreReferences.HOLDING;
+import static cofh.core.util.constants.NBTTags.*;
+import static cofh.core.util.helpers.ArcheryHelper.findArrows;
+import static cofh.core.util.helpers.AugmentableHelper.*;
+import static cofh.core.util.helpers.ItemHelper.areItemStacksEqualIgnoreTags;
+import static cofh.core.util.helpers.StringHelper.*;
+import static cofh.core.util.references.CoreReferences.HOLDING;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
 

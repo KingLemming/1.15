@@ -1,7 +1,7 @@
 package cofh.thermal.core.util;
 
-import cofh.lib.fluid.IFluidStackAccess;
-import cofh.lib.inventory.IItemStackAccess;
+import cofh.core.fluid.IFluidStackAccess;
+import cofh.core.inventory.IItemStackAccess;
 
 import java.util.List;
 

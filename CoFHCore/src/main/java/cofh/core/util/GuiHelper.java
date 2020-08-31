@@ -2,11 +2,11 @@ package cofh.core.util;
 
 import cofh.core.client.gui.IGuiAccess;
 import cofh.core.client.gui.element.*;
+import cofh.core.energy.EnergyStorageCoFH;
+import cofh.core.fluid.FluidStorageCoFH;
 import cofh.core.network.packet.server.StorageClearPacket;
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.tileentity.TileCoFH;
-import cofh.lib.util.control.IReconfigurable;
+import cofh.core.tileentity.TileCoFH;
+import cofh.core.util.control.IReconfigurable;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.BooleanSupplier;
@@ -15,10 +15,10 @@ import java.util.function.Supplier;
 
 import static cofh.core.network.packet.server.StorageClearPacket.StorageType.ENERGY;
 import static cofh.core.network.packet.server.StorageClearPacket.StorageType.FLUID;
-import static cofh.lib.util.constants.Constants.PATH_ELEMENTS;
-import static cofh.lib.util.constants.Constants.TRUE;
-import static cofh.lib.util.helpers.StringHelper.canLocalize;
-import static cofh.lib.util.helpers.StringHelper.localize;
+import static cofh.core.util.constants.Constants.PATH_ELEMENTS;
+import static cofh.core.util.constants.Constants.TRUE;
+import static cofh.core.util.helpers.StringHelper.canLocalize;
+import static cofh.core.util.helpers.StringHelper.localize;
 
 public class GuiHelper {
 

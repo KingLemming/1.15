@@ -4,7 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import static cofh.lib.util.references.CoreReferences.ENDER_AIR_TILE;
+import static cofh.core.util.references.CoreReferences.ENDER_AIR_TILE;
 
 public class EnderAirTile extends TileEntity implements ITickableTileEntity {
 

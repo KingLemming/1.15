@@ -1,6 +1,6 @@
 package cofh.ensorcellation.enchantment.override;
 
-import cofh.lib.enchantment.EnchantmentOverride;
+import cofh.core.enchantment.EnchantmentOverride;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;
@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 
-import static cofh.lib.util.references.EnsorcReferences.EXCAVATING;
+import static cofh.core.util.references.EnsorcReferences.EXCAVATING;
 
 public class LootingEnchantmentImp extends EnchantmentOverride {
 
