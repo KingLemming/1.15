@@ -302,13 +302,18 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
 
     protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp) {
 
+        generateSmeltingAndBlastingRecipes(reg, consumer, input, output, xp, "");
+    }
+
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp, String type) {
+
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input), output, xp, 200)
                 .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
-                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from_smelting");
+                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from" + type + "_smelting");
 
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(input), output, xp, 100)
                 .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
-                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from_blasting");
+                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from" + type + "_blasting");
     }
 
     @Override

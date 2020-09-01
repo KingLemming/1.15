@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RLR",
+    "LPL",
+    " R "
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:ingots/lead"
+    },
+    "P": {
+      "item": "thermal:rf_coil"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "result": {
+    "item": "thermal:flux_capacitor"
+  }
+}

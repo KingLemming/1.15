@@ -1,7 +1,6 @@
 package cofh.core.item.override;
 
 import cofh.core.item.ICoFHItem;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.HorseArmorItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -12,9 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.BooleanSupplier;
 
-import static cofh.core.util.constants.Constants.ITEM_TIMER_DURATION;
 import static cofh.core.util.constants.Constants.TRUE;
-import static cofh.core.util.constants.NBTTags.TAG_ACTIVE;
 
 public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
 

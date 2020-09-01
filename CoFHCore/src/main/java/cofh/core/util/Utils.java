@@ -668,6 +668,7 @@ public class Utils {
                 if (blockstate1.isAir(worldIn, mutable)) {
                     if (isValidLightningBoltPosition(worldIn, mutable, chance)) {
                         worldIn.setBlockState(mutable, LIGHTNING_AIR.getDefaultState());
+                        ++count;
                     }
                 }
             }

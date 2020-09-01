@@ -2,6 +2,7 @@ package cofh.thermal.cultivation.datagen;
 
 import cofh.core.datagen.RecipeProviderCoFH;
 import cofh.core.registries.DeferredRegisterCoFH;
+import cofh.core.util.references.CoFHTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -35,6 +36,15 @@ public class TCulRecipes extends RecipeProviderCoFH {
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("watering_can"))
+                .key('B', Items.BUCKET)
+                .key('C', CoFHTags.Items.INGOTS_COPPER)
+                .patternLine("C  ")
+                .patternLine("CBC")
+                .patternLine(" C ")
+                .addCriterion("has_bucket", hasItem(Items.BUCKET))
+                .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(reg.get(ID_PHYTOSOIL))
                 .key('C', Items.CHARCOAL)

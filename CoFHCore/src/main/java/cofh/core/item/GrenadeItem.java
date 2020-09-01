@@ -81,6 +81,12 @@ public class GrenadeItem extends ItemCoFH {
             grenade.setRadius(1 + grenadeItem.radius);
             return grenade;
         }
+
+        @Override
+        protected float getProjectileInaccuracy() {
+
+            return 3.0F;
+        }
     };
     // endregion
 }

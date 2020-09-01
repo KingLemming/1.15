@@ -38,12 +38,12 @@ public class TCoreItems {
         registerParts();
 
         // TODO: Re-enable once Augment balancing is conceptualized.
-        //        registerUpgradeAugments();
-        //        registerStorageAugments();
-        //        registerMachineAugments();
-        //        registerDynamoAugments();
-        //        registerAreaAugments();
-        //        registerPotionAugments();
+        registerUpgradeAugments();
+        registerStorageAugments();
+        registerMachineAugments();
+        registerDynamoAugments();
+        registerAreaAugments();
+        registerPotionAugments();
 
         registerMaterials();
         registerTools();

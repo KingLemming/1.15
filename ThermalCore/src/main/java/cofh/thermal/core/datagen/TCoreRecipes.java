@@ -95,6 +95,9 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateSmeltingAndBlastingRecipes(reg, consumer, "lumium", 0);
         generateSmeltingAndBlastingRecipes(reg, consumer, "enderium", 0);
 
+        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("iron_dust"), Items.IRON_INGOT, 0.0F, "_dust");
+        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("gold_dust"), Items.GOLD_INGOT, 0.0F, "_dust");
+
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get(ID_APATITE_ORE), reg.get("apatite"), 0.5F);
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get(ID_CINNABAR_ORE), reg.get("cinnabar"), 0.5F);
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get(ID_NITER_ORE), reg.get("niter"), 0.5F);
