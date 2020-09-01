@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:sulfur",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "sulfur"
-    }
-  ]
+  }
 }

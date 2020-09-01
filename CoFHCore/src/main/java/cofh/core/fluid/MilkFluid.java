@@ -15,7 +15,7 @@ public class MilkFluid extends FluidCoFH {
 
     protected MilkFluid(String key, String stillTexture, String flowTexture) {
 
-        super(FLUIDS, key, FluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture)).density(1005).viscosity(2300));
+        super(FLUIDS, key, FluidAttributes.builder(new ResourceLocation(stillTexture), new ResourceLocation(flowTexture)).density(1024).viscosity(1024));
     }
 
 }

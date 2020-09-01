@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "ICI",
+    "GPG"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:gears/gold"
+    },
+    "G": {
+      "tag": "forge:gears/tin"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "item": "thermal:rf_coil"
+    },
+    "X": {
+      "item": "thermal:drill_head"
+    }
+  },
+  "result": {
+    "item": "thermal:flux_drill"
+  }
+}

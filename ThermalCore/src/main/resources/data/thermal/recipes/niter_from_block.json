@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:niter",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "niter"
-    }
-  ]
+  }
 }

@@ -75,10 +75,10 @@ public class TCoreItems {
         registerItem("diving_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_DIVING_ARMOR)));
         registerItem("hazmat_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_HAZMAT_ARMOR)));
 
-        registerItem("apatite", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_APATITE)));
-        registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_CINNABAR)));
-        registerItem("niter", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_RESOURCE_NITER)));
-        registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(1200).setShowInGroups(getFeature(FLAG_RESOURCE_SULFUR)));
+        registerItem("apatite", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("niter", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(1200));
     }
 
     private static void registerParts() {

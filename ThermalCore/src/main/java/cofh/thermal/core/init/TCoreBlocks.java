@@ -108,10 +108,10 @@ public class TCoreBlocks {
 
     private static void registerResources() {
 
-        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_APATITE));
-        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_CINNABAR));
-        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_NITER));
-        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2), getFeature(FLAG_RESOURCE_SULFUR));
+        registerBlock(ID_APATITE_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_CINNABAR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_NITER_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
+        registerBlock(ID_SULFUR_ORE, () -> new OreBlockCoFH(1).xp(0, 2));
 
         registerBlock(ID_COPPER_ORE, () -> new OreBlockCoFH(1), getFeature(FLAG_RESOURCE_COPPER));
         registerBlock(ID_TIN_ORE, () -> new OreBlockCoFH(1), getFeature(FLAG_RESOURCE_TIN));
@@ -125,9 +125,9 @@ public class TCoreBlocks {
 
     private static void registerStorage() {
 
-        registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_APATITE));
-        registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_CINNABAR));
-        registerBlock(ID_NITER_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)), getFeature(FLAG_RESOURCE_NITER));
+        registerBlock(ID_APATITE_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.LIGHT_BLUE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
+        registerBlock(ID_CINNABAR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.RED_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
+        registerBlock(ID_NITER_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)));
         registerBlock(ID_SULFUR_BLOCK, () -> new Block(create(Material.ROCK, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)) {
 
             @Override
@@ -135,7 +135,7 @@ public class TCoreBlocks {
 
                 return side == Direction.UP;
             }
-        }, getFeature(FLAG_RESOURCE_SULFUR));
+        });
 
         registerBlock(ID_COPPER_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_COPPER));
         registerBlock(ID_TIN_BLOCK, () -> new MetalStorageBlock(1), getFeature(FLAG_RESOURCE_TIN));

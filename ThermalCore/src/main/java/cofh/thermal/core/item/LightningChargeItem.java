@@ -13,6 +13,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -22,6 +23,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
+
+import static cofh.core.util.references.CoreReferences.LIGHTNING_RESISTANCE;
 
 public class LightningChargeItem extends ItemCoFH {
 
@@ -44,6 +47,9 @@ public class LightningChargeItem extends ItemCoFH {
         //        }
         if (world.canSeeSky(pos)) {
             if (world instanceof ServerWorld) {
+                if (player != null) {
+                    player.addPotionEffect(new EffectInstance(LIGHTNING_RESISTANCE, 20, 0, false, false, false));
+                }
                 LightningBoltEntity bolt = new LightningBoltEntity(world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, false);
                 bolt.setCaster(player instanceof ServerPlayerEntity ? (ServerPlayerEntity) player : null);
                 ((ServerWorld) world).addLightningBolt(bolt);

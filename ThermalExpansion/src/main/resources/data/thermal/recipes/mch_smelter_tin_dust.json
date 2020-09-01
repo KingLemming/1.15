@@ -1,0 +1,17 @@
+{
+  "type": "thermal:smelter",
+  "ingredient": {
+    "tag": "forge:dusts/tin"
+  },
+  "result": [
+    {
+      "item": "thermal:tin_ingot",
+      "count": 1
+    },
+    {
+      "item": "thermal:slag",
+      "chance": 0.3
+    }
+  ],
+  "energy_mod": 0.5
+}

@@ -43,10 +43,12 @@ public class ThermalExpansion {
 
         setFeature(FLAG_RESOURCE_CINNABAR, true);
 
-        setFeature(ID_MACHINE_FRAME, true);
-
         setFeature(FLAG_DYNAMO_AUGMENTS, true);
         setFeature(FLAG_MACHINE_AUGMENTS, true);
+
+        setFeature(FLAG_TOOL_COMPONENTS, true);
+
+        setFeature(ID_MACHINE_FRAME, true);
     }
 
     // region INITIALIZATION

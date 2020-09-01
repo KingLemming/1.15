@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:flux_capacitor"
+      "thermal:lightning_charge_witch_from_villager"
     ]
   },
   "criteria": {
-    "has_redstone": {
+    "has_villager_spawn_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "item": "minecraft:villager_spawn_egg"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:flux_capacitor"
+        "recipe": "thermal:lightning_charge_witch_from_villager"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_villager_spawn_egg",
       "has_the_recipe"
     ]
   ]

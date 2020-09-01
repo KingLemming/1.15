@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:earth_charge_3"
+      "thermal:potion_quiver"
     ]
   },
   "criteria": {
-    "has_basalz_powder": {
+    "has_glass_bottle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "thermal:basalz_powder"
+            "item": "minecraft:glass_bottle"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:earth_charge_3"
+        "recipe": "thermal:potion_quiver"
       }
     }
   },
   "requirements": [
     [
-      "has_basalz_powder",
+      "has_glass_bottle",
       "has_the_recipe"
     ]
   ]

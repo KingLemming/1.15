@@ -12,11 +12,5 @@
   },
   "result": {
     "item": "thermal:apatite_block"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "apatite"
-    }
-  ]
+  }
 }

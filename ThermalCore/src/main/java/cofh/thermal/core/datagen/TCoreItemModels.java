@@ -37,7 +37,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         registerParts(reg);
         registerTools(reg);
         registerArmor(reg);
-        registerAugments(reg);
+        //registerAugments(reg);
     }
 
     // region ITEM HELPERS

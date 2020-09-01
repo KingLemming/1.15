@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:ice_charge_3"
+      "thermal:lightning_charge_zombie_piglin_from_pig"
     ]
   },
   "criteria": {
-    "has_blizz_powder": {
+    "has_pig_spawn_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "thermal:blizz_powder"
+            "item": "minecraft:pig_spawn_egg"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:ice_charge_3"
+        "recipe": "thermal:lightning_charge_zombie_piglin_from_pig"
       }
     }
   },
   "requirements": [
     [
-      "has_blizz_powder",
+      "has_pig_spawn_egg",
       "has_the_recipe"
     ]
   ]

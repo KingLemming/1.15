@@ -17,12 +17,12 @@ public class FeatureManager {
         return FEATURES.get(flag);
     }
 
-    public void setFeature(String flag, boolean enable) {
+    public synchronized void setFeature(String flag, boolean enable) {
 
         FEATURES.put(flag, enable ? TRUE : FALSE);
     }
 
-    public void setFeature(String flag, BooleanSupplier condition) {
+    public synchronized void setFeature(String flag, BooleanSupplier condition) {
 
         FEATURES.put(flag, condition == null ? FALSE : condition);
     }

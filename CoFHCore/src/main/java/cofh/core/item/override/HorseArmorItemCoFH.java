@@ -73,33 +73,4 @@ public class HorseArmorItemCoFH extends HorseArmorItem implements ICoFHItem {
         return enchantability;
     }
 
-    @Override
-    public String getHighlightTip(ItemStack stack, String displayName) {
-
-        if (isActive(stack)) {
-            return "";
-        }
-        return displayName;
-    }
-
-    // region HELPERS
-    public static boolean isActive(ItemStack stack) {
-
-        return stack.hasTag() && stack.getTag().contains(TAG_ACTIVE);
-    }
-
-    public static void setActive(ItemStack stack, LivingEntity living) {
-
-        if (stack.hasTag()) {
-            stack.getTag().putLong(TAG_ACTIVE, living.world.getGameTime() + ITEM_TIMER_DURATION);
-        }
-    }
-
-    public static void clearActive(ItemStack stack) {
-
-        if (stack.hasTag()) {
-            stack.getTag().remove(TAG_ACTIVE);
-        }
-    }
-    // endregion
 }

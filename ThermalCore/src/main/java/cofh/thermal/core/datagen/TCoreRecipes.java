@@ -851,23 +851,23 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         Item lightningCharge = reg.get("lightning_charge");
 
         ShapelessRecipeBuilder.shapelessRecipe(earthCharge, 3)
+                .addIngredient(Tags.Items.GUNPOWDER)
                 .addIngredient(reg.get("basalz_powder"))
                 .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
-                .addIngredient(Tags.Items.GUNPOWDER)
                 .addCriterion("has_basalz_powder", hasItem(reg.get("basalz_powder")))
                 .build(consumer, ID_THERMAL + ":earth_charge_3");
 
         ShapelessRecipeBuilder.shapelessRecipe(iceCharge, 3)
+                .addIngredient(Tags.Items.GUNPOWDER)
                 .addIngredient(reg.get("blizz_powder"))
                 .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
-                .addIngredient(Tags.Items.GUNPOWDER)
                 .addCriterion("has_blizz_powder", hasItem(reg.get("blizz_powder")))
                 .build(consumer, ID_THERMAL + ":ice_charge_3");
 
         ShapelessRecipeBuilder.shapelessRecipe(lightningCharge, 3)
+                .addIngredient(Tags.Items.GUNPOWDER)
                 .addIngredient(reg.get("blitz_powder"))
                 .addIngredient(Ingredient.fromItems(Items.COAL, Items.CHARCOAL))
-                .addIngredient(Tags.Items.GUNPOWDER)
                 .addCriterion("has_blitz_powder", hasItem(reg.get("blitz_powder")))
                 .build(consumer, ID_THERMAL + ":lightning_charge_3");
 
@@ -915,6 +915,20 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(iceCharge)
                 .addCriterion("has_water_bucket", hasItem(Items.WATER_BUCKET))
                 .build(consumer, ID_THERMAL + ":ice_charge_ice_from_water_bucket");
+        // endregion
+
+        // region LIGHTNING CHARGE CONVERSIONS
+        ShapelessRecipeBuilder.shapelessRecipe(Items.WITCH_SPAWN_EGG)
+                .addIngredient(Items.VILLAGER_SPAWN_EGG)
+                .addIngredient(lightningCharge)
+                .addCriterion("has_villager_spawn_egg", hasItem(Items.VILLAGER_SPAWN_EGG))
+                .build(consumer, ID_THERMAL + ":lightning_charge_witch_from_villager");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.ZOMBIE_PIGMAN_SPAWN_EGG)
+                .addIngredient(Items.PIG_SPAWN_EGG)
+                .addIngredient(lightningCharge)
+                .addCriterion("has_pig_spawn_egg", hasItem(Items.PIG_SPAWN_EGG))
+                .build(consumer, ID_THERMAL + ":lightning_charge_zombie_piglin_from_pig");
         // endregion
     }
 

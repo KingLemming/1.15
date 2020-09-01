@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:flux_magnet"
+      "thermal:flux_saw"
     ]
   },
   "criteria": {
-    "has_redstone": {
+    "has_rf_coil": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "item": "thermal:rf_coil"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:flux_magnet"
+        "recipe": "thermal:flux_saw"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone",
+      "has_rf_coil",
       "has_the_recipe"
     ]
   ]

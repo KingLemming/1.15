@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:lightning_charge_3"
+      "thermal:flux_drill"
     ]
   },
   "criteria": {
-    "has_blitz_powder": {
+    "has_rf_coil": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "thermal:blitz_powder"
+            "item": "thermal:rf_coil"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:lightning_charge_3"
+        "recipe": "thermal:flux_drill"
       }
     }
   },
   "requirements": [
     [
-      "has_blitz_powder",
+      "has_rf_coil",
       "has_the_recipe"
     ]
   ]
