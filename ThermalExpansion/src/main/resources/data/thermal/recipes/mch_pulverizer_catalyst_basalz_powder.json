@@ -1,0 +1,11 @@
+{
+  "type": "thermal:pulverizer_catalyst",
+  "ingredient": {
+    "item": "thermal:basalz_powder"
+  },
+  "primary_mod": 1.5,
+  "secondary_mod": 2.25,
+  "energy_mod": 1.25,
+  "min_chance": 0.20,
+  "use_chance": 0.40
+}

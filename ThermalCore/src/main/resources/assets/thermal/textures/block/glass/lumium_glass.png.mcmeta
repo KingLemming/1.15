@@ -3,11 +3,6 @@
 		"ctm_version": 1,
 		"type": "ctm",
 		"layer": "CUTOUT",
-		"textures": [ "thermal:blocks/glass/lumium_glass_ctm" ],
-		"extra": {
-			"connect_to": [
-				{ "block": "thermal:lumium_glass" }
-			]
-		}
+		"textures": [ "thermal:block/glass/lumium_glass_ctm" ]
 	}
 }
