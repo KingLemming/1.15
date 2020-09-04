@@ -11,6 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
@@ -18,6 +20,8 @@ import javax.annotation.Nullable;
 import static cofh.core.util.StorageGroup.*;
 import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_SMALL;
+import static cofh.core.util.constants.NBTTags.TAG_AUGMENT_MACHINE_RECYCLE;
+import static cofh.core.util.helpers.ItemHelper.itemsEqualWithTags;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_TILE;
 
@@ -60,8 +64,23 @@ public class MachineInsolatorTile extends MachineTileProcess {
     protected void resolveInputs() {
 
         // Input Items
-        inputSlot.modify(-itemInputCounts.get(0));
-
+        int primaryCount = itemInputCounts.get(0);
+        if (recycleFeature) {
+            boolean recycled = false;
+            ItemStack input = inputSlot.getItemStack();
+            for (ItemStorageCoFH slot : outputSlots()) {
+                if (itemsEqualWithTags(slot.getItemStack(), input) && slot.getCount() >= primaryCount) {
+                    slot.modify(-primaryCount);
+                    recycled = true;
+                    break;
+                }
+            }
+            if (!recycled) {
+                inputSlot.modify(-primaryCount);
+            }
+        } else {
+            inputSlot.modify(-primaryCount);
+        }
         int decrement = itemInputCounts.size() > 1 ? itemInputCounts.get(1) : 0;
         if (decrement > 0) {
             if (catalystSlot.getItemStack().isDamageable()) {
@@ -93,6 +112,26 @@ public class MachineInsolatorTile extends MachineTileProcess {
             return false;
         }
         return inputSlot.getCount() >= itemInputCounts.get(0) && (fluidInputCounts.isEmpty() || waterTank.getAmount() >= fluidInputCounts.get(0));
+    }
+    // endregion
+
+    // region AUGMENTS
+    protected boolean recycleFeature = false;
+
+    @Override
+    protected void resetAttributes() {
+
+        super.resetAttributes();
+
+        recycleFeature = false;
+    }
+
+    @Override
+    protected void setAttributesFromAugment(CompoundNBT augmentData) {
+
+        super.setAttributesFromAugment(augmentData);
+
+        recycleFeature |= getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_RECYCLE) > 0;
     }
     // endregion
 }

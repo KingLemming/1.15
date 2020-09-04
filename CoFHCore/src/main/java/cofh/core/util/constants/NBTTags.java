@@ -111,6 +111,8 @@ public class NBTTags {
     public static final String TAG_AUGMENT_MACHINE_CATALYST = "MchCat";
     public static final String TAG_AUGMENT_MACHINE_XP = "MchXp";
 
+    public static final String TAG_AUGMENT_MACHINE_RECYCLE = "MchRecyc";
+
     // Compatibility
     public static final String TAG_DEMAGNETIZE_COMPAT = "AllowMachineRemoteMovement";
     public static final String TAG_CONVEYOR_COMPAT = "PreventRemoteMovement";

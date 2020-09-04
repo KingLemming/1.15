@@ -3,7 +3,7 @@
   "input": [
     {
       "fluid": "minecraft:water",
-      "amount": 250
+      "amount": 500
     },
     {
       "item": "thermal:chiller_ball_cast"
@@ -11,8 +11,9 @@
   ],
   "result": [
     {
-      "item": "minecraft:snowball"
+      "item": "minecraft:snowball",
+      "count": 4
     }
   ],
-  "energy": 500
+  "energy": 1000
 }

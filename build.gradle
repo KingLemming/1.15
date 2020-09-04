@@ -1,0 +1,33 @@
+gradle.projectsEvaluated{
+    def projects = [
+            "ThermalCultivation",
+            "ThermalExpansion",
+            "ThermalInnovation",
+            "ThermalLocomotion",
+
+            "ThermalCore",
+
+            "ArchersParadox",
+            "Ensorcellation",
+            "OMGourd",
+
+            "CoFHCore"
+    ]
+    project.tasks.create('assembleAll') {
+        def last = null
+        projects.collect { project(it).tasks.assemble }.each {
+            if (last != null) {
+                it.mustRunAfter(last)
+            }
+            last = it
+            dependsOn(it)
+        }
+        finalizedBy('copyAll')
+    }
+    project.tasks.create('copyAll', Copy) {spec ->
+        projects.each {
+            spec.from(project(it).tasks.jar.getOutputs().getFiles())
+        }
+        spec.into file("build/libs")
+    }
+}

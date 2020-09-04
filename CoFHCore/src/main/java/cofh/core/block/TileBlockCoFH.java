@@ -27,7 +27,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public abstract class TileBlockCoFH extends Block implements IDismantleable {
+public abstract class TileBlockCoFH extends Block implements IDismantleable, IWrenchable {
 
     protected final Supplier<? extends TileCoFH> supplier;
 

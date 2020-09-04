@@ -1,6 +1,7 @@
 package cofh.thermal.core.item;
 
 import cofh.core.block.IDismantleable;
+import cofh.core.block.IWrenchable;
 import cofh.core.item.ItemCoFH;
 import cofh.core.util.Utils;
 import com.google.common.collect.Multimap;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,13 +53,20 @@ public class WrenchItem extends ItemCoFH {
 
         if (player.isSecondaryUseActive() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(world, pos, state, player)) {
             if (Utils.isServerWorld(world)) {
-                ((IDismantleable) block).dismantleBlock(world, pos, state, player, false);
+                BlockRayTraceResult target = new BlockRayTraceResult(context.getHitVec(), context.getFace(), context.getPos(), context.isInside());
+                ((IDismantleable) block).dismantleBlock(world, pos, state, target, player, false);
             }
             player.swingArm(context.getHand());
         } else if (!player.isSecondaryUseActive()) {
-            BlockState rotState = block.rotate(state, world, pos, Rotation.CLOCKWISE_90);
-            if (rotState != state) {
-                world.setBlockState(pos, rotState);
+
+            if (block instanceof IWrenchable && ((IWrenchable) block).canWrench(world, pos, state, player)) {
+                BlockRayTraceResult target = new BlockRayTraceResult(context.getHitVec(), context.getFace(), context.getPos(), context.isInside());
+                ((IWrenchable) block).wrenchBlock(world, pos, state, target, player);
+            } else if (state.isNormalCube(world, pos)) {
+                BlockState rotState = block.rotate(state, world, pos, Rotation.CLOCKWISE_90);
+                if (rotState != state) {
+                    world.setBlockState(pos, rotState);
+                }
             }
             return Utils.isServerWorld(world);
         }
