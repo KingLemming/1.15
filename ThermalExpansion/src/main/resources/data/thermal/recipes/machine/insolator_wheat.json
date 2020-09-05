@@ -6,7 +6,7 @@
   "result": [
     {
       "item": "minecraft:wheat",
-      "chance": 2
+      "chance": 2.0
     },
     {
       "item": "minecraft:wheat_seeds",

@@ -1,16 +1,17 @@
 {
   "type": "thermal:insolator",
   "ingredient": {
-    "item": "minecraft:beetroot_seeds"
+    "item": "thermal:barley_seeds"
   },
   "result": [
     {
-      "item": "minecraft:beetroot",
+      "item": "thermal:barley",
       "chance": 2.0
     },
     {
-      "item": "minecraft:beetroot_seeds",
+      "item": "thermal:barley_seeds",
       "chance": 1.1
     }
-  ]
+  ],
+  "water_mod": 0.5
 }
