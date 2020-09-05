@@ -5,9 +5,12 @@ import cofh.core.item.*;
 import cofh.core.util.constants.ToolTypes;
 import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalItemGroups;
+import cofh.thermal.core.entity.item.*;
 import cofh.thermal.core.entity.projectile.*;
 import cofh.thermal.core.item.*;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -19,6 +22,7 @@ import net.minecraft.world.World;
 import static cofh.core.util.constants.Constants.FALSE;
 import static cofh.core.util.constants.Constants.TRUE;
 import static cofh.core.util.constants.NBTTags.*;
+import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
@@ -50,6 +54,20 @@ public class TCoreItems {
         registerArmor();
 
         registerSpawnEggs();
+    }
+
+    public static void setup() {
+
+        DetonatorItem.registerTNT(Blocks.TNT, TNTEntity::new);
+
+        DetonatorItem.registerTNT(BLOCKS.get(ID_PHYTO_TNT), PhytoTNTEntity::new);
+
+        DetonatorItem.registerTNT(BLOCKS.get(ID_FIRE_TNT), FireTNTEntity::new);
+        DetonatorItem.registerTNT(BLOCKS.get(ID_EARTH_TNT), EarthTNTEntity::new);
+        DetonatorItem.registerTNT(BLOCKS.get(ID_ICE_TNT), IceTNTEntity::new);
+        DetonatorItem.registerTNT(BLOCKS.get(ID_LIGHTNING_TNT), LightningTNTEntity::new);
+
+        DetonatorItem.registerTNT(BLOCKS.get(ID_NUKE_TNT), NukeTNTEntity::new);
     }
 
     // region HELPERS
@@ -136,6 +154,8 @@ public class TCoreItems {
         registerItem("earth_charge", () -> new EarthChargeItem(new Item.Properties().group(group)));
         registerItem("ice_charge", () -> new IceChargeItem(new Item.Properties().group(group)));
         registerItem("lightning_charge", () -> new LightningChargeItem(new Item.Properties().group(group)));
+
+        registerItem("detonator", () -> new DetonatorItem(new Item.Properties().group(group)));
 
         registerItem("explosive_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
 

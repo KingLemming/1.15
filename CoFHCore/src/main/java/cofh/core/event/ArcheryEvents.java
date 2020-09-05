@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -62,9 +61,9 @@ public class ArcheryEvents {
         }
         if (!ammo.isEmpty()) {
             shooter.setActiveHand(event.getHand());
-            event.setAction(new ActionResult<>(ActionResultType.SUCCESS, bow));
+            event.setAction(ActionResult.resultSuccess(bow));
         } else if (!shooter.abilities.isCreativeMode) {
-            event.setAction(new ActionResult<>(ActionResultType.FAIL, bow));
+            event.setAction(ActionResult.resultFail(bow));
         }
     }
 

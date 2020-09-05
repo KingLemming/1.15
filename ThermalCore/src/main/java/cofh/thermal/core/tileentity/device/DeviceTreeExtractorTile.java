@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -271,9 +272,9 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
             timeConstant = TIME_CONSTANT;
         }
         for (int i = 0; i < NUM_LEAVES; i++) {
-            leafPos[i] = new BlockPos(nbt.getInt("LeafX" + i), nbt.getInt("LeafY" + i), nbt.getInt("LeafZ" + i));
+            leafPos[i] = NBTUtil.readBlockPos(nbt.getCompound("Leaf" + i));
         }
-        trunkPos = new BlockPos(nbt.getInt("TrunkX"), nbt.getInt("TrunkY"), nbt.getInt("TrunkZ"));
+        trunkPos = NBTUtil.readBlockPos(nbt.getCompound("Trunk"));
     }
 
     @Override
@@ -286,14 +287,9 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         nbt.putInt(TAG_TIME_CONSTANT, timeConstant);
 
         for (int i = 0; i < NUM_LEAVES; i++) {
-            nbt.putInt("LeafX" + i, leafPos[i].getX());
-            nbt.putInt("LeafY" + i, leafPos[i].getY());
-            nbt.putInt("LeafZ" + i, leafPos[i].getZ());
+            nbt.put("Leaf" + i, NBTUtil.writeBlockPos(leafPos[i]));
         }
-        nbt.putInt("TrunkX", trunkPos.getX());
-        nbt.putInt("TrunkY", trunkPos.getY());
-        nbt.putInt("TrunkZ", trunkPos.getZ());
-
+        nbt.put("Trunk", NBTUtil.writeBlockPos(trunkPos));
         return nbt;
     }
     // endregion

@@ -140,6 +140,7 @@ public class ThermalCore {
     private void commonSetup(final FMLCommonSetupEvent event) {
 
         TCoreBlocks.setup();
+        TCoreItems.setup();
 
         LootFunctionManager.registerFunction(new TileNBTSync.Serializer());
     }

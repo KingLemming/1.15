@@ -133,7 +133,7 @@ public class RedprintItem extends ItemCoFH implements IPlacementItem {
             stack.setTag(null);
         }
         player.swingArm(hand);
-        return new ActionResult<>(ActionResultType.SUCCESS, stack);
+        return ActionResult.resultSuccess(stack);
     }
 
     // region IPlacementItem

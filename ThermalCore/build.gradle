@@ -60,14 +60,14 @@ repositories {
         name 'tterrag maven'
         url 'https://maven.tterrag.com/'
     }
-    maven {
-        url 'https://modmaven.k-4u.nl'
-    }
     maven { // JEI
         url 'http://dvs1.progwml6.com/files/maven'
     }
     maven { // Patchouli
         url 'https://maven.blamejared.com'
+    }
+    maven {
+        url 'https://modmaven.k-4u.nl'
     }
     maven {
         name 'CurseForge'

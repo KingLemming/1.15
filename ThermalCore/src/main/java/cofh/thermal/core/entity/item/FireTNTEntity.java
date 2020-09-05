@@ -42,7 +42,7 @@ public class FireTNTEntity extends AbstractTNTEntity {
         if (Utils.isServerWorld(world)) {
             if (!this.isInWater()) {
                 Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, FireGrenadeEntity.effectDuration);
-                Utils.igniteSpecial(this, world, this.getPosition(), radius, true, true, igniter);
+                Utils.igniteSpecial(this, world, this.getPosition(), radius, true, true, tntPlacedBy);
                 Utils.igniteNearbyGround(this, world, this.getPosition(), radius, 0.2);
                 makeAreaOfEffectCloud();
             }

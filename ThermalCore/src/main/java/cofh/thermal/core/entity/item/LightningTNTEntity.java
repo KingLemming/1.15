@@ -46,7 +46,7 @@ public class LightningTNTEntity extends AbstractTNTEntity {
             BlockPos pos = this.getPosition();
             if (this.world.canSeeSky(pos)) {
                 LightningBoltEntity bolt = new LightningBoltEntity(this.world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, false);
-                bolt.setCaster(igniter instanceof ServerPlayerEntity ? (ServerPlayerEntity) igniter : null);
+                bolt.setCaster(tntPlacedBy instanceof ServerPlayerEntity ? (ServerPlayerEntity) tntPlacedBy : null);
                 ((ServerWorld) this.world).addLightningBolt(bolt);
             }
             LightningGrenadeEntity.shockNearbyEntities(this, world, this.getPosition(), radius);

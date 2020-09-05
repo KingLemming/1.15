@@ -40,7 +40,7 @@ public class EarthTNTEntity extends AbstractTNTEntity {
 
         if (Utils.isServerWorld(world)) {
             EarthGrenadeEntity.sunderNearbyEntities(this, world, this.getPosition(), radius);
-            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 1, igniter);
+            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 1, tntPlacedBy);
             this.remove();
         }
         this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);

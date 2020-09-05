@@ -81,7 +81,7 @@ public class FrostWalkerEnchantmentImp extends EnchantmentOverride {
                     if (blockstate1.isAir(worldIn, mutable)) {
                         BlockState blockstate2 = worldIn.getBlockState(blockpos);
                         boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy()) && !ForgeEventFactory.onBlockPlace(living, new BlockSnapshot(worldIn, blockpos, blockstate2), Direction.UP)) {
+                        if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.placedBlockWouldCollide(state, blockpos, ISelectionContext.dummy()) && !ForgeEventFactory.onBlockPlace(living, new BlockSnapshot(worldIn, blockpos, blockstate2), Direction.UP)) {
                             worldIn.setBlockState(blockpos, state);
                             worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(living.getRNG(), 60, 120));
                         }

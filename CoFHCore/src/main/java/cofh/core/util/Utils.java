@@ -443,7 +443,7 @@ public class Utils {
                 if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                    if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.placedBlockWouldCollide(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
                         if (!permanent) {
                             worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
@@ -466,7 +466,7 @@ public class Utils {
             if (distance < f2) {
                 BlockState blockstate2 = worldIn.getBlockState(blockpos);
                 boolean isFull = blockstate2.getBlock() == WATER && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                if (blockstate2.getMaterial() == Material.WATER && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.placedBlockWouldCollide(state, blockpos, ISelectionContext.dummy())) {
                     worldIn.setBlockState(blockpos, state);
                     if (!permanent) {
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, FROSTED_ICE, MathHelper.nextInt(worldIn.rand, 60, 120));
@@ -495,7 +495,7 @@ public class Utils {
                 if (blockstate1.isAir(worldIn, mutable)) {
                     BlockState blockstate2 = worldIn.getBlockState(blockpos);
                     boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                    if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                    if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.placedBlockWouldCollide(state, blockpos, ISelectionContext.dummy())) {
                         worldIn.setBlockState(blockpos, state);
                         if (!permanent) {
                             worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));
@@ -521,7 +521,7 @@ public class Utils {
             if (distance < f2) {
                 BlockState blockstate2 = worldIn.getBlockState(blockpos);
                 boolean isFull = blockstate2.getBlock() == LAVA && blockstate2.get(FlowingFluidBlock.LEVEL) == 0;
-                if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.func_226663_a_(state, blockpos, ISelectionContext.dummy())) {
+                if (blockstate2.getMaterial() == Material.LAVA && isFull && state.isValidPosition(worldIn, blockpos) && worldIn.placedBlockWouldCollide(state, blockpos, ISelectionContext.dummy())) {
                     worldIn.setBlockState(blockpos, state);
                     if (!permanent) {
                         worldIn.getPendingBlockTicks().scheduleTick(blockpos, GLOSSED_MAGMA, MathHelper.nextInt(worldIn.rand, 60, 120));

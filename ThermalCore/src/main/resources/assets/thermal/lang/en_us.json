@@ -85,6 +85,12 @@
   "fluid.thermal.syrup": "Syrup",
   "fluid.thermal.tree_oil": "Tree Oil",
 
+  "info.thermal.detonator.mode.0": "Mode: Prime",
+  "info.thermal.detonator.mode.1": "Mode: Detonate",
+  "info.thermal.detonator.use.0": "Use on a TNT Block to prime it for detonation.",
+  "info.thermal.detonator.use.1": "Use to detonate primed TNT.",
+  "info.thermal.detonator.use.sneak": "Use while sneaking to clear.",
+
   "info.thermal.redprint.contents": "Contents:",
   "info.thermal.redprint.unknown": "Unknown Data",
   "info.thermal.redprint.data.RSControl": "Redstone Control",
@@ -125,6 +131,7 @@
   "item.thermal.blizz_rod": "Blizz Cube",
   "item.thermal.blizz_spawn_egg": "Blizz Spawn Egg",
 
+  "item.thermal.detonator": "Remote Detonator",
   "item.thermal.earth_charge": "Earth Charge",
   "item.thermal.ice_charge": "Ice Charge",
   "item.thermal.lightning_charge": "Lightning Charge",

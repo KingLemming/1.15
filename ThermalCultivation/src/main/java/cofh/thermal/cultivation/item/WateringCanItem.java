@@ -189,28 +189,28 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 
-        BlockRayTraceResult traceResult = RayTracer.retrace(playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-        ItemStack stack = playerIn.getHeldItem(handIn);
+        BlockRayTraceResult traceResult = RayTracer.retrace(player, RayTraceContext.FluidMode.SOURCE_ONLY);
+        ItemStack stack = player.getHeldItem(hand);
 
         if (traceResult.getType() == RayTraceResult.Type.MISS) {
-            return new ActionResult<>(ActionResultType.PASS, stack);
+            return ActionResult.resultPass(stack);
         }
         BlockPos tracePos = traceResult.getPos();
 
-        if (!playerIn.isSecondaryUseActive() || !worldIn.isBlockModifiable(playerIn, tracePos) || Utils.isFakePlayer(playerIn) && !allowFakePlayers) {
-            return new ActionResult<>(ActionResultType.FAIL, stack);
+        if (!player.isSecondaryUseActive() || !world.isBlockModifiable(player, tracePos) || Utils.isFakePlayer(player) && !allowFakePlayers) {
+            return ActionResult.resultFail(stack);
         }
-        if (isWater(worldIn.getBlockState(tracePos)) && getSpace(stack) > 0) {
+        if (isWater(world.getBlockState(tracePos)) && getSpace(stack) > 0) {
             if (removeSourceBlocks) {
-                worldIn.setBlockState(tracePos, Blocks.AIR.getDefaultState(), 11);
+                world.setBlockState(tracePos, Blocks.AIR.getDefaultState(), 11);
             }
             fill(stack, new FluidStack(Fluids.WATER, BUCKET_VOLUME), EXECUTE);
-            playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-            return new ActionResult<>(ActionResultType.SUCCESS, stack);
+            player.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
+            return ActionResult.resultSuccess(stack);
         }
-        return new ActionResult<>(ActionResultType.PASS, stack);
+        return ActionResult.resultPass(stack);
     }
 
     // region HELPERS

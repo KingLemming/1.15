@@ -7,7 +7,10 @@ import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class FishingRodItemCoFH extends FishingRodItem implements ICoFHItem {
@@ -68,7 +71,7 @@ public class FishingRodItemCoFH extends FishingRodItem implements ICoFHItem {
             playerIn.addStat(Stats.ITEM_USED.get(this));
         }
 
-        return new ActionResult<>(ActionResultType.SUCCESS, stack);
+        return ActionResult.resultSuccess(stack);
     }
 
     @Override
