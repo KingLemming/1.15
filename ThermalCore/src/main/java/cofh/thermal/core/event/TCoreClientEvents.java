@@ -60,6 +60,9 @@ public class TCoreClientEvents {
                         (isInteger(mod) ? DF0.format(value) : isMultiplicative(mod) ? DF2.format(value) + "x" : DF0.format(value * 100) + "%"))
                         .applyTextStyle(bad ? TextFormatting.RED : TextFormatting.GREEN);
 
+                if (isMaximized(mod)) {
+                    modText.applyTextStyle(TextFormatting.BOLD);
+                }
                 tooltip.add(getTextComponent("info.thermal.augment.attr." + mod)
                         .appendText(": ")
                         .applyTextStyle(TextFormatting.GRAY)

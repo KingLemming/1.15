@@ -37,7 +37,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         registerParts(reg);
         registerTools(reg);
         registerArmor(reg);
-        //registerAugments(reg);
+        registerAugments(reg);
     }
 
     // region ITEM HELPERS
@@ -138,11 +138,12 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
 
         for (int i = 1; i <= 4; ++i) {
             generated(reg.getSup("upgrade_augment_" + i), AUGMENTS);
-            generated(reg.getSup("fluid_tank_augment_" + i), AUGMENTS);
-            generated(reg.getSup("rf_coil_augment_" + i), AUGMENTS);
-            //            generated(reg.getSup("rf_coil_stor_augment_" + i), AUGMENTS);
-            //            generated(reg.getSup("rf_coil_xfer_augment_" + i), AUGMENTS);
         }
+        generated(reg.getSup("fluid_tank_augment"), AUGMENTS);
+        generated(reg.getSup("rf_coil_augment"), AUGMENTS);
+        generated(reg.getSup("rf_coil_storage_augment"), AUGMENTS);
+        generated(reg.getSup("rf_coil_xfer_augment"), AUGMENTS);
+
         generated(reg.getSup("area_radius_augment"), AUGMENTS);
         generated(reg.getSup("potion_amplifier_augment"), AUGMENTS);
         generated(reg.getSup("potion_duration_augment"), AUGMENTS);

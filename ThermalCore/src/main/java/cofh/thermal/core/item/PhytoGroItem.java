@@ -18,13 +18,11 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 
-import javax.annotation.Nullable;
-
 public class PhytoGroItem extends ItemCoFH {
 
     protected static final int CLOUD_DURATION = 20;
 
-    protected int radius = 2;
+    protected int strength = 4;
 
     public PhytoGroItem(Properties builder) {
 
@@ -36,74 +34,71 @@ public class PhytoGroItem extends ItemCoFH {
 
         World world = context.getWorld();
         BlockPos pos = context.getPos();
-        if (growPlants(context.getItem(), world, pos, context, radius)) {
+
+        if (attemptGrowPlant(world, pos, context, strength)) {
             if (!world.isRemote) {
-                makeAreaOfEffectCloud(world, pos, radius);
+                world.playEvent(2005, pos, 0);
             }
             return ActionResultType.SUCCESS;
         }
         return ActionResultType.PASS;
     }
 
-    protected static boolean growPlants(ItemStack stack, World worldIn, BlockPos pos, ItemUseContext context, int radius) {
+    protected static boolean attemptGrowPlant(World world, BlockPos pos, ItemUseContext context, int strength) {
 
-        BlockState state = worldIn.getBlockState(pos);
+        ItemStack stack = context.getItem();
+        BlockState state = world.getBlockState(pos);
         PlayerEntity player = context.getPlayer();
         if (player != null) {
-            int hook = ForgeEventFactory.onApplyBonemeal(player, worldIn, pos, state, stack);
+            int hook = ForgeEventFactory.onApplyBonemeal(player, world, pos, state, stack);
             if (hook != 0) {
                 return hook > 0;
             }
         }
-        boolean used = false;
-        for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-radius, -1, -radius), pos.add(radius, 1, radius))) {
-            used |= growPlant(worldIn, iterPos, worldIn.getBlockState(iterPos));
-        }
-        used |= growSeagrass(worldIn, pos, context.getFace());
+        boolean used;
+        used = growPlant(world, pos, state, strength);
+        used |= growSeagrass(world, pos, context.getFace());
         if (used) {
             stack.shrink(1);
         }
         return used;
     }
 
-    protected static boolean growPlant(World worldIn, BlockPos pos, BlockState state) {
+    protected static boolean growPlant(World worldIn, BlockPos pos, BlockState state, int strength) {
 
         if (state.getBlock() instanceof IGrowable) {
             IGrowable growable = (IGrowable) state.getBlock();
-            if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
-                if (worldIn instanceof ServerWorld) {
-                    if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
-                        // TODO: Remove try/catch when Mojang fixes base issue.
-                        try {
-                            growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
-                        } catch (Exception e) {
-                            // Vanilla issue causes bamboo to crash if grown close to world height
-                            if (!(growable instanceof BambooBlock)) {
-                                throw e;
+            boolean used = false;
+            for (int i = 0; i < strength; ++i) {
+                if (growable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
+                    if (worldIn instanceof ServerWorld) {
+                        if (growable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
+                            // TODO: Remove try/catch when Mojang fixes base issue.
+                            try {
+                                growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
+                            } catch (Exception e) {
+                                // Vanilla issue causes bamboo to crash if grown close to world height
+                                if (!(growable instanceof BambooBlock)) {
+                                    throw e;
+                                }
                             }
                         }
                     }
+                    used = true;
                 }
-                return true;
             }
+            return used;
         }
         return false;
     }
 
-    // TODO: Revisit
-    //    private static boolean growCoral(World worldIn, BlockPos pos, BlockState state) {
-    //
-    //        if (state.getBlock().isIn(BlockTags.WALL_CORALS)) {
-    //            for (int i = 0; !state.isValidPosition(worldIn, pos) && i < 4; ++i) {
-    //                state = state.with(DeadCoralWallFanBlock.FACING, Direction.Plane.HORIZONTAL.random(random));
-    //            }
-    //        }
-    //        return false;
-    //    }
+    public static boolean growSeagrass(World worldIn, BlockPos pos, Direction side) {
 
-    public static boolean growSeagrass(World worldIn, BlockPos pos, @Nullable Direction side) {
-
-        if (worldIn.getBlockState(pos).getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {
+        BlockState state = worldIn.getBlockState(pos);
+        if (!state.isSolidSide(worldIn, pos, side)) {
+            return false;
+        }
+        if (state.getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {
             if (worldIn instanceof ServerWorld) {
                 label80:
                 for (int i = 0; i < 128; ++i) {

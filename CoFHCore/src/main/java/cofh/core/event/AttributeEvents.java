@@ -21,6 +21,8 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Set;
 
 import static cofh.core.util.constants.Constants.ID_COFH_CORE;
+import static cofh.core.util.references.CoreReferences.CHILLED;
+import static cofh.core.util.references.CoreReferences.SHOCKED;
 
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class AttributeEvents {
@@ -51,7 +53,7 @@ public class AttributeEvents {
 
         double hazRes = entity.getAttribute(CoreAttributes.HAZARD_RESISTANCE).getValue();
         if (hazRes > 0.0D) {
-            if (source.isFireDamage()) {
+            if (source.isFireDamage() || source == DamageSource.LIGHTNING_BOLT) {
                 if (entity.getRNG().nextDouble() < hazRes) {
                     entity.extinguish();
                     event.setCanceled(true);
@@ -126,6 +128,9 @@ public class AttributeEvents {
     static {
         HAZARD_EFFECTS.add(Effects.POISON);
         HAZARD_EFFECTS.add(Effects.WITHER);
+
+        HAZARD_EFFECTS.add(CHILLED);
+        HAZARD_EFFECTS.add(SHOCKED);
     }
 
 }

@@ -568,7 +568,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected void finalizeAttributes() {
 
         float scaleMin = AUG_SCALE_MIN;
-        float scaleMax = AUG_SCALE_MAX / 10.0F; // Storage augs are squared in the general case; adjusted accordingly.
+        float scaleMax = AUG_SCALE_MAX;
 
         energyStorageMod = MathHelper.clamp(energyStorageMod, scaleMin, scaleMax);
         energyXferMod = MathHelper.clamp(energyXferMod, scaleMin, scaleMax);

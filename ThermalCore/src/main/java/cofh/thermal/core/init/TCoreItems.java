@@ -363,44 +363,33 @@ public class TCoreItems {
     private static void registerStorageAugments() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
-        final float[] storageMods = new float[]{1.0F, 2.0F, 4.0F, 6.0F, 8.0F, 10.0F};
 
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("rf_coil_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .type(TAG_AUGMENT_TYPE_RF)
-                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier])
-                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier])
-                            .build()).setShowInGroups(getFeature("storage_augments")));
-        }
-        // TODO: Consider bringing back after adjusting for balance.
-        //        for (int i = 1; i <= 4; ++i) {
-        //            int tier = i;
-        //            registerItem("rf_coil_stor_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-        //                    AugmentDataHelper.builder()
-        //                            .type(TAG_AUGMENT_TYPE_RF)
-        //                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier + 1])
-        //                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier - 1])
-        //                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
-        //        }
-        //        for (int i = 1; i <= 4; ++i) {
-        //            int tier = i;
-        //            registerItem("rf_coil_xfer_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-        //                    AugmentDataHelper.builder()
-        //                            .type(TAG_AUGMENT_TYPE_RF)
-        //                            .mod(TAG_AUGMENT_ENERGY_STORAGE, storageMods[tier - 1])
-        //                            .mod(TAG_AUGMENT_ENERGY_XFER, storageMods[tier + 1])
-        //                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
-        //        }
-        for (int i = 1; i <= 4; ++i) {
-            int tier = i;
-            registerItem("fluid_tank_augment_" + i, () -> new AugmentItem(new Item.Properties().group(group),
-                    AugmentDataHelper.builder()
-                            .type(TAG_AUGMENT_TYPE_FLUID)
-                            .mod(TAG_AUGMENT_FLUID_STORAGE, storageMods[tier])
-                            .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
-        }
+        registerItem("rf_coil_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_RF)
+                        .mod(TAG_AUGMENT_ENERGY_STORAGE, 4.0F)
+                        .mod(TAG_AUGMENT_ENERGY_XFER, 4.0F)
+                        .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
+
+        registerItem("rf_coil_storage_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_RF)
+                        .mod(TAG_AUGMENT_ENERGY_STORAGE, 6.0F)
+                        .mod(TAG_AUGMENT_ENERGY_XFER, 2.0F)
+                        .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
+
+        registerItem("rf_coil_xfer_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_RF)
+                        .mod(TAG_AUGMENT_ENERGY_STORAGE, 2.0F)
+                        .mod(TAG_AUGMENT_ENERGY_XFER, 6.0F)
+                        .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
+
+        registerItem("fluid_tank_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_FLUID)
+                        .mod(TAG_AUGMENT_FLUID_STORAGE, 4.0F)
+                        .build()).setShowInGroups(getFeature(FLAG_STORAGE_AUGMENTS)));
     }
 
     private static void registerUpgradeAugments() {

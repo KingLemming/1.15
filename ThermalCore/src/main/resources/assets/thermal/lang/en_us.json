@@ -293,10 +293,7 @@
   "item.thermal.dynamo_fuel_augment": "Multi-cycle Injectors",
   "item.thermal.dynamo_output_augment": "Auxiliary Reaction Chamber",
 
-  "item.thermal.fluid_tank_augment_1": "Hardened Tank Expansion",
-  "item.thermal.fluid_tank_augment_2": "Reinforced Tank Expansion",
-  "item.thermal.fluid_tank_augment_3": "Precision Tank Expansion",
-  "item.thermal.fluid_tank_augment_4": "Resonant Tank Expansion",
+  "item.thermal.fluid_tank_augment": "Expanded Tank Construction",
 
   "item.thermal.machine_catalyst_augment": "Catalytic Reclamation Chamber",
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
@@ -305,20 +302,9 @@
   "item.thermal.potion_amplifier_augment": "Alchemical Amplifier",
   "item.thermal.potion_duration_augment": "Alchemical Extender",
 
-  "item.thermal.rf_coil_augment_1": "Hardened RF Coil",
-  "item.thermal.rf_coil_augment_2": "Reinforced RF Coil",
-  "item.thermal.rf_coil_augment_3": "Precision RF Coil",
-  "item.thermal.rf_coil_augment_4": "Resonant RF Coil",
-
-  "item.thermal.rf_coil_stor_augment_1": "Hardened Stabilized Coil",
-  "item.thermal.rf_coil_stor_augment_2": "Reinforced Stabilized Coil",
-  "item.thermal.rf_coil_stor_augment_3": "Precision Stabilized Coil",
-  "item.thermal.rf_coil_stor_augment_4": "Resonant Stabilized Coil",
-
-  "item.thermal.rf_coil_xfer_augment_1": "Hardened High-Flux Coil",
-  "item.thermal.rf_coil_xfer_augment_2": "Reinforced High-Flux Coil",
-  "item.thermal.rf_coil_xfer_augment_3": "Precision High-Flux Coil",
-  "item.thermal.rf_coil_xfer_augment_4": "Resonant High-Flux Coil",
+  "item.thermal.rf_coil_augment": "Expanded RF Coil",
+  "item.thermal.rf_coil_storage_augment": "Stabilized RF Coil",
+  "item.thermal.rf_coil_xfer_augment": "High-Flux RF Coil",
 
   "item.thermal.upgrade_augment_1": "Hardened Integral Components",
   "item.thermal.upgrade_augment_1.desc": "Improves base attributes and amplifies augments.",
