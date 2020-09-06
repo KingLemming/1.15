@@ -1,10 +1,10 @@
 modLoader = "javafml"
-loaderVersion = "[28,)"
+loaderVersion = "[31,)"
 issueTrackerURL = "https://github.com/cofh/feedback"
 
 [[mods]]
 modId = "thermal_locomotion"
-version = "0.1.0a"
+version = "${file.jarVersion}"
 displayName = "Thermal Locomotion"
 displayURL = "https://teamcofh.com/"
 logoFile = "logo.png"
@@ -30,13 +30,13 @@ side = "BOTH"
 [[dependencies.thermal_locomotion]]
 modId = "cofh_core"
 mandatory = true
-versionRange = "[0.4,)"
+versionRange = "[0.5,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "thermal"
 mandatory = true
-versionRange = "[0.1.0a]"
+versionRange = "[0.1,)"
 ordering = "AFTER"
 side = "BOTH"

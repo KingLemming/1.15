@@ -50,6 +50,8 @@ public class DetonatorItem extends ItemCoFH implements IMultiModeItem {
     public DetonatorItem(Properties builder) {
 
         super(builder);
+        this.addPropertyOverride(new ResourceLocation("primed"), (stack, world, living) -> (getMode(stack) == 0 && getPrimedCount(stack) > 0 ? 1.0F : 0.0F));
+        this.addPropertyOverride(new ResourceLocation("armed"), (stack, world, living) -> (getMode(stack) == 1 && getPrimedCount(stack) > 0 ? 1.0F : 0.0F));
     }
 
     @Override
@@ -57,9 +59,8 @@ public class DetonatorItem extends ItemCoFH implements IMultiModeItem {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(getTextComponent("info.thermal.detonator.use." + getMode(stack)).applyTextStyle(TextFormatting.GRAY));
+        tooltip.add(getTextComponent("info.thermal.detonator.primed").applyTextStyle(TextFormatting.GRAY).appendSibling(getTextComponent(" " + getPrimedCount(stack) + "/" + MAX_PRIMED).applyTextStyle(getPrimedCount(stack) <= 0 ? TextFormatting.RED : getMode(stack) == 0 ? TextFormatting.YELLOW : TextFormatting.GREEN)));
         tooltip.add(getTextComponent("info.thermal.detonator.use.sneak").applyTextStyle(TextFormatting.DARK_GRAY));
-
-        tooltip.add(getTextComponent(getPrimedCount(stack) + "/" + MAX_PRIMED));
 
         tooltip.add(getTextComponent("info.thermal.detonator.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
@@ -106,6 +107,7 @@ public class DetonatorItem extends ItemCoFH implements IMultiModeItem {
             }
             stack.removeChildTag(TAG_PRIMED);
         }
+        setMode(stack, 0);
         return true;
     }
 

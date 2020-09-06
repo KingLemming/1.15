@@ -19,6 +19,7 @@ import cofh.thermal.core.common.ThermalFeatures;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
+import cofh.thermal.core.world.ThermalWorld;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -143,6 +144,8 @@ public class ThermalCore {
         TCoreItems.setup();
 
         LootFunctionManager.registerFunction(new TileNBTSync.Serializer());
+
+        ThermalWorld.setup();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

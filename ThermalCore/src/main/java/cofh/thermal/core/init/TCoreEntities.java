@@ -6,10 +6,14 @@ import cofh.thermal.core.entity.monster.BlitzEntity;
 import cofh.thermal.core.entity.monster.BlizzEntity;
 import cofh.thermal.core.entity.projectile.*;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.world.gen.Heightmap;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.init.TCoreIDs.*;
+import static cofh.thermal.core.init.TCoreReferences.*;
 
 public class TCoreEntities {
 
@@ -45,6 +49,13 @@ public class TCoreEntities {
         ENTITIES.register(ID_LIGHTNING_TNT, () -> EntityType.Builder.<LightningTNTEntity>create(LightningTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_LIGHTNING_TNT));
 
         ENTITIES.register(ID_NUKE_TNT, () -> EntityType.Builder.<NukeTNTEntity>create(NukeTNTEntity::new, EntityClassification.MISC).immuneToFire().size(0.98F, 0.98F).build(ID_NUKE_TNT));
+    }
+
+    public static void setup() {
+
+        EntitySpawnPlacementRegistry.register(BASALZ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawn);
+        EntitySpawnPlacementRegistry.register(BLITZ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawn);
+        EntitySpawnPlacementRegistry.register(BLIZZ_ENTITY, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawn);
     }
 
 }

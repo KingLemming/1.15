@@ -396,6 +396,16 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(reg.get("detonator"))
+                .key('G', CoFHTags.Items.GEARS_SIGNALUM)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('S', CoFHTags.Items.INGOTS_SILVER)
+                .patternLine(" S ")
+                .patternLine("IGI")
+                .patternLine("III")
+                .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("basalz_powder"), 2)
                 .addIngredient(reg.get("basalz_rod"))
                 .addCriterion("has_basalz_rod", hasItem(reg.get("basalz_rod")))

@@ -2,5 +2,19 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "thermal:item/tools/detonator"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "primed": 1
+      },
+      "model": "thermal:item/detonator_primed"
+    },
+    {
+      "predicate": {
+        "armed": 1
+      },
+      "model": "thermal:item/detonator_armed"
+    }
+  ]
 }

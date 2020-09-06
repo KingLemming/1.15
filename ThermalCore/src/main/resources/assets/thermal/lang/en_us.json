@@ -87,6 +87,7 @@
 
   "info.thermal.detonator.mode.0": "Mode: Prime",
   "info.thermal.detonator.mode.1": "Mode: Detonate",
+  "info.thermal.detonator.primed": "Primed:",
   "info.thermal.detonator.use.0": "Use on a TNT Block to prime it for detonation.",
   "info.thermal.detonator.use.1": "Use to detonate primed TNT.",
   "info.thermal.detonator.use.sneak": "Use while sneaking to clear.",
