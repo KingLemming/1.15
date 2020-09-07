@@ -105,6 +105,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         generateAlloyRecipes(consumer);
         generateArmorRecipes(consumer);
+        generateAugmentRecipes(consumer);
         generateBasicRecipes(consumer);
         generateChargeRecipes(consumer);
         generateComponentRecipes(consumer);
@@ -356,6 +357,105 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("X X")
                 .patternLine("LRL")
                 .addCriterion("has_fabric", hasItem(hazmatFabric))
+                .build(consumer);
+    }
+
+    private void generateAugmentRecipes(Consumer<IFinishedRecipe> consumer) {
+
+        DeferredRegisterCoFH<Item> reg = ITEMS;
+
+        Item redstoneServo = reg.get("redstone_servo");
+        Item rfCoil = reg.get("rf_coil");
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("area_radius_augment"))
+                .key('G', CoFHTags.Items.GEARS_IRON)
+                .key('I', CoFHTags.Items.INGOTS_TIN)
+                .key('X', redstoneServo)
+                .patternLine(" G ")
+                .patternLine("IXI")
+                .patternLine(" G ")
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("dynamo_output_augment"))
+                .key('G', CoFHTags.Items.GEARS_SILVER)
+                .key('S', CoFHTags.Items.PLATES_SIGNALUM)
+                .key('X', CoFHTags.Items.HARDENED_GLASS)
+                .patternLine(" G ")
+                .patternLine("SXS")
+                .patternLine(" G ")
+                .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("dynamo_fuel_augment"))
+                .key('G', CoFHTags.Items.GEARS_LEAD)
+                .key('L', CoFHTags.Items.PLATES_LUMIUM)
+                .key('X', CoFHTags.Items.HARDENED_GLASS)
+                .patternLine(" G ")
+                .patternLine("LXL")
+                .patternLine(" G ")
+                .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("machine_speed_augment"))
+                .key('E', CoFHTags.Items.PLATES_ELECTRUM)
+                .key('L', CoFHTags.Items.GEARS_LEAD)
+                .key('X', rfCoil)
+                .patternLine(" L ")
+                .patternLine("EXE")
+                .patternLine(" L ")
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("machine_output_augment"))
+                .key('B', CoFHTags.Items.GEARS_BRONZE)
+                .key('I', CoFHTags.Items.PLATES_INVAR)
+                .key('X', redstoneServo)
+                .patternLine(" B ")
+                .patternLine("IXI")
+                .patternLine(" B ")
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("machine_catalyst_augment"))
+                .key('C', CoFHTags.Items.GEARS_CONSTANTAN)
+                .key('L', CoFHTags.Items.PLATES_LEAD)
+                .key('X', redstoneServo)
+                .patternLine(" C ")
+                .patternLine("LXL")
+                .patternLine(" C ")
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("machine_cycle_augment"))
+                .key('C', CoFHTags.Items.PLATES_CONSTANTAN)
+                .key('G', CoFHTags.Items.GEARS_SIGNALUM)
+                .key('S', CoFHTags.Items.PLATES_SILVER)
+                .key('X', redstoneServo)
+                .patternLine("SGS")
+                .patternLine("CXC")
+                .patternLine("SGS")
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("potion_amplifier_augment"))
+                .key('G', CoFHTags.Items.GEARS_SIGNALUM)
+                .key('I', CoFHTags.Items.INGOTS_COPPER)
+                .key('X', CoFHTags.Items.HARDENED_GLASS)
+                .patternLine(" G ")
+                .patternLine("IXI")
+                .patternLine(" G ")
+                .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("potion_duration_augment"))
+                .key('G', CoFHTags.Items.GEARS_LUMIUM)
+                .key('I', CoFHTags.Items.INGOTS_COPPER)
+                .key('X', CoFHTags.Items.HARDENED_GLASS)
+                .patternLine(" G ")
+                .patternLine("IXI")
+                .patternLine(" G ")
+                .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
                 .build(consumer);
     }
 

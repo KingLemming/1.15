@@ -1,6 +1,7 @@
 package cofh.thermal.core.item;
 
 import cofh.core.item.ItemCoFH;
+import cofh.core.util.Utils;
 import net.minecraft.block.*;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -58,7 +59,7 @@ public class PhytoGroItem extends ItemCoFH {
         boolean used;
         used = growPlant(world, pos, state, strength);
         used |= growSeagrass(world, pos, context.getFace());
-        if (used) {
+        if (Utils.isServerWorld(world) && used) {
             stack.shrink(1);
         }
         return used;
@@ -95,7 +96,7 @@ public class PhytoGroItem extends ItemCoFH {
     public static boolean growSeagrass(World worldIn, BlockPos pos, Direction side) {
 
         BlockState state = worldIn.getBlockState(pos);
-        if (!state.isSolidSide(worldIn, pos, side)) {
+        if (side != null && !state.isSolidSide(worldIn, pos, side)) {
             return false;
         }
         if (state.getBlock() == Blocks.WATER && worldIn.getFluidState(pos).getLevel() == 8) {

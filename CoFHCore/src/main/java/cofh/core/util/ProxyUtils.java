@@ -44,7 +44,7 @@ public class ProxyUtils {
         return CoFHCore.PROXY.canLocalize(key);
     }
 
-    public static Object addModel(Item item, Object model) {
+    public static synchronized Object addModel(Item item, Object model) {
 
         return CoFHCore.PROXY.addModel(item, model);
     }

@@ -48,6 +48,8 @@ public class TExpTags {
 
             getBuilder(CoFHTags.Items.MACHINE_DIES).add(ITEMS.get("press_coin_die"));
             getBuilder(CoFHTags.Items.MACHINE_DIES).add(ITEMS.get("press_gear_die"));
+
+            getBuilder(CoFHTags.Items.MACHINE_CASTS).add(ITEMS.get("chiller_ball_cast"));
         }
 
     }

@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 import static cofh.core.util.StorageGroup.*;
 import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_SMALL;
-import static cofh.core.util.constants.NBTTags.TAG_AUGMENT_MACHINE_RECYCLE;
+import static cofh.core.util.constants.NBTTags.TAG_AUGMENT_FEATURE_RECYCLE;
 import static cofh.core.util.helpers.ItemHelper.itemsEqualWithTags;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_INSOLATOR_TILE;
@@ -131,7 +131,7 @@ public class MachineInsolatorTile extends MachineTileProcess {
 
         super.setAttributesFromAugment(augmentData);
 
-        recycleFeature |= getAttributeMod(augmentData, TAG_AUGMENT_MACHINE_RECYCLE) > 0;
+        recycleFeature |= getAttributeMod(augmentData, TAG_AUGMENT_FEATURE_RECYCLE) > 0;
     }
     // endregion
 }

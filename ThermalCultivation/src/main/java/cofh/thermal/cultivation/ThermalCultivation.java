@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.HoeItem;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -55,60 +56,61 @@ public class ThermalCultivation {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        // CROPS
-        {
-            float chance = 0.65F;
+        DeferredWorkQueue.runLater(() -> {
+            // CROPS
+            {
+                float chance = 0.65F;
 
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_BARLEY), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_ONION), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_RADISH), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_RICE), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_SADIROOT), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_SPINACH), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_BARLEY), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_ONION), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_RADISH), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_RICE), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_SADIROOT), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_SPINACH), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_BELL_PEPPER), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_EGGPLANT), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_GREEN_BEAN), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_PEANUT), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_STRAWBERRY), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_TOMATO), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_BELL_PEPPER), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_EGGPLANT), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_GREEN_BEAN), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_PEANUT), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_STRAWBERRY), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_TOMATO), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_COFFEE), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_TEA), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_COFFEE), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_TEA), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON), chance);
-        }
-        {
-            float chance = 0.5F;
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON), chance);
+            }
+            {
+                float chance = 0.5F;
 
-            ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON_SLICE), chance);
-        }
-        // SEEDS
-        {
-            float chance = 0.3F;
+                ComposterBlock.CHANCES.put(ITEMS.get(ID_FROST_MELON_SLICE), chance);
+            }
+            // SEEDS
+            {
+                float chance = 0.3F;
 
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BARLEY)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_ONION)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RADISH)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RICE)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SADIROOT)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SPINACH)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BARLEY)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_ONION)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RADISH)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_RICE)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SADIROOT)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_SPINACH)), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BELL_PEPPER)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_EGGPLANT)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_GREEN_BEAN)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_PEANUT)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_STRAWBERRY)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TOMATO)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_BELL_PEPPER)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_EGGPLANT)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_GREEN_BEAN)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_PEANUT)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_STRAWBERRY)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TOMATO)), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_COFFEE)), chance);
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TEA)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_COFFEE)), chance);
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_TEA)), chance);
 
-            ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_FROST_MELON)), chance);
-        }
-        HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL_TILLED).getDefaultState());
-
-        TCulBlocks.setup();
+                ComposterBlock.CHANCES.put(ITEMS.get(seeds(ID_FROST_MELON)), chance);
+            }
+            HoeItem.HOE_LOOKUP.put(BLOCKS.get(ID_PHYTOSOIL), BLOCKS.get(ID_PHYTOSOIL_TILLED).getDefaultState());
+        });
+        DeferredWorkQueue.runLater(TCulBlocks::setup);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

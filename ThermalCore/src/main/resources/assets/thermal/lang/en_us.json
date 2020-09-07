@@ -296,6 +296,7 @@
   "item.thermal.fluid_tank_augment": "Expanded Tank Construction",
 
   "item.thermal.machine_catalyst_augment": "Catalytic Reclamation Chamber",
+  "item.thermal.machine_cycle_augment": "Cyclical Processing",
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
   "item.thermal.machine_speed_augment": "Flux Linkage Amplifier",
 

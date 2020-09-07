@@ -316,7 +316,7 @@ public class TCoreItems {
                         .build()).setShowInGroups(getFeature(FLAG_DYNAMO_AUGMENTS)));
     }
 
-    public static void registerMachineAugments() {
+    private static void registerMachineAugments() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
@@ -340,9 +340,15 @@ public class TCoreItems {
                         .mod(TAG_AUGMENT_MACHINE_CATALYST, 0.8F)
                         .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.25F)
                         .build()).setShowInGroups(getFeature(FLAG_MACHINE_AUGMENTS)));
+
+        registerItem("machine_cycle_augment", () -> new AugmentItem(new Item.Properties().group(group),
+                AugmentDataHelper.builder()
+                        .type(TAG_AUGMENT_TYPE_MACHINE)
+                        .mod(TAG_AUGMENT_FEATURE_RECYCLE, 1.0F)
+                        .build()).setShowInGroups(getFeature(FLAG_MACHINE_AUGMENTS)));
     }
 
-    public static void registerPotionAugments() {
+    private static void registerPotionAugments() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 

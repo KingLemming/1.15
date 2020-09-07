@@ -84,15 +84,17 @@ public class NBTTags {
     public static final String TAG_AUGMENT_TYPE_POTION = "PotAug";
 
     // General
+    public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
+
     public static final String TAG_AUGMENT_ENERGY_STORAGE = "RFMax";
     public static final String TAG_AUGMENT_ENERGY_XFER = "RFXfer";
     public static final String TAG_AUGMENT_FLUID_STORAGE = "FlMax";
 
-    public static final String TAG_AUGMENT_BASE_MOD = "BaseMod";
-
     public static final String TAG_AUGMENT_AREA_DEPTH = "AEDpt";
     public static final String TAG_AUGMENT_AREA_RADIUS = "AERad";
     public static final String TAG_AUGMENT_AREA_REACH = "AERch";
+
+    public static final String TAG_AUGMENT_FEATURE_RECYCLE = "FtrRecyc";
 
     public static final String TAG_AUGMENT_POTION_AMPLIFIER = "PotAmp";
     public static final String TAG_AUGMENT_POTION_DURATION = "PotDur";
@@ -111,8 +113,6 @@ public class NBTTags {
     public static final String TAG_AUGMENT_MACHINE_ENERGY = "MchEn";
     public static final String TAG_AUGMENT_MACHINE_CATALYST = "MchCat";
     public static final String TAG_AUGMENT_MACHINE_XP = "MchXp";
-
-    public static final String TAG_AUGMENT_MACHINE_RECYCLE = "MchRecyc";
 
     // Compatibility
     public static final String TAG_DEMAGNETIZE_COMPAT = "AllowMachineRemoteMovement";

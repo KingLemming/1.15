@@ -41,6 +41,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -140,12 +141,13 @@ public class ThermalCore {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        TCoreBlocks.setup();
-        TCoreItems.setup();
+        DeferredWorkQueue.runLater(TCoreBlocks::setup);
+        DeferredWorkQueue.runLater(TCoreItems::setup);
+        DeferredWorkQueue.runLater(TCoreEntities::setup);
 
         LootFunctionManager.registerFunction(new TileNBTSync.Serializer());
 
-        ThermalWorld.setup();
+        DeferredWorkQueue.runLater(ThermalWorld::setup);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

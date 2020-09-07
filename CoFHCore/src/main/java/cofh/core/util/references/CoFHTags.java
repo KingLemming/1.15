@@ -16,6 +16,9 @@ public class CoFHTags {
 
     public static class Blocks {
 
+        public static final Tag<Block> HARDENED_GLASS = thermalTag("glass/hardened");
+        public static final Tag<Block> ROCKWOOL = thermalTag("rockwool");
+
         public static final Tag<Block> ORES_APATITE = forgeTag("ores/apatite");
         public static final Tag<Block> ORES_CINNABAR = forgeTag("ores/cinnabar");
         public static final Tag<Block> ORES_COPPER = forgeTag("ores/copper");
@@ -134,9 +137,6 @@ public class CoFHTags {
         public static final Tag<Item> INGOTS_SILVER = forgeTag("ingots/silver");
         public static final Tag<Item> INGOTS_TIN = forgeTag("ingots/tin");
 
-        public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
-        public static final Tag<Item> MACHINE_CASTS = thermalTag("crafting/casts");
-
         public static final Tag<Item> NUGGETS_BRONZE = forgeTag("nuggets/bronze");
         public static final Tag<Item> NUGGETS_CONSTANTAN = forgeTag("nuggets/constantan");
         public static final Tag<Item> NUGGETS_COPPER = forgeTag("nuggets/copper");
@@ -208,6 +208,12 @@ public class CoFHTags {
         public static final Tag<Item> STORAGE_BLOCKS_TIN = forgeTag("storage_blocks/tin");
 
         public static final Tag<Item> TOOLS_WRENCH = forgeTag("tools/wrench");
+
+        public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
+        public static final Tag<Item> MACHINE_CASTS = thermalTag("crafting/casts");
+
+        public static final Tag<Item> HARDENED_GLASS = thermalTag("glass/hardened");
+        public static final Tag<Item> ROCKWOOL = thermalTag("rockwool");
 
         // region HELPERS
         private static Tag<Item> thermalTag(String name) {

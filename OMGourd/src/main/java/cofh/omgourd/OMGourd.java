@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -53,7 +54,7 @@ public class OMGourd {
     // region INITIALIZATION
     private void commonSetup(final FMLCommonSetupEvent event) {
 
-        OMGBlocks.setup();
+        DeferredWorkQueue.runLater(OMGBlocks::setup);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
