@@ -103,6 +103,9 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         if (minTicks > 0) {
             processTick = Math.min(processTick, Math.max(getMinProcessTick(), energy / minTicks));
             energy = Math.max(energy, getMinProcessTick() * minTicks);
+            energyStorage.modify(-process);     // Refund extra energy to ensure minTick
+        } else {
+            energy += process;                  // Apply extra energy to next process
         }
         process = processMax = energy;
         if (cacheRenderFluid()) {
@@ -119,7 +122,6 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         resolveOutputs();
         resolveInputs();
         markDirty();
-        energyStorage.modify(-process);
     }
 
     protected void processOff() {

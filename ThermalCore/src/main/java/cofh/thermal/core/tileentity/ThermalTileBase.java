@@ -96,7 +96,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     protected int getBaseEnergyXfer() {
 
-        return BASE_PROCESS_TICK * 4;
+        return BASE_PROCESS_TICK * 8;
     }
 
     protected int getBaseProcessTick() {
