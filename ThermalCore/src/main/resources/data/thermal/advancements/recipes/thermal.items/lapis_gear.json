@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:earth_charge_diamond_dust_from_emerald"
+      "thermal:lapis_gear"
     ]
   },
   "criteria": {
-    "has_diamond": {
+    "has_lapis_lazuli": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/diamond"
+            "item": "minecraft:lapis_lazuli"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:earth_charge_diamond_dust_from_emerald"
+        "recipe": "thermal:lapis_gear"
       }
     }
   },
   "requirements": [
     [
-      "has_diamond",
+      "has_lapis_lazuli",
       "has_the_recipe"
     ]
   ]

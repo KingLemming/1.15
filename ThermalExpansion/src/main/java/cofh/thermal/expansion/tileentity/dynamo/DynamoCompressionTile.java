@@ -10,8 +10,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static cofh.core.util.StorageGroup.INPUT;
@@ -68,6 +71,15 @@ public class DynamoCompressionTile extends DynamoTileBase {
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
 
         return new DynamoCompressionContainer(i, world, pos, inventory, player);
+    }
+
+    @Nonnull
+    @Override
+    public IModelData getModelData() {
+
+        return new ModelDataMap.Builder()
+                .withInitial(FLUID, renderFluid)
+                .build();
     }
 
 }

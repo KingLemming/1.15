@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:air"
+    "thermal:chiller_ball_cast"
   ]
 }

@@ -1,16 +1,12 @@
 package cofh.thermal.core.item;
 
 import cofh.core.item.ArmorItemCoFH;
-import cofh.core.util.Utils;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.World;
 
 import static net.minecraft.entity.LivingEntity.SWIM_SPEED;
@@ -41,14 +37,13 @@ public class DivingArmorItem extends ArmorItemCoFH {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 
         if (this.slot == EquipmentSlotType.HEAD) {
-            // TODO: Revisit
-            //            if (player.getAir() < player.getMaxAir()) {
-            //                // Random chance of extra air?
-            //            }
-            // Current method
-            if (!player.areEyesInFluid(FluidTags.WATER)) {
-                Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, AIR_DURATION, 0, false, false, true));
+            if (world.rand.nextDouble() < 0.80) {
+                player.setAir(player.getAir() + 1);
             }
+            // TODO: Revisit
+            //            if (!player.areEyesInFluid(FluidTags.WATER)) {
+            //                Utils.addPotionEffectNoEvent(player, new EffectInstance(Effects.WATER_BREATHING, AIR_DURATION, 0, false, false, true));
+            //            }
         }
     }
 

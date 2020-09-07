@@ -118,8 +118,10 @@ public class TCoreItems {
         registerMetalSet("iron", group, Rarity.COMMON, TRUE, true);
         registerMetalSet("gold", group, Rarity.COMMON, TRUE, true);
 
+        registerGemSet("lapis", group, Rarity.COMMON, TRUE, true);
         registerGemSet("diamond", group, Rarity.COMMON, TRUE, true);
         registerGemSet("emerald", group, Rarity.COMMON, TRUE, true);
+        registerGemSet("quartz", group, Rarity.COMMON, TRUE, true);
 
         Rarity rarity = Rarity.UNCOMMON;
 

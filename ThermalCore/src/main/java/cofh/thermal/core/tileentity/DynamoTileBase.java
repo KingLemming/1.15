@@ -109,15 +109,6 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         updateActiveState(curActive);
     }
 
-    @Nonnull
-    @Override
-    public IModelData getModelData() {
-
-        return new ModelDataMap.Builder()
-                .withInitial(FLUID, renderFluid)
-                .build();
-    }
-
     // region PROCESS
     protected abstract boolean canProcessStart();
 

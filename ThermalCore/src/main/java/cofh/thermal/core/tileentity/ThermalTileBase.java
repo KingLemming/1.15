@@ -32,6 +32,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -61,6 +62,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
 
     public static final ModelProperty<byte[]> SIDES = new ModelProperty<>();
     public static final ModelProperty<FluidStack> FLUID = new ModelProperty<>();
+    public static final ModelProperty<ResourceLocation> UNDERLAY = new ModelProperty<>();
 
     protected static final int MIN_PROCESS_TICK = 5;
     protected static final int BASE_PROCESS_TICK = 20;

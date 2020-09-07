@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:rf_coil_augment"
+    ]
+  },
+  "criteria": {
+    "has_rf_coil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:rf_coil"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:rf_coil_augment"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rf_coil",
+      "has_the_recipe"
+    ]
+  ]
+}

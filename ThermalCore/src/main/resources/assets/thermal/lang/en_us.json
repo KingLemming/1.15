@@ -427,10 +427,22 @@
   "item.thermal.gold_gear": "Gold Gear",
   "item.thermal.gold_plate": "Gold Plate",
 
+  "item.thermal.lapis_coin": "Lapis Coin",
+  "item.thermal.lapis_dust": "Lapis Dust",
+  "item.thermal.lapis_gear": "Lapis Gear",
+  "item.thermal.lapis_nugget": "Lapis Nugget",
+  "item.thermal.lapis_plate": "Lapis Plate",
+
   "item.thermal.iron_coin": "Iron Coin",
   "item.thermal.iron_dust": "Iron Dust",
   "item.thermal.iron_gear": "Iron Gear",
   "item.thermal.iron_plate": "Iron Plate",
+
+  "item.thermal.quartz_coin": "Quartz Coin",
+  "item.thermal.quartz_dust": "Quartz Dust",
+  "item.thermal.quartz_gear": "Quartz Gear",
+  "item.thermal.quartz_nugget": "Quartz Nugget",
+  "item.thermal.quartz_plate": "Quartz Plate",
 
   "_comment": "========================================================================================================",
   "_comment": "Thermal Atomics",

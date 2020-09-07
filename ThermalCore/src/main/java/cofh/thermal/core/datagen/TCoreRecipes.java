@@ -457,6 +457,46 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine(" G ")
                 .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rf_coil_augment"))
+                .key('G', Tags.Items.INGOTS_GOLD)
+                .key('S', CoFHTags.Items.INGOTS_SILVER)
+                .key('X', rfCoil)
+                .patternLine(" G ")
+                .patternLine("SXS")
+                .patternLine(" G ")
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rf_coil_storage_augment"))
+                .key('G', Tags.Items.INGOTS_GOLD)
+                .key('S', CoFHTags.Items.INGOTS_SILVER)
+                .key('X', rfCoil)
+                .patternLine(" S ")
+                .patternLine("GXG")
+                .patternLine(" G ")
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rf_coil_xfer_augment"))
+                .key('G', Tags.Items.INGOTS_GOLD)
+                .key('S', CoFHTags.Items.INGOTS_SILVER)
+                .key('X', rfCoil)
+                .patternLine(" S ")
+                .patternLine("SXS")
+                .patternLine(" G ")
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("fluid_tank_augment"))
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('R', ITEMS.get("cured_rubber"))
+                .key('X', CoFHTags.Items.HARDENED_GLASS)
+                .patternLine("RIR")
+                .patternLine("IXI")
+                .patternLine("RIR")
+                .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
+                .build(consumer);
     }
 
     private void generateBasicRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -953,6 +993,30 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine(" # ")
                 .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
                 .build(consumer);
+
+        gear = reg.get("lapis_gear");
+        ingot = Items.LAPIS_LAZULI;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Items.IRON_NUGGET)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
+
+        gear = reg.get("quartz_gear");
+        ingot = Items.QUARTZ;
+
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', ingot)
+                .key('i', Items.IRON_NUGGET)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                .build(consumer);
     }
 
     private void generateChargeRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1007,13 +1071,25 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.GEMS_DIAMOND)
                 .addIngredient(earthCharge)
                 .addCriterion("has_diamond", hasItem(Tags.Items.GEMS_DIAMOND))
-                .build(consumer, ID_THERMAL + ":earth_charge_diamond_dust_from_emerald");
+                .build(consumer, ID_THERMAL + ":earth_charge_diamond_dust_from_diamond");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("emerald_dust"))
                 .addIngredient(Tags.Items.GEMS_EMERALD)
                 .addIngredient(earthCharge)
                 .addCriterion("has_emerald", hasItem(Tags.Items.GEMS_EMERALD))
                 .build(consumer, ID_THERMAL + ":earth_charge_emerald_dust_from_emerald");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("lapis_dust"))
+                .addIngredient(Tags.Items.GEMS_LAPIS)
+                .addIngredient(earthCharge)
+                .addCriterion("has_lapis", hasItem(Tags.Items.GEMS_LAPIS))
+                .build(consumer, ID_THERMAL + ":earth_charge_lapis_dust_from_lapis");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("quartz_dust"))
+                .addIngredient(Tags.Items.GEMS_QUARTZ)
+                .addIngredient(earthCharge)
+                .addCriterion("has_quartz", hasItem(Tags.Items.GEMS_QUARTZ))
+                .build(consumer, ID_THERMAL + ":earth_charge_quartz_dust_from_quartz");
         // endregion
 
         // region ICE CHARGE CONVERSIONS

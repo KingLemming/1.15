@@ -71,7 +71,7 @@ public class TCulItems {
 
         ItemGroup group = THERMAL_TOOLS;
 
-        ITEMS.register("watering_can", () -> new WateringCanItem(new Item.Properties().maxStackSize(1).group(group), 4000));
+        ITEMS.register("watering_can", () -> new WateringCanItem(new Item.Properties().maxStackSize(1).group(group), 8000));
     }
 
 }

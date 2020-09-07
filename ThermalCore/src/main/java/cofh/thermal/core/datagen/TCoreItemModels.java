@@ -46,8 +46,10 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         metalSet(reg, "iron", true);
         metalSet(reg, "gold", true);
 
+        gemSet(reg, "lapis", true);
         gemSet(reg, "diamond", true);
         gemSet(reg, "emerald", true);
+        gemSet(reg, "quartz", true);
     }
 
     private void registerResources(DeferredRegisterCoFH<Item> reg) {
