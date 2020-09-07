@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:phytogro_2"
+    ]
+  },
+  "criteria": {
+    "rich_slag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:rich_slag"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:phytogro_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rich_slag",
+      "has_the_recipe"
+    ]
+  ]
+}

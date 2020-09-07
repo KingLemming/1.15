@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:electrum_dust_2"
+    ]
+  },
+  "criteria": {
+    "has_gold_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dusts/gold"
+          }
+        ]
+      }
+    },
+    "has_silver_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dusts/silver"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:electrum_dust_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_dust",
+      "has_silver_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:hazmat_boots"
+    ]
+  },
+  "criteria": {
+    "has_fabric": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:hazmat_fabric"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:hazmat_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fabric",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:cyan_dye_from_apatite"
+    ]
+  },
+  "criteria": {
+    "has_apatite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:apatite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:cyan_dye_from_apatite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_apatite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lightning_charge_zombie_piglin_from_pig"
+    ]
+  },
+  "criteria": {
+    "has_pig_spawn_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:pig_spawn_egg"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lightning_charge_zombie_piglin_from_pig"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pig_spawn_egg",
+      "has_the_recipe"
+    ]
+  ]
+}

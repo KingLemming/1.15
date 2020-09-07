@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:ice_tnt"
+    ]
+  },
+  "criteria": {
+    "has_blizz_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:blizz_powder"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:ice_tnt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blizz_powder",
+      "has_the_recipe"
+    ]
+  ]
+}

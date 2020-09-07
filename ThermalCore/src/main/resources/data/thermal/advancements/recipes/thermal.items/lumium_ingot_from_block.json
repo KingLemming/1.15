@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:lumium_ingot_from_block"
+    ]
+  },
+  "criteria": {
+    "has_at_least_9_lumium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:lumium_ingot",
+            "count": {
+              "min": 9
+            }
+          }
+        ]
+      }
+    },
+    "has_lumium_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:lumium_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:lumium_ingot_from_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_at_least_9_lumium_ingot",
+      "has_lumium_block",
+      "has_the_recipe"
+    ]
+  ]
+}
