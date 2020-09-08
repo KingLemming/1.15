@@ -51,6 +51,7 @@ public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
         DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
     }
 
+    @Override
     public ActionResultType onItemUse(ItemUseContext context) {
 
         World world = context.getWorld();
@@ -95,6 +96,7 @@ public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
      * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
      * {@link #onItemUse}.
      */
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
         ItemStack itemstack = playerIn.getHeldItem(handIn);
@@ -153,6 +155,7 @@ public class SpawnEggItemCoFH extends ItemCoFH implements IColorableItem {
         /**
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
+        @Override
         public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
 
             Direction direction = source.getBlockState().get(DispenserBlock.FACING);

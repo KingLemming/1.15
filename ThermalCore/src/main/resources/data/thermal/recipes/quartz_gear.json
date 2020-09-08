@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:quartz"
+      "tag": "forge:gems/quartz"
     },
     "i": {
       "item": "minecraft:iron_nugget"

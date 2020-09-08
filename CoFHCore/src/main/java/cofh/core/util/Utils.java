@@ -773,8 +773,6 @@ public class Utils {
                                 throw e;
                             }
                         }
-                        // growable.grow((ServerWorld) worldIn, worldIn.rand, pos, state);
-                        // ++grow;
                     }
                 }
             }
@@ -814,14 +812,14 @@ public class Utils {
 
     public static boolean destroyBlock(World world, BlockPos pos, boolean dropBlock, @Nullable Entity entityIn) {
 
-        BlockState blockstate = world.getBlockState(pos);
-        if (blockstate.isAir(world, pos)) {
+        BlockState state = world.getBlockState(pos);
+        if (state.isAir(world, pos) || state.getBlockHardness(world, pos) < 0 || (entityIn instanceof PlayerEntity && state.getPlayerRelativeBlockHardness((PlayerEntity) entityIn, world, pos) < 0)) {
             return false;
         } else {
             IFluidState ifluidstate = world.getFluidState(pos);
             if (dropBlock) {
-                TileEntity tileentity = blockstate.hasTileEntity() ? world.getTileEntity(pos) : null;
-                Block.spawnDrops(blockstate, world, pos, tileentity, entityIn, ItemStack.EMPTY);
+                TileEntity tileentity = state.hasTileEntity() ? world.getTileEntity(pos) : null;
+                Block.spawnDrops(state, world, pos, tileentity, entityIn, ItemStack.EMPTY);
             }
             return world.setBlockState(pos, ifluidstate.getBlockState(), 3);
         }

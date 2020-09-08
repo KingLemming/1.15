@@ -38,12 +38,8 @@ public class HazmatArmorItem extends ArmorItemCoFH {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 
         if (this.slot == EquipmentSlotType.HEAD) {
-
-            if (player.getAir() < player.getMaxAir()) {
-                if (world.rand.nextDouble() < 0.60) {
-                    player.setAir(player.getAir() + 1);
-                }
-                // Random chance of extra air?
+            if (player.getAir() < player.getMaxAir() && world.rand.nextInt(3) == 0) {
+                player.setAir(player.getAir() + 1);
             }
             // TODO: Revisit
             //            if (!player.areEyesInFluid(FluidTags.WATER)) {

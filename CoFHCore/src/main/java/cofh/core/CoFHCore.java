@@ -5,6 +5,7 @@ import cofh.core.capability.CapabilityAreaEffect;
 import cofh.core.capability.CapabilityEnchantableItem;
 import cofh.core.capability.CapabilityShieldItem;
 import cofh.core.command.CoFHCommand;
+import cofh.core.event.AttributeEvents;
 import cofh.core.init.*;
 import cofh.core.key.CoreKeys;
 import cofh.core.network.PacketHandler;
@@ -104,6 +105,8 @@ public class CoFHCore {
         CapabilityArchery.register();
         CapabilityEnchantableItem.register();
         CapabilityShieldItem.register();
+
+        AttributeEvents.setup();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

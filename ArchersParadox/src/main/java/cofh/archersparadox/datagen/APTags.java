@@ -6,7 +6,7 @@ import net.minecraft.tags.ItemTags;
 
 import static cofh.archersparadox.init.APReferences.*;
 
-public class APTagProvider {
+public class APTags {
 
     public static class Item extends ItemTagsProvider {
 

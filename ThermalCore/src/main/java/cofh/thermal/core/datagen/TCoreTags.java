@@ -28,6 +28,30 @@ public class TCoreTags {
         @Override
         protected void registerTags() {
 
+            getBuilder(CoFHTags.Blocks.HARDENED_GLASS).add(
+                    BLOCKS.get(ID_OBSIDIAN_GLASS),
+                    BLOCKS.get(ID_SIGNALUM_GLASS),
+                    BLOCKS.get(ID_LUMIUM_GLASS),
+                    BLOCKS.get(ID_ENDERIUM_GLASS));
+
+            getBuilder(CoFHTags.Blocks.ROCKWOOL).add(
+                    BLOCKS.get(ID_WHITE_ROCKWOOL),
+                    BLOCKS.get(ID_ORANGE_ROCKWOOL),
+                    BLOCKS.get(ID_MAGENTA_ROCKWOOL),
+                    BLOCKS.get(ID_LIGHT_BLUE_ROCKWOOL),
+                    BLOCKS.get(ID_YELLOW_ROCKWOOL),
+                    BLOCKS.get(ID_LIME_ROCKWOOL),
+                    BLOCKS.get(ID_PINK_ROCKWOOL),
+                    BLOCKS.get(ID_GRAY_ROCKWOOL),
+                    BLOCKS.get(ID_LIGHT_GRAY_ROCKWOOL),
+                    BLOCKS.get(ID_CYAN_ROCKWOOL),
+                    BLOCKS.get(ID_PURPLE_ROCKWOOL),
+                    BLOCKS.get(ID_BLUE_ROCKWOOL),
+                    BLOCKS.get(ID_BROWN_ROCKWOOL),
+                    BLOCKS.get(ID_GREEN_ROCKWOOL),
+                    BLOCKS.get(ID_RED_ROCKWOOL),
+                    BLOCKS.get(ID_BLACK_ROCKWOOL));
+
             getBuilder(CoFHTags.Blocks.ORES_APATITE).add(BLOCKS.get(ID_APATITE_ORE));
             getBuilder(CoFHTags.Blocks.ORES_CINNABAR).add(BLOCKS.get(ID_CINNABAR_ORE));
             getBuilder(CoFHTags.Blocks.ORES_COPPER).add(BLOCKS.get(ID_COPPER_ORE));
@@ -61,30 +85,6 @@ public class TCoreTags {
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SUGAR_CANE).add(BLOCKS.get(ID_SUGAR_CANE_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_SULFUR).add(BLOCKS.get(ID_SULFUR_BLOCK));
             getBuilder(CoFHTags.Blocks.STORAGE_BLOCKS_TIN).add(BLOCKS.get(ID_TIN_BLOCK));
-
-            getBuilder(CoFHTags.Blocks.HARDENED_GLASS).add(
-                    BLOCKS.get(ID_OBSIDIAN_GLASS),
-                    BLOCKS.get(ID_SIGNALUM_GLASS),
-                    BLOCKS.get(ID_LUMIUM_GLASS),
-                    BLOCKS.get(ID_ENDERIUM_GLASS));
-
-            getBuilder(CoFHTags.Blocks.ROCKWOOL).add(
-                    BLOCKS.get(ID_WHITE_ROCKWOOL),
-                    BLOCKS.get(ID_ORANGE_ROCKWOOL),
-                    BLOCKS.get(ID_MAGENTA_ROCKWOOL),
-                    BLOCKS.get(ID_LIGHT_BLUE_ROCKWOOL),
-                    BLOCKS.get(ID_YELLOW_ROCKWOOL),
-                    BLOCKS.get(ID_LIME_ROCKWOOL),
-                    BLOCKS.get(ID_PINK_ROCKWOOL),
-                    BLOCKS.get(ID_GRAY_ROCKWOOL),
-                    BLOCKS.get(ID_LIGHT_GRAY_ROCKWOOL),
-                    BLOCKS.get(ID_CYAN_ROCKWOOL),
-                    BLOCKS.get(ID_PURPLE_ROCKWOOL),
-                    BLOCKS.get(ID_BLUE_ROCKWOOL),
-                    BLOCKS.get(ID_BROWN_ROCKWOOL),
-                    BLOCKS.get(ID_GREEN_ROCKWOOL),
-                    BLOCKS.get(ID_RED_ROCKWOOL),
-                    BLOCKS.get(ID_BLACK_ROCKWOOL));
         }
 
     }
@@ -256,6 +256,11 @@ public class TCoreTags {
             getBuilder(CoFHTags.Items.PLATES_TIN).add(ITEMS.get("tin_plate"));
 
             getBuilder(CoFHTags.Items.TOOLS_WRENCH).add(ITEMS.get("wrench"));
+
+            getBuilder(CoFHTags.Items.CINNABAR).add(ITEMS.get("cinnabar"));
+            getBuilder(CoFHTags.Items.NITER).add(ITEMS.get("niter"));
+            getBuilder(CoFHTags.Items.SAWDUST).add(ITEMS.get("sawdust"));
+            getBuilder(CoFHTags.Items.SULFUR).add(ITEMS.get("sulfur"));
         }
 
     }

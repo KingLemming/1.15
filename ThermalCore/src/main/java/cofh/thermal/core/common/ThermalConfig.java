@@ -8,6 +8,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.world.ThermalWorld.*;
 
 public class ThermalConfig {
 
@@ -92,12 +93,50 @@ public class ThermalConfig {
 
         SERVER_CONFIG.pop();
 
+        genWorldConfig();
+
         serverSpec = SERVER_CONFIG.build();
     }
 
     private static void genClientConfig() {
 
         clientSpec = CLIENT_CONFIG.build();
+    }
+
+    private static void genWorldConfig() {
+
+        SERVER_CONFIG.push("World Generation");
+
+        flagGenApatite = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Apatite from spawning.")
+                .define("Apatite", true);
+        flagGenCinnabar = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Cinnabar from spawning.")
+                .define("Cinnabar", true);
+        flagGenNiter = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Niter from spawning.")
+                .define("Niter", true);
+        flagGenSulfur = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Sulfur from spawning.")
+                .define("Sulfur", true);
+
+        flagGenCopper = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Copper from spawning.")
+                .define("Copper", true);
+        flagGenTin = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Tin from spawning.")
+                .define("Tin", true);
+        flagGenLead = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Lead from spawning.")
+                .define("Lead", true);
+        flagGenSilver = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Silver from spawning.")
+                .define("Silver", true);
+        flagGenNickel = SERVER_CONFIG
+                .comment("Set to FALSE to prevent Thermal Series Nickel from spawning.")
+                .define("Nickel", true);
+
+        SERVER_CONFIG.pop();
     }
 
     private static void genMachineConfig() {
@@ -112,6 +151,22 @@ public class ThermalConfig {
         setFeature(FLAG_MOB_BASALZ, flagMobBasalz.get());
         setFeature(FLAG_MOB_BLITZ, flagMobBlitz.get());
         setFeature(FLAG_MOB_BLIZZ, flagMobBlizz.get());
+
+        refreshWorldConfig();
+    }
+
+    private static void refreshWorldConfig() {
+
+        setFeature(FLAG_GEN_APATITE, flagGenApatite.get());
+        setFeature(FLAG_GEN_CINNABAR, flagGenCinnabar.get());
+        setFeature(FLAG_GEN_NITER, flagGenNiter.get());
+        setFeature(FLAG_GEN_SULFUR, flagGenSulfur.get());
+
+        setFeature(FLAG_GEN_COPPER, flagGenCopper.get());
+        setFeature(FLAG_GEN_TIN, flagGenTin.get());
+        setFeature(FLAG_GEN_LEAD, flagGenLead.get());
+        setFeature(FLAG_GEN_SILVER, flagGenSilver.get());
+        setFeature(FLAG_GEN_NICKEL, flagGenNickel.get());
     }
 
     private static void refreshClientConfig() {
@@ -148,6 +203,17 @@ public class ThermalConfig {
     private static BooleanValue flagMobBasalz;
     private static BooleanValue flagMobBlitz;
     private static BooleanValue flagMobBlizz;
+
+    private static BooleanValue flagGenApatite;
+    private static BooleanValue flagGenCinnabar;
+    private static BooleanValue flagGenNiter;
+    private static BooleanValue flagGenSulfur;
+
+    private static BooleanValue flagGenCopper;
+    private static BooleanValue flagGenTin;
+    private static BooleanValue flagGenLead;
+    private static BooleanValue flagGenSilver;
+    private static BooleanValue flagGenNickel;
 
     private static BooleanValue freezePermanentLava;
     private static BooleanValue freezePermanentWater;

@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "thermal:copper_ingot"
+      "tag": "forge:ingots/copper"
     },
     "i": {
       "tag": "forge:nuggets/iron"

@@ -10,6 +10,8 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -37,6 +39,9 @@ public class TCulRecipes extends RecipeProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
+        Item redstoneServo = reg.get("redstone_servo");
+        Item rfCoil = reg.get("rf_coil");
+
         ShapedRecipeBuilder.shapedRecipe(reg.get("watering_can"))
                 .key('B', Items.BUCKET)
                 .key('C', CoFHTags.Items.INGOTS_COPPER)
@@ -54,6 +59,18 @@ public class TCulRecipes extends RecipeProviderCoFH {
                 .patternLine("PXP")
                 .patternLine("CPC")
                 .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_DEVICE_SOIL_INFUSER))
+                .key('C', reg.get("phytogro"))
+                .key('G', Tags.Items.GLASS)
+                .key('P', rfCoil)
+                .key('X', CoFHTags.Items.GEARS_LUMIUM)
+                .key('W', ItemTags.PLANKS)
+                .patternLine("WXW")
+                .patternLine("GCG")
+                .patternLine("WPW")
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
                 .build(consumer);
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get(seeds(ID_FROST_MELON)))

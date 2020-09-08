@@ -32,6 +32,30 @@
   "overrides": [
     {
       "predicate": {
+        "arrows": 0.0001
+      },
+      "model": "thermal:item/potion_quiver_1"
+    },
+    {
+      "predicate": {
+        "arrows": 0.25
+      },
+      "model": "thermal:item/potion_quiver_2"
+    },
+    {
+      "predicate": {
+        "arrows": 0.50
+      },
+      "model": "thermal:item/potion_quiver_3"
+    },
+    {
+      "predicate": {
+        "arrows": 0.75
+      },
+      "model": "thermal:item/potion_quiver_4"
+    },
+    {
+      "predicate": {
         "filled": 1
       },
       "model": "thermal:item/potion_quiver_filled_0"

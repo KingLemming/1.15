@@ -800,7 +800,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("WXW")
                 .patternLine("GCG")
                 .patternLine("WPW")
-                .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(reg.get(ID_DEVICE_TREE_EXTRACTOR))
@@ -812,7 +812,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("WXW")
                 .patternLine("GCG")
                 .patternLine("WPW")
-                .addCriterion("has_" + redstoneServo.getRegistryName().getPath(), hasItem(redstoneServo))
+                .addCriterion("has_redstone_servo", hasItem(redstoneServo))
                 .build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(reg.get(ID_TINKER_BENCH))
@@ -824,7 +824,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("III")
                 .patternLine("GCG")
                 .patternLine("WPW")
-                .addCriterion("has_" + rfCoil.getRegistryName().getPath(), hasItem(rfCoil))
+                .addCriterion("has_rf_coil", hasItem(rfCoil))
                 .build(consumer);
     }
 

@@ -217,6 +217,11 @@ public class CoFHTags {
 
         public static final Tag<Item> TOOLS_WRENCH = forgeTag("tools/wrench");
 
+        public static final Tag<Item> CINNABAR = forgeTag("cinnabar");
+        public static final Tag<Item> NITER = forgeTag("niter");
+        public static final Tag<Item> SAWDUST = forgeTag("sawdust");
+        public static final Tag<Item> SULFUR = forgeTag("sulfur");
+
         public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
         public static final Tag<Item> MACHINE_CASTS = thermalTag("crafting/casts");
 

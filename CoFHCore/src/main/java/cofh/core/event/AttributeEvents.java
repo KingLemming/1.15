@@ -4,10 +4,9 @@ import cofh.core.init.CoreAttributes;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -23,6 +22,8 @@ import java.util.Set;
 import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 import static cofh.core.util.references.CoreReferences.CHILLED;
 import static cofh.core.util.references.CoreReferences.SHOCKED;
+import static net.minecraft.potion.Effects.POISON;
+import static net.minecraft.potion.Effects.WITHER;
 
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class AttributeEvents {
@@ -49,21 +50,23 @@ public class AttributeEvents {
         }
         LivingEntity entity = event.getEntityLiving();
         DamageSource source = event.getSource();
-        Entity attacker = source.getTrueSource();
+        float amount = event.getAmount();
 
         double hazRes = entity.getAttribute(CoreAttributes.HAZARD_RESISTANCE).getValue();
         if (hazRes > 0.0D) {
-            if (source.isFireDamage() || source == DamageSource.LIGHTNING_BOLT) {
+            if (source.isFireDamage() || HAZARD_DAMAGE_TYPES.contains(source.getDamageType())) {
                 if (entity.getRNG().nextDouble() < hazRes) {
                     entity.extinguish();
+                    attemptDamageArmor(entity, amount);
                     event.setCanceled(true);
                 }
             }
         }
         double stingRes = entity.getAttribute(CoreAttributes.STING_RESISTANCE).getValue();
         if (stingRes > 0.0D) {
-            if (attacker instanceof BeeEntity || source == DamageSource.CACTUS || source == DamageSource.SWEET_BERRY_BUSH) {
+            if (STING_DAMAGE_TYPES.contains(source.getDamageType())) {
                 if (entity.getRNG().nextDouble() < stingRes) {
+                    attemptDamageArmor(entity, amount);
                     event.setCanceled(true);
                 }
             }
@@ -97,8 +100,8 @@ public class AttributeEvents {
         if (hazRes > 0.0D) {
             if (HAZARD_EFFECTS.contains(effect.getPotion())) {
                 if (entity.getRNG().nextDouble() < hazRes) {
+                    attemptDamageArmor(entity, (1 + effect.getAmplifier()) * effect.getDuration() / 40F);
                     event.setResult(Event.Result.DENY);
-                    event.setCanceled(true);
                 }
             }
         }
@@ -123,11 +126,32 @@ public class AttributeEvents {
     //        }
     //    }
 
+    public static void attemptDamageArmor(Entity entity, float amount) {
+
+        if (entity instanceof PlayerEntity) {
+            if (100 * entity.world.rand.nextFloat() < amount) {
+                ((PlayerEntity) entity).inventory.damageArmor(Math.min(20.0F, amount));
+            }
+        }
+    }
+
+    private static final Set<String> STING_DAMAGE_TYPES = new ObjectOpenHashSet<>();
+
+    private static final Set<String> HAZARD_DAMAGE_TYPES = new ObjectOpenHashSet<>();
     private static final Set<Effect> HAZARD_EFFECTS = new ObjectOpenHashSet<>();
 
-    static {
-        HAZARD_EFFECTS.add(Effects.POISON);
-        HAZARD_EFFECTS.add(Effects.WITHER);
+    public static void setup() {
+
+        STING_DAMAGE_TYPES.add("sting");
+        STING_DAMAGE_TYPES.add("cactus");
+        STING_DAMAGE_TYPES.add("sweetBerryBush");
+
+        HAZARD_DAMAGE_TYPES.add("lightningBolt");
+        HAZARD_DAMAGE_TYPES.add("ice");
+        HAZARD_DAMAGE_TYPES.add("lightning");
+
+        HAZARD_EFFECTS.add(POISON);
+        HAZARD_EFFECTS.add(WITHER);
 
         HAZARD_EFFECTS.add(CHILLED);
         HAZARD_EFFECTS.add(SHOCKED);

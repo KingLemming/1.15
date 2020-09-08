@@ -63,8 +63,9 @@ public class DetonatorItem extends ItemCoFH implements IMultiModeItem {
         tooltip.add(getTextComponent("info.thermal.detonator.use.sneak").applyTextStyle(TextFormatting.DARK_GRAY));
 
         tooltip.add(getTextComponent("info.thermal.detonator.mode." + getMode(stack)).applyTextStyle(TextFormatting.ITALIC));
-        tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
-
+        if (getPrimedCount(stack) > 0) {
+            tooltip.add(new TranslationTextComponent("info.cofh.mode_change", InputMappings.getKeynameFromKeycode(MULTIMODE_INCREMENT.getKey().getKeyCode())).applyTextStyle(TextFormatting.YELLOW));
+        }
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -173,6 +174,12 @@ public class DetonatorItem extends ItemCoFH implements IMultiModeItem {
     }
 
     // region IMultiModeItem
+    @Override
+    public int getNumModes(ItemStack stack) {
+
+        return getPrimedCount(stack) > 0 ? 2 : 1;
+    }
+
     @Override
     public void onModeChange(PlayerEntity player, ItemStack stack) {
 

@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:emerald"
+      "tag": "forge:gems/emerald"
     },
     "i": {
       "item": "minecraft:iron_nugget"

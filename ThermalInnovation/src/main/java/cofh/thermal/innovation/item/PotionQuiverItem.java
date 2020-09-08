@@ -174,8 +174,12 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
                 }
             }
         } else {
-            ItemStack arrows = findArrows(player);
-            arrows.shrink(putArrows(stack, arrows.getCount(), false));
+            if (player.abilities.isCreativeMode) {
+                putArrows(stack, getMaxArrows(stack), false);
+            } else {
+                ItemStack arrows = findArrows(player);
+                arrows.shrink(putArrows(stack, arrows.getCount(), false));
+            }
         }
         stack.setAnimationsToGo(5);
         return true;

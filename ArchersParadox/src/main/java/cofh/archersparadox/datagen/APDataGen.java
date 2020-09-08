@@ -24,7 +24,7 @@ public class APDataGen {
     private static void registerServerProviders(DataGenerator generator) {
 
         generator.addProvider(new APRecipeProvider(generator));
-        generator.addProvider(new APTagProvider.Item(generator));
+        generator.addProvider(new APTags.Item(generator));
     }
 
     private static void registerClientProviders(DataGenerator generator, GatherDataEvent event) {

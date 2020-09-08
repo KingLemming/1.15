@@ -297,6 +297,7 @@
 
   "item.thermal.machine_catalyst_augment": "Catalytic Reclamation Chamber",
   "item.thermal.machine_cycle_augment": "Cyclical Processing",
+  "item.thermal.machine_cycle_augment.desc": "Products may be transferred to input on process completion.",
   "item.thermal.machine_output_augment": "Auxiliary Process Sieve",
   "item.thermal.machine_speed_augment": "Flux Linkage Amplifier",
 

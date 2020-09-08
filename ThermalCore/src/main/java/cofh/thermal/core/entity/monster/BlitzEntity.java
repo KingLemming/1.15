@@ -4,6 +4,7 @@ import cofh.thermal.core.entity.projectile.BlitzProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,11 +20,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.EnumSet;
+import java.util.Random;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.common.ThermalFeatures.FLAG_MOB_BLITZ;
+import static cofh.thermal.core.common.ThermalFeatures.getFeature;
 import static cofh.thermal.core.init.TCoreSounds.*;
 
 public class BlitzEntity extends MonsterEntity {
@@ -31,6 +36,11 @@ public class BlitzEntity extends MonsterEntity {
     private float heightOffset = 0.5F;
     private int heightOffsetUpdateTime;
     private static final DataParameter<Byte> ANGRY = EntityDataManager.createKey(BlitzEntity.class, DataSerializers.BYTE);
+
+    public static boolean canSpawn(EntityType<BlitzEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+
+        return getFeature(FLAG_MOB_BLITZ).getAsBoolean() && MonsterEntity.canMonsterSpawn(entityType, world, reason, pos, rand);
+    }
 
     public BlitzEntity(EntityType<? extends BlitzEntity> type, World world) {
 
@@ -94,7 +104,7 @@ public class BlitzEntity extends MonsterEntity {
         }
         if (this.world.isRemote) {
             if (this.rand.nextInt(128) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLITZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLITZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, true);
             }
             if (this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.CLOUD, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);

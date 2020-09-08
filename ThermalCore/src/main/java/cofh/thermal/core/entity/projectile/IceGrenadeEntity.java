@@ -10,6 +10,7 @@ import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -17,6 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 import static cofh.core.util.references.CoreReferences.CHILLED;
 import static cofh.thermal.core.common.ThermalConfig.permanentLava;
@@ -87,6 +90,16 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
         cloud.setRadiusPerTick((radius - cloud.getRadius()) / (float) cloud.getDuration());
 
         world.addEntity(cloud);
+    }
+
+    public static void damageNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius, @Nullable LivingEntity source) {
+
+        AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
+        worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)
+                .forEach(livingEntity -> {
+                    livingEntity.attackEntityFrom(DamageSource.causeExplosionDamage(source), 2.0F);
+                    livingEntity.addPotionEffect(new EffectInstance(CHILLED, effectDuration, effectAmplifier, false, false));
+                });
     }
 
 }

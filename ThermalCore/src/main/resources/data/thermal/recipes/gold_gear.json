@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "i": {
       "tag": "forge:nuggets/iron"

@@ -77,10 +77,14 @@ public abstract class RecipeJsonUtils {
 
         if (element.isJsonArray()) {
             for (JsonElement arrayElement : element.getAsJsonArray()) {
-                if (arrayElement.getAsJsonObject().has(FLUID)) {
-                    fluids.add(parseFluidStack(arrayElement));
-                } else {
-                    ingredients.add(parseIngredient(arrayElement.getAsJsonObject()));
+                if (arrayElement.isJsonArray()) {
+                    ingredients.add(parseIngredient(arrayElement.getAsJsonArray()));
+                } else if (arrayElement.isJsonObject()) {
+                    if (arrayElement.getAsJsonObject().has(FLUID)) {
+                        fluids.add(parseFluidStack(arrayElement));
+                    } else {
+                        ingredients.add(parseIngredient(arrayElement.getAsJsonObject()));
+                    }
                 }
             }
         } else if (element.getAsJsonObject().has(FLUID)) {

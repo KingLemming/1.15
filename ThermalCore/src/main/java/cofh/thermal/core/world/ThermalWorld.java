@@ -27,4 +27,19 @@ public class ThermalWorld {
         return category != Biome.Category.NONE && category != Biome.Category.THEEND && category != Biome.Category.NETHER;
     }
 
+    // TODO Temporary Generation Flags
+    public static String FLAG_GEN_APATITE = "gen_apatite";
+    public static String FLAG_GEN_CINNABAR = "gen_cinnabar";
+    public static String FLAG_GEN_NITER = "gen_niter";
+    public static String FLAG_GEN_SULFUR = "gen_sulfur";
+
+    public static String FLAG_GEN_COPPER = "gen_copper";
+    public static String FLAG_GEN_TIN = "gen_tin";
+    public static String FLAG_GEN_LEAD = "gen_lead";
+    public static String FLAG_GEN_SILVER = "gen_silver";
+    public static String FLAG_GEN_NICKEL = "gen_nickel";
+
+    public static String FLAG_GEN_RUBY = "gen_ruby";
+    public static String FLAG_GEN_SAPPHIRE = "gen_sapphire";
+
 }
