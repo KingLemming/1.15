@@ -258,7 +258,7 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
 
     protected int getHarvestLevel(ItemStack stack) {
 
-        return getEnergyStored(stack) < getEnergyPerUse(stack) ? -1 : 2;
+        return getEnergyStored(stack) < getEnergyPerUse(stack) ? -1 : Math.max(2, (int) getBaseMod(stack));
     }
 
     protected int getRadius(ItemStack stack) {

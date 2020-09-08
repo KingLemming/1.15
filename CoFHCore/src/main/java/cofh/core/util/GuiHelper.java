@@ -231,6 +231,10 @@ public class GuiHelper {
     // endregion
 
     // region ELEMENTS
+    public static final String BUTTON_18 = PATH_ELEMENTS + "button_18.png";
+    public static final String BUTTON_18_HIGHLIGHT = PATH_ELEMENTS + "button_18_highlight.png";
+    public static final String BUTTON_18_INACTIVE = PATH_ELEMENTS + "button_18_inactive.png";
+
     public static final String INFO_INPUT = PATH_ELEMENTS + "info_input.png";
     public static final String INFO_OUTPUT = PATH_ELEMENTS + "info_output.png";
 
@@ -255,8 +259,8 @@ public class GuiHelper {
     public static final String SCALE_SNOWFLAKE = PATH_ELEMENTS + "scale_snowflake.png";
     // endregion
 
-    // region TABS
-    public static String generateTabInfo(String key) {
+    // region PANELS
+    public static String generatePanelInfo(String key) {
 
         int i = 0;
         String line = key + "." + i;
@@ -270,6 +274,11 @@ public class GuiHelper {
             line = key + "." + i;
         }
         return builder.toString();
+    }
+
+    public static String appendLine(String existing, String line) {
+
+        return existing + "\n\n" + localize(line);
     }
     // endregion
 }

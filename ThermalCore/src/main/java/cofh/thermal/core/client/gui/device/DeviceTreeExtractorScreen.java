@@ -20,7 +20,7 @@ public class DeviceTreeExtractorScreen extends ThermalScreenBase<DeviceTreeExtra
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_tree_extractor"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.device_tree_extractor");
+        info = generatePanelInfo("info.thermal.device_tree_extractor");
     }
 
     @Override

@@ -20,7 +20,7 @@ public class MachineChillerScreen extends MachineScreenReconfigurable<MachineChi
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_chiller"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_chiller");
+        info = generatePanelInfo("info.thermal.machine_chiller");
         name = "chiller";
     }
 

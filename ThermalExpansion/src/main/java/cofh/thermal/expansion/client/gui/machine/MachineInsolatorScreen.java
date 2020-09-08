@@ -20,7 +20,7 @@ public class MachineInsolatorScreen extends MachineScreenReconfigurable<MachineI
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_insolator"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_insolator");
+        info = generatePanelInfo("info.thermal.machine_insolator");
         name = "insolator";
     }
 

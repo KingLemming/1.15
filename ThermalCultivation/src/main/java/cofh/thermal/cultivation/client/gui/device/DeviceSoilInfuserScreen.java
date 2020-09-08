@@ -27,7 +27,7 @@ public class DeviceSoilInfuserScreen extends ThermalScreenBase<DeviceSoilInfuser
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_soil_infuser"));
         tile = container.tile;
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.device_soil_infuser");
+        info = generatePanelInfo("info.thermal.device_soil_infuser");
     }
 
     @Override

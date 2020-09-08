@@ -20,7 +20,7 @@ public class MachineBrewerScreen extends MachineScreenReconfigurable<MachineBrew
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_brewer"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_brewer");
+        info = generatePanelInfo("info.thermal.machine_brewer");
         name = "brewer";
     }
 

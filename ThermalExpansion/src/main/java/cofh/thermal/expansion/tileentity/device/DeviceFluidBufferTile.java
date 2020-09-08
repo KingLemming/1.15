@@ -131,15 +131,6 @@ public class DeviceFluidBufferTile extends ReconfigurableTile4Way implements ITi
         return amountOutput;
     }
 
-    @Override
-    public boolean clearTank(int tank) {
-
-        if (tank >= tankInv.getTanks()) {
-            return false;
-        }
-        return tankInv.getTank(tank).clear();
-    }
-
     // region NETWORK
     @Override
     public PacketBuffer getConfigPacket(PacketBuffer buffer) {

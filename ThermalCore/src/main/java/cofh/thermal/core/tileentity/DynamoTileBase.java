@@ -17,8 +17,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.client.model.ModelDataManager;
-import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -99,11 +97,13 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
                     processStart();
                 }
             }
-        } else if (redstoneControl.getState()) {
-            if (timeCheckQuarter() && canProcessStart()) {
+        } else if (timeCheckQuarter()) {
+            if (redstoneControl.getState() && canProcessStart()) {
                 processStart();
                 processTick();
                 isActive = true;
+            } else {
+                energyStorage.modify(-minProcessTick);
             }
         }
         updateActiveState(curActive);

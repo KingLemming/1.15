@@ -20,7 +20,7 @@ public class MachineCrucibleScreen extends MachineScreenReconfigurable<MachineCr
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_crucible"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_crucible");
+        info = generatePanelInfo("info.thermal.machine_crucible");
         name = "crucible";
     }
 

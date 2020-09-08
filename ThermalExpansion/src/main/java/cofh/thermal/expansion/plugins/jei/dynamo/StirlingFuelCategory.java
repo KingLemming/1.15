@@ -58,12 +58,4 @@ public class StirlingFuelCategory extends ThermalFuelCategory<StirlingFuel> {
         guiItemStacks.set(0, inputs.get(0));
     }
 
-    @Override
-    public void draw(StirlingFuel fuel, double mouseX, double mouseY) {
-
-        durationBackground.draw(70, 24);
-
-        duration.draw(70, 24);
-    }
-
 }

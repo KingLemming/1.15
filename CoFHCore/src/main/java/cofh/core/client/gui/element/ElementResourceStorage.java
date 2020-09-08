@@ -16,6 +16,8 @@ import java.util.function.BooleanSupplier;
 import static cofh.core.util.constants.Constants.FALSE;
 import static cofh.core.util.constants.Constants.TRUE;
 import static cofh.core.util.helpers.StringHelper.format;
+import static net.minecraft.client.gui.screen.Screen.hasAltDown;
+import static net.minecraft.client.gui.screen.Screen.hasShiftDown;
 
 public abstract class ElementResourceStorage extends ElementBase {
 
@@ -96,15 +98,15 @@ public abstract class ElementResourceStorage extends ElementBase {
         } else {
             tooltipList.add(new StringTextComponent(format(storage.getStored()) + " / " + format(storage.getCapacity()) + " " + storage.getUnit()));
         }
-        //        if (advancedTooltips.getAsBoolean()) {
-        //            tooltipList.add(new TranslationTextComponent("info.cofh.clear_storage"));
-        //        }
+        if (hasAltDown() || hasShiftDown()) {
+            tooltipList.add(new TranslationTextComponent("info.cofh.clear_storage"));
+        }
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
 
-        if (Screen.hasShiftDown() && Screen.hasAltDown()) {
+        if (hasShiftDown() && Screen.hasAltDown()) {
             return clearStorage.getAsBoolean();
         }
         return false;

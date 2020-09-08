@@ -20,7 +20,7 @@ public class MachineBottlerScreen extends MachineScreenReconfigurable<MachineBot
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_bottler"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_bottler");
+        info = generatePanelInfo("info.thermal.machine_bottler");
         name = "bottler";
     }
 

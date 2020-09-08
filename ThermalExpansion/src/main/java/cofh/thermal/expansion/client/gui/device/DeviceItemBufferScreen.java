@@ -39,7 +39,7 @@ public class DeviceItemBufferScreen extends ThermalScreenBase<DeviceItemBufferCo
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_item_buffer"));
         tile = container.tile;
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.device_item_buffer");
+        info = generatePanelInfo("info.thermal.device_item_buffer");
     }
 
     @Override

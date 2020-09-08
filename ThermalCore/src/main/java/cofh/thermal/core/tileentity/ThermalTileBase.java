@@ -305,28 +305,33 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     @Override
     public boolean clearEnergy(int coil) {
 
-        if (isActive) {
-            return false;
-        }
         return energyStorage.clear();
     }
 
     @Override
     public boolean clearSlot(int slot) {
 
-        if (isActive || slot >= inventory.getSlots()) {
+        if (slot >= inventory.getSlots()) {
             return false;
         }
-        return inventory.getSlot(slot).clear();
+        if (inventory.getSlot(slot).clear()) {
+            onInventoryChange(slot);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean clearTank(int tank) {
 
-        if (isActive || tank >= tankInv.getTanks()) {
+        if (tank >= tankInv.getTanks()) {
             return false;
         }
-        return tankInv.getTank(tank).clear();
+        if (tankInv.getTank(tank).clear()) {
+            onTankChange(tank);
+            return true;
+        }
+        return false;
     }
     // endregion
 

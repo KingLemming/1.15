@@ -20,7 +20,7 @@ public class MachineRefineryScreen extends MachineScreenReconfigurable<MachineRe
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_refinery"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_refinery");
+        info = generatePanelInfo("info.thermal.machine_refinery");
         name = "refinery";
     }
 

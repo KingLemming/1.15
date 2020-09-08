@@ -19,7 +19,7 @@ public class DeviceHiveExtractorScreen extends ThermalScreenBase<DeviceHiveExtra
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.device_hive_extractor"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.device_hive_extractor");
+        info = generatePanelInfo("info.thermal.device_hive_extractor");
     }
 
     @Override

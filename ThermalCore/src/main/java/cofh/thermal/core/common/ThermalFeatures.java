@@ -63,6 +63,7 @@ public class ThermalFeatures {
     public static String FLAG_RESOURCE_LEAD = "lead";
     public static String FLAG_RESOURCE_SILVER = "silver";
     public static String FLAG_RESOURCE_NICKEL = "nickel";
+
     public static String FLAG_RESOURCE_RUBY = "ruby";
     public static String FLAG_RESOURCE_SAPPHIRE = "sapphire";
 

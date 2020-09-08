@@ -20,7 +20,7 @@ public class MachineSmelterScreen extends MachineScreenReconfigurable<MachineSme
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_smelter"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_smelter");
+        info = generatePanelInfo("info.thermal.machine_smelter");
         name = "smelter";
     }
 

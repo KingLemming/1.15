@@ -226,12 +226,12 @@ public class PanelConfiguration extends PanelBase {
         if (input) {
             if (myTransfer.hasTransferIn()) {
                 myTransfer.setControl(!myTransfer.getTransferIn(), myTransfer.getTransferOut());
-                playClickSound(myTransfer.getTransferIn() ? 0.8F : 0.4F);
+                playClickSound(myTransfer.getTransferIn() ? 0.6F : 0.8F);
             }
         } else {
             if (myTransfer.hasTransferOut()) {
                 myTransfer.setControl(myTransfer.getTransferIn(), !myTransfer.getTransferOut());
-                playClickSound(myTransfer.getTransferOut() ? 0.8F : 0.4F);
+                playClickSound(myTransfer.getTransferOut() ? 0.6F : 0.8F);
             }
         }
     }

@@ -20,7 +20,7 @@ public class DynamoCompressionScreen extends DynamoScreenBase<DynamoCompressionC
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.dynamo_compression"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.dynamo_compression");
+        info = appendLine(generatePanelInfo("info.thermal.dynamo_compression"), "info.thermal.dynamo.throttle");
     }
 
     @Override

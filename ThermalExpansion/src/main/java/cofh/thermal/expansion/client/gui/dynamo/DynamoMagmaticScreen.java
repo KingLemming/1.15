@@ -20,7 +20,7 @@ public class DynamoMagmaticScreen extends DynamoScreenBase<DynamoMagmaticContain
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.dynamo_magmatic"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.dynamo_magmatic");
+        info = appendLine(generatePanelInfo("info.thermal.dynamo_magmatic"), "info.thermal.dynamo.throttle");
     }
 
     @Override

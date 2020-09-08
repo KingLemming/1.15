@@ -238,7 +238,7 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
 
     protected float getEffectiveness(ItemStack stack) {
 
-        return 0.25F * getBaseMod(stack) - 0.05F * getMode(stack);
+        return 0.30F * getBaseMod(stack) - 0.05F * getMode(stack);
     }
 
     protected float getBaseMod(ItemStack stack) {

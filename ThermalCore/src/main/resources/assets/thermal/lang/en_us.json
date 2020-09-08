@@ -311,9 +311,10 @@
   "item.thermal.upgrade_augment_1.desc": "Improves base attributes and amplifies augments.",
   "item.thermal.upgrade_augment_2": "Reinforced Integral Components",
   "item.thermal.upgrade_augment_2.desc": "Improves base attributes and amplifies augments.",
-  "item.thermal.upgrade_augment_3": "Precision Integral Components",
+  "item.thermal.upgrade_augment_3": "Resonant Integral Components",
   "item.thermal.upgrade_augment_3.desc": "Improves base attributes and amplifies augments.",
-  "item.thermal.upgrade_augment_4": "Resonant Integral Components",
+
+  "item.thermal.upgrade_augment_4": "Resonant+ Integral Components",
   "item.thermal.upgrade_augment_4.desc": "Improves base attributes and amplifies augments.",
 
   "_comment": "========================================================================================================",
@@ -578,6 +579,8 @@
   "info.thermal.device_item_buffer.1": "Better than a Hopper, really!",
   "info.thermal.device_item_buffer.2": "Hold Shift or Ctrl to fine tune quantities.",
 
+  "info.thermal.dynamo.throttle": "Output rate throttles based on local feedback.",
+
   "info.thermal.dynamo_compression.0": "Generates Redstone Flux using combustible fluids.",
 
   "info.thermal.dynamo_lapidary.0": "Generates Redstone Flux using gems!",
@@ -585,12 +588,14 @@
   "info.thermal.dynamo_lapidary.2": "Gems are really just pretty rocks anyways.",
 
   "info.thermal.dynamo_magmatic.0": "Generates Redstone Flux using extremely hot fluids.",
+  "info.thermal.dynamo_magmatic.1": "Fluids dissipate into nothingness as a result of this process.",
 
   "info.thermal.dynamo_numismatic.0": "Generates Redstone Flux using economic arbitrage.",
   "info.thermal.dynamo_numismatic.1": "Might be a portal to an alternate dimension of pure avarice.",
   "info.thermal.dynamo_numismatic.2": "Don't overthink it, just insert coins.",
 
   "info.thermal.dynamo_stirling.0": "Generates Redstone Flux using solid fuels.",
+  "info.thermal.dynamo_stirling.1": "Most things that work in a Furnace work here too.",
 
   "info.thermal.machine_bottler.0": "Fills containers with fluids.",
   "info.thermal.machine_bottler.1": "This is required to consume certain beverages.",

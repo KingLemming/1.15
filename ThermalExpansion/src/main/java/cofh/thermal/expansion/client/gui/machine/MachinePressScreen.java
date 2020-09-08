@@ -20,7 +20,7 @@ public class MachinePressScreen extends MachineScreenReconfigurable<MachinePress
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_press"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_press");
+        info = generatePanelInfo("info.thermal.machine_press");
         name = "press";
     }
 

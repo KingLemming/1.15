@@ -8,8 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.core.util.GuiHelper.SCALE_FLAME_GREEN;
-import static cofh.core.util.GuiHelper.generateTabInfo;
+import static cofh.core.util.GuiHelper.*;
 import static cofh.core.util.constants.Constants.ID_THERMAL;
 
 public class DynamoNumismaticScreen extends DynamoScreenBase<DynamoNumismaticContainer> {
@@ -21,7 +20,7 @@ public class DynamoNumismaticScreen extends DynamoScreenBase<DynamoNumismaticCon
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.dynamo_numismatic"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.dynamo_numismatic");
+        info = appendLine(generatePanelInfo("info.thermal.dynamo_numismatic"), "info.thermal.dynamo.throttle");
     }
 
     @Override

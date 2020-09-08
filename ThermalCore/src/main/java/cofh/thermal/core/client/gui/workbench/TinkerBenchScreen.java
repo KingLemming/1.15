@@ -24,7 +24,7 @@ public class TinkerBenchScreen extends ThermalScreenBase<TinkerBenchContainer> {
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.tinker_bench"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.tinker_bench");
+        info = generatePanelInfo("info.thermal.tinker_bench");
         name = "tinker_bench";
     }
 

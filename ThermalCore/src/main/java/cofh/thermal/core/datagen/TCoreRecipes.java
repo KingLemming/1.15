@@ -497,6 +497,39 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("RIR")
                 .addCriterion("has_hardened_glass", hasItem(CoFHTags.Items.HARDENED_GLASS))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("upgrade_augment_1"))
+                .key('G', Tags.Items.GLASS)
+                .key('I', CoFHTags.Items.INGOTS_INVAR)
+                .key('R', Tags.Items.DUSTS_REDSTONE)
+                .key('X', CoFHTags.Items.GEARS_GOLD)
+                .patternLine("IGI")
+                .patternLine("RXR")
+                .patternLine("IGI")
+                .addCriterion("has_invar_ingot", hasItem(CoFHTags.Items.INGOTS_INVAR))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("upgrade_augment_2"))
+                .key('G', Tags.Items.GEMS_QUARTZ)
+                .key('I', CoFHTags.Items.INGOTS_ELECTRUM)
+                .key('R', CoFHTags.Items.GEARS_SIGNALUM)
+                .key('X', reg.get("upgrade_augment_1"))
+                .patternLine("IGI")
+                .patternLine("RXR")
+                .patternLine("IGI")
+                .addCriterion("has_electrum_ingot", hasItem(CoFHTags.Items.INGOTS_ELECTRUM))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get("upgrade_augment_3"))
+                .key('G', CoFHTags.Items.HARDENED_GLASS)
+                .key('I', CoFHTags.Items.INGOTS_ENDERIUM)
+                .key('R', CoFHTags.Items.GEARS_LUMIUM)
+                .key('X', reg.get("upgrade_augment_2"))
+                .patternLine("IGI")
+                .patternLine("RXR")
+                .patternLine("IGI")
+                .addCriterion("has_enderium_ingot", hasItem(CoFHTags.Items.INGOTS_ENDERIUM))
+                .build(consumer);
     }
 
     private void generateBasicRecipes(Consumer<IFinishedRecipe> consumer) {

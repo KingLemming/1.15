@@ -72,10 +72,9 @@ public class CompressionFuelCategory extends ThermalFuelCategory<CompressionFuel
     @Override
     public void draw(CompressionFuel fuel, double mouseX, double mouseY) {
 
-        tankBackground.draw(33, 10);
-        durationBackground.draw(70, 24);
+        super.draw(fuel, mouseX, mouseY);
 
-        duration.draw(70, 24);
+        tankBackground.draw(33, 10);
     }
 
 }

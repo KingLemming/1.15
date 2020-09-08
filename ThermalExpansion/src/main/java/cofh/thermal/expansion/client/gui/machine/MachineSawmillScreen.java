@@ -20,7 +20,7 @@ public class MachineSawmillScreen extends MachineScreenReconfigurable<MachineSaw
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_sawmill"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_sawmill");
+        info = generatePanelInfo("info.thermal.machine_sawmill");
         name = "sawmill";
     }
 

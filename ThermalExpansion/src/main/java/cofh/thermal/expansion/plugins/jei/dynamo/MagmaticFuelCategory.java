@@ -72,10 +72,9 @@ public class MagmaticFuelCategory extends ThermalFuelCategory<MagmaticFuel> {
     @Override
     public void draw(MagmaticFuel fuel, double mouseX, double mouseY) {
 
-        tankBackground.draw(33, 10);
-        durationBackground.draw(70, 24);
+        super.draw(fuel, mouseX, mouseY);
 
-        duration.draw(70, 24);
+        tankBackground.draw(33, 10);
     }
 
 }

@@ -20,7 +20,7 @@ public class MachineCentrifugeScreen extends MachineScreenReconfigurable<Machine
 
         super(container, inv, container.tile, StringHelper.getTextComponent("block.thermal.machine_centrifuge"));
         texture = TEXTURE;
-        info = generateTabInfo("info.thermal.machine_centrifuge");
+        info = generatePanelInfo("info.thermal.machine_centrifuge");
         name = "centrifuge";
     }
 

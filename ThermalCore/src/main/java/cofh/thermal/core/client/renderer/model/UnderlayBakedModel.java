@@ -23,7 +23,7 @@ import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implements IDynamicBakedModel {
 
     protected static final IdentityHashMap<FluidCacheWrapper, BakedQuad[]> FLUID_QUAD_CACHE = new IdentityHashMap<>();
-    protected static final IdentityHashMap<ResourceLocation, BakedQuad[]> UNDERLAY_QUAD_CACHE = new IdentityHashMap<>();
+    protected static final IdentityHashMap<BlockState, BakedQuad[]> UNDERLAY_QUAD_CACHE = new IdentityHashMap<>();
 
     public static void clearCache() {
 
@@ -62,13 +62,13 @@ public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implement
             }
         } else if (extraData.hasProperty(ThermalTileBase.UNDERLAY)) {
             ResourceLocation loc = extraData.getData(ThermalTileBase.UNDERLAY);
-            BakedQuad[] cachedUnderlayQuads = UNDERLAY_QUAD_CACHE.get(loc);
+            BakedQuad[] cachedUnderlayQuads = UNDERLAY_QUAD_CACHE.get(state);
             if (cachedUnderlayQuads == null || cachedUnderlayQuads.length < 6) {
                 cachedUnderlayQuads = new BakedQuad[6];
             }
             if (cachedUnderlayQuads[sideIndex] == null) {
                 cachedUnderlayQuads[sideIndex] = new BakedQuadRetextured(quads.get(0), RenderHelper.getTexture(loc));
-                UNDERLAY_QUAD_CACHE.put(loc, cachedUnderlayQuads);
+                UNDERLAY_QUAD_CACHE.put(state, cachedUnderlayQuads);
             }
             quads.offerFirst(cachedUnderlayQuads[sideIndex]);
         }
