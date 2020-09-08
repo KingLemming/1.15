@@ -11,7 +11,9 @@ logoFile = "logo.png"
 credits = "Team CoFH"
 authors = "King Lemming"
 description = '''
-Thermal Expansion!
+Expanding Minecraft Thermally! A server-friendly and content-rich blend of magic and technology!
+
+Contains the "factory" of the Thermal Series - Dynamos and Machines to both produce and process.
 '''
 [[dependencies.thermal_expansion]]
 modId = "minecraft"

@@ -13,6 +13,8 @@ credits = "Team CoFH"
 authors = "King Lemming"
 description = '''
 Parent mod for all Thermal modules. The Foundation of a Thermally Expanding World!
+
+Contains all of the common components for the Thermal Series, such as materials and basic tools.
 '''
 [[dependencies.thermal]]
 modId = "minecraft"

@@ -11,7 +11,9 @@ logoFile = "logo.png"
 credits = "Team CoFH"
 authors = "King Lemming"
 description = '''
-Thermal Locomotion!
+Thermal hits the tracks!
+
+Contains the "railyard" of the Thermal Series - Rails and Minecarts to expand rail-centric gameplay.
 '''
 [[dependencies.thermal_locomotion]]
 modId = "minecraft"

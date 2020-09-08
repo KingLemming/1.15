@@ -11,7 +11,9 @@ logoFile = "logo.png"
 credits = "Team CoFH"
 authors = "King Lemming"
 description = '''
-Thermal Cultivation!
+Thermal gets agrarian!
+
+Contains the "farm" of the Thermal Series - various crops, foods, and associated gadgetry.
 '''
 [[dependencies.thermal_cultivation]]
 modId = "minecraft"
