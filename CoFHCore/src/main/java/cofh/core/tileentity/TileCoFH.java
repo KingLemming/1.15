@@ -122,7 +122,7 @@ public class TileCoFH extends TileEntity implements ITileCallback, IConveyableDa
     // endregion
 
     // region GUI
-    public boolean hasGui() {
+    public boolean canOpenGui() {
 
         return this instanceof INamedContainerProvider;
     }

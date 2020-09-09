@@ -340,6 +340,9 @@
   "info.thermal.tinker_bench.1": "Storages may be filled using their respective slots.",
   "info.thermal.tinker_bench.2": "Tinker on!",
 
+  "info.thermal.tinker_bench_mode_augment": "Mode: Augment",
+  "info.thermal.tinker_bench_mode_charge": "Mode: Charge/Fill",
+
   "item.thermal.beekeeper_fabric": "Woven Fabric",
   "item.thermal.beekeeper_helmet": "Beekeeper's Hood",
   "item.thermal.beekeeper_chestplate": "Beekeeper's Jacket",

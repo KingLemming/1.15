@@ -13,7 +13,7 @@ import static cofh.core.util.constants.Constants.TRUE;
 
 public abstract class ElementBase {
 
-    protected TooltipFactory tooltip = TooltipFactory.EMPTY;
+    protected ITooltipFactory tooltip = ITooltipFactory.EMPTY;
 
     protected BooleanSupplier enabled = TRUE;
     protected BooleanSupplier visible = TRUE;
@@ -90,7 +90,7 @@ public abstract class ElementBase {
         return this;
     }
 
-    public final ElementBase setTooltipFactory(TooltipFactory tooltip) {
+    public final ElementBase setTooltipFactory(ITooltipFactory tooltip) {
 
         this.tooltip = tooltip;
         return this;

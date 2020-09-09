@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:obsidian_glass_2_no_smelter"
+      "thermal:fire_charge_enderium_ingot_2"
     ]
   },
   "criteria": {
-    "has_obsidian": {
+    "has_ender_pearl": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:obsidian"
+            "tag": "forge:ender_pearls"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:obsidian_glass_2_no_smelter"
+        "recipe": "thermal:fire_charge_enderium_ingot_2"
       }
     }
   },
   "requirements": [
     [
-      "has_obsidian",
+      "has_ender_pearl",
       "has_the_recipe"
     ]
   ]

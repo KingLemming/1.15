@@ -45,7 +45,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
     public DynamoTileBase(TileEntityType<?> tileEntityTypeIn) {
 
         super(tileEntityTypeIn);
-        energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), getBaseEnergyXfer());
+        energyStorage = new EnergyStorageCoFH(getBaseEnergyStorage(), 0, getBaseEnergyXfer());
     }
 
     // region BASE PARAMETERS
@@ -159,7 +159,7 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         if (adjTile != null) {
             int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
             adjTile.getCapability(CapabilityEnergy.ENERGY, opposite)
-                    .ifPresent(e -> energyStorage.extractEnergy(e.receiveEnergy(maxTransfer, false), false));
+                    .ifPresent(e -> energyStorage.modify(-e.receiveEnergy(maxTransfer, false)));
         }
     }
 
@@ -350,9 +350,11 @@ public abstract class DynamoTileBase extends ThermalTileBase implements ITickabl
         return super.getCapability(cap, side);
     }
 
-    protected <T> LazyOptional<T> getEnergyCapability(@Nullable Direction side) {
-
-        return LazyOptional.empty();
-    }
+    // TODO: Return empty if non-RF coil installed.
+    //    @Override
+    //    protected <T> LazyOptional<T> getEnergyCapability(@Nullable Direction side) {
+    //
+    //        return LazyOptional.empty();
+    //    }
     // endregion
 }

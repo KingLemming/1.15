@@ -32,12 +32,12 @@ public abstract class ContainerCoFH extends Container {
     }
 
     // region HELPERS
-    public int getNumAugmentSlots() {
+    public final int getNumAugmentSlots() {
 
         return augmentSlots.size();
     }
 
-    public List<SlotCoFH> getAugmentSlots() {
+    public final List<SlotCoFH> getAugmentSlots() {
 
         return augmentSlots;
     }
@@ -83,7 +83,9 @@ public abstract class ContainerCoFH extends Container {
 
     protected boolean performMerge(int index, ItemStack stack) {
 
-        int invBase = getSizeTileInventory();
+        // TODO: Consider reverting or allowing augment shift-click in some cases.
+        // int invBase = getSizeTileInventory();
+        int invBase = getSizeTileInventory() - getNumAugmentSlots();
         int invFull = inventorySlots.size();
         int invHotbar = invFull - 9;
         int invPlayer = invHotbar - 27;

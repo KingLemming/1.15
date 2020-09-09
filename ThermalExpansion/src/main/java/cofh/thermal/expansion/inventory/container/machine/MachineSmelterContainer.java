@@ -22,8 +22,8 @@ public class MachineSmelterContainer extends TileContainer {
         this.tile = (ReconfigurableTile4Way) world.getTileEntity(pos);
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
 
-        addSlot(new SlotCoFH(tileInv, 0, 35, 17));
-        addSlot(new SlotCoFH(tileInv, 1, 53, 17));
+        addSlot(new SlotCoFH(tileInv, 0, 53, 17));
+        addSlot(new SlotCoFH(tileInv, 1, 35, 17));
         addSlot(new SlotCoFH(tileInv, 2, 71, 17));
 
         addSlot(new SlotCoFH(tileInv, 3, 53, 53));

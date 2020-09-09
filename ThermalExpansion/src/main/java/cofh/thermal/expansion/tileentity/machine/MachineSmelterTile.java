@@ -57,7 +57,7 @@ public class MachineSmelterTile extends MachineTileProcess {
 
         // Input Items
         for (int i = 0; i < 3; ++i) {
-            inputSlots[i].modify(-itemInputCounts.get(0));
+            inputSlots[i].modify(-itemInputCounts.get(i));
         }
         int decrement = itemInputCounts.size() > 3 ? itemInputCounts.get(3) : 0;
         if (decrement > 0) {

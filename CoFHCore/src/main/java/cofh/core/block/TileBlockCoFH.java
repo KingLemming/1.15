@@ -66,7 +66,7 @@ public abstract class TileBlockCoFH extends Block implements IDismantleable, IWr
         if (onBlockActivatedDelegate(worldIn, pos, state, player, handIn, hit)) {
             return ActionResultType.SUCCESS;
         }
-        if (((TileCoFH) tile).hasGui()) {
+        if (((TileCoFH) tile).canOpenGui()) {
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, tile.getPos());
             return ActionResultType.SUCCESS;
         }

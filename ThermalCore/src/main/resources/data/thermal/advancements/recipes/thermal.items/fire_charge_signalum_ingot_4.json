@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:enderium_ingot_2_no_smelter"
+      "thermal:fire_charge_signalum_ingot_4"
     ]
   },
   "criteria": {
-    "has_ender_pearl": {
+    "has_redstone_dust": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ender_pearls"
+            "tag": "forge:dusts/redstone"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:enderium_ingot_2_no_smelter"
+        "recipe": "thermal:fire_charge_signalum_ingot_4"
       }
     }
   },
   "requirements": [
     [
-      "has_ender_pearl",
+      "has_redstone_dust",
       "has_the_recipe"
     ]
   ]

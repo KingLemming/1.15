@@ -129,6 +129,14 @@ public class TinkerBenchTile extends ThermalTileBase implements ITickableTileEnt
         }
     }
 
+    // region GUI
+    @Override
+    public boolean canOpenGui() {
+
+        return numPlayersUsing <= 0;
+    }
+    // endregion
+
     // region NETWORK
     @Override
     public PacketBuffer getGuiPacket(PacketBuffer buffer) {

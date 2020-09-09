@@ -228,7 +228,7 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
 
         for (int i = elements.size(); i-- > 0; ) {
             ElementBase element = elements.get(i);
-            if (element.intersectsWith(mouseX, mouseY)) {
+            if (element.intersectsWith(mouseX, mouseY) && element.visible()) {
                 return element;
             }
         }

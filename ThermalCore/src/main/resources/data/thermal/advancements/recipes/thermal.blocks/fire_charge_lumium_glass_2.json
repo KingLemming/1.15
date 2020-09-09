@@ -2,11 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:lumium_glass_2_no_smelter"
+      "thermal:fire_charge_lumium_glass_2"
     ]
   },
   "criteria": {
-    "has_lumium": {
+    "has_lumium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:lumium_glass_2_no_smelter"
+        "recipe": "thermal:fire_charge_lumium_glass_2"
       }
     }
   },
   "requirements": [
     [
-      "has_lumium",
+      "has_lumium_ingot",
       "has_the_recipe"
     ]
   ]

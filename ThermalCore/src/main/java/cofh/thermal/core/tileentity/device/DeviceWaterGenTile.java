@@ -96,7 +96,7 @@ public class DeviceWaterGenTile extends ThermalTileBase {
     }
 
     @Override
-    public boolean hasGui() {
+    public boolean canOpenGui() {
 
         return false;
     }

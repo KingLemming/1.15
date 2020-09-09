@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "thermal:signalum_ingot_4_no_smelter"
+      "thermal:fire_charge_obsidian_glass_2"
     ]
   },
   "criteria": {
-    "has_redstone_dust": {
+    "has_obsidian": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:dusts/redstone"
+            "tag": "forge:obsidian"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "thermal:signalum_ingot_4_no_smelter"
+        "recipe": "thermal:fire_charge_obsidian_glass_2"
       }
     }
   },
   "requirements": [
     [
-      "has_redstone_dust",
+      "has_obsidian",
       "has_the_recipe"
     ]
   ]

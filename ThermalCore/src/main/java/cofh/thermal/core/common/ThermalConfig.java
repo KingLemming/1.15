@@ -56,7 +56,7 @@ public class ThermalConfig {
                 .define("Blocks Retain Inventory", false);
         keepFluids = SERVER_CONFIG
                 .comment("If TRUE, Thermal Blocks will retain Tank Contents when dropped.")
-                .define("Blocks Retain Tanks", false);
+                .define("Blocks Retain Tank Contents", false);
         keepAugments = SERVER_CONFIG
                 .comment("If TRUE, Thermal Blocks will retain Augments when dropped.")
                 .define("Blocks Retain Augments", true);
@@ -86,10 +86,10 @@ public class ThermalConfig {
                 .define("Basalz", true);
         flagMobBlitz = SERVER_CONFIG
                 .comment("IF TRUE, the Blitz Mob is enabled.")
-                .define("Basalz", true);
+                .define("Blitz", true);
         flagMobBlizz = SERVER_CONFIG
                 .comment("IF TRUE, the Blizz Mob is enabled.")
-                .define("Basalz", true);
+                .define("Blizz", true);
 
         SERVER_CONFIG.pop();
 
@@ -108,32 +108,32 @@ public class ThermalConfig {
         SERVER_CONFIG.push("World Generation");
 
         flagGenApatite = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Apatite from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Apatite from generating.")
                 .define("Apatite", true);
         flagGenCinnabar = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Cinnabar from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Cinnabar from generating.")
                 .define("Cinnabar", true);
         flagGenNiter = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Niter from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Niter from generating.")
                 .define("Niter", true);
         flagGenSulfur = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Sulfur from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Sulfur from generating.")
                 .define("Sulfur", true);
 
         flagGenCopper = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Copper from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Copper from generating.")
                 .define("Copper", true);
         flagGenTin = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Tin from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Tin from generating.")
                 .define("Tin", true);
         flagGenLead = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Lead from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Lead from generating.")
                 .define("Lead", true);
         flagGenSilver = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Silver from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Silver from generating.")
                 .define("Silver", true);
         flagGenNickel = SERVER_CONFIG
-                .comment("Set to FALSE to prevent Thermal Series Nickel from spawning.")
+                .comment("Set to FALSE to prevent 'Thermal Series' Nickel from generating.")
                 .define("Nickel", true);
 
         SERVER_CONFIG.pop();

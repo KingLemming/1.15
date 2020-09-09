@@ -5,10 +5,10 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.Collections;
 import java.util.List;
 
-public interface TooltipFactory {
+public interface ITooltipFactory {
 
     List<ITextComponent> create(ElementBase element, int mouseX, int mouseY);
 
-    TooltipFactory EMPTY = (element, mouseX, mouseY) -> Collections.emptyList();
+    ITooltipFactory EMPTY = (element, mouseX, mouseY) -> Collections.emptyList();
 
 }

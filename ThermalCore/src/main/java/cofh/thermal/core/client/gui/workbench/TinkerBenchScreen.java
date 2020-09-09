@@ -2,12 +2,14 @@ package cofh.thermal.core.client.gui.workbench;
 
 import cofh.core.client.gui.element.ElementAugmentSlots;
 import cofh.core.client.gui.element.ElementButton;
+import cofh.core.client.gui.element.SimpleTooltip;
 import cofh.core.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.ThermalScreenBase;
 import cofh.thermal.core.inventory.container.workbench.TinkerBenchContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import static cofh.core.util.GuiHelper.*;
 import static cofh.core.util.constants.Constants.ID_THERMAL;
@@ -48,6 +50,7 @@ public class TinkerBenchScreen extends ThermalScreenBase<TinkerBenchContainer> {
         }
                 .setSize(18, 18)
                 .setTexture(TEX_AUGMENT, 36, 18)
+                .setTooltipFactory(new SimpleTooltip(new TranslationTextComponent("info.thermal.tinker_bench_mode_augment")))
                 .setVisible(container.tile::allowAugmentation));
 
         addElement(new ElementButton(this, 43, 52) {
@@ -61,6 +64,7 @@ public class TinkerBenchScreen extends ThermalScreenBase<TinkerBenchContainer> {
         }
                 .setSize(18, 18)
                 .setTexture(TEX_REPLENISH, 36, 18)
+                .setTooltipFactory(new SimpleTooltip(new TranslationTextComponent("info.thermal.tinker_bench_mode_charge")))
                 .setVisible(() -> !container.tile.allowAugmentation()));
     }
 

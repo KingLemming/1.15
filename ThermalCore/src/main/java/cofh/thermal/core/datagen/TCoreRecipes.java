@@ -188,6 +188,41 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_ender_pearl", hasItem(Tags.Items.ENDER_PEARLS))
                 .build(consumer, ID_THERMAL + ":enderium_dust_2");
 
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("bronze_ingot"), 4)
+                .addIngredient(CoFHTags.Items.INGOTS_COPPER)
+                .addIngredient(CoFHTags.Items.INGOTS_COPPER)
+                .addIngredient(CoFHTags.Items.INGOTS_COPPER)
+                .addIngredient(CoFHTags.Items.INGOTS_TIN)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_copper_ingot", hasItem(CoFHTags.Items.INGOTS_COPPER))
+                .addCriterion("has_tin_ingot", hasItem(CoFHTags.Items.INGOTS_TIN))
+                .build(consumer, ID_THERMAL + ":fire_charge_bronze_ingot_4");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("electrum_ingot"), 2)
+                .addIngredient(Tags.Items.INGOTS_GOLD)
+                .addIngredient(CoFHTags.Items.INGOTS_SILVER)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_gold_ingot", hasItem(Tags.Items.INGOTS_GOLD))
+                .addCriterion("has_silver_ingot", hasItem(CoFHTags.Items.INGOTS_SILVER))
+                .build(consumer, ID_THERMAL + ":fire_charge_electrum_ingot_2");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("invar_ingot"), 3)
+                .addIngredient(Tags.Items.INGOTS_IRON)
+                .addIngredient(Tags.Items.INGOTS_IRON)
+                .addIngredient(CoFHTags.Items.INGOTS_NICKEL)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON))
+                .addCriterion("has_nickel_ingot", hasItem(CoFHTags.Items.INGOTS_NICKEL))
+                .build(consumer, ID_THERMAL + ":fire_charge_invar_ingot_3");
+
+        ShapelessRecipeBuilder.shapelessRecipe(reg.get("constantan_ingot"), 2)
+                .addIngredient(CoFHTags.Items.INGOTS_COPPER)
+                .addIngredient(CoFHTags.Items.INGOTS_NICKEL)
+                .addIngredient(Items.FIRE_CHARGE)
+                .addCriterion("has_copper_ingot", hasItem(CoFHTags.Items.INGOTS_COPPER))
+                .addCriterion("has_nickel_ingot", hasItem(CoFHTags.Items.INGOTS_NICKEL))
+                .build(consumer, ID_THERMAL + ":fire_charge_constantan_ingot_2");
+
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("signalum_ingot"), 4)
                 .addIngredient(CoFHTags.Items.INGOTS_COPPER)
                 .addIngredient(CoFHTags.Items.INGOTS_COPPER)
@@ -197,7 +232,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.DUSTS_REDSTONE)
                 .addIngredient(Items.FIRE_CHARGE)
                 .addCriterion("has_redstone_dust", hasItem(Tags.Items.DUSTS_REDSTONE))
-                .build(consumer, ID_THERMAL + ":signalum_ingot_4_no_smelter");
+                .build(consumer, ID_THERMAL + ":fire_charge_signalum_ingot_4");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("lumium_ingot"), 4)
                 .addIngredient(CoFHTags.Items.INGOTS_TIN)
@@ -208,7 +243,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.DUSTS_GLOWSTONE)
                 .addIngredient(Items.FIRE_CHARGE)
                 .addCriterion("has_glowstone_dust", hasItem(Tags.Items.DUSTS_GLOWSTONE))
-                .build(consumer, ID_THERMAL + ":lumium_ingot_4_no_smelter");
+                .build(consumer, ID_THERMAL + ":fire_charge_lumium_ingot_4");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("enderium_ingot"), 2)
                 .addIngredient(CoFHTags.Items.INGOTS_LEAD)
@@ -219,7 +254,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.ENDER_PEARLS)
                 .addIngredient(Items.FIRE_CHARGE)
                 .addCriterion("has_ender_pearl", hasItem(Tags.Items.ENDER_PEARLS))
-                .build(consumer, ID_THERMAL + ":enderium_ingot_2_no_smelter");
+                .build(consumer, ID_THERMAL + ":fire_charge_enderium_ingot_2");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("obsidian_glass"), 2)
                 .addIngredient(Tags.Items.OBSIDIAN)
@@ -227,31 +262,31 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(Tags.Items.SAND)
                 .addIngredient(Items.FIRE_CHARGE)
                 .addCriterion("has_obsidian", hasItem(Tags.Items.OBSIDIAN))
-                .build(consumer, ID_THERMAL + ":obsidian_glass_2_no_smelter");
+                .build(consumer, ID_THERMAL + ":fire_charge_obsidian_glass_2");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("signalum_glass"), 2)
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(CoFHTags.Items.INGOTS_SIGNALUM)
                 .addIngredient(Items.FIRE_CHARGE)
-                .addCriterion("has_signalum", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
-                .build(consumer, ID_THERMAL + ":signalum_glass_2_no_smelter");
+                .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
+                .build(consumer, ID_THERMAL + ":fire_charge_signalum_glass_2");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("lumium_glass"), 2)
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(CoFHTags.Items.INGOTS_LUMIUM)
                 .addIngredient(Items.FIRE_CHARGE)
-                .addCriterion("has_lumium", hasItem(CoFHTags.Items.INGOTS_LUMIUM))
-                .build(consumer, ID_THERMAL + ":lumium_glass_2_no_smelter");
+                .addCriterion("has_lumium_ingot", hasItem(CoFHTags.Items.INGOTS_LUMIUM))
+                .build(consumer, ID_THERMAL + ":fire_charge_lumium_glass_2");
 
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("enderium_glass"), 2)
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(reg.get("obsidian_glass"))
                 .addIngredient(CoFHTags.Items.INGOTS_ENDERIUM)
                 .addIngredient(Items.FIRE_CHARGE)
-                .addCriterion("has_enderium", hasItem(CoFHTags.Items.INGOTS_ENDERIUM))
-                .build(consumer, ID_THERMAL + ":enderium_glass_2_no_smelter");
+                .addCriterion("has_enderium_ingot", hasItem(CoFHTags.Items.INGOTS_ENDERIUM))
+                .build(consumer, ID_THERMAL + ":fire_charge_enderium_glass_2");
     }
 
     private void generateArmorRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -1083,6 +1118,5 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .build(consumer, ID_THERMAL + ":lightning_charge_zombie_piglin_from_pig");
         // endregion
     }
-
     // endregion
 }
