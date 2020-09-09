@@ -1,0 +1,15 @@
+{
+  "type": "thermal:centrifuge",
+  "ingredient": {
+    "tag": "forge:dusts/constantan"
+  },
+  "result": [
+    {
+      "item": "thermal:copper_dust"
+    },
+    {
+      "item": "thermal:nickel_dust"
+    }
+  ],
+  "energy": 2000
+}

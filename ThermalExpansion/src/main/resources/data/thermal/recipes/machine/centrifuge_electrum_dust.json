@@ -1,0 +1,15 @@
+{
+  "type": "thermal:centrifuge",
+  "ingredient": {
+    "tag": "forge:dusts/electrum"
+  },
+  "result": [
+    {
+      "item": "thermal:gold_dust"
+    },
+    {
+      "item": "thermal:silver_dust"
+    }
+  ],
+  "energy": 2000
+}

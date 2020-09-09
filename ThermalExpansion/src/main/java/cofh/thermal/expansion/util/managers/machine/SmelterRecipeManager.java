@@ -142,6 +142,13 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
     }
     // endregion
 
+    public List<ItemStack> getCatalysts() {
+
+        List<ItemStack> ret = new ArrayList<>(catalystMap.size());
+        catalystMap.keySet().forEach(stack -> ret.add(stack.toItemStack()));
+        return ret;
+    }
+
     // region CATALYSTS
     public IRecipeCatalyst getCatalyst(IItemStackAccess input) {
 

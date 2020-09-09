@@ -1,0 +1,16 @@
+{
+  "type": "thermal:centrifuge",
+  "ingredient": {
+    "tag": "forge:dusts/invar"
+  },
+  "result": [
+    {
+      "item": "thermal:iron_dust",
+      "count": 2
+    },
+    {
+      "item": "thermal:nickel_dust"
+    }
+  ],
+  "energy": 3000
+}

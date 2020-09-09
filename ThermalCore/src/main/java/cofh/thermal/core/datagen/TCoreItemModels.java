@@ -50,6 +50,8 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         gemSet(reg, "diamond", true);
         gemSet(reg, "emerald", true);
         gemSet(reg, "quartz", true);
+
+        // generated(reg.getSup("ender_pearl_dust"), DUSTS);
     }
 
     private void registerResources(DeferredRegisterCoFH<Item> reg) {

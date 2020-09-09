@@ -69,6 +69,25 @@ public abstract class ThermalRecipeCategory<T extends ThermalRecipe> implements 
         });
     }
 
+    protected void addCatalyzedItemTooltipCallback(IGuiItemStackGroup group, List<Float> chances, int indexOffset) {
+
+        group.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+            if (slotIndex == indexOffset - 1) {
+                tooltip.add(localize("info.cofh.optional_catalyst"));
+            } else if (!chances.isEmpty() && slotIndex >= indexOffset && slotIndex < indexOffset + chances.size()) {
+                float chance = Math.abs(chances.get(slotIndex - indexOffset));
+                if (chance < BASE_CHANCE) {
+                    tooltip.add(localize("info.cofh.chance") + ": " + (int) (100 * chance) + "%");
+                } else {
+                    chance -= (int) chance;
+                    if (chance > 0) {
+                        tooltip.add(localize("info.cofh.chance_additional") + ": " + (int) (100 * chance) + "%");
+                    }
+                }
+            }
+        });
+    }
+
     // region IRecipeCategory
     @Override
     public ResourceLocation getUid() {

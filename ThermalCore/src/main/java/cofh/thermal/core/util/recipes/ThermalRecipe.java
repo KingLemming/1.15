@@ -23,6 +23,7 @@ public abstract class ThermalRecipe extends SerializableRecipe {
     protected int energy;
     protected float experience;
     protected int minTicks;
+    protected boolean catalyzable;
 
     protected ThermalRecipe(ResourceLocation recipeId, int energy, float experience, int minTicks, List<Ingredient> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> outputItemChances, List<FluidStack> outputFluids) {
 
@@ -48,6 +49,9 @@ public abstract class ThermalRecipe extends SerializableRecipe {
                 for (int i = this.outputItemChances.size(); i < this.outputItems.size(); ++i) {
                     this.outputItemChances.add(BASE_CHANCE_LOCKED);
                 }
+            }
+            for (float f : this.outputItemChances) {
+                catalyzable |= f >= 0.0F;
             }
         }
         if (outputFluids != null) {
@@ -105,6 +109,11 @@ public abstract class ThermalRecipe extends SerializableRecipe {
     public int getMinTicks() {
 
         return minTicks;
+    }
+
+    public boolean isCatalyzable() {
+
+        return catalyzable;
     }
     // endregion
 }

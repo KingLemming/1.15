@@ -3,6 +3,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineSmelterScreen;
+import cofh.thermal.expansion.util.managers.machine.SmelterRecipeManager;
 import cofh.thermal.expansion.util.recipes.machine.SmelterRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -54,6 +55,7 @@ public class SmelterRecipeCategory extends ThermalRecipeCategory<SmelterRecipe> 
 
         List<List<ItemStack>> inputs = ingredients.getInputs(VanillaTypes.ITEM);
         List<List<ItemStack>> outputs = ingredients.getOutputs(VanillaTypes.ITEM);
+        List<ItemStack> catalysts = SmelterRecipeManager.instance().getCatalysts();
 
         for (int i = 0; i < outputs.size(); ++i) {
             float chance = recipe.getOutputItemChances().get(i);
@@ -68,18 +70,23 @@ public class SmelterRecipeCategory extends ThermalRecipeCategory<SmelterRecipe> 
         guiItemStacks.init(0, true, 42, 5);
         guiItemStacks.init(1, true, 24, 5);
         guiItemStacks.init(2, true, 60, 5);
-        guiItemStacks.init(3, false, 114, 14);
-        guiItemStacks.init(4, false, 132, 14);
-        guiItemStacks.init(5, false, 114, 32);
-        guiItemStacks.init(6, false, 132, 32);
+        guiItemStacks.init(3, true, 42, 41);
+
+        guiItemStacks.init(4, false, 114, 14);
+        guiItemStacks.init(5, false, 132, 14);
+        guiItemStacks.init(6, false, 114, 32);
+        guiItemStacks.init(7, false, 132, 32);
 
         for (int i = 0; i < inputs.size(); ++i) {
             guiItemStacks.set(i, inputs.get(i));
         }
-        for (int i = 0; i < outputs.size(); ++i) {
-            guiItemStacks.set(i + 3, outputs.get(i));
+        if (recipe.isCatalyzable()) {
+            guiItemStacks.set(3, catalysts);
         }
-        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 3);
+        for (int i = 0; i < outputs.size(); ++i) {
+            guiItemStacks.set(i + 4, outputs.get(i));
+        }
+        addCatalyzedItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 4);
     }
 
     @Override

@@ -4,6 +4,7 @@ import cofh.core.util.helpers.RenderHelper;
 import cofh.thermal.core.plugins.jei.Drawables;
 import cofh.thermal.core.plugins.jei.ThermalRecipeCategory;
 import cofh.thermal.expansion.client.gui.machine.MachineInsolatorScreen;
+import cofh.thermal.expansion.util.managers.machine.InsolatorRecipeManager;
 import cofh.thermal.expansion.util.recipes.machine.InsolatorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -70,6 +71,7 @@ public class InsolatorRecipeCategory extends ThermalRecipeCategory<InsolatorReci
         List<List<ItemStack>> inputs = ingredients.getInputs(VanillaTypes.ITEM);
         List<List<FluidStack>> inputFluids = ingredients.getInputs(VanillaTypes.FLUID);
         List<List<ItemStack>> outputs = ingredients.getOutputs(VanillaTypes.ITEM);
+        List<ItemStack> catalysts = InsolatorRecipeManager.instance().getCatalysts();
 
         for (int i = 0; i < outputs.size(); ++i) {
             float chance = recipe.getOutputItemChances().get(i);
@@ -83,20 +85,25 @@ public class InsolatorRecipeCategory extends ThermalRecipeCategory<InsolatorReci
         IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
 
         guiItemStacks.init(0, true, 51, 5);
-        guiItemStacks.init(1, false, 105, 14);
-        guiItemStacks.init(2, false, 123, 14);
-        guiItemStacks.init(3, false, 105, 32);
-        guiItemStacks.init(4, false, 123, 32);
+        guiItemStacks.init(1, true, 51, 41);
+
+        guiItemStacks.init(2, false, 105, 14);
+        guiItemStacks.init(3, false, 123, 14);
+        guiItemStacks.init(4, false, 105, 32);
+        guiItemStacks.init(5, false, 123, 32);
 
         guiFluidStacks.init(0, false, 25, 11, 16, 40, tankSize(TANK_MEDIUM), false, tankOverlay(tankOverlay));
 
         guiItemStacks.set(0, inputs.get(0));
         guiFluidStacks.set(0, inputFluids.get(0));
 
-        for (int i = 0; i < outputs.size(); ++i) {
-            guiItemStacks.set(i + 1, outputs.get(i));
+        if (recipe.isCatalyzable()) {
+            guiItemStacks.set(1, catalysts);
         }
-        addDefaultItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 1);
+        for (int i = 0; i < outputs.size(); ++i) {
+            guiItemStacks.set(i + 2, outputs.get(i));
+        }
+        addCatalyzedItemTooltipCallback(guiItemStacks, recipe.getOutputItemChances(), 2);
         addDefaultFluidTooltipCallback(guiFluidStacks);
     }
 

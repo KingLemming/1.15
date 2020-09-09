@@ -78,34 +78,36 @@ public class TCoreItems {
 
         registerItem("sawdust", group);
         registerItem("rosin", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(800));
-        registerItem("rubber", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("cured_rubber", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("slag", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("rich_slag", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("rubber", group);
+        registerItem("cured_rubber", group);
+        registerItem("slag", group);
+        registerItem("rich_slag", group);
 
-        registerItem("basalz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("basalz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("blitz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("blitz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("blizz_rod", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("blizz_powder", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("basalz_rod", group);
+        registerItem("basalz_powder", group);
+        registerItem("blitz_rod", group);
+        registerItem("blitz_powder", group);
+        registerItem("blizz_rod", group);
+        registerItem("blizz_powder", group);
 
         registerItem("beekeeper_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_BEEKEEPER_ARMOR)));
         registerItem("diving_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_DIVING_ARMOR)));
         registerItem("hazmat_fabric", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_HAZMAT_ARMOR)));
 
-        registerItem("apatite", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("cinnabar", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("niter", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("apatite", group);
+        registerItem("cinnabar", group);
+        registerItem("niter", group);
         registerItem("sulfur", () -> new ItemCoFH(new Item.Properties().group(group)).setBurnTime(1200));
+
+        // registerItem("ender_pearl_dust", group);
     }
 
     private static void registerParts() {
 
         ItemGroup group = ThermalItemGroups.THERMAL_ITEMS;
 
-        registerItem("redstone_servo", () -> new ItemCoFH(new Item.Properties().group(group)));
-        registerItem("rf_coil", () -> new ItemCoFH(new Item.Properties().group(group)));
+        registerItem("redstone_servo", group);
+        registerItem("rf_coil", group);
 
         registerItem("drill_head", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));
         registerItem("saw_blade", () -> new ItemCoFH(new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_TOOL_COMPONENTS)));

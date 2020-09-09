@@ -17,7 +17,7 @@ import static cofh.core.util.helpers.ItemHelper.itemsEqual;
 public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
 
     protected int catalystSlot;
-    protected boolean catalyzable = true;
+    protected boolean catalyzable;
 
     protected CatalyzedMachineRecipe(int catalystSlot, int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
 
@@ -25,7 +25,7 @@ public abstract class CatalyzedMachineRecipe extends BaseMachineRecipe {
         this.catalystSlot = catalystSlot;
         // If all of the output chances are locked, then the recipe is not catalyzable.
         for (float f : outputItemChances) {
-            catalyzable &= f >= 0.0F;
+            catalyzable |= f >= 0.0F;
         }
     }
 

@@ -138,6 +138,13 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
             catalystMap.clear();
         }
 
+        public List<ItemStack> getCatalysts() {
+
+            List<ItemStack> ret = new ArrayList<>(catalystMap.size());
+            catalystMap.keySet().forEach(stack -> ret.add(stack.toItemStack()));
+            return ret;
+        }
+
         // region CATALYSTS
         public IRecipeCatalyst getCatalyst(IItemStackAccess input) {
 
