@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.core.util.helpers.MathHelper;
 import net.minecraft.block.BlockState;
@@ -24,7 +25,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import static cofh.core.util.Utils.HORZ_MAX;
 import static cofh.thermal.core.init.TCoreReferences.NUKE_GRENADE_ENTITY;
 import static cofh.thermal.core.init.TCoreReferences.NUKE_GRENADE_ITEM;
 import static net.minecraft.potion.Effects.WITHER;
@@ -81,7 +81,7 @@ public class NukeGrenadeEntity extends AbstractGrenadeEntity {
         if (radius <= 0) {
             return;
         }
-        float f = (float) Math.min(HORZ_MAX, radius);
+        float f = (float) Math.min(AreaUtils.HORZ_MAX, radius);
         float maxResistance = 400F * radius * radius;
         float f2 = f * f;
 

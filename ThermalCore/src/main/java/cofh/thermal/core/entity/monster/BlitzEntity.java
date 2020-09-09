@@ -46,8 +46,7 @@ public class BlitzEntity extends MonsterEntity {
 
         super(type, world);
         this.setPathPriority(PathNodeType.WATER, -1.0F);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
+        this.setPathPriority(PathNodeType.LAVA, -1.0F);
         this.experienceValue = 10;
     }
 
@@ -56,6 +55,7 @@ public class BlitzEntity extends MonsterEntity {
 
         this.goalSelector.addGoal(4, new BlitzAttackGoal(this));
         this.goalSelector.addGoal(5, new MoveTowardsRestrictionGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D, 0.0F));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());

@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
@@ -61,7 +62,7 @@ public class DisplacementArrowEntity extends AbstractArrowEntity {
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0 && !isInWater()) {
                 if (Utils.isServerWorld(world)) {
-                    Utils.transformEnderAir(this, world, this.getPosition(), effectRadius);
+                    AreaUtils.transformEnderAir(this, world, this.getPosition(), effectRadius);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "thermal:enderium_ingot"
+            "tag": "forge:ingots/enderium"
           }
         ]
       }

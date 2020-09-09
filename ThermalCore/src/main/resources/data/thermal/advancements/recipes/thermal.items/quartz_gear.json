@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_quartz": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:quartz"
+            "tag": "forge:gems/quartz"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_quartz",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

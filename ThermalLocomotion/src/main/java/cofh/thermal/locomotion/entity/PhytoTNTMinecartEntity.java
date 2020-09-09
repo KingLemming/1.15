@@ -1,6 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
 import cofh.core.entity.AbstractTNTMinecartEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.thermal.core.item.PhytoGroItem;
 import net.minecraft.block.Block;
@@ -47,7 +48,7 @@ public class PhytoTNTMinecartEntity extends AbstractTNTMinecartEntity {
     protected void explode() {
 
         if (Utils.isServerWorld(world)) {
-            Utils.growPlants(this, world, this.getPosition(), radius);
+            AreaUtils.growPlants(this, world, this.getPosition(), radius);
             for (int i = 0; i < 4; ++i) {
                 PhytoGroItem.growSeagrass(world, this.getPosition(), null);
             }

@@ -181,7 +181,7 @@ public class ThermalConfig {
     public static int deviceAugments = 2;
     public static int dynamoAugments = 4;
     public static int machineAugments = 4;
-    public static int workbenchAugments = 2;
+    public static int storageAugments = 2;
 
     public static int toolAugments = 4;
 

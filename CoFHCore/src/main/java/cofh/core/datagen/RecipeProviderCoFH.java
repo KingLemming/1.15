@@ -7,15 +7,18 @@ import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
+
+import static cofh.core.util.constants.Constants.ID_FORGE;
 
 public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuilder {
 
@@ -114,8 +117,6 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         Item gem = reg.get(type + "_gem");
         Item nugget = reg.get(type + "_nugget");
 
-        Item gear = reg.get(type + "_gear");
-
         if (block != null) {
             String blockName = block.getRegistryName().getPath();
 
@@ -193,60 +194,56 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
             //                        .build(consumer, this.modid + ":" + nuggetName + "_from_gem");
             //            }
         }
-
-        if (gear != null) {
-            if (ingot != null) {
-                ShapedRecipeBuilder.shapedRecipe(gear)
-                        .key('#', ingot)
-                        .key('i', Tags.Items.NUGGETS_IRON)
-                        .patternLine(" # ")
-                        .patternLine("#i#")
-                        .patternLine(" # ")
-                        .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                        .build(consumer);
-            }
-            if (gem != null) {
-                ShapedRecipeBuilder.shapedRecipe(gear)
-                        .key('#', gem)
-                        .key('i', Tags.Items.NUGGETS_IRON)
-                        .patternLine(" # ")
-                        .patternLine("#i#")
-                        .patternLine(" # ")
-                        .addCriterion("has_" + gem.getRegistryName().getPath(), hasItem(gem))
-                        .build(consumer);
-            }
-        }
+        generateGearRecipe(reg, consumer, type);
     }
 
-    protected void generateGearRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type) {
+    protected void generateGearRecipe(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type) {
 
-        Item ingot = reg.get(type + "_ingot");
-        Item gem = reg.get(type + "_gem");
         Item gear = reg.get(type + "_gear");
-
         if (gear == null) {
             return;
         }
+        Item ingot = reg.get(type + "_ingot");
+        Item gem = reg.get(type + "_gem");
+
+        Tag<Item> ingotTag = forgeTag("ingots/" + type);
+        Tag<Item> gemTag = forgeTag("gems/" + type);
+
         if (ingot != null) {
             ShapedRecipeBuilder.shapedRecipe(gear)
-                    .key('#', ingot)
-                    .key('i', Items.IRON_NUGGET)
+                    .key('#', ingotTag)
+                    .key('i', Tags.Items.NUGGETS_IRON)
                     .patternLine(" # ")
                     .patternLine("#i#")
                     .patternLine(" # ")
-                    .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
+                    .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingotTag))
                     .build(consumer);
         }
         if (gem != null) {
             ShapedRecipeBuilder.shapedRecipe(gear)
-                    .key('#', gem)
-                    .key('i', Items.IRON_NUGGET)
+                    .key('#', gemTag)
+                    .key('i', Tags.Items.NUGGETS_IRON)
                     .patternLine(" # ")
                     .patternLine("#i#")
                     .patternLine(" # ")
-                    .addCriterion("has_" + gem.getRegistryName().getPath(), hasItem(gem))
+                    .addCriterion("has_" + gem.getRegistryName().getPath(), hasItem(gemTag))
                     .build(consumer);
         }
+    }
+
+    protected void generateGearRecipe(Consumer<IFinishedRecipe> consumer, Item gear, Item material, Tag<Item> tag) {
+
+        if (gear == null || material == null || tag == null) {
+            return;
+        }
+        ShapedRecipeBuilder.shapedRecipe(gear)
+                .key('#', tag)
+                .key('i', Tags.Items.NUGGETS_IRON)
+                .patternLine(" # ")
+                .patternLine("#i#")
+                .patternLine(" # ")
+                .addCriterion("has_" + material.getRegistryName().getPath(), hasItem(tag))
+                .build(consumer);
     }
 
     protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type, float xp) {
@@ -344,6 +341,11 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
     public InventoryChangeTrigger.Instance hasItem(MinMaxBounds.IntBound amount, IItemProvider itemIn) {
 
         return this.hasItem(new ItemPredicate(null, itemIn.asItem(), amount, MinMaxBounds.IntBound.UNBOUNDED, EnchantmentPredicate.field_226534_b_, EnchantmentPredicate.field_226534_b_, null, NBTPredicate.ANY)); // ItemPredicate.Builder.create().item(itemIn).count(amount).build());
+    }
+
+    protected static Tag<Item> forgeTag(String name) {
+
+        return new ItemTags.Wrapper(new ResourceLocation(ID_FORGE, name));
     }
     // endregion
 

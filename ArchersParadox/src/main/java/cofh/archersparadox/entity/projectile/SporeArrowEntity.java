@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
@@ -63,8 +64,8 @@ public class SporeArrowEntity extends AbstractArrowEntity {
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0 && !isInWater()) {
                 if (Utils.isServerWorld(world)) {
-                    Utils.transformMycelium(this, world, this.getPosition(), effectRadius);
-                    Utils.growMushrooms(this, world, this.getPosition(), effectRadius, effectGrowCount);
+                    AreaUtils.transformMycelium(this, world, this.getPosition(), effectRadius);
+                    AreaUtils.growMushrooms(this, world, this.getPosition(), effectRadius, effectGrowCount);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -21,7 +22,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import static cofh.core.util.Utils.HORZ_MAX;
 import static cofh.core.util.Utils.destroyBlock;
 import static cofh.core.util.references.CoreReferences.SUNDERED;
 import static cofh.thermal.core.init.TCoreReferences.EARTH_GRENADE_ENTITY;
@@ -74,7 +74,7 @@ public class EarthGrenadeEntity extends AbstractGrenadeEntity {
         if (radius <= 0) {
             return;
         }
-        float f = (float) Math.min(HORZ_MAX, radius);
+        float f = (float) Math.min(AreaUtils.HORZ_MAX, radius);
         float f2 = f * f;
 
         for (BlockPos iterPos : BlockPos.getAllInBoxMutable(pos.add(-f, -f, -f), pos.add(f, f, f))) {

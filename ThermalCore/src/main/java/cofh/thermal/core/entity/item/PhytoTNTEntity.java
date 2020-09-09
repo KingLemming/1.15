@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.item;
 
 import cofh.core.entity.AbstractTNTEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.thermal.core.item.PhytoGroItem;
 import net.minecraft.block.Block;
@@ -40,7 +41,7 @@ public class PhytoTNTEntity extends AbstractTNTEntity {
     protected void explode() {
 
         if (Utils.isServerWorld(world)) {
-            Utils.growPlants(this, world, this.getPosition(), radius);
+            AreaUtils.growPlants(this, world, this.getPosition(), radius);
             for (int i = 0; i < 4; ++i) {
                 PhytoGroItem.growSeagrass(world, this.getPosition(), null);
             }

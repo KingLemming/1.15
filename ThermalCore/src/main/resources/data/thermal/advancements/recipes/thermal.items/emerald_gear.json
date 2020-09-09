@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_emerald": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:emerald"
+            "tag": "forge:gems/emerald"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_emerald",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

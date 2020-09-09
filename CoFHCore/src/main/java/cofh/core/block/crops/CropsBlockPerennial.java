@@ -32,7 +32,7 @@ public class CropsBlockPerennial extends CropsBlockCoFH {
     }
 
     @Override
-    protected int getMaximumAge() {
+    protected int getHarvestAge() {
 
         return 10;
     }
@@ -40,7 +40,7 @@ public class CropsBlockPerennial extends CropsBlockCoFH {
     @Override
     protected int getPostHarvestAge() {
 
-        return 8;
+        return 7;
     }
 
     @Override

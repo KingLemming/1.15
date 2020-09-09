@@ -25,6 +25,7 @@ import static cofh.core.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_ITEMS;
 import static cofh.thermal.core.common.ThermalItemGroups.THERMAL_TOOLS;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
@@ -419,7 +420,7 @@ public class TCoreItems {
 
     private static void registerSpawnEggs() {
 
-        ItemGroup group = ItemGroup.MISC;
+        ItemGroup group = THERMAL_ITEMS;
 
         registerItem("basalz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BASALZ_ENTITY, 0x363840, 0x080407, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BASALZ)));
         registerItem("blizz_spawn_egg", () -> new SpawnEggItemCoFH(() -> BLIZZ_ENTITY, 0x7BD4FF, 0x0D6FD9, new Item.Properties().group(group)).setShowInGroups(getFeature(FLAG_MOB_BLIZZ)));

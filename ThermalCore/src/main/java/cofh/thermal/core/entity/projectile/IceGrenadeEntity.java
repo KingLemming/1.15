@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
@@ -57,11 +58,11 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
     protected void onImpact(RayTraceResult result) {
 
         if (Utils.isServerWorld(world)) {
-            chillNearbyEntities(this, world, this.getPosition(), radius);
-            Utils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
-            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
-            Utils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);
-            Utils.freezeAllLava(this, world, this.getPosition(), radius, permanentLava);
+            damageNearbyEntities(this, world, this.getPosition(), radius, getThrower());
+            AreaUtils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
+            AreaUtils.freezeNearbyGround(this, world, this.getPosition(), radius);
+            AreaUtils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);
+            AreaUtils.freezeAllLava(this, world, this.getPosition(), radius, permanentLava);
             makeAreaOfEffectCloud();
             this.world.setEntityState(this, (byte) 3);
             this.remove();
@@ -71,13 +72,6 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
         }
         this.world.addParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
         this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
-    }
-
-    public static void chillNearbyEntities(Entity entity, World worldIn, BlockPos pos, int radius) {
-
-        AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
-        worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)
-                .forEach(livingEntity -> livingEntity.addPotionEffect(new EffectInstance(CHILLED, effectDuration, effectAmplifier, false, false)));
     }
 
     private void makeAreaOfEffectCloud() {
@@ -97,7 +91,7 @@ public class IceGrenadeEntity extends AbstractGrenadeEntity {
         AxisAlignedBB area = new AxisAlignedBB(pos.add(-radius, -radius, -radius), pos.add(1 + radius, 1 + radius, 1 + radius));
         worldIn.getEntitiesWithinAABB(LivingEntity.class, area, EntityPredicates.IS_ALIVE)
                 .forEach(livingEntity -> {
-                    livingEntity.attackEntityFrom(DamageSource.causeExplosionDamage(source), 2.0F);
+                    livingEntity.attackEntityFrom(DamageSource.causeExplosionDamage(source), livingEntity.isImmuneToFire() ? 4.0F : 1.0F);
                     livingEntity.addPotionEffect(new EffectInstance(CHILLED, effectDuration, effectAmplifier, false, false));
                 });
     }

@@ -147,7 +147,7 @@ public class AttributeEvents {
         STING_DAMAGE_TYPES.add("sweetBerryBush");
 
         HAZARD_DAMAGE_TYPES.add("lightningBolt");
-        HAZARD_DAMAGE_TYPES.add("ice");
+        HAZARD_DAMAGE_TYPES.add("cold");
         HAZARD_DAMAGE_TYPES.add("lightning");
 
         HAZARD_EFFECTS.add(POISON);

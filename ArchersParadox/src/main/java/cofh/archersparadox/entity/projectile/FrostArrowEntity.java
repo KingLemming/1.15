@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -71,9 +72,9 @@ public class FrostArrowEntity extends AbstractArrowEntity {
         if (!discharged && raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             if (effectRadius > 0) {
                 if (Utils.isServerWorld(world)) {
-                    Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                    Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, permanentWater);
-                    Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, permanentLava);
+                    AreaUtils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
+                    AreaUtils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, permanentWater);
+                    AreaUtils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, permanentLava);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

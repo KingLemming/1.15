@@ -29,8 +29,6 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import static cofh.core.util.constants.Constants.AGE;
-
 public abstract class LootTableProviderCoFH extends LootTableProvider {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -87,11 +85,6 @@ public abstract class LootTableProviderCoFH extends LootTableProvider {
                                 // These are Mojang's numbers. No idea.
                                 .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3))))
                 .acceptFunction(ExplosionDecay.builder());
-    }
-
-    protected LootTable.Builder createCropTable(Block block, Item crop, Item seed) {
-
-        return createCropTable(block, crop, seed, AGE, 7);
     }
 
     protected LootTable.Builder createTuberTable(Block block, Item crop, IntegerProperty ageProp, int age) {

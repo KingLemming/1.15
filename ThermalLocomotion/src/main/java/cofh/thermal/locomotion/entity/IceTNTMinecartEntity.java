@@ -1,6 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
 import cofh.core.entity.AbstractTNTMinecartEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.thermal.core.entity.projectile.IceGrenadeEntity;
 import net.minecraft.block.Block;
@@ -49,11 +50,11 @@ public class IceTNTMinecartEntity extends AbstractTNTMinecartEntity {
     protected void explode() {
 
         if (Utils.isServerWorld(world)) {
-            IceGrenadeEntity.chillNearbyEntities(this, world, this.getPosition(), radius);
-            Utils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
-            Utils.freezeNearbyGround(this, world, this.getPosition(), radius);
-            Utils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);
-            Utils.freezeAllLava(this, world, this.getPosition(), radius, permanentLava);
+            IceGrenadeEntity.damageNearbyEntities(this, world, this.getPosition(), radius, null);
+            AreaUtils.freezeSpecial(this, world, this.getPosition(), radius, true, true);
+            AreaUtils.freezeNearbyGround(this, world, this.getPosition(), radius);
+            AreaUtils.freezeAllWater(this, world, this.getPosition(), radius, permanentWater);
+            AreaUtils.freezeAllLava(this, world, this.getPosition(), radius, permanentLava);
             makeAreaOfEffectCloud();
             this.remove();
             this.entityDropItem(getCartItem());

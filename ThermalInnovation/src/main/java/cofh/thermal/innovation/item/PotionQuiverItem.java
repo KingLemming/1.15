@@ -44,6 +44,8 @@ import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
+import static cofh.core.util.constants.Constants.MAX_POTION_AMPLIFIER;
+import static cofh.core.util.constants.Constants.MAX_POTION_DURATION;
 import static cofh.core.util.constants.NBTTags.*;
 import static cofh.core.util.helpers.ArcheryHelper.findArrows;
 import static cofh.core.util.helpers.AugmentableHelper.*;
@@ -111,7 +113,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         FluidStack fluid = getFluid(stack);
         List<EffectInstance> effects = new ArrayList<>();
         for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
-            effects.add(new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(stack)), Math.round(effect.getAmplifier() + getAmplifierMod(stack)), effect.isAmbient(), effect.doesShowParticles()));
+            effects.add(new EffectInstance(effect.getPotion(), getEffectDuration(effect, stack), getEffectAmplifier(effect, stack), effect.isAmbient(), effect.doesShowParticles()));
         }
         super.addInformation(stack, worldIn, tooltip, flagIn, effects, 0.125F);
     }
@@ -223,6 +225,16 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
         return toRemove;
     }
 
+    protected int getEffectAmplifier(EffectInstance effect, ItemStack stack) {
+
+        return Math.min(MAX_POTION_AMPLIFIER, Math.round(effect.getAmplifier() + getAmplifierMod(stack)));
+    }
+
+    protected int getEffectDuration(EffectInstance effect, ItemStack stack) {
+
+        return Math.min(MAX_POTION_DURATION, Math.round(effect.getDuration() * getDurationMod(stack)));
+    }
+
     protected float getAmplifierMod(ItemStack stack) {
 
         return getPropertyWithDefault(stack, TAG_AUGMENT_POTION_AMPLIFIER, 0.0F);
@@ -324,7 +336,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
             if (getMode(container) == 1 && fluid != null && fluid.getAmount() >= MB_PER_USE) {
                 List<EffectInstance> effects = new ArrayList<>();
                 for (EffectInstance effect : PotionUtils.getEffectsFromTag(fluid.getTag())) {
-                    effects.add(new EffectInstance(effect.getPotion(), Math.round(effect.getDuration() * getDurationMod(container)), Math.round(effect.getAmplifier() + getAmplifierMod(container)), effect.isAmbient(), effect.doesShowParticles()));
+                    effects.add(new EffectInstance(effect.getPotion(), getEffectDuration(effect, container), getEffectAmplifier(effect, container), effect.isAmbient(), effect.doesShowParticles()));
                 }
                 arrowStack = PotionUtils.appendEffects(new ItemStack(Items.TIPPED_ARROW), effects);
                 // arrowStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), PotionUtils.getPotionTypeFromNBT(fluid.getTag()));

@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
@@ -46,9 +47,9 @@ public class FireGrenadeEntity extends AbstractGrenadeEntity {
 
         if (Utils.isServerWorld(world)) {
             if (!this.isInWater()) {
-                Utils.igniteNearbyEntities(this, world, this.getPosition(), radius, effectDuration);
-                Utils.igniteSpecial(this, world, this.getPosition(), radius, true, true, getThrower());
-                Utils.igniteNearbyGround(this, world, this.getPosition(), radius, 0.2);
+                AreaUtils.igniteNearbyEntities(this, world, this.getPosition(), radius, effectDuration);
+                AreaUtils.igniteSpecial(this, world, this.getPosition(), radius, true, true, getThrower());
+                AreaUtils.igniteNearbyGround(this, world, this.getPosition(), radius, 0.2);
                 makeAreaOfEffectCloud();
             }
             this.world.setEntityState(this, (byte) 3);

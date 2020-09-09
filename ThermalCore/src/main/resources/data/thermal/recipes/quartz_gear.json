@@ -10,7 +10,7 @@
       "tag": "forge:gems/quartz"
     },
     "i": {
-      "item": "minecraft:iron_nugget"
+      "tag": "forge:nuggets/iron"
     }
   },
   "result": {

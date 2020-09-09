@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_diamond": {
+    "has_iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:diamond"
+            "tag": "forge:gems/diamond"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_diamond",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ]

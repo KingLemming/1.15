@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
@@ -65,10 +66,10 @@ public class BlazeArrowEntity extends AbstractArrowEntity {
             if (effectRadius > 0 && !isInWater()) {
                 if (Utils.isServerWorld(world)) {
                     if (effectDuration - 5 > 0) {
-                        Utils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
+                        AreaUtils.igniteNearbyEntities(this, world, this.getPosition(), effectRadius, effectDuration - 5);
                     }
-                    Utils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true, (LivingEntity) getShooter());
-                    Utils.igniteNearbyGround(this, world, this.getPosition(), effectRadius, 0.1);
+                    AreaUtils.igniteSpecial(this, world, this.getPosition(), effectRadius, true, true, (LivingEntity) getShooter());
+                    AreaUtils.igniteNearbyGround(this, world, this.getPosition(), effectRadius, 0.1);
                     makeAreaOfEffectCloud();
                 }
                 discharged = true;

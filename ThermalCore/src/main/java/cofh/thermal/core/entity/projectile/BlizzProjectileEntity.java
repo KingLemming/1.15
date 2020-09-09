@@ -1,5 +1,6 @@
 package cofh.thermal.core.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
@@ -73,9 +74,9 @@ public class BlizzProjectileEntity extends DamagingProjectileEntity {
         }
         if (Utils.isServerWorld(world)) {
             if (effectRadius > 0) {
-                Utils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
-                Utils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, false);
-                Utils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, false);
+                AreaUtils.freezeNearbyGround(this, world, this.getPosition(), effectRadius);
+                AreaUtils.freezeSurfaceWater(this, world, this.getPosition(), effectRadius, false);
+                AreaUtils.freezeSurfaceLava(this, world, this.getPosition(), effectRadius, false);
                 makeAreaOfEffectCloud();
             }
             this.world.setEntityState(this, (byte) 3);

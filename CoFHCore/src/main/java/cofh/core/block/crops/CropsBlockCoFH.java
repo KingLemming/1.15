@@ -98,7 +98,7 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
                 int age = getAge(state);
                 float growthChance = MathHelper.maxF(getGrowthChance(this, worldIn, pos) * growMod, 0.1F);
                 if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / growthChance) + 1) == 0)) {
-                    int newAge = age + 1 > getMaximumAge() ? getHarvestAge() : age + 1;
+                    int newAge = age + 1 == getPostHarvestAge() ? getHarvestAge() : age + 1;
                     worldIn.setBlockState(pos, withAge(newAge), 2);
                     ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                 }
@@ -145,11 +145,6 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     }
 
     protected int getHarvestAge() {
-
-        return 7;
-    }
-
-    protected int getMaximumAge() {
 
         return 7;
     }
@@ -207,14 +202,20 @@ public class CropsBlockCoFH extends CropsBlock implements IHarvestable {
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 
+        // TODO: Consider re-spriting these to simplify the logic.
         if (canHarvest(state)) {
             return;
         }
         int age = getAge(state);
-        int boost = getBonemealAgeIncrease(worldIn);
+        int newAge = age + getBonemealAgeIncrease(worldIn);
 
-        int newAge = age + boost > getMaximumAge() ? getHarvestAge() : age + boost;
-        worldIn.setBlockState(pos, withAge(newAge), 2);
+        int harvestAge = getHarvestAge();
+        int postHarvestAge = getPostHarvestAge();
+
+        if (age < postHarvestAge && newAge >= postHarvestAge) {
+            newAge = harvestAge;
+        }
+        worldIn.setBlockState(pos, withAge(Math.min(newAge, harvestAge)), 2);
     }
     // endregion
 

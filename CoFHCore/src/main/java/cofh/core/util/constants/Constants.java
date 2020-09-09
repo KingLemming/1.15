@@ -91,6 +91,8 @@ public class Constants {
     public static final int MAX_AUGMENTS = 9;
     public static final int MAX_ENCHANT_LEVEL = 10;
     public static final int MAX_FOOD_LEVEL = 20;
+    public static final int MAX_POTION_AMPLIFIER = 3;
+    public static final int MAX_POTION_DURATION = 72000;
     public static final int MB_PER_XP = 20;
     public static final int NETWORK_UPDATE_DISTANCE = 192;
     public static final int RF_PER_FURNACE_UNIT = 10;

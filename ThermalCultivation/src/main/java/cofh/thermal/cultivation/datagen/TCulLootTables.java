@@ -14,6 +14,8 @@ import net.minecraft.world.storage.loot.functions.ApplyBonus;
 import net.minecraft.world.storage.loot.functions.LimitCount;
 import net.minecraft.world.storage.loot.functions.SetCount;
 
+import static cofh.core.util.constants.Constants.AGE;
+import static cofh.core.util.constants.Constants.AGE_PERENNIAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.core.util.RegistrationHelper.block;
@@ -39,22 +41,22 @@ public class TCulLootTables extends LootTableProviderCoFH {
         DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
         DeferredRegisterCoFH<Item> regItems = ITEMS;
 
-        createDefaultCropTable(ID_BARLEY);
-        createDefaultCropTable(ID_ONION);
-        createDefaultCropTable(ID_RADISH);
-        createDefaultCropTable(ID_RICE);
-        createDefaultCropTable(ID_SADIROOT);
-        createDefaultCropTable(ID_SPINACH);
+        createCropTable(ID_BARLEY);
+        createCropTable(ID_ONION);
+        createCropTable(ID_RADISH);
+        createCropTable(ID_RICE);
+        createCropTable(ID_SADIROOT);
+        createCropTable(ID_SPINACH);
 
-        createDefaultCropTable(ID_BELL_PEPPER);
-        createDefaultCropTable(ID_EGGPLANT);
-        createDefaultCropTable(ID_GREEN_BEAN);
-        createDefaultCropTable(ID_PEANUT);
-        createDefaultCropTable(ID_STRAWBERRY);
-        createDefaultCropTable(ID_TOMATO);
+        createPerennialCropTable(ID_BELL_PEPPER);
+        createPerennialCropTable(ID_EGGPLANT);
+        createPerennialCropTable(ID_GREEN_BEAN);
+        createPerennialCropTable(ID_PEANUT);
+        createPerennialCropTable(ID_STRAWBERRY);
+        createPerennialCropTable(ID_TOMATO);
 
-        createDefaultCropTable(ID_COFFEE);
-        createDefaultCropTable(ID_TEA);
+        createPerennialCropTable(ID_COFFEE);
+        createPerennialCropTable(ID_TEA);
 
         lootTables.put(regBlocks.get(ID_FROST_MELON),
                 BlockLootTables.droppingWithSilkTouch(regBlocks.get(ID_FROST_MELON),
@@ -98,9 +100,14 @@ public class TCulLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_DEVICE_SOIL_INFUSER), createSyncDropTable(regBlocks.get(ID_DEVICE_SOIL_INFUSER)));
     }
 
-    protected void createDefaultCropTable(String id) {
+    protected void createCropTable(String id) {
 
-        lootTables.put(BLOCKS.get(id), createCropTable(BLOCKS.get(id), ITEMS.get(id), ITEMS.get(seeds(id))));
+        lootTables.put(BLOCKS.get(id), createCropTable(BLOCKS.get(id), ITEMS.get(id), ITEMS.get(seeds(id)), AGE, 7));
+    }
+
+    protected void createPerennialCropTable(String id) {
+
+        lootTables.put(BLOCKS.get(id), createCropTable(BLOCKS.get(id), ITEMS.get(id), ITEMS.get(seeds(id)), AGE_PERENNIAL, 10));
     }
 
     protected LootTable.Builder createSyncDropTable(Block block) {

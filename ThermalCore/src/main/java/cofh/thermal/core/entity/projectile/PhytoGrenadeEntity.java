@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.projectile;
 
 import cofh.core.entity.AbstractGrenadeEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.thermal.core.item.PhytoGroItem;
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -44,7 +45,7 @@ public class PhytoGrenadeEntity extends AbstractGrenadeEntity {
     protected void onImpact(RayTraceResult result) {
 
         if (Utils.isServerWorld(world)) {
-            Utils.growPlants(this, world, this.getPosition(), radius);
+            AreaUtils.growPlants(this, world, this.getPosition(), radius);
             for (int i = 0; i < 2; ++i) {
                 PhytoGroItem.growSeagrass(world, this.getPosition(), null);
             }

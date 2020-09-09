@@ -6,6 +6,7 @@ import cofh.core.item.IMultiModeItem;
 import cofh.core.util.ChatHelper;
 import cofh.core.util.Utils;
 import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.thermal.core.common.ThermalConfig;
 import com.google.common.collect.Iterables;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
@@ -40,7 +41,7 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     protected static final int EQUIPMENT = 0;
     protected static final int INVENTORY = 1;
 
-    protected IntSupplier numSlots = () -> 1;
+    protected IntSupplier numSlots = () -> ThermalConfig.storageAugments;
     protected Predicate<ItemStack> augValidator = (e) -> true;
 
     public RFCapacitorItem(Properties builder, int maxEnergy, int maxTransfer) {

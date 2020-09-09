@@ -1,6 +1,7 @@
 package cofh.thermal.core.entity.item;
 
 import cofh.core.entity.AbstractTNTEntity;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import cofh.thermal.core.entity.projectile.LightningGrenadeEntity;
 import net.minecraft.block.Block;
@@ -50,7 +51,7 @@ public class LightningTNTEntity extends AbstractTNTEntity {
                 ((ServerWorld) this.world).addLightningBolt(bolt);
             }
             LightningGrenadeEntity.shockNearbyEntities(this, world, this.getPosition(), radius);
-            Utils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 12);
+            AreaUtils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 12);
             this.remove();
         }
         this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);

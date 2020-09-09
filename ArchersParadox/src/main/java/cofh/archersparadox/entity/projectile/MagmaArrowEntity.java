@@ -1,5 +1,6 @@
 package cofh.archersparadox.entity.projectile;
 
+import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -64,8 +65,8 @@ public class MagmaArrowEntity extends AbstractArrowEntity {
 
         if (raytraceResultIn.getType() != RayTraceResult.Type.MISS) {
             this.setHitSound(SoundEvents.ENTITY_MAGMA_CUBE_SQUISH);
-            Utils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
-            Utils.igniteNearbyGround(this, world, this.getPosition(), RADIUS, 0.1);
+            AreaUtils.igniteNearbyEntities(this, world, this.getPosition(), RADIUS, DURATION);
+            AreaUtils.igniteNearbyGround(this, world, this.getPosition(), RADIUS, 0.1);
 
             if (raytraceResultIn.getType() == RayTraceResult.Type.ENTITY) {
                 this.onEntityHit((EntityRayTraceResult) raytraceResultIn);

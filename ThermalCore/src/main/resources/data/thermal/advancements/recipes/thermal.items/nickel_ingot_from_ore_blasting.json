@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thermal:nickel_ingot_from_ore_blasting"
+    ]
+  },
+  "criteria": {
+    "has_nickel_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "thermal:nickel_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thermal:nickel_ingot_from_ore_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nickel_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

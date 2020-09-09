@@ -39,7 +39,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
         // TODO: Adjust this when regen necessary; conditionals are NOT handled by generators at this time.
-        boolean genConditionalBases = false;
+        boolean genConditionalBases = true;
 
         if (genConditionalBases) {
             generateStorageRecipes(reg, consumer, reg.get(ID_CHARCOAL_BLOCK), Items.CHARCOAL);
@@ -78,6 +78,14 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
             generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
             generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
+
+            generateGearRecipe(consumer, reg.get("iron_gear"), Items.IRON_INGOT, forgeTag("ingots/iron"));
+            generateGearRecipe(consumer, reg.get("gold_gear"), Items.GOLD_INGOT, forgeTag("ingots/gold"));
+
+            generateGearRecipe(consumer, reg.get("diamond_gear"), Items.IRON_INGOT, forgeTag("gems/diamond"));
+            generateGearRecipe(consumer, reg.get("emerald_gear"), Items.IRON_INGOT, forgeTag("gems/emerald"));
+            generateGearRecipe(consumer, reg.get("quartz_gear"), Items.IRON_INGOT, forgeTag("gems/quartz"));
+            generateGearRecipe(consumer, reg.get("lapis_gear"), Items.IRON_INGOT, forgeTag("gems/lapis"));
         }
 
         generateStorageRecipes(reg, consumer, reg.get(ID_SAWDUST_BLOCK), reg.get("sawdust"));
@@ -112,7 +120,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateDeviceRecipes(consumer);
         generateExplosiveRecipes(consumer);
         generatePhytogroRecipes(consumer);
-        generateVanillaRecipes(consumer);
     }
 
     // region HELPERS
@@ -972,83 +979,6 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .patternLine("PGP")
                 .patternLine("GPG")
                 .addCriterion("has_phytogro", hasItem(reg.get("phytogro")))
-                .build(consumer);
-    }
-
-    private void generateVanillaRecipes(Consumer<IFinishedRecipe> consumer) {
-
-        DeferredRegisterCoFH<Item> reg = ITEMS;
-
-        Item gear = reg.get("iron_gear");
-        Item ingot = Items.IRON_INGOT;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Tags.Items.NUGGETS_IRON)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                .build(consumer);
-
-        gear = reg.get("gold_gear");
-        ingot = Items.GOLD_INGOT;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Tags.Items.NUGGETS_IRON)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                .build(consumer);
-
-        gear = reg.get("diamond_gear");
-        ingot = Items.DIAMOND;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Items.IRON_NUGGET)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                .build(consumer);
-
-        gear = reg.get("emerald_gear");
-        ingot = Items.EMERALD;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Items.IRON_NUGGET)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                .build(consumer);
-
-        gear = reg.get("lapis_gear");
-        ingot = Items.LAPIS_LAZULI;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Items.IRON_NUGGET)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
-                .build(consumer);
-
-        gear = reg.get("quartz_gear");
-        ingot = Items.QUARTZ;
-
-        ShapedRecipeBuilder.shapedRecipe(gear)
-                .key('#', ingot)
-                .key('i', Items.IRON_NUGGET)
-                .patternLine(" # ")
-                .patternLine("#i#")
-                .patternLine(" # ")
-                .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingot))
                 .build(consumer);
     }
 

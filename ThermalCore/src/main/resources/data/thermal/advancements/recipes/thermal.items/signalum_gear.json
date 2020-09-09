@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "thermal:signalum_ingot"
+            "tag": "forge:ingots/signalum"
           }
         ]
       }

@@ -14,7 +14,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "thermal:bell_pepper",
                   "properties": {
-                    "age": "7"
+                    "age": "10"
                   }
                 }
               ],
@@ -52,7 +52,7 @@
           "condition": "minecraft:block_state_property",
           "block": "thermal:bell_pepper",
           "properties": {
-            "age": "7"
+            "age": "10"
           }
         }
       ]

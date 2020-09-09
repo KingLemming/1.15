@@ -1,6 +1,7 @@
 package cofh.thermal.core.item;
 
 import cofh.core.item.ItemCoFH;
+import cofh.core.util.AreaUtils;
 import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
 import cofh.thermal.core.init.TCoreSounds;
@@ -26,8 +27,6 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static cofh.core.util.Utils.isLitCampfire;
-import static cofh.core.util.Utils.isValidSnowPosition;
 import static cofh.core.util.references.CoreReferences.GLOSSED_MAGMA;
 import static cofh.thermal.core.common.ThermalConfig.permanentLava;
 import static cofh.thermal.core.common.ThermalConfig.permanentWater;
@@ -54,13 +53,13 @@ public class IceChargeItem extends ItemCoFH {
         //        }
         boolean used = false;
         // CAMPFIRE/FIRE
-        if (isLitCampfire(state)) {
+        if (AreaUtils.isLitCampfire(state)) {
             world.setBlockState(pos, state.with(BlockStateProperties.LIT, false));
             used = true;
         }
         // SNOW
         pos = pos.offset(context.getFace());
-        if (world.isAirBlock(pos) && isValidSnowPosition(world, pos)) {
+        if (world.isAirBlock(pos) && AreaUtils.isValidSnowPosition(world, pos)) {
             world.setBlockState(pos, SNOW.getDefaultState());
             used = true;
         }
