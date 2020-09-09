@@ -1,13 +1,9 @@
 package cofh.thermal.core.init;
 
-import cofh.core.block.GunpowderBlock;
-import cofh.core.block.OreBlockCoFH;
-import cofh.core.block.TNTBlockCoFH;
-import cofh.core.block.TileBlock4Way;
+import cofh.core.block.*;
 import cofh.core.block.storage.MetalStorageBlock;
 import cofh.core.item.BlockItemCoFH;
 import cofh.core.util.ProxyUtils;
-import cofh.thermal.core.block.RubberBlock;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.entity.item.*;
 import cofh.thermal.core.inventory.container.device.DeviceHiveExtractorContainer;
@@ -196,8 +192,8 @@ public class TCoreBlocks {
 
         registerBlock(ID_MACHINE_FRAME, () -> new Block(create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(2.0F).lightValue(0).notSolid()), getFeature(ID_MACHINE_FRAME));
 
-        registerBlock(ID_OBSIDIAN_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
-        registerBlock(ID_SIGNALUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
+        registerBlock(ID_OBSIDIAN_GLASS, () -> new HardenedGlassBlock(create(Material.GLASS, MaterialColor.OBSIDIAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).notSolid()));
+        registerBlock(ID_SIGNALUM_GLASS, () -> new HardenedGlassBlock(create(Material.GLASS, MaterialColor.RED).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(7).notSolid()) {
 
             @Override
             public boolean canProvidePower(BlockState state) {
@@ -211,8 +207,8 @@ public class TCoreBlocks {
                 return 15;
             }
         }, Rarity.UNCOMMON);
-        registerBlock(ID_LUMIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
-        registerBlock(ID_ENDERIUM_GLASS, () -> new GlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_LUMIUM_GLASS, () -> new HardenedGlassBlock(create(Material.GLASS, MaterialColor.YELLOW).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(15).notSolid()), Rarity.UNCOMMON);
+        registerBlock(ID_ENDERIUM_GLASS, () -> new HardenedGlassBlock(create(Material.GLASS, MaterialColor.CYAN).hardnessAndResistance(5.0F, 1000.0F).sound(SoundType.GLASS).lightValue(3).notSolid()), Rarity.UNCOMMON);
 
         registerBlock(ID_WHITE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.SNOW).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));
         registerBlock(ID_ORANGE_ROCKWOOL, () -> new Block(create(Material.ROCK, MaterialColor.ADOBE).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH)), getFeature(FLAG_ROCKWOOL));

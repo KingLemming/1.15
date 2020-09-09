@@ -103,8 +103,8 @@ public class BlizzEntity extends MonsterEntity {
             this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
         }
         if (this.world.isRemote) {
-            if (this.rand.nextInt(64) == 0 && !this.isSilent()) {
-                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLIZZ_ROAM, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, true);
+            if (this.rand.nextInt(256) == 0 && !this.isSilent()) {
+                this.world.playSound(this.getPosX() + 0.5D, this.getPosY() + 0.5D, this.getPosZ() + 0.5D, SOUND_BLIZZ_ROAM, this.getSoundCategory(), 0.5F + 0.25F * this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, true);
             }
             if (this.rand.nextInt(2) == 0) {
                 this.world.addParticle(ParticleTypes.ITEM_SNOWBALL, this.getPosXRandom(0.5D), this.getPosYRandom(), this.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);

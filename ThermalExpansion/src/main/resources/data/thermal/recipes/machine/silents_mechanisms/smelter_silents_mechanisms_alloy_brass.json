@@ -1,0 +1,26 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    {
+      "tag": "forge:ingots/copper",
+      "count": 3
+    },
+    {
+      "tag": "forge:ingots/zinc",
+      "count": 1
+    }
+  ],
+  "result": [
+    {
+      "item": "silents_mechanisms:brass_ingot",
+      "count": 2
+    }
+  ],
+  "energy": 12000,
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "silents_mechanisms"
+    }
+  ]
+}
