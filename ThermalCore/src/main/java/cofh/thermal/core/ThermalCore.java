@@ -146,8 +146,6 @@ public class ThermalCore {
         DeferredWorkQueue.runLater(TCoreEntities::setup);
 
         LootFunctionManager.registerFunction(new TileNBTSync.Serializer());
-
-        DeferredWorkQueue.runLater(ThermalWorld::setup);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -220,6 +218,9 @@ public class ThermalCore {
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {
 
         ThermalRecipeManagers.instance().setServerRecipeManager(event.getServer().getRecipeManager());
+
+        // TODO: Temporary
+        ThermalWorld.setup();
 
         event.getServer().getResourceManager().addReloadListener(
                 new ReloadListener<Void>() {
