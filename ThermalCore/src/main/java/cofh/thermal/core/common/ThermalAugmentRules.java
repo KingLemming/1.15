@@ -1,9 +1,9 @@
 package cofh.thermal.core.common;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -16,13 +16,13 @@ public class ThermalAugmentRules {
     }
 
     // region PROPERTIES
-    private static final Set<String> ATTR_ADD = new HashSet<>();
-    private static final Set<String> ATTR_MAX = new HashSet<>();
-    private static final Set<String> ATTR_MULT = new HashSet<>();
-    private static final Set<String> ATTR_INV = new HashSet<>();
-    private static final Set<String> ATTR_INT = new HashSet<>();
+    private static final Set<String> ATTR_ADD = new ObjectOpenHashSet<>();
+    private static final Set<String> ATTR_MAX = new ObjectOpenHashSet<>();
+    private static final Set<String> ATTR_MULT = new ObjectOpenHashSet<>();
+    private static final Set<String> ATTR_INV = new ObjectOpenHashSet<>();
+    private static final Set<String> ATTR_INT = new ObjectOpenHashSet<>();
 
-    private static final Set<String> TYPE_EXC = new HashSet<>();
+    private static final Set<String> TYPE_EXC = new ObjectOpenHashSet<>();
 
     // Sets storing if an attribute is multiplicative or additive, and also if the calculation is maximized, or higher values are bad.
     static {

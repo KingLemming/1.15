@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:electrum_ingot",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "electrum"
-    }
-  ]
+  }
 }

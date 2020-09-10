@@ -6,7 +6,14 @@
       "count": 2
     },
     {
-      "tag": "forge:ingots/signalum",
+      "value": [
+        {
+          "tag": "forge:ingots/signalum"
+        },
+        {
+          "tag": "forge:dusts/signalum"
+        }
+      ],
       "count": 1
     }
   ],

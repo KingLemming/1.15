@@ -12,11 +12,5 @@
   },
   "result": {
     "item": "thermal:tin_block"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "tin"
-    }
-  ]
+  }
 }

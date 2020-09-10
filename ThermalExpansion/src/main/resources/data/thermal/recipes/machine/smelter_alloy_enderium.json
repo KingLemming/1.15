@@ -2,7 +2,14 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/lead",
+      "value": [
+        {
+          "tag": "forge:ingots/lead"
+        },
+        {
+          "tag": "forge:dusts/lead"
+        }
+      ],
       "count": 3
     },
     {

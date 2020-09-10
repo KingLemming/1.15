@@ -2,7 +2,14 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/iron",
+      "value": [
+        {
+          "tag": "forge:ingots/iron"
+        },
+        {
+          "tag": "forge:dusts/iron"
+        }
+      ],
       "count": 1
     },
     {
@@ -16,7 +23,7 @@
       "count": 2
     }
   ],
-  "energy": 12000,
+  "energy": 3200,
   "conditions": [
     {
       "type": "forge:mod_loaded",

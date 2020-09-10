@@ -6,7 +6,14 @@
       "count": 2
     },
     {
-      "tag": "forge:ingots/lumium",
+      "value": [
+        {
+          "tag": "forge:ingots/lumium"
+        },
+        {
+          "tag": "forge:dusts/lumium"
+        }
+      ],
       "count": 1
     }
   ],

@@ -18,11 +18,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.client.model.ModelDataManager;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static cofh.core.util.constants.Constants.*;

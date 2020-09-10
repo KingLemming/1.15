@@ -29,20 +29,6 @@ public abstract class RecipeJsonUtils {
 
     }
 
-    public static boolean validityCheck(JsonObject json) {
-
-        if (json.has(COMMENT)) {
-            return false;
-        }
-        if (json.has(ENABLE) && !json.get(ENABLE).getAsBoolean()) {
-            return false;
-        }
-        if (json.has(DEPENDENCY)) {
-            return parseDependencies(json.get(DEPENDENCY));
-        }
-        return true;
-    }
-
     // region HELPERS
     public static Ingredient parseIngredient(JsonElement element) {
 
@@ -50,11 +36,22 @@ public abstract class RecipeJsonUtils {
             return Ingredient.fromStacks(ItemStack.EMPTY);
         }
         Ingredient ingredient;
-        JsonElement subElement = element.isJsonArray() ? element.getAsJsonArray() : element.getAsJsonObject();
-        try {
-            ingredient = Ingredient.deserialize(subElement);
-            if (subElement.isJsonObject()) {
+
+        if (element.isJsonArray()) {
+            try {
+                ingredient = Ingredient.deserialize(element);
+            } catch (Throwable t) {
+                ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
+            }
+        } else {
+            JsonElement subElement = element.getAsJsonObject();
+            try {
                 JsonObject object = subElement.getAsJsonObject();
+                if (object.has(VALUE)) {
+                    ingredient = Ingredient.deserialize(object.get(VALUE));
+                } else {
+                    ingredient = Ingredient.deserialize(subElement);
+                }
                 int count = 1;
                 if (object.has(COUNT)) {
                     count = object.get(COUNT).getAsInt();
@@ -66,12 +63,29 @@ public abstract class RecipeJsonUtils {
                         stack.setCount(count);
                     }
                 }
+            } catch (Throwable t) {
+                ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
             }
-        } catch (Throwable t) {
-            ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
         }
         return ingredient;
     }
+
+    //    public static void parseInputs(List<Ingredient> ingredients, List<FluidStack> fluids, JsonElement element) {
+    //
+    //        if (element.isJsonArray()) {
+    //            for (JsonElement arrayElement : element.getAsJsonArray()) {
+    //                if (arrayElement.getAsJsonObject().has(FLUID)) {
+    //                    fluids.add(parseFluidStack(arrayElement));
+    //                } else {
+    //                    ingredients.add(parseIngredient(arrayElement.getAsJsonObject()));
+    //                }
+    //            }
+    //        } else if (element.getAsJsonObject().has(FLUID)) {
+    //            fluids.add(parseFluidStack(element));
+    //        } else {
+    //            ingredients.add(parseIngredient(element.getAsJsonObject()));
+    //        }
+    //    }
 
     public static void parseInputs(List<Ingredient> ingredients, List<FluidStack> fluids, JsonElement element) {
 
@@ -113,49 +127,6 @@ public abstract class RecipeJsonUtils {
             }
         } else if (element.getAsJsonObject().has(FLUID)) {
             fluids.add(parseFluidStack(element));
-        } else {
-            ItemStack stack = parseItemStack(element);
-            if (!stack.isEmpty()) {
-                items.add(stack);
-                chances.add(parseItemChance(element));
-            }
-        }
-    }
-
-    private static boolean parseDependencies(JsonElement element) {
-
-        if (element.isJsonArray()) {
-            boolean check = true;
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                check &= parseDependency(arrayElement);
-            }
-            return check;
-        } else {
-            return parseDependency(element);
-        }
-    }
-
-    private static void parseItemStacks(List<ItemStack> items, JsonElement element) {
-
-        if (element.isJsonArray()) {
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                items.add(parseItemStack(arrayElement));
-            }
-        } else {
-            items.add(parseItemStack(element));
-        }
-    }
-
-    private static void parseItemStacks(List<ItemStack> items, List<Float> chances, JsonElement element) {
-
-        if (element.isJsonArray()) {
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                ItemStack stack = parseItemStack(arrayElement);
-                if (!stack.isEmpty()) {
-                    items.add(stack);
-                    chances.add(parseItemChance(arrayElement));
-                }
-            }
         } else {
             ItemStack stack = parseItemStack(element);
             if (!stack.isEmpty()) {
@@ -213,26 +184,6 @@ public abstract class RecipeJsonUtils {
             }
         }
         return stack;
-    }
-
-    public static void parseFluidStacks(List<FluidStack> fluids, JsonElement element) {
-
-        if (element == null) {
-            return;
-        }
-        if (element.isJsonArray()) {
-            for (JsonElement arrayElement : element.getAsJsonArray()) {
-                FluidStack stack = parseFluidStack(arrayElement);
-                if (!stack.isEmpty()) {
-                    fluids.add(stack);
-                }
-            }
-        } else {
-            FluidStack stack = parseFluidStack(element);
-            if (!stack.isEmpty()) {
-                fluids.add(stack);
-            }
-        }
     }
 
     private static FluidStack parseFluidStack(JsonElement element) {
@@ -339,6 +290,7 @@ public abstract class RecipeJsonUtils {
     public static final String TAG = "tag";
     public static final String TYPE = "type";
     public static final String USE_CHANCE = "use_chance";
+    public static final String VALUE = "value";
     public static final String WILDCARD = "wildcard";
 
     public static final String LAVA = "lava";

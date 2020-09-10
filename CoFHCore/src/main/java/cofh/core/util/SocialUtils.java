@@ -1,13 +1,17 @@
 package cofh.core.util;
 
 import com.mojang.authlib.GameProfile;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.world.storage.WorldSavedData;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.UUID;
 
 import static cofh.core.util.constants.NBTTags.TAG_NAME;
 import static cofh.core.util.constants.NBTTags.TAG_UUID;
@@ -70,9 +74,8 @@ public class SocialUtils {
             }
             String playerUUID = player.getGameProfile().getId().toString();
             Set<GameProfile> set = friendLists.get(playerUUID);
-
             if (set == null) {
-                set = new HashSet<>();
+                set = new ObjectOpenHashSet<>();
             }
             set.add(friend);
             friendLists.put(playerUUID, set);
@@ -130,7 +133,7 @@ public class SocialUtils {
 
             for (String player : nbt.keySet()) {
                 ListNBT list = nbt.getList(player, TAG_COMPOUND);
-                Set<GameProfile> friendList = new HashSet<>();
+                Set<GameProfile> friendList = new ObjectOpenHashSet<>();
                 for (int i = 0; i < list.size(); ++i) {
                     CompoundNBT subTag = list.getCompound(i);
                     friendList.add(new GameProfile(UUID.fromString(subTag.getString(TAG_UUID)), subTag.getString(TAG_NAME)));

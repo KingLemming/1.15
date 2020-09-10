@@ -183,7 +183,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
         if (defaultBucketRecipes) {
             ThermalCore.LOG.debug("Adding default Bucket recipes to the Fluid Encapsulator...");
-            Set<Fluid> bucketFluids = new HashSet<>(32);
+            Set<Fluid> bucketFluids = new ObjectOpenHashSet<>(32);
             for (Fluid fluid : ForgeRegistries.FLUIDS) {
                 if (fluid instanceof FlowingFluid) {
                     Fluid still = ((FlowingFluid) fluid).getStillFluid();
@@ -216,7 +216,6 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
 
     protected BottlerRecipeNBT convert(int energy, float experience, int minTicks, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
 
-        System.out.println("CALLED CONVERT");
         convertedRecipes.add(new BottlerRecipe(new ResourceLocation(ID_THERMAL, "bottler_" + inputItem.getItem().getRegistryName().getPath()), energy, experience, minTicks, singletonList(Ingredient.fromStacks(inputItem)), singletonList(inputFluid), singletonList(outputItem), emptyList(), emptyList()));
         return new BottlerRecipeNBT(energy, experience, minTicks, inputItem, inputFluid, outputItem);
     }

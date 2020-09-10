@@ -21,6 +21,7 @@ import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.util.IThermalInventory;
 import cofh.thermal.core.util.loot.TileNBTSync;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +49,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -77,7 +77,7 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
     protected RedstoneControlModule redstoneControl = new RedstoneControlModule(this);
 
     protected List<ItemStorageCoFH> augments = new ArrayList<>();
-    protected Set<String> augmentTypes = new HashSet<>();
+    protected Set<String> augmentTypes = new ObjectOpenHashSet<>();
 
     public boolean isActive;
     public boolean wasActive;

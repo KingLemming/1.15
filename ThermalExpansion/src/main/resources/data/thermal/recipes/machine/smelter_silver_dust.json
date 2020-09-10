@@ -7,10 +7,6 @@
     {
       "item": "thermal:silver_ingot",
       "count": 1
-    },
-    {
-      "item": "thermal:slag",
-      "chance": 0.3
     }
   ],
   "energy_mod": 0.5

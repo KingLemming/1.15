@@ -6,7 +6,14 @@
       "count": 2
     },
     {
-      "tag": "forge:ingots/enderium",
+      "value": [
+        {
+          "tag": "forge:ingots/enderium"
+        },
+        {
+          "tag": "forge:dusts/enderium"
+        }
+      ],
       "count": 1
     }
   ],

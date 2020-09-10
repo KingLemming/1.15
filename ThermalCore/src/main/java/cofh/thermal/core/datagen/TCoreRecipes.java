@@ -51,42 +51,41 @@ public class TCoreRecipes extends RecipeProviderCoFH {
             generateStorageRecipes(reg, consumer, reg.get(ID_BEETROOT_BLOCK), Items.BEETROOT);
             generateStorageRecipes(reg, consumer, reg.get(ID_CARROT_BLOCK), Items.CARROT);
             generateStorageRecipes(reg, consumer, reg.get(ID_POTATO_BLOCK), Items.POTATO);
-
-            generateStorageRecipes(reg, consumer, reg.get(ID_APATITE_BLOCK), reg.get("apatite"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_CINNABAR_BLOCK), reg.get("cinnabar"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
-            generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
-
-            generateStorageRecipes(reg, consumer, "copper");
-            generateStorageRecipes(reg, consumer, "tin");
-            generateStorageRecipes(reg, consumer, "lead");
-            generateStorageRecipes(reg, consumer, "silver");
-            generateStorageRecipes(reg, consumer, "nickel");
-
-            generateStorageRecipes(reg, consumer, "bronze");
-            generateStorageRecipes(reg, consumer, "electrum");
-            generateStorageRecipes(reg, consumer, "invar");
-            generateStorageRecipes(reg, consumer, "constantan");
-
-            generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 1.0F);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
-
-            generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
-            generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
-
-            generateGearRecipe(consumer, reg.get("iron_gear"), Items.IRON_INGOT, forgeTag("ingots/iron"));
-            generateGearRecipe(consumer, reg.get("gold_gear"), Items.GOLD_INGOT, forgeTag("ingots/gold"));
-
-            generateGearRecipe(consumer, reg.get("diamond_gear"), Items.IRON_INGOT, forgeTag("gems/diamond"));
-            generateGearRecipe(consumer, reg.get("emerald_gear"), Items.IRON_INGOT, forgeTag("gems/emerald"));
-            generateGearRecipe(consumer, reg.get("quartz_gear"), Items.IRON_INGOT, forgeTag("gems/quartz"));
-            generateGearRecipe(consumer, reg.get("lapis_gear"), Items.IRON_INGOT, forgeTag("gems/lapis"));
         }
+        generateStorageRecipes(reg, consumer, reg.get(ID_APATITE_BLOCK), reg.get("apatite"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_CINNABAR_BLOCK), reg.get("cinnabar"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_NITER_BLOCK), reg.get("niter"));
+        generateStorageRecipes(reg, consumer, reg.get(ID_SULFUR_BLOCK), reg.get("sulfur"));
+
+        generateStorageRecipes(reg, consumer, "copper");
+        generateStorageRecipes(reg, consumer, "tin");
+        generateStorageRecipes(reg, consumer, "lead");
+        generateStorageRecipes(reg, consumer, "silver");
+        generateStorageRecipes(reg, consumer, "nickel");
+
+        generateStorageRecipes(reg, consumer, "bronze");
+        generateStorageRecipes(reg, consumer, "electrum");
+        generateStorageRecipes(reg, consumer, "invar");
+        generateStorageRecipes(reg, consumer, "constantan");
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, "copper", 0.6F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "tin", 0.6F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "lead", 0.8F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "silver", 1.0F);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "nickel", 1.0F);
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, "bronze", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "electrum", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "invar", 0);
+        generateSmeltingAndBlastingRecipes(reg, consumer, "constantan", 0);
+
+        generateGearRecipe(consumer, reg.get("iron_gear"), Items.IRON_INGOT, forgeTag("ingots/iron"));
+        generateGearRecipe(consumer, reg.get("gold_gear"), Items.GOLD_INGOT, forgeTag("ingots/gold"));
+
+        generateGearRecipe(consumer, reg.get("diamond_gear"), Items.IRON_INGOT, forgeTag("gems/diamond"));
+        generateGearRecipe(consumer, reg.get("emerald_gear"), Items.IRON_INGOT, forgeTag("gems/emerald"));
+        generateGearRecipe(consumer, reg.get("quartz_gear"), Items.IRON_INGOT, forgeTag("gems/quartz"));
+        generateGearRecipe(consumer, reg.get("lapis_gear"), Items.IRON_INGOT, forgeTag("gems/lapis"));
 
         generateStorageRecipes(reg, consumer, reg.get(ID_SAWDUST_BLOCK), reg.get("sawdust"));
         generateStorageRecipes(reg, consumer, reg.get(ID_ROSIN_BLOCK), reg.get("rosin"));

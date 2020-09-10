@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[31,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
+
+[[mods]]
+modId = "thermal_horizons"
+version = "${file.jarVersion}"
+displayName = "Thermal Horizons"
+displayURL = "https://teamcofh.com/"
+logoFile = "logo.png"
+credits = "Team CoFH"
+authors = "King Lemming"
+description = '''
+Thermal Horizons!
+'''
+[[dependencies.thermal_horizons]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_horizons]]
+modId = "forge"
+mandatory = true
+versionRange = "[31.1.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_horizons]]
+modId = "cofh_core"
+mandatory = true
+versionRange = "[0.6,0.7]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_horizons]]
+modId = "thermal"
+mandatory = true
+versionRange = "[0.2,0.3]"
+ordering = "AFTER"
+side = "BOTH"

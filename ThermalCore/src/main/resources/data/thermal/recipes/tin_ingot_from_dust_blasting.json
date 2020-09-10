@@ -5,11 +5,5 @@
   },
   "result": "thermal:tin_ingot",
   "experience": 0.0,
-  "cookingtime": 100,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "tin"
-    }
-  ]
+  "cookingtime": 100
 }

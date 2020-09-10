@@ -11,11 +11,5 @@
   "result": {
     "item": "thermal:electrum_dust",
     "count": 2
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "electrum"
-    }
-  ]
+  }
 }

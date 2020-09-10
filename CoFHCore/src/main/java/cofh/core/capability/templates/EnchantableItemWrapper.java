@@ -1,6 +1,7 @@
 package cofh.core.capability.templates;
 
 import cofh.core.capability.IEnchantableItem;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -10,7 +11,6 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ public class EnchantableItemWrapper implements IEnchantableItem, ICapabilityProv
     private final LazyOptional<IEnchantableItem> holder = LazyOptional.of(() -> this);
 
     final ItemStack enchantableItem;
-    final Set<Enchantment> validEnchantments = new HashSet<>();
+    final Set<Enchantment> validEnchantments = new ObjectOpenHashSet<>();
 
     public EnchantableItemWrapper(ItemStack enchantableItem, List<Enchantment> enchantments) {
 

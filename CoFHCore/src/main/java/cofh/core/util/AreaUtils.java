@@ -1,6 +1,7 @@
 package cofh.core.util;
 
 import cofh.core.util.helpers.MathHelper;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -17,7 +18,6 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -351,28 +351,28 @@ public class AreaUtils {
 
     public static void transformMycelium(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        Set<BlockState> replaceable = new HashSet<>();
+        Set<BlockState> replaceable = new ObjectOpenHashSet<>();
         Collections.addAll(replaceable, DIRT.getDefaultState(), GRASS_BLOCK.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, MYCELIUM.getDefaultState(), radius, true);
     }
 
     public static void transformSignalAir(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        Set<BlockState> replaceable = new HashSet<>();
+        Set<BlockState> replaceable = new ObjectOpenHashSet<>();
         Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, SIGNAL_AIR.getDefaultState(), radius, false);
     }
 
     public static void transformGlowAir(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        Set<BlockState> replaceable = new HashSet<>();
+        Set<BlockState> replaceable = new ObjectOpenHashSet<>();
         Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, GLOW_AIR.getDefaultState(), radius, false);
     }
 
     public static void transformEnderAir(Entity entity, World worldIn, BlockPos pos, int radius) {
 
-        Set<BlockState> replaceable = new HashSet<>();
+        Set<BlockState> replaceable = new ObjectOpenHashSet<>();
         Collections.addAll(replaceable, AIR.getDefaultState(), CAVE_AIR.getDefaultState());
         transformArea(entity, worldIn, pos, replaceable, ENDER_AIR.getDefaultState(), radius, false);
     }

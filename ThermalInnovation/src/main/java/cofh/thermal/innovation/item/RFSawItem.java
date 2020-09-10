@@ -15,6 +15,7 @@ import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RotatedPillarBlock;
@@ -46,7 +47,6 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.IntSupplier;
@@ -59,8 +59,8 @@ import static cofh.core.util.helpers.AugmentableHelper.getPropertyWithDefault;
 
 public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
 
-    protected static final Set<ToolType> TOOL_TYPES = new HashSet<>();
-    protected static final Set<Material> MATERIALS = new HashSet<>();
+    protected static final Set<ToolType> TOOL_TYPES = new ObjectOpenHashSet<>();
+    protected static final Set<Material> MATERIALS = new ObjectOpenHashSet<>();
 
     public static final int ENERGY_PER_USE = 200;
 

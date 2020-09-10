@@ -2,11 +2,25 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/copper",
+      "value": [
+        {
+          "tag": "forge:ingots/copper"
+        },
+        {
+          "tag": "forge:dusts/copper"
+        }
+      ],
       "count": 1
     },
     {
-      "tag": "forge:ingots/nickel",
+      "value": [
+        {
+          "tag": "forge:ingots/nickel"
+        },
+        {
+          "tag": "forge:dusts/nickel"
+        }
+      ],
       "count": 1
     }
   ],

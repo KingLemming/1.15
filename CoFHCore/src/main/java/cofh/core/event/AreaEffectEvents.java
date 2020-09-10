@@ -3,6 +3,7 @@ package cofh.core.event;
 import cofh.core.capability.templates.AreaEffectItemWrapper;
 import cofh.core.util.Utils;
 import com.google.common.collect.ImmutableList;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -25,8 +26,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static cofh.core.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
 import static cofh.core.util.constants.Constants.ID_COFH_CORE;
@@ -38,8 +39,8 @@ import static net.minecraft.item.HoeItem.HOE_LOOKUP;
 @Mod.EventBusSubscriber(modid = ID_COFH_CORE)
 public class AreaEffectEvents {
 
-    private static final HashSet<PlayerEntity> HARVESTING_PLAYERS = new HashSet<>();
-    private static final HashSet<PlayerEntity> TILLING_PLAYERS = new HashSet<>();
+    private static final Set<PlayerEntity> HARVESTING_PLAYERS = new ObjectOpenHashSet<>();
+    private static final Set<PlayerEntity> TILLING_PLAYERS = new ObjectOpenHashSet<>();
 
     private AreaEffectEvents() {
 

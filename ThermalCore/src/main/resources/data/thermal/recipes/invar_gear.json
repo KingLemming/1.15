@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:invar_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "invar"
-    }
-  ]
+  }
 }

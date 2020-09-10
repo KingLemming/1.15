@@ -2,16 +2,30 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/iron",
+      "value": [
+        {
+          "tag": "forge:ingots/iron"
+        },
+        {
+          "tag": "forge:dusts/iron"
+        }
+      ],
       "count": 2
+    },
+    {
+      "value": [
+        {
+          "tag": "forge:ingots/bismuth"
+        },
+        {
+          "tag": "forge:dusts/bismuth"
+        }
+      ],
+      "count": 1
     },
     {
       "tag": "forge:dusts/coal",
       "count": 3
-    },
-    {
-      "tag": "forge:ingots/bismuth",
-      "count": 1
     }
   ],
   "result": [
@@ -20,7 +34,7 @@
       "count": 4
     }
   ],
-  "energy": 12000,
+  "energy": 9600,
   "conditions": [
     {
       "type": "forge:mod_loaded",

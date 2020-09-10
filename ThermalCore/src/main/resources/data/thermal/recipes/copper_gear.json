@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:copper_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "copper"
-    }
-  ]
+  }
 }

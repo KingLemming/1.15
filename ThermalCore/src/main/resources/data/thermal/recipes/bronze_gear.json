@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:bronze_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "bronze"
-    }
-  ]
+  }
 }

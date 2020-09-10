@@ -17,11 +17,5 @@
   "result": {
     "item": "thermal:bronze_dust",
     "count": 4
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "bronze"
-    }
-  ]
+  }
 }

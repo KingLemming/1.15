@@ -14,11 +14,5 @@
   "result": {
     "item": "thermal:invar_dust",
     "count": 3
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "invar"
-    }
-  ]
+  }
 }

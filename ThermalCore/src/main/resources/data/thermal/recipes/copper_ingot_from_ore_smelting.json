@@ -5,11 +5,5 @@
   },
   "result": "thermal:copper_ingot",
   "experience": 0.6,
-  "cookingtime": 200,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "copper"
-    }
-  ]
+  "cookingtime": 200
 }

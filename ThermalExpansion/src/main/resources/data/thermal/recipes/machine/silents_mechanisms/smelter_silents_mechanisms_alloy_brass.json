@@ -2,21 +2,35 @@
   "type": "thermal:smelter",
   "input": [
     {
-      "tag": "forge:ingots/copper",
+      "value": [
+        {
+          "tag": "forge:ingots/copper"
+        },
+        {
+          "tag": "forge:dusts/copper"
+        }
+      ],
       "count": 3
     },
     {
-      "tag": "forge:ingots/zinc",
+      "value": [
+        {
+          "tag": "forge:ingots/zinc"
+        },
+        {
+          "tag": "forge:dusts/zinc"
+        }
+      ],
       "count": 1
     }
   ],
   "result": [
     {
       "item": "silents_mechanisms:brass_ingot",
-      "count": 2
+      "count": 4
     }
   ],
-  "energy": 12000,
+  "energy": 6400,
   "conditions": [
     {
       "type": "forge:mod_loaded",

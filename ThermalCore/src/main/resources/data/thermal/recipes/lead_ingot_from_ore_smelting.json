@@ -5,11 +5,5 @@
   },
   "result": "thermal:lead_ingot",
   "experience": 0.8,
-  "cookingtime": 200,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "lead"
-    }
-  ]
+  "cookingtime": 200
 }

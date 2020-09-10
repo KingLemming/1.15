@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:constantan_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "constantan"
-    }
-  ]
+  }
 }

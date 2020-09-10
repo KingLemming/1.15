@@ -2,6 +2,7 @@ package cofh.ensorcellation.enchantment;
 
 import cofh.core.enchantment.EnchantmentCoFH;
 import cofh.core.util.Utils;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
@@ -17,9 +18,9 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import static cofh.core.util.constants.Constants.ARMOR_SLOTS;
 import static cofh.core.util.references.EnsorcReferences.*;
@@ -27,7 +28,7 @@ import static net.minecraft.enchantment.Enchantments.THORNS;
 
 public class FireRebukeEnchantment extends EnchantmentCoFH {
 
-    private static final HashSet<Tuple<Entity, Integer>> AFFLICTED_ENTITIES = new HashSet<>();
+    private static final Set<Tuple<Entity, Integer>> AFFLICTED_ENTITIES = new ObjectOpenHashSet<>();
 
     public static int chance = 20;
     public static boolean mobsAffectPlayers = false;

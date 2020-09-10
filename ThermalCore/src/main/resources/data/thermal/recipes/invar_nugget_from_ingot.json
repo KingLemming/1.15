@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:invar_nugget",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "invar"
-    }
-  ]
+  }
 }

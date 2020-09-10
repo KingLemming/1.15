@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:nickel_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "nickel"
-    }
-  ]
+  }
 }

@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:constantan_nugget",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "constantan"
-    }
-  ]
+  }
 }

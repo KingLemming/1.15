@@ -8,11 +8,5 @@
   "result": {
     "item": "thermal:nickel_nugget",
     "count": 9
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "nickel"
-    }
-  ]
+  }
 }

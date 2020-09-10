@@ -8,6 +8,7 @@ import cofh.core.util.RayTracer;
 import cofh.core.util.Utils;
 import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.thermal.core.common.ThermalConfig;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.util.InputMappings;
@@ -34,7 +35,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.IntSupplier;
@@ -59,7 +59,7 @@ public class WateringCanItem extends FluidContainerItem implements IAugmentableI
     protected static boolean allowFakePlayers = false;
     protected static boolean removeSourceBlocks = true;
 
-    protected static final Set<Block> EFFECTIVE_BLOCKS = new HashSet<>();
+    protected static final Set<Block> EFFECTIVE_BLOCKS = new ObjectOpenHashSet<>();
 
     static {
         EFFECTIVE_BLOCKS.add(Blocks.MYCELIUM);

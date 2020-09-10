@@ -15,11 +15,5 @@
   },
   "result": {
     "item": "thermal:lead_gear"
-  },
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "lead"
-    }
-  ]
+  }
 }

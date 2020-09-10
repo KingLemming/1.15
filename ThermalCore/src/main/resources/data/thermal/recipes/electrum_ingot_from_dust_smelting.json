@@ -5,11 +5,5 @@
   },
   "result": "thermal:electrum_ingot",
   "experience": 0.0,
-  "cookingtime": 200,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "electrum"
-    }
-  ]
+  "cookingtime": 200
 }

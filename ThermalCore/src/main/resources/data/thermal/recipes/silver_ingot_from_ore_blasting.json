@@ -5,11 +5,5 @@
   },
   "result": "thermal:silver_ingot",
   "experience": 1.0,
-  "cookingtime": 100,
-  "conditions": [
-    {
-      "type": "thermal:flag",
-      "flag": "silver"
-    }
-  ]
+  "cookingtime": 100
 }
