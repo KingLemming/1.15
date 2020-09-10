@@ -273,7 +273,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
         }
         int energyExcess = getEnergyStored(container) - getMaxEnergyStored(container);
         if (energyExcess > 0) {
-            extractEnergy(container, energyExcess, false);
+            setEnergyStored(container, getMaxEnergyStored(container));
         }
     }
     // endregion

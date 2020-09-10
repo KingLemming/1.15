@@ -78,12 +78,12 @@ public abstract class PanelScrolledText extends PanelBase {
         if (!fullyOpen) {
             return false;
         }
-        if (!scrollable || shiftedMouseY < 16 || shiftedMouseX < 108) {
+        if (!scrollable || shiftedMouseY < 16 || shiftedMouseX < maxWidth - 16) {
             return super.mouseClicked(mouseX, mouseY, mouseButton);
         }
-        if (shiftedMouseY < 52) {
+        if (shiftedMouseY < 32) {
             firstLine = MathHelper.clamp(firstLine - 1, 0, maxFirstLine);
-        } else {
+        } else if (shiftedMouseY > maxHeight - 16) {
             firstLine = MathHelper.clamp(firstLine + 1, 0, maxFirstLine);
         }
         return true;

@@ -621,6 +621,17 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_signalum_ingot", hasItem(CoFHTags.Items.INGOTS_SIGNALUM))
                 .build(consumer);
 
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rf_potato"))
+                .key('D', Tags.Items.DUSTS_REDSTONE)
+                .key('L', CoFHTags.Items.NUGGETS_LEAD)
+                .key('P', Tags.Items.CROPS_POTATO)
+                .key('R', reg.get("cured_rubber"))
+                .patternLine("LDL")
+                .patternLine("RPR")
+                .patternLine("DLD")
+                .addCriterion("has_potato", hasItem(Tags.Items.CROPS_POTATO))
+                .build(consumer);
+
         ShapelessRecipeBuilder.shapelessRecipe(reg.get("basalz_powder"), 2)
                 .addIngredient(reg.get("basalz_rod"))
                 .addCriterion("has_basalz_rod", hasItem(reg.get("basalz_rod")))
@@ -1088,6 +1099,12 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addIngredient(earthCharge)
                 .addCriterion("has_quartz", hasItem(Tags.Items.GEMS_QUARTZ))
                 .build(consumer, ID_THERMAL + ":earth_charge_quartz_dust_from_quartz");
+
+        //        ShapelessRecipeBuilder.shapelessRecipe(reg.get("ender_pearl_dust"))
+        //                .addIngredient(Tags.Items.ENDER_PEARLS)
+        //                .addIngredient(earthCharge)
+        //                .addCriterion("has_ender_pearl", hasItem(Tags.Items.ENDER_PEARLS))
+        //                .build(consumer, ID_THERMAL + ":earth_charge_ender_pearl_dust_from_ender_pearl");
         // endregion
 
         // region ICE CHARGE CONVERSIONS

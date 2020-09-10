@@ -325,7 +325,7 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
         }
         int energyExcess = getEnergyStored(container) - getMaxEnergyStored(container);
         if (energyExcess > 0) {
-            extractEnergy(container, energyExcess, false);
+            setEnergyStored(container, getMaxEnergyStored(container));
         }
         if (getMode(container) >= getNumModes(container)) {
             setMode(container, getNumModes(container) - 1);

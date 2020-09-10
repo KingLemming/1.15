@@ -98,6 +98,9 @@
   "info.thermal.redprint.data.Sides": "Side Configuration",
   "info.thermal.redprint.data.Xfer": "Transfer Control",
 
+  "item.thermal.redstone_servo": "Redstone Servo",
+  "item.thermal.rf_coil": "Redstone Flux Coil",
+
   "item.thermal.latex_bucket": "Latex Bucket",
   "item.thermal.resin_bucket": "Resin Bucket",
   "item.thermal.sap_bucket": "Sap Bucket",
@@ -365,8 +368,7 @@
   "item.thermal.laser_diode": "Laser Diode",
   "item.thermal.saw_blade": "Saw Blade",
 
-  "item.thermal.redstone_servo": "Redstone Servo",
-  "item.thermal.rf_coil": "Redstone Flux Coil",
+  "item.thermal.rf_potato": "Capacitato",
 
   "item.thermal.phyto_grenade": "Phyto-Gronade",
   "item.thermal.phyto_grenade.desc": "Throwable Phyto-Gro with increased area.",

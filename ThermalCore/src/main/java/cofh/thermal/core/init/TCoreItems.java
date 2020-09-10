@@ -161,6 +161,7 @@ public class TCoreItems {
         registerItem("lightning_charge", () -> new LightningChargeItem(new Item.Properties().group(group)));
 
         registerItem("detonator", () -> new DetonatorItem(new Item.Properties().group(group)));
+        registerItem("rf_potato", () -> new EnergyContainerItem(new Item.Properties().maxStackSize(1).group(group), 480000, 40, 800));
 
         registerItem("explosive_grenade", () -> new GrenadeItem(new GrenadeItem.IGrenadeFactory<AbstractGrenadeEntity>() {
 

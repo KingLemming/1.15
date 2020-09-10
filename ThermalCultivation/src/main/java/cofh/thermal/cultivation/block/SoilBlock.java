@@ -70,14 +70,12 @@ public class SoilBlock extends Block {
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable
-            plantable) {
+    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
 
         return canSustainPlant(world, pos, facing, plantable, false);
     }
 
-    protected boolean canSustainPlant(IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable,
-                                      boolean tilled) {
+    protected boolean canSustainPlant(IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable, boolean tilled) {
 
         if (plantable.getPlant(world, pos.offset(facing)).getBlock() instanceof AttachedStemBlock) {
             return true;

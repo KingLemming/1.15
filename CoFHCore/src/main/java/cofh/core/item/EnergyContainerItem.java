@@ -89,6 +89,14 @@ public class EnergyContainerItem extends ItemCoFH implements IEnergyContainerIte
         return new EnergyContainerItemWrapper(stack, this);
     }
 
+    protected void setEnergyStored(ItemStack container, int energy) {
+
+        if (container.getTag() == null) {
+            setDefaultTag(container, 0);
+        }
+        container.getTag().putInt(TAG_ENERGY, MathHelper.clamp(energy, 0, getMaxEnergyStored(container)));
+    }
+
     // region IEnergyContainerItem
     @Override
     public int getExtract(ItemStack container) {

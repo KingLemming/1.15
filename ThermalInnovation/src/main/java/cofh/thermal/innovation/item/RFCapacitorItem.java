@@ -201,7 +201,7 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
         }
         int energyExcess = getEnergyStored(container) - getMaxEnergyStored(container);
         if (energyExcess > 0) {
-            extractEnergy(container, energyExcess, false);
+            setEnergyStored(container, getMaxEnergyStored(container));
         }
     }
     // endregion

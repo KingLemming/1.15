@@ -13,6 +13,7 @@ import cofh.thermal.core.util.recipes.ThermalRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.SimpleMachineRecipe;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
+import cofh.thermal.expansion.util.recipes.machine.BottlerRecipe;
 import cofh.thermal.expansion.util.recipes.machine.BottlerRecipeNBT;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
@@ -21,17 +22,20 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
-import static cofh.core.util.constants.Constants.BOTTLE_VOLUME;
-import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
+import static cofh.core.util.constants.Constants.*;
 import static cofh.core.util.references.CoreReferences.FLUID_POTION;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 public class BottlerRecipeManager extends AbstractManager implements IRecipeManager {
 
@@ -64,7 +68,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
 
         if (!recipe.getInputItems().isEmpty()) {
             for (ItemStack recipeInput : recipe.getInputItems().get(0).getMatchingStacks()) {
-                addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
+                addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), singletonList(recipeInput), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
             }
         } else {
             addRecipe(recipe.getEnergy(), recipe.getExperience(), recipe.getMinTicks(), Collections.emptyList(), recipe.getInputFluids(), recipe.getOutputItems(), recipe.getOutputItemChances(), recipe.getOutputFluids());
@@ -86,6 +90,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         recipeMap.clear();
         validFluids.clear();
         validItems.clear();
+        convertedRecipes.clear();
     }
 
     // region RECIPES
@@ -96,11 +101,11 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         }
         if (inputTanks.isEmpty() || inputTanks.get(0).isEmpty()) {
             ItemStack inputItem = inputSlots.get(0).getItemStack();
-            return recipeMap.get(Collections.singletonList(convert(inputItem).hashCode()));
+            return recipeMap.get(singletonList(convert(inputItem).hashCode()));
         }
         if (inputSlots.isEmpty() || inputSlots.get(0).isEmpty()) {
             FluidStack inputFluid = inputTanks.get(0).getFluidStack();
-            return recipeMap.get(Collections.singletonList(FluidHelper.fluidHashcodeNoTag(inputFluid)));
+            return recipeMap.get(singletonList(FluidHelper.fluidHashcodeNoTag(inputFluid)));
         }
         ItemStack inputItem = inputSlots.get(0).getItemStack();
         FluidStack inputFluid = inputTanks.get(0).getFluidStack();
@@ -178,24 +183,42 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
         if (defaultBucketRecipes) {
             ThermalCore.LOG.debug("Adding default Bucket recipes to the Fluid Encapsulator...");
+            Set<Fluid> bucketFluids = new HashSet<>(32);
             for (Fluid fluid : ForgeRegistries.FLUIDS) {
                 if (fluid instanceof FlowingFluid) {
                     Fluid still = ((FlowingFluid) fluid).getStillFluid();
                     ItemStack bucket = new ItemStack(still.getFilledBucket());
-                    if (!bucket.isEmpty()) {
-                        addRecipe(new BottlerRecipeNBT(energy, 0.0F, -1, new ItemStack(Items.BUCKET), new FluidStack(still, BUCKET_VOLUME), bucket));
+                    if (!bucket.isEmpty() && !bucketFluids.contains(still)) {
+                        addRecipe(convert(energy, 0.0F, -1, new ItemStack(Items.BUCKET), new FluidStack(still, BUCKET_VOLUME), bucket));
+                        bucketFluids.add(still);
                     }
                 }
             }
         }
         if (defaultPotionRecipes) {
             ThermalCore.LOG.debug("Adding default Potion recipes to the Fluid Encapsulator...");
-            addRecipe(new BottlerRecipeNBT(energy, 0.0F, -1, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
+            addRecipe(convert(energy, 0.0F, -1, new ItemStack(Items.GLASS_BOTTLE), new FluidStack(FLUID_POTION, BOTTLE_VOLUME), new ItemStack(Items.POTION)));
         }
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.RECIPE_BOTTLER);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
             addRecipe((ThermalRecipe) entry.getValue());
         }
+    }
+    // endregion
+
+    // region CONVERSION
+    protected List<BottlerRecipe> convertedRecipes = new ArrayList<>();
+
+    public List<BottlerRecipe> getConvertedRecipes() {
+
+        return convertedRecipes;
+    }
+
+    protected BottlerRecipeNBT convert(int energy, float experience, int minTicks, @Nonnull ItemStack inputItem, @Nonnull FluidStack inputFluid, @Nonnull ItemStack outputItem) {
+
+        System.out.println("CALLED CONVERT");
+        convertedRecipes.add(new BottlerRecipe(new ResourceLocation(ID_THERMAL, "bottler_" + inputItem.getItem().getRegistryName().getPath()), energy, experience, minTicks, singletonList(Ingredient.fromStacks(inputItem)), singletonList(inputFluid), singletonList(outputItem), emptyList(), emptyList()));
+        return new BottlerRecipeNBT(energy, experience, minTicks, inputItem, inputFluid, outputItem);
     }
     // endregion
 }

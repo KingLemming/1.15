@@ -179,7 +179,7 @@ public class RFFluidVacItem extends EnergyContainerItem implements IAugmentableI
         }
         int energyExcess = getEnergyStored(container) - getMaxEnergyStored(container);
         if (energyExcess > 0) {
-            extractEnergy(container, energyExcess, false);
+            setEnergyStored(container, getMaxEnergyStored(container));
         }
         if (getMode(container) >= getNumModes(container)) {
             setMode(container, getNumModes(container) - 1);

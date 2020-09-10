@@ -5,7 +5,7 @@
   },
   "primary_mod": 3.0,
   "secondary_mod": 3.0,
-  "energy_mod": 0.4,
+  "energy_mod": 0.8,
   "min_chance": 0.75,
-  "use_chance": 0.25
+  "use_chance": 0.75
 }
