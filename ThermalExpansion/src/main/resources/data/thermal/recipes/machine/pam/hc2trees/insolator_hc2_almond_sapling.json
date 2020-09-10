@@ -17,8 +17,8 @@
       "chance": 4.0
     }
   ],
-  "energy_mod": 2.0,
-  "water_mod": 2.0,
+  "energy_mod": 3.0,
+  "water_mod": 3.0,
   "conditions": [
     {
       "type": "forge:mod_loaded",

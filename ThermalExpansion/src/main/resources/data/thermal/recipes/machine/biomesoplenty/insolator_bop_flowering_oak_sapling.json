@@ -1,7 +1,7 @@
 {
   "type": "thermal:insolator",
   "ingredient": {
-    "item": "pamhc2trees:candlenut_sapling"
+    "item": "biomesoplenty:flowering_oak_sapling"
   },
   "result": [
     {
@@ -9,20 +9,17 @@
       "chance": 6.0
     },
     {
-      "item": "pamhc2trees:candlenut_sapling",
+      "item": "biomesoplenty:flowering_oak_sapling",
       "chance": 1.1
-    },
-    {
-      "item": "pamhc2trees:candlenutitem",
-      "chance": 4.0
     }
+
   ],
   "energy_mod": 3.0,
   "water_mod": 3.0,
   "conditions": [
     {
       "type": "forge:mod_loaded",
-      "modid": "pamhc2trees"
+      "modid": "biomesoplenty"
     }
   ]
 }

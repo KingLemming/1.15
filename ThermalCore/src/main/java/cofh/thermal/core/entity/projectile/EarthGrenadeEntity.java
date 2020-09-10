@@ -3,7 +3,6 @@ package cofh.thermal.core.entity.projectile;
 import cofh.core.entity.AbstractGrenadeEntity;
 import cofh.core.util.AreaUtils;
 import cofh.core.util.Utils;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.material.Material;
@@ -23,7 +22,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
 import static cofh.core.util.Utils.destroyBlock;
 import static cofh.core.util.references.CoreReferences.SUNDERED;
