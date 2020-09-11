@@ -4,9 +4,14 @@
     {
       "tag": "forge:obsidian"
     },
-    {
-      "tag": "forge:gems/quartz"
-    },
+    [
+      {
+        "tag": "forge:dusts/quartz"
+      },
+      {
+        "tag": "forge:gems/quartz"
+      }
+    ],
     {
       "tag": "forge:sand"
     },

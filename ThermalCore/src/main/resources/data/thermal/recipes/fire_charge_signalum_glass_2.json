@@ -7,9 +7,14 @@
     {
       "item": "thermal:obsidian_glass"
     },
-    {
-      "tag": "forge:ingots/signalum"
-    },
+    [
+      {
+        "tag": "forge:dusts/signalum"
+      },
+      {
+        "tag": "forge:ingots/signalum"
+      }
+    ],
     {
       "item": "minecraft:fire_charge"
     }

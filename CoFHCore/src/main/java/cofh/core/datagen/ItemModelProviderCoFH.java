@@ -72,7 +72,7 @@ public abstract class ItemModelProviderCoFH extends ItemModelProvider {
     protected void gemSet(DeferredRegisterCoFH<Item> reg, String prefix, boolean vanilla) {
 
         if (!vanilla) {
-            generated(reg.getSup(prefix + "_gem"), GEMS);
+            generated(reg.getSup(prefix), GEMS);
         }
         //        generated(reg.getSup(prefix + "_nugget"), NUGGETS);
         generated(reg.getSup(prefix + "_dust"), DUSTS);

@@ -44,20 +44,21 @@ public class WrenchItem extends ItemCoFH {
                 ((IDismantleable) block).dismantleBlock(world, pos, state, target, player, false);
             }
             player.swingArm(context.getHand());
+            return true;
         } else if (!player.isSecondaryUseActive()) {
-
             if (block instanceof IWrenchable && ((IWrenchable) block).canWrench(world, pos, state, player)) {
                 BlockRayTraceResult target = new BlockRayTraceResult(context.getHitVec(), context.getFace(), context.getPos(), context.isInside());
                 ((IWrenchable) block).wrenchBlock(world, pos, state, target, player);
+                return true;
             } else if (state.isNormalCube(world, pos)) {
                 BlockState rotState = block.rotate(state, world, pos, Rotation.CLOCKWISE_90);
                 if (rotState != state) {
                     world.setBlockState(pos, rotState);
+                    return true;
                 }
             }
-            return Utils.isServerWorld(world);
         }
-        return true;
+        return false;
     }
 
     @Override

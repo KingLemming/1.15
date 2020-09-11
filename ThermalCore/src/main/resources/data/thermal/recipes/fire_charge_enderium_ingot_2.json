@@ -1,15 +1,30 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "forge:ingots/lead"
-    },
-    {
-      "tag": "forge:ingots/lead"
-    },
-    {
-      "tag": "forge:ingots/lead"
-    },
+    [
+      {
+        "tag": "forge:dusts/lead"
+      },
+      {
+        "tag": "forge:ingots/lead"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/lead"
+      },
+      {
+        "tag": "forge:ingots/lead"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/lead"
+      },
+      {
+        "tag": "forge:ingots/lead"
+      }
+    ],
     {
       "tag": "forge:dusts/diamond"
     },

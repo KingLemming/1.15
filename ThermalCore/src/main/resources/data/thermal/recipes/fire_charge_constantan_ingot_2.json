@@ -1,12 +1,22 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "forge:ingots/copper"
-    },
-    {
-      "tag": "forge:ingots/nickel"
-    },
+    [
+      {
+        "tag": "forge:dusts/copper"
+      },
+      {
+        "tag": "forge:ingots/copper"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/nickel"
+      },
+      {
+        "tag": "forge:ingots/nickel"
+      }
+    ],
     {
       "item": "minecraft:fire_charge"
     }

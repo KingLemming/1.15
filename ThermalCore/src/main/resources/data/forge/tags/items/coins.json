@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:coins/bronze",
+    "#forge:coins/constantan",
+    "#forge:coins/copper",
+    "#forge:coins/electrum",
+    "#forge:coins/enderium",
+    "#forge:coins/invar",
+    "#forge:coins/lead",
+    "#forge:coins/lumium",
+    "#forge:coins/nickel",
+    "#forge:coins/signalum",
+    "#forge:coins/silver",
+    "#forge:coins/tin"
+  ]
+}

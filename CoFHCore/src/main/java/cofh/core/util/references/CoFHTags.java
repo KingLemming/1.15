@@ -68,6 +68,8 @@ public class CoFHTags {
 
     public static class Items {
 
+        public static final Tag<Item> COINS = forgeTag("coins");
+
         public static final Tag<Item> COINS_BRONZE = forgeTag("coins/bronze");
         public static final Tag<Item> COINS_CONSTANTAN = forgeTag("coins/constantan");
         public static final Tag<Item> COINS_COPPER = forgeTag("coins/copper");
@@ -83,7 +85,9 @@ public class CoFHTags {
         public static final Tag<Item> COINS_SILVER = forgeTag("coins/silver");
         public static final Tag<Item> COINS_TIN = forgeTag("coins/tin");
 
+        public static final Tag<Item> DUSTS_APATITE = forgeTag("dusts/bronze");
         public static final Tag<Item> DUSTS_BRONZE = forgeTag("dusts/bronze");
+        public static final Tag<Item> DUSTS_CINNABAR = forgeTag("dusts/cinnabar");
         public static final Tag<Item> DUSTS_CONSTANTAN = forgeTag("dusts/constantan");
         public static final Tag<Item> DUSTS_COPPER = forgeTag("dusts/copper");
         public static final Tag<Item> DUSTS_DIAMOND = forgeTag("dusts/diamond");
@@ -97,12 +101,16 @@ public class CoFHTags {
         public static final Tag<Item> DUSTS_LEAD = forgeTag("dusts/lead");
         public static final Tag<Item> DUSTS_LUMIUM = forgeTag("dusts/lumium");
         public static final Tag<Item> DUSTS_NICKEL = forgeTag("dusts/nickel");
+        public static final Tag<Item> DUSTS_NITER = forgeTag("dusts/niter");
         public static final Tag<Item> DUSTS_QUARTZ = forgeTag("dusts/quartz");
         public static final Tag<Item> DUSTS_RUBY = forgeTag("dusts/ruby");
         public static final Tag<Item> DUSTS_SAPPHIRE = forgeTag("dusts/sapphire");
         public static final Tag<Item> DUSTS_SIGNALUM = forgeTag("dusts/signalum");
         public static final Tag<Item> DUSTS_SILVER = forgeTag("dusts/silver");
+        public static final Tag<Item> DUSTS_SULFUR = forgeTag("dusts/sulfur");
         public static final Tag<Item> DUSTS_TIN = forgeTag("dusts/tin");
+
+        public static final Tag<Item> GEARS = forgeTag("gears");
 
         public static final Tag<Item> GEARS_BRONZE = forgeTag("gears/bronze");
         public static final Tag<Item> GEARS_CONSTANTAN = forgeTag("gears/constantan");
@@ -125,8 +133,12 @@ public class CoFHTags {
         public static final Tag<Item> GEARS_SILVER = forgeTag("gears/silver");
         public static final Tag<Item> GEARS_TIN = forgeTag("gears/tin");
 
+        public static final Tag<Item> GEMS_APATITE = forgeTag("gems/apatite");
+        public static final Tag<Item> GEMS_CINNABAR = forgeTag("gems/cinnabar");
+        public static final Tag<Item> GEMS_NITER = forgeTag("gems/niter");
         public static final Tag<Item> GEMS_RUBY = forgeTag("gems/ruby");
         public static final Tag<Item> GEMS_SAPPHIRE = forgeTag("gems/sapphire");
+        public static final Tag<Item> GEMS_SULFUR = forgeTag("gems/sulfur");
 
         public static final Tag<Item> INGOTS_BRONZE = forgeTag("ingots/bronze");
         public static final Tag<Item> INGOTS_CONSTANTAN = forgeTag("ingots/constantan");
@@ -171,6 +183,8 @@ public class CoFHTags {
         public static final Tag<Item> ORES_SILVER = forgeTag("ores/silver");
         public static final Tag<Item> ORES_SULFUR = forgeTag("ores/sulfur");
         public static final Tag<Item> ORES_TIN = forgeTag("ores/tin");
+
+        public static final Tag<Item> PLATES = forgeTag("plates");
 
         public static final Tag<Item> PLATES_BRONZE = forgeTag("plates/bronze");
         public static final Tag<Item> PLATES_CONSTANTAN = forgeTag("plates/constantan");
@@ -217,10 +231,7 @@ public class CoFHTags {
 
         public static final Tag<Item> TOOLS_WRENCH = forgeTag("tools/wrench");
 
-        public static final Tag<Item> CINNABAR = forgeTag("cinnabar");
-        public static final Tag<Item> NITER = forgeTag("niter");
         public static final Tag<Item> SAWDUST = forgeTag("sawdust");
-        public static final Tag<Item> SULFUR = forgeTag("sulfur");
 
         public static final Tag<Item> MACHINE_DIES = thermalTag("crafting/dies");
         public static final Tag<Item> MACHINE_CASTS = thermalTag("crafting/casts");

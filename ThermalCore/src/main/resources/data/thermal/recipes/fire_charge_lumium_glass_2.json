@@ -7,9 +7,14 @@
     {
       "item": "thermal:obsidian_glass"
     },
-    {
-      "tag": "forge:ingots/lumium"
-    },
+    [
+      {
+        "tag": "forge:dusts/lumium"
+      },
+      {
+        "tag": "forge:ingots/lumium"
+      }
+    ],
     {
       "item": "minecraft:fire_charge"
     }

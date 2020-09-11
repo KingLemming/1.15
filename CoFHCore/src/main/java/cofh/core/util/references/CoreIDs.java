@@ -32,6 +32,7 @@ public class CoreIDs {
     public static final String ID_EFFECT_REDERGIZED = "redergized";
     public static final String ID_EFFECT_SHOCKED = "shocked";
     public static final String ID_EFFECT_SUNDERED = "sundered";
+    public static final String ID_EFFECT_WRENCHED = "wrenched";
 
     public static final String ID_HOLDING = "holding";
 

@@ -57,8 +57,8 @@ public class TCoreLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_SILVER_ORE), createSimpleDropTable(regBlocks.get(ID_SILVER_ORE)));
         lootTables.put(regBlocks.get(ID_TIN_ORE), createSimpleDropTable(regBlocks.get(ID_TIN_ORE)));
 
-        lootTables.put(regBlocks.get(ID_RUBY_ORE), createSilkTouchOreTable(regBlocks.get(ID_RUBY_ORE), regItems.get("ruby_gem")));
-        lootTables.put(regBlocks.get(ID_SAPPHIRE_ORE), createSilkTouchOreTable(regBlocks.get(ID_SAPPHIRE_ORE), regItems.get("sapphire_gem")));
+        lootTables.put(regBlocks.get(ID_RUBY_ORE), createSilkTouchOreTable(regBlocks.get(ID_RUBY_ORE), regItems.get("ruby")));
+        lootTables.put(regBlocks.get(ID_SAPPHIRE_ORE), createSilkTouchOreTable(regBlocks.get(ID_SAPPHIRE_ORE), regItems.get("sapphire")));
 
         lootTables.put(regBlocks.get(ID_COPPER_BLOCK), createSimpleDropTable(regBlocks.get(ID_COPPER_BLOCK)));
         lootTables.put(regBlocks.get(ID_LEAD_BLOCK), createSimpleDropTable(regBlocks.get(ID_LEAD_BLOCK)));

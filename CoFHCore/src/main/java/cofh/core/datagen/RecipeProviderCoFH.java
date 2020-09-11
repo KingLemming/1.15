@@ -13,9 +13,12 @@ import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static cofh.core.util.constants.Constants.ID_FORGE;
@@ -88,6 +91,16 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
     //                .build(consumer, ID);
     //    }
 
+    @SafeVarargs
+    protected final Ingredient fromTags(Tag<Item>... tagsIn) {
+
+        List<Ingredient> ingredients = new ArrayList<>(tagsIn.length);
+        for (Tag<Item> tag : tagsIn) {
+            ingredients.add(Ingredient.fromTag(tag));
+        }
+        return new CompoundIngredientCoFH(ingredients);
+    }
+
     // region HELPERS
     protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item storage, Item individual) {
 
@@ -114,7 +127,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
 
         Item block = reg.get(type + "_block");
         Item ingot = reg.get(type + "_ingot");
-        Item gem = reg.get(type + "_gem");
+        Item gem = reg.get(type);
         Item nugget = reg.get(type + "_nugget");
 
         if (block != null) {
@@ -204,7 +217,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
             return;
         }
         Item ingot = reg.get(type + "_ingot");
-        Item gem = reg.get(type + "_gem");
+        Item gem = reg.get(type);
 
         Tag<Item> ingotTag = forgeTag("ingots/" + type);
         Tag<Item> gemTag = forgeTag("gems/" + type);
@@ -250,7 +263,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
 
         Item ore = reg.get(type + "_ore");
         Item ingot = reg.get(type + "_ingot");
-        Item gem = reg.get(type + "_gem");
+        Item gem = reg.get(type);
         Item nugget = reg.get(type + "_nugget");
         Item dust = reg.get(type + "_dust");
 
@@ -355,4 +368,14 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         return new FeatureRecipeCondition(manager, flag);
     }
     // endregion
+
+    protected static class CompoundIngredientCoFH extends CompoundIngredient {
+
+        public CompoundIngredientCoFH(List<Ingredient> children) {
+
+            super(children);
+        }
+
+    }
+
 }

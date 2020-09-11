@@ -37,6 +37,7 @@ public class CoreEffects {
         EFFECTS.register(ID_EFFECT_SUNDERED, () -> new EffectCoFH(EffectType.HARMFUL, 0x8C6A5C)
                 .addAttributesModifier(SharedMonsterAttributes.ARMOR, UUID_EFFECT_SUNDERED_ARMOR.toString(), -0.25D, AttributeModifier.Operation.MULTIPLY_TOTAL)
                 .addAttributesModifier(SharedMonsterAttributes.ARMOR_TOUGHNESS, UUID_EFFECT_SUNDERED_ARMOR_TOUGHNESS.toString(), -0.25D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        EFFECTS.register(ID_EFFECT_WRENCHED, () -> new EffectCoFH(EffectType.HARMFUL, 0xFF900A));
     }
 
 }

@@ -1,18 +1,38 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "forge:ingots/tin"
-    },
-    {
-      "tag": "forge:ingots/tin"
-    },
-    {
-      "tag": "forge:ingots/tin"
-    },
-    {
-      "tag": "forge:ingots/silver"
-    },
+    [
+      {
+        "tag": "forge:dusts/tin"
+      },
+      {
+        "tag": "forge:ingots/tin"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/tin"
+      },
+      {
+        "tag": "forge:ingots/tin"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/tin"
+      },
+      {
+        "tag": "forge:ingots/tin"
+      }
+    ],
+    [
+      {
+        "tag": "forge:dusts/silver"
+      },
+      {
+        "tag": "forge:ingots/silver"
+      }
+    ],
     {
       "tag": "forge:dusts/glowstone"
     },
