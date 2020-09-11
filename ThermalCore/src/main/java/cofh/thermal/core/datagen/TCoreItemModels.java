@@ -124,7 +124,7 @@ public class TCoreItemModels extends ItemModelProviderCoFH {
         generated(reg.getSup("ice_charge"), TOOLS);
         generated(reg.getSup("lightning_charge"), TOOLS);
 
-        generated(reg.getSup("rf_potato"), TOOLS);
+        // generated(reg.getSup("rf_potato"), TOOLS);
     }
 
     private void registerArmor(DeferredRegisterCoFH<Item> reg) {

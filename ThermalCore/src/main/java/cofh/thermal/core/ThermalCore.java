@@ -131,9 +131,6 @@ public class ThermalCore {
         setFeature(FLAG_RESOURCE_SILVER, true);
         setFeature(FLAG_RESOURCE_NICKEL, true);
 
-        setFeature(FLAG_RESOURCE_RUBY, true);
-        setFeature(FLAG_RESOURCE_SAPPHIRE, true);
-
         setFeature(FLAG_AREA_AUGMENTS, true);
         setFeature(FLAG_STORAGE_AUGMENTS, true);
         setFeature(FLAG_UPGRADE_AUGMENTS, true);

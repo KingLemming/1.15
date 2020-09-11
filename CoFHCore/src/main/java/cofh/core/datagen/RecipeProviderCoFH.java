@@ -25,7 +25,7 @@ import static cofh.core.util.constants.Constants.ID_FORGE;
 
 public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuilder {
 
-    private final String modid;
+    protected final String modid;
     // private FeatureManager manager;
 
     public RecipeProviderCoFH(DataGenerator generatorIn, String modid) {
@@ -113,14 +113,13 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                 .patternLine("###")
                 .patternLine("###")
                 .addCriterion("has_at_least_9_" + individualName, hasItem(MinMaxBounds.IntBound.atLeast(9), individual))
-                .build(consumer);
+                .build(consumer, this.modid + ":storage/" + storageName);
 
         ShapelessRecipeBuilder.shapelessRecipe(individual, 9)
                 .addIngredient(storage)
                 .addCriterion("has_at_least_9_" + individualName, hasItem(MinMaxBounds.IntBound.atLeast(9), individual))
                 .addCriterion("has_" + storageName, hasItem(storage))
-                .build(consumer, this.modid + ":" + individualName + "_from_block");
-
+                .build(consumer, this.modid + ":storage/" + individualName + "_from_block");
     }
 
     protected void generateStorageRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type) {
@@ -131,81 +130,31 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
         Item nugget = reg.get(type + "_nugget");
 
         if (block != null) {
-            String blockName = block.getRegistryName().getPath();
-
             if (ingot != null) {
-                String ingotName = ingot.getRegistryName().getPath();
-
-                ShapedRecipeBuilder.shapedRecipe(block)
-                        .key('#', ingot)
-                        .patternLine("###")
-                        .patternLine("###")
-                        .patternLine("###")
-                        .addCriterion("has_at_least_9_" + ingotName, hasItem(MinMaxBounds.IntBound.atLeast(9), ingot))
-                        .build(consumer);
-
-                ShapelessRecipeBuilder.shapelessRecipe(ingot, 9)
-                        .addIngredient(block)
-                        .addCriterion("has_at_least_9_" + ingotName, hasItem(MinMaxBounds.IntBound.atLeast(9), ingot))
-                        .addCriterion("has_" + blockName, hasItem(block))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_block");
-
+                generateStorageRecipes(reg, consumer, block, ingot);
             } else if (gem != null) {
-                String gemName = gem.getRegistryName().getPath();
-
-                ShapedRecipeBuilder.shapedRecipe(block)
-                        .key('#', gem)
-                        .patternLine("###")
-                        .patternLine("###")
-                        .patternLine("###")
-                        .addCriterion("has_at_least_9_" + gemName, hasItem(MinMaxBounds.IntBound.atLeast(9), gem))
-                        .build(consumer);
-
-                ShapelessRecipeBuilder.shapelessRecipe(gem, 9)
-                        .addIngredient(block)
-                        .addCriterion("has_at_least_9_" + gemName, hasItem(MinMaxBounds.IntBound.atLeast(9), gem))
-                        .addCriterion("has_" + blockName, hasItem(block))
-                        .build(consumer, this.modid + ":" + gemName + "_from_block");
+                generateStorageRecipes(reg, consumer, block, gem);
             }
         }
-
         if (nugget != null) {
             String nuggetName = nugget.getRegistryName().getPath();
-
             if (ingot != null) {
+                generateStorageRecipes(reg, consumer, ingot, nugget);
                 String ingotName = ingot.getRegistryName().getPath();
-
                 ShapedRecipeBuilder.shapedRecipe(ingot)
                         .key('#', nugget)
                         .patternLine("###")
                         .patternLine("###")
                         .patternLine("###")
                         .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_nuggets");
+                        .build(consumer, this.modid + ":storage/" + ingotName + "_from_nuggets");
 
                 ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
                         .addIngredient(ingot)
                         .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
                         .addCriterion("has_" + ingotName, hasItem(ingot))
-                        .build(consumer, this.modid + ":" + nuggetName + "_from_ingot");
+                        .build(consumer, this.modid + ":storage/" + nuggetName + "_from_ingot");
             }
-            //            else if (gem != null) {
-            //                String gemName = gem.getRegistryName().getPath();
-            //
-            //                ShapedRecipeBuilder.shapedRecipe(gem)
-            //                        .key('#', nugget)
-            //                        .patternLine("###")
-            //                        .patternLine("###")
-            //                        .patternLine("###")
-            //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-            //                        .build(consumer, this.modid + ":" + gemName + "_from_nuggets");
-            //
-            //                ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
-            //                        .addIngredient(gem)
-            //                        .addCriterion("has_at_least_9_" + nuggetName, hasItem(MinMaxBounds.IntBound.atLeast(9), nugget))
-            //                        .addCriterion("has_" + gemName, hasItem(gem))
-            //                        .build(consumer, this.modid + ":" + nuggetName + "_from_gem");
-            //            }
         }
         generateGearRecipe(reg, consumer, type);
     }
@@ -230,7 +179,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                     .patternLine("#i#")
                     .patternLine(" # ")
                     .addCriterion("has_" + ingot.getRegistryName().getPath(), hasItem(ingotTag))
-                    .build(consumer);
+                    .build(consumer, this.modid + ":parts/" + gear.getRegistryName().getPath());
         }
         if (gem != null) {
             ShapedRecipeBuilder.shapedRecipe(gear)
@@ -240,7 +189,7 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                     .patternLine("#i#")
                     .patternLine(" # ")
                     .addCriterion("has_" + gem.getRegistryName().getPath(), hasItem(gemTag))
-                    .build(consumer);
+                    .build(consumer, this.modid + ":parts/" + gear.getRegistryName().getPath());
         }
     }
 
@@ -256,74 +205,55 @@ public class RecipeProviderCoFH extends RecipeProvider implements IConditionBuil
                 .patternLine("#i#")
                 .patternLine(" # ")
                 .addCriterion("has_" + material.getRegistryName().getPath(), hasItem(tag))
-                .build(consumer);
+                .build(consumer, this.modid + ":parts/" + gear.getRegistryName().getPath());
     }
 
-    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String type, float xp) {
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String material, float xp) {
 
-        Item ore = reg.get(type + "_ore");
-        Item ingot = reg.get(type + "_ingot");
-        Item gem = reg.get(type);
-        Item nugget = reg.get(type + "_nugget");
-        Item dust = reg.get(type + "_dust");
+        generateSmeltingAndBlastingRecipes(reg, consumer, material, xp, "smelting");
+    }
+
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, String material, float xp, String folder) {
+
+        Item ore = reg.get(material + "_ore");
+        Item ingot = reg.get(material + "_ingot");
+        Item gem = reg.get(material);
+        Item nugget = reg.get(material + "_nugget");
+        Item dust = reg.get(material + "_dust");
 
         if (ingot != null) {
-            String ingotName = ingot.getRegistryName().getPath();
-
             if (dust != null) {
-                String dustName = dust.getRegistryName().getPath();
-
-                CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(dust), ingot, 0, 200)
-                        .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_dust_smelting");
-
-                CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(dust), ingot, 0, 100)
-                        .addCriterion("has_" + dustName, hasItem(dust))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_dust_blasting");
+                generateSmeltingAndBlastingRecipes(reg, consumer, dust, ingot, 0, folder, "_dust");
             }
-
             if (ore != null) {
-                String oreName = ore.getRegistryName().getPath();
-
-                CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ore), ingot, xp, 200)
-                        .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_ore_smelting");
-
-                CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(ore), ingot, xp, 100)
-                        .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, this.modid + ":" + ingotName + "_from_ore_blasting");
+                generateSmeltingAndBlastingRecipes(reg, consumer, ore, ingot, xp, folder, "_ore");
             }
         } else if (gem != null) {
-            String gemName = gem.getRegistryName().getPath();
-
             if (ore != null) {
-                String oreName = ore.getRegistryName().getPath();
-
-                CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(ore), gem, xp, 200)
-                        .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, gemName + "_from_ore_smelting");
-
-                CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(ore), gem, xp, 100)
-                        .addCriterion("has_" + oreName, hasItem(ore))
-                        .build(consumer, gemName + "_from_ore_blasting");
+                generateSmeltingAndBlastingRecipes(reg, consumer, ore, gem, xp, folder, "_ore");
             }
         }
     }
 
     protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp) {
 
-        generateSmeltingAndBlastingRecipes(reg, consumer, input, output, xp, "");
+        generateSmeltingAndBlastingRecipes(reg, consumer, input, output, xp, "", "");
     }
 
-    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp, String type) {
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp, String folder) {
+
+        generateSmeltingAndBlastingRecipes(reg, consumer, input, output, xp, folder, "");
+    }
+
+    protected void generateSmeltingAndBlastingRecipes(DeferredRegisterCoFH<Item> reg, Consumer<IFinishedRecipe> consumer, Item input, Item output, float xp, String folder, String type) {
 
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input), output, xp, 200)
                 .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
-                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from" + type + "_smelting");
+                .build(consumer, this.modid + ":" + folder + "/" + output.getRegistryName().getPath() + "_from" + type + "_smelting");
 
         CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(input), output, xp, 100)
                 .addCriterion("has_" + input.getRegistryName().getPath(), hasItem(input))
-                .build(consumer, this.modid + ":" + output.getRegistryName().getPath() + "_from" + type + "_blasting");
+                .build(consumer, this.modid + ":" + folder + "/" + output.getRegistryName().getPath() + "_from" + type + "_blasting");
     }
 
     @Override
