@@ -15,7 +15,7 @@ public class ChilledEffect extends EffectCoFH {
     public double getAttributeModifierAmount(int amplifier, AttributeModifier modifier) {
 
         if (modifier.getID() == UUID_EFFECT_CHILLED_MOVEMENT_SPEED) {
-            return Math.max(-0.60D, super.getAttributeModifierAmount(amplifier, modifier));
+            return Math.max(-0.90D, super.getAttributeModifierAmount(amplifier, modifier));
         }
         return super.getAttributeModifierAmount(amplifier, modifier);
     }

@@ -311,7 +311,7 @@ public class PotionQuiverItem extends FluidContainerItem implements IAugmentable
 
         private final LazyOptional<IArcheryAmmoItem> holder = LazyOptional.of(() -> this);
 
-        public PotionQuiverItemWrapper(ItemStack containerIn, IFluidContainerItem itemIn) {
+        PotionQuiverItemWrapper(ItemStack containerIn, IFluidContainerItem itemIn) {
 
             super(containerIn, itemIn);
         }

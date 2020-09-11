@@ -76,7 +76,7 @@ public class UnderlayBakedModel extends BakedModelWrapper<IBakedModel> implement
     }
 
     // region WRAPPER CLASS
-    private static class FluidCacheWrapper {
+    protected static class FluidCacheWrapper {
 
         BlockState state;
         FluidStack stack;

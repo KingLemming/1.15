@@ -4,8 +4,8 @@
     "tag": "forge:sand"
   },
   "primary_mod": 1.75,
-  "secondary_mod": 1.25,
+  "secondary_mod": 1.75,
   "energy_mod": 1.25,
-  "min_chance": 0.0,
+  "min_chance": 0.05,
   "use_chance": 0.40
 }

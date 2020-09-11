@@ -1,9 +1,6 @@
 package cofh.core.init;
 
-import cofh.core.potion.ChilledEffect;
-import cofh.core.potion.EffectCoFH;
-import cofh.core.potion.LoveEffect;
-import cofh.core.potion.PanaceaEffect;
+import cofh.core.potion.*;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.potion.EffectType;
@@ -37,7 +34,7 @@ public class CoreEffects {
         EFFECTS.register(ID_EFFECT_SUNDERED, () -> new EffectCoFH(EffectType.HARMFUL, 0x8C6A5C)
                 .addAttributesModifier(SharedMonsterAttributes.ARMOR, UUID_EFFECT_SUNDERED_ARMOR.toString(), -0.25D, AttributeModifier.Operation.MULTIPLY_TOTAL)
                 .addAttributesModifier(SharedMonsterAttributes.ARMOR_TOUGHNESS, UUID_EFFECT_SUNDERED_ARMOR_TOUGHNESS.toString(), -0.25D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-        EFFECTS.register(ID_EFFECT_WRENCHED, () -> new EffectCoFH(EffectType.HARMFUL, 0xFF900A));
+        EFFECTS.register(ID_EFFECT_WRENCHED, () -> new WrenchedEffect(EffectType.HARMFUL, 0xFF900A));
     }
 
 }

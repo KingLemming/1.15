@@ -212,7 +212,7 @@ public class RFFluidVacItem extends EnergyContainerItem implements IAugmentableI
 
         private final LazyOptional<IAreaEffect> holder = LazyOptional.of(() -> this);
 
-        public RFFluidVacItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
+        RFFluidVacItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
 
             super(containerIn, itemIn);
         }

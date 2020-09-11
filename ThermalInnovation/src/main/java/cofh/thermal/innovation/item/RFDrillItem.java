@@ -341,7 +341,7 @@ public class RFDrillItem extends EnergyContainerItem implements IAugmentableItem
 
         private final LazyOptional<IAreaEffect> holder = LazyOptional.of(() -> this);
 
-        public RFDrillItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
+        RFDrillItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
 
             super(containerIn, itemIn);
         }

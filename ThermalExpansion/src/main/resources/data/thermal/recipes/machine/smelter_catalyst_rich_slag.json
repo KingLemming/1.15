@@ -4,7 +4,7 @@
     "item": "thermal:rich_slag"
   },
   "primary_mod": 2.5,
-  "secondary_mod": 1.75,
+  "secondary_mod": 2.25,
   "energy_mod": 1.75,
   "min_chance": 0.10,
   "use_chance": 0.60

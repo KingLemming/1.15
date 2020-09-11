@@ -3,15 +3,18 @@ package cofh.thermal.expansion.tileentity.machine;
 import cofh.core.fluid.FluidStorageCoFH;
 import cofh.core.inventory.FalseCraftingInventory;
 import cofh.core.inventory.ItemStorageCoFH;
+import cofh.core.util.Utils;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 import static cofh.core.util.StorageGroup.*;
 import static cofh.core.util.constants.Constants.TANK_MEDIUM;
@@ -23,9 +26,8 @@ public class MachineCrafterTile extends MachineTileProcess {
 
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();
-    protected IRecipe<CraftingInventory> craftRecipe;
+    protected ICraftingRecipe craftRecipe;
     protected boolean hasRecipeChanges;
-    protected boolean usingTank;
 
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected ItemStorageCoFH resultSlot = new ItemStorageCoFH();
@@ -50,47 +52,26 @@ public class MachineCrafterTile extends MachineTileProcess {
 
     protected void setRecipe() {
 
-        //        for (int i = 0; i < 9; ++i) {
-        //            craftMatrix.setInventorySlotContents(i, inventory.getInternalSlots().get(i).getItemStack());
-        //        }
-        //        Optional<ICraftingRecipe> possibleRecipe = world.getServer().getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftMatrix, world);
-        //        if (possibleRecipe.isPresent()) {
-        //            ICraftingRecipe craftingRecipe = possibleRecipe.get();
-        //
-        //
-        ////            if (p_217066_4_.canUseRecipe(p_217066_1_, serverplayerentity, craftingRecipe)) {
-        ////                itemstack = craftingRecipe.getCraftingResult(p_217066_3_);
-        ////            }
-        //        } else {
-        //
-        //        }
-        //
-        //        IRecipe newRecipe = CraftingManager.findMatchingRecipe(craftMatrix, world);
-        //
-        //        ItemStack stack = ItemStack.EMPTY;
-        //
-        //        if (newRecipe != null) {
-        //            stack = newRecipe.getCraftingResult(craftMatrix);
-        //            craftRecipe = CrafterRecipe.getRecipe(newRecipe, this);
-        //
-        //            if (craftRecipe == null) {
-        //                newRecipe = null;
-        //                stack = ItemStack.EMPTY;
-        //                usingTank = false;
-        //            }
-        //        } else {
-        //            craftRecipe = null;
-        //            usingTank = false;
-        //        }
-        //        if (craftRecipe == null) {
-        //            if (isActive) {
-        //                processOff();
-        //            }
-        //        }
-        //        resultSlot.setItemStack(stack);
-        //        craftResult.setRecipeUsed(newRecipe);
-        //        craftResult.setInventorySlotContents(0, resultSlot.getItemStack());
-        //        clearRecipeChanges();
+        if (world == null || Utils.isClientWorld(world)) {
+            return;
+        }
+        for (int i = 0; i < 9; ++i) {
+            craftMatrix.setInventorySlotContents(i, inventory.getInternalSlots().get(i).getItemStack());
+        }
+        Optional<ICraftingRecipe> possibleRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftMatrix, world);
+        if (possibleRecipe.isPresent()) {
+            craftRecipe = possibleRecipe.get();
+            craftResult.setInventorySlotContents(0, craftRecipe.getCraftingResult(craftMatrix));
+        } else {
+            craftRecipe = null;
+            craftResult.setInventorySlotContents(0, ItemStack.EMPTY);
+            if (isActive) {
+                processOff();
+            }
+        }
+        craftResult.setRecipeUsed(craftRecipe);
+        resultSlot.setItemStack(craftResult.getStackInSlot(0));
+        clearRecipeChanges();
     }
 
     public void clearRecipeChanges() {

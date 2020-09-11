@@ -23,7 +23,7 @@ import static cofh.thermal.core.init.TCoreReferences.BASALZ_PROJECTILE_ENTITY;
 
 public class BasalzProjectileEntity extends DamagingProjectileEntity {
 
-    public static float baseDamage = 9.0F;
+    public static float baseDamage = 7.0F;
     public static int knockbackStrength = 2;
     public static int effectAmplifier = 0;
     public static int effectDuration = 100;

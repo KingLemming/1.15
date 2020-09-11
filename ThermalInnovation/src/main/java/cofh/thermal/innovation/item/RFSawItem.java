@@ -361,7 +361,7 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
 
         private final LazyOptional<IAreaEffect> holder = LazyOptional.of(() -> this);
 
-        public RFSawItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
+        RFSawItemWrapper(ItemStack containerIn, IEnergyContainerItem itemIn) {
 
             super(containerIn, itemIn);
         }

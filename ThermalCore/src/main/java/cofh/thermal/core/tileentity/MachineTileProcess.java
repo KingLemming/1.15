@@ -513,13 +513,13 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public final float getPrimaryMod() {
 
-        return primaryMod * (0.95F + baseMod / 20);
+        return primaryMod;
     }
 
     @Override
     public final float getSecondaryMod() {
 
-        return secondaryMod * (0.9F + baseMod / 10);
+        return secondaryMod;
     }
 
     @Override

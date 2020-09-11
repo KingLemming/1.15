@@ -14,8 +14,6 @@ import cofh.thermal.core.util.recipes.internal.CatalyzedMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IMachineRecipe;
 import cofh.thermal.core.util.recipes.internal.IRecipeCatalyst;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.item.ItemStack;
@@ -34,7 +32,7 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
     private static final SmelterRecipeManager INSTANCE = new SmelterRecipeManager();
     protected static final int DEFAULT_ENERGY = 3200;
 
-    protected Int2ObjectMap<IMachineRecipe> recipeMap = new Int2ObjectOpenHashMap<>();
+    protected Object2ObjectOpenHashMap<SmelterMapWrapper, IMachineRecipe> recipeMap = new Object2ObjectOpenHashMap<>();
     protected Map<ComparableItemStack, IRecipeCatalyst> catalystMap = new Object2ObjectOpenHashMap<>();
     protected Set<ComparableItemStack> validItems = new ObjectOpenHashSet<>();
 
@@ -101,11 +99,17 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
         if (inputSlots.isEmpty()) {
             return null;
         }
-        int recipeKey = 0;
+        List<ComparableItemStack> convertedItems = new ArrayList<>(maxInputItems);
         for (int i = 0; i < maxInputItems; ++i) {
-            recipeKey += inputSlots.get(i).isEmpty() ? 0 : convert(inputSlots.get(i).getItemStack()).hashCode();
+            if (!inputSlots.get(i).isEmpty()) {
+                ComparableItemStack compStack = convert(inputSlots.get(i).getItemStack());
+                convertedItems.add(compStack);
+            }
         }
-        return recipeMap.get(recipeKey);
+        if (convertedItems.isEmpty()) {
+            return null;
+        }
+        return recipeMap.get(new SmelterMapWrapper(convertedItems));
     }
 
     protected IMachineRecipe addRecipe(int energy, float experience, int minTicks, List<ItemStack> inputItems, List<FluidStack> inputFluids, List<ItemStack> outputItems, List<Float> chance, List<FluidStack> outputFluids) {
@@ -130,14 +134,16 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
         }
         energy = (energy * getDefaultScale()) / 100;
 
-        int recipeKey = 0;
+        List<ComparableItemStack> convertedItems = new ArrayList<>(inputItems.size());
         for (ItemStack stack : inputItems) {
-            ComparableItemStack compStack = convert(stack);
-            recipeKey += compStack.hashCode();
-            validItems.add(compStack);
+            if (!inputItems.isEmpty()) {
+                ComparableItemStack compStack = convert(stack);
+                validItems.add(compStack);
+                convertedItems.add(compStack);
+            }
         }
         InternalSmelterRecipe recipe = new InternalSmelterRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
-        recipeMap.put(recipeKey, recipe);
+        recipeMap.put(new SmelterMapWrapper(convertedItems), recipe);
         return recipe;
     }
     // endregion
@@ -223,8 +229,46 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
     }
     // endregion
 
-    // region CATALYZED RECIPE
+    // region WRAPPER CLASS
+    protected static class SmelterMapWrapper {
 
+        Set<Integer> itemHashes;
+        int hashCode;
+
+        SmelterMapWrapper(List<ComparableItemStack> itemStacks) {
+
+            this.itemHashes = new ObjectOpenHashSet<>(itemStacks.size());
+            for (ComparableItemStack itemStack : itemStacks) {
+                if (itemStack.hashCode() != 0) {
+                    this.itemHashes.add(itemStack.hashCode());
+                    hashCode += itemStack.hashCode();
+                }
+            }
+        }
+
+        @Override
+        public boolean equals(Object o) {
+
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            SmelterMapWrapper that = (SmelterMapWrapper) o;
+            return itemHashes.size() == that.itemHashes.size() && itemHashes.containsAll(that.itemHashes);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return hashCode;
+        }
+
+    }
+    // endregion
+
+    // region CATALYZED RECIPE
     protected static class InternalSmelterRecipe extends CatalyzedMachineRecipe {
 
         public InternalSmelterRecipe(int energy, float experience, int minTicks, @Nullable List<ItemStack> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable List<ItemStack> outputItems, @Nullable List<Float> chance, @Nullable List<FluidStack> outputFluids) {
