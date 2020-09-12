@@ -4,14 +4,22 @@ import cofh.core.fluid.FluidStorageCoFH;
 import cofh.core.inventory.FalseCraftingInventory;
 import cofh.core.inventory.ItemStorageCoFH;
 import cofh.core.util.Utils;
+import cofh.core.util.control.TransferControlModule;
+import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.tileentity.MachineTileProcess;
+import cofh.thermal.expansion.inventory.container.machine.MachineCrafterContainer;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftResultInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -23,6 +31,8 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
 
 // TODO: Finish. This one is going to be *completely* different.
 public class MachineCrafterTile extends MachineTileProcess {
+
+    public static final int SLOT_CRAFTING_START = 20;
 
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();
@@ -40,14 +50,24 @@ public class MachineCrafterTile extends MachineTileProcess {
 
         inventory.addSlots(INPUT, 18);
         inventory.addSlot(outputSlot, OUTPUT);
-        inventory.addSlots(INTERNAL, 9);
-        inventory.addSlot(resultSlot, INTERNAL);
         inventory.addSlot(chargeSlot, INTERNAL);
 
-        tankInv.addTank(inputTank, OUTPUT);
+        inventory.addSlots(INTERNAL, 9);
+        inventory.addSlot(resultSlot, INTERNAL);
+
+        tankInv.addTank(inputTank, INPUT);
 
         addAugmentSlots(machineAugments);
         initHandlers();
+
+        transferControl = new TransferControlModule(this) {
+
+            @Override
+            public boolean getTransferIn() {
+
+                return hasTransferIn() && enableAutoInput && !hasRecipeChanges;
+            }
+        };
     }
 
     protected void setRecipe() {
@@ -56,7 +76,7 @@ public class MachineCrafterTile extends MachineTileProcess {
             return;
         }
         for (int i = 0; i < 9; ++i) {
-            craftMatrix.setInventorySlotContents(i, inventory.getInternalSlots().get(i).getItemStack());
+            craftMatrix.setInventorySlotContents(i, inventory.get(SLOT_CRAFTING_START + i));
         }
         Optional<ICraftingRecipe> possibleRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftMatrix, world);
         if (possibleRecipe.isPresent()) {
@@ -74,16 +94,66 @@ public class MachineCrafterTile extends MachineTileProcess {
         clearRecipeChanges();
     }
 
+    public void markRecipeChanges() {
+
+        hasRecipeChanges = true;
+        if (isActive) {
+            processOff();
+        }
+    }
+
     public void clearRecipeChanges() {
 
         hasRecipeChanges = false;
     }
 
-    @Nullable
-    @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
+    public boolean hasRecipeChanges() {
 
-        return null;
+        return hasRecipeChanges;
     }
 
+    @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState) {
+
+        if (!ThermalConfig.keepItems.get()) {
+            for (int i = 0; i < invSize() - augSize() - 10; ++i) {
+                InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
+            }
+        }
+        if (!ThermalConfig.keepAugments.get()) {
+            for (int i = invSize() - augSize(); i < invSize(); ++i) {
+                Utils.dropItemStackIntoWorldWithRandomness(inventory.getStackInSlot(i), worldIn, pos);
+            }
+        }
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
+
+        return new MachineCrafterContainer(i, world, pos, inventory, player);
+    }
+
+    // region NETWORK
+    @Override
+    public PacketBuffer getConfigPacket(PacketBuffer buffer) {
+
+        super.getConfigPacket(buffer);
+
+        for (int i = SLOT_CRAFTING_START; i < SLOT_CRAFTING_START + 9; ++i) {
+            buffer.writeItemStack(inventory.getStackInSlot(i));
+        }
+        return buffer;
+    }
+
+    @Override
+    public void handleConfigPacket(PacketBuffer buffer) {
+
+        super.handleConfigPacket(buffer);
+        for (int i = SLOT_CRAFTING_START; i < SLOT_CRAFTING_START + 9; ++i) {
+            inventory.set(i, buffer.readItemStack());
+        }
+        setRecipe();
+    }
+    // endregion
 }

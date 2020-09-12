@@ -175,7 +175,7 @@ public final class ArcheryHelper {
         } else if (isSimpleArrow(mainHand)) {
             return mainHand;
         }
-        for (int i = 0; i < shooter.inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < shooter.inventory.getSizeInventory(); ++i) {
             ItemStack stack = shooter.inventory.getStackInSlot(i);
             if (isSimpleArrow(stack)) {
                 return stack;

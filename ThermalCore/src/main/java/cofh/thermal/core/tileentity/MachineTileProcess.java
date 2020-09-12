@@ -149,7 +149,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     // region HELPERS
     protected boolean cacheRecipe() {
 
-        return true;
+        return false;
     }
 
     protected void clearRecipe() {
@@ -537,13 +537,13 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public final float getMinOutputChance() {
 
-        return minOutputChance * (0.95F + baseMod / 20);
+        return minOutputChance;
     }
 
     @Override
     public final float getUseChance() {
 
-        return catalystMod * (1.05F - baseMod / 20);
+        return catalystMod;
     }
     // endregion
 }

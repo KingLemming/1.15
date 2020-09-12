@@ -47,6 +47,7 @@ public class TExpLootTables extends LootTableProviderCoFH {
         lootTables.put(regBlocks.get(ID_MACHINE_REFINERY), createSyncDropTable(regBlocks.get(ID_MACHINE_REFINERY)));
         lootTables.put(regBlocks.get(ID_MACHINE_BREWER), createSyncDropTable(regBlocks.get(ID_MACHINE_BREWER)));
         lootTables.put(regBlocks.get(ID_MACHINE_BOTTLER), createSyncDropTable(regBlocks.get(ID_MACHINE_BOTTLER)));
+        lootTables.put(regBlocks.get(ID_MACHINE_CRAFTER), createSyncDropTable(regBlocks.get(ID_MACHINE_CRAFTER)));
 
         lootTables.put(regBlocks.get(ID_DYNAMO_STIRLING), createSyncDropTable(regBlocks.get(ID_DYNAMO_STIRLING)));
         lootTables.put(regBlocks.get(ID_DYNAMO_COMPRESSION), createSyncDropTable(regBlocks.get(ID_DYNAMO_COMPRESSION)));

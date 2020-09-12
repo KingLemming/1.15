@@ -70,23 +70,6 @@ public abstract class RecipeJsonUtils {
         return ingredient;
     }
 
-    //    public static void parseInputs(List<Ingredient> ingredients, List<FluidStack> fluids, JsonElement element) {
-    //
-    //        if (element.isJsonArray()) {
-    //            for (JsonElement arrayElement : element.getAsJsonArray()) {
-    //                if (arrayElement.getAsJsonObject().has(FLUID)) {
-    //                    fluids.add(parseFluidStack(arrayElement));
-    //                } else {
-    //                    ingredients.add(parseIngredient(arrayElement.getAsJsonObject()));
-    //                }
-    //            }
-    //        } else if (element.getAsJsonObject().has(FLUID)) {
-    //            fluids.add(parseFluidStack(element));
-    //        } else {
-    //            ingredients.add(parseIngredient(element.getAsJsonObject()));
-    //        }
-    //    }
-
     public static void parseInputs(List<Ingredient> ingredients, List<FluidStack> fluids, JsonElement element) {
 
         if (element.isJsonArray()) {

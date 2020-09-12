@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "minecraft:bone_meal"
   },
-  "boost_mod": 1.25,
+  "boost_mod": 1.5,
   "cycles": 8
 }

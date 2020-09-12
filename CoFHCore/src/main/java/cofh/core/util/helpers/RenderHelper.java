@@ -242,7 +242,7 @@ public final class RenderHelper {
         // Cache this somewhere static, it will never change, and you will never use a different format.
         int colorIdx = -1;
         List<VertexFormatElement> elements = from.getElements();
-        for (int i = 0; i < from.getElements().size(); i++) {
+        for (int i = 0; i < from.getElements().size(); ++i) {
             VertexFormatElement element = elements.get(i);
             if (element.getUsage() == VertexFormatElement.Usage.COLOR) {
                 colorIdx = i;

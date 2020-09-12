@@ -165,7 +165,7 @@ public class TExpReferences {
     public static final Block MACHINE_CRAFTER_BLOCK = null;
     @ObjectHolder(ID_MACHINE_CRAFTER)
     public static final TileEntityType<MachineCrafterTile> MACHINE_CRAFTER_TILE = null;
-    //    @ObjectHolder(ID_MACHINE_CRAFTER)
-    //    public static final ContainerType<MachineCrafterContainer> MACHINE_CRAFTER_CONTAINER=null;
+    @ObjectHolder(ID_MACHINE_CRAFTER)
+    public static final ContainerType<MachineCrafterContainer> MACHINE_CRAFTER_CONTAINER = null;
     // endregion
 }

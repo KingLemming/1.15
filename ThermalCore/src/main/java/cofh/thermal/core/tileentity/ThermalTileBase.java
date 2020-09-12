@@ -227,7 +227,6 @@ public abstract class ThermalTileBase extends TileCoFH implements ISecurableTile
                 Utils.dropItemStackIntoWorldWithRandomness(inventory.getStackInSlot(i), worldIn, pos);
             }
         }
-        super.onReplaced(state, worldIn, pos, newState);
     }
 
     public ItemStack createItemStackTag(ItemStack stack) {

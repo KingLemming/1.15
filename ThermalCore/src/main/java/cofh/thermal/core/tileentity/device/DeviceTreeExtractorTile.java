@@ -72,7 +72,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         initHandlers();
 
         trunkPos = new BlockPos(pos);
-        for (int i = 0; i < NUM_LEAVES; i++) {
+        for (int i = 0; i < NUM_LEAVES; ++i) {
             leafPos[i] = new BlockPos(pos);
         }
     }
@@ -271,7 +271,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         if (timeConstant <= 0) {
             timeConstant = TIME_CONSTANT;
         }
-        for (int i = 0; i < NUM_LEAVES; i++) {
+        for (int i = 0; i < NUM_LEAVES; ++i) {
             leafPos[i] = NBTUtil.readBlockPos(nbt.getCompound("Leaf" + i));
         }
         trunkPos = NBTUtil.readBlockPos(nbt.getCompound("Trunk"));
@@ -286,7 +286,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
         nbt.putInt("BoostCycles", boostCycles);
         nbt.putInt(TAG_TIME_CONSTANT, timeConstant);
 
-        for (int i = 0; i < NUM_LEAVES; i++) {
+        for (int i = 0; i < NUM_LEAVES; ++i) {
             nbt.put("Leaf" + i, NBTUtil.writeBlockPos(leafPos[i]));
         }
         nbt.put("Trunk", NBTUtil.writeBlockPos(trunkPos));
