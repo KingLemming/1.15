@@ -17,11 +17,11 @@ import static cofh.core.util.RecipeJsonUtils.*;
 public class ThermalFuelSerializer<T extends ThermalFuel> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     protected final int defaultEnergy;
-    protected final ThermalFuelSerializer.IFactory<T> fuelFactory;
+    protected final IFactory<T> factory;
 
-    public ThermalFuelSerializer(ThermalFuelSerializer.IFactory<T> fuelFactory, int defaultEnergy) {
+    public ThermalFuelSerializer(IFactory<T> factory, int defaultEnergy) {
 
-        this.fuelFactory = fuelFactory;
+        this.factory = factory;
         this.defaultEnergy = defaultEnergy;
     }
 
@@ -51,7 +51,7 @@ public class ThermalFuelSerializer<T extends ThermalFuel> extends ForgeRegistryE
         if (json.has(ENERGY_MOD)) {
             energy *= json.get(ENERGY_MOD).getAsFloat();
         }
-        return fuelFactory.create(recipeId, energy, inputItems, inputFluids);
+        return factory.create(recipeId, energy, inputItems, inputFluids);
     }
 
     @Nullable
@@ -71,7 +71,7 @@ public class ThermalFuelSerializer<T extends ThermalFuel> extends ForgeRegistryE
         for (int i = 0; i < numInputFluids; ++i) {
             inputFluids.add(buffer.readFluidStack());
         }
-        return fuelFactory.create(recipeId, energy, inputItems, inputFluids);
+        return factory.create(recipeId, energy, inputItems, inputFluids);
     }
 
     @Override

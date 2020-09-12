@@ -230,8 +230,8 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         return !isActive || boostCycles <= 0 ? 0 : scale;
     }
-
     // endregion
+
     // region NETWORK
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {

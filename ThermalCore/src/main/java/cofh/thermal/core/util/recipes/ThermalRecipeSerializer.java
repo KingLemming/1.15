@@ -18,11 +18,11 @@ import static cofh.core.util.RecipeJsonUtils.*;
 public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     protected final int defaultEnergy;
-    protected final ThermalRecipeSerializer.IFactory<T> recipeFactory;
+    protected final IFactory<T> factory;
 
-    public ThermalRecipeSerializer(ThermalRecipeSerializer.IFactory<T> recipeFactory, int defaultEnergy) {
+    public ThermalRecipeSerializer(IFactory<T> factory, int defaultEnergy) {
 
-        this.recipeFactory = recipeFactory;
+        this.factory = factory;
         this.defaultEnergy = defaultEnergy;
     }
 
@@ -76,7 +76,7 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         if (json.has(MIN_TICKS)) {
             minTicks = json.get(MIN_TICKS).getAsInt();
         }
-        return recipeFactory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
+        return factory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
     }
 
     @Nullable
@@ -112,7 +112,7 @@ public class ThermalRecipeSerializer<T extends ThermalRecipe> extends ForgeRegis
         for (int i = 0; i < numOutputFluids; ++i) {
             outputFluids.add(buffer.readFluidStack());
         }
-        return recipeFactory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
+        return factory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
     }
 
     @Override

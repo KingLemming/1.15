@@ -84,7 +84,7 @@ public class InsolatorRecipeSerializer<T extends ThermalRecipe> extends ThermalR
         if (json.has(MIN_TICKS)) {
             minTicks = json.get(MIN_TICKS).getAsInt();
         }
-        return recipeFactory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
+        return factory.create(recipeId, energy, experience, minTicks, inputItems, inputFluids, outputItems, outputItemChances, outputFluids);
     }
 
 }

@@ -13,11 +13,11 @@ import static cofh.core.util.RecipeJsonUtils.*;
 
 public class ThermalCatalystSerializer<T extends ThermalCatalyst> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
-    protected final ThermalCatalystSerializer.IFactory<T> recipeFactory;
+    protected final IFactory<T> factory;
 
-    public ThermalCatalystSerializer(ThermalCatalystSerializer.IFactory<T> recipeFactory) {
+    public ThermalCatalystSerializer(IFactory<T> factory) {
 
-        this.recipeFactory = recipeFactory;
+        this.factory = factory;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ThermalCatalystSerializer<T extends ThermalCatalyst> extends ForgeR
         if (json.has(USE_CHANCE)) {
             useChance = json.get(USE_CHANCE).getAsFloat();
         }
-        return recipeFactory.create(recipeId, ingredient, primaryMod, secondaryMod, energyMod, minChance, useChance);
+        return factory.create(recipeId, ingredient, primaryMod, secondaryMod, energyMod, minChance, useChance);
     }
 
     @Nullable
@@ -64,7 +64,7 @@ public class ThermalCatalystSerializer<T extends ThermalCatalyst> extends ForgeR
         float minChance = buffer.readFloat();
         float useChance = buffer.readFloat();
 
-        return recipeFactory.create(recipeId, ingredient, primaryMod, secondaryMod, energyMod, minChance, useChance);
+        return factory.create(recipeId, ingredient, primaryMod, secondaryMod, energyMod, minChance, useChance);
     }
 
     @Override

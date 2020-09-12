@@ -1,4 +1,4 @@
-package cofh.thermal.core.util.recipes;
+package cofh.thermal.core.util.recipes.device;
 
 import com.google.gson.JsonObject;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -11,24 +11,14 @@ import javax.annotation.Nullable;
 
 import static cofh.core.util.RecipeJsonUtils.*;
 
-public class ThermalBoostSerializer<T extends ThermalBoost> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
-
-    protected final int defaultCycles;
-    protected final ThermalBoostSerializer.IFactory<T> recipeFactory;
-
-    public ThermalBoostSerializer(ThermalBoostSerializer.IFactory<T> recipeFactory, int defaultCycles) {
-
-        this.recipeFactory = recipeFactory;
-        this.defaultCycles = defaultCycles;
-    }
+public class TreeExtractorBoostSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<TreeExtractorBoost> {
 
     @Override
-    public T read(ResourceLocation recipeId, JsonObject json) {
+    public TreeExtractorBoost read(ResourceLocation recipeId, JsonObject json) {
 
         Ingredient ingredient;
-
         float boostMult = 1.0F;
-        int boostCycles = defaultCycles;
+        int boostCycles = 8;
 
         /* INPUT */
         ingredient = parseIngredient(json.get(INGREDIENT));
@@ -39,34 +29,28 @@ public class ThermalBoostSerializer<T extends ThermalBoost> extends ForgeRegistr
         if (json.has(CYCLES)) {
             boostCycles = json.get(CYCLES).getAsInt();
         }
-        return recipeFactory.create(recipeId, ingredient, boostMult, boostCycles);
+        return new TreeExtractorBoost(recipeId, ingredient, boostMult, boostCycles);
     }
 
     @Nullable
     @Override
-    public T read(ResourceLocation recipeId, PacketBuffer buffer) {
+    public TreeExtractorBoost read(ResourceLocation recipeId, PacketBuffer buffer) {
 
         Ingredient ingredient = Ingredient.read(buffer);
 
         float boostMult = buffer.readFloat();
         int boostCycles = buffer.readInt();
 
-        return recipeFactory.create(recipeId, ingredient, boostMult, boostCycles);
+        return new TreeExtractorBoost(recipeId, ingredient, boostMult, boostCycles);
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
+    public void write(PacketBuffer buffer, TreeExtractorBoost recipe) {
 
         recipe.ingredient.write(buffer);
 
         buffer.writeFloat(recipe.boostMult);
         buffer.writeInt(recipe.boostCycles);
-    }
-
-    public interface IFactory<T extends ThermalBoost> {
-
-        T create(ResourceLocation recipeId, Ingredient inputItem, float boostMult, int boostCycles);
-
     }
 
 }

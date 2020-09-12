@@ -704,6 +704,7 @@ public class TCoreRecipes extends RecipeProviderCoFH {
 
         // ROCKWOOL
         Item rockwool = reg.get(ID_WHITE_ROCKWOOL);
+        folder = "rockwool";
 
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("slag"), rockwool, 0.1F, "rockwool");
 
@@ -713,95 +714,110 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         //                .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
         //                .build(consumer);
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_ORANGE_ROCKWOOL))
+        result = reg.get(ID_ORANGE_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_ORANGE)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/orange_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_MAGENTA_ROCKWOOL))
+        result = reg.get(ID_MAGENTA_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_MAGENTA)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/magenta_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIGHT_BLUE_ROCKWOOL))
+        result = reg.get(ID_LIGHT_BLUE_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_LIGHT_BLUE)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/light_blue_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_YELLOW_ROCKWOOL))
+        result = reg.get(ID_YELLOW_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_YELLOW)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/yellow_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIME_ROCKWOOL))
+        result = reg.get(ID_LIME_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_LIME)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/lime_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_PINK_ROCKWOOL))
+        result = reg.get(ID_PINK_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_PINK)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/pink_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_GRAY_ROCKWOOL))
+        result = reg.get(ID_GRAY_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_GRAY)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/gray_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_LIGHT_GRAY_ROCKWOOL))
+        result = reg.get(ID_LIGHT_GRAY_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_LIGHT_GRAY)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/light_gray_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_CYAN_ROCKWOOL))
+        result = reg.get(ID_CYAN_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_CYAN)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/cyan_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_PURPLE_ROCKWOOL))
+        result = reg.get(ID_PURPLE_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_PURPLE)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/purple_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BLUE_ROCKWOOL))
+        result = reg.get(ID_BLUE_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_BLUE)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/blue_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BROWN_ROCKWOOL))
+        result = reg.get(ID_BROWN_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_BROWN)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/brown_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_GREEN_ROCKWOOL))
+        result = reg.get(ID_GREEN_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_GREEN)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/green_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_RED_ROCKWOOL))
+        result = reg.get(ID_RED_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_RED)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/red_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
 
-        ShapelessRecipeBuilder.shapelessRecipe(reg.get(ID_BLACK_ROCKWOOL))
+        result = reg.get(ID_BLACK_ROCKWOOL);
+        ShapelessRecipeBuilder.shapelessRecipe(result)
                 .addIngredient(rockwool)
                 .addIngredient(Tags.Items.DYES_BLACK)
                 .addCriterion("has_" + rockwool.getRegistryName().getPath(), hasItem(rockwool))
-                .build(consumer, ID_THERMAL + ":rockwool/black_rockwool_from_dye");
+                .build(consumer, this.modid + ":" + folder + "/" + result.getRegistryName().getPath() + "_from_dye");
     }
 
     private void generateComponentRecipes(Consumer<IFinishedRecipe> consumer) {

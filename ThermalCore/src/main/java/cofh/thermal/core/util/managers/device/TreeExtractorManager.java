@@ -4,7 +4,8 @@ import cofh.core.inventory.FalseIInventory;
 import cofh.core.util.ComparableItemStack;
 import cofh.thermal.core.init.TCoreRecipeTypes;
 import cofh.thermal.core.util.managers.AbstractManager;
-import cofh.thermal.core.util.recipes.ThermalBoost;
+import cofh.thermal.core.util.recipes.device.TreeExtractorBoost;
+import cofh.thermal.core.util.recipes.device.TreeExtractorMapping;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -19,9 +20,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Set;
-
-import static cofh.thermal.core.ThermalCore.FLUIDS;
-import static cofh.thermal.core.init.TCoreIDs.*;
 
 public class TreeExtractorManager extends AbstractManager {
 
@@ -52,7 +50,7 @@ public class TreeExtractorManager extends AbstractManager {
         leafMap.clear();
     }
 
-    // region WORLD
+    // region MAPPINGS
     public Set<BlockState> getMatchingLeaves(BlockState trunk) {
 
         return leafMap.get(trunk);
@@ -85,6 +83,11 @@ public class TreeExtractorManager extends AbstractManager {
         leafMap.put(trunk, leaf);
         return true;
     }
+
+    public void addMapping(TreeExtractorMapping mapping) {
+
+        addDefaultMappings(mapping.getTrunk(), mapping.getLeaves(), mapping.getFluid());
+    }
     // endregion
 
     // region BOOSTS
@@ -93,7 +96,7 @@ public class TreeExtractorManager extends AbstractManager {
         return boostMap.containsKey(convert(item));
     }
 
-    public void addBoost(ThermalBoost boost) {
+    public void addBoost(TreeExtractorBoost boost) {
 
         for (ItemStack ingredient : boost.getIngredient().getMatchingStacks()) {
             boostMap.put(convert(ingredient), Pair.of(boost.getBoostMult(), boost.getBoostCycles()));
@@ -121,34 +124,23 @@ public class TreeExtractorManager extends AbstractManager {
     public void refresh(RecipeManager recipeManager) {
 
         clear();
-        initialize();
+
+        Map<ResourceLocation, IRecipe<FalseIInventory>> mappings = recipeManager.getRecipes(TCoreRecipeTypes.MAPPING_TREE_EXTRACTOR);
+        for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : mappings.entrySet()) {
+            addMapping((TreeExtractorMapping) entry.getValue());
+        }
 
         Map<ResourceLocation, IRecipe<FalseIInventory>> boosts = recipeManager.getRecipes(TCoreRecipeTypes.BOOST_TREE_EXTRACTOR);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : boosts.entrySet()) {
-            addBoost((ThermalBoost) entry.getValue());
+            addBoost((TreeExtractorBoost) entry.getValue());
         }
     }
     // endregion
 
-    // TODO: Data-pack this.
-    // region TEMPORARY
-    private void initialize() {
-
-        FluidStack latex = new FluidStack(FLUIDS.get(ID_FLUID_LATEX), 50);
-        FluidStack resin = new FluidStack(FLUIDS.get(ID_FLUID_RESIN), 50);
-        FluidStack sap = new FluidStack(FLUIDS.get(ID_FLUID_SAP), 50);
-
-        addDefaultMappings(Blocks.OAK_LOG, Blocks.OAK_LEAVES, new FluidStack(resin, 25));
-        addDefaultMappings(Blocks.SPRUCE_LOG, Blocks.SPRUCE_LEAVES, new FluidStack(resin, 50));
-        addDefaultMappings(Blocks.BIRCH_LOG, Blocks.BIRCH_LEAVES, new FluidStack(resin, 25));
-        addDefaultMappings(Blocks.JUNGLE_LOG, Blocks.JUNGLE_LEAVES, new FluidStack(latex, 50));
-        addDefaultMappings(Blocks.ACACIA_LOG, Blocks.ACACIA_LEAVES, new FluidStack(resin, 50));
-        addDefaultMappings(Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_LEAVES, new FluidStack(sap, 25));
-    }
-
+    // region HELPERS
     private void addDefaultMappings(Block trunk, Block leaf, FluidStack stack) {
 
-        if (trunk instanceof RotatedPillarBlock && leaf instanceof LeavesBlock) {
+        if (trunk instanceof RotatedPillarBlock && leaf instanceof LeavesBlock && !stack.isEmpty()) {
             BlockState state = trunk.getDefaultState();
             addTrunkMapping(state, stack);
             for (int i = 1; i <= 7; ++i) {

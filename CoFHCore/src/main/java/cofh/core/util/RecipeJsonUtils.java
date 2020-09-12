@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +15,6 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -119,7 +120,7 @@ public abstract class RecipeJsonUtils {
         }
     }
 
-    private static ItemStack parseItemStack(JsonElement element) {
+    public static ItemStack parseItemStack(JsonElement element) {
 
         if (element == null || element.isJsonNull()) {
             return ItemStack.EMPTY;
@@ -169,7 +170,7 @@ public abstract class RecipeJsonUtils {
         return stack;
     }
 
-    private static FluidStack parseFluidStack(JsonElement element) {
+    public static FluidStack parseFluidStack(JsonElement element) {
 
         if (element == null || element.isJsonNull()) {
             return FluidStack.EMPTY;
@@ -226,14 +227,15 @@ public abstract class RecipeJsonUtils {
         return BASE_CHANCE_LOCKED;
     }
 
-    private static boolean parseDependency(JsonElement element) {
+    public static Block parseBlock(JsonElement element) {
 
-        JsonObject json = element.getAsJsonObject();
-
-        if (json.has(MOD_LOADED)) {
-            return ModList.get().isLoaded(json.get(MOD_LOADED).getAsString());
+        if (element == null || element.isJsonNull()) {
+            return Blocks.AIR;
         }
-        return true;
+        Block block;
+
+        block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(element.getAsString()));
+        return block == null ? Blocks.AIR : block;
     }
     // endregion
 
@@ -275,6 +277,10 @@ public abstract class RecipeJsonUtils {
     public static final String USE_CHANCE = "use_chance";
     public static final String VALUE = "value";
     public static final String WILDCARD = "wildcard";
+
+    public static final String TRUNK = "trunk";
+    public static final String LEAF = "leaf";
+    public static final String LEAVES = "leaves";
 
     public static final String LAVA = "lava";
     public static final String WATER = "water";
