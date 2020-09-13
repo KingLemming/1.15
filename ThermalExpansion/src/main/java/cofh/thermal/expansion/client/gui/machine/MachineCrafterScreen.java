@@ -4,6 +4,7 @@ import cofh.core.client.gui.element.ElementBase;
 import cofh.core.client.gui.element.ElementButton;
 import cofh.core.util.helpers.StringHelper;
 import cofh.thermal.core.client.gui.MachineScreenReconfigurable;
+import cofh.thermal.core.client.gui.ThermalGuiHelper;
 import cofh.thermal.expansion.inventory.container.machine.MachineCrafterContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -35,13 +36,17 @@ public class MachineCrafterScreen extends MachineScreenReconfigurable<MachineCra
 
         super.init();
 
-        // addElement(createInputSlot(this, 53, 26, tile));
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 9; ++j) {
                 addElement(createInputSlot(this, 8 + j * 18, 77 + i * 18, tile));
             }
         }
         addElement(createLargeOutputSlot(this, 143, 21, tile));
+
+        addElement(setClearable(createMediumInputFluidStorage(this, 29, 22, tile.getTank(0), tile), tile, 0));
+
+        addElement(ThermalGuiHelper.createDefaultFluidProgress(this, 110, 22, PROG_ARROW_FLUID_RIGHT, tile));
+        addElement(ThermalGuiHelper.createDefaultProgress(this, 110, 22, PROG_ARROW_RIGHT, tile));
 
         ElementBase setRecipe = new ElementButton(this, 142, 52)
                 .setName("SetRecipe")

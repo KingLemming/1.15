@@ -1,12 +1,16 @@
 package cofh.thermal.expansion.util.recipes.machine;
 
 import cofh.core.util.ComparableItemStack;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +28,7 @@ public class CrafterRecipe extends BaseMachineRecipe {
     protected final Set<ComparableItemStack> validItems = new ObjectOpenHashSet<>();
 
     public static final List<Float> CHANCE = Collections.singletonList(1.0F);
+    public static final Pair<List<Integer>, List<Integer>> EMPTY_PAIR = Pair.of(Collections.emptyList(), Collections.emptyList());
 
     public CrafterRecipe(int energy, IRecipe<?> recipe) {
 
@@ -52,27 +57,61 @@ public class CrafterRecipe extends BaseMachineRecipe {
     }
 
     @Override
-    public List<Integer> getInputItemCounts(IMachineInventory inventory) {
+    public Pair<List<Integer>, List<Integer>> getInputItemAndFluidCounts(IMachineInventory inventory) {
 
         if (ingredients.isEmpty()) {
-            return Collections.emptyList();
+            return EMPTY_PAIR;
         }
-        int[] ret = new int[inventory.inputSlots().size()];
         int found = 0;
 
-        for (Ingredient ing : ingredients) {
-            for (ItemStack stack : ing.getMatchingStacks()) {
-                for (int j = 0; j < ret.length; ++j) {
-                    ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
-                    if (inSlot.getCount() > ret[j] && itemsEqual(stack, inSlot)) {
-                        ++ret[j];
+        int storedFluidAmount = inventory.inputTanks().get(0).getAmount();
+
+        int[] retItems = new int[inventory.inputSlots().size()];
+        boolean foundItem = false;
+        int retFluid = 0;
+
+        if (storedFluidAmount > 0) {
+            FluidStack storedFluid = inventory.inputTanks().get(0).getFluidStack();
+            for (Ingredient ing : ingredients) {
+                for (ItemStack stack : ing.getMatchingStacks()) {
+                    FluidStack fluid = FluidUtil.getFluidContained(stack).orElse(FluidStack.EMPTY);
+                    if (FluidHelper.fluidsEqual(storedFluid, fluid) && storedFluidAmount - retFluid >= fluid.getAmount()) {
+                        retFluid += fluid.getAmount();
                         ++found;
                         break;
+                    }
+                    for (int j = 0; j < retItems.length; ++j) {
+                        ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
+                        if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
+                            ++retItems[j];
+                            ++found;
+                            foundItem = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        } else {
+            for (Ingredient ing : ingredients) {
+                for (ItemStack stack : ing.getMatchingStacks()) {
+                    for (int j = 0; j < retItems.length; ++j) {
+                        ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
+                        if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
+                            ++retItems[j];
+                            ++found;
+                            foundItem = true;
+                            break;
+                        }
                     }
                 }
             }
         }
-        return found < ingredients.size() ? Collections.emptyList() : IntStream.of(ret).boxed().collect(Collectors.toList());
+        if (found < ingredients.size()) {
+            return EMPTY_PAIR;
+        }
+        List<Integer> itemCounts = foundItem ? IntStream.of(retItems).boxed().collect(Collectors.toList()) : Collections.emptyList();
+        List<Integer> fluidCounts = retFluid > 0 ? Collections.singletonList(retFluid) : Collections.emptyList();
+        return Pair.of(itemCounts, fluidCounts);
     }
 
 }

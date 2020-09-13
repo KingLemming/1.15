@@ -106,6 +106,8 @@ public class TCoreRecipes extends RecipeProviderCoFH {
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get(ID_NITER_ORE), reg.get("niter"), 0.5F, "smelting");
         generateSmeltingAndBlastingRecipes(reg, consumer, reg.get(ID_SULFUR_ORE), reg.get("sulfur"), 0.5F, "smelting");
 
+        generateSmeltingAndBlastingRecipes(reg, consumer, reg.get("rubber"), reg.get("cured_rubber"), 0.2F, "smelting");
+
         generateAlloyRecipes(consumer);
         generateArmorRecipes(consumer);
         generateAugmentRecipes(consumer);

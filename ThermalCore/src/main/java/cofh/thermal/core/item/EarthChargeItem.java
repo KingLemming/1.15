@@ -2,7 +2,6 @@ package cofh.thermal.core.item;
 
 import cofh.core.item.ItemCoFH;
 import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
-import cofh.thermal.core.init.TCoreSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.SnowyDirtBlock;

@@ -168,7 +168,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         List<? extends ItemStorageCoFH> slotInputs = inputSlots();
         for (int i = 0; i < slotInputs.size() && i < itemInputCounts.size(); ++i) {
             int inputCount = itemInputCounts.get(i);
-            if (slotInputs.get(i).getItemStack().getCount() < inputCount) {
+            if (inputCount > 0 && slotInputs.get(i).getItemStack().getCount() < inputCount) {
                 return false;
             }
         }
@@ -176,7 +176,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
         for (int i = 0; i < tankInputs.size() && i < fluidInputCounts.size(); ++i) {
             int inputCount = fluidInputCounts.get(i);
             FluidStack input = tankInputs.get(i).getFluidStack();
-            if (input.isEmpty() || input.getAmount() < inputCount) {
+            if (inputCount > 0 && (input.isEmpty() || input.getAmount() < inputCount)) {
                 return false;
             }
         }

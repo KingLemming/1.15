@@ -16,6 +16,9 @@ public class ItemHelper {
 
     public static ItemStack consumeItem(ItemStack stack, int amount) {
 
+        if (amount <= 0) {
+            return stack;
+        }
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         }

@@ -4,7 +4,6 @@ import cofh.core.item.ItemCoFH;
 import cofh.core.util.AreaUtils;
 import cofh.core.util.helpers.MathHelper;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
-import cofh.thermal.core.init.TCoreSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FlowingFluidBlock;

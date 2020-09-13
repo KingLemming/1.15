@@ -4,7 +4,7 @@ import cofh.core.fluid.FluidStorageCoFH;
 import cofh.core.inventory.FalseCraftingInventory;
 import cofh.core.inventory.ItemStorageCoFH;
 import cofh.core.util.Utils;
-import cofh.core.util.control.TransferControlModule;
+import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineCrafterContainer;
@@ -22,11 +22,15 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 
 import static cofh.core.util.StorageGroup.*;
+import static cofh.core.util.constants.Constants.BUCKET_VOLUME;
 import static cofh.core.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
@@ -60,15 +64,6 @@ public class MachineCrafterTile extends MachineTileProcess {
 
         addAugmentSlots(machineAugments);
         initHandlers();
-
-        transferControl = new TransferControlModule(this) {
-
-            @Override
-            public boolean getTransferIn() {
-
-                return hasTransferIn() && enableAutoInput && !hasRecipeChanges;
-            }
-        };
     }
 
     @Override
@@ -143,11 +138,27 @@ public class MachineCrafterTile extends MachineTileProcess {
 
         curRecipe = CrafterRecipeManager.instance().getRecipe(craftResult.getRecipeUsed());
         if (curRecipe != null) {
-            itemInputCounts = curRecipe.getInputItemCounts(this);
-            fluidInputCounts = curRecipe.getInputFluidCounts(this);
+            Pair<List<Integer>, List<Integer>> inputCounts = curRecipe.getInputItemAndFluidCounts(this);
+            itemInputCounts = inputCounts.getLeft();
+            fluidInputCounts = inputCounts.getRight();
         }
-        validRecipe = !itemInputCounts.isEmpty();
+        validRecipe = !(itemInputCounts.isEmpty() && fluidInputCounts.isEmpty());
         return validRecipe;
+    }
+
+    @Override
+    protected boolean cacheRenderFluid() {
+
+        if (curRecipe == null) {
+            return false;
+        }
+        FluidStack prevFluid = renderFluid;
+        if (!fluidInputCounts.isEmpty() && fluidInputCounts.get(0) > 0) {
+            renderFluid = new FluidStack(inputTank.getFluidStack(), BUCKET_VOLUME);
+        } else {
+            renderFluid = FluidStack.EMPTY;
+        }
+        return !FluidHelper.fluidsEqual(renderFluid, prevFluid);
     }
 
     @Nullable
