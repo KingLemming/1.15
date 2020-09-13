@@ -397,7 +397,7 @@
   "block.thermal.ice_tnt": "Ледяная взрывчатка",
   "block.thermal.ice_tnt.desc": "Замораживает большую площадь.",
   "block.thermal.lightning_tnt": "Молниеносная взрывчатка",
-  "block.thermal.lightning_tnt.desc": "При ударе поражает территорию. Скорее всего принесёт молнию.",
+  "block.thermal.lightning_tnt.desc": "При взрыве поражает территорию. Скорее всего принесёт молнию.",
 
   "block.thermal.nuke_tnt": "Ядерная взрывчатка",
   "block.thermal.nuke_tnt.desc": "Не для использования на близком расстоянии.",
