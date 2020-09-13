@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "minecraft:spruce_log",
   "leaves": "minecraft:spruce_leaves",
   "result": {

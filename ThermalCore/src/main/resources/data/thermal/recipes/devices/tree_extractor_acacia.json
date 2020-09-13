@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "minecraft:acacia_log",
   "leaves": "minecraft:acacia_leaves",
   "result": {

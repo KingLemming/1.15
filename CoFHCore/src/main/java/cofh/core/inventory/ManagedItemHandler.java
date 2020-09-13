@@ -30,9 +30,9 @@ public class ManagedItemHandler extends SimpleItemHandler {
         if (slot < 0 || slot >= inputSlots.size()) {
             return stack;
         }
+        ItemStack cur = slots.get(slot).getItemStack();
         ItemStack ret = slots.get(slot).insertItem(slot, stack, simulate);
-
-        if (!simulate) {
+        if (!simulate && cur.getItem() != slots.get(slot).getItemStack().getItem()) {
             onInventoryChange(slot);
         }
         return ret;

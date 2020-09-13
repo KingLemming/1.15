@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "biomesoplenty:cherry_logs",
   "leaves": "biomesoplenty:pink_cherry_leaves",
   "result": {

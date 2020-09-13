@@ -10,6 +10,7 @@ import cofh.thermal.core.tileentity.workbench.TinkerBenchTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
@@ -47,8 +48,10 @@ public class TinkerBenchContainer extends TileContainer {
             @Override
             public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
 
-                writeAugmentsToItem(stack);
-                itemInventory.clear();
+                if (tinkerSlot.getStack() == stack) {
+                    writeAugmentsToItem(stack);
+                    itemInventory.clear();
+                }
                 // TODO: Revisit sound.
                 //                if (AugmentableHelper.isAugmentableItem(stack)) {
                 //                    ProxyUtils.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);
@@ -121,6 +124,11 @@ public class TinkerBenchContainer extends TileContainer {
     public void onModeChange() {
 
         ContainerPacket.sendToServer(this);
+    }
+
+    public boolean isTinkerSlot(Slot slot) {
+
+        return tinkerSlot.equals(slot);
     }
 
     public int getNumTinkerAugmentSlots() {

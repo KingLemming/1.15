@@ -68,4 +68,13 @@ public class TinkerBenchScreen extends ThermalScreenBase<TinkerBenchContainer> {
                 .setVisible(() -> !container.tile.allowAugmentation()));
     }
 
+    //    @Override
+    //    protected boolean itemStackMoved(int keyCode, int scanCode) {
+    //
+    //        if (container.isTinkerSlot(hoveredSlot)) {
+    //            return false;
+    //        }
+    //        return super.itemStackMoved(keyCode, scanCode);
+    //    }
+
 }

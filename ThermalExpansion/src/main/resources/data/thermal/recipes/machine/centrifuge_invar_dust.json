@@ -1,7 +1,8 @@
 {
   "type": "thermal:centrifuge",
   "ingredient": {
-    "tag": "forge:dusts/invar"
+    "tag": "forge:dusts/invar",
+    "count": 3
   },
   "result": [
     {

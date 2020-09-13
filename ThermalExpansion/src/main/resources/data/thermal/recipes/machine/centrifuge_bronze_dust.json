@@ -1,7 +1,8 @@
 {
   "type": "thermal:centrifuge",
   "ingredient": {
-    "tag": "forge:dusts/bronze"
+    "tag": "forge:dusts/bronze",
+    "count": 4
   },
   "result": [
     {

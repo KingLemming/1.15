@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "minecraft:birch_log",
   "leaves": "minecraft:birch_leaves",
   "result": {

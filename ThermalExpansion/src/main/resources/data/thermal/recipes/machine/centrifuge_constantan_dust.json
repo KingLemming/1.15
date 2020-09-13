@@ -1,7 +1,8 @@
 {
   "type": "thermal:centrifuge",
   "ingredient": {
-    "tag": "forge:dusts/constantan"
+    "tag": "forge:dusts/constantan",
+    "count": 2
   },
   "result": [
     {

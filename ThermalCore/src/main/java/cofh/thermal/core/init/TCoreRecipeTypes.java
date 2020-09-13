@@ -23,7 +23,7 @@ public class TCoreRecipeTypes {
 
     // region RECIPES
     public static final ResourceLocation ID_BOOST_TREE_EXTRACTOR = new ResourceLocation(ID_THERMAL, "tree_extractor_boost");
-    public static final ResourceLocation ID_MAPPING_TREE_EXTRACTOR = new ResourceLocation(ID_THERMAL, "tree_extractor_mapping");
+    public static final ResourceLocation ID_MAPPING_TREE_EXTRACTOR = new ResourceLocation(ID_THERMAL, "tree_extractor");
 
     public static final SerializableRecipeType<TreeExtractorBoost> BOOST_TREE_EXTRACTOR = new SerializableRecipeType<>(ID_BOOST_TREE_EXTRACTOR);
     public static final SerializableRecipeType<TreeExtractorMapping> MAPPING_TREE_EXTRACTOR = new SerializableRecipeType<>(ID_MAPPING_TREE_EXTRACTOR);

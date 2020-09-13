@@ -8,6 +8,7 @@ import cofh.core.util.control.TransferControlModule;
 import cofh.thermal.core.common.ThermalConfig;
 import cofh.thermal.core.tileentity.MachineTileProcess;
 import cofh.thermal.expansion.inventory.container.machine.MachineCrafterContainer;
+import cofh.thermal.expansion.util.managers.machine.CrafterRecipeManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,6 +18,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +38,6 @@ public class MachineCrafterTile extends MachineTileProcess {
 
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();
-    protected ICraftingRecipe craftRecipe;
     protected boolean hasRecipeChanges;
 
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
@@ -78,6 +79,7 @@ public class MachineCrafterTile extends MachineTileProcess {
         for (int i = 0; i < 9; ++i) {
             craftMatrix.setInventorySlotContents(i, inventory.get(SLOT_CRAFTING_START + i));
         }
+        ICraftingRecipe craftRecipe;
         Optional<ICraftingRecipe> possibleRecipe = world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftMatrix, world);
         if (possibleRecipe.isPresent()) {
             craftRecipe = possibleRecipe.get();
@@ -127,6 +129,20 @@ public class MachineCrafterTile extends MachineTileProcess {
         }
     }
 
+    @Override
+    protected boolean cacheRecipe() {
+
+        if (!resultSlot.isEmpty() && craftResult.getRecipeUsed() == null) {
+            setRecipe();
+        }
+        curRecipe = CrafterRecipeManager.instance().getRecipe(craftResult.getRecipeUsed());
+        if (curRecipe != null) {
+            itemInputCounts = curRecipe.getInputItemCounts(this);
+            fluidInputCounts = curRecipe.getInputFluidCounts(this);
+        }
+        return curRecipe != null;
+    }
+
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory inventory, PlayerEntity player) {
@@ -156,4 +172,15 @@ public class MachineCrafterTile extends MachineTileProcess {
         setRecipe();
     }
     // endregion
+
+    // region NBT
+    @Override
+    public void read(CompoundNBT nbt) {
+
+        super.read(nbt);
+
+        setRecipe();
+    }
+    // endregion
+
 }

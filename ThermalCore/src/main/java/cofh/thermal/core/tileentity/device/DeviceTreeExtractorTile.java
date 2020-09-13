@@ -256,6 +256,26 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
 
         ModelDataManager.requestModelDataRefresh(this);
     }
+
+    @Override
+    public PacketBuffer getGuiPacket(PacketBuffer buffer) {
+
+        super.getGuiPacket(buffer);
+
+        buffer.writeInt(boostCycles);
+        buffer.writeFloat(boostMult);
+
+        return buffer;
+    }
+
+    @Override
+    public void handleGuiPacket(PacketBuffer buffer) {
+
+        super.handleGuiPacket(buffer);
+
+        boostCycles = buffer.readInt();
+        boostMult = buffer.readFloat();
+    }
     // endregion
 
     // region NBT

@@ -47,16 +47,16 @@ public class MachineCrafterContainer extends TileContainer {
                 addSlot(new SlotCoFH(tileInv, j + i * 9, 8 + j * 18, 77 + i * 18));
             }
         }
-        addSlot(new SlotRemoveOnly(tileInv, 18, 125, 21));
+        addSlot(new SlotRemoveOnly(tileInv, 18, 143, 21));
 
         addSlot(new SlotCoFH(tileInv, 19, 8, 53));
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                addSlot(new SlotFalseCopy(craftMatrix, j + i * 3, 35 + j * 18, 17 + i * 18));
+                addSlot(new SlotFalseCopy(craftMatrix, j + i * 3, 53 + j * 18, 17 + i * 18));
             }
         }
-        addSlot(new CraftingResultSlot(player, craftMatrix, craftResult, 0, 125, 48) {
+        addSlot(new CraftingResultSlot(player, craftMatrix, craftResult, 0, 114, 44) {
 
             @Override
             public boolean canTakeStack(PlayerEntity player) {

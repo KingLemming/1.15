@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "traverse:fir_logs",
   "leaves": "traverse:fir_leaves",
   "result": {

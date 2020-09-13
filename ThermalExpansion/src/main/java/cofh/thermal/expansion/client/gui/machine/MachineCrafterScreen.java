@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-import static cofh.core.util.GuiHelper.generatePanelInfo;
+import static cofh.core.util.GuiHelper.*;
 import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.core.util.helpers.SoundHelper.playClickSound;
@@ -35,7 +35,15 @@ public class MachineCrafterScreen extends MachineScreenReconfigurable<MachineCra
 
         super.init();
 
-        ElementBase setRecipe = new ElementButton(this, 95, 47)
+        // addElement(createInputSlot(this, 53, 26, tile));
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                addElement(createInputSlot(this, 8 + j * 18, 77 + i * 18, tile));
+            }
+        }
+        addElement(createLargeOutputSlot(this, 143, 21, tile));
+
+        ElementBase setRecipe = new ElementButton(this, 142, 52)
                 .setName("SetRecipe")
                 .setSize(18, 18)
                 .setTexture(TEX_ACCEPT, 54, 18)

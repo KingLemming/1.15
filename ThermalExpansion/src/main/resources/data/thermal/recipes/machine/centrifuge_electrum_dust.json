@@ -1,7 +1,8 @@
 {
   "type": "thermal:centrifuge",
   "ingredient": {
-    "tag": "forge:dusts/electrum"
+    "tag": "forge:dusts/electrum",
+    "count": 2
   },
   "result": [
     {

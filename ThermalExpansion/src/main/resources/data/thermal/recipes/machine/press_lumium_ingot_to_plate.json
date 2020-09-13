@@ -1,11 +1,11 @@
 {
   "type": "thermal:press",
   "ingredient": {
-    "tag": "forge:ingots/signalum"
+    "tag": "forge:ingots/lumium"
   },
   "result": [
     {
-      "item": "thermal:signalum_plate"
+      "item": "thermal:lumium_plate"
     }
   ]
 }

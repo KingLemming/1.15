@@ -1,5 +1,5 @@
 {
-  "type": "thermal:tree_extractor_mapping",
+  "type": "thermal:tree_extractor",
   "trunk": "biomesoplenty:fir_logs",
   "leaves": "biomesoplenty:fir_leaves",
   "result": {
