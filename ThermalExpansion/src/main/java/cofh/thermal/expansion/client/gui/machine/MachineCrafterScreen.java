@@ -28,7 +28,7 @@ public class MachineCrafterScreen extends MachineScreenReconfigurable<MachineCra
         texture = TEXTURE;
         info = generatePanelInfo("info.thermal.machine_crafter");
         name = "crafter";
-        ySize = 208;
+        ySize = 190;
     }
 
     @Override
@@ -36,10 +36,8 @@ public class MachineCrafterScreen extends MachineScreenReconfigurable<MachineCra
 
         super.init();
 
-        for (int i = 0; i < 2; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                addElement(createInputSlot(this, 8 + j * 18, 77 + i * 18, tile));
-            }
+        for (int i = 0; i < 9; ++i) {
+            addElement(createInputSlot(this, 8 + i * 18, 77, tile));
         }
         addElement(createLargeOutputSlot(this, 143, 21, tile));
 

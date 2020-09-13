@@ -5,6 +5,7 @@ import cofh.core.util.helpers.FluidHelper;
 import cofh.thermal.core.util.IMachineInventory;
 import cofh.thermal.core.util.recipes.internal.BaseMachineRecipe;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -26,6 +27,7 @@ public class CrafterRecipe extends BaseMachineRecipe {
 
     protected final List<Ingredient> ingredients;
     protected final Set<ComparableItemStack> validItems = new ObjectOpenHashSet<>();
+    protected Set<Fluid> validFluids = new ObjectOpenHashSet<>();
 
     public static final List<Float> CHANCE = Collections.singletonList(1.0F);
     public static final Pair<List<Integer>, List<Integer>> EMPTY_PAIR = Pair.of(Collections.emptyList(), Collections.emptyList());
@@ -39,6 +41,11 @@ public class CrafterRecipe extends BaseMachineRecipe {
         for (Ingredient ing : ingredients) {
             for (ItemStack stack : ing.getMatchingStacks()) {
                 validItems.add(convert(stack));
+                FluidUtil.getFluidContained(stack).ifPresent(fluidStack -> {
+                    if (!fluidStack.isEmpty()) {
+                        validFluids.add(fluidStack.getFluid());
+                    }
+                });
             }
         }
         outputItems.add(recipe.getRecipeOutput());
@@ -48,6 +55,11 @@ public class CrafterRecipe extends BaseMachineRecipe {
     public boolean validItem(ItemStack item) {
 
         return validItems.contains(convert(item));
+    }
+
+    public boolean validFluid(FluidStack fluid) {
+
+        return validFluids.contains(fluid.getFluid());
     }
 
     @Override

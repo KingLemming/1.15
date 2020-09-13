@@ -6,6 +6,7 @@ import cofh.thermal.expansion.util.recipes.machine.CrafterRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeManager;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.IdentityHashMap;
 
@@ -24,6 +25,11 @@ public class CrafterRecipeManager implements IManager {
     public boolean validItem(ItemStack item, IMachineRecipe recipe) {
 
         return recipe instanceof CrafterRecipe && ((CrafterRecipe) recipe).validItem(item);
+    }
+
+    public boolean validFluid(FluidStack fluid, IMachineRecipe recipe) {
+
+        return recipe instanceof CrafterRecipe && ((CrafterRecipe) recipe).validFluid(fluid);
     }
 
     public CrafterRecipe getRecipe(IRecipe<?> recipe) {

@@ -189,6 +189,18 @@ public class TExpRecipes extends RecipeProviderCoFH {
                 .patternLine("IPI")
                 .addCriterion("has_machine_frame", hasItem(machineFrame))
                 .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(reg.get(ID_MACHINE_CRAFTER))
+                .key('C', machineFrame)
+                .key('I', CoFHTags.Items.GEARS_COPPER)
+                .key('P', rfCoil)
+                .key('X', Items.CRAFTING_TABLE)
+                .key('Y', CoFHTags.Items.INGOTS_TIN)
+                .patternLine(" X ")
+                .patternLine("YCY")
+                .patternLine("IPI")
+                .addCriterion("has_machine_frame", hasItem(machineFrame))
+                .build(consumer);
     }
 
     private void generateDynamoRecipes(Consumer<IFinishedRecipe> consumer) {

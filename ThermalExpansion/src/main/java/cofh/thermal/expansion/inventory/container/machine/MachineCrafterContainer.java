@@ -42,14 +42,12 @@ public class MachineCrafterContainer extends TileContainer {
         InvWrapperCoFH tileInv = new InvWrapperCoFH(this.tile.getItemInv());
         this.player = inventory.player;
 
-        for (int i = 0; i < 2; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                addSlot(new SlotCoFH(tileInv, j + i * 9, 8 + j * 18, 77 + i * 18));
-            }
+        for (int i = 0; i < 9; ++i) {
+            addSlot(new SlotCoFH(tileInv, i, 8 + i * 18, 77));
         }
-        addSlot(new SlotRemoveOnly(tileInv, 18, 143, 21));
+        addSlot(new SlotRemoveOnly(tileInv, 9, 143, 21));
 
-        addSlot(new SlotCoFH(tileInv, 19, 8, 53));
+        addSlot(new SlotCoFH(tileInv, 10, 8, 53));
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -65,7 +63,7 @@ public class MachineCrafterContainer extends TileContainer {
             }
         });
 
-        bindAugmentSlots(tileInv, 30, this.tile.augSize());
+        bindAugmentSlots(tileInv, 21, this.tile.augSize());
         bindPlayerInventory(inventory);
 
         if (Utils.isServerWorld(world)) {
@@ -80,7 +78,7 @@ public class MachineCrafterContainer extends TileContainer {
     @Override
     protected int getPlayerInventoryVerticalOffset() {
 
-        return 126;
+        return 108;
     }
 
     @Override
@@ -142,7 +140,7 @@ public class MachineCrafterContainer extends TileContainer {
             }
             tile.markRecipeChanges();
             craftResult.setInventorySlotContents(0, stack);
-            playerMP.connection.sendPacket(new SSetSlotPacket(this.windowId, 29, stack));
+            playerMP.connection.sendPacket(new SSetSlotPacket(this.windowId, 20, stack));
         } else {
             calcCraftingGrid();
             tile.markRecipeChanges();

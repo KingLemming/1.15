@@ -37,7 +37,7 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
 
 public class MachineCrafterTile extends MachineTileProcess {
 
-    public static final int SLOT_CRAFTING_START = 20;
+    public static final int SLOT_CRAFTING_START = 11;
 
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();
@@ -47,13 +47,13 @@ public class MachineCrafterTile extends MachineTileProcess {
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected ItemStorageCoFH resultSlot = new ItemStorageCoFH();
 
-    protected FluidStorageCoFH inputTank = new FluidStorageCoFH(TANK_MEDIUM);
+    protected FluidStorageCoFH inputTank = new FluidStorageCoFH(TANK_MEDIUM, (fluid) -> CrafterRecipeManager.instance().validFluid(fluid, curRecipe));
 
     public MachineCrafterTile() {
 
         super(MACHINE_CRAFTER_TILE);
 
-        inventory.addSlots(INPUT, 18, (item) -> CrafterRecipeManager.instance().validItem(item, curRecipe));
+        inventory.addSlots(INPUT, 9, (item) -> CrafterRecipeManager.instance().validItem(item, curRecipe));
         inventory.addSlot(outputSlot, OUTPUT);
         inventory.addSlot(chargeSlot, INTERNAL);
 
@@ -122,7 +122,7 @@ public class MachineCrafterTile extends MachineTileProcess {
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState) {
 
         if (!ThermalConfig.keepItems.get()) {
-            for (int i = 0; i < invSize() - augSize() - 10; ++i) {
+            for (int i = 0; i < invSize() - augSize() - 9 - 1; ++i) {
                 InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(i));
             }
         }
