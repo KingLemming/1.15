@@ -5,6 +5,7 @@ import cofh.thermal.core.entity.projectile.BasalzProjectileEntity;
 import cofh.thermal.core.init.TCoreSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.SnowyDirtBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
@@ -45,7 +46,7 @@ public class EarthChargeItem extends ItemCoFH {
         //            return ActionResultType.FAIL;
         //        }
         Material material = state.getMaterial();
-        if (material == Material.ROCK || material == Material.EARTH) {
+        if (material == Material.ROCK || material == Material.EARTH || state.getBlock() instanceof SnowyDirtBlock) {
             destroyBlock(world, pos, true, player);
             playUseSound(world, pos);
             context.getItem().shrink(1);
@@ -56,7 +57,7 @@ public class EarthChargeItem extends ItemCoFH {
 
     private void playUseSound(World worldIn, BlockPos pos) {
 
-        worldIn.playSound(null, pos, TCoreSounds.SOUND_BASALZ_SHOOT, SoundCategory.BLOCKS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+        worldIn.playSound(null, pos, worldIn.getBlockState(pos).getSoundType().getBreakSound(), SoundCategory.BLOCKS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
     }
 
     // region DISPENSER BEHAVIOR

@@ -190,7 +190,7 @@ public class DeviceTreeExtractorTile extends ThermalTileBase implements ITickabl
                 } else if (!inputSlot.isEmpty()) {
                     boostMult = TreeExtractorManager.instance().getBoostMultiplier(inputSlot.getItemStack());
                     boostCycles = TreeExtractorManager.instance().getBoostCycles(inputSlot.getItemStack());
-                    inputSlot.consume();
+                    inputSlot.consume(1);
                 } else {
                     boostMult = 1.0F;
                     boostCycles = 0;

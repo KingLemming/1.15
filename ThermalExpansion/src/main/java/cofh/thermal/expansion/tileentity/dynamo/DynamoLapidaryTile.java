@@ -39,7 +39,7 @@ public class DynamoLapidaryTile extends DynamoTileBase {
     protected void processStart() {
 
         fuel += fuelMax = Math.round(LapidaryFuelManager.instance().getEnergy(fuelSlot.getItemStack()) * energyMod);
-        fuelSlot.consume();
+        fuelSlot.consume(1);
     }
     // endregion
 

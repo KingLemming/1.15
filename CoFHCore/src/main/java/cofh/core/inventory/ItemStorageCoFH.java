@@ -76,9 +76,9 @@ public class ItemStorageCoFH implements IItemHandler, IItemStackAccess, IResourc
         return enabled.getAsBoolean() && validator.test(stack);
     }
 
-    public void consume() {
+    public void consume(int amount) {
 
-        this.item = ItemHelper.consumeItem(item);
+        this.item = ItemHelper.consumeItem(item, amount);
     }
 
     public void setItemStack(ItemStack item) {

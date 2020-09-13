@@ -122,13 +122,13 @@ public class MachineCrafterContainer extends TileContainer {
         for (int i = 0; i < craftMatrix.getSizeInventory(); ++i) {
             tile.getItemInv().set(MachineCrafterTile.SLOT_CRAFTING_START + i, craftMatrix.getStackInSlot(i));
         }
-        tile.clearRecipeChanges();
         TileConfigPacket.sendToServer(tile);
+        tile.clearRecipeChanges();
     }
 
     protected void slotChangedCraftingGrid() {
 
-        if (syncing) {
+        if (syncing || !initialized) {
             return;
         }
         World world = tile.getWorld();

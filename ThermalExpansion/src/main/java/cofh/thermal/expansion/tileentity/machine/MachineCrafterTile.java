@@ -17,8 +17,8 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -31,7 +31,6 @@ import static cofh.core.util.constants.Constants.TANK_MEDIUM;
 import static cofh.thermal.core.common.ThermalConfig.machineAugments;
 import static cofh.thermal.expansion.init.TExpReferences.MACHINE_CRAFTER_TILE;
 
-// TODO: Finish. This one is going to be *completely* different.
 public class MachineCrafterTile extends MachineTileProcess {
 
     public static final int SLOT_CRAFTING_START = 20;
@@ -39,6 +38,7 @@ public class MachineCrafterTile extends MachineTileProcess {
     protected FalseCraftingInventory craftMatrix = new FalseCraftingInventory(3, 3);
     protected CraftResultInventory craftResult = new CraftResultInventory();
     protected boolean hasRecipeChanges;
+    protected boolean validRecipe;
 
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH();
     protected ItemStorageCoFH resultSlot = new ItemStorageCoFH();
@@ -49,7 +49,7 @@ public class MachineCrafterTile extends MachineTileProcess {
 
         super(MACHINE_CRAFTER_TILE);
 
-        inventory.addSlots(INPUT, 18);
+        inventory.addSlots(INPUT, 18, (item) -> CrafterRecipeManager.instance().validItem(item, curRecipe));
         inventory.addSlot(outputSlot, OUTPUT);
         inventory.addSlot(chargeSlot, INTERNAL);
 
@@ -69,6 +69,15 @@ public class MachineCrafterTile extends MachineTileProcess {
                 return hasTransferIn() && enableAutoInput && !hasRecipeChanges;
             }
         };
+    }
+
+    @Override
+    public void tick() {
+
+        if (!resultSlot.isEmpty() && craftResult.getRecipeUsed() == null) {
+            setRecipe();
+        }
+        super.tick();
     }
 
     protected void setRecipe() {
@@ -132,15 +141,13 @@ public class MachineCrafterTile extends MachineTileProcess {
     @Override
     protected boolean cacheRecipe() {
 
-        if (!resultSlot.isEmpty() && craftResult.getRecipeUsed() == null) {
-            setRecipe();
-        }
         curRecipe = CrafterRecipeManager.instance().getRecipe(craftResult.getRecipeUsed());
         if (curRecipe != null) {
             itemInputCounts = curRecipe.getInputItemCounts(this);
             fluidInputCounts = curRecipe.getInputFluidCounts(this);
         }
-        return curRecipe != null;
+        validRecipe = !itemInputCounts.isEmpty();
+        return validRecipe;
     }
 
     @Nullable
@@ -163,24 +170,40 @@ public class MachineCrafterTile extends MachineTileProcess {
     }
 
     @Override
+    public PacketBuffer getGuiPacket(PacketBuffer buffer) {
+
+        super.getGuiPacket(buffer);
+
+        boolean hasRecipe = craftResult.getRecipeUsed() != null;
+        buffer.writeBoolean(hasRecipe);
+        if (hasRecipe) {
+            buffer.writeResourceLocation(craftResult.getRecipeUsed().getId());
+        }
+        return buffer;
+    }
+
+    @Override
     public void handleConfigPacket(PacketBuffer buffer) {
 
         super.handleConfigPacket(buffer);
+
         for (int i = SLOT_CRAFTING_START; i < SLOT_CRAFTING_START + 9; ++i) {
             inventory.set(i, buffer.readItemStack());
         }
         setRecipe();
     }
-    // endregion
 
-    // region NBT
     @Override
-    public void read(CompoundNBT nbt) {
+    public void handleGuiPacket(PacketBuffer buffer) {
 
-        super.read(nbt);
+        super.handleGuiPacket(buffer);
 
-        setRecipe();
+        if (buffer.readBoolean() && world != null) {
+            Optional<? extends IRecipe<?>> possibleRecipe = world.getRecipeManager().getRecipe(buffer.readResourceLocation());
+            possibleRecipe.ifPresent(recipe -> curRecipe = CrafterRecipeManager.instance().getRecipe(recipe));
+        } else {
+            curRecipe = null;
+        }
     }
     // endregion
-
 }

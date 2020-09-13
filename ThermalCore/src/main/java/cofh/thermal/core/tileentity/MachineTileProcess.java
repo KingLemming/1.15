@@ -316,7 +316,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
 
         // Input Items
         for (int i = 0; i < itemInputCounts.size(); ++i) {
-            inputSlots().get(i).modify(-itemInputCounts.get(i));
+            inputSlots().get(i).consume(itemInputCounts.get(i));
         }
         // Input Fluids
         for (int i = 0; i < fluidInputCounts.size(); ++i) {

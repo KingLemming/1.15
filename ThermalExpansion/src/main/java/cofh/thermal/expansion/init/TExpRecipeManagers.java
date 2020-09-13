@@ -25,6 +25,7 @@ public class TExpRecipeManagers {
         registerManager(RefineryRecipeManager.instance());
         registerManager(BrewerRecipeManager.instance());
         registerManager(BottlerRecipeManager.instance());
+        registerManager(CrafterRecipeManager.instance());
 
         registerManager(StirlingFuelManager.instance());
         registerManager(CompressionFuelManager.instance());

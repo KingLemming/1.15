@@ -14,7 +14,7 @@ public class ItemHelper {
 
     }
 
-    public static ItemStack consumeItem(ItemStack stack) {
+    public static ItemStack consumeItem(ItemStack stack, int amount) {
 
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
@@ -24,11 +24,12 @@ public class ItemHelper {
         // vanilla only alters the stack passed to hasContainerItem/etc. when the size is > 1
 
         if (largerStack) {
-            stack.shrink(1);
-        }
-        if (item.hasContainerItem(stack)) {
+            stack.shrink(amount);
+            if (stack.isEmpty()) {
+                stack = ItemStack.EMPTY;
+            }
+        } else if (item.hasContainerItem(stack)) {
             ItemStack ret = item.getContainerItem(stack);
-
             if (ret.isEmpty()) {
                 return ItemStack.EMPTY;
             }
