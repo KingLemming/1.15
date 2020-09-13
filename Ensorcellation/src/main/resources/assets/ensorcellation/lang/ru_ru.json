@@ -1,0 +1,115 @@
+{
+  "enchantment.ensorcellation.air_affinity": "Воздушное родство",
+  "enchantment.ensorcellation.air_affinity.desc": "Убирает замедление копания при полёте.",
+
+  "enchantment.ensorcellation.angler": "Награда рыболова",
+  "enchantment.ensorcellation.angler.desc": "Дает шанс поймать дополнительные предметы при рыбалке.",
+
+  "enchantment.ensorcellation.bulwark": "Оплот",
+  "enchantment.ensorcellation.bulwark.desc": "Защищает владельца от отбрасывания и может вывести из строя оружие атакующего.",
+
+  "enchantment.ensorcellation.cavalier": "Кавалер",
+  "enchantment.ensorcellation.cavalier.desc": "Увеличивает урон при езде на чём-либо.",
+
+  "enchantment.ensorcellation.curse_fool": "Проклятие глупости",
+  "enchantment.ensorcellation.curse_fool.desc": "Предотвращает получение опыта при использовании предмета.",
+
+  "enchantment.ensorcellation.curse_mercy": "Проклятие милосердия",
+  "enchantment.ensorcellation.curse_mercy.desc": "Предотвращает смертельный удар оружием.",
+
+  "enchantment.ensorcellation.damage_ender": "Нарушение Края",
+  "enchantment.ensorcellation.damage_ender.desc": "Увеличивает урон, наносимый мобам Края, и подавляет телепортацию.",
+
+  "enchantment.ensorcellation.damage_illager": "Бдительность",
+  "enchantment.ensorcellation.damage_illager.desc": "Увеличивает урон, наносимый обитателям.",
+
+  "enchantment.ensorcellation.damage_villager": "Вне закона",
+  "enchantment.ensorcellation.damage_villager.desc": "Увеличивает урон, наносимый крестьянам",
+
+  "enchantment.ensorcellation.displacement": "Смещение",
+  "enchantment.ensorcellation.displacement.desc": "Хаотично телепортирует атакующих.",
+
+  "enchantment.ensorcellation.excavating": "Раскопка",
+  "enchantment.ensorcellation.excavating.desc": "Увеличивает радиус добычи.",
+
+  "enchantment.ensorcellation.exp_boost": "Проницательность",
+  "enchantment.ensorcellation.exp_boost.desc": "Увеличивает количество получаемого опыта при использовании предмета.",
+
+  "enchantment.ensorcellation.fire_rebuke": "Пламенный упрёк",
+  "enchantment.ensorcellation.fire_rebuke.desc": "Поджигает нападающих, одновременно отбрасывая их.",
+
+  "enchantment.ensorcellation.frost_aspect": "Морозный аспект",
+  "enchantment.ensorcellation.frost_aspect.desc": "Замедляет и ослабляет цель.",
+
+  "enchantment.ensorcellation.frost_rebuke": "Леденящий душу упрёк",
+  "enchantment.ensorcellation.frost_rebuke.desc": "Замедляет и ослабляет атакующих, одновременно отбрасывая их.",
+
+  "enchantment.ensorcellation.frost_walker": "Морозный путешественник",
+  "enchantment.ensorcellation.frost_walker.desc": "Замораживает поверхность воды или лавы, позволяя перемещаться.",
+
+  "enchantment.ensorcellation.furrowing": "Вспашка",
+  "enchantment.ensorcellation.furrowing.desc": "Вспахивает дополнительные блоки в линии.",
+
+  "enchantment.ensorcellation.gourmand": "Гурман",
+  "enchantment.ensorcellation.gourmand.desc": "При употреблении пища становится более питательной и сытной.",
+
+  "enchantment.ensorcellation.holding": "Удержание",
+  "enchantment.ensorcellation.holding.desc": "Увеличивает ёмкость хранения определенных предметов.",
+
+  "enchantment.ensorcellation.hunter": "Награда охотника",
+  "enchantment.ensorcellation.hunter.desc": "Даёт шанс выпадения дополнительных предметов с убитых животных.",
+
+  "enchantment.ensorcellation.instigating": "Подстрекательство",
+  "enchantment.ensorcellation.instigating.desc": "Наносит дополнительный урон, если у цели полное здоровье.",
+
+  "enchantment.ensorcellation.leech": "Кровопийца",
+  "enchantment.ensorcellation.leech.desc": "Восстанавливает здоровье, при убийстве мобов.",
+
+  "enchantment.ensorcellation.magic_edge": "Волшебный край",
+  "enchantment.ensorcellation.magic_edge.desc": "Немного увеличивает наносимый урон и превращает его в магию.",
+
+  "enchantment.ensorcellation.magic_protection": "Магическая защита",
+  "enchantment.ensorcellation.magic_protection.desc": "Уменьшает урон, получаемый от магических источников.",
+
+  "enchantment.ensorcellation.phalanx": "Фаланга",
+  "enchantment.ensorcellation.phalanx.desc": "Позволяет владельцу двигаться быстрее при использовании щита.",
+
+  "enchantment.ensorcellation.pilfering": "Воровство",
+  "enchantment.ensorcellation.pilfering.desc": "Может забрать часть брони у зацепленных целей.",
+
+  "enchantment.ensorcellation.preservation": "Сохранность",
+  "enchantment.ensorcellation.preservation.desc": "Убирает увеличивающуюся стоимость XP для ремонта предмета.",
+
+  "enchantment.ensorcellation.quick_draw": "Зарисовка",
+  "enchantment.ensorcellation.quick_draw.desc": "Уменьшает время, необходимое для полного натяжения лука.",
+
+  "enchantment.ensorcellation.reach": "Досягаемость",
+  "enchantment.ensorcellation.reach.desc": "Увеличивает расстояние, на котором владелец может взаимодействовать с блоками.",
+
+  "enchantment.ensorcellation.smashing": "Сокрушение",
+  "enchantment.ensorcellation.smashing.desc": "Собранные руды будут раздроблены на куски, что повысит выход.",
+
+  "enchantment.ensorcellation.smelting": "Плавка",
+  "enchantment.ensorcellation.smelting.desc": "Собранные блоки будут автоматически плавиться, как в печи.",
+
+  "enchantment.ensorcellation.soulbound": "Печать души",
+  "enchantment.ensorcellation.soulbound.desc": "Предмет останется у владельца после безвременной кончины.",
+
+  "enchantment.ensorcellation.tilling": "Обработка",
+  "enchantment.ensorcellation.tilling.desc": "Обрабатывает дополнительные блоки в радиусе.",
+
+  "enchantment.ensorcellation.trueshot": "Меткость",
+  "enchantment.ensorcellation.trueshot.desc": "Увеличивает точность и скорость стрел,а также позволяет ими пронзать.",
+
+  "enchantment.ensorcellation.vitality": "Жизнеспособность",
+  "enchantment.ensorcellation.vitality.desc": "Увеличивает максимальное здоровье владельца.",
+
+  "enchantment.ensorcellation.volley": "Залп",
+  "enchantment.ensorcellation.volley.desc": "Три стрелы выпущены по дуге. Израсходована только одна стрела.",
+
+  "enchantment.ensorcellation.vorpal": "Вострота",
+  "enchantment.ensorcellation.vorpal.desc": "Хаотично проводит мощные атаки и обезглавливания.",
+
+  "enchantment.ensorcellation.weeding": "Прополка",
+  "enchantment.ensorcellation.weeding.desc": "Очищает растения при обработке блоков."
+}
