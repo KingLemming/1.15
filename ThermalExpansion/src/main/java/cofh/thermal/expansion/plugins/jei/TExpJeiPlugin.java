@@ -4,6 +4,7 @@ import cofh.thermal.expansion.client.gui.dynamo.*;
 import cofh.thermal.expansion.client.gui.machine.*;
 import cofh.thermal.expansion.plugins.jei.dynamo.*;
 import cofh.thermal.expansion.plugins.jei.machine.*;
+import cofh.thermal.expansion.util.managers.dynamo.StirlingFuelManager;
 import cofh.thermal.expansion.util.managers.machine.BottlerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.expansion.util.managers.machine.FurnaceRecipeManager;
@@ -51,6 +52,7 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipes(BottlerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BOTTLER);
 
         registration.addRecipes(recipeManager.getRecipes(FUEL_STIRLING).values(), ID_FUEL_STIRLING);
+        registration.addRecipes(StirlingFuelManager.instance().getConvertedFuels(), ID_FUEL_STIRLING);
         registration.addRecipes(recipeManager.getRecipes(FUEL_COMPRESSION).values(), ID_FUEL_COMPRESSION);
         registration.addRecipes(recipeManager.getRecipes(FUEL_MAGMATIC).values(), ID_FUEL_MAGMATIC);
         registration.addRecipes(recipeManager.getRecipes(FUEL_NUMISMATIC).values(), ID_FUEL_NUMISMATIC);

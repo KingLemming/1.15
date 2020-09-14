@@ -54,8 +54,7 @@ import java.util.function.Predicate;
 
 import static cofh.core.key.CoreKeys.MULTIMODE_INCREMENT;
 import static cofh.core.util.constants.NBTTags.*;
-import static cofh.core.util.helpers.AugmentableHelper.getAttributeFromAugmentMax;
-import static cofh.core.util.helpers.AugmentableHelper.getPropertyWithDefault;
+import static cofh.core.util.helpers.AugmentableHelper.*;
 
 public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, IMultiModeItem {
 
@@ -224,6 +223,8 @@ public class RFSawItem extends EnergyContainerItem implements IAugmentableItem, 
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_BASE_MOD);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_STORAGE);
         getAttributeFromAugmentMax(subTag, augmentData, TAG_AUGMENT_ENERGY_XFER);
+
+        getAttributeFromAugmentAdd(subTag, augmentData, TAG_AUGMENT_AREA_RADIUS);
     }
 
     protected boolean hasActiveTag(ItemStack stack) {

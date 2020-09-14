@@ -5,15 +5,24 @@ import cofh.thermal.core.util.managers.SingleItemFuelManager;
 import cofh.thermal.core.util.recipes.ThermalFuel;
 import cofh.thermal.core.util.recipes.internal.IDynamoFuel;
 import cofh.thermal.expansion.init.TExpRecipeTypes;
+import cofh.thermal.expansion.util.recipes.dynamo.StirlingFuel;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import static cofh.core.util.constants.Constants.ID_THERMAL;
 import static cofh.core.util.constants.Constants.RF_PER_FURNACE_UNIT;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 public class StirlingFuelManager extends SingleItemFuelManager {
 
@@ -34,6 +43,13 @@ public class StirlingFuelManager extends SingleItemFuelManager {
     public boolean validFuel(ItemStack input) {
 
         return getEnergy(input) > 0;
+    }
+
+    @Override
+    protected void clear() {
+
+        fuelMap.clear();
+        convertedFuels.clear();
     }
 
     public int getEnergy(ItemStack stack) {
@@ -64,43 +80,37 @@ public class StirlingFuelManager extends SingleItemFuelManager {
     public void refresh(RecipeManager recipeManager) {
 
         clear();
+
         Map<ResourceLocation, IRecipe<FalseIInventory>> recipes = recipeManager.getRecipes(TExpRecipeTypes.FUEL_STIRLING);
         for (Map.Entry<ResourceLocation, IRecipe<FalseIInventory>> entry : recipes.entrySet()) {
             addFuel((ThermalFuel) entry.getValue());
         }
+        createConvertedRecipes(recipeManager);
     }
     // endregion
 
-    //    // region CONVERSION
-    //    protected List<StirlingFuel> convertedFuels = new ArrayList<>();
-    //
-    //    public List<StirlingFuel> getConvertedFuels() {
-    //
-    //        return convertedFuels;
-    //    }
-    //
-    //    protected void createConvertedRecipes(RecipeManager recipeManager) {
-    //
-    //        for (IRecipe<IInventory> recipe : recipeManager.getRecipes(IRecipeType.SMELTING).values()) {
-    //            createConvertedRecipe((AbstractCookingRecipe) recipe);
-    //        }
-    //    }
-    //
-    //    protected boolean createConvertedRecipe(AbstractCookingRecipe recipe) {
-    //
-    //        if (recipe.isDynamic() || recipe.getRecipeOutput().isEmpty()) {
-    //            return false;
-    //        }
-    //        convertedRecipes.add(convert(recipe));
-    //        return true;
-    //    }
-    //
-    //    protected FurnaceRecipe convert(AbstractCookingRecipe recipe) {
-    //
-    //        ItemStack recipeOutput = recipe.getRecipeOutput();
-    //        float experience = recipe.getExperience();
-    //        int energy = defaultFoodRecipes && recipeOutput.getItem().isFood() ? defaultEnergy / 2 : defaultEnergy;
-    //        return new FurnaceRecipe(new ResourceLocation(ID_THERMAL, "dyn_stirling_" + recipe.getIngredients().get(0).hashCode()), energy, experience, recipe);
-    //    }
-    //    // endregion
+    // region CONVERSION
+    protected List<StirlingFuel> convertedFuels = new ArrayList<>();
+
+    public List<StirlingFuel> getConvertedFuels() {
+
+        return convertedFuels;
+    }
+
+    protected void createConvertedRecipes(RecipeManager recipeManager) {
+
+        ItemStack query;
+        for (Item item : ForgeRegistries.ITEMS) {
+            query = new ItemStack(item);
+            if (getFuel(query) == null && validFuel(query)) {
+                convertedFuels.add(convert(query, getEnergy(query)));
+            }
+        }
+    }
+
+    protected StirlingFuel convert(ItemStack item, int energy) {
+
+        return new StirlingFuel(new ResourceLocation(ID_THERMAL, "stirling_" + item.getItem().getRegistryName().getPath()), energy, singletonList(Ingredient.fromStacks(item)), emptyList());
+    }
+    // endregion
 }

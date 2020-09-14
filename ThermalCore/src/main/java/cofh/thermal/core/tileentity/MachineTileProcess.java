@@ -295,7 +295,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
             boolean matched = false;
             for (FluidStorageCoFH tank : outputTanks()) {
                 FluidStack output = tank.getFluidStack();
-                if (fluidsEqual(output, recipeOutput)) {
+                if (tank.getSpace() >= recipeOutput.getAmount() && fluidsEqual(output, recipeOutput)) {
                     output.setAmount(output.getAmount() + recipeOutput.getAmount());
                     matched = true;
                     break;
@@ -491,6 +491,12 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
             }
         }
         super.onInventoryChange(slot);
+
+        if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
+            if (isActive && !validateOutputs()) {
+                processOff();
+            }
+        }
     }
 
     @Override

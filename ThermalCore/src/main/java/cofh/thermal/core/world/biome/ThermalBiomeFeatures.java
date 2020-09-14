@@ -62,13 +62,13 @@ public class ThermalBiomeFeatures {
         Biome.Category category = biomeIn.getCategory();
 
         if (category == Biome.Category.EXTREME_HILLS || category == Biome.Category.MESA) {
-            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BASALZ_ENTITY, 30, 2, 3));
+            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BASALZ_ENTITY, 10, 1, 3));
         }
         if (category == Biome.Category.DESERT || category == Biome.Category.MESA || category == Biome.Category.SAVANNA) {
-            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLITZ_ENTITY, 30, 2, 3));
+            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLITZ_ENTITY, 10, 1, 3));
         }
         if (biomeIn.getPrecipitation() == Biome.RainType.SNOW) {
-            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLIZZ_ENTITY, 30, 2, 3));
+            biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLIZZ_ENTITY, 10, 1, 3));
         }
     }
 

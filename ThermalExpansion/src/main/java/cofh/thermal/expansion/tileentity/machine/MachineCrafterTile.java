@@ -134,6 +134,12 @@ public class MachineCrafterTile extends MachineTileProcess {
     }
 
     @Override
+    protected boolean canProcessStart() {
+
+        return !hasRecipeChanges && super.canProcessStart();
+    }
+
+    @Override
     protected boolean cacheRecipe() {
 
         curRecipe = CrafterRecipeManager.instance().getRecipe(craftResult.getRecipeUsed());
