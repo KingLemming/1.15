@@ -85,34 +85,42 @@ public class CrafterRecipe extends BaseMachineRecipe {
         if (storedFluidAmount > 0) {
             FluidStack storedFluid = inventory.inputTanks().get(0).getFluidStack();
             for (Ingredient ing : ingredients) {
-                for (ItemStack stack : ing.getMatchingStacks()) {
-                    FluidStack fluid = FluidUtil.getFluidContained(stack).orElse(FluidStack.EMPTY);
-                    if (FluidHelper.fluidsEqual(storedFluid, fluid) && storedFluidAmount - retFluid >= fluid.getAmount()) {
-                        retFluid += fluid.getAmount();
-                        ++found;
-                        break;
-                    }
-                    for (int j = 0; j < retItems.length; ++j) {
-                        ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
-                        if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
-                            ++retItems[j];
+                if (ing.hasNoMatchingItems()) {
+                    ++found;
+                } else {
+                    for (ItemStack stack : ing.getMatchingStacks()) {
+                        FluidStack fluid = FluidUtil.getFluidContained(stack).orElse(FluidStack.EMPTY);
+                        if (FluidHelper.fluidsEqual(storedFluid, fluid) && storedFluidAmount - retFluid >= fluid.getAmount()) {
+                            retFluid += fluid.getAmount();
                             ++found;
-                            foundItem = true;
                             break;
+                        }
+                        for (int j = 0; j < retItems.length; ++j) {
+                            ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
+                            if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
+                                ++retItems[j];
+                                ++found;
+                                foundItem = true;
+                                break;
+                            }
                         }
                     }
                 }
             }
         } else {
             for (Ingredient ing : ingredients) {
-                for (ItemStack stack : ing.getMatchingStacks()) {
-                    for (int j = 0; j < retItems.length; ++j) {
-                        ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
-                        if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
-                            ++retItems[j];
-                            ++found;
-                            foundItem = true;
-                            break;
+                if (ing.hasNoMatchingItems()) {
+                    ++found;
+                } else {
+                    for (ItemStack stack : ing.getMatchingStacks()) {
+                        for (int j = 0; j < retItems.length; ++j) {
+                            ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
+                            if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
+                                ++retItems[j];
+                                ++found;
+                                foundItem = true;
+                                break;
+                            }
                         }
                     }
                 }
