@@ -39,7 +39,7 @@ public class BlizzEntity extends MonsterEntity {
 
     public static boolean canSpawn(EntityType<BlizzEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 
-        return getFeature(FLAG_MOB_BLIZZ).getAsBoolean() && MonsterEntity.canMonsterSpawn(entityType, world, reason, pos, rand);
+        return getFeature(FLAG_MOB_BLIZZ).getAsBoolean() && MonsterEntity.canMonsterSpawnInLight(entityType, world, reason, pos, rand);
     }
 
     public BlizzEntity(EntityType<? extends BlizzEntity> type, World world) {

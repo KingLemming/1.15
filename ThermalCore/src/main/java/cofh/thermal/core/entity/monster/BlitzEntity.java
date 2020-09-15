@@ -39,7 +39,7 @@ public class BlitzEntity extends MonsterEntity {
 
     public static boolean canSpawn(EntityType<BlitzEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 
-        return getFeature(FLAG_MOB_BLITZ).getAsBoolean() && MonsterEntity.canMonsterSpawn(entityType, world, reason, pos, rand);
+        return getFeature(FLAG_MOB_BLITZ).getAsBoolean() && MonsterEntity.canMonsterSpawnInLight(entityType, world, reason, pos, rand);
     }
 
     public BlitzEntity(EntityType<? extends BlitzEntity> type, World world) {

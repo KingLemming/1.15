@@ -39,7 +39,7 @@ public class BasalzEntity extends MonsterEntity {
 
     public static boolean canSpawn(EntityType<BasalzEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 
-        return getFeature(FLAG_MOB_BASALZ).getAsBoolean() && MonsterEntity.canMonsterSpawn(entityType, world, reason, pos, rand);
+        return getFeature(FLAG_MOB_BASALZ).getAsBoolean() && MonsterEntity.canMonsterSpawnInLight(entityType, world, reason, pos, rand);
     }
 
     public BasalzEntity(EntityType<? extends BasalzEntity> type, World world) {
