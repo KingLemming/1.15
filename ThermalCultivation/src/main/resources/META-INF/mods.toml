@@ -39,6 +39,6 @@ side = "BOTH"
 [[dependencies.thermal_cultivation]]
 modId = "thermal"
 mandatory = true
-versionRange = "[0.2,0.3]"
+versionRange = "[0.2.4,0.3]"
 ordering = "AFTER"
 side = "BOTH"

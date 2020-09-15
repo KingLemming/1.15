@@ -67,7 +67,7 @@ public class ThermalBiomeFeatures {
         if (category == Biome.Category.DESERT || category == Biome.Category.MESA || category == Biome.Category.SAVANNA) {
             biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLITZ_ENTITY, 10, 1, 3));
         }
-        if (biomeIn.getPrecipitation() == Biome.RainType.SNOW) {
+        if (biomeIn.getPrecipitation() == Biome.RainType.SNOW & biomeIn.getTempCategory() == Biome.TempCategory.COLD) {
             biomeIn.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(BLIZZ_ENTITY, 10, 1, 3));
         }
     }

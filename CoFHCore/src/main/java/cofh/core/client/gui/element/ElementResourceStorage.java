@@ -118,8 +118,8 @@ public abstract class ElementResourceStorage extends ElementBase {
         if (storage.getCapacity() <= 0 || infinite) {
             return scale;
         }
-        double fraction = (double) storage.getStored() * scale / storage.getCapacity();
-        return minDisplay > 0 && storage.getStored() > 0 ? Math.max(minDisplay, MathHelper.round(fraction)) : MathHelper.round(fraction);
+        int amount = MathHelper.clamp(MathHelper.round((double) storage.getStored() * scale / storage.getCapacity()), 0, scale);
+        return minDisplay > 0 ? Math.min(minDisplay, amount) : amount;
     }
 
     protected void drawStorage() {

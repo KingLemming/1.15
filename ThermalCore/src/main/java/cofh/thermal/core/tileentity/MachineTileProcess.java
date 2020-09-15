@@ -481,20 +481,19 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     @Override
     public void onInventoryChange(int slot) {
 
-        if (Utils.isServerWorld(world) && slot < inventory.getInputSlots().size()) {
-            if (isActive) {
+        super.onInventoryChange(slot);
+
+        if (world != null && Utils.isServerWorld(world) && isActive) {
+            if (slot >= invSize() - augSize()) {
+                if (!validateOutputs()) {
+                    processOff();
+                }
+            } else if (slot < inventory.getInputSlots().size()) {
                 IMachineRecipe tempRecipe = curRecipe;
                 IRecipeCatalyst tempCatalyst = curCatalyst;
                 if (!validateInputs() || tempRecipe != curRecipe || tempCatalyst != curCatalyst) {
                     processOff();
                 }
-            }
-        }
-        super.onInventoryChange(slot);
-
-        if (Utils.isServerWorld(world) && slot >= invSize() - augSize()) {
-            if (isActive && !validateOutputs()) {
-                processOff();
             }
         }
     }
