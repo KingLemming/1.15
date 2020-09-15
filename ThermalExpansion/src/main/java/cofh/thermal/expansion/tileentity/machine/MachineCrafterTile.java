@@ -96,6 +96,7 @@ public class MachineCrafterTile extends MachineTileProcess {
             }
         }
         craftResult.setRecipeUsed(craftRecipe);
+        curRecipe = CrafterRecipeManager.instance().getRecipe(craftRecipe);
         resultSlot.setItemStack(craftResult.getStackInSlot(0));
         clearRecipeChanges();
     }
