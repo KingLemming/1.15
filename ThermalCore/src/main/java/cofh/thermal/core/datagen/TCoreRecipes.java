@@ -713,6 +713,15 @@ public class TCoreRecipes extends RecipeProviderCoFH {
                 .addCriterion("has_dandelion", hasItem(Items.DANDELION))
                 .build(consumer, ID_THERMAL + ":rubber_from_dandelion");
 
+        ShapedRecipeBuilder.shapedRecipe(reg.get("rubber"), 1)
+                .key('B', Items.WATER_BUCKET)
+                .key('#', Items.VINE)
+                .patternLine("###")
+                .patternLine("#B#")
+                .patternLine("###")
+                .addCriterion("has_vine", hasItem(Items.VINE))
+                .build(consumer, ID_THERMAL + ":rubber_from_vine");
+
         // ROCKWOOL
         Item rockwool = reg.get(ID_WHITE_ROCKWOOL);
         folder = "rockwool";

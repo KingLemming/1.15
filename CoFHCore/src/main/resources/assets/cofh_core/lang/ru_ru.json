@@ -38,7 +38,7 @@
   "info.cofh.infinite": "Бесконечность",
   "info.cofh.infinite_source": "Бесконечный источник",
   "info.cofh.output": "Выход",
-							   
+
   "info.cofh.single_block": "Одиночный блок",
   "info.cofh.transfer": "Передача",
   "info.cofh.type": "Тип",
@@ -112,7 +112,7 @@
   "effect.cofh_core.shocked": "Шок",
   "effect.cofh_core.sundered": "Разлука",
   "effect.cofh_core.wrenched": "Выворачивание!"
-  
+
   "fluid.cofh_core.experience": "Эссенция знаний",
   "fluid.cofh_core.honey": "Мёд",
   "fluid.cofh_core.milk": "Молоко",

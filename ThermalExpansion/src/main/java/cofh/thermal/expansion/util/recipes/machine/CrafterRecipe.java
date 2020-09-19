@@ -95,6 +95,7 @@ public class CrafterRecipe extends BaseMachineRecipe {
                             ++found;
                             break;
                         }
+                        int curFound = found;
                         for (int j = 0; j < retItems.length; ++j) {
                             ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
                             if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
@@ -103,6 +104,9 @@ public class CrafterRecipe extends BaseMachineRecipe {
                                 foundItem = true;
                                 break;
                             }
+                        }
+                        if (found > curFound) {
+                            break;
                         }
                     }
                 }
@@ -113,6 +117,7 @@ public class CrafterRecipe extends BaseMachineRecipe {
                     ++found;
                 } else {
                     for (ItemStack stack : ing.getMatchingStacks()) {
+                        int curFound = found;
                         for (int j = 0; j < retItems.length; ++j) {
                             ItemStack inSlot = inventory.inputSlots().get(j).getItemStack();
                             if (inSlot.getCount() > retItems[j] && itemsEqual(stack, inSlot)) {
@@ -121,6 +126,9 @@ public class CrafterRecipe extends BaseMachineRecipe {
                                 foundItem = true;
                                 break;
                             }
+                        }
+                        if (found > curFound) {
+                            break;
                         }
                     }
                 }

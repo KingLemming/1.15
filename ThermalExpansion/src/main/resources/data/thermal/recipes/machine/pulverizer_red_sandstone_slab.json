@@ -1,7 +1,7 @@
 {
   "type": "thermal:pulverizer",
-  "ingredient": [
-    [
+  "ingredient": {
+    "value": [
       {
         "item": "minecraft:red_sandstone_slab"
       },
@@ -12,7 +12,7 @@
         "item": "minecraft:smooth_red_sandstone_slab"
       }
     ]
-  ],
+  },
   "result": [
     {
       "item": "minecraft:red_sand"

@@ -1,7 +1,7 @@
 {
   "type": "thermal:pulverizer",
-  "ingredient": [
-    [
+  "ingredient": {
+    "value": [
       {
         "item": "minecraft:sandstone"
       },
@@ -21,7 +21,7 @@
         "item": "minecraft:smooth_sandstone_stairs"
       }
     ]
-  ],
+  },
   "result": [
     {
       "item": "minecraft:sand",

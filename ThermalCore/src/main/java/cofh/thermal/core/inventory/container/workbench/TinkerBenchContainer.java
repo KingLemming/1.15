@@ -48,10 +48,8 @@ public class TinkerBenchContainer extends TileContainer {
             @Override
             public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack) {
 
-                if (tinkerSlot.getStack() == stack) {
-                    writeAugmentsToItem(stack);
-                    itemInventory.clear();
-                }
+                writeAugmentsToItem(stack);
+                itemInventory.clear();
                 // TODO: Revisit sound.
                 //                if (AugmentableHelper.isAugmentableItem(stack)) {
                 //                    ProxyUtils.playSimpleSound(SOUND_TINKER, 0.2F, 1.0F);

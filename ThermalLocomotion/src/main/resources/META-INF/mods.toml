@@ -32,13 +32,13 @@ side = "BOTH"
 [[dependencies.thermal_locomotion]]
 modId = "cofh_core"
 mandatory = true
-versionRange = "[0.6,0.7]"
+versionRange = "[0.7,0.8]"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "thermal"
 mandatory = true
-versionRange = "[0.2.4,0.3]"
+versionRange = "[0.3,0.4]"
 ordering = "AFTER"
 side = "BOTH"
