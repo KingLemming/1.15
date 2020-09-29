@@ -187,6 +187,10 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
             for (Fluid fluid : ForgeRegistries.FLUIDS) {
                 if (fluid instanceof FlowingFluid) {
                     Fluid still = ((FlowingFluid) fluid).getStillFluid();
+                    if (still == null) {
+                        ThermalCore.LOG.error("Fluid " + fluid.getRegistryName() + " returned a null value for its Still Fluid! This is an error. Report this to the mod author. Probable mod: " + fluid.getRegistryName().getNamespace());
+                        continue;
+                    }
                     ItemStack bucket = new ItemStack(still.getFilledBucket());
                     if (!bucket.isEmpty() && !bucketFluids.contains(still)) {
                         addRecipe(convert(energy, 0.0F, -1, new ItemStack(Items.BUCKET), new FluidStack(still, BUCKET_VOLUME), bucket));

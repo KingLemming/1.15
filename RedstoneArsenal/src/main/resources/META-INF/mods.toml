@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[31,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
+
+[[mods]]
+modId = "redstone_arsenal"
+version = "${file.jarVersion}"
+displayName = "Redstone Arsenal"
+displayURL = "https://teamcofh.com/"
+logoFile = "logo.png"
+credits = "Team CoFH"
+authors = "King Lemming"
+description = '''
+Redstone Arsenal!
+'''
+[[dependencies.redstone_arsenal]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.15.2]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.redstone_arsenal]]
+modId = "forge"
+mandatory = true
+versionRange = "[31.1.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.redstone_arsenal]]
+modId = "cofh_core"
+mandatory = true
+versionRange = "[0.7,0.8]"
+ordering = "AFTER"
+side = "BOTH"

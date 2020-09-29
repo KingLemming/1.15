@@ -4,8 +4,7 @@
       "model": "thermal:block/prismarine_crossover_rail"
     },
     "shape=east_west": {
-      "model": "thermal:block/prismarine_crossover_rail",
-      "y": 90
+      "model": "thermal:block/prismarine_crossover_rail"
     }
   }
 }

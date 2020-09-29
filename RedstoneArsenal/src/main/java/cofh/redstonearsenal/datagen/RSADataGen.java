@@ -1,14 +1,14 @@
-package cofh.archersparadox.datagen;
+package cofh.redstonearsenal.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
-import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
+import static cofh.core.util.constants.Constants.ID_REDSTONE_ARSENAL;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = ID_ARCHERS_PARADOX)
-public class APDataGen {
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = ID_REDSTONE_ARSENAL)
+public class RSADataGen {
 
     @SubscribeEvent
     public static void gatherData(final GatherDataEvent event) {
@@ -23,14 +23,16 @@ public class APDataGen {
 
     private static void registerServerProviders(DataGenerator generator) {
 
-        generator.addProvider(new APTags.Item(generator));
-
-        generator.addProvider(new APRecipes(generator));
+        //        generator.addProvider(new RSATags.Block(generator));
+        //        generator.addProvider(new RSATags.Item(generator));
+        //
+        //        generator.addProvider(new RSARecipes(generator));
     }
 
     private static void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
-        generator.addProvider(new APItemModels(generator, event.getExistingFileHelper()));
+        //        generator.addProvider(new RSABlockStates(generator, event.getExistingFileHelper()));
+        //        generator.addProvider(new RSAItemModels(generator, event.getExistingFileHelper()));
     }
 
 }

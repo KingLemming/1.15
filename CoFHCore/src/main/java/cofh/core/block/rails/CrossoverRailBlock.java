@@ -63,9 +63,11 @@ public class CrossoverRailBlock extends AbstractRailBlock implements IDismantlea
     public RailShape getRailDirection(BlockState state, IBlockReader world, BlockPos pos, @Nullable AbstractMinecartEntity cart) {
 
         if (cart != null) {
-            if (Math.abs(cart.getMotion().x) > 0) {
+            double absX = Math.abs(cart.getMotion().x);
+            double absZ = Math.abs(cart.getMotion().z);
+            if (absX > absZ) {
                 return RailShape.EAST_WEST;
-            } else if (Math.abs(cart.getMotion().z) > 0) {
+            } else if (absZ > absX) {
                 return RailShape.NORTH_SOUTH;
             }
         }

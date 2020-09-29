@@ -4,8 +4,7 @@
       "model": "thermal:block/crossover_rail"
     },
     "shape=east_west": {
-      "model": "thermal:block/crossover_rail",
-      "y": 90
+      "model": "thermal:block/crossover_rail"
     }
   }
 }

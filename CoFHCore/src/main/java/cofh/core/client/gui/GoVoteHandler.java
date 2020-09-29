@@ -49,19 +49,21 @@ public class GoVoteHandler {
 
     public static void init() {
 
+        if (isAfterElectionDay()) {
+            return;
+        }
         try {
             Path path = Paths.get(MARKER_PATH);
             Files.createFile(path);
-            Files.setAttribute(path, "dos:hidden", true);
+            if (Util.getOSType() == Util.OS.WINDOWS) {
+                Files.setAttribute(path, "dos:hidden", true);
+            }
         } catch (FileAlreadyExistsException ex) {
             CoFHCore.LOG.debug("Go vote handler: Marker already exists");
             markerAlreadyExists = true;
             return;
         } catch (IOException ignored) {
 
-        }
-        if (isAfterElectionDay()) {
-            return;
         }
         new Thread(() -> {
             try {

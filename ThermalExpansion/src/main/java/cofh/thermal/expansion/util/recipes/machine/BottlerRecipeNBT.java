@@ -33,4 +33,13 @@ public class BottlerRecipeNBT extends BaseMachineRecipe {
         return Collections.singletonList(item);
     }
 
+    @Override
+    public List<Integer> getInputFluidCounts(IMachineInventory inventory) {
+
+        if (inputFluids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return Collections.singletonList(inputFluids.get(0).getAmount());
+    }
+
 }

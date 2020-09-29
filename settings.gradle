@@ -4,6 +4,7 @@ include 'CoFHCore'
 include 'ArchersParadox'
 include 'Ensorcellation'
 include 'OMGourd'
+include 'RedstoneArsenal'
 
 include 'ThermalCore'
 include 'ThermalCultivation'

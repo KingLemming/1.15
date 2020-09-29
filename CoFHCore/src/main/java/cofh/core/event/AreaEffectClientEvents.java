@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.model.data.EmptyModelData;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 import static cofh.core.capability.CapabilityAreaEffect.AREA_EFFECT_ITEM_CAPABILITY;
+import static cofh.core.init.CoreConfig.enableAreaEffectBlockBreaking;
 import static cofh.core.util.constants.Constants.ID_COFH_CORE;
 import static cofh.core.util.helpers.AreaEffectHelper.validAreaEffectItem;
 import static cofh.core.util.helpers.AreaEffectHelper.validAreaEffectMiningItem;
@@ -79,6 +81,9 @@ public class AreaEffectClientEvents {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void renderBlockDamageProgress(RenderWorldLastEvent event) {
 
+        if (!enableAreaEffectBlockBreaking) {
+            return;
+        }
         PlayerController controller = Minecraft.getInstance().playerController;
         if (controller == null) {
             return;
@@ -113,6 +118,9 @@ public class AreaEffectClientEvents {
         double d1 = renderInfo.getProjectedView().y;
         double d2 = renderInfo.getProjectedView().z;
 
+        if (Minecraft.getInstance().playerController == null) {
+            return;
+        }
         int progress = (int) (Minecraft.getInstance().playerController.curBlockDamageMP * 10.0F) - 1;
         if (progress < 0) {
             return;
@@ -128,7 +136,7 @@ public class AreaEffectClientEvents {
             matrixStackIn.push();
             matrixStackIn.translate(scale * (pos.getX() - d0), scale * (pos.getY() - d1), scale * (pos.getZ() - d2));
             IVertexBuilder matrixBuilder = new MatrixApplyingVertexBuilder(vertexBuilder, matrixStackIn.getLast());
-            dispatcher.renderBlockDamage(world.getBlockState(pos), pos, world, matrixStackIn, matrixBuilder);
+            dispatcher.renderModel(world.getBlockState(pos), pos, world, matrixStackIn, matrixBuilder, EmptyModelData.INSTANCE);
             matrixStackIn.pop();
         }
     }

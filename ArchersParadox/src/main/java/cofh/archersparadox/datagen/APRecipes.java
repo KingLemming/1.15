@@ -16,9 +16,9 @@ import static cofh.archersparadox.init.APIDs.*;
 import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
 import static cofh.core.util.references.CoreIDs.ID_ECTOPLASM;
 
-public class APRecipeProvider extends RecipeProviderCoFH {
+public class APRecipes extends RecipeProviderCoFH {
 
-    public APRecipeProvider(DataGenerator generatorIn) {
+    public APRecipes(DataGenerator generatorIn) {
 
         super(generatorIn, ID_ARCHERS_PARADOX);
     }

@@ -69,6 +69,9 @@ minecraft {
 //                OMGourd {
 //                    source project(':OMGourd').sourceSets.main
 //                }
+                RedstoneArsenal {
+                    source project(':RedstoneArsenal').sourceSets.main
+                }
 
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
@@ -112,6 +115,9 @@ minecraft {
 //                OMGourd {
 //                    source project(':OMGourd').sourceSets.main
 //                }
+                RedstoneArsenal {
+                    source project(':RedstoneArsenal').sourceSets.main
+                }
 
                 ThermalCore {
                     source project(':ThermalCore').sourceSets.main
@@ -148,6 +154,7 @@ dependencies {
 //    compile project(':ArchersParadox')
 //    compile project(':Ensorcellation')
 //    compile project(':OMGourd')
+    compile project(':RedstoneArsenal')
 
     compile project(':ThermalCore')
     compile project(':ThermalCultivation')

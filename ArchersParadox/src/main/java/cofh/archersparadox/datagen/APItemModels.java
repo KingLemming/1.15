@@ -8,9 +8,9 @@ import static cofh.archersparadox.ArchersParadox.ITEMS;
 import static cofh.archersparadox.init.APIDs.*;
 import static cofh.core.util.constants.Constants.ID_ARCHERS_PARADOX;
 
-public class APItemModelProvider extends ItemModelProviderCoFH {
+public class APItemModels extends ItemModelProviderCoFH {
 
-    public APItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public APItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
 
         super(generator, ID_ARCHERS_PARADOX, existingFileHelper);
     }
