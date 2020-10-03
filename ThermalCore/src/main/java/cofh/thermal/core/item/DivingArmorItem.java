@@ -37,7 +37,7 @@ public class DivingArmorItem extends ArmorItemCoFH {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 
         if (this.slot == EquipmentSlotType.HEAD) {
-            if (player.getAir() < player.getMaxAir() && world.rand.nextInt(5) == 0) {
+            if (player.getAir() < player.getMaxAir() && world.rand.nextInt(5) > 0) {
                 player.setAir(player.getAir() + 1);
             }
             // TODO: Revisit

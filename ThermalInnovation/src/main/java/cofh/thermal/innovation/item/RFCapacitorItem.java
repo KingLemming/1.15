@@ -111,7 +111,7 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
         ItemStack stack = playerIn.getHeldItem(handIn);
-        return useDelegate(stack, playerIn) ? ActionResult.resultSuccess(stack) : ActionResult.resultFail(stack);
+        return useDelegate(stack, playerIn) ? ActionResult.resultSuccess(stack) : ActionResult.resultPass(stack);
     }
 
     @Override
@@ -128,8 +128,9 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
         if (player.isSecondaryUseActive()) {
             setActive(stack, !isActive(stack));
             player.world.playSound(null, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.2F, isActive(stack) ? 0.8F : 0.5F);
+            return true;
         }
-        return true;
+        return false;
     }
 
     protected boolean isActive(ItemStack stack) {

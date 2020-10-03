@@ -149,6 +149,8 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${mc_version}-${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${mc_version}-${patchouli_version}")
 
+    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${mc_version}-${ie_version}")
+
     compile project(':CoFHCore')
 
 //    compile project(':ArchersParadox')

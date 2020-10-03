@@ -1,0 +1,22 @@
+{
+  "type": "thermal:centrifuge",
+  "ingredient": {
+    "item": "productivebees:honeycomb_milky"
+  },
+  "result": [
+    {
+      "item": "productivebees:milk_bottle",
+      "chance": 0.8
+    },
+    {
+      "fluid": "cofh_core:honey",
+      "amount": 100
+    }
+  ],
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "productivebees"
+    }
+  ]
+}
