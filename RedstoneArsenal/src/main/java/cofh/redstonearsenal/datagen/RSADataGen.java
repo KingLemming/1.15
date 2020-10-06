@@ -25,14 +25,15 @@ public class RSADataGen {
 
         //        generator.addProvider(new RSATags.Block(generator));
         //        generator.addProvider(new RSATags.Item(generator));
-        //
-        //        generator.addProvider(new RSARecipes(generator));
+
+        generator.addProvider(new RSALootTables(generator));
+        generator.addProvider(new RSARecipes(generator));
     }
 
     private static void registerClientProviders(DataGenerator generator, GatherDataEvent event) {
 
-        //        generator.addProvider(new RSABlockStates(generator, event.getExistingFileHelper()));
-        //        generator.addProvider(new RSAItemModels(generator, event.getExistingFileHelper()));
+        generator.addProvider(new RSABlockStates(generator, event.getExistingFileHelper()));
+        generator.addProvider(new RSAItemModels(generator, event.getExistingFileHelper()));
     }
 
 }

@@ -3,7 +3,6 @@ package cofh.redstonearsenal.item;
 import cofh.core.capability.IArcheryAmmoItem;
 import cofh.core.energy.EnergyContainerItemWrapper;
 import cofh.core.energy.IEnergyContainerItem;
-import cofh.core.fluid.IFluidContainerItem;
 import cofh.core.item.EnergyContainerItem;
 import cofh.core.item.IMultiModeItem;
 import net.minecraft.client.gui.screen.Screen;

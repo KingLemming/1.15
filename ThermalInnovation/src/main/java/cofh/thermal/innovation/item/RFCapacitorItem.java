@@ -103,7 +103,7 @@ public class RFCapacitorItem extends EnergyContainerItem implements IAugmentable
             }
             int transfer = Math.min(this.getExtract(stack), this.getEnergyStored(stack));
             equip.getCapability(CapabilityEnergy.ENERGY, null)
-                    .ifPresent(c -> this.extractEnergy(stack, c.receiveEnergy(transfer, false), false));
+                    .ifPresent(c -> this.extractEnergy(stack, c.receiveEnergy(transfer, false), player.abilities.isCreativeMode));
         }
     }
 

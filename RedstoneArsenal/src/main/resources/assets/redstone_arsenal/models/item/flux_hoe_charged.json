@@ -1,0 +1,6 @@
+{
+	"parent": "redstone_arsenal:item/flux_hoe",
+	"textures": {
+		"layer0": "redstone_arsenal:item/flux_hoe_charged"
+	}
+}

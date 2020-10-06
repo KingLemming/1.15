@@ -20,6 +20,7 @@ public class CoFHCommand {
                 //                .then(SubCommandAnvil.register())
                 //                .then(SubCommandCrafting.register())
                 //                .then(SubCommandCrafting.registerAlt())
+                .then(SubCommandCharge.register())
                 .then(SubCommandEnderChest.register())
                 .then(SubCommandFriend.register())
                 .then(SubCommandHeal.register())

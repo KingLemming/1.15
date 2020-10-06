@@ -1,16 +1,23 @@
 package cofh.redstonearsenal.item;
 
 import cofh.core.energy.EnergyContainerItemWrapper;
-import cofh.core.energy.IEnergyContainerItem;
-import cofh.core.item.ICoFHItem;
 import cofh.core.util.Utils;
-import cofh.core.util.helpers.MathHelper;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,31 +25,35 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
 
-import static cofh.core.util.constants.Constants.RGB_DURABILITY_FLUX;
-import static cofh.core.util.constants.NBTTags.TAG_ENERGY;
 import static cofh.core.util.helpers.StringHelper.*;
-import static cofh.core.util.helpers.StringHelper.getScaledNumber;
 import static cofh.core.util.references.CoreReferences.HOLDING;
 
-public class FluxSwordItem extends SwordItem implements ICoFHItem, IEnergyContainerItem {
+public class FluxSwordItem extends SwordItem implements IFluxItem {
 
-    protected int maxEnergy = 320000;
-    protected int extract = 4000;
-    protected int receive = 4000;
+    protected final float damage;
+    protected final float damageCharged;
+    protected final float attackSpeed;
 
-    protected int energyPerUse = 200;
-    protected int energyPerUseCharged = 800;
+    protected final int maxEnergy;
+    protected final int extract;
+    protected final int receive;
 
-    protected int damage = 5;
-    protected int damageCharged = 10;
-    protected float attackSpeed = -2.4F;
+    public FluxSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-    public FluxSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+        super(tier, attackDamageIn, attackSpeedIn, builder.maxDamage(0).setNoRepair());
 
-        super(tier, attackDamageIn, attackSpeedIn, builder);
+        this.damage = getAttackDamage();
+        this.damageCharged = damage + 4.0F;
+        this.attackSpeed = attackSpeedIn;
+
+        this.maxEnergy = energy;
+        this.extract = xfer;
+        this.receive = xfer;
+
+        addPropertyOverride(new ResourceLocation("charged"), (stack, world, entity) -> getEnergyStored(stack) > 0 ? 1F : 0F);
+        addPropertyOverride(new ResourceLocation("active"), (stack, world, entity) -> getEnergyStored(stack) > 0 && getMode(stack) > 0 ? 1F : 0F);
     }
 
     @Override
@@ -55,37 +66,46 @@ public class FluxSwordItem extends SwordItem implements ICoFHItem, IEnergyContai
     }
 
     @Override
-    public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
-        return !(newStack.getItem() == oldStack.getItem()) || (getEnergyStored(oldStack) > 0 != getEnergyStored(newStack) > 0);
-    }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-
-        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged) && (slotChanged || getEnergyStored(oldStack) > 0 != getEnergyStored(newStack) > 0);
-    }
-
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-
-        return !isCreative(stack) && getEnergyStored(stack) > 0;
-    }
-
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-
-        return RGB_DURABILITY_FLUX;
-    }
-
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-
-        if (stack.getTag() == null) {
-            return 0;
+        PlayerEntity player = (PlayerEntity) attacker;
+        if (!player.abilities.isCreativeMode && hasEnergy(stack)) {
+            useEnergy(stack, false);
         }
-        return MathHelper.clamp(1.0D - getEnergyStored(stack) / (double) getMaxEnergyStored(stack), 0.0D, 1.0D);
+        return true;
     }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+
+        if (Utils.isServerWorld(worldIn) && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).abilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot, ItemStack stack) {
+
+        Multimap<String, AttributeModifier> multimap = HashMultimap.create();
+
+        if (slot == EquipmentSlotType.MAINHAND) {
+            if (hasEnergy(stack)) {
+                double wDamage = getMode(stack) > 0 ? damageCharged : damage;
+                double wSpeed = getMode(stack) > 0 ? attackSpeed + 0.2F : attackSpeed;
+
+                multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", wDamage, AttributeModifier.Operation.ADDITION));
+                multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", wSpeed, AttributeModifier.Operation.ADDITION));
+            } else {
+                multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 0.0F, AttributeModifier.Operation.ADDITION));
+                multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
+            }
+        }
+        return multimap;
+    }
+    // endregion
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
@@ -111,44 +131,6 @@ public class FluxSwordItem extends SwordItem implements ICoFHItem, IEnergyContai
 
         int holding = EnchantmentHelper.getEnchantmentLevel(HOLDING, container);
         return Utils.getEnchantedCapacity(maxEnergy, holding);
-    }
-
-    @Override
-    public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-
-        if (container.getTag() == null) {
-            setDefaultTag(container, 0);
-        }
-        if (isCreative(container)) {
-            return 0;
-        }
-        int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int receive = Math.min(Math.min(maxReceive, getReceive(container)), getSpace(container));
-
-        if (!simulate) {
-            stored += receive;
-            container.getTag().putInt(TAG_ENERGY, stored);
-        }
-        return receive;
-    }
-
-    @Override
-    public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-
-        if (container.getTag() == null) {
-            setDefaultTag(container, 0);
-        }
-        if (isCreative(container)) {
-            return maxExtract;
-        }
-        int stored = Math.min(container.getTag().getInt(TAG_ENERGY), getMaxEnergyStored(container));
-        int extract = Math.min(Math.min(maxExtract, getExtract(container)), stored);
-
-        if (!simulate) {
-            stored -= extract;
-            container.getTag().putInt(TAG_ENERGY, stored);
-        }
-        return extract;
     }
     // endregion
 }

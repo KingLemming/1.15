@@ -1,0 +1,20 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "redstone_arsenal:item/flux_hoe"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"charged": 1.0
+			},
+			"model": "redstone_arsenal:item/flux_hoe_charged"
+		},
+		{
+			"predicate": {
+				"active": 1.0
+			},
+			"model": "redstone_arsenal:item/flux_hoe_active"
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+  "itemGroup.redstone_arsenal": "Redstone Arsenal",
+
+  "item.redstone_arsenal.flux_axe": "Flux-Infused Axe",
+  "item.redstone_arsenal.flux_battle_wrench": "Flux-Infused Battle Wrench",
+  "item.redstone_arsenal.flux_bow": "Flux-Infused Bow",
+  "item.redstone_arsenal.flux_excavator": "Flux-Infused Excavator",
+  "item.redstone_arsenal.flux_fishing_rod": "Flux-Infused Fishing Rod",
+  "item.redstone_arsenal.flux_hammer": "Flux-Infused Hammer",
+  "item.redstone_arsenal.flux_hoe": "Flux-Infused Hoe",
+  "item.redstone_arsenal.flux_pickaxe": "Flux-Infused Pickaxe",
+  "item.redstone_arsenal.flux_shield": "Flux-Infused Shield",
+  "item.redstone_arsenal.flux_shovel": "Flux-Infused Shovel",
+  "item.redstone_arsenal.flux_sickle": "Flux-Infused Sickle",
+  "item.redstone_arsenal.flux_sword": "Flux-Infused Sword"
+
+}
