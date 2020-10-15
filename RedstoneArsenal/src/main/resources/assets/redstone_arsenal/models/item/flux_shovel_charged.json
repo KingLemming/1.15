@@ -1,6 +1,6 @@
 {
-	"parent": "redstone_arsenal:item/flux_shovel",
-	"textures": {
-		"layer0": "redstone_arsenal:item/flux_shovel_charged"
-	}
+  "parent": "redstone_arsenal:item/flux_shovel",
+  "textures": {
+    "layer0": "redstone_arsenal:item/flux_shovel_charged"
+  }
 }

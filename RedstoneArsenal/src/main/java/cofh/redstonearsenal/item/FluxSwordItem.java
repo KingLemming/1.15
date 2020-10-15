@@ -42,7 +42,7 @@ public class FluxSwordItem extends SwordItem implements IFluxItem {
 
     public FluxSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-        super(tier, attackDamageIn, attackSpeedIn, builder.maxDamage(0).setNoRepair());
+        super(tier, attackDamageIn, attackSpeedIn, builder);
 
         this.damage = getAttackDamage();
         this.damageCharged = damage + 4.0F;

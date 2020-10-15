@@ -58,7 +58,7 @@ public class FluxPickaxeItem extends PickaxeItem implements IFluxItem {
 
     public FluxPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-        super(tier, attackDamageIn, attackSpeedIn, builder.maxDamage(0).setNoRepair());
+        super(tier, attackDamageIn, attackSpeedIn, builder);
 
         this.damage = attackDamage;
         this.damageCharged = damage + 2.0F;

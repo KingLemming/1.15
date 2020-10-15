@@ -134,7 +134,7 @@ public class ChillerRecipeManager extends AbstractManager implements IRecipeMana
                 return null;
             }
         }
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(key, recipe);

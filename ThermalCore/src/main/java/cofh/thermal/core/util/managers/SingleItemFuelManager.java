@@ -71,7 +71,7 @@ public abstract class SingleItemFuelManager extends AbstractManager implements I
         if (energy < MIN_ENERGY || energy > MAX_ENERGY) {
             return null;
         }
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         BaseDynamoFuel fuel = new BaseDynamoFuel(energy, inputItems, inputFluids);
         fuelMap.put(convert(input), fuel);

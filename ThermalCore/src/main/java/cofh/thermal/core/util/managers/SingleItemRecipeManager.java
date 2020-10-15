@@ -86,7 +86,7 @@ public abstract class SingleItemRecipeManager extends AbstractManager implements
                 return null;
             }
         }
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(convert(input), recipe);

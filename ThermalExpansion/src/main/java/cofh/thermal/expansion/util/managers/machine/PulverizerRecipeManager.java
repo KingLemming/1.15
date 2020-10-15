@@ -54,7 +54,7 @@ public class PulverizerRecipeManager extends SingleItemRecipeManager.Catalyzed {
                 return null;
             }
         }
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         InternalPulverizerRecipe recipe = new InternalPulverizerRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(convert(input), recipe);

@@ -1,6 +1,6 @@
 {
-	"parent": "redstone_arsenal:item/flux_pickaxe",
-	"textures": {
-		"layer0": "redstone_arsenal:item/flux_pickaxe_active"
-	}
+  "parent": "redstone_arsenal:item/flux_pickaxe",
+  "textures": {
+    "layer0": "redstone_arsenal:item/flux_pickaxe_active"
+  }
 }

@@ -42,7 +42,7 @@ public class FluxAxeItem extends AxeItem implements IFluxItem {
 
     public FluxAxeItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-        super(tier, attackDamageIn, attackSpeedIn, builder.maxDamage(0).setNoRepair());
+        super(tier, attackDamageIn, attackSpeedIn, builder);
 
         this.damage = attackDamage;
         this.damageCharged = damage + 4.0F;

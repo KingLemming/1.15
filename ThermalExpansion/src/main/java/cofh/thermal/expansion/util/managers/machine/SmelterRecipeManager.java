@@ -132,7 +132,7 @@ public class SmelterRecipeManager extends AbstractManager implements IRecipeMana
                 return null;
             }
         }
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         List<ComparableItemStack> convertedItems = new ArrayList<>(inputItems.size());
         for (ItemStack stack : inputItems) {

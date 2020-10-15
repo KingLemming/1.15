@@ -132,7 +132,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
         }
         validItems.add(convert(inputItem));
         validFluids.add(inputFluid.getFluid());
-        energy = (energy * getDefaultScale()) / 100;
+        energy = (int) (energy * getDefaultScale());
 
         SimpleMachineRecipe recipe = new SimpleMachineRecipe(energy, experience, minTicks, inputItems, inputFluids, outputItems, chance, outputFluids);
         recipeMap.put(asList(convert(inputItem).hashCode(), FluidHelper.fluidHashcodeNoTag(inputFluid)), recipe);
@@ -180,7 +180,7 @@ public class BottlerRecipeManager extends AbstractManager implements IRecipeMana
     public void refresh(RecipeManager recipeManager) {
 
         clear();
-        int energy = (getDefaultEnergy() * getDefaultScale()) / 100;
+        int energy = (int) (getDefaultEnergy() * getDefaultScale());
         if (defaultBucketRecipes) {
             ThermalCore.LOG.debug("Adding default Bucket recipes to the Fluid Encapsulator...");
             Set<Fluid> bucketFluids = new ObjectOpenHashSet<>(32);

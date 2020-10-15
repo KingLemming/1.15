@@ -1,6 +1,7 @@
 package cofh.redstonearsenal.init;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -60,7 +61,7 @@ public class RSAConfig {
     // endregion
 
     // region VARIABLES
-    public static ForgeConfigSpec.BooleanValue enableCreativeTab;
+    public static BooleanValue enableCreativeTab;
     // endregion
 
     // region CONFIGURATION

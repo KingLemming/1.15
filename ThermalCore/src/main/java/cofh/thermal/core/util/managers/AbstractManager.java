@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public abstract class AbstractManager implements IManager {
 
     protected int defaultEnergy;
-    protected int scaleFactor = 100;
+    protected float defaultScale = 1.0F;
 
     protected AbstractManager(int defaultEnergy) {
 
@@ -22,10 +22,10 @@ public abstract class AbstractManager implements IManager {
         return this;
     }
 
-    protected AbstractManager setScaleFactor(int scaleFactor) {
+    protected AbstractManager setDefaultScale(int defaultScale) {
 
-        if (scaleFactor > 0) {
-            this.scaleFactor = scaleFactor;
+        if (defaultScale > 0) {
+            this.defaultScale = defaultScale;
         }
         return this;
     }
@@ -45,9 +45,9 @@ public abstract class AbstractManager implements IManager {
         return defaultEnergy;
     }
 
-    public int getDefaultScale() {
+    public float getDefaultScale() {
 
-        return scaleFactor;
+        return defaultScale;
     }
 
 }

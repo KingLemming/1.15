@@ -125,7 +125,7 @@ public class RFMagnetItem extends EnergyContainerItem implements IAugmentableIte
                 if (item.cannotPickup() || item.getPersistentData().getBoolean(TAG_CONVEYOR_COMPAT)) {
                     continue;
                 }
-                if (item.getThrowerId() == null || !item.getThrowerId().equals(player.getUniqueID()) || item.getAge() >= PICKUP_DELAY) {
+                if (item.getThrowerId() == null || !item.getThrowerId().equals(player.getUniqueID()) || item.age >= PICKUP_DELAY) {
                     if (item.getPositionVector().squareDistanceTo(player.getPositionVector()) <= radSq) { // && wrapper.getFilter().matches(item.getItem())) {
                         item.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
                         item.setPickupDelay(0);

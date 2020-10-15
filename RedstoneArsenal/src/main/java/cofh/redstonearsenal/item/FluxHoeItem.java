@@ -43,7 +43,7 @@ public class FluxHoeItem extends HoeItem implements IFluxItem {
 
     public FluxHoeItem(IItemTier tier, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-        super(tier, attackSpeedIn, builder.maxDamage(0).setNoRepair());
+        super(tier, attackSpeedIn, builder);
 
         this.damage = 0.0F;
         this.damageCharged = damage + 2.0F;

@@ -42,7 +42,7 @@ public class FluxShovelItem extends ShovelItem implements IFluxItem {
 
     public FluxShovelItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder, int energy, int xfer) {
 
-        super(tier, attackDamageIn, attackSpeedIn, builder.maxDamage(0).setNoRepair());
+        super(tier, attackDamageIn, attackSpeedIn, builder);
 
         this.damage = attackDamage;
         this.damageCharged = damage + 2.0F;
