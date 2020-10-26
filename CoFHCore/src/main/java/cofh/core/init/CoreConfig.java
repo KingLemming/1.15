@@ -97,6 +97,8 @@ public class CoreConfig {
         SERVER_CONFIG.pop();
 
         serverSpec = SERVER_CONFIG.build();
+
+        refreshServerConfig();
     }
 
     private static void genClientConfig() {
@@ -122,6 +124,8 @@ public class CoreConfig {
         CLIENT_CONFIG.pop();
 
         clientSpec = CLIENT_CONFIG.build();
+
+        refreshClientConfig();
     }
 
     private static void refreshServerConfig() {

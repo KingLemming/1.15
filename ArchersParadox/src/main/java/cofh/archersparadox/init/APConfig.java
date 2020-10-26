@@ -46,6 +46,8 @@ public class APConfig {
         genArrowConfig();
 
         serverSpec = SERVER_CONFIG.build();
+
+        refreshServerConfig();
     }
 
     private static void genClientConfig() {
@@ -55,6 +57,8 @@ public class APConfig {
                 .define("Enable Item Group", true);
 
         clientSpec = CLIENT_CONFIG.build();
+
+        refreshClientConfig();
     }
 
     private static void genArrowConfig() {

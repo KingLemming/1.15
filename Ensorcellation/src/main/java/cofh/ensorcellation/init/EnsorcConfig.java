@@ -53,20 +53,21 @@ public class EnsorcConfig {
         genOverrideConfig();
 
         serverSpec = SERVER_CONFIG.build();
+
+        refreshServerConfig();
     }
 
     private static void genClientConfig() {
 
         clientSpec = CLIENT_CONFIG.build();
+
+        refreshClientConfig();
     }
 
     private static void genEnchantmentConfig() {
 
         String treasure = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
         String level = "This option adjusts the maximum allowable level for the Enchantment.";
-
-        // TODO: Remove/refactor
-        String comment;
 
         SERVER_CONFIG.push("Enchantments");
 
@@ -149,7 +150,8 @@ public class EnsorcConfig {
 
         SERVER_CONFIG.push("Insight");
         enableExpBoost = SERVER_CONFIG
-                .comment("If TRUE, the Insight Enchantment is available for Helmets.").define("Enable", true);
+                .comment("If TRUE, the Insight Enchantment is available for Helmets.")
+                .define("Enable", true);
         treasureExpBoost = SERVER_CONFIG
                 .comment(treasure)
                 .define("Treasure", false);
@@ -162,229 +164,306 @@ public class EnsorcConfig {
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Gourmand");
-        comment = "If TRUE, the Gourmand Enchantment is available for Helmets.";
-        enableGourmand = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureGourmand = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelGourmand = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableGourmand = SERVER_CONFIG
+                .comment("If TRUE, the Gourmand Enchantment is available for Helmets.")
+                .define("Enable", true);
+        treasureGourmand = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelGourmand = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         // CHESTPLATE
         SERVER_CONFIG.push("Reach");
-        comment = "If TRUE, the Reach Enchantment is available for Chestplates.";
-        enableReach = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureReach = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelReach = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        enableReach = SERVER_CONFIG
+                .comment("If TRUE, the Reach Enchantment is available for Chestplates.")
+                .define("Enable", true);
+        treasureReach = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelReach = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Vitality");
-        comment = "If TRUE, the Vitality Enchantment is available for Chestplates.";
-        enableVitality = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureVitality = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelVitality = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the health granted level of the Enchantment. (There are 2 health per heart icon.)";
-        healthLevelVitality = SERVER_CONFIG.comment(comment).defineInRange("Health / Level", 4, 1, 10);
+        enableVitality = SERVER_CONFIG
+                .comment("If TRUE, the Vitality Enchantment is available for Chestplates.")
+                .define("Enable", true);
+        treasureVitality = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelVitality = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        healthLevelVitality = SERVER_CONFIG
+                .comment("Adjust this value to set the health granted level of the Enchantment. (There are 2 health per heart icon.)")
+                .defineInRange("Health / Level", 4, 1, 10);
         SERVER_CONFIG.pop();
 
         // WEAPONS
         SERVER_CONFIG.push("Ender Disruption");
-        comment = "If TRUE, the Ender Disruption Enchantment is available for various Weapons.";
-        enableDamageEnder = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureDamageEnder = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelDamageEnder = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        enableDamageEnder = SERVER_CONFIG
+                .comment("If TRUE, the Ender Disruption Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureDamageEnder = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelDamageEnder = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Vigilante");
-        comment = "If TRUE, the Vigilante Enchantment is available for various Weapons.";
-        enableDamageIllager = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureDamageIllager = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelDamageIllager = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        enableDamageIllager = SERVER_CONFIG
+                .comment("If TRUE, the Vigilante Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureDamageIllager = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelDamageIllager = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Outlaw");
-        comment = "If TRUE, the Outlaw Enchantment is available for various Weapons.";
-        enableDamageVillager = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureDamageVillager = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelDamageVillager = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
-        comment = "If TRUE, the Outlaw Enchantment causes Villagers (and Iron Golems) to drop Emeralds when killed.";
-        dropsDamageVillager = SERVER_CONFIG.comment(comment).define("Emerald Drops", true);
+        enableDamageVillager = SERVER_CONFIG
+                .comment("If TRUE, the Outlaw Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureDamageVillager = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelDamageVillager = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 5, 1, MAX_ENCHANT_LEVEL);
+        dropsDamageVillager = SERVER_CONFIG
+                .comment("If TRUE, the Outlaw Enchantment causes Villagers (and Iron Golems) to drop Emeralds when killed.")
+                .define("Emerald Drops", true);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Cavalier");
-        comment = "If TRUE, the Cavalier Enchantment is available for various Weapons.";
-        enableCavalier = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureCavalier = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelCavalier = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        enableCavalier = SERVER_CONFIG
+                .comment("If TRUE, the Cavalier Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureCavalier = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelCavalier = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Frost Aspect");
-        comment = "If TRUE, the Frost Aspect Enchantment is available for various Weapons.";
-        enableFrostAspect = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureFrostAspect = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelFrostAspect = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableFrostAspect = SERVER_CONFIG
+                .comment("If TRUE, the Frost Aspect Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureFrostAspect = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelFrostAspect = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Leech");
-        comment = "If TRUE, the Leech Enchantment is available for various Weapons.";
-        enableLeech = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureLeech = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelLeech = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableLeech = SERVER_CONFIG
+                .comment("If TRUE, the Leech Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureLeech = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelLeech = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Magic Edge");
-        comment = "If TRUE, the Magic Edge Enchantment is available for various Weapons.";
-        enableMagicEdge = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureMagicEdge = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelMagicEdge = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        enableMagicEdge = SERVER_CONFIG
+                .comment("If TRUE, the Magic Edge Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureMagicEdge = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelMagicEdge = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Vorpal");
-        comment = "If TRUE, the Vorpal Enchantment is available for various Weapons.";
-        enableVorpal = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureVorpal = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelVorpal = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the base critical hit chance of the Enchantment (in percentage).";
-        critBaseVorpal = SERVER_CONFIG.comment(comment).defineInRange("Base Critical Chance", 5, 1, 100);
-        comment = "Adjust this value to set the additional critical hit chance per level of the Enchantment (in percentage).";
-        critLevelVorpal = SERVER_CONFIG.comment(comment).defineInRange("Critical Chance / Level", 5, 1, 100);
-        comment = "Adjust this value to set the critical hit damage multiplier.";
-        critDamageVorpal = SERVER_CONFIG.comment(comment).defineInRange("Critical Damage Multiplier", 5, 2, 1000);
-        comment = "Adjust this value to set the base critical hit chance for the Enchantment (in percentage).";
-        headBaseVorpal = SERVER_CONFIG.comment(comment).defineInRange("Base Head Drop Chance", 10, 1, 100);
-        comment = "Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).";
-        headLevelVorpal = SERVER_CONFIG.comment(comment).defineInRange("Head Drop Chance / Level", 10, 1, 100);
+        enableVorpal = SERVER_CONFIG
+                .comment("If TRUE, the Vorpal Enchantment is available for various Weapons.")
+                .define("Enable", true);
+        treasureVorpal = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelVorpal = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        critBaseVorpal = SERVER_CONFIG
+                .comment("Adjust this value to set the base critical hit chance of the Enchantment (in percentage).")
+                .defineInRange("Base Critical Chance", 5, 1, 100);
+        critLevelVorpal = SERVER_CONFIG
+                .comment("Adjust this value to set the additional critical hit chance per level of the Enchantment (in percentage).")
+                .defineInRange("Critical Chance / Level", 5, 1, 100);
+        critDamageVorpal = SERVER_CONFIG
+                .comment("Adjust this value to set the critical hit damage multiplier.")
+                .defineInRange("Critical Damage Multiplier", 5, 2, 1000);
+        headBaseVorpal = SERVER_CONFIG
+                .comment("Adjust this value to set the base critical hit chance for the Enchantment (in percentage).")
+                .defineInRange("Base Head Drop Chance", 10, 1, 100);
+        headLevelVorpal = SERVER_CONFIG
+                .comment("Adjust this value to set the critical hit chance per level of the Enchantment (in percentage).")
+                .defineInRange("Head Drop Chance / Level", 10, 1, 100);
         SERVER_CONFIG.pop();
 
         // TOOLS
         SERVER_CONFIG.push("Excavating");
-        comment = "If TRUE, the Excavating Enchantment is available for various Tools.";
-        enableExcavating = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureExcavating = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelExcavating = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableExcavating = SERVER_CONFIG
+                .comment("If TRUE, the Excavating Enchantment is available for various Tools.")
+                .define("Enable", true);
+        treasureExcavating = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelExcavating = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         // BOWS
         SERVER_CONFIG.push("Hunter's Bounty");
-        comment = "If TRUE, the Hunter's Bounty Enchantment is available for Bows.";
-        enableHunter = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureHunter = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelHunter = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).";
-        chanceHunter = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 50, 1, 100);
+        enableHunter = SERVER_CONFIG
+                .comment("If TRUE, the Hunter's Bounty Enchantment is available for Bows.")
+                .define("Enable", true);
+        treasureHunter = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelHunter = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        chanceHunter = SERVER_CONFIG
+                .comment("Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).")
+                .defineInRange("Effect Chance", 50, 1, 100);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Quick Draw");
-        comment = "If TRUE, the Quick Draw Enchantment is available for various Bows.";
-        enableQuickDraw = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureQuickDraw = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelQuickDraw = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        enableQuickDraw = SERVER_CONFIG
+                .comment("If TRUE, the Quick Draw Enchantment is available for various Bows.")
+                .define("Enable", true);
+        treasureQuickDraw = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelQuickDraw = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Trueshot");
-        comment = "If TRUE, the Trueshot Enchantment is available for various Bows.";
-        enableTrueshot = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureTrueshot = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelTrueshot = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableTrueshot = SERVER_CONFIG
+                .comment("If TRUE, the Trueshot Enchantment is available for various Bows.")
+                .define("Enable", true);
+        treasureTrueshot = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelTrueshot = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Volley");
-        comment = "If TRUE, the Volley Enchantment is available for various Bows.";
-        enableVolley = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureVolley = SERVER_CONFIG.comment(comment).define("Treasure", false);
+
+        enableVolley = SERVER_CONFIG
+                .comment("If TRUE, the Volley Enchantment is available for various Bows.")
+                .define("Enable", true);
+        treasureVolley = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
         SERVER_CONFIG.pop();
 
         // FISHING RODS
         SERVER_CONFIG.push("Angler's Bounty");
-        comment = "If TRUE, the Angler's Bounty Enchantment is available for Fishing Rods.";
-        enableAngler = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureAngler = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelAngler = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).";
-        chanceAngler = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 50, 1, 100);
+        enableAngler = SERVER_CONFIG
+                .comment("If TRUE, the Angler's Bounty Enchantment is available for Fishing Rods.")
+                .define("Enable", true);
+        treasureAngler = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelAngler = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        chanceAngler = SERVER_CONFIG
+                .comment("Adjust this value to set the chance of an additional drop per level of the Enchantment (in percentage).")
+                .defineInRange("Effect Chance", 50, 1, 100);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Pilfering");
-        comment = "If TRUE, the Pilfering Enchantment is available for Fishing Rods.";
-        enablePilfering = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasurePilfering = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This sets whether or not the Enchantment works on Players.";
-        playerStealPilfering = SERVER_CONFIG.comment(comment).define("Allow Player Stealing", true);
+        enablePilfering = SERVER_CONFIG
+                .comment("If TRUE, the Pilfering Enchantment is available for Fishing Rods.")
+                .define("Enable", true);
+        treasurePilfering = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        playerStealPilfering = SERVER_CONFIG
+                .comment("This sets whether or not the Enchantment works on Players.")
+                .define("Allow Player Stealing", true);
         SERVER_CONFIG.pop();
 
         // HOES
         SERVER_CONFIG.push("Furrowing");
-        comment = "If TRUE, the Furrowing Enchantment is available for Hoes.";
-        enableFurrowing = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureFurrowing = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelFurrowing = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableFurrowing = SERVER_CONFIG
+                .comment("If TRUE, the Furrowing Enchantment is available for Hoes.")
+                .define("Enable", true);
+        treasureFurrowing = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelFurrowing = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Tilling");
-        comment = "If TRUE, the Tilling Enchantment is available for Hoes.";
-        enableTilling = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureTilling = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelTilling = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+
+        enableTilling = SERVER_CONFIG
+                .comment("If TRUE, the Tilling Enchantment is available for Hoes.")
+                .define("Enable", true);
+        treasureTilling = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelTilling = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Weeding");
-        comment = "If TRUE, the Weeding Enchantment is available for Hoes.";
-        enableWeeding = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureWeeding = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        enableWeeding = SERVER_CONFIG
+                .comment("If TRUE, the Weeding Enchantment is available for Hoes.")
+                .define("Enable", true);
+        treasureWeeding = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
         SERVER_CONFIG.pop();
 
         // SHIELDS
         SERVER_CONFIG.push("Bulwark");
-        comment = "If TRUE, the Bulwark Enchantment is available for Shields.";
-        enableBulwark = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureBulwark = SERVER_CONFIG.comment(comment).define("Treasure", false);
+        enableBulwark = SERVER_CONFIG
+                .comment("If TRUE, the Bulwark Enchantment is available for Shields.")
+                .define("Enable", true);
+        treasureBulwark = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Phalanx");
-        comment = "If TRUE, the Phalanx Enchantment is available for Shields.";
-        enablePhalanx = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasurePhalanx = SERVER_CONFIG.comment(comment).define("Treasure", false);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelPhalanx = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enablePhalanx = SERVER_CONFIG
+                .comment("If TRUE, the Phalanx Enchantment is available for Shields.")
+                .define("Enable", true);
+        treasurePhalanx = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", false);
+        levelPhalanx = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         // MISC
@@ -432,92 +511,117 @@ public class EnsorcConfig {
         String treasure = "This sets whether or not the Enchantment is considered a 'treasure' enchantment.";
         String level = "This option adjusts the maximum allowable level for the Enchantment.";
 
-        String comment;
         SERVER_CONFIG.push("Overrides");
 
         SERVER_CONFIG.push("Protection");
-        comment = "If TRUE, the Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
-        enableProtection = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelProtection = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableProtection = SERVER_CONFIG
+                .comment("If TRUE, the Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        levelProtection = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Blast Protection");
-        comment = "If TRUE, the Blast Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
-        enableProtectionBlast = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelProtectionBlast = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableProtectionBlast = SERVER_CONFIG
+                .comment("If TRUE, the Blast Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        levelProtectionBlast = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Feather Falling");
-        comment = "If TRUE, the Feather Falling Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
-        enableProtectionFall = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelProtectionFall = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableProtectionFall = SERVER_CONFIG
+                .comment("If TRUE, the Feather Falling Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        levelProtectionFall = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Fire Protection");
-        comment = "If TRUE, the Fire Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
-        enableProtectionFire = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelProtectionFire = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableProtectionFire = SERVER_CONFIG
+                .comment("If TRUE, the Fire Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        levelProtectionFire = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Projectile Protection");
-        comment = "If TRUE, the Projectile Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.";
-        enableProtectionProjectile = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelProtectionProjectile = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        enableProtectionProjectile = SERVER_CONFIG
+                .comment("If TRUE, the Projectile Protection Enchantment is replaced with a more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        levelProtectionProjectile = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Fire Aspect");
-        comment = "If TRUE, the Fire Aspect Enchantment is replaced with a more configurable version which works on more items, such as Axes.";
-        enableFireAspect = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelFireAspect = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableFireAspect = SERVER_CONFIG
+                .comment("If TRUE, the Fire Aspect Enchantment is replaced with a more configurable version which works on more items, such as Axes.")
+                .define("Enable", true);
+        levelFireAspect = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Frost Walker");
-        comment = "If TRUE, the Frost Walker Enchantment is replaced with an improved and more configurable version which works on more items, such as Horse Armor.";
-        enableFrostWalker = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = treasure;
-        treasureFrostWalker = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelFrostWalker = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
-        comment = "If TRUE, the Frost Walker Enchantment will also chill Lava into Glossed Magma.";
-        enableFreezeLava = SERVER_CONFIG.comment(comment).define("Freeze Lava", true);
+        enableFrostWalker = SERVER_CONFIG
+                .comment("If TRUE, the Frost Walker Enchantment is replaced with an improved and more configurable version which works on more items, such as Horse Armor.")
+                .define("Enable", true);
+        treasureFrostWalker = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        levelFrostWalker = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableFreezeLava = SERVER_CONFIG
+                .comment("If TRUE, the Frost Walker Enchantment will also chill Lava into Glossed Magma.")
+                .define("Freeze Lava", true);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Knockback");
-        comment = "If TRUE, the Knockback Enchantment is replaced with a more configurable version which works on more items, such as Axes.";
-        enableKnockback = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelKnockback = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
+        enableKnockback = SERVER_CONFIG
+                .comment("If TRUE, the Knockback Enchantment is replaced with a more configurable version which works on more items, such as Axes.")
+                .define("Enable", true);
+        levelKnockback = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 2, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Looting");
-        comment = "If TRUE, the Looting Enchantment is replaced with a more configurable version which works on more items, such as Axes.";
-        enableLooting = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelLooting = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
+        enableLooting = SERVER_CONFIG
+                .comment("If TRUE, the Looting Enchantment is replaced with a more configurable version which works on more items, such as Axes.")
+                .define("Enable", true);
+        levelLooting = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 3, 1, MAX_ENCHANT_LEVEL);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Thorns");
-        comment = "If TRUE, the Thorns Enchantment is replaced with a more configurable version which works on more items, such as Shields and Horse Armor.";
-        enableThorns = SERVER_CONFIG.comment(comment).define("Enable", true);
-        comment = "This option adjusts the maximum allowable level for the Enchantment.";
-        levelThorns = SERVER_CONFIG.comment(comment).defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
-        comment = "Adjust this value to set the chance per level of the Enchantment firing (in percentage).";
-        chanceThorns = SERVER_CONFIG.comment(comment).defineInRange("Effect Chance", 15, 1, 100);
+        enableThorns = SERVER_CONFIG
+                .comment("If TRUE, the Thorns Enchantment is replaced with a more configurable version which works on more items, such as Shields and Horse Armor.")
+                .define("Enable", true);
+        levelThorns = SERVER_CONFIG
+                .comment(level)
+                .defineInRange("Max Level", 4, 1, MAX_ENCHANT_LEVEL);
+        chanceThorns = SERVER_CONFIG
+                .comment("Adjust this value to set the chance per level of the Enchantment firing (in percentage).")
+                .defineInRange("Effect Chance", 15, 1, 100);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.push("Mending");
-        comment = "If TRUE, the Mending Enchantment is replaced with a new Enchantment - Preservation. This enchantment allows you to repair items at an Anvil without paying an increasing XP cost for every time you repair it. Additionally, these repairs have a much lower chance of damaging the anvil.";
-        alternateMending = SERVER_CONFIG.comment(comment).define("Alternate Mending", false);
-        comment = treasure;
-        treasureMending = SERVER_CONFIG.comment(comment).define("Treasure", true);
-        comment = "Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage). Only used if Alternate Mending (Preservation) is enabled.";
-        damageMending = SERVER_CONFIG.comment(comment).defineInRange("Anvil Damage Chance", 3, 0, 12);
+        alternateMending = SERVER_CONFIG
+                .comment("If TRUE, the Mending Enchantment is replaced with a new Enchantment - Preservation. This enchantment allows you to repair items at an Anvil without paying an increasing XP cost for every time you repair it. Additionally, these repairs have a much lower chance of damaging the anvil.")
+                .define("Alternate Mending", false);
+        treasureMending = SERVER_CONFIG
+                .comment(treasure)
+                .define("Treasure", true);
+        damageMending = SERVER_CONFIG
+                .comment("Adjust this value to set the chance of an Anvil being damaged when used to repair an item with Preservation (in percentage). Only used if Alternate Mending (Preservation) is enabled.")
+                .defineInRange("Anvil Damage Chance", 3, 0, 12);
         SERVER_CONFIG.pop();
 
         SERVER_CONFIG.pop();
