@@ -1,0 +1,6 @@
+{
+  "name": "World",
+  "description": "Everything that Thermal adds to the world around you.",
+  "icon": "minecraft:grass_block",
+  "sortnum": 5
+}

@@ -1,0 +1,68 @@
+{
+  "name": "Ores",
+  "icon": "thermal:copper_ore",
+  "read_by_default": true,
+  "category": "thermal:world",
+  "pages": [
+    {
+      "type": "doubleitempage",
+
+      "A.title": "Apatite",
+      "A.item1": "thermal:apatite_ore",
+      "A.item2": "thermal:apatite",
+      "A.text": "A common mineral often used as dye or a source of phosphorous in fertilizer. Spawns at any Y level.",
+
+      "B.title": "Cinnabar",
+      "B.item1": "thermal:cinnabar_ore",
+      "B.item2": "thermal:cinnabar",
+      "B.text": "A scarlet mineral used to enhance ore yields. Patrols the night. Spawns at any Y level."
+    },
+    {
+      "type": "doubleitempage",
+
+      "A.title": "Niter",
+      "A.item1": "thermal:niter_ore",
+      "A.item2": "thermal:niter",
+      "A.text": "A soft mineral used as a source of nitrogen and potassium in fertilizer. Spawns at any Y level.",
+
+      "B.title": "Sulfur",
+      "B.item1": "thermal:sulfur_ore",
+      "B.item2": "thermal:sulfur",
+      "B.text": "A reactive mineral used to cure rubber and make gunpowder. Spawns at any Y level."
+    },
+    {
+      "type": "doubleitempage",
+
+      "A.title": "Copper",
+      "A.item1": "thermal:copper_ore",
+      "A.item2": "thermal:copper_ingot",
+      "A.text": "A conductive metal useful for many alloys. Spawns between Y levels 40 and 100.",
+
+      "B.title": "Tin",
+      "B.item1": "thermal:tin_ore",
+      "B.item2": "thermal:tin_ingot",
+      "B.text": "A soft, lightweight metal valued for its versatility. Spawns between Y levels 20 and 60."
+    },
+    {
+      "type": "doubleitempage",
+
+      "A.title": "Lead",
+      "A.item1": "thermal:lead_ore",
+      "A.item2": "thermal:lead_ingot",
+      "A.text": "A soft, dense metal with shielding properties. Spawns between Y levels 0 and 32.",
+
+      "B.title": "Silver",
+      "B.item1": "thermal:silver_ore",
+      "B.item2": "thermal:silver_ingot",
+      "B.text": "A conductive metal prized for its radiance. Spawns between Y levels 0 and 32."
+    },
+    {
+      "type": "doubleitemtemplate",
+
+      "title": "Nickel",
+      "item1": "thermal:nickel_ore",
+      "item2": "thermal:nickel_ingot",
+      "text": "A hard metal used in alloys less affected by heat. Spawns between Y levels 0 and 128."
+    }
+  ]
+}

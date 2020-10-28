@@ -1,0 +1,27 @@
+{
+  "name": "Integral Components",
+  "icon": "thermal:upgrade_augment_3",
+  "category": "thermal:augments",
+  "sortnum": -1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Integral augments improve the overall stats of machines, devices, dynamos, and tools; they scale the base RF storage, RF transfer, fluid storage, and energy usage/generation. This overall scale factor stacks with other augment modifiers, even if they are in bold. However, as with all other modifiers in bold, only the highest scale factor modifier applies."
+    },
+    {
+      "type": "text",
+      "text": "For example, a $(l:thermal:technology/machines/furnace)redstone furnace$(/l) with resonant and hardened integral components and a $(l:thermal:technology/augments/rf_coil_storage)stabilized RF coil$(/l) will have 24x the RF storage, 8x the RF transfer, and 4x the energy usage.$(br2)Hardened, reinforced, and resonant integral components have scale factors of 2x, 3x, and 4x respectively."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:augments/upgrade_augment_1",
+      "recipe2": "thermal:augments/upgrade_augment_2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:augments/upgrade_augment_3"
+    }
+
+  ]
+}

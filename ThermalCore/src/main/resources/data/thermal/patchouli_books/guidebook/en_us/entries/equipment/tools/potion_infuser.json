@@ -1,0 +1,24 @@
+{
+  "name": "Potion Infuser",
+  "icon": "thermal:potion_infuser",
+  "category": "thermal:tools",
+
+  "read_by_default": true,
+  "flag": "mod:thermal_innovation",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to infuse yourself, mobs, or other players with potion effects. Uses fluid potion. Can be toggled to automatically infuse you. It can be filled and augmented in the Tinker's Workbench."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:potion_infuser",
+      "title": "Potion Infuser"
+    },
+    {
+      "type": "text",
+      "title": "Augment Compatibility",
+      "text": "$(li)$(l:thermal:technology/augments/fluid_tank)Expanded Tank Construction$(/l)$(li)$(l:thermal:technology/augments/potion_amplifier)Alchemical Amplifier$(/l)$(li)$(l:thermal:technology/augments/potion_duration)Alchemical Extender$(/l)"
+    }
+  ]
+}

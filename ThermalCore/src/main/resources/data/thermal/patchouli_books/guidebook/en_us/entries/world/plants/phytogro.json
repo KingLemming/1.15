@@ -1,0 +1,24 @@
+{
+  "name": "Phyto-Gro",
+  "icon": "thermal:phytogro",
+  "read_by_default": true,
+  "category": "thermal:plants",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "thermal:phytogro_2",
+      "text": "Phyto-gro is fertilizer that is densely packed with all the nutrients plants need. It can be directly applied to plants or spread in an area with $(l:thermal:equipment/explosives/phytoexplosives)some explosives$(/l)."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:phytogro_8",
+      "recipe2": "thermal:phytogro_4"
+    },
+    {
+      "flag": "mod:thermal_cultivation",
+      "type": "crafting",
+      "recipe": "thermal:phytosoil",
+      "text": "Phyto-soil is dirt infused with phyto-gro. It increases the growth rate of plants grown on it, which can be further improved using a $(l:thermal:technology/devices/soilinfuser)phyto-soil infuser$(/l)."
+    }
+  ]
+}

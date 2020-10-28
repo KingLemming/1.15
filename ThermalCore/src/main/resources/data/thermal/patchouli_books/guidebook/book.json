@@ -1,0 +1,14 @@
+{
+  "name": "Thermalpedia",
+  "landing_text": "Welcome to the Thermal Series' guide book! From all of us who worked on it, we hope you enjoy.",
+  "subtitle": "MC 1.15.2",
+  "show_progress": false,
+  "text_color": "d4e0e4",
+  "nameplate_color": "d4e0e4",
+  "header_color": "d4e0e4",
+  "link_color": "000070",
+  "link_hover_color": "000090",
+  "show_toasts": "false",
+  "model": "thermal:guidebook",
+  "book_texture": "thermal:textures/gui/guidebook.png"
+}

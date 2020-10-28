@@ -1,0 +1,20 @@
+{
+  "include": [
+    {
+      "template": "singleitemtemplate",
+      "as": "A"
+    },
+    {
+      "template": "singleitemtemplate",
+      "as": "B",
+      "y": 80
+    }
+  ],
+  "components": [
+    {
+      "type": "separator",
+      "x": -1,
+      "y": 70
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Catalysts",
+  "icon": "thermal:rich_slag",
+  "read_by_default": true,
+  "flag": "mod:thermal_expansion",
+  "category": "thermal:materials",
+
+  "pages": [
+    {
+      "type": "text",
+      "text": "Catalysts are optional items consumed to improve the yield of certain recipes. Machines and their catalysts are listed on the next page with multipliers. The main outputs of a recipe are scaled by $(o)P$()rimary. Auxiliary outputs are scaled by $(o)S$()econdary. The energy per operation is scaled by $(o)E$()nergy. Finally, the odds a catalyst is consumed in an operation is indicated by the $(o)U$()sage chance."
+    },
+    {
+      "type": "catalystpage",
+      "text": "$(l:thermal:technology/machines/pulverizer)Pulverizer$(/l)$(br)Flint$(br)Basalz Powd.$(br2)$(l:thermal:technology/machines/insolator)Phytogenic Insolator$(/l)$(br)Bonemeal$(br)Phyto-Gro$(br2)$(l:thermal:technology/machines/smelter)Induction Smelter$(/l)$(br)Sand$(br)Blaze Powder$(br)Rich Slag$(br)Cinnabar",
+      "horz": "-----------------$(br)-----------------$(br)-----------------$(br2)-----------------$(br)-----------------$(br)-----------------$(br2)-----------------$(br)-----------------$(br)-----------------$(br)-----------------$(br)-----------------",
+      "vert": "$(br2)|$(br)|$(br)|$(br2) $(br2) $(br2)|$(br)|$(br)|$(br2) $(br2) $(br2)|$(br)|$(br)|$(br)|$(br)|$(br)|$(br)|",
+      "primary": " P$(br)1.10$(br)1.25$(br) $(br2)1.50$(br)3.00$(br) $(br2)1.75$(br)1.25$(br)2.50$(br)3.00",
+      "secondary": " S$(br)1.50$(br)3.00$(br) $(br2)1.50$(br)3.00$(br) $(br2)1.75$(br)3.00$(br)2.25$(br)3.00",
+      "energy": " E$(br)1.10$(br)0.25$(br) $(br2)0.80$(br)0.80$(br) $(br2)1.25$(br)0.25$(br)1.75$(br)2.50",
+      "usage": " U$(br)0.20$(br)0.50$(br) $(br2)0.75$(br)0.50$(br) $(br2)0.40$(br)0.50$(br)0.60$(br)0.80"
+    }
+  ]
+}

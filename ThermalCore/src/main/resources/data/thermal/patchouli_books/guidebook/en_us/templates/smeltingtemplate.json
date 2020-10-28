@@ -1,0 +1,37 @@
+{
+  "components": [
+    {
+      "type": "image",
+      "image": "patchouli:textures/gui/crafting.png",
+      "width": 43,
+      "height": 15,
+      "u": 37,
+      "v": 76,
+      "texture_width": 128,
+      "texture_height": 128,
+      "x": 36,
+      "y": 5
+    },
+    {
+      "type": "item",
+      "item": "#in",
+      "framed": true,
+      "x": 15,
+      "y": 5
+    },
+    {
+      "type": "item",
+      "item": "#out",
+      "framed": true,
+      "link_recipe": true,
+      "x": 85,
+      "y": 5
+    },
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 0,
+      "y": 30
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.core.util.constants.Constants.ID_THERMAL_INNOVATION;
-import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalFlags.*;
 
 @Mod(ID_THERMAL_INNOVATION)
 public class ThermalInnovation {
@@ -29,14 +29,14 @@ public class ThermalInnovation {
 
     private void setFeatureFlags() {
 
-        setFeature(FLAG_DIVING_ARMOR, true);
-        setFeature(FLAG_HAZMAT_ARMOR, true);
+        setFlag(FLAG_DIVING_ARMOR, true);
+        setFlag(FLAG_HAZMAT_ARMOR, true);
 
-        setFeature(FLAG_POTION_AUGMENTS, true);
+        setFlag(FLAG_POTION_AUGMENTS, true);
 
-        setFeature(FLAG_TOOL_COMPONENTS, true);
+        setFlag(FLAG_TOOL_COMPONENTS, true);
 
-        setFeature(FLAG_ELEMENTAL_EXPLOSIVES, true);
+        setFlag(FLAG_ELEMENTAL_EXPLOSIVES, true);
     }
 
     // region INITIALIZATION

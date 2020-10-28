@@ -1,35 +1,35 @@
 package cofh.thermal.core.common;
 
-import cofh.core.util.FeatureManager;
+import cofh.core.util.FlagManager;
 
 import java.util.function.BooleanSupplier;
 
-public class ThermalFeatures {
+public class ThermalFlags {
 
-    private ThermalFeatures() {
+    private ThermalFlags() {
 
     }
 
-    private static final FeatureManager FEATURE_MANAGER = new FeatureManager();
+    private static final FlagManager FLAG_MANAGER = new FlagManager();
 
-    public static FeatureManager manager() {
+    public static FlagManager manager() {
 
-        return FEATURE_MANAGER;
+        return FLAG_MANAGER;
     }
 
-    public static void setFeature(String flag, boolean enable) {
+    public static void setFlag(String flag, boolean enable) {
 
-        FEATURE_MANAGER.setFeature(flag, enable);
+        FLAG_MANAGER.setFlag(flag, enable);
     }
 
-    public static void setFeature(String flag, BooleanSupplier condition) {
+    public static void setFlag(String flag, BooleanSupplier condition) {
 
-        FEATURE_MANAGER.setFeature(flag, condition);
+        FLAG_MANAGER.setFlag(flag, condition);
     }
 
-    public static BooleanSupplier getFeature(String flag) {
+    public static BooleanSupplier getFlag(String flag) {
 
-        return () -> FEATURE_MANAGER.getFeature(flag).getAsBoolean();
+        return () -> FLAG_MANAGER.getFlag(flag).getAsBoolean();
     }
 
     // region SPECIFIC FEATURES
@@ -78,10 +78,10 @@ public class ThermalFeatures {
     // endregion
 
     static {
-        setFeature(FLAG_RESOURCE_BRONZE, () -> getFeature(FLAG_RESOURCE_COPPER).getAsBoolean() && getFeature(FLAG_RESOURCE_TIN).getAsBoolean());
-        setFeature(FLAG_RESOURCE_ELECTRUM, getFeature(FLAG_RESOURCE_SILVER));
-        setFeature(FLAG_RESOURCE_INVAR, getFeature(FLAG_RESOURCE_NICKEL));
-        setFeature(FLAG_RESOURCE_CONSTANTAN, () -> getFeature(FLAG_RESOURCE_COPPER).getAsBoolean() && getFeature(FLAG_RESOURCE_NICKEL).getAsBoolean());
+        setFlag(FLAG_RESOURCE_BRONZE, () -> getFlag(FLAG_RESOURCE_COPPER).getAsBoolean() && getFlag(FLAG_RESOURCE_TIN).getAsBoolean());
+        setFlag(FLAG_RESOURCE_ELECTRUM, getFlag(FLAG_RESOURCE_SILVER));
+        setFlag(FLAG_RESOURCE_INVAR, getFlag(FLAG_RESOURCE_NICKEL));
+        setFlag(FLAG_RESOURCE_CONSTANTAN, () -> getFlag(FLAG_RESOURCE_COPPER).getAsBoolean() && getFlag(FLAG_RESOURCE_NICKEL).getAsBoolean());
     }
 
 }

@@ -1,0 +1,77 @@
+{
+  "components": [
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#text"
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#horz",
+      "x": 48,
+      "y": 5
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#horz",
+      "x": 49,
+      "y": 5
+    },
+    {
+      "type": "text",
+      "line_height": 5,
+      "text": "#vert",
+      "x": 48
+    },
+    {
+      "type": "text",
+      "line_height": 5,
+      "text": "#vert",
+      "x": 65
+    },
+    {
+      "type": "text",
+      "line_height": 5,
+      "text": "#vert",
+      "x": 82
+    },
+    {
+      "type": "text",
+      "line_height": 5,
+      "text": "#vert",
+      "x": 99
+    },
+    {
+      "type": "text",
+      "line_height": 5,
+      "text": "#vert",
+      "x": 116
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#primary",
+      "x": 50
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#secondary",
+      "x": 67
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#energy",
+      "x": 84
+    },
+    {
+      "type": "text",
+      "line_height": 10,
+      "text": "#usage",
+      "x": 101
+    }
+  ]
+}

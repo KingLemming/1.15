@@ -5,7 +5,7 @@ import cofh.core.client.renderer.entity.TNTRendererCoFH;
 import cofh.core.client.renderer.model.SimpleModelLoader;
 import cofh.core.client.renderer.model.entity.ArmorModelFullSuit;
 import cofh.core.registries.DeferredRegisterCoFH;
-import cofh.core.util.FeatureRecipeCondition;
+import cofh.core.util.FlagRecipeCondition;
 import cofh.core.util.ProxyUtils;
 import cofh.thermal.core.client.gui.device.DeviceHiveExtractorScreen;
 import cofh.thermal.core.client.gui.device.DeviceTreeExtractorScreen;
@@ -15,7 +15,7 @@ import cofh.thermal.core.client.renderer.model.DynamoBakedModel;
 import cofh.thermal.core.client.renderer.model.ReconfigurableBakedModel;
 import cofh.thermal.core.client.renderer.model.UnderlayBakedModel;
 import cofh.thermal.core.common.ThermalConfig;
-import cofh.thermal.core.common.ThermalFeatures;
+import cofh.thermal.core.common.ThermalFlags;
 import cofh.thermal.core.common.ThermalRecipeManagers;
 import cofh.thermal.core.init.*;
 import cofh.thermal.core.util.loot.TileNBTSync;
@@ -58,7 +58,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static cofh.core.util.constants.Constants.ID_THERMAL;
-import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalFlags.*;
 import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.core.init.TCoreReferences.*;
 
@@ -117,25 +117,25 @@ public class ThermalCore {
         TILE_ENTITIES.register(modEventBus);
 
         ThermalConfig.register();
-        CraftingHelper.register(new FeatureRecipeCondition.Serializer(ThermalFeatures.manager(), new ResourceLocation(ID_THERMAL, "flag")));
+        CraftingHelper.register(new FlagRecipeCondition.Serializer(ThermalFlags.manager(), new ResourceLocation(ID_THERMAL, "flag")));
     }
 
     private void setFeatureFlags() {
 
-        setFeature(FLAG_RESOURCE_NITER, true);
-        setFeature(FLAG_RESOURCE_SULFUR, true);
+        setFlag(FLAG_RESOURCE_NITER, true);
+        setFlag(FLAG_RESOURCE_SULFUR, true);
 
-        setFeature(FLAG_RESOURCE_COPPER, true);
-        setFeature(FLAG_RESOURCE_TIN, true);
-        setFeature(FLAG_RESOURCE_LEAD, true);
-        setFeature(FLAG_RESOURCE_SILVER, true);
-        setFeature(FLAG_RESOURCE_NICKEL, true);
+        setFlag(FLAG_RESOURCE_COPPER, true);
+        setFlag(FLAG_RESOURCE_TIN, true);
+        setFlag(FLAG_RESOURCE_LEAD, true);
+        setFlag(FLAG_RESOURCE_SILVER, true);
+        setFlag(FLAG_RESOURCE_NICKEL, true);
 
-        setFeature(FLAG_AREA_AUGMENTS, true);
-        setFeature(FLAG_STORAGE_AUGMENTS, true);
-        setFeature(FLAG_UPGRADE_AUGMENTS, true);
+        setFlag(FLAG_AREA_AUGMENTS, true);
+        setFlag(FLAG_STORAGE_AUGMENTS, true);
+        setFlag(FLAG_UPGRADE_AUGMENTS, true);
 
-        setFeature(ID_TINKER_BENCH, true);
+        setFlag(ID_TINKER_BENCH, true);
     }
 
     // region INITIALIZATION

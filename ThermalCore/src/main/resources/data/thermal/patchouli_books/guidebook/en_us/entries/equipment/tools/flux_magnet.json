@@ -1,0 +1,24 @@
+{
+  "name": "FluxoMagnet",
+  "icon": "thermal:flux_magnet",
+  "read_by_default": true,
+  "flag": "mod:thermal_innovation",
+  "category": "thermal:tools",
+
+  "pages": [
+    {
+      "type": "text",
+      "text": "The FluxoMagnet is a tool that uses RF in order to pull nearby items into the player's inventory. It can be charged and augmented in the Tinker's Workbench."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:flux_magnet",
+      "title": "FluxoMagnet"
+    },
+    {
+      "type": "text",
+      "title": "Augment Compatibility",
+      "text": "$(li)$(l:thermal:technology/augments/rf_coil)Expanded RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_storage)Stabilized RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_xfer)High-Flux RF Coil$(/l)$(li)$(l:thermal:technology/augments/area_radius)Radial Enhancement$(/l)"
+    }
+  ]
+}

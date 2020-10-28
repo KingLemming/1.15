@@ -1,0 +1,62 @@
+{
+  "name": "Material Storage",
+  "icon": "thermal:invar_block",
+  "read_by_default": true,
+  "category": "thermal:materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Thermal adds storage blocks for all of its $(l:thermal:world/ores)ores$(/l) and $(l:thermal:items_and_xfer/materials/alloys)alloys$(/l), as well as gunpowder, charcoal, slag, and rich slag."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/charcoal_block",
+      "recipe2": "thermal:storage/gunpowder_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/slag_block",
+      "recipe2": "thermal:storage/rich_slag_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/apatite_block",
+      "recipe2": "thermal:storage/cinnabar_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/niter_block",
+      "recipe2": "thermal:storage/sulfur_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/copper_block",
+      "recipe2": "thermal:storage/tin_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/lead_block",
+      "recipe2": "thermal:storage/silver_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/nickel_block",
+      "recipe2": "thermal:storage/bronze_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/invar_block",
+      "recipe2": "thermal:storage/electrum_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/constantan_block",
+      "recipe2": "thermal:storage/signalum_block"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:storage/lumium_block",
+      "recipe2": "thermal:storage/enderium_block"
+    }
+  ]
+}

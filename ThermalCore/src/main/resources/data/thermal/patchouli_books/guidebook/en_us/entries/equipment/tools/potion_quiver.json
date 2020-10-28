@@ -1,0 +1,24 @@
+{
+  "name": "Alchemical Quiver",
+  "icon": "thermal:potion_quiver",
+  "category": "thermal:tools",
+
+  "read_by_default": true,
+  "flag": "mod:thermal_innovation",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to store and imbue arrows with potion effects. Right click with the quiver in your hand to transfer arrows from your inventory into the quiver. Imbuement takes 50mb of the stored fluid potion per arrow, and can be toggled on and off. The quiver can be filled and augmented in the Tinker's Workbench."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:potion_quiver",
+      "title": "Alchemical Quiver"
+    },
+    {
+      "type": "text",
+      "title": "Augment Compatibility",
+      "text": "$(li)$(l:thermal:technology/augments/fluid_tank)Expanded Tank Construction$(/l)$(li)$(l:thermal:technology/augments/potion_amplifier)Alchemical Amplifier$(/l)$(li)$(l:thermal:technology/augments/potion_duration)Alchemical Extender$(/l)"
+    }
+  ]
+}

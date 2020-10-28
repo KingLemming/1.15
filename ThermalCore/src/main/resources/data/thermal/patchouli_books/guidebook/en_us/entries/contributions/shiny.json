@@ -1,0 +1,18 @@
+{
+  "name": "ShinyPorygon",
+  "icon": "minecraft:orange_tulip",
+  "category": "thermal:contributors",
+  "read_by_default": true,
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "ShinyPorygon",
+      "item": "minecraft:player_head{SkullOwner:'ShinyPorygon'}",
+      "text": "Project lead, Co-author. Initial book work including categories. Wrote some things for Discord, many mod support files (with more to come) personal nuisance to King, moral support to Hekera."
+
+
+    }
+  ]
+
+}

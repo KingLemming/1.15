@@ -7,7 +7,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalFlags.*;
 import static cofh.thermal.core.world.ThermalWorld.*;
 
 public class ThermalConfig {
@@ -149,28 +149,28 @@ public class ThermalConfig {
 
     private static void refreshServerConfig() {
 
-        setFeature(FLAG_VANILLA_BLOCKS, flagVanillaBlocks.get());
-        setFeature(FLAG_ROCKWOOL, flagRockwool.get());
+        setFlag(FLAG_VANILLA_BLOCKS, flagVanillaBlocks.get());
+        setFlag(FLAG_ROCKWOOL, flagRockwool.get());
 
-        setFeature(FLAG_MOB_BASALZ, flagMobBasalz.get());
-        setFeature(FLAG_MOB_BLITZ, flagMobBlitz.get());
-        setFeature(FLAG_MOB_BLIZZ, flagMobBlizz.get());
+        setFlag(FLAG_MOB_BASALZ, flagMobBasalz.get());
+        setFlag(FLAG_MOB_BLITZ, flagMobBlitz.get());
+        setFlag(FLAG_MOB_BLIZZ, flagMobBlizz.get());
 
         refreshWorldConfig();
     }
 
     private static void refreshWorldConfig() {
 
-        setFeature(FLAG_GEN_APATITE, flagGenApatite.get());
-        setFeature(FLAG_GEN_CINNABAR, flagGenCinnabar.get());
-        setFeature(FLAG_GEN_NITER, flagGenNiter.get());
-        setFeature(FLAG_GEN_SULFUR, flagGenSulfur.get());
+        setFlag(FLAG_GEN_APATITE, flagGenApatite.get());
+        setFlag(FLAG_GEN_CINNABAR, flagGenCinnabar.get());
+        setFlag(FLAG_GEN_NITER, flagGenNiter.get());
+        setFlag(FLAG_GEN_SULFUR, flagGenSulfur.get());
 
-        setFeature(FLAG_GEN_COPPER, flagGenCopper.get());
-        setFeature(FLAG_GEN_TIN, flagGenTin.get());
-        setFeature(FLAG_GEN_LEAD, flagGenLead.get());
-        setFeature(FLAG_GEN_SILVER, flagGenSilver.get());
-        setFeature(FLAG_GEN_NICKEL, flagGenNickel.get());
+        setFlag(FLAG_GEN_COPPER, flagGenCopper.get());
+        setFlag(FLAG_GEN_TIN, flagGenTin.get());
+        setFlag(FLAG_GEN_LEAD, flagGenLead.get());
+        setFlag(FLAG_GEN_SILVER, flagGenSilver.get());
+        setFlag(FLAG_GEN_NICKEL, flagGenNickel.get());
     }
 
     private static void refreshClientConfig() {

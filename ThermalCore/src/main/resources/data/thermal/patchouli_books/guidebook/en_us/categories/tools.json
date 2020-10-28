@@ -1,0 +1,7 @@
+{
+  "name": "Tools",
+  "description": "Any tool is a hammer if you need it to be one.",
+  "icon": "thermal:wrench",
+  "parent": "thermal:equipment",
+  "sortnum": 1
+}

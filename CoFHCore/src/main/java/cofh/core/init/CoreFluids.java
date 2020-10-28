@@ -15,7 +15,7 @@ public class CoreFluids {
 
         ExperienceFluid.create();
         HoneyFluid.create();
-        MilkFluid.create();
+        // MilkFluid.create();
         PotionFluid.create();
     }
 

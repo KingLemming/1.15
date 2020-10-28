@@ -1,0 +1,18 @@
+{
+  "name": "Introduction - Augments",
+  "icon": "thermal:iron_gear",
+  "category": "thermal:augments",
+  "sortnum": -2,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "All machines, devices, dynamos, and tools can be upgraded using $(l)augments$(). Augments provide various benefits, ranging from enhanced storage to increased ease of automation. Augments may be applied either in the tinker bench or in the augment panel in the GUI of machines, devices, and dynamos."
+    },
+    {
+      "type": "text",
+      "text": "When hovering over an augment in your inventory, the item tooltip will display the augment's modifiers. Modifiers in normal font can be stacked, additively for those starting with '+' and multiplicatively for those ending in 'x'. Multipliers in bold cannot be stacked; instead, only the highest multiplier of all the augments is used. For example, a machine with both $(l:thermal:technology/augments/rf_coil_storage)Stabilized RF Coil$(/l) and $(l:thermal:technology/augments/rf_coil_xfer)High-Flux RF Coil$(/l) augments will have a total of 6x RF storage and 6x RF transfer."
+    }
+
+  ]
+}

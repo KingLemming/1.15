@@ -1,0 +1,23 @@
+{
+  "name": "Tinker's Workbench",
+  "icon": "thermal:tinker_bench",
+  "category": "thermal:technology",
+  "sortnum": -1,
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "The Tinker's Workbench is a block that can charge, fill, and apply augments to tools and blocks."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:tinker_bench",
+      "title": "Tinker's Workbench"
+    },
+    {
+      "type": "text",
+      "title": "Augment Compatibility",
+      "text": "$(li)$(l:thermal:technology/augments/rf_coil)Expanded RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_storage)Stabilized RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_xfer)High-Flux RF Coil$(/l)$(li)$(l:thermal:technology/augments/fluid_tank)Expanded Tank Construction$(/l)"
+    }
+  ]
+}

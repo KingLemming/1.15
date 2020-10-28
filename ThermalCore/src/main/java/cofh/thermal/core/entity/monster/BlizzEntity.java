@@ -1,5 +1,6 @@
 package cofh.thermal.core.entity.monster;
 
+import cofh.thermal.core.common.ThermalFlags;
 import cofh.thermal.core.entity.projectile.BlizzProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,8 +28,7 @@ import java.util.EnumSet;
 import java.util.Random;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalFeatures.FLAG_MOB_BLIZZ;
-import static cofh.thermal.core.common.ThermalFeatures.getFeature;
+import static cofh.thermal.core.common.ThermalFlags.FLAG_MOB_BLIZZ;
 import static cofh.thermal.core.init.TCoreSounds.*;
 
 public class BlizzEntity extends MonsterEntity {
@@ -39,7 +39,7 @@ public class BlizzEntity extends MonsterEntity {
 
     public static boolean canSpawn(EntityType<BlizzEntity> entityType, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 
-        return getFeature(FLAG_MOB_BLIZZ).getAsBoolean() && MonsterEntity.canMonsterSpawnInLight(entityType, world, reason, pos, rand);
+        return ThermalFlags.getFlag(FLAG_MOB_BLIZZ).getAsBoolean() && MonsterEntity.canMonsterSpawnInLight(entityType, world, reason, pos, rand);
     }
 
     public BlizzEntity(EntityType<? extends BlizzEntity> type, World world) {

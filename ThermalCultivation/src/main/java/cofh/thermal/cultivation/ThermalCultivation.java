@@ -18,7 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import static cofh.core.util.constants.Constants.ID_THERMAL_CULTIVATION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.ThermalFeatures.*;
+import static cofh.thermal.core.common.ThermalFlags.*;
 import static cofh.thermal.core.init.TCoreIDs.ID_DEVICE_HIVE_EXTRACTOR;
 import static cofh.thermal.core.init.TCoreIDs.ID_DEVICE_TREE_EXTRACTOR;
 import static cofh.thermal.core.util.RegistrationHelper.seeds;
@@ -43,14 +43,14 @@ public class ThermalCultivation {
 
     private void setFeatureFlags() {
 
-        setFeature(FLAG_RESOURCE_APATITE, true);
+        setFlag(FLAG_RESOURCE_APATITE, true);
 
-        setFeature(FLAG_BEEKEEPER_ARMOR, true);
+        setFlag(FLAG_BEEKEEPER_ARMOR, true);
 
-        setFeature(FLAG_PHYTOGRO_EXPLOSIVES, true);
+        setFlag(FLAG_PHYTOGRO_EXPLOSIVES, true);
 
-        setFeature(ID_DEVICE_HIVE_EXTRACTOR, true);
-        setFeature(ID_DEVICE_TREE_EXTRACTOR, true);
+        setFlag(ID_DEVICE_HIVE_EXTRACTOR, true);
+        setFlag(ID_DEVICE_TREE_EXTRACTOR, true);
     }
 
     // region INITIALIZATION

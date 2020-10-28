@@ -1,0 +1,29 @@
+{
+  "name": "Multiservo Press",
+  "icon": "thermal:machine_press",
+  "category": "thermal:machines",
+  "read_by_default": true,
+  "flag": "mod:thermal_expansion",
+
+  "pages": [
+    {
+      "type": "text",
+      "text": "The Multiservo Press is a machine that presses metal ingots into other forms. Normally forms plates, but accepts gearworking and numismatic dies to make gears and coins, respectively."
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:machine_press",
+      "title": "Multiservo Press"
+    },
+    {
+      "type": "crafting",
+      "recipe": "thermal:press_gear_die",
+      "recipe2": "thermal:press_coin_die"
+    },
+    {
+      "type": "text",
+      "title": "Augment Compatibility",
+      "text": "$(li)$(l:thermal:technology/augments/rf_coil)Expanded RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_storage)Stabilized RF Coil$(/l)$(li)$(l:thermal:technology/augments/rf_coil_xfer)High-Flux RF Coil$(/l)$(li)$(l:thermal:technology/augments/machine_speed)Flux Linkage Amplifier$(/l)"
+    }
+  ]
+}
