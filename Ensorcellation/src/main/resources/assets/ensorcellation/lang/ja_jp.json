@@ -1,0 +1,115 @@
+{
+  "enchantment.ensorcellation.air_affinity": "空中採掘",
+  "enchantment.ensorcellation.air_affinity.desc": "空中での採掘速度の低下をなくします。",
+
+  "enchantment.ensorcellation.angler": "釣り人報酬",
+  "enchantment.ensorcellation.angler.desc": "追加釣果の確率を追加します。",
+
+  "enchantment.ensorcellation.bulwark": "堡塁",
+  "enchantment.ensorcellation.bulwark.desc": "ノックバックを防ぎ、相手の武器を無効にします。",
+
+  "enchantment.ensorcellation.cavalier": "騎士",
+  "enchantment.ensorcellation.cavalier.desc": "なにかに乗っている時に、攻撃力を増加させます。",
+
+  "enchantment.ensorcellation.curse_fool": "莫迦の呪い",
+  "enchantment.ensorcellation.curse_fool.desc": "このアイテムを持っている時経験値の取得が妨害されます。",
+
+  "enchantment.ensorcellation.curse_mercy": "慈悲の呪い",
+  "enchantment.ensorcellation.curse_mercy.desc": "このアイテムでとどめを刺せなくなります。",
+
+  "enchantment.ensorcellation.damage_ender": "エンダーディスラプション",
+  "enchantment.ensorcellation.damage_ender.desc": "ジ・エンド系モブに対する攻撃力を増加させ、テレポートを妨げます。",
+
+  "enchantment.ensorcellation.damage_illager": "自警団",
+  "enchantment.ensorcellation.damage_illager.desc": "イレイジャーに対する攻撃力を増加させます。",
+
+  "enchantment.ensorcellation.damage_villager": "無法者",
+  "enchantment.ensorcellation.damage_villager.desc": "村人に対する攻撃力を増加させます。",
+
+  "enchantment.ensorcellation.displacement": "転移",
+  "enchantment.ensorcellation.displacement.desc": "攻撃してきた相手をランダムにテレポートさせます。",
+
+  "enchantment.ensorcellation.excavating": "掘り抜き",
+  "enchantment.ensorcellation.excavating.desc": "アイテムの掘削範囲を広げます。",
+
+  "enchantment.ensorcellation.exp_boost": "洞察力",
+  "enchantment.ensorcellation.exp_boost.desc": "取得する経験値が増加します。",
+
+  "enchantment.ensorcellation.fire_rebuke": "燃ゆる反撃",
+  "enchantment.ensorcellation.fire_rebuke.desc": "攻撃してきた相手を炎上させ、弾き飛ばします。",
+
+  "enchantment.ensorcellation.frost_aspect": "氷属性",
+  "enchantment.ensorcellation.frost_aspect.desc": "相手の移動速度と攻撃力を低下させます。",
+
+  "enchantment.ensorcellation.frost_rebuke": "凍てる反撃",
+  "enchantment.ensorcellation.frost_rebuke.desc": "攻撃してきた相手の移動速度と攻撃力低下させ、弾き飛ばします。",
+
+  "enchantment.ensorcellation.frost_walker": "氷渡り",
+  "enchantment.ensorcellation.frost_walker.desc": "水面及び溶岩面を凍結させ、歩いて渡れるようにします。",
+
+  "enchantment.ensorcellation.furrowing": "畝立て",
+  "enchantment.ensorcellation.furrowing.desc": "直線により多くのブロックを耕せます。",
+
+  "enchantment.ensorcellation.gourmand": "健啖家",
+  "enchantment.ensorcellation.gourmand.desc": "食べ物を食べた時の効果を高めます。",
+
+  "enchantment.ensorcellation.holding": "容量拡張",
+  "enchantment.ensorcellation.holding.desc": "特定のアイテムの容量を増やします。",
+
+  "enchantment.ensorcellation.hunter": "狩人報酬",
+  "enchantment.ensorcellation.hunter.desc": "動物を倒したときの追加ドロップ確率を追加します。",
+
+  "enchantment.ensorcellation.instigating": "扇動",
+  "enchantment.ensorcellation.instigating.desc": "相手の体力が満タンの時より多くのダメージを与えます。",
+
+  "enchantment.ensorcellation.leech": "ヒル",
+  "enchantment.ensorcellation.leech.desc": "モブを倒した時体力を回復します。",
+
+  "enchantment.ensorcellation.magic_edge": "魔法の刃",
+  "enchantment.ensorcellation.magic_edge.desc": "与えるダメージをわずかに増やし、魔法属性にします。",
+
+  "enchantment.ensorcellation.magic_protection": "魔法耐性",
+  "enchantment.ensorcellation.magic_protection.desc": "魔法によるダメージを軽減します。",
+
+  "enchantment.ensorcellation.phalanx": "ファランクス",
+  "enchantment.ensorcellation.phalanx.desc": "盾を構えている間、より早く移動できるようになります。",
+
+  "enchantment.ensorcellation.pilfering": "掻っ攫い",
+  "enchantment.ensorcellation.pilfering.desc": "引っかかったモブから装備の一部を奪います。",
+
+  "enchantment.ensorcellation.preservation": "保全",
+  "enchantment.ensorcellation.preservation.desc": "アイテムの修理に掛かる経験値の増加をなくします。",
+
+  "enchantment.ensorcellation.quick_draw": "高速引き絞り",
+  "enchantment.ensorcellation.quick_draw.desc": "最大まで引き絞る時間を短縮します。",
+
+  "enchantment.ensorcellation.reach": "腕伸ばし",
+  "enchantment.ensorcellation.reach.desc": "ブロックを扱える距離を伸ばします。",
+
+  "enchantment.ensorcellation.smashing": "粉砕",
+  "enchantment.ensorcellation.smashing.desc": "採掘された鉱石は砕かれたものとなり、収量が増加します。",
+
+  "enchantment.ensorcellation.smelting": "精錬",
+  "enchantment.ensorcellation.smelting.desc": "採掘されたブロックはかまどで焼かれたように精錬されます。",
+
+  "enchantment.ensorcellation.soulbound": "ソウルバウンド",
+  "enchantment.ensorcellation.soulbound.desc": "アイテムは死んだ後でも手元に持ち越されます。",
+
+  "enchantment.ensorcellation.tilling": "耕作",
+  "enchantment.ensorcellation.tilling.desc": "アイテムの耕作範囲を広げます。",
+
+  "enchantment.ensorcellation.trueshot": "真射ち",
+  "enchantment.ensorcellation.trueshot.desc": "矢の精度と速度が向上し、貫通するようになります。",
+
+  "enchantment.ensorcellation.vitality": "活力",
+  "enchantment.ensorcellation.vitality.desc": "装備した時に最大体力を増やす。",
+
+  "enchantment.ensorcellation.volley": "斉射",
+  "enchantment.ensorcellation.volley.desc": "3つの矢が弓なりに発射されます。一回の発射で使用される矢は1本だけです。",
+
+  "enchantment.ensorcellation.vorpal": "ヴォーパル",
+  "enchantment.ensorcellation.vorpal.desc": "ランダムに強力な攻撃を行い、首を刎ねます。",
+
+  "enchantment.ensorcellation.weeding": "草刈り",
+  "enchantment.ensorcellation.weeding.desc": "耕した時に草を取り除きます。"
+}
