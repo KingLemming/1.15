@@ -21,6 +21,7 @@ import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
 
 import static cofh.core.util.constants.Constants.ID_THERMAL;
+import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.expansion.init.TExpRecipeTypes.*;
 import static cofh.thermal.expansion.init.TExpReferences.*;
 
@@ -51,6 +52,10 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipes(recipeManager.getRecipes(RECIPE_BOTTLER).values(), ID_RECIPE_BOTTLER);
         registration.addRecipes(BottlerRecipeManager.instance().getConvertedRecipes(), ID_RECIPE_BOTTLER);
 
+        registration.addRecipes(recipeManager.getRecipes(CATALYST_PULVERIZER).values(), ID_CATALYST_PULVERIZER);
+        registration.addRecipes(recipeManager.getRecipes(CATALYST_SMELTER).values(), ID_CATALYST_SMELTER);
+        registration.addRecipes(recipeManager.getRecipes(CATALYST_INSOLATOR).values(), ID_CATALYST_INSOLATOR);
+
         registration.addRecipes(recipeManager.getRecipes(FUEL_STIRLING).values(), ID_FUEL_STIRLING);
         registration.addRecipes(StirlingFuelManager.instance().getConvertedFuels(), ID_FUEL_STIRLING);
         registration.addRecipes(recipeManager.getRecipes(FUEL_COMPRESSION).values(), ID_FUEL_COMPRESSION);
@@ -74,6 +79,10 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(new RefineryRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_REFINERY));
         registration.addRecipeCategories(new BrewerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_BREWER));
         registration.addRecipeCategories(new BottlerRecipeCategory(registration.getJeiHelpers().getGuiHelper(), ID_RECIPE_BOTTLER));
+
+        registration.addRecipeCategories(new PulverizerCatalystCategory(registration.getJeiHelpers().getGuiHelper(), ID_CATALYST_PULVERIZER));
+        registration.addRecipeCategories(new SmelterCatalystCategory(registration.getJeiHelpers().getGuiHelper(), ID_CATALYST_SMELTER));
+        registration.addRecipeCategories(new InsolatorCatalystCategory(registration.getJeiHelpers().getGuiHelper(), ID_CATALYST_INSOLATOR));
 
         registration.addRecipeCategories(new StirlingFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_STIRLING));
         registration.addRecipeCategories(new CompressionFuelCategory(registration.getJeiHelpers().getGuiHelper(), ID_FUEL_COMPRESSION));
@@ -102,6 +111,10 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeClickArea(MachineBrewerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BREWER);
         registration.addRecipeClickArea(MachineBottlerScreen.class, 88, progressY, progressW, progressH, ID_RECIPE_BOTTLER);
 
+        registration.addRecipeClickArea(MachinePulverizerScreen.class, 72, progressY, progressW, progressH, ID_CATALYST_PULVERIZER);
+        registration.addRecipeClickArea(MachineSmelterScreen.class, 94, progressY, progressW, progressH, ID_CATALYST_SMELTER);
+        registration.addRecipeClickArea(MachineInsolatorScreen.class, 85, progressY, progressW, progressH, ID_CATALYST_INSOLATOR);
+
         registration.addRecipeClickArea(DynamoStirlingScreen.class, 80, progressY, progressH, progressH, ID_FUEL_STIRLING);
         registration.addRecipeClickArea(DynamoCompressionScreen.class, 80, progressY, progressH, progressH, ID_FUEL_COMPRESSION);
         registration.addRecipeClickArea(DynamoMagmaticScreen.class, 80, progressY, progressH, progressH, ID_FUEL_MAGMATIC);
@@ -124,6 +137,10 @@ public class TExpJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(MACHINE_REFINERY_BLOCK), ID_RECIPE_REFINERY);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_BREWER_BLOCK), ID_RECIPE_BREWER);
         registration.addRecipeCatalyst(new ItemStack(MACHINE_BOTTLER_BLOCK), ID_RECIPE_BOTTLER);
+
+        registration.addRecipeCatalyst(new ItemStack(ITEMS.get("basalz_powder")), ID_CATALYST_PULVERIZER);
+        registration.addRecipeCatalyst(new ItemStack(ITEMS.get("cinnabar")), ID_CATALYST_SMELTER);
+        registration.addRecipeCatalyst(new ItemStack(ITEMS.get("phytogro")), ID_CATALYST_INSOLATOR);
 
         registration.addRecipeCatalyst(new ItemStack(DYNAMO_STIRLING_BLOCK), ID_FUEL_STIRLING);
         registration.addRecipeCatalyst(new ItemStack(DYNAMO_COMPRESSION_BLOCK), ID_FUEL_COMPRESSION);

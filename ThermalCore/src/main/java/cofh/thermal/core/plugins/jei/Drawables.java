@@ -70,9 +70,9 @@ public class Drawables {
 
     private Drawables(IGuiHelper guiHelper) {
 
-        slot[SLOT] = guiHelper.createDrawable(JEI_TEXTURE, 0, 0, 18, 18);
-        slot[SLOT_OUTPUT] = guiHelper.createDrawable(JEI_TEXTURE, 32, 0, 26, 26);
-        slot[SLOT_DOUBLE] = guiHelper.createDrawable(JEI_TEXTURE, 64, 0, 44, 26);
+        slot[SLOT] = guiHelper.createDrawable(JEI_TEXTURE, 0, 96, 18, 18);
+        slot[SLOT_OUTPUT] = guiHelper.createDrawable(JEI_TEXTURE, 32, 96, 26, 26);
+        slot[SLOT_DOUBLE] = guiHelper.createDrawable(JEI_TEXTURE, 64, 96, 44, 26);
 
         for (int i = 0; i < 3; ++i) {
             tank[i] = guiHelper.createDrawable(JEI_TEXTURE, 64 * i, 192, 18, 62);

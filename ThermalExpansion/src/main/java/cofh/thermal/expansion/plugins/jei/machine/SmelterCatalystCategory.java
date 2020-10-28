@@ -1,0 +1,26 @@
+package cofh.thermal.expansion.plugins.jei.machine;
+
+import cofh.thermal.core.plugins.jei.ThermalCatalystCategory;
+import cofh.thermal.expansion.util.recipes.machine.SmelterCatalyst;
+import mezz.jei.api.helpers.IGuiHelper;
+import net.minecraft.util.ResourceLocation;
+
+import static cofh.core.util.helpers.StringHelper.getTextComponent;
+import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SMELTER_BLOCK;
+
+public class SmelterCatalystCategory extends ThermalCatalystCategory<SmelterCatalyst> {
+
+    public SmelterCatalystCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+
+        super(guiHelper, uid);
+
+        name = getTextComponent(MACHINE_SMELTER_BLOCK.getTranslationKey()).appendText(": ").appendSibling(getTextComponent("info.thermal.catalysts"));
+    }
+
+    @Override
+    public Class<? extends SmelterCatalyst> getRecipeClass() {
+
+        return SmelterCatalyst.class;
+    }
+
+}

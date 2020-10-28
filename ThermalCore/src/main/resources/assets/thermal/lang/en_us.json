@@ -85,6 +85,12 @@
   "fluid.thermal.syrup": "Syrup",
   "fluid.thermal.tree_oil": "Tree Oil",
 
+  "info.thermal.catalysts": "Catalysts",
+  "info.thermal.energy_mod": "Energy Modifier",
+  "info.thermal.primary_mod": "Primary Modifier",
+  "info.thermal.secondary_mod": "Auxiliary Modifier",
+  "info.thermal.use_chance": "Use Chance",
+
   "info.thermal.detonator.mode.0": "Mode: Prime",
   "info.thermal.detonator.mode.1": "Mode: Detonate",
   "info.thermal.detonator.primed": "Primed:",
