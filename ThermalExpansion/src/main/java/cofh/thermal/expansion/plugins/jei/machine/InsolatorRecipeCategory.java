@@ -30,9 +30,9 @@ public class InsolatorRecipeCategory extends ThermalRecipeCategory<InsolatorReci
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public InsolatorRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public InsolatorRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineInsolatorScreen.TEXTURE, 26, 11, 130, 62)
                 .addPadding(0, 0, 16, 18)

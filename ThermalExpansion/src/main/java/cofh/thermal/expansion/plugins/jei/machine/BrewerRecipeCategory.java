@@ -32,9 +32,9 @@ public class BrewerRecipeCategory extends ThermalRecipeCategory<BrewerRecipe> {
     protected IDrawableStatic inputOverlay;
     protected IDrawableStatic outputOverlay;
 
-    public BrewerRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public BrewerRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineBrewerScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

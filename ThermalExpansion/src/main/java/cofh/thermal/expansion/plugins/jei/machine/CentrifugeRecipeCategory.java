@@ -29,9 +29,9 @@ public class CentrifugeRecipeCategory extends ThermalRecipeCategory<CentrifugeRe
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public CentrifugeRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public CentrifugeRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineCentrifugeScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

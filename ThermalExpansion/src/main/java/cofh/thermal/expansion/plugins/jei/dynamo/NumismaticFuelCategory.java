@@ -20,9 +20,9 @@ import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_NUMISMATIC_BLOCK
 
 public class NumismaticFuelCategory extends ThermalFuelCategory<NumismaticFuel> {
 
-    public NumismaticFuelCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public NumismaticFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(DynamoNumismaticScreen.TEXTURE, 26, 11, 70, 62)
                 .addPadding(0, 0, 16, 78)

@@ -29,9 +29,9 @@ public class CrucibleRecipeCategory extends ThermalRecipeCategory<CrucibleRecipe
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public CrucibleRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public CrucibleRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineCrucibleScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

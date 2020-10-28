@@ -29,9 +29,9 @@ public class BottlerRecipeCategory extends ThermalRecipeCategory<BottlerRecipe> 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public BottlerRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public BottlerRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineBottlerScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

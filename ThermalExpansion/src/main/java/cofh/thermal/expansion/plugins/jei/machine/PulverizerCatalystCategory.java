@@ -3,6 +3,7 @@ package cofh.thermal.expansion.plugins.jei.machine;
 import cofh.thermal.core.plugins.jei.ThermalCatalystCategory;
 import cofh.thermal.expansion.util.recipes.machine.PulverizerCatalyst;
 import mezz.jei.api.helpers.IGuiHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import static cofh.core.util.helpers.StringHelper.getTextComponent;
@@ -10,9 +11,9 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_BLOC
 
 public class PulverizerCatalystCategory extends ThermalCatalystCategory<PulverizerCatalyst> {
 
-    public PulverizerCatalystCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public PulverizerCatalystCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         name = getTextComponent(MACHINE_PULVERIZER_BLOCK.getTranslationKey()).appendText(": ").appendSibling(getTextComponent("info.thermal.catalysts"));
     }

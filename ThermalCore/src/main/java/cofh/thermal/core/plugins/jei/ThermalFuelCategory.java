@@ -7,6 +7,7 @@ import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -24,8 +25,8 @@ public abstract class ThermalFuelCategory<T extends ThermalFuel> implements IRec
     protected final int ENERGY_Y = 10;
 
     protected final ResourceLocation uid;
-    protected IDrawableStatic background;
-    protected IDrawableStatic icon;
+    protected IDrawable background;
+    protected IDrawable icon;
     protected ITextComponent name;
 
     protected IDrawableStatic energyBackground;
@@ -34,14 +35,15 @@ public abstract class ThermalFuelCategory<T extends ThermalFuel> implements IRec
     protected IDrawableAnimated energy;
     protected IDrawableAnimated duration;
 
-    public ThermalFuelCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public ThermalFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        this(guiHelper, uid, true);
+        this(guiHelper, icon, uid, true);
     }
 
-    public ThermalFuelCategory(IGuiHelper guiHelper, ResourceLocation uid, boolean drawEnergy) {
+    public ThermalFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid, boolean drawEnergy) {
 
         this.uid = uid;
+        this.icon = guiHelper.createDrawableIngredient(icon);
 
         if (drawEnergy) {
             energyBackground = Drawables.getDrawables(guiHelper).getEnergyEmpty();

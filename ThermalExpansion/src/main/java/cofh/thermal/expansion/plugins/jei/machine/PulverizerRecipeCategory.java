@@ -21,9 +21,9 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_PULVERIZER_BLOC
 
 public class PulverizerRecipeCategory extends ThermalRecipeCategory<PulverizerRecipe> {
 
-    public PulverizerRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public PulverizerRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachinePulverizerScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

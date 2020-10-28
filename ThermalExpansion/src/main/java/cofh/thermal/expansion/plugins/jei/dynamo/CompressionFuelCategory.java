@@ -11,6 +11,7 @@ import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -26,9 +27,9 @@ public class CompressionFuelCategory extends ThermalFuelCategory<CompressionFuel
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public CompressionFuelCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public CompressionFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(DynamoCompressionScreen.TEXTURE, 26, 11, 70, 62)
                 .addPadding(0, 0, 16, 78)

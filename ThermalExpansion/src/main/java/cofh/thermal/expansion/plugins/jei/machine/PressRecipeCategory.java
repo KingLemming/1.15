@@ -29,9 +29,9 @@ public class PressRecipeCategory extends ThermalRecipeCategory<PressRecipe> {
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public PressRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public PressRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachinePressScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

@@ -29,9 +29,9 @@ public class ChillerRecipeCategory extends ThermalRecipeCategory<ChillerRecipe> 
     protected IDrawableStatic tankBackground;
     protected IDrawableStatic tankOverlay;
 
-    public ChillerRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public ChillerRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineChillerScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

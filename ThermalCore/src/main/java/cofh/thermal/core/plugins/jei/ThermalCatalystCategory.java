@@ -23,15 +23,17 @@ import static java.util.Collections.singletonList;
 public abstract class ThermalCatalystCategory<T extends ThermalCatalyst> implements IRecipeCategory<T> {
 
     protected final ResourceLocation uid;
-    protected IDrawableStatic background;
-    protected IDrawableStatic icon;
+    protected IDrawable background;
+    protected IDrawable icon;
     protected ITextComponent name;
 
     protected IDrawableStatic slot;
 
-    public ThermalCatalystCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public ThermalCatalystCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
         this.uid = uid;
+        this.icon = guiHelper.createDrawableIngredient(icon);
+
         background = guiHelper.drawableBuilder(Drawables.JEI_TEXTURE, 26, 11, 140, 62)
                 .addPadding(0, 0, 16, 8)
                 .build();
@@ -98,16 +100,5 @@ public abstract class ThermalCatalystCategory<T extends ThermalCatalyst> impleme
         String useChance = localize("info.thermal.use_chance") + ": " + DF0.format(recipe.getUseChance() * 100) + "%";
         minecraft.fontRenderer.drawString(useChance, 44, 44, 0xFF606060);
     }
-
-    //    @Override
-    //    public List<String> getTooltipStrings(T recipe, double mouseX, double mouseY) {
-    //
-    //        List<String> tooltip = new ArrayList<>();
-    //
-    //        if (energy != null && mouseX > ENERGY_X && mouseX < ENERGY_X + energy.getWidth() - 1 && mouseY > ENERGY_Y && mouseY < ENERGY_Y + energy.getHeight() - 1) {
-    //            tooltip.add(localize("info.cofh.energy") + ": " + StringHelper.format(recipe.getEnergy()) + " RF");
-    //        }
-    //        return tooltip;
-    //    }
     // endregion
 }

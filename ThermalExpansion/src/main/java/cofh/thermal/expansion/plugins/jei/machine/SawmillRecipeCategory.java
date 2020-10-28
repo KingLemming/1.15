@@ -20,9 +20,9 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SAWMILL_BLOCK;
 
 public class SawmillRecipeCategory extends ThermalRecipeCategory<SawmillRecipe> {
 
-    public SawmillRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public SawmillRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineSawmillScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

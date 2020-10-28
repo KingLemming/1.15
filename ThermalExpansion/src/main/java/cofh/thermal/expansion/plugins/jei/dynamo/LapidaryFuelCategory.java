@@ -20,9 +20,9 @@ import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_LAPIDARY_BLOCK;
 
 public class LapidaryFuelCategory extends ThermalFuelCategory<LapidaryFuel> {
 
-    public LapidaryFuelCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public LapidaryFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(DynamoLapidaryScreen.TEXTURE, 26, 11, 70, 62)
                 .addPadding(0, 0, 16, 78)

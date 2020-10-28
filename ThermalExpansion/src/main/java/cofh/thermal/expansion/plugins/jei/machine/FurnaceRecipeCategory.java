@@ -20,9 +20,9 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_FURNACE_BLOCK;
 
 public class FurnaceRecipeCategory extends ThermalRecipeCategory<FurnaceRecipe> {
 
-    public FurnaceRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public FurnaceRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineFurnaceScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

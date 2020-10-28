@@ -35,9 +35,9 @@ public class RefineryRecipeCategory extends ThermalRecipeCategory<RefineryRecipe
     protected IDrawableStatic outputOverlayA;
     protected IDrawableStatic outputOverlayB;
 
-    public RefineryRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public RefineryRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineRefineryScreen.TEXTURE, 26, 11, 124, 62)
                 .addPadding(0, 0, 16, 24)

@@ -21,9 +21,9 @@ import static cofh.thermal.expansion.init.TExpReferences.MACHINE_SMELTER_BLOCK;
 
 public class SmelterRecipeCategory extends ThermalRecipeCategory<SmelterRecipe> {
 
-    public SmelterRecipeCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public SmelterRecipeCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(MachineSmelterScreen.TEXTURE, 26, 11, 140, 62)
                 .addPadding(0, 0, 16, 8)

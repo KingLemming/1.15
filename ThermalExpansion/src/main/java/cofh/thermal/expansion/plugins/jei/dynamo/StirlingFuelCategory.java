@@ -20,9 +20,9 @@ import static cofh.thermal.expansion.init.TExpReferences.DYNAMO_STIRLING_BLOCK;
 
 public class StirlingFuelCategory extends ThermalFuelCategory<StirlingFuel> {
 
-    public StirlingFuelCategory(IGuiHelper guiHelper, ResourceLocation uid) {
+    public StirlingFuelCategory(IGuiHelper guiHelper, ItemStack icon, ResourceLocation uid) {
 
-        super(guiHelper, uid);
+        super(guiHelper, icon, uid);
 
         background = guiHelper.drawableBuilder(DynamoStirlingScreen.TEXTURE, 26, 11, 70, 62)
                 .addPadding(0, 0, 16, 78)
