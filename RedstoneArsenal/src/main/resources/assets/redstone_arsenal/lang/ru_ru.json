@@ -1,0 +1,17 @@
+{
+  "itemGroup.redstone_arsenal": "Redstone Arsenal",
+
+  "item.redstone_arsenal.flux_axe": "Наполненный потоком топор",
+  "item.redstone_arsenal.flux_battle_wrench": "Наполненный потоком боевой серповидный молот",
+  "item.redstone_arsenal.flux_bow": "Наполненный потоком лук",
+  "item.redstone_arsenal.flux_excavator": "Наполненный потоком заступ",
+  "item.redstone_arsenal.flux_fishing_rod": "Наполненная потоком удочка",
+  "item.redstone_arsenal.flux_hammer": "Наполненный потоком молот",
+  "item.redstone_arsenal.flux_hoe": "Наполненная потоком мотыга",
+  "item.redstone_arsenal.flux_pickaxe": "Наполненная потоком кирка",
+  "item.redstone_arsenal.flux_shield": "Наполненный потоком щит",
+  "item.redstone_arsenal.flux_shovel": "Наполненная потоком лопата",
+  "item.redstone_arsenal.flux_sickle": "Наполненный потоком серп",
+  "item.redstone_arsenal.flux_sword": "Наполненный потоком меч"
+
+}
