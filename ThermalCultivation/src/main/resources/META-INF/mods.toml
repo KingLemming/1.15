@@ -32,13 +32,13 @@ side = "BOTH"
 [[dependencies.thermal_cultivation]]
 modId = "cofh_core"
 mandatory = true
-versionRange = "[0.7,0.8]"
+versionRange = "[1.0,1.1]"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_cultivation]]
 modId = "thermal"
 mandatory = true
-versionRange = "[0.3,0.4]"
+versionRange = "[1.0,1.1]"
 ordering = "AFTER"
 side = "BOTH"

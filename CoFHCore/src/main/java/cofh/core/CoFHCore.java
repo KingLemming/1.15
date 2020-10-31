@@ -4,7 +4,6 @@ import cofh.core.capability.CapabilityArchery;
 import cofh.core.capability.CapabilityAreaEffect;
 import cofh.core.capability.CapabilityEnchantableItem;
 import cofh.core.capability.CapabilityShieldItem;
-import cofh.core.client.gui.GoVoteHandler;
 import cofh.core.command.CoFHCommand;
 import cofh.core.event.AttributeEvents;
 import cofh.core.init.*;
@@ -113,8 +112,6 @@ public class CoFHCore {
     private void clientSetup(final FMLClientSetupEvent event) {
 
         CoreKeys.register();
-
-        GoVoteHandler.init();
     }
 
     private void serverStarting(final FMLServerStartingEvent event) {

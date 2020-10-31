@@ -35,6 +35,6 @@ side = "BOTH"
 [[dependencies.ensorcellation]]
 modId = "cofh_core"
 mandatory = true
-versionRange = "[0.7,0.8]"
+versionRange = "[1.0,1.1]"
 ordering = "AFTER"
 side = "BOTH"
