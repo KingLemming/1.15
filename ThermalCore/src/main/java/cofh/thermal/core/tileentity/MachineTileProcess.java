@@ -55,6 +55,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
                 transferOutput();
                 transferInput();
                 if (!redstoneControl.getState() || !canProcessStart()) {
+                    energyStorage.modify(-process);     // Addresses case where additional process energy was spent, and another process does not immediately begin.
                     processOff();
                 } else {
                     processStart();
@@ -80,7 +81,7 @@ public abstract class MachineTileProcess extends ReconfigurableTile4Way implemen
     // region PROCESS
     protected boolean canProcessStart() {
 
-        if (energyStorage.getEnergyStored() < processTick) {
+        if (energyStorage.getEnergyStored() - process < processTick) {
             return false;
         }
         if (!validateInputs()) {

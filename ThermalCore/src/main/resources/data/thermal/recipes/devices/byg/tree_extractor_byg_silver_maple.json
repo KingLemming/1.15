@@ -3,7 +3,7 @@
   "trunk": "byg:maple_log",
   "leaves": "byg:silver_maple_leaves",
   "result": {
-    "fluid": "thermal:resin",
+    "fluid": "thermal:sap",
     "amount": 25
   },
   "conditions": [

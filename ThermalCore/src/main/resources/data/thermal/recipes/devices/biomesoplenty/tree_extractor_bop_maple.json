@@ -3,7 +3,7 @@
   "trunk": "minecraft:oak_log",
   "leaves": "biomesoplenty:maple_leaves",
   "result": {
-    "fluid": "thermal:resin",
+    "fluid": "thermal:sap",
     "amount": 25
   },
   "conditions": [

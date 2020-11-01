@@ -1,11 +1,11 @@
 {
   "type": "thermal:insolator",
   "ingredient": {
-    "item": "minecraft:bubble_coral_fan.json"
+    "item": "minecraft:bubble_coral_fan"
   },
   "result": [
     {
-      "item": "minecraft:bubble_coral_fan.json",
+      "item": "minecraft:bubble_coral_fan",
       "chance": 2.0
     }
   ],
