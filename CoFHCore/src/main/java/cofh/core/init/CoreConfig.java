@@ -117,7 +117,7 @@ public class CoreConfig {
 
         CLIENT_CONFIG.push("Render");
 
-        clientEnableAreaEffectBlockBreak = CLIENT_CONFIG
+        clientEnableAreaEffectBlockBreaking = CLIENT_CONFIG
                 .comment("If TRUE, Area Effect Block breaking will be rendered. Disable if you are using buggy mods such as OptiFine which apparently with this. Please also report the issue to OptiFine.")
                 .define("Render Area Effect Block Breaking", enableAreaEffectBlockBreaking);
 
@@ -150,6 +150,8 @@ public class CoreConfig {
 
         enableEnchantmentDescriptions = clientEnableEnchantmentDescriptions.get();
         enableItemDescriptions = clientEnableItemDescriptions.get();
+
+        enableAreaEffectBlockBreaking = clientEnableAreaEffectBlockBreaking.get();
     }
     // endregion
 
@@ -186,7 +188,7 @@ public class CoreConfig {
     private static BooleanValue clientEnableEnchantmentDescriptions;
     private static BooleanValue clientEnableItemDescriptions;
 
-    private static BooleanValue clientEnableAreaEffectBlockBreak;
+    private static BooleanValue clientEnableAreaEffectBlockBreaking;
     // endregion
 
     // region CONFIGURATION
