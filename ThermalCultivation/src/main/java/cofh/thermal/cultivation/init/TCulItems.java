@@ -33,7 +33,12 @@ public class TCulItems {
 
         // ANNUAL
         registerCropAndSeed(ID_BARLEY);
-        registerCropAndSeed(ID_CORN, CORN);
+
+        // TODO: Implement Corn
+        // registerCropAndSeed(ID_CORN, CORN);
+        ITEMS.register(ID_CORN, () -> new ItemCoFH(new Item.Properties().group(THERMAL_ITEMS).food(CORN)));
+        ITEMS.register(seeds(ID_CORN), () -> new ItemCoFH(new Item.Properties().group(THERMAL_ITEMS)));
+
         registerCropAndSeed(ID_ONION, ONION);
         registerCropAndSeed(ID_RADISH, RADISH);
         registerCropAndSeed(ID_RICE);
@@ -50,7 +55,12 @@ public class TCulItems {
 
         // BREWING
         registerCropAndSeed(ID_COFFEE, COFFEE_CHERRY);
-        registerCropAndSeed(ID_HOPS);
+
+        // TODO: Implement Hops
+        // registerCropAndSeed(ID_HOPS);
+        ITEMS.register(ID_HOPS, () -> new ItemCoFH(new Item.Properties().group(THERMAL_ITEMS)));
+        ITEMS.register(seeds(ID_HOPS), () -> new ItemCoFH(new Item.Properties().group(THERMAL_ITEMS)));
+
         registerCropAndSeed(ID_TEA);
 
         // OTHER
