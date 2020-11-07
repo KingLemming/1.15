@@ -334,8 +334,6 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
                 return true;
             }
         }
-        mouseX += guiLeft;
-        mouseY += guiTop;
 
         // If a panel is open, expand GUI size to support slot actions.
         if (panel != null) {
@@ -348,6 +346,9 @@ public class ContainerScreenCoFH<T extends Container> extends ContainerScreen<T>
                     break;
             }
         }
+        mouseX += guiLeft;
+        mouseY += guiTop;
+
         boolean ret = super.mouseClicked(mouseX, mouseY, mouseButton);
 
         // Re-adjust GUI size after click has happened.

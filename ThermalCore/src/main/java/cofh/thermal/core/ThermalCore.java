@@ -44,10 +44,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
@@ -105,6 +102,8 @@ public class ThermalCore {
         MinecraftForge.EVENT_BUS.addListener(this::serverStarted);
         MinecraftForge.EVENT_BUS.addListener(this::serverStopping);
         MinecraftForge.EVENT_BUS.addListener(this::serverStopped);
+
+        MinecraftForge.EVENT_BUS.addListener(this::idRemap);
         MinecraftForge.EVENT_BUS.addListener(this::recipesUpdated);
 
         BLOCKS.register(modEventBus);
@@ -251,6 +250,11 @@ public class ThermalCore {
     private void serverStopped(FMLServerStoppedEvent event) {
 
         ThermalRecipeManagers.instance().setServerRecipeManager(null);
+    }
+
+    private void idRemap(final FMLModIdMappingEvent event) {
+
+        ThermalRecipeManagers.instance().refreshServer();
     }
 
     private void recipesUpdated(RecipesUpdatedEvent event) {
