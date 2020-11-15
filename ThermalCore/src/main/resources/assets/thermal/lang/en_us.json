@@ -79,6 +79,10 @@
   "entity.thermal.blitz": "Blitz",
   "entity.thermal.blizz": "Blizz",
 
+  "entity.thermal.basalz_projectile": "Tectonic Shard",
+  "entity.thermal.blitz_projectile": "Ball Lightning",
+  "entity.thermal.blizz_projectile": "Glacial Bolt",
+
   "fluid.thermal.latex": "Latex",
   "fluid.thermal.resin": "Resin",
   "fluid.thermal.sap": "Sap",
