@@ -1,0 +1,115 @@
+{
+  "enchantment.ensorcellation.air_affinity": "空之姻缘",
+  "enchantment.ensorcellation.air_affinity.desc": "移除悬空时挖掘速度减缓的效果。",
+
+  "enchantment.ensorcellation.angler": "垂钓恩赐",
+  "enchantment.ensorcellation.angler.desc": "使得钓鱼时可能获得额外物品。",
+
+  "enchantment.ensorcellation.bulwark": "壁垒盾护",
+  "enchantment.ensorcellation.bulwark.desc": "防止被击退，并可短暂禁用攻击者的武器。",
+
+  "enchantment.ensorcellation.cavalier": "骑士之矛",
+  "enchantment.ensorcellation.cavalier.desc": "增加骑乘时造成的伤害。",
+
+  "enchantment.ensorcellation.curse_fool": "笨拙诅咒",
+  "enchantment.ensorcellation.curse_fool.desc": "使用物品时不再获得经验。",
+
+  "enchantment.ensorcellation.curse_mercy": "心软诅咒",
+  "enchantment.ensorcellation.curse_mercy.desc": "使得武器手下留情，不行杀戮。",
+
+  "enchantment.ensorcellation.damage_ender": "末影干扰",
+  "enchantment.ensorcellation.damage_ender.desc": "增加对末影生物的伤害并抑制传送。",
+
+  "enchantment.ensorcellation.damage_illager": "警员之眼",
+  "enchantment.ensorcellation.damage_illager.desc": "增加对刌民的伤害。",
+
+  "enchantment.ensorcellation.damage_villager": "亡命之徒",
+  "enchantment.ensorcellation.damage_villager.desc": "增加对村民的伤害。",
+
+  "enchantment.ensorcellation.displacement": "空间重置",
+  "enchantment.ensorcellation.displacement.desc": "将攻击者随机传送走。",
+
+  "enchantment.ensorcellation.excavating": "增幅挖掘",
+  "enchantment.ensorcellation.excavating.desc": "破坏一定半径以内的更多方块。",
+
+  "enchantment.ensorcellation.exp_boost": "洞若观火",
+  "enchantment.ensorcellation.exp_boost.desc": "增加使用物品时的经验获取。",
+
+  "enchantment.ensorcellation.fire_rebuke": "烈焰指斥",
+  "enchantment.ensorcellation.fire_rebuke.desc": "点燃并弹开攻击者。",
+
+  "enchantment.ensorcellation.frost_aspect": "霜之位面",
+  "enchantment.ensorcellation.frost_aspect.desc": "减速并削弱目标。",
+
+  "enchantment.ensorcellation.frost_rebuke": "霜冻指斥",
+  "enchantment.ensorcellation.frost_rebuke.desc": "减速并弹开攻击者。",
+
+  "enchantment.ensorcellation.frost_walker": "极寒行者",
+  "enchantment.ensorcellation.frost_walker.desc": "冰冻脚下的水和岩浆以便旅行。",
+
+  "enchantment.ensorcellation.furrowing": "隧道盾构",
+  "enchantment.ensorcellation.furrowing.desc": "直线挖掘更多方块。",
+
+  "enchantment.ensorcellation.gourmand": "饕餮之齿",
+  "enchantment.ensorcellation.gourmand.desc": "食物回复的饱食度和饱和值会增加。",
+
+  "enchantment.ensorcellation.holding": "装载扩容",
+  "enchantment.ensorcellation.holding.desc": "增加特定物品的容量。",
+
+  "enchantment.ensorcellation.hunter": "猎人之恩赐",
+  "enchantment.ensorcellation.hunter.desc": "杀死动物时概率掉落更多。",
+
+  "enchantment.ensorcellation.instigating": "破而后立",
+  "enchantment.ensorcellation.instigating.desc": "对满血目标造成额外伤害。",
+
+  "enchantment.ensorcellation.leech": "水蛭之血",
+  "enchantment.ensorcellation.leech.desc": "成功击杀时回复血量。",
+
+  "enchantment.ensorcellation.magic_edge": "魔法边界",
+  "enchantment.ensorcellation.magic_edge.desc": "少量增加伤害，并将伤害类型转化为魔法伤害。",
+
+  "enchantment.ensorcellation.magic_protection": "褪魔保护",
+  "enchantment.ensorcellation.magic_protection.desc": "减少受到的魔法伤害。",
+
+  "enchantment.ensorcellation.phalanx": "方阵精通",
+  "enchantment.ensorcellation.phalanx.desc": "使得举起盾牌时移动更快。",
+
+  "enchantment.ensorcellation.pilfering": "顺手牵羊",
+  "enchantment.ensorcellation.pilfering.desc": "小概率能从目标处取得盔甲。",
+
+  "enchantment.ensorcellation.preservation": "修复节约",
+  "enchantment.ensorcellation.preservation.desc": "修复物品所需的经验不会增加。",
+
+  "enchantment.ensorcellation.quick_draw": "快速拉扯",
+  "enchantment.ensorcellation.quick_draw.desc": "减少拉满弓所需的时间。",
+
+  "enchantment.ensorcellation.reach": "触物之手",
+  "enchantment.ensorcellation.reach.desc": "增加可互动方块的距离。",
+
+  "enchantment.ensorcellation.smashing": "粉碎",
+  "enchantment.ensorcellation.smashing.desc": "采集的矿物会被自动粉碎为矿粉，增加产量。",
+
+  "enchantment.ensorcellation.smelting": "熔炼",
+  "enchantment.ensorcellation.smelting.desc": "自动熔炼采集的方块，就像熔炉一样。",
+
+  "enchantment.ensorcellation.soulbound": "灵魂绑定",
+  "enchantment.ensorcellation.soulbound.desc": "死亡时物品不会掉落。",
+
+  "enchantment.ensorcellation.tilling": "耕作增幅",
+  "enchantment.ensorcellation.tilling.desc": "增加耕地的范围。",
+
+  "enchantment.ensorcellation.trueshot": "真实之箭",
+  "enchantment.ensorcellation.trueshot.desc": "增加箭的准度和速度，并允许穿透。",
+
+  "enchantment.ensorcellation.vitality": "活力增幅",
+  "enchantment.ensorcellation.vitality.desc": "增加穿戴者的最大生命值。",
+
+  "enchantment.ensorcellation.volley": "分裂箭",
+  "enchantment.ensorcellation.volley.desc": "射出扇形的三支箭，只消耗一支箭。",
+
+  "enchantment.ensorcellation.vorpal": "斩首",
+  "enchantment.ensorcellation.vorpal.desc": "概率造成高伤害斩首。",
+
+  "enchantment.ensorcellation.weeding": "除草",
+  "enchantment.ensorcellation.weeding.desc": "耕地时直接清除杂草。"
+}
