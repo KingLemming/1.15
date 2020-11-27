@@ -18,7 +18,7 @@
       "flag": "mod:thermal_cultivation",
       "type": "crafting",
       "recipe": "thermal:phytosoil",
-      "text": "Phyto-soil is dirt infused with phyto-gro. It increases the growth rate of plants grown on it, which can be further improved using a $(l:thermal:technology/devices/soilinfuser)phyto-soil infuser$(/l)."
+      "text": "Phyto-soil is dirt infused with phyto-gro. It increases the growth rate of plants grown on it, which can be further improved using a $(l:thermal:technology/devices/soil_infuser)phyto-soil infuser$(/l)."
     }
   ]
 }

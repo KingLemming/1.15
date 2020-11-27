@@ -22,11 +22,11 @@
 
       "A.title": "Latex",
       "A.item": "thermal:latex_bucket",
-      "A.text": "A thick, milky emulsion of polymers that can be $(l:thermal:technology/devices/treeextractor)harvested$(/l) from jungle trees. Used primarily to make rubber.",
+      "A.text": "A thick, milky emulsion of polymers that can be $(l:thermal:technology/devices/tree_extractor)harvested$(/l) from jungle trees. Used primarily to make rubber.",
 
       "B.title": "Resin",
       "B.item": "thermal:resin_bucket",
-      "B.text": "A thick, sticky fluid that can be $(l:thermal:technology/devices/treeextractor)harvested$(/l) from oak, birch, spruce, and acacia trees."
+      "B.text": "A thick, sticky fluid that can be $(l:thermal:technology/devices/tree_extractor)harvested$(/l) from oak, birch, spruce, and acacia trees."
     },
     {
       "flag": "|mod:thermal_expansion,mod:thermal_cultivation",
@@ -34,7 +34,7 @@
 
       "title": "Sap",
       "item": "thermal:sap_bucket",
-      "text": "A sugary fluid that once carried water and nutrients throughout a $(l:thermal:technology/devices/treeextractor)dark oak tree$(/l)."
+      "text": "A sugary fluid that once carried water and nutrients throughout a $(l:thermal:technology/devices/tree_extractor)dark oak tree$(/l)."
     },
     {
       "flag": "mod:thermal_expansion",
