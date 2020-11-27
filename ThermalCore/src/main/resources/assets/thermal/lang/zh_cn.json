@@ -1,0 +1,748 @@
+{
+  "_comment": "========================================================================================================",
+  "_comment": "热力基础",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.apatite_ore": "磷灰石矿石",
+  "block.thermal.cinnabar_ore": "朱砂矿石",
+  "block.thermal.niter_ore": "硝石矿石",
+  "block.thermal.sulfur_ore": "硫矿石",
+
+  "block.thermal.copper_ore": "铜矿石",
+  "block.thermal.lead_ore": "铅矿石",
+  "block.thermal.nickel_ore": "镍矿石",
+  "block.thermal.silver_ore": "银矿石",
+  "block.thermal.tin_ore": "锡矿石",
+
+  "block.thermal.ruby_ore": "红宝石矿石",
+  "block.thermal.sapphire_ore": "蓝宝石矿石",
+
+  "block.thermal.apatite_block": "磷灰石块",
+  "block.thermal.cinnabar_block": "朱砂块",
+  "block.thermal.niter_block": "硝石块",
+  "block.thermal.sulfur_block": "硫块",
+
+  "block.thermal.copper_block": "铜块",
+  "block.thermal.lead_block": "铅块",
+  "block.thermal.nickel_block": "镍块",
+  "block.thermal.silver_block": "银块",
+  "block.thermal.tin_block": "锡块",
+
+  "block.thermal.ruby_block": "红宝石块",
+  "block.thermal.sapphire_block": "蓝宝石块",
+
+  "block.thermal.bronze_block": "青铜块",
+  "block.thermal.constantan_block": "康铜块",
+  "block.thermal.electrum_block": "琥珀金块",
+  "block.thermal.invar_block": "因瓦合金块",
+
+  "block.thermal.enderium_block": "末影锭块",
+  "block.thermal.lumium_block": "流明块",
+  "block.thermal.signalum_block": "信素块",
+
+  "block.thermal.machine_frame": "机器框架",
+
+  "block.thermal.enderium_glass": "末影强化玻璃",
+  "block.thermal.lumium_glass": "流明强化玻璃",
+  "block.thermal.obsidian_glass": "强化玻璃",
+  "block.thermal.signalum_glass": "信素强化玻璃",
+
+  "block.thermal.white_rockwool": "白色石棉",
+  "block.thermal.orange_rockwool": "橙色石棉",
+  "block.thermal.magenta_rockwool": "品红色石棉",
+  "block.thermal.light_blue_rockwool": "淡蓝色石棉",
+  "block.thermal.yellow_rockwool": "黄色石棉",
+  "block.thermal.lime_rockwool": "淡绿色石棉",
+  "block.thermal.pink_rockwool": "粉色石棉",
+  "block.thermal.gray_rockwool": "灰色石棉",
+  "block.thermal.light_gray_rockwool": "淡灰色石棉",
+  "block.thermal.cyan_rockwool": "青色石棉",
+  "block.thermal.purple_rockwool": "紫色石棉",
+  "block.thermal.blue_rockwool": "蓝色石棉",
+  "block.thermal.brown_rockwool": "棕色石棉",
+  "block.thermal.green_rockwool": "绿色石棉",
+  "block.thermal.red_rockwool": "红色石棉",
+  "block.thermal.black_rockwool": "黑色石棉",
+
+  "block.thermal.sawdust_block": "锯末块",
+  "block.thermal.rosin_block": "树脂块",
+  "block.thermal.rubber_block": "橡胶块",
+  "block.thermal.cured_rubber_block": "硫化橡胶块",
+  "block.thermal.slag_block": "矿渣块",
+  "block.thermal.rich_slag_block": "富集矿渣块",
+
+  "death.attack.basalz": "%1$s的整个世界都被摇晃了！",
+  "death.attack.blitz": "%1$s的死亡之灯被悲惨地点亮了！",
+  "death.attack.blizz": "%1$s遭遇了不幸的命运！",
+
+  "entity.thermal.basalz": "岩石人",
+  "entity.thermal.blitz": "闪电人",
+  "entity.thermal.blizz": "暴雪人",
+
+  "fluid.thermal.latex": "乳胶",
+  "fluid.thermal.resin": "树脂",
+  "fluid.thermal.sap": "植物汁",
+  "fluid.thermal.syrup": "糖浆",
+  "fluid.thermal.tree_oil": "树油",
+
+  "info.thermal.catalysts": "催化剂",
+  "info.thermal.energy_mod": "能量催化剂",
+  "info.thermal.primary_mod": "主催化剂",
+  "info.thermal.secondary_mod": "副催化剂",
+  "info.thermal.use_chance": "使用几率",
+
+  "info.thermal.detonator.mode.0": "模式：准备",
+  "info.thermal.detonator.mode.1": "模式：起爆",
+  "info.thermal.detonator.primed": "准备:",
+  "info.thermal.detonator.use.0": "对TNT使用，使其准备好爆炸。",
+  "info.thermal.detonator.use.1": "使用以引爆准备好的TNT。",
+  "info.thermal.detonator.use.sneak": "潜行使用以清除配置。",
+
+  "info.thermal.redprint.contents": "内容:",
+  "info.thermal.redprint.unknown": "未知数据",
+  "info.thermal.redprint.data.RSControl": "红石控制",
+  "info.thermal.redprint.data.Sides": "侧面配置",
+  "info.thermal.redprint.data.Xfer": "传输控制",
+
+  "item.thermal.redstone_servo": "红石伺服器",
+  "item.thermal.rf_coil": "红石通量线圈",
+
+  "item.thermal.latex_bucket": "乳胶桶",
+  "item.thermal.resin_bucket": "树脂桶",
+  "item.thermal.sap_bucket": "植物汁桶",
+  "item.thermal.syrup_bucket": "糖浆桶",
+  "item.thermal.tree_oil_bucket": "树油桶",
+
+  "itemGroup.thermal.blocks": "热力系列：方块",
+  "itemGroup.thermal.foods": "热力系列：作物与食物",
+  "itemGroup.thermal.items": "热力系列：物品",
+  "itemGroup.thermal.resources": "热力系列：资源",
+  "itemGroup.thermal.tools": "热力系列：工具",
+
+  "item.thermal.apatite": "磷灰石",
+  "item.thermal.cinnabar": "朱砂",
+  "item.thermal.niter": "硝石",
+  "item.thermal.sulfur": "硫",
+
+  "item.thermal.cured_rubber": "硫化橡胶",
+  "item.thermal.rich_slag": "富集矿渣",
+  "item.thermal.rosin": "树脂",
+  "item.thermal.rubber": "橡胶",
+  "item.thermal.slag": "矿渣",
+  "item.thermal.sawdust": "锯末",
+
+  "item.thermal.basalz_powder": "地岩粉",
+  "item.thermal.basalz_rod": "地岩碎片",
+  "item.thermal.basalz_spawn_egg": "生成 岩石人",
+  "item.thermal.blitz_powder": "闪电粉",
+  "item.thermal.blitz_rod": "闪电宝珠",
+  "item.thermal.blitz_spawn_egg": "生成 闪电人",
+  "item.thermal.blizz_powder": "暴雪粉",
+  "item.thermal.blizz_rod": "暴雪魔方",
+  "item.thermal.blizz_spawn_egg": "生成 暴雪人",
+
+  "item.thermal.detonator": "远程引爆器",
+  "item.thermal.earth_charge": "地岩弹",
+  "item.thermal.ice_charge": "暴雪弹",
+  "item.thermal.lightning_charge": "闪电弹",
+  "item.thermal.lock": "信素安全锁",
+  "item.thermal.lock.desc": "使用以保护方块。",
+  "item.thermal.phytogro": "阳光充能堆肥",
+  "item.thermal.phytogro.desc": "超级强效的肥料。",
+  "item.thermal.redprint": "红图",
+  "item.thermal.redprint.desc": "在方块间拷贝和传输设定。",
+  "item.thermal.wrench": "新月锤",
+  "item.thermal.wrench.desc": "旋转方块。也就是扳手。",
+
+  "item.thermal.copper_coin": "铜硬币",
+  "item.thermal.copper_dust": "铜粉",
+  "item.thermal.copper_gear": "铜齿轮",
+  "item.thermal.copper_ingot": "铜锭",
+  "item.thermal.copper_nugget": "铜粒",
+  "item.thermal.copper_plate": "铜板",
+
+  "item.thermal.lead_coin": "铅硬币",
+  "item.thermal.lead_dust": "铅粉",
+  "item.thermal.lead_gear": "铅齿轮",
+  "item.thermal.lead_ingot": "铅锭",
+  "item.thermal.lead_nugget": "铅粒",
+  "item.thermal.lead_plate": "铅板",
+
+  "item.thermal.nickel_coin": "镍硬币",
+  "item.thermal.nickel_dust": "镍粉",
+  "item.thermal.nickel_gear": "镍齿轮",
+  "item.thermal.nickel_ingot": "镍锭",
+  "item.thermal.nickel_nugget": "镍粒",
+  "item.thermal.nickel_plate": "镍板",
+
+  "item.thermal.silver_coin": "银硬币",
+  "item.thermal.silver_dust": "银粉",
+  "item.thermal.silver_gear": "银齿轮",
+  "item.thermal.silver_ingot": "银锭",
+  "item.thermal.silver_nugget": "银粒",
+  "item.thermal.silver_plate": "银板",
+
+  "item.thermal.tin_coin": "锡硬币",
+  "item.thermal.tin_dust": "锡粉",
+  "item.thermal.tin_gear": "锡齿轮",
+  "item.thermal.tin_ingot": "锡锭",
+  "item.thermal.tin_nugget": "锡粒",
+  "item.thermal.tin_plate": "锡板",
+
+  "item.thermal.ruby": "红宝石",
+  "item.thermal.ruby_dust": "红宝石粉",
+  "item.thermal.ruby_gear": "红宝石齿轮",
+  "item.thermal.ruby_nugget": "红宝石粒",
+  "item.thermal.ruby_plate": "红宝石板",
+
+  "item.thermal.sapphire": "蓝宝石",
+  "item.thermal.sapphire_dust": "蓝宝石粉",
+  "item.thermal.sapphire_gear": "蓝宝石齿轮",
+  "item.thermal.sapphire_nugget": "蓝宝石粒",
+  "item.thermal.sapphire_plate": "蓝宝石板",
+
+  "item.thermal.bronze_coin": "青铜硬币",
+  "item.thermal.bronze_dust": "青铜粉",
+  "item.thermal.bronze_gear": "青铜齿轮",
+  "item.thermal.bronze_ingot": "青铜锭",
+  "item.thermal.bronze_nugget": "青铜粒",
+  "item.thermal.bronze_plate": "青铜板",
+
+  "item.thermal.constantan_coin": "康铜硬币",
+  "item.thermal.constantan_dust": "康铜粉",
+  "item.thermal.constantan_gear": "康铜齿轮",
+  "item.thermal.constantan_ingot": "康铜锭",
+  "item.thermal.constantan_nugget": "康铜粒",
+  "item.thermal.constantan_plate": "康铜板",
+
+  "item.thermal.electrum_coin": "琥珀金硬币",
+  "item.thermal.electrum_dust": "琥珀金粉",
+  "item.thermal.electrum_gear": "琥珀金齿轮",
+  "item.thermal.electrum_ingot": "琥珀金锭",
+  "item.thermal.electrum_nugget": "琥珀金粒",
+  "item.thermal.electrum_plate": "琥珀金板",
+
+  "item.thermal.invar_coin": "因瓦合金硬币",
+  "item.thermal.invar_dust": "因瓦合金粉",
+  "item.thermal.invar_gear": "因瓦合金齿轮",
+  "item.thermal.invar_ingot": "因瓦合金锭",
+  "item.thermal.invar_nugget": "因瓦合金粒",
+  "item.thermal.invar_plate": "因瓦合金板",
+
+  "item.thermal.enderium_coin": "末影硬币",
+  "item.thermal.enderium_dust": "末影锭粉",
+  "item.thermal.enderium_gear": "末影齿轮",
+  "item.thermal.enderium_ingot": "末影锭",
+  "item.thermal.enderium_nugget": "末影粒",
+  "item.thermal.enderium_plate": "末影板",
+
+  "item.thermal.lumium_coin": "流明硬币",
+  "item.thermal.lumium_dust": "流明粉",
+  "item.thermal.lumium_gear": "流明齿轮",
+  "item.thermal.lumium_ingot": "流明锭",
+  "item.thermal.lumium_nugget": "流明粒",
+  "item.thermal.lumium_plate": "流明板",
+
+  "item.thermal.signalum_coin": "信素硬币",
+  "item.thermal.signalum_dust": "信素粉",
+  "item.thermal.signalum_gear": "信素齿轮",
+  "item.thermal.signalum_ingot": "信素锭",
+  "item.thermal.signalum_nugget": "信素粒",
+  "item.thermal.signalum_plate": "信素板",
+
+  "item.thermal.redstone_fluid_bucket": "不稳定熔融红石桶",
+  "item.thermal.glowstone_fluid_bucket": "充能熔融萤石桶",
+  "item.thermal.ender_fluid_bucket": "谐振熔融末影珍珠桶",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力基础-扩展",
+  "_comment": "========================================================================================================",
+
+  "info.thermal.augment.attr.AEDpt": "最大深度",
+  "info.thermal.augment.attr.AERad": "最大范围",
+  "info.thermal.augment.attr.AERch": "最大距离",
+
+  "info.thermal.augment.attr.BaseMod": "比例因素",
+
+  "info.thermal.augment.attr.DynProd": "最大输出",
+  "info.thermal.augment.attr.DynEff": "燃料能量",
+
+  "info.thermal.augment.attr.FlMax": "储罐容量",
+
+  "info.thermal.augment.attr.MchCat": "催化剂使用",
+  "info.thermal.augment.attr.MchEn": "能量消耗",
+  "info.thermal.augment.attr.MchPri": "主产物",
+  "info.thermal.augment.attr.MchPwr": "最大能量",
+  "info.thermal.augment.attr.MchSec": "副产物",
+  "info.thermal.augment.attr.MchXp": "经验催化剂",
+
+  "info.thermal.augment.attr.PotAmp": "状态效果等级",
+  "info.thermal.augment.attr.PotDur": "状态效果持续时间",
+
+  "info.thermal.augment.attr.RFMax": "RF容量",
+  "info.thermal.augment.attr.RFXfer": "RF传导",
+
+  "info.thermal.augment.type.AEAug": "范围效果",
+  "info.thermal.augment.type.DynAug": "能源炉",
+  "info.thermal.augment.type.FlAug": "流体",
+  "info.thermal.augment.type.MchAug": "机器",
+  "info.thermal.augment.type.PotAug": "药水",
+  "info.thermal.augment.type.RFAug": "RF",
+  "info.thermal.augment.type.UpgAug": "升级",
+
+  "info.thermal.augment.maximized": "不要堆叠，已达到最大使用数量。",
+
+  "item.thermal.area_depth_augment": "工具扩展：深度升级",
+  "item.thermal.area_radius_augment": "工具扩展：范围升级",
+
+  "item.thermal.dynamo_ender_coil_augment": "能源炉扩展：谐振末影调频",
+  "item.thermal.dynamo_force_coil_augment": "能源炉扩展：光线投射阵列",
+  "item.thermal.dynamo_steam_coil_augment": "能源炉扩展：蒸汽锅炉转变",
+
+  "item.thermal.dynamo_fuel_augment": "能源炉扩展：多重循环提取",
+  "item.thermal.dynamo_output_augment": "能源炉扩展：辅助燃烧舱室",
+
+  "item.thermal.fluid_tank_augment": "储罐扩展：容量增幅筑成",
+
+  "item.thermal.machine_catalyst_augment": "机器扩展：催化再生舱室",
+  "item.thermal.machine_cycle_augment": "机器扩展：自动循环处理",
+  "item.thermal.machine_cycle_augment.desc": "工作完成时，产物会自动放回输入槽。",
+  "item.thermal.machine_output_augment": "机器扩展：辅助筛选装置",
+  "item.thermal.machine_speed_augment": "机器扩展：强化能量线圈",
+
+  "item.thermal.potion_amplifier_augment": "药水扩展：强效合成建构",
+  "item.thermal.potion_duration_augment": "药水扩展：长效机理解构",
+
+  "item.thermal.rf_coil_augment": "RF线圈扩展：通量调控增幅",
+  "item.thermal.rf_coil_storage_augment": "RF线圈扩展：储量稳定装置",
+  "item.thermal.rf_coil_xfer_augment": "RF线圈扩展：高频变速模块",
+
+  "item.thermal.upgrade_augment_1": "强化升级组件",
+  "item.thermal.upgrade_augment_1.desc": "小幅增强基础属性并强化扩展。",
+  "item.thermal.upgrade_augment_2": "硬化升级组件",
+  "item.thermal.upgrade_augment_2.desc": "增强基础属性并强化扩展。",
+  "item.thermal.upgrade_augment_3": "谐振升级组件",
+  "item.thermal.upgrade_augment_3.desc": "大幅增强基础属性并强化扩展。",
+
+  "item.thermal.upgrade_augment_4": "谐振+升级组件",
+  "item.thermal.upgrade_augment_4.desc": "超级增强基础属性并强化扩展。",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力基础-扩展支持",
+  "_comment": "这些在热力基础中注册，但并不是默认就有，而是别的模组添加的。",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.device_hive_extractor": "蜂巢提取器",
+  "block.thermal.device_tree_extractor": "树木提取器",
+
+  "block.thermal.tinker_bench": "工匠工作台",
+
+  "info.thermal.device_hive_extractor.0": "从蜂巢中小心地提取产物。",
+  "info.thermal.device_hive_extractor.1": "对蜜蜂和养蜂人都很好！",
+  "info.thermal.device_hive_extractor.2": "嗡嗡嗡。",
+
+  "info.thermal.device_tree_extractor.0": "从临近的树木中提取液体。",
+  "info.thermal.device_tree_extractor.1": "使用堆肥以增加产出。",
+  "info.thermal.device_tree_extractor.2": "请把斧子放下来。",
+
+  "info.thermal.tinker_bench.0": "多功能工作台，可以用于扩展、充能、和装填。",
+  "info.thermal.tinker_bench.1": "可以填充物品各自的槽。",
+  "info.thermal.tinker_bench.2": "工作开始！",
+
+  "info.thermal.tinker_bench_mode_augment": "模式：扩展",
+  "info.thermal.tinker_bench_mode_charge": "模式：充能/装填",
+
+  "item.thermal.beekeeper_fabric": "养蜂人编织纤维",
+  "item.thermal.beekeeper_helmet": "养蜂人兜帽",
+  "item.thermal.beekeeper_chestplate": "养蜂人夹克",
+  "item.thermal.beekeeper_leggings": "养蜂人裤子",
+  "item.thermal.beekeeper_boots": "养蜂人靴子",
+
+  "item.thermal.diving_fabric": "海洋编织纤维",
+  "item.thermal.diving_helmet": "潜水头盔",
+  "item.thermal.diving_chestplate": "潜水服",
+  "item.thermal.diving_leggings": "潜水裤",
+  "item.thermal.diving_boots": "潜水脚蹼",
+
+  "item.thermal.hazmat_fabric": "防化编织纤维",
+  "item.thermal.hazmat_helmet": "防化帽",
+  "item.thermal.hazmat_chestplate": "防化服",
+  "item.thermal.hazmat_leggings": "防化裤",
+  "item.thermal.hazmat_boots": "防化靴",
+
+  "item.thermal.drill_head": "钻头",
+  "item.thermal.laser_diode": "镭射二极管",
+  "item.thermal.saw_blade": "锯条",
+
+  "item.thermal.rf_potato": "马铃薯RF电容",
+
+  "item.thermal.phyto_grenade": "阳光充能手榴弹",
+  "item.thermal.phyto_grenade.desc": "范围更大的可投掷阳光堆肥弹。",
+
+  "item.thermal.explosive_grenade": "手榴弹",
+  "item.thermal.explosive_grenade.desc": "小的，可投掷的TNT。",
+  "item.thermal.earth_grenade": "地岩手榴弹",
+  "item.thermal.earth_grenade.desc": "破坏岩石和土壤。用来挖矿很方便。",
+  "item.thermal.fire_grenade": "炽焱手榴弹",
+  "item.thermal.fire_grenade.desc": "点燃一片区域。",
+  "item.thermal.ice_grenade": "凛冰手榴弹",
+  "item.thermal.ice_grenade.desc": "冰冻一片区域。",
+  "item.thermal.lightning_grenade": "风暴手榴弹",
+  "item.thermal.lightning_grenade.desc": "震击一片区域。可能带来雷电。",
+
+  "item.thermal.nuke_grenade": "核手榴弹",
+  "item.thermal.nuke_grenade.desc": "别扔得很近。",
+
+  "block.thermal.phyto_tnt": "阳光充能TNT",
+  "block.thermal.phyto_tnt.desc": "大范围散布阳光堆肥。不可投掷。",
+
+  "block.thermal.earth_tnt": "地岩TNT",
+  "block.thermal.earth_tnt.desc": "破坏岩石和土壤。用来挖矿很方便。",
+  "block.thermal.fire_tnt": "炽焱TNT",
+  "block.thermal.fire_tnt.desc": "点燃一大片区域。",
+  "block.thermal.ice_tnt": "凛冰TNT",
+  "block.thermal.ice_tnt.desc": "冰冻一大片区域。",
+  "block.thermal.lightning_tnt": "风暴TNT",
+  "block.thermal.lightning_tnt.desc": "震击一片区域。很可能带来雷电。",
+
+  "block.thermal.nuke_tnt": "核弹",
+  "block.thermal.nuke_tnt.desc": "不要站得太近。",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力基础-原版",
+  "_comment": "改变了一些原版内容。",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.bamboo_block": "竹块",
+  "block.thermal.charcoal_block": "木炭块",
+  "block.thermal.gunpowder_block": "火药块",
+  "block.thermal.sugar_cane_block": "甘蔗块",
+
+  "block.thermal.apple_block": "苹果箱",
+  "block.thermal.beetroot_block": "甜菜箱",
+  "block.thermal.carrot_block": "胡萝卜箱",
+  "block.thermal.potato_block": "马铃薯箱",
+
+  "item.thermal.diamond_coin": "钻石硬币",
+  "item.thermal.diamond_dust": "钻石粉",
+  "item.thermal.diamond_gear": "钻石齿轮",
+  "item.thermal.diamond_nugget": "钻石粒",
+  "item.thermal.diamond_plate": "钻石板",
+
+  "item.thermal.emerald_coin": "绿宝石硬币",
+  "item.thermal.emerald_dust": "绿宝石粉",
+  "item.thermal.emerald_gear": "绿宝石齿轮",
+  "item.thermal.emerald_nugget": "绿宝石粒",
+  "item.thermal.emerald_plate": "绿宝石板",
+
+  "item.thermal.ender_pearl_dust": "末影珍珠粉",
+
+  "item.thermal.gold_coin": "金硬币",
+  "item.thermal.gold_dust": "金粉",
+  "item.thermal.gold_gear": "金齿轮",
+  "item.thermal.gold_plate": "金板",
+
+  "item.thermal.lapis_coin": "青金石硬币",
+  "item.thermal.lapis_dust": "青金石粉",
+  "item.thermal.lapis_gear": "青金石齿轮",
+  "item.thermal.lapis_nugget": "青金石粒",
+  "item.thermal.lapis_plate": "青金石板",
+
+  "item.thermal.iron_coin": "铁硬币",
+  "item.thermal.iron_dust": "铁粉",
+  "item.thermal.iron_gear": "铁齿轮",
+  "item.thermal.iron_plate": "铁板",
+
+  "item.thermal.quartz_coin": "石英硬币",
+  "item.thermal.quartz_dust": "石英粉",
+  "item.thermal.quartz_gear": "石英齿轮",
+  "item.thermal.quartz_nugget": "石英粒",
+  "item.thermal.quartz_plate": "石英板",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力原子",
+  "_comment": "========================================================================================================",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力种植",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.device_soil_infuser": "阳光土壤充能机",
+
+  "block.thermal.frost_melon": "冰西瓜",
+  "block.thermal.phytosoil": "阳光充能土壤",
+  "block.thermal.phytosoil_tilled": "阳光充能耕地",
+
+  "block.thermal.chocolate_cake": "巧克力蛋糕",
+  "block.thermal.spice_cake": "香料蛋糕",
+
+  "block.thermal.barley_block": "大麦捆",
+  "block.thermal.bell_pepper_block": "灯笼椒箱",
+  "block.thermal.coffee_block": "咖啡袋",
+  "block.thermal.corn_block": "玉米箱",
+  "block.thermal.eggplant_block": "茄子箱",
+  "block.thermal.green_bean_block": "绿豆箱",
+  "block.thermal.hops_block": "啤酒花箱",
+  "block.thermal.onion_block": "洋葱箱",
+  "block.thermal.peanut_block": "花生袋",
+  "block.thermal.radish_block": "水萝卜箱",
+  "block.thermal.rice_block": "大米袋",
+  "block.thermal.sadiroot_block": "根菜箱",
+  "block.thermal.spinach_block": "菠菜箱",
+  "block.thermal.strawberry_block": "草莓箱",
+  "block.thermal.tea_block": "茶叶袋",
+  "block.thermal.tomato_block": "番茄箱",
+
+  "info.thermal.device_soil_infuser.0": "用RF为临近的阳光土壤充能。",
+  "info.thermal.device_soil_infuser.1": "可以影响自身上下一格",
+  "info.thermal.device_soil_infuser.2": "对作物安全，真的！",
+
+  "item.thermal.barley": "大麦",
+  "item.thermal.barley_seeds": "大麦种子",
+  "item.thermal.bell_pepper": "灯笼椒",
+  "item.thermal.bell_pepper_seeds": "灯笼椒种子",
+  "item.thermal.coffee": "咖啡豆",
+  "item.thermal.coffee_seeds": "咖啡种子",
+  "item.thermal.corn": "玉米",
+  "item.thermal.corn_seeds": "玉米种子",
+  "item.thermal.dough": "面团",
+  "item.thermal.eggplant": "茄子",
+  "item.thermal.eggplant_seeds": "茄子种子",
+  "item.thermal.flour": "面粉",
+  "item.thermal.frost_melon_seeds": "冰西瓜种子",
+  "item.thermal.frost_melon_slice": "冰西瓜片",
+  "item.thermal.green_bean": "绿豆",
+  "item.thermal.green_bean_seeds": "绿豆种子",
+  "item.thermal.hops": "啤酒花",
+  "item.thermal.hops_seeds": "啤酒花种子",
+  "item.thermal.onion": "洋葱",
+  "item.thermal.onion_seeds": "洋葱种子",
+  "item.thermal.peanut": "花生",
+  "item.thermal.peanut_seeds": "花生种子",
+  "item.thermal.radish": "水萝卜",
+  "item.thermal.radish_seeds": "水萝卜种子",
+  "item.thermal.rice": "大米",
+  "item.thermal.rice_seeds": "大米种子",
+  "item.thermal.sadiroot": "根菜",
+  "item.thermal.sadiroot_seeds": "根菜种子",
+  "item.thermal.spinach": "菠菜",
+  "item.thermal.spinach_seeds": "菠菜种子",
+  "item.thermal.strawberry": "草莓",
+  "item.thermal.strawberry_seeds": "草莓种子",
+  "item.thermal.tea": "茶叶",
+  "item.thermal.tea_seeds": "茶叶种子",
+  "item.thermal.tomato": "番茄",
+  "item.thermal.tomato_seeds": "番茄种子",
+
+  "item.thermal.watering_can": "洒水壶",
+  "item.thermal.watering_can.desc": "用水加快作物生长。",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热动力学",
+  "_comment": "快更啊，没有管道怎么玩吧！",
+  "_comment": "========================================================================================================",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力必备",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.basic_pulverizer": "蒸汽磨粉机",
+  "block.thermal.basic_sawmill": "蒸汽锯木机",
+
+  "info.thermal.basic_pulverizer.0": "将物品粉碎为粉末形式。",
+  "info.thermal.basic_pulverizer.1": "用来处理矿物和粉碎物品很有用。",
+  "info.thermal.basic_pulverizer.2": "蒸汽动力-需要水和燃料。",
+
+  "info.thermal.basic_sawmill.0": "将木头和木质物品切成木板。",
+  "info.thermal.basic_sawmill.1": "用来最大化利用树木很有用。",
+  "info.thermal.basic_sawmill.2": "蒸汽动力-需要水和燃料。",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力膨胀",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.device_fluid_buffer": "流体缓冲器",
+  "block.thermal.device_item_buffer": "物品缓冲器",
+  "block.thermal.device_rock_gen": "造石机",
+  "block.thermal.device_water_gen": "蓄水器",
+
+  "block.thermal.dynamo_compression": "压缩能源炉",
+  "block.thermal.dynamo_lapidary": "宝石能源炉",
+  "block.thermal.dynamo_magmatic": "地热能源炉",
+  "block.thermal.dynamo_numismatic": "通货能源炉",
+  "block.thermal.dynamo_stirling": "燃烧能源炉",
+
+  "block.thermal.machine_bottler": "流体转置机",
+  "block.thermal.machine_brewer": "炼金酿造机",
+  "block.thermal.machine_centrifuge": "离心分离机",
+  "block.thermal.machine_chiller": "冷冻机",
+  "block.thermal.machine_crafter": "循环装配台",
+  "block.thermal.machine_crucible": "熔岩炉",
+  "block.thermal.machine_furnace": "红石炉",
+  "block.thermal.machine_insolator": "有机灌注机",
+  "block.thermal.machine_press": "多功能压缩机",
+  "block.thermal.machine_pulverizer": "磨粉机",
+  "block.thermal.machine_refinery": "分馏精炼机",
+  "block.thermal.machine_sawmill": "锯木机",
+  "block.thermal.machine_smelter": "感应炉",
+
+  "info.thermal.device_fluid_buffer.0": "存储和转运流体。可以自动提取。",
+  "info.thermal.device_fluid_buffer.1": "就像给流体准备的漏斗！",
+  "info.thermal.device_fluid_buffer.2": "按住Shift或Ctrl来微调体积。",
+
+  "info.thermal.device_item_buffer.0": "存储和转运物品。可以自动提取。",
+  "info.thermal.device_item_buffer.1": "比漏斗好，真的！",
+  "info.thermal.device_item_buffer.2": "按住Shift或Ctrl来微调数量。",
+
+  "info.thermal.dynamo.throttle": "输出由使用节流。",
+
+  "info.thermal.dynamo_compression.0": "使用易燃流体生产RF。",
+
+  "info.thermal.dynamo_lapidary.0": "使用宝石生产RF！",
+  "info.thermal.dynamo_lapidary.1": "很可能是一个通往有痴迷于火花的地精的另一个维度的入口。",
+  "info.thermal.dynamo_lapidary.2": "毕竟宝石不就是漂亮的石头嘛。",
+
+  "info.thermal.dynamo_magmatic.0": "使用高温流体产生RF。",
+  "info.thermal.dynamo_magmatic.1": "之后流体会直接消耗。",
+
+  "info.thermal.dynamo_numismatic.0": "使用经济通货生产RF。",
+  "info.thermal.dynamo_numismatic.1": "很可能是通往纯粹贪婪的另一个维度的入口。",
+  "info.thermal.dynamo_numismatic.2": "别多想，放硬币就好了。",
+
+  "info.thermal.dynamo_stirling.0": "使用固体燃料产生RF。",
+  "info.thermal.dynamo_stirling.1": "在熔炉中能使用的大多数燃料也可以在这里使用。",
+
+  "info.thermal.machine_bottler.0": "使用流体装填容器。",
+  "info.thermal.machine_bottler.1": "这是饮用某些饮料所必需的。",
+  "info.thermal.machine_bottler.2": "提提神！",
+
+  "info.thermal.machine_brewer.0": "酿造药水和混合流体。",
+  "info.thermal.machine_brewer.1": "你可能会需要一排这个机器。",
+  "info.thermal.machine_brewer.2": "不使用瓶子。",
+
+  "info.thermal.machine_centrifuge.0": "将物品离心分离。",
+  "info.thermal.machine_centrifuge.1": "有的物品可以离心出液体。",
+  "info.thermal.machine_centrifuge.2": "轮盘赌！",
+
+  "info.thermal.machine_chiller.0": "迅速冷冻物品和液体。",
+  "info.thermal.machine_chiller.1": "可以使用成型模具来指定输出。",
+  "info.thermal.machine_chiller.2": "好冷！",
+
+  "info.thermal.machine_crafter.0": "将物品放入网格中来设置合成表。",
+  "info.thermal.machine_crafter.1": "按下确认按钮就可以离开了！",
+  "info.thermal.machine_crafter.2": "不是所有合成表都是可用的。",
+
+  "info.thermal.machine_crucible.0": "在高温下将固体物品熔融为流体。",
+  "info.thermal.machine_crucible.1": "用于制作高级金属块很有用。",
+  "info.thermal.machine_crucible.2": "放得离小孩和动物远一点。",
+
+  "info.thermal.machine_furnace.0": "使用RF熔炼物品。",
+  "info.thermal.machine_furnace.1": "烧食物只需要很少的能量。",
+  "info.thermal.machine_furnace.2": "哦，喏，喏。",
+
+  "info.thermal.machine_insolator.0": "使用RF将营养物质和光灌注入作物。",
+  "info.thermal.machine_insolator.1": "不完全是\"有机\"农业。",
+  "info.thermal.machine_insolator.2": "光辉熠熠！",
+
+  "info.thermal.machine_press.0": "挤压变形物品。",
+  "info.thermal.machine_press.1": "可以使用制造加工模具来指定输出。",
+  "info.thermal.machine_press.2": "多才多艺，令人满意！",
+
+  "info.thermal.machine_pulverizer.0": "将物品粉碎为粉末形式。",
+  "info.thermal.machine_pulverizer.1": "用来处理矿物和粉碎物品很有用。",
+  "info.thermal.machine_pulverizer.2": "过程通常是不可逆的。",
+
+  "info.thermal.machine_refinery.0": "将流体分馏为其它产品。",
+  "info.thermal.machine_refinery.1": "有的流体会留下固体产物。",
+  "info.thermal.machine_refinery.2": "产品可以是能饮用的，也可以不是。",
+
+  "info.thermal.machine_sawmill.0": "将木头和木质物品切成木板。",
+  "info.thermal.machine_sawmill.1": "用来最大化利用树木很有用。",
+  "info.thermal.machine_sawmill.2": "小心不要切到手。",
+
+  "item.thermal.chiller_ball_cast": "球型模具",
+
+  "item.thermal.press_coin_die": "硬币模具",
+  "item.thermal.press_gear_die": "齿轮模具",
+
+  "_comment": "========================================================================================================",
+  "_comment": "T热力地平线",
+  "_comment": "========================================================================================================",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力创新",
+  "_comment": "========================================================================================================",
+
+  "info.thermal.capacitor.mode.0": "模式：为装备充能",
+  "info.thermal.capacitor.mode.1": "模式：为背包物品充能",
+  "info.thermal.capacitor.mode.2": "模式：为所有物品充能",
+
+  "info.thermal.magnet.mode.0": "自动吸引禁用",
+  "info.thermal.magnet.mode.1": "自动吸引启用",
+  "info.thermal.magnet.use": "用于吸引目标方位的物品。",
+  "info.thermal.magnet.use.sneak": "潜行使用以切换模式。",
+
+  "info.thermal.infuser.mode.0": "自动注射禁用",
+  "info.thermal.infuser.mode.1": "自动注射启用",
+  "info.thermal.infuser.use": "对着生物使用以注射。",
+  "info.thermal.infuser.use.sneak": "潜行使用以注射自身。",
+
+  "info.thermal.quiver.mode.0": "自动取箭禁用",
+  "info.thermal.quiver.mode.1": "自动取箭启用",
+  "info.thermal.quiver.use": "使用以将箭装入箭袋。",
+  "info.thermal.quiver.use.sneak": "潜行使用以移出箭。",
+
+  "item.thermal.flux_capacitor": "RF电容",
+  "item.thermal.flux_capacitor.desc": "存储RF能量，用于充能物品。",
+
+  "item.thermal.flux_drill": "RF钻头",
+  "item.thermal.flux_drill.desc": "使用RF能量破坏方块。",
+
+  "item.thermal.flux_magnet": "RF磁铁",
+  "item.thermal.flux_magnet.desc": "使用RF能量吸引物品。",
+
+  "item.thermal.flux_saw": "RF锯子",
+  "item.thermal.flux_saw.desc": "使用RF能量破坏方块。",
+
+  "item.thermal.potion_infuser": "药水注射器",
+  "item.thermal.potion_infuser.desc": "存储和注射药水。",
+
+  "item.thermal.potion_quiver": "药水箭袋",
+  "item.thermal.potion_quiver.desc": "用药水灌注箭。",
+
+  "_comment": "========================================================================================================",
+  "_comment": "热力运输",
+  "_comment": "========================================================================================================",
+
+  "block.thermal.crossover_rail": "十字铁轨",
+
+  "block.thermal.lumium_activator_rail": "流明激活铁轨",
+  "block.thermal.lumium_crossover_rail": "流明十字铁轨",
+  "block.thermal.lumium_detector_rail": "流明探测铁轨",
+  "block.thermal.lumium_powered_rail": "流明充能铁轨",
+  "block.thermal.lumium_rail": "流明铁轨",
+
+  "block.thermal.prismarine_activator_rail": "海晶石激活铁轨",
+  "block.thermal.prismarine_crossover_rail": "海晶石十字铁轨",
+  "block.thermal.prismarine_detector_rail": "海晶石探测铁轨",
+  "block.thermal.prismarine_powered_rail": "海晶石充能铁轨",
+  "block.thermal.prismarine_rail": "海晶石铁轨",
+
+  "item.thermal.underwater_minecart": "水下矿车",
+
+  "item.thermal.phyto_tnt_minecart": "阳光充能TNT矿车",
+
+  "item.thermal.earth_tnt_minecart": "地岩TNT矿车",
+  "item.thermal.fire_tnt_minecart": "炽焱TNT矿车",
+  "item.thermal.ice_tnt_minecart": "凛冰TNT矿车",
+  "item.thermal.lightning_tnt_minecart": "风暴TNT矿车",
+
+  "item.thermal.nuke_tnt_minecart": "核弹矿车",
+  
+  "_comment": "========================================================================================================",
+  "_comment": "Thermalpedia",
+  "_comment": "========================================================================================================",
+  
+  "thermal.thermalpedia.name": "热力百科全书",
+  "thermal.thermalpedia.landing_text": "欢迎来到$(e)热力系列$()的百科全书。$(br)目前，1.15.2的热力系列还在开发中。$(br2)翻译者：$(6)Fodoth_jinzi89$()"
+}
