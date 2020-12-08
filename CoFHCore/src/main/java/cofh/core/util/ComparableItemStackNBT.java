@@ -54,7 +54,7 @@ public class ComparableItemStackNBT extends ComparableItemStack {
     @Override
     public int hashCode() {
 
-        return tag != null ? 17 + tag.hashCode() * 31 + getId() : getId();
+        return tag != null ? tag.hashCode() * 31 + super.hashCode() : super.hashCode();
     }
 
 }

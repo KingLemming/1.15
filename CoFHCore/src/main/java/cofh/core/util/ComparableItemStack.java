@@ -19,7 +19,6 @@ public class ComparableItemStack {
     public ComparableItemStack(ItemStack stack) {
 
         this.item = stack.getItem();
-
         if (!stack.isEmpty()) {
             stackSize = stack.getCount();
         }
@@ -31,10 +30,10 @@ public class ComparableItemStack {
         this.stackSize = stackSize;
     }
 
-    public ComparableItemStack(ComparableItemStack stack) {
+    public ComparableItemStack(ComparableItemStack other) {
 
-        this.item = stack.item;
-        this.stackSize = stack.stackSize;
+        this.item = other.item;
+        this.stackSize = other.stackSize;
     }
 
     public boolean isEqual(ComparableItemStack other) {
@@ -72,12 +71,6 @@ public class ComparableItemStack {
     }
 
     @Override
-    public ComparableItemStack clone() {
-
-        return new ComparableItemStack(this);
-    }
-
-    @Override
     public boolean equals(Object o) {
 
         return o instanceof ComparableItemStack && isItemEqual((ComparableItemStack) o);
@@ -86,7 +79,7 @@ public class ComparableItemStack {
     @Override
     public int hashCode() {
 
-        return getId();
+        return item.hashCode();
     }
 
     @Override

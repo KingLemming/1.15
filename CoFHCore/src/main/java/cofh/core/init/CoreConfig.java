@@ -118,7 +118,7 @@ public class CoreConfig {
         CLIENT_CONFIG.push("Render");
 
         clientEnableAreaEffectBlockBreaking = CLIENT_CONFIG
-                .comment("If TRUE, Area Effect Block breaking will be rendered. Disable if you are using buggy mods such as OptiFine which apparently with this. Please also report the issue to OptiFine.")
+                .comment("If TRUE, Area Effect Block breaking will be rendered. Disable if you are using buggy mods such as OptiFine which apparently create issues with this. Please also report the issue to OptiFine.")
                 .define("Render Area Effect Block Breaking", enableAreaEffectBlockBreaking);
 
         CLIENT_CONFIG.pop();
